@@ -144,6 +144,94 @@ final class MockTranslationComposerProvider
 String _$mockTranslationComposerHash() =>
     r'a73e441b35fad233d1377f3d3d9adec982d1c786';
 
+@ProviderFor(subtitleParser)
+const subtitleParserProvider = SubtitleParserProvider._();
+
+final class SubtitleParserProvider
+    extends $FunctionalProvider<SubtitleParser, SubtitleParser, SubtitleParser>
+    with $Provider<SubtitleParser> {
+  const SubtitleParserProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'subtitleParserProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$subtitleParserHash();
+
+  @$internal
+  @override
+  $ProviderElement<SubtitleParser> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  SubtitleParser create(Ref ref) {
+    return subtitleParser(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SubtitleParser value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SubtitleParser>(value),
+    );
+  }
+}
+
+String _$subtitleParserHash() => r'f616bb7aa20651fae7dcdabc6a296031693ec228';
+
+@ProviderFor(subtitleFormatter)
+const subtitleFormatterProvider = SubtitleFormatterProvider._();
+
+final class SubtitleFormatterProvider
+    extends
+        $FunctionalProvider<
+          SubtitleFormatter,
+          SubtitleFormatter,
+          SubtitleFormatter
+        >
+    with $Provider<SubtitleFormatter> {
+  const SubtitleFormatterProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'subtitleFormatterProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$subtitleFormatterHash();
+
+  @$internal
+  @override
+  $ProviderElement<SubtitleFormatter> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SubtitleFormatter create(Ref ref) {
+    return subtitleFormatter(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SubtitleFormatter value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SubtitleFormatter>(value),
+    );
+  }
+}
+
+String _$subtitleFormatterHash() => r'03659ea67c76de4f15d0ca8ca1c081f09abf2692';
+
 @ProviderFor(mockSearchApi)
 const mockSearchApiProvider = MockSearchApiProvider._();
 
@@ -469,6 +557,102 @@ final class SearchRepositoryProvider
 }
 
 String _$searchRepositoryHash() => r'2fbddbc7a2f19b9a2cc2a87ba49b5bf567ac1c95';
+
+@ProviderFor(subtitleImportRepository)
+const subtitleImportRepositoryProvider = SubtitleImportRepositoryProvider._();
+
+final class SubtitleImportRepositoryProvider
+    extends
+        $FunctionalProvider<
+          SubtitleImportRepository,
+          SubtitleImportRepository,
+          SubtitleImportRepository
+        >
+    with $Provider<SubtitleImportRepository> {
+  const SubtitleImportRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'subtitleImportRepositoryProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$subtitleImportRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<SubtitleImportRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SubtitleImportRepository create(Ref ref) {
+    return subtitleImportRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SubtitleImportRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SubtitleImportRepository>(value),
+    );
+  }
+}
+
+String _$subtitleImportRepositoryHash() =>
+    r'148a4028cb1bc2efc18e33f9ac22f4cb12f628f1';
+
+@ProviderFor(subtitleExportRepository)
+const subtitleExportRepositoryProvider = SubtitleExportRepositoryProvider._();
+
+final class SubtitleExportRepositoryProvider
+    extends
+        $FunctionalProvider<
+          SubtitleExportRepository,
+          SubtitleExportRepository,
+          SubtitleExportRepository
+        >
+    with $Provider<SubtitleExportRepository> {
+  const SubtitleExportRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'subtitleExportRepositoryProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$subtitleExportRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<SubtitleExportRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SubtitleExportRepository create(Ref ref) {
+    return subtitleExportRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SubtitleExportRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SubtitleExportRepository>(value),
+    );
+  }
+}
+
+String _$subtitleExportRepositoryHash() =>
+    r'5844ecbaad9a4976979ade695e658c68cd06e992';
 
 @ProviderFor(translationRepository)
 const translationRepositoryProvider = TranslationRepositoryProvider._();

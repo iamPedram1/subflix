@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:subflix/core/utils/subtitle_formatter.dart';
+import 'package:subflix/core/utils/subtitle_parser.dart';
 import 'package:subflix/features/history/data/datasources/history_local_data_source.dart';
 import 'package:subflix/features/history/data/repositories/local_history_repository.dart';
 import 'package:subflix/features/history/domain/repositories/history_repository.dart';
@@ -12,8 +14,12 @@ import 'package:subflix/features/settings/data/datasources/settings_local_data_s
 import 'package:subflix/features/settings/data/repositories/local_settings_repository.dart';
 import 'package:subflix/features/settings/domain/repositories/settings_repository.dart';
 import 'package:subflix/features/subtitles/data/apis/mock_translation_api.dart';
+import 'package:subflix/features/subtitles/data/repositories/local_subtitle_export_repository.dart';
+import 'package:subflix/features/subtitles/data/repositories/local_subtitle_import_repository.dart';
 import 'package:subflix/features/subtitles/data/repositories/mock_translation_repository.dart';
 import 'package:subflix/features/subtitles/data/services/mock_translation_composer.dart';
+import 'package:subflix/features/subtitles/domain/repositories/subtitle_export_repository.dart';
+import 'package:subflix/features/subtitles/domain/repositories/subtitle_import_repository.dart';
 import 'package:subflix/features/subtitles/domain/repositories/translation_repository.dart';
 
 part 'repository_providers.g.dart';
@@ -39,6 +45,16 @@ Dio dio(Ref ref) {
 @Riverpod(keepAlive: true)
 MockTranslationComposer mockTranslationComposer(Ref ref) {
   return MockTranslationComposer();
+}
+
+@Riverpod(keepAlive: true)
+SubtitleParser subtitleParser(Ref ref) {
+  return SubtitleParser();
+}
+
+@Riverpod(keepAlive: true)
+SubtitleFormatter subtitleFormatter(Ref ref) {
+  return SubtitleFormatter();
 }
 
 @Riverpod(keepAlive: true)
@@ -77,6 +93,16 @@ HistoryRepository historyRepository(Ref ref) {
 @Riverpod(keepAlive: true)
 SearchRepository searchRepository(Ref ref) {
   return MockSearchRepository(ref.watch(mockSearchApiProvider));
+}
+
+@Riverpod(keepAlive: true)
+SubtitleImportRepository subtitleImportRepository(Ref ref) {
+  return LocalSubtitleImportRepository(ref.watch(subtitleParserProvider));
+}
+
+@Riverpod(keepAlive: true)
+SubtitleExportRepository subtitleExportRepository(Ref ref) {
+  return LocalSubtitleExportRepository(ref.watch(subtitleFormatterProvider));
 }
 
 @Riverpod(keepAlive: true)
