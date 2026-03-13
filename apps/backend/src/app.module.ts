@@ -6,6 +6,7 @@ import { CatalogModule } from './features/catalog/catalog.module';
 import { DevicesModule } from './features/devices/devices.module';
 import { HealthModule } from './features/health/health.module';
 import { PreferencesModule } from './features/preferences/preferences.module';
+import { SubtitlesModule } from './features/subtitles/subtitles.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { PreferencesModule } from './features/preferences/preferences.module';
     HealthModule,
     CatalogModule,
     PreferencesModule,
+    SubtitlesModule,
   ],
 })
 export class AppModule {}
