@@ -1,0 +1,30 @@
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
+
+import { DevicesService } from 'src/features/devices/devices.service';
+
+import { DEVICE_ID_HEADER } from '../constants/request-context.constants';
+import { RequestWithContext } from '../types/request-context';
+
+@Injectable()
+export class DeviceContextGuard implements CanActivate {
+  constructor(private readonly devicesService: DevicesService) {}
+
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    const request = context.switchToHttp().getRequest<RequestWithContext>();
+    const deviceId = request.header(DEVICE_ID_HEADER)?.trim();
+
+    if (!deviceId) {
+      throw new UnauthorizedException(
+        `Missing required ${DEVICE_ID_HEADER} header.`,
+      );
+    }
+
+    request.device = await this.devicesService.resolveDevice(deviceId);
+    return true;
+  }
+}
