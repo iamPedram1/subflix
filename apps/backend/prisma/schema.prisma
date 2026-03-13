@@ -1,0 +1,141 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum AppLanguage {
+  en
+  es
+  ar
+  fr
+  de
+  pt
+  ja
+  ko
+  hi
+  tr
+}
+
+enum SubtitleFormat {
+  srt
+  vtt
+}
+
+enum ThemePreference {
+  system
+  dark
+  light
+}
+
+enum TranslationSourceType {
+  catalog
+  upload
+}
+
+enum TranslationJobStatus {
+  queued
+  translating
+  completed
+  failed
+}
+
+model ClientDevice {
+  id                  String               @id @default(uuid()) @db.Uuid
+  deviceId            String               @unique
+  preferences         UserPreference?
+  parsedSubtitleFiles ParsedSubtitleFile[]
+  translationJobs     TranslationJob[]
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+}
+
+model UserPreference {
+  id                      String          @id @default(uuid()) @db.Uuid
+  clientDeviceId          String          @unique @db.Uuid
+  device                  ClientDevice    @relation(fields: [clientDeviceId], references: [id], onDelete: Cascade)
+  hasSeenOnboarding       Boolean         @default(false)
+  preferredTargetLanguage AppLanguage     @default(es)
+  themePreference         ThemePreference @default(system)
+  createdAt               DateTime        @default(now())
+  updatedAt               DateTime        @updatedAt
+}
+
+model ParsedSubtitleFile {
+  id                  String              @id @default(uuid()) @db.Uuid
+  clientDeviceId      String              @db.Uuid
+  device              ClientDevice        @relation(fields: [clientDeviceId], references: [id], onDelete: Cascade)
+  fileName            String
+  format              SubtitleFormat
+  sourceLanguage      AppLanguage         @default(en)
+  lineCount           Int
+  durationMs          Int
+  checksum            String
+  rawContent          String              @db.Text
+  cues                ParsedSubtitleCue[]
+  translationJobs     TranslationJob[]
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+
+  @@index([clientDeviceId, createdAt(sort: Desc)])
+}
+
+model ParsedSubtitleCue {
+  id           String             @id @default(uuid()) @db.Uuid
+  parsedFileId String             @db.Uuid
+  parsedFile   ParsedSubtitleFile @relation(fields: [parsedFileId], references: [id], onDelete: Cascade)
+  cueIndex     Int
+  startMs      Int
+  endMs        Int
+  text         String             @db.Text
+
+  @@unique([parsedFileId, cueIndex])
+  @@index([parsedFileId, cueIndex])
+}
+
+model TranslationJob {
+  id                String                @id @default(uuid()) @db.Uuid
+  clientDeviceId    String                @db.Uuid
+  device            ClientDevice          @relation(fields: [clientDeviceId], references: [id], onDelete: Cascade)
+  sourceType        TranslationSourceType
+  status            TranslationJobStatus
+  stageLabel        String
+  title             String
+  sourceName        String
+  sourceLanguage    AppLanguage           @default(en)
+  targetLanguage    AppLanguage
+  format            SubtitleFormat
+  progress          Float                 @default(0)
+  lineCount         Int
+  durationMs        Int
+  errorMessage      String?               @db.Text
+  parsedFileId      String?               @db.Uuid
+  parsedFile        ParsedSubtitleFile?   @relation(fields: [parsedFileId], references: [id], onDelete: SetNull)
+  mediaRef          Json?
+  subtitleSourceRef Json?
+  cues              TranslationJobCue[]
+  createdAt         DateTime              @default(now())
+  updatedAt         DateTime              @updatedAt
+  startedAt         DateTime?
+  completedAt       DateTime?
+
+  @@index([clientDeviceId, createdAt(sort: Desc)])
+  @@index([status, updatedAt(sort: Desc)])
+}
+
+model TranslationJobCue {
+  id             String         @id @default(uuid()) @db.Uuid
+  jobId          String         @db.Uuid
+  job            TranslationJob @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  cueIndex       Int
+  startMs        Int
+  endMs          Int
+  originalText   String         @db.Text
+  translatedText String?        @db.Text
+
+  @@unique([jobId, cueIndex])
+  @@index([jobId, cueIndex])
+}
