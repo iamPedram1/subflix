@@ -28,16 +28,16 @@ Map<String, dynamic> _$UserPreferenceToJson(_UserPreference instance) =>
     };
 
 const _$AppLanguageEnumMap = {
-  AppLanguage.english: 'english',
-  AppLanguage.spanish: 'spanish',
-  AppLanguage.arabic: 'arabic',
-  AppLanguage.french: 'french',
-  AppLanguage.german: 'german',
-  AppLanguage.portuguese: 'portuguese',
-  AppLanguage.japanese: 'japanese',
-  AppLanguage.korean: 'korean',
-  AppLanguage.hindi: 'hindi',
-  AppLanguage.turkish: 'turkish',
+  AppLanguage.english: 'en',
+  AppLanguage.spanish: 'es',
+  AppLanguage.arabic: 'ar',
+  AppLanguage.french: 'fr',
+  AppLanguage.german: 'de',
+  AppLanguage.portuguese: 'pt',
+  AppLanguage.japanese: 'ja',
+  AppLanguage.korean: 'ko',
+  AppLanguage.hindi: 'hi',
+  AppLanguage.turkish: 'tr',
 };
 
 const _$ThemePreferenceEnumMap = {

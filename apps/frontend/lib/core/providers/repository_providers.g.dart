@@ -56,6 +56,87 @@ final class SharedPreferencesProvider
 
 String _$sharedPreferencesHash() => r'83fa3a6a0f7df530e8e5ccdd5b34f474ef9c9242';
 
+@ProviderFor(apiBaseUrl)
+const apiBaseUrlProvider = ApiBaseUrlProvider._();
+
+final class ApiBaseUrlProvider
+    extends $FunctionalProvider<String, String, String>
+    with $Provider<String> {
+  const ApiBaseUrlProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'apiBaseUrlProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$apiBaseUrlHash();
+
+  @$internal
+  @override
+  $ProviderElement<String> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  String create(Ref ref) {
+    return apiBaseUrl(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(String value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<String>(value),
+    );
+  }
+}
+
+String _$apiBaseUrlHash() => r'77dc5bba93004c423575357f387ca93805600f69';
+
+@ProviderFor(deviceId)
+const deviceIdProvider = DeviceIdProvider._();
+
+final class DeviceIdProvider extends $FunctionalProvider<String, String, String>
+    with $Provider<String> {
+  const DeviceIdProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'deviceIdProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$deviceIdHash();
+
+  @$internal
+  @override
+  $ProviderElement<String> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  String create(Ref ref) {
+    return deviceId(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(String value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<String>(value),
+    );
+  }
+}
+
+String _$deviceIdHash() => r'37f380c00b58448ff9e137737191a5b664f82425';
+
 @ProviderFor(dio)
 const dioProvider = DioProvider._();
 
@@ -94,55 +175,7 @@ final class DioProvider extends $FunctionalProvider<Dio, Dio, Dio>
   }
 }
 
-String _$dioHash() => r'e75df91af5b3c89cff346bb303fa3a99b547ec0d';
-
-@ProviderFor(mockTranslationComposer)
-const mockTranslationComposerProvider = MockTranslationComposerProvider._();
-
-final class MockTranslationComposerProvider
-    extends
-        $FunctionalProvider<
-          MockTranslationComposer,
-          MockTranslationComposer,
-          MockTranslationComposer
-        >
-    with $Provider<MockTranslationComposer> {
-  const MockTranslationComposerProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'mockTranslationComposerProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$mockTranslationComposerHash();
-
-  @$internal
-  @override
-  $ProviderElement<MockTranslationComposer> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
-
-  @override
-  MockTranslationComposer create(Ref ref) {
-    return mockTranslationComposer(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(MockTranslationComposer value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<MockTranslationComposer>(value),
-    );
-  }
-}
-
-String _$mockTranslationComposerHash() =>
-    r'a73e441b35fad233d1377f3d3d9adec982d1c786';
+String _$dioHash() => r'7b9d28b3a14baf706d284f7d0645a8477cabfcf9';
 
 @ProviderFor(subtitleParser)
 const subtitleParserProvider = SubtitleParserProvider._();
@@ -185,237 +218,176 @@ final class SubtitleParserProvider
 
 String _$subtitleParserHash() => r'f616bb7aa20651fae7dcdabc6a296031693ec228';
 
-@ProviderFor(subtitleFormatter)
-const subtitleFormatterProvider = SubtitleFormatterProvider._();
+@ProviderFor(catalogApi)
+const catalogApiProvider = CatalogApiProvider._();
 
-final class SubtitleFormatterProvider
-    extends
-        $FunctionalProvider<
-          SubtitleFormatter,
-          SubtitleFormatter,
-          SubtitleFormatter
-        >
-    with $Provider<SubtitleFormatter> {
-  const SubtitleFormatterProvider._()
+final class CatalogApiProvider
+    extends $FunctionalProvider<CatalogApi, CatalogApi, CatalogApi>
+    with $Provider<CatalogApi> {
+  const CatalogApiProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'subtitleFormatterProvider',
+        name: r'catalogApiProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$subtitleFormatterHash();
+  String debugGetCreateSourceHash() => _$catalogApiHash();
 
   @$internal
   @override
-  $ProviderElement<SubtitleFormatter> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
-
-  @override
-  SubtitleFormatter create(Ref ref) {
-    return subtitleFormatter(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(SubtitleFormatter value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<SubtitleFormatter>(value),
-    );
-  }
-}
-
-String _$subtitleFormatterHash() => r'03659ea67c76de4f15d0ca8ca1c081f09abf2692';
-
-@ProviderFor(mockSearchApi)
-const mockSearchApiProvider = MockSearchApiProvider._();
-
-final class MockSearchApiProvider
-    extends $FunctionalProvider<MockSearchApi, MockSearchApi, MockSearchApi>
-    with $Provider<MockSearchApi> {
-  const MockSearchApiProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'mockSearchApiProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$mockSearchApiHash();
-
-  @$internal
-  @override
-  $ProviderElement<MockSearchApi> $createElement($ProviderPointer pointer) =>
+  $ProviderElement<CatalogApi> $createElement($ProviderPointer pointer) =>
       $ProviderElement(pointer);
 
   @override
-  MockSearchApi create(Ref ref) {
-    return mockSearchApi(ref);
+  CatalogApi create(Ref ref) {
+    return catalogApi(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(MockSearchApi value) {
+  Override overrideWithValue(CatalogApi value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<MockSearchApi>(value),
+      providerOverride: $SyncValueProvider<CatalogApi>(value),
     );
   }
 }
 
-String _$mockSearchApiHash() => r'09dac09a6d81cea120bb6fcd7b26814206776152';
+String _$catalogApiHash() => r'7b68cbb33e48cf33d23634df8b66168cf8f08e04';
 
-@ProviderFor(mockTranslationApi)
-const mockTranslationApiProvider = MockTranslationApiProvider._();
+@ProviderFor(preferencesApi)
+const preferencesApiProvider = PreferencesApiProvider._();
 
-final class MockTranslationApiProvider
-    extends
-        $FunctionalProvider<
-          MockTranslationApi,
-          MockTranslationApi,
-          MockTranslationApi
-        >
-    with $Provider<MockTranslationApi> {
-  const MockTranslationApiProvider._()
+final class PreferencesApiProvider
+    extends $FunctionalProvider<PreferencesApi, PreferencesApi, PreferencesApi>
+    with $Provider<PreferencesApi> {
+  const PreferencesApiProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'mockTranslationApiProvider',
+        name: r'preferencesApiProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$mockTranslationApiHash();
+  String debugGetCreateSourceHash() => _$preferencesApiHash();
 
   @$internal
   @override
-  $ProviderElement<MockTranslationApi> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
+  $ProviderElement<PreferencesApi> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
 
   @override
-  MockTranslationApi create(Ref ref) {
-    return mockTranslationApi(ref);
+  PreferencesApi create(Ref ref) {
+    return preferencesApi(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(MockTranslationApi value) {
+  Override overrideWithValue(PreferencesApi value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<MockTranslationApi>(value),
+      providerOverride: $SyncValueProvider<PreferencesApi>(value),
     );
   }
 }
 
-String _$mockTranslationApiHash() =>
-    r'bd103c28d288310f92051f2e10a19d5b3fff42c1';
+String _$preferencesApiHash() => r'1412293b283aed4a6329366d6410ac3b40f9f9f9';
 
-@ProviderFor(settingsLocalDataSource)
-const settingsLocalDataSourceProvider = SettingsLocalDataSourceProvider._();
+@ProviderFor(translationJobsApi)
+const translationJobsApiProvider = TranslationJobsApiProvider._();
 
-final class SettingsLocalDataSourceProvider
+final class TranslationJobsApiProvider
     extends
         $FunctionalProvider<
-          SettingsLocalDataSource,
-          SettingsLocalDataSource,
-          SettingsLocalDataSource
+          TranslationJobsApi,
+          TranslationJobsApi,
+          TranslationJobsApi
         >
-    with $Provider<SettingsLocalDataSource> {
-  const SettingsLocalDataSourceProvider._()
+    with $Provider<TranslationJobsApi> {
+  const TranslationJobsApiProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'settingsLocalDataSourceProvider',
+        name: r'translationJobsApiProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$settingsLocalDataSourceHash();
+  String debugGetCreateSourceHash() => _$translationJobsApiHash();
 
   @$internal
   @override
-  $ProviderElement<SettingsLocalDataSource> $createElement(
+  $ProviderElement<TranslationJobsApi> $createElement(
     $ProviderPointer pointer,
   ) => $ProviderElement(pointer);
 
   @override
-  SettingsLocalDataSource create(Ref ref) {
-    return settingsLocalDataSource(ref);
+  TranslationJobsApi create(Ref ref) {
+    return translationJobsApi(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(SettingsLocalDataSource value) {
+  Override overrideWithValue(TranslationJobsApi value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<SettingsLocalDataSource>(value),
+      providerOverride: $SyncValueProvider<TranslationJobsApi>(value),
     );
   }
 }
 
-String _$settingsLocalDataSourceHash() =>
-    r'1f12d9020fc66019fa70d90b573c70abc5cb1a76';
+String _$translationJobsApiHash() =>
+    r'bc9e50f680804c4af19d40e635b89bbb6274fb02';
 
-@ProviderFor(historyLocalDataSource)
-const historyLocalDataSourceProvider = HistoryLocalDataSourceProvider._();
+@ProviderFor(subtitlesApi)
+const subtitlesApiProvider = SubtitlesApiProvider._();
 
-final class HistoryLocalDataSourceProvider
-    extends
-        $FunctionalProvider<
-          HistoryLocalDataSource,
-          HistoryLocalDataSource,
-          HistoryLocalDataSource
-        >
-    with $Provider<HistoryLocalDataSource> {
-  const HistoryLocalDataSourceProvider._()
+final class SubtitlesApiProvider
+    extends $FunctionalProvider<SubtitlesApi, SubtitlesApi, SubtitlesApi>
+    with $Provider<SubtitlesApi> {
+  const SubtitlesApiProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'historyLocalDataSourceProvider',
+        name: r'subtitlesApiProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$historyLocalDataSourceHash();
+  String debugGetCreateSourceHash() => _$subtitlesApiHash();
 
   @$internal
   @override
-  $ProviderElement<HistoryLocalDataSource> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
+  $ProviderElement<SubtitlesApi> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
 
   @override
-  HistoryLocalDataSource create(Ref ref) {
-    return historyLocalDataSource(ref);
+  SubtitlesApi create(Ref ref) {
+    return subtitlesApi(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(HistoryLocalDataSource value) {
+  Override overrideWithValue(SubtitlesApi value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<HistoryLocalDataSource>(value),
+      providerOverride: $SyncValueProvider<SubtitlesApi>(value),
     );
   }
 }
 
-String _$historyLocalDataSourceHash() =>
-    r'8092aee2f79e0459d87b530054e0ec58c6562820';
+String _$subtitlesApiHash() => r'2a3d29b137048e276cc8a83fc992e53fe12a32e5';
 
 @ProviderFor(settingsRepository)
 const settingsRepositoryProvider = SettingsRepositoryProvider._();
@@ -463,7 +435,7 @@ final class SettingsRepositoryProvider
 }
 
 String _$settingsRepositoryHash() =>
-    r'f275790be09262028d91de1ef7e0338a6f1f598a';
+    r'156646015e028493dead3b3ff48333c606aa831d';
 
 @ProviderFor(historyRepository)
 const historyRepositoryProvider = HistoryRepositoryProvider._();
@@ -510,7 +482,7 @@ final class HistoryRepositoryProvider
   }
 }
 
-String _$historyRepositoryHash() => r'17130f74630db470a6f3f9c08a89cb65e8db51c1';
+String _$historyRepositoryHash() => r'78cc404e5c81b3cc00eb6793d87afb432ed3af10';
 
 @ProviderFor(searchRepository)
 const searchRepositoryProvider = SearchRepositoryProvider._();
@@ -556,7 +528,7 @@ final class SearchRepositoryProvider
   }
 }
 
-String _$searchRepositoryHash() => r'2fbddbc7a2f19b9a2cc2a87ba49b5bf567ac1c95';
+String _$searchRepositoryHash() => r'f9bd980f01fc2c056468861b02c3f4fdc5dd3811';
 
 @ProviderFor(subtitleImportRepository)
 const subtitleImportRepositoryProvider = SubtitleImportRepositoryProvider._();
@@ -604,7 +576,7 @@ final class SubtitleImportRepositoryProvider
 }
 
 String _$subtitleImportRepositoryHash() =>
-    r'148a4028cb1bc2efc18e33f9ac22f4cb12f628f1';
+    r'ed6b2fd5fc42a1cec3589f881053dec0489182a9';
 
 @ProviderFor(subtitleExportRepository)
 const subtitleExportRepositoryProvider = SubtitleExportRepositoryProvider._();
@@ -652,7 +624,7 @@ final class SubtitleExportRepositoryProvider
 }
 
 String _$subtitleExportRepositoryHash() =>
-    r'5844ecbaad9a4976979ade695e658c68cd06e992';
+    r'756eb4c79e4efb157788ee618d78877fed8a3e1f';
 
 @ProviderFor(translationRepository)
 const translationRepositoryProvider = TranslationRepositoryProvider._();
@@ -700,4 +672,4 @@ final class TranslationRepositoryProvider
 }
 
 String _$translationRepositoryHash() =>
-    r'10727698805f63727544a3158b382fc27ce6cc41';
+    r'8ae64749558055b9bf321ad46e96b7dfea535534';

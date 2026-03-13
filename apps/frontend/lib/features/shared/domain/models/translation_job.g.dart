@@ -16,14 +16,19 @@ _TranslationJob _$TranslationJobFromJson(Map<String, dynamic> json) =>
         json['sourceType'],
       ),
       status: $enumDecode(_$TranslationJobStatusEnumMap, json['status']),
+      stageLabel: json['stageLabel'] as String,
       sourceLanguage: $enumDecode(_$AppLanguageEnumMap, json['sourceLanguage']),
       targetLanguage: $enumDecode(_$AppLanguageEnumMap, json['targetLanguage']),
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       format: $enumDecode(_$SubtitleFormatEnumMap, json['format']),
-      lines: (json['lines'] as List<dynamic>)
-          .map((e) => SubtitleLine.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      lineCount: (json['lineCount'] as num).toInt(),
+      durationMs: (json['durationMs'] as num).toInt(),
+      lines:
+          (json['lines'] as List<dynamic>?)
+              ?.map((e) => SubtitleLine.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <SubtitleLine>[],
       progress: (json['progress'] as num).toDouble(),
       errorMessage: json['errorMessage'] as String?,
     );
@@ -35,11 +40,14 @@ Map<String, dynamic> _$TranslationJobToJson(_TranslationJob instance) =>
       'sourceName': instance.sourceName,
       'sourceType': _$TranslationSourceTypeEnumMap[instance.sourceType]!,
       'status': _$TranslationJobStatusEnumMap[instance.status]!,
+      'stageLabel': instance.stageLabel,
       'sourceLanguage': _$AppLanguageEnumMap[instance.sourceLanguage]!,
       'targetLanguage': _$AppLanguageEnumMap[instance.targetLanguage]!,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       'format': _$SubtitleFormatEnumMap[instance.format]!,
+      'lineCount': instance.lineCount,
+      'durationMs': instance.durationMs,
       'lines': instance.lines,
       'progress': instance.progress,
       'errorMessage': instance.errorMessage,
@@ -58,16 +66,16 @@ const _$TranslationJobStatusEnumMap = {
 };
 
 const _$AppLanguageEnumMap = {
-  AppLanguage.english: 'english',
-  AppLanguage.spanish: 'spanish',
-  AppLanguage.arabic: 'arabic',
-  AppLanguage.french: 'french',
-  AppLanguage.german: 'german',
-  AppLanguage.portuguese: 'portuguese',
-  AppLanguage.japanese: 'japanese',
-  AppLanguage.korean: 'korean',
-  AppLanguage.hindi: 'hindi',
-  AppLanguage.turkish: 'turkish',
+  AppLanguage.english: 'en',
+  AppLanguage.spanish: 'es',
+  AppLanguage.arabic: 'ar',
+  AppLanguage.french: 'fr',
+  AppLanguage.german: 'de',
+  AppLanguage.portuguese: 'pt',
+  AppLanguage.japanese: 'ja',
+  AppLanguage.korean: 'ko',
+  AppLanguage.hindi: 'hi',
+  AppLanguage.turkish: 'tr',
 };
 
 const _$SubtitleFormatEnumMap = {

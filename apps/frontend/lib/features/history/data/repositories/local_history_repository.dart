@@ -32,14 +32,4 @@ class LocalHistoryRepository implements HistoryRepository {
     }
     return null;
   }
-
-  @override
-  Future<void> saveJob(TranslationJob job) async {
-    final jobs = await _dataSource.readJobs();
-    final next = <TranslationJob>[
-      job,
-      ...jobs.where((existing) => existing.id != job.id),
-    ];
-    await _dataSource.writeJobs(next);
-  }
 }

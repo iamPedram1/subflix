@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TranslationJob {
 
- String get id; String get title; String get sourceName; TranslationSourceType get sourceType; TranslationJobStatus get status; AppLanguage get sourceLanguage; AppLanguage get targetLanguage; DateTime get createdAt; DateTime get updatedAt; SubtitleFormat get format; List<SubtitleLine> get lines; double get progress; String? get errorMessage;
+ String get id; String get title; String get sourceName; TranslationSourceType get sourceType; TranslationJobStatus get status; String get stageLabel; AppLanguage get sourceLanguage; AppLanguage get targetLanguage; DateTime get createdAt; DateTime get updatedAt; SubtitleFormat get format; int get lineCount; int get durationMs; List<SubtitleLine> get lines; double get progress; String? get errorMessage;
 /// Create a copy of TranslationJob
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $TranslationJobCopyWith<TranslationJob> get copyWith => _$TranslationJobCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TranslationJob&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.sourceName, sourceName) || other.sourceName == sourceName)&&(identical(other.sourceType, sourceType) || other.sourceType == sourceType)&&(identical(other.status, status) || other.status == status)&&(identical(other.sourceLanguage, sourceLanguage) || other.sourceLanguage == sourceLanguage)&&(identical(other.targetLanguage, targetLanguage) || other.targetLanguage == targetLanguage)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.format, format) || other.format == format)&&const DeepCollectionEquality().equals(other.lines, lines)&&(identical(other.progress, progress) || other.progress == progress)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TranslationJob&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.sourceName, sourceName) || other.sourceName == sourceName)&&(identical(other.sourceType, sourceType) || other.sourceType == sourceType)&&(identical(other.status, status) || other.status == status)&&(identical(other.stageLabel, stageLabel) || other.stageLabel == stageLabel)&&(identical(other.sourceLanguage, sourceLanguage) || other.sourceLanguage == sourceLanguage)&&(identical(other.targetLanguage, targetLanguage) || other.targetLanguage == targetLanguage)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.format, format) || other.format == format)&&(identical(other.lineCount, lineCount) || other.lineCount == lineCount)&&(identical(other.durationMs, durationMs) || other.durationMs == durationMs)&&const DeepCollectionEquality().equals(other.lines, lines)&&(identical(other.progress, progress) || other.progress == progress)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,sourceName,sourceType,status,sourceLanguage,targetLanguage,createdAt,updatedAt,format,const DeepCollectionEquality().hash(lines),progress,errorMessage);
+int get hashCode => Object.hash(runtimeType,id,title,sourceName,sourceType,status,stageLabel,sourceLanguage,targetLanguage,createdAt,updatedAt,format,lineCount,durationMs,const DeepCollectionEquality().hash(lines),progress,errorMessage);
 
 @override
 String toString() {
-  return 'TranslationJob(id: $id, title: $title, sourceName: $sourceName, sourceType: $sourceType, status: $status, sourceLanguage: $sourceLanguage, targetLanguage: $targetLanguage, createdAt: $createdAt, updatedAt: $updatedAt, format: $format, lines: $lines, progress: $progress, errorMessage: $errorMessage)';
+  return 'TranslationJob(id: $id, title: $title, sourceName: $sourceName, sourceType: $sourceType, status: $status, stageLabel: $stageLabel, sourceLanguage: $sourceLanguage, targetLanguage: $targetLanguage, createdAt: $createdAt, updatedAt: $updatedAt, format: $format, lineCount: $lineCount, durationMs: $durationMs, lines: $lines, progress: $progress, errorMessage: $errorMessage)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $TranslationJobCopyWith<$Res>  {
   factory $TranslationJobCopyWith(TranslationJob value, $Res Function(TranslationJob) _then) = _$TranslationJobCopyWithImpl;
 @useResult
 $Res call({
- String id, String title, String sourceName, TranslationSourceType sourceType, TranslationJobStatus status, AppLanguage sourceLanguage, AppLanguage targetLanguage, DateTime createdAt, DateTime updatedAt, SubtitleFormat format, List<SubtitleLine> lines, double progress, String? errorMessage
+ String id, String title, String sourceName, TranslationSourceType sourceType, TranslationJobStatus status, String stageLabel, AppLanguage sourceLanguage, AppLanguage targetLanguage, DateTime createdAt, DateTime updatedAt, SubtitleFormat format, int lineCount, int durationMs, List<SubtitleLine> lines, double progress, String? errorMessage
 });
 
 
@@ -65,19 +65,22 @@ class _$TranslationJobCopyWithImpl<$Res>
 
 /// Create a copy of TranslationJob
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? sourceName = null,Object? sourceType = null,Object? status = null,Object? sourceLanguage = null,Object? targetLanguage = null,Object? createdAt = null,Object? updatedAt = null,Object? format = null,Object? lines = null,Object? progress = null,Object? errorMessage = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? sourceName = null,Object? sourceType = null,Object? status = null,Object? stageLabel = null,Object? sourceLanguage = null,Object? targetLanguage = null,Object? createdAt = null,Object? updatedAt = null,Object? format = null,Object? lineCount = null,Object? durationMs = null,Object? lines = null,Object? progress = null,Object? errorMessage = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,sourceName: null == sourceName ? _self.sourceName : sourceName // ignore: cast_nullable_to_non_nullable
 as String,sourceType: null == sourceType ? _self.sourceType : sourceType // ignore: cast_nullable_to_non_nullable
 as TranslationSourceType,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as TranslationJobStatus,sourceLanguage: null == sourceLanguage ? _self.sourceLanguage : sourceLanguage // ignore: cast_nullable_to_non_nullable
+as TranslationJobStatus,stageLabel: null == stageLabel ? _self.stageLabel : stageLabel // ignore: cast_nullable_to_non_nullable
+as String,sourceLanguage: null == sourceLanguage ? _self.sourceLanguage : sourceLanguage // ignore: cast_nullable_to_non_nullable
 as AppLanguage,targetLanguage: null == targetLanguage ? _self.targetLanguage : targetLanguage // ignore: cast_nullable_to_non_nullable
 as AppLanguage,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime,format: null == format ? _self.format : format // ignore: cast_nullable_to_non_nullable
-as SubtitleFormat,lines: null == lines ? _self.lines : lines // ignore: cast_nullable_to_non_nullable
+as SubtitleFormat,lineCount: null == lineCount ? _self.lineCount : lineCount // ignore: cast_nullable_to_non_nullable
+as int,durationMs: null == durationMs ? _self.durationMs : durationMs // ignore: cast_nullable_to_non_nullable
+as int,lines: null == lines ? _self.lines : lines // ignore: cast_nullable_to_non_nullable
 as List<SubtitleLine>,progress: null == progress ? _self.progress : progress // ignore: cast_nullable_to_non_nullable
 as double,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -165,10 +168,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String sourceName,  TranslationSourceType sourceType,  TranslationJobStatus status,  AppLanguage sourceLanguage,  AppLanguage targetLanguage,  DateTime createdAt,  DateTime updatedAt,  SubtitleFormat format,  List<SubtitleLine> lines,  double progress,  String? errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String sourceName,  TranslationSourceType sourceType,  TranslationJobStatus status,  String stageLabel,  AppLanguage sourceLanguage,  AppLanguage targetLanguage,  DateTime createdAt,  DateTime updatedAt,  SubtitleFormat format,  int lineCount,  int durationMs,  List<SubtitleLine> lines,  double progress,  String? errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TranslationJob() when $default != null:
-return $default(_that.id,_that.title,_that.sourceName,_that.sourceType,_that.status,_that.sourceLanguage,_that.targetLanguage,_that.createdAt,_that.updatedAt,_that.format,_that.lines,_that.progress,_that.errorMessage);case _:
+return $default(_that.id,_that.title,_that.sourceName,_that.sourceType,_that.status,_that.stageLabel,_that.sourceLanguage,_that.targetLanguage,_that.createdAt,_that.updatedAt,_that.format,_that.lineCount,_that.durationMs,_that.lines,_that.progress,_that.errorMessage);case _:
   return orElse();
 
 }
@@ -186,10 +189,10 @@ return $default(_that.id,_that.title,_that.sourceName,_that.sourceType,_that.sta
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String sourceName,  TranslationSourceType sourceType,  TranslationJobStatus status,  AppLanguage sourceLanguage,  AppLanguage targetLanguage,  DateTime createdAt,  DateTime updatedAt,  SubtitleFormat format,  List<SubtitleLine> lines,  double progress,  String? errorMessage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String sourceName,  TranslationSourceType sourceType,  TranslationJobStatus status,  String stageLabel,  AppLanguage sourceLanguage,  AppLanguage targetLanguage,  DateTime createdAt,  DateTime updatedAt,  SubtitleFormat format,  int lineCount,  int durationMs,  List<SubtitleLine> lines,  double progress,  String? errorMessage)  $default,) {final _that = this;
 switch (_that) {
 case _TranslationJob():
-return $default(_that.id,_that.title,_that.sourceName,_that.sourceType,_that.status,_that.sourceLanguage,_that.targetLanguage,_that.createdAt,_that.updatedAt,_that.format,_that.lines,_that.progress,_that.errorMessage);case _:
+return $default(_that.id,_that.title,_that.sourceName,_that.sourceType,_that.status,_that.stageLabel,_that.sourceLanguage,_that.targetLanguage,_that.createdAt,_that.updatedAt,_that.format,_that.lineCount,_that.durationMs,_that.lines,_that.progress,_that.errorMessage);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -206,10 +209,10 @@ return $default(_that.id,_that.title,_that.sourceName,_that.sourceType,_that.sta
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String sourceName,  TranslationSourceType sourceType,  TranslationJobStatus status,  AppLanguage sourceLanguage,  AppLanguage targetLanguage,  DateTime createdAt,  DateTime updatedAt,  SubtitleFormat format,  List<SubtitleLine> lines,  double progress,  String? errorMessage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String sourceName,  TranslationSourceType sourceType,  TranslationJobStatus status,  String stageLabel,  AppLanguage sourceLanguage,  AppLanguage targetLanguage,  DateTime createdAt,  DateTime updatedAt,  SubtitleFormat format,  int lineCount,  int durationMs,  List<SubtitleLine> lines,  double progress,  String? errorMessage)?  $default,) {final _that = this;
 switch (_that) {
 case _TranslationJob() when $default != null:
-return $default(_that.id,_that.title,_that.sourceName,_that.sourceType,_that.status,_that.sourceLanguage,_that.targetLanguage,_that.createdAt,_that.updatedAt,_that.format,_that.lines,_that.progress,_that.errorMessage);case _:
+return $default(_that.id,_that.title,_that.sourceName,_that.sourceType,_that.status,_that.stageLabel,_that.sourceLanguage,_that.targetLanguage,_that.createdAt,_that.updatedAt,_that.format,_that.lineCount,_that.durationMs,_that.lines,_that.progress,_that.errorMessage);case _:
   return null;
 
 }
@@ -221,7 +224,7 @@ return $default(_that.id,_that.title,_that.sourceName,_that.sourceType,_that.sta
 @JsonSerializable()
 
 class _TranslationJob implements TranslationJob {
-  const _TranslationJob({required this.id, required this.title, required this.sourceName, required this.sourceType, required this.status, required this.sourceLanguage, required this.targetLanguage, required this.createdAt, required this.updatedAt, required this.format, required final  List<SubtitleLine> lines, required this.progress, this.errorMessage}): _lines = lines;
+  const _TranslationJob({required this.id, required this.title, required this.sourceName, required this.sourceType, required this.status, required this.stageLabel, required this.sourceLanguage, required this.targetLanguage, required this.createdAt, required this.updatedAt, required this.format, required this.lineCount, required this.durationMs, final  List<SubtitleLine> lines = const <SubtitleLine>[], required this.progress, this.errorMessage}): _lines = lines;
   factory _TranslationJob.fromJson(Map<String, dynamic> json) => _$TranslationJobFromJson(json);
 
 @override final  String id;
@@ -229,13 +232,16 @@ class _TranslationJob implements TranslationJob {
 @override final  String sourceName;
 @override final  TranslationSourceType sourceType;
 @override final  TranslationJobStatus status;
+@override final  String stageLabel;
 @override final  AppLanguage sourceLanguage;
 @override final  AppLanguage targetLanguage;
 @override final  DateTime createdAt;
 @override final  DateTime updatedAt;
 @override final  SubtitleFormat format;
+@override final  int lineCount;
+@override final  int durationMs;
  final  List<SubtitleLine> _lines;
-@override List<SubtitleLine> get lines {
+@override@JsonKey() List<SubtitleLine> get lines {
   if (_lines is EqualUnmodifiableListView) return _lines;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_lines);
@@ -257,16 +263,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TranslationJob&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.sourceName, sourceName) || other.sourceName == sourceName)&&(identical(other.sourceType, sourceType) || other.sourceType == sourceType)&&(identical(other.status, status) || other.status == status)&&(identical(other.sourceLanguage, sourceLanguage) || other.sourceLanguage == sourceLanguage)&&(identical(other.targetLanguage, targetLanguage) || other.targetLanguage == targetLanguage)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.format, format) || other.format == format)&&const DeepCollectionEquality().equals(other._lines, _lines)&&(identical(other.progress, progress) || other.progress == progress)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TranslationJob&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.sourceName, sourceName) || other.sourceName == sourceName)&&(identical(other.sourceType, sourceType) || other.sourceType == sourceType)&&(identical(other.status, status) || other.status == status)&&(identical(other.stageLabel, stageLabel) || other.stageLabel == stageLabel)&&(identical(other.sourceLanguage, sourceLanguage) || other.sourceLanguage == sourceLanguage)&&(identical(other.targetLanguage, targetLanguage) || other.targetLanguage == targetLanguage)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.format, format) || other.format == format)&&(identical(other.lineCount, lineCount) || other.lineCount == lineCount)&&(identical(other.durationMs, durationMs) || other.durationMs == durationMs)&&const DeepCollectionEquality().equals(other._lines, _lines)&&(identical(other.progress, progress) || other.progress == progress)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,sourceName,sourceType,status,sourceLanguage,targetLanguage,createdAt,updatedAt,format,const DeepCollectionEquality().hash(_lines),progress,errorMessage);
+int get hashCode => Object.hash(runtimeType,id,title,sourceName,sourceType,status,stageLabel,sourceLanguage,targetLanguage,createdAt,updatedAt,format,lineCount,durationMs,const DeepCollectionEquality().hash(_lines),progress,errorMessage);
 
 @override
 String toString() {
-  return 'TranslationJob(id: $id, title: $title, sourceName: $sourceName, sourceType: $sourceType, status: $status, sourceLanguage: $sourceLanguage, targetLanguage: $targetLanguage, createdAt: $createdAt, updatedAt: $updatedAt, format: $format, lines: $lines, progress: $progress, errorMessage: $errorMessage)';
+  return 'TranslationJob(id: $id, title: $title, sourceName: $sourceName, sourceType: $sourceType, status: $status, stageLabel: $stageLabel, sourceLanguage: $sourceLanguage, targetLanguage: $targetLanguage, createdAt: $createdAt, updatedAt: $updatedAt, format: $format, lineCount: $lineCount, durationMs: $durationMs, lines: $lines, progress: $progress, errorMessage: $errorMessage)';
 }
 
 
@@ -277,7 +283,7 @@ abstract mixin class _$TranslationJobCopyWith<$Res> implements $TranslationJobCo
   factory _$TranslationJobCopyWith(_TranslationJob value, $Res Function(_TranslationJob) _then) = __$TranslationJobCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title, String sourceName, TranslationSourceType sourceType, TranslationJobStatus status, AppLanguage sourceLanguage, AppLanguage targetLanguage, DateTime createdAt, DateTime updatedAt, SubtitleFormat format, List<SubtitleLine> lines, double progress, String? errorMessage
+ String id, String title, String sourceName, TranslationSourceType sourceType, TranslationJobStatus status, String stageLabel, AppLanguage sourceLanguage, AppLanguage targetLanguage, DateTime createdAt, DateTime updatedAt, SubtitleFormat format, int lineCount, int durationMs, List<SubtitleLine> lines, double progress, String? errorMessage
 });
 
 
@@ -294,19 +300,22 @@ class __$TranslationJobCopyWithImpl<$Res>
 
 /// Create a copy of TranslationJob
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? sourceName = null,Object? sourceType = null,Object? status = null,Object? sourceLanguage = null,Object? targetLanguage = null,Object? createdAt = null,Object? updatedAt = null,Object? format = null,Object? lines = null,Object? progress = null,Object? errorMessage = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? sourceName = null,Object? sourceType = null,Object? status = null,Object? stageLabel = null,Object? sourceLanguage = null,Object? targetLanguage = null,Object? createdAt = null,Object? updatedAt = null,Object? format = null,Object? lineCount = null,Object? durationMs = null,Object? lines = null,Object? progress = null,Object? errorMessage = freezed,}) {
   return _then(_TranslationJob(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,sourceName: null == sourceName ? _self.sourceName : sourceName // ignore: cast_nullable_to_non_nullable
 as String,sourceType: null == sourceType ? _self.sourceType : sourceType // ignore: cast_nullable_to_non_nullable
 as TranslationSourceType,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as TranslationJobStatus,sourceLanguage: null == sourceLanguage ? _self.sourceLanguage : sourceLanguage // ignore: cast_nullable_to_non_nullable
+as TranslationJobStatus,stageLabel: null == stageLabel ? _self.stageLabel : stageLabel // ignore: cast_nullable_to_non_nullable
+as String,sourceLanguage: null == sourceLanguage ? _self.sourceLanguage : sourceLanguage // ignore: cast_nullable_to_non_nullable
 as AppLanguage,targetLanguage: null == targetLanguage ? _self.targetLanguage : targetLanguage // ignore: cast_nullable_to_non_nullable
 as AppLanguage,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime,format: null == format ? _self.format : format // ignore: cast_nullable_to_non_nullable
-as SubtitleFormat,lines: null == lines ? _self._lines : lines // ignore: cast_nullable_to_non_nullable
+as SubtitleFormat,lineCount: null == lineCount ? _self.lineCount : lineCount // ignore: cast_nullable_to_non_nullable
+as int,durationMs: null == durationMs ? _self.durationMs : durationMs // ignore: cast_nullable_to_non_nullable
+as int,lines: null == lines ? _self._lines : lines // ignore: cast_nullable_to_non_nullable
 as List<SubtitleLine>,progress: null == progress ? _self.progress : progress // ignore: cast_nullable_to_non_nullable
 as double,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,

@@ -42,7 +42,7 @@ final class TranslationFlowControllerProvider
 }
 
 String _$translationFlowControllerHash() =>
-    r'76de7fba402fa59894715c47769b4d54d2c79cfc';
+    r'd07416987bc8b0d778071580b2e3ce938a510caa';
 
 abstract class _$TranslationFlowController
     extends $Notifier<TranslationFlowState> {

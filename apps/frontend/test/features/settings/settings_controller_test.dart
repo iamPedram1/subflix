@@ -3,17 +3,17 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:subflix/core/providers/repository_providers.dart';
 import 'package:subflix/features/settings/application/settings_controller.dart';
+import 'package:subflix/features/settings/domain/models/user_preference.dart';
+import 'package:subflix/features/settings/domain/repositories/settings_repository.dart';
 import 'package:subflix/features/shared/domain/models/app_language.dart';
 import 'package:subflix/features/shared/domain/models/theme_preference.dart';
 
-import '../../core/shared/test_helpers.dart';
-
 void main() {
-  test('loads default preferences and persists updates', () async {
-    final sharedPreferences = await createMockSharedPreferences();
+  test('loads backend-backed preferences and persists updates', () async {
+    final repository = _FakeSettingsRepository();
     final container = ProviderContainer(
       overrides: [
-        sharedPreferencesProvider.overrideWithValue(sharedPreferences),
+        settingsRepositoryProvider.overrideWithValue(repository),
       ],
     );
     addTearDown(container.dispose);
@@ -38,4 +38,37 @@ void main() {
     expect(updated.preferredTargetLanguage, AppLanguage.arabic);
     expect(updated.themePreference, ThemePreference.dark);
   });
+}
+
+class _FakeSettingsRepository implements SettingsRepository {
+  UserPreference _preference = const UserPreference(
+    hasSeenOnboarding: false,
+    preferredTargetLanguage: AppLanguage.spanish,
+    themePreference: ThemePreference.system,
+  );
+
+  @override
+  Future<UserPreference> loadPreferences() async => _preference;
+
+  @override
+  Future<UserPreference> markOnboardingSeen() async {
+    _preference = _preference.copyWith(hasSeenOnboarding: true);
+    return _preference;
+  }
+
+  @override
+  Future<UserPreference> setPreferredTargetLanguage(
+    AppLanguage language,
+  ) async {
+    _preference = _preference.copyWith(preferredTargetLanguage: language);
+    return _preference;
+  }
+
+  @override
+  Future<UserPreference> setThemePreference(
+    ThemePreference themePreference,
+  ) async {
+    _preference = _preference.copyWith(themePreference: themePreference);
+    return _preference;
+  }
 }

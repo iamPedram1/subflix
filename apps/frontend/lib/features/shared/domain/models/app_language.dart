@@ -1,13 +1,25 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 enum AppLanguage {
+  @JsonValue('en')
   english(code: 'en', label: 'English', nativeLabel: 'English'),
+  @JsonValue('es')
   spanish(code: 'es', label: 'Spanish', nativeLabel: 'Espanol'),
-  arabic(code: 'ar', label: 'Arabic', nativeLabel: 'العربية'),
+  @JsonValue('ar')
+  arabic(code: 'ar', label: 'Arabic', nativeLabel: 'Al Arabiya'),
+  @JsonValue('fr')
   french(code: 'fr', label: 'French', nativeLabel: 'Francais'),
+  @JsonValue('de')
   german(code: 'de', label: 'German', nativeLabel: 'Deutsch'),
+  @JsonValue('pt')
   portuguese(code: 'pt', label: 'Portuguese', nativeLabel: 'Portugues'),
-  japanese(code: 'ja', label: 'Japanese', nativeLabel: '日本語'),
-  korean(code: 'ko', label: 'Korean', nativeLabel: '한국어'),
-  hindi(code: 'hi', label: 'Hindi', nativeLabel: 'हिन्दी'),
+  @JsonValue('ja')
+  japanese(code: 'ja', label: 'Japanese', nativeLabel: 'Nihongo'),
+  @JsonValue('ko')
+  korean(code: 'ko', label: 'Korean', nativeLabel: 'Hangug-eo'),
+  @JsonValue('hi')
+  hindi(code: 'hi', label: 'Hindi', nativeLabel: 'Hindi'),
+  @JsonValue('tr')
   turkish(code: 'tr', label: 'Turkish', nativeLabel: 'Turkce');
 
   const AppLanguage({

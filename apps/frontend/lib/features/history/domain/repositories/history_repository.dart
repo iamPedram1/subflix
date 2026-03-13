@@ -5,7 +5,5 @@ abstract interface class HistoryRepository {
 
   Future<TranslationJob?> getJobById(String id);
 
-  Future<void> saveJob(TranslationJob job);
-
   Future<void> clear();
 }

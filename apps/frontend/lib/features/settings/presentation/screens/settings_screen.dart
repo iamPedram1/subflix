@@ -198,7 +198,7 @@ class SettingsScreen extends ConsumerWidget {
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                           Text(
-                            'Clear locally cached translation jobs and start with an empty history state.',
+                            'Clear backend-owned translation jobs for this device and start with an empty history state.',
                             style: Theme.of(context).textTheme.bodySmall
                                 ?.copyWith(color: AppColors.textSecondary),
                           ),
@@ -212,7 +212,9 @@ class SettingsScreen extends ConsumerWidget {
                               }
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text('Local history cache cleared'),
+                                  content: Text(
+                                    'Translation history cleared for this device',
+                                  ),
                                 ),
                               );
                             },

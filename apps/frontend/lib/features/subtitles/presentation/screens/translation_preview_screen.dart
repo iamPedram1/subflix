@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:subflix/core/extensions/duration_extensions.dart';
+import 'package:subflix/core/providers/repository_providers.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
@@ -10,9 +13,9 @@ import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
 import 'package:subflix/core/ui/widgets/section_header.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
-import 'package:subflix/core/providers/repository_providers.dart';
-import 'package:subflix/features/history/application/translation_job_provider.dart';
 import 'package:subflix/features/shared/domain/models/translation_job.dart';
+import 'package:subflix/features/subtitles/application/translation_preview_provider.dart';
+import 'package:subflix/features/subtitles/application/translation_preview_query.dart';
 import 'package:subflix/features/subtitles/presentation/widgets/subtitle_line_card.dart';
 
 class TranslationPreviewScreen extends ConsumerStatefulWidget {
@@ -29,15 +32,30 @@ class _TranslationPreviewScreenState
     extends ConsumerState<TranslationPreviewScreen> {
   PreviewMode _previewMode = PreviewMode.bilingual;
   String _query = '';
+  String _committedQuery = '';
   bool _isExporting = false;
+  Timer? _searchDebounce;
+
+  @override
+  void dispose() {
+    _searchDebounce?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final jobAsync = ref.watch(translationJobProvider(widget.jobId));
+    final previewAsync = ref.watch(
+      translationPreviewProvider(
+        TranslationPreviewQuery(
+          jobId: widget.jobId,
+          query: _committedQuery,
+        ),
+      ),
+    );
 
     return Scaffold(
       appBar: AppBar(title: const Text('Translation preview')),
-      bottomNavigationBar: jobAsync.asData?.value == null
+      bottomNavigationBar: previewAsync.asData?.value == null
           ? null
           : Padding(
               padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
@@ -48,44 +66,15 @@ class _TranslationPreviewScreenState
                 icon: Iconsax.export,
                 onPressed: _isExporting
                     ? null
-                    : () => _exportJob(jobAsync.asData!.value!, context),
+                    : () => _exportJob(previewAsync.asData!.value.job, context),
               ),
             ),
       body: AppBackground(
         child: SafeArea(
-          child: jobAsync.when(
-            data: (job) {
-              if (job == null) {
-                return const Padding(
-                  padding: EdgeInsets.all(20),
-                  child: StatePanel(
-                    icon: Iconsax.warning2,
-                    title: 'Preview not available',
-                    message:
-                        'We could not find that translation job in history. Try starting a new translation or reopen it from history.',
-                  ),
-                );
-              }
-
-              final filteredLines = job.lines
-                  .where((line) {
-                    final searchText = _query.trim().toLowerCase();
-                    if (searchText.isEmpty) {
-                      return true;
-                    }
-
-                    return line.originalText.toLowerCase().contains(
-                          searchText,
-                        ) ||
-                        (line.translatedText ?? '').toLowerCase().contains(
-                          searchText,
-                        );
-                  })
-                  .toList(growable: false);
-
-              final estimatedDuration = job.lines.isEmpty
-                  ? Duration.zero
-                  : Duration(milliseconds: job.lines.last.endMs);
+          child: previewAsync.when(
+            data: (preview) {
+              final filteredLines = preview.items;
+              final job = preview.job;
 
               return ListView(
                 padding: const EdgeInsets.fromLTRB(20, 12, 20, 120),
@@ -96,7 +85,7 @@ class _TranslationPreviewScreenState
                         'Search inside cues, switch preview modes, then export once the translation looks right.',
                   ),
                   const SizedBox(height: 16),
-                  _MetadataCard(job: job, duration: estimatedDuration),
+                  _MetadataCard(job: job),
                   const SizedBox(height: 16),
                   AppSurfaceCard(
                     child: Column(
@@ -118,10 +107,16 @@ class _TranslationPreviewScreenState
                           },
                         ),
                         TextField(
-                          onChanged: (value) => setState(() => _query = value),
-                          decoration: const InputDecoration(
+                          onChanged: _onQueryChanged,
+                          decoration: InputDecoration(
                             hintText: 'Search subtitle lines',
-                            prefixIcon: Icon(Iconsax.searchNormal),
+                            prefixIcon: const Icon(Iconsax.searchNormal),
+                            suffixIcon: _query.isEmpty
+                                ? null
+                                : IconButton(
+                                    onPressed: () => _onQueryChanged(''),
+                                    icon: const Icon(Iconsax.closeCircle),
+                                  ),
                           ),
                         ),
                       ],
@@ -129,11 +124,14 @@ class _TranslationPreviewScreenState
                   ),
                   const SizedBox(height: 16),
                   if (filteredLines.isEmpty)
-                    const StatePanel(
+                    StatePanel(
                       icon: Iconsax.searchNormal,
-                      title: 'No subtitle lines matched',
-                      message:
-                          'Try a different search term or switch preview modes to inspect the full translation.',
+                      title: _committedQuery.isEmpty
+                          ? 'Preview cues are not available yet'
+                          : 'No subtitle lines matched',
+                      message: _committedQuery.isEmpty
+                          ? 'The translation finished, but the backend did not return preview cues yet. Try reloading this screen in a moment.'
+                          : 'Try a different search term or clear the filter to inspect the full translation.',
                     )
                   else
                     Column(
@@ -157,8 +155,14 @@ class _TranslationPreviewScreenState
                 title: 'Preview failed to load',
                 message: error.toString(),
                 action: OutlinedButton.icon(
-                  onPressed: () =>
-                      ref.invalidate(translationJobProvider(widget.jobId)),
+                  onPressed: () => ref.invalidate(
+                    translationPreviewProvider(
+                      TranslationPreviewQuery(
+                        jobId: widget.jobId,
+                        query: _committedQuery,
+                      ),
+                    ),
+                  ),
                   icon: const Icon(Iconsax.refresh),
                   label: const Text('Retry'),
                 ),
@@ -178,6 +182,17 @@ class _TranslationPreviewScreenState
         ),
       ),
     );
+  }
+
+  void _onQueryChanged(String value) {
+    _searchDebounce?.cancel();
+    setState(() => _query = value);
+    _searchDebounce = Timer(const Duration(milliseconds: 180), () {
+      if (!mounted) {
+        return;
+      }
+      setState(() => _committedQuery = value.trim());
+    });
   }
 
   Future<void> _exportJob(TranslationJob job, BuildContext context) async {
@@ -210,10 +225,9 @@ class _TranslationPreviewScreenState
 }
 
 class _MetadataCard extends StatelessWidget {
-  const _MetadataCard({required this.job, required this.duration});
+  const _MetadataCard({required this.job});
 
   final TranslationJob job;
-  final Duration duration;
 
   @override
   Widget build(BuildContext context) {
@@ -223,12 +237,15 @@ class _MetadataCard extends StatelessWidget {
         runSpacing: 12,
         children: <Widget>[
           _MetaTile(label: 'Format', value: job.format.label),
-          _MetaTile(label: 'Lines', value: '${job.lines.length}'),
+          _MetaTile(label: 'Lines', value: '${job.lineCount}'),
           _MetaTile(
             label: 'Languages',
             value: '${job.sourceLanguage.label} -> ${job.targetLanguage.label}',
           ),
-          _MetaTile(label: 'Estimated duration', value: duration.toStatLabel()),
+          _MetaTile(
+            label: 'Estimated duration',
+            value: Duration(milliseconds: job.durationMs).toStatLabel(),
+          ),
         ],
       ),
     );

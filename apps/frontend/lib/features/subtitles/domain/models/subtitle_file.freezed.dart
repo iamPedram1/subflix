@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SubtitleFile {
 
- String get id; String get name; SubtitleFormat get format; AppLanguage get sourceLanguage; List<SubtitleLine> get lines; String? get originalPath;
+ String get id;@JsonKey(name: 'fileName') String get name; SubtitleFormat get format; AppLanguage get sourceLanguage; int get lineCount; int get durationMs; List<SubtitleLine> get lines; String? get originalPath;
 /// Create a copy of SubtitleFile
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $SubtitleFileCopyWith<SubtitleFile> get copyWith => _$SubtitleFileCopyWithImpl<S
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SubtitleFile&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.format, format) || other.format == format)&&(identical(other.sourceLanguage, sourceLanguage) || other.sourceLanguage == sourceLanguage)&&const DeepCollectionEquality().equals(other.lines, lines)&&(identical(other.originalPath, originalPath) || other.originalPath == originalPath));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SubtitleFile&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.format, format) || other.format == format)&&(identical(other.sourceLanguage, sourceLanguage) || other.sourceLanguage == sourceLanguage)&&(identical(other.lineCount, lineCount) || other.lineCount == lineCount)&&(identical(other.durationMs, durationMs) || other.durationMs == durationMs)&&const DeepCollectionEquality().equals(other.lines, lines)&&(identical(other.originalPath, originalPath) || other.originalPath == originalPath));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,format,sourceLanguage,const DeepCollectionEquality().hash(lines),originalPath);
+int get hashCode => Object.hash(runtimeType,id,name,format,sourceLanguage,lineCount,durationMs,const DeepCollectionEquality().hash(lines),originalPath);
 
 @override
 String toString() {
-  return 'SubtitleFile(id: $id, name: $name, format: $format, sourceLanguage: $sourceLanguage, lines: $lines, originalPath: $originalPath)';
+  return 'SubtitleFile(id: $id, name: $name, format: $format, sourceLanguage: $sourceLanguage, lineCount: $lineCount, durationMs: $durationMs, lines: $lines, originalPath: $originalPath)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $SubtitleFileCopyWith<$Res>  {
   factory $SubtitleFileCopyWith(SubtitleFile value, $Res Function(SubtitleFile) _then) = _$SubtitleFileCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, SubtitleFormat format, AppLanguage sourceLanguage, List<SubtitleLine> lines, String? originalPath
+ String id,@JsonKey(name: 'fileName') String name, SubtitleFormat format, AppLanguage sourceLanguage, int lineCount, int durationMs, List<SubtitleLine> lines, String? originalPath
 });
 
 
@@ -65,13 +65,15 @@ class _$SubtitleFileCopyWithImpl<$Res>
 
 /// Create a copy of SubtitleFile
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? format = null,Object? sourceLanguage = null,Object? lines = null,Object? originalPath = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? format = null,Object? sourceLanguage = null,Object? lineCount = null,Object? durationMs = null,Object? lines = null,Object? originalPath = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,format: null == format ? _self.format : format // ignore: cast_nullable_to_non_nullable
 as SubtitleFormat,sourceLanguage: null == sourceLanguage ? _self.sourceLanguage : sourceLanguage // ignore: cast_nullable_to_non_nullable
-as AppLanguage,lines: null == lines ? _self.lines : lines // ignore: cast_nullable_to_non_nullable
+as AppLanguage,lineCount: null == lineCount ? _self.lineCount : lineCount // ignore: cast_nullable_to_non_nullable
+as int,durationMs: null == durationMs ? _self.durationMs : durationMs // ignore: cast_nullable_to_non_nullable
+as int,lines: null == lines ? _self.lines : lines // ignore: cast_nullable_to_non_nullable
 as List<SubtitleLine>,originalPath: freezed == originalPath ? _self.originalPath : originalPath // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -158,10 +160,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  SubtitleFormat format,  AppLanguage sourceLanguage,  List<SubtitleLine> lines,  String? originalPath)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id, @JsonKey(name: 'fileName')  String name,  SubtitleFormat format,  AppLanguage sourceLanguage,  int lineCount,  int durationMs,  List<SubtitleLine> lines,  String? originalPath)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SubtitleFile() when $default != null:
-return $default(_that.id,_that.name,_that.format,_that.sourceLanguage,_that.lines,_that.originalPath);case _:
+return $default(_that.id,_that.name,_that.format,_that.sourceLanguage,_that.lineCount,_that.durationMs,_that.lines,_that.originalPath);case _:
   return orElse();
 
 }
@@ -179,10 +181,10 @@ return $default(_that.id,_that.name,_that.format,_that.sourceLanguage,_that.line
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  SubtitleFormat format,  AppLanguage sourceLanguage,  List<SubtitleLine> lines,  String? originalPath)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id, @JsonKey(name: 'fileName')  String name,  SubtitleFormat format,  AppLanguage sourceLanguage,  int lineCount,  int durationMs,  List<SubtitleLine> lines,  String? originalPath)  $default,) {final _that = this;
 switch (_that) {
 case _SubtitleFile():
-return $default(_that.id,_that.name,_that.format,_that.sourceLanguage,_that.lines,_that.originalPath);case _:
+return $default(_that.id,_that.name,_that.format,_that.sourceLanguage,_that.lineCount,_that.durationMs,_that.lines,_that.originalPath);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -199,10 +201,10 @@ return $default(_that.id,_that.name,_that.format,_that.sourceLanguage,_that.line
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  SubtitleFormat format,  AppLanguage sourceLanguage,  List<SubtitleLine> lines,  String? originalPath)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id, @JsonKey(name: 'fileName')  String name,  SubtitleFormat format,  AppLanguage sourceLanguage,  int lineCount,  int durationMs,  List<SubtitleLine> lines,  String? originalPath)?  $default,) {final _that = this;
 switch (_that) {
 case _SubtitleFile() when $default != null:
-return $default(_that.id,_that.name,_that.format,_that.sourceLanguage,_that.lines,_that.originalPath);case _:
+return $default(_that.id,_that.name,_that.format,_that.sourceLanguage,_that.lineCount,_that.durationMs,_that.lines,_that.originalPath);case _:
   return null;
 
 }
@@ -214,15 +216,17 @@ return $default(_that.id,_that.name,_that.format,_that.sourceLanguage,_that.line
 @JsonSerializable()
 
 class _SubtitleFile implements SubtitleFile {
-  const _SubtitleFile({required this.id, required this.name, required this.format, required this.sourceLanguage, required final  List<SubtitleLine> lines, this.originalPath}): _lines = lines;
+  const _SubtitleFile({required this.id, @JsonKey(name: 'fileName') required this.name, required this.format, required this.sourceLanguage, required this.lineCount, required this.durationMs, final  List<SubtitleLine> lines = const <SubtitleLine>[], this.originalPath}): _lines = lines;
   factory _SubtitleFile.fromJson(Map<String, dynamic> json) => _$SubtitleFileFromJson(json);
 
 @override final  String id;
-@override final  String name;
+@override@JsonKey(name: 'fileName') final  String name;
 @override final  SubtitleFormat format;
 @override final  AppLanguage sourceLanguage;
+@override final  int lineCount;
+@override final  int durationMs;
  final  List<SubtitleLine> _lines;
-@override List<SubtitleLine> get lines {
+@override@JsonKey() List<SubtitleLine> get lines {
   if (_lines is EqualUnmodifiableListView) return _lines;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_lines);
@@ -243,16 +247,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SubtitleFile&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.format, format) || other.format == format)&&(identical(other.sourceLanguage, sourceLanguage) || other.sourceLanguage == sourceLanguage)&&const DeepCollectionEquality().equals(other._lines, _lines)&&(identical(other.originalPath, originalPath) || other.originalPath == originalPath));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SubtitleFile&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.format, format) || other.format == format)&&(identical(other.sourceLanguage, sourceLanguage) || other.sourceLanguage == sourceLanguage)&&(identical(other.lineCount, lineCount) || other.lineCount == lineCount)&&(identical(other.durationMs, durationMs) || other.durationMs == durationMs)&&const DeepCollectionEquality().equals(other._lines, _lines)&&(identical(other.originalPath, originalPath) || other.originalPath == originalPath));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,format,sourceLanguage,const DeepCollectionEquality().hash(_lines),originalPath);
+int get hashCode => Object.hash(runtimeType,id,name,format,sourceLanguage,lineCount,durationMs,const DeepCollectionEquality().hash(_lines),originalPath);
 
 @override
 String toString() {
-  return 'SubtitleFile(id: $id, name: $name, format: $format, sourceLanguage: $sourceLanguage, lines: $lines, originalPath: $originalPath)';
+  return 'SubtitleFile(id: $id, name: $name, format: $format, sourceLanguage: $sourceLanguage, lineCount: $lineCount, durationMs: $durationMs, lines: $lines, originalPath: $originalPath)';
 }
 
 
@@ -263,7 +267,7 @@ abstract mixin class _$SubtitleFileCopyWith<$Res> implements $SubtitleFileCopyWi
   factory _$SubtitleFileCopyWith(_SubtitleFile value, $Res Function(_SubtitleFile) _then) = __$SubtitleFileCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, SubtitleFormat format, AppLanguage sourceLanguage, List<SubtitleLine> lines, String? originalPath
+ String id,@JsonKey(name: 'fileName') String name, SubtitleFormat format, AppLanguage sourceLanguage, int lineCount, int durationMs, List<SubtitleLine> lines, String? originalPath
 });
 
 
@@ -280,13 +284,15 @@ class __$SubtitleFileCopyWithImpl<$Res>
 
 /// Create a copy of SubtitleFile
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? format = null,Object? sourceLanguage = null,Object? lines = null,Object? originalPath = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? format = null,Object? sourceLanguage = null,Object? lineCount = null,Object? durationMs = null,Object? lines = null,Object? originalPath = freezed,}) {
   return _then(_SubtitleFile(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,format: null == format ? _self.format : format // ignore: cast_nullable_to_non_nullable
 as SubtitleFormat,sourceLanguage: null == sourceLanguage ? _self.sourceLanguage : sourceLanguage // ignore: cast_nullable_to_non_nullable
-as AppLanguage,lines: null == lines ? _self._lines : lines // ignore: cast_nullable_to_non_nullable
+as AppLanguage,lineCount: null == lineCount ? _self.lineCount : lineCount // ignore: cast_nullable_to_non_nullable
+as int,durationMs: null == durationMs ? _self.durationMs : durationMs // ignore: cast_nullable_to_non_nullable
+as int,lines: null == lines ? _self._lines : lines // ignore: cast_nullable_to_non_nullable
 as List<SubtitleLine>,originalPath: freezed == originalPath ? _self.originalPath : originalPath // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

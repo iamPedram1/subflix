@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:subflix/features/shared/domain/models/app_language.dart';
@@ -11,10 +13,12 @@ part 'subtitle_file.g.dart';
 abstract class SubtitleFile with _$SubtitleFile {
   const factory SubtitleFile({
     required String id,
-    required String name,
+    @JsonKey(name: 'fileName') required String name,
     required SubtitleFormat format,
     required AppLanguage sourceLanguage,
-    required List<SubtitleLine> lines,
+    required int lineCount,
+    required int durationMs,
+    @Default(<SubtitleLine>[]) List<SubtitleLine> lines,
     String? originalPath,
   }) = _SubtitleFile;
 

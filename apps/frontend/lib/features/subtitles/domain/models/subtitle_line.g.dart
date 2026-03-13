@@ -8,7 +8,7 @@ part of 'subtitle_line.dart';
 
 _SubtitleLine _$SubtitleLineFromJson(Map<String, dynamic> json) =>
     _SubtitleLine(
-      index: (json['index'] as num).toInt(),
+      index: (json['cueIndex'] as num).toInt(),
       startMs: (json['startMs'] as num).toInt(),
       endMs: (json['endMs'] as num).toInt(),
       originalText: json['originalText'] as String,
@@ -17,7 +17,7 @@ _SubtitleLine _$SubtitleLineFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$SubtitleLineToJson(_SubtitleLine instance) =>
     <String, dynamic>{
-      'index': instance.index,
+      'cueIndex': instance.index,
       'startMs': instance.startMs,
       'endMs': instance.endMs,
       'originalText': instance.originalText,

@@ -18,12 +18,6 @@ class HistoryController extends _$HistoryController {
     );
   }
 
-  Future<void> saveJob(TranslationJob job) async {
-    final repository = ref.watch(historyRepositoryProvider);
-    await repository.saveJob(job);
-    state = await AsyncValue.guard(repository.fetchJobs);
-  }
-
   Future<void> clear() async {
     final repository = ref.watch(historyRepositoryProvider);
     await repository.clear();

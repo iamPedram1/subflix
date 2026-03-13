@@ -32,7 +32,7 @@ class UploadScreen extends ConsumerWidget {
               const SectionHeader(
                 title: 'Bring your own subtitle file',
                 subtitle:
-                    'Import an English `.srt` or `.vtt` file, validate it locally, then continue into translation setup.',
+                    'Import an English `.srt` or `.vtt` file, let the backend validate and parse it, then continue into translation setup.',
               ),
               const SizedBox(height: 16),
               AppSurfaceCard(
@@ -141,7 +141,7 @@ class UploadScreen extends ConsumerWidget {
                         children: <Widget>[
                           _MetaChip(label: uploadState.file!.format.label),
                           _MetaChip(
-                            label: '${uploadState.file!.lines.length} lines',
+                            label: '${uploadState.file!.lineCount} lines',
                           ),
                           const _MetaChip(label: 'English source'),
                         ],

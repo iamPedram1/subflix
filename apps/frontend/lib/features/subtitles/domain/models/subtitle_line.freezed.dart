@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SubtitleLine {
 
- int get index; int get startMs; int get endMs; String get originalText; String? get translatedText;
+@JsonKey(name: 'cueIndex') int get index; int get startMs; int get endMs; String get originalText; String? get translatedText;
 /// Create a copy of SubtitleLine
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $SubtitleLineCopyWith<$Res>  {
   factory $SubtitleLineCopyWith(SubtitleLine value, $Res Function(SubtitleLine) _then) = _$SubtitleLineCopyWithImpl;
 @useResult
 $Res call({
- int index, int startMs, int endMs, String originalText, String? translatedText
+@JsonKey(name: 'cueIndex') int index, int startMs, int endMs, String originalText, String? translatedText
 });
 
 
@@ -157,7 +157,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int index,  int startMs,  int endMs,  String originalText,  String? translatedText)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'cueIndex')  int index,  int startMs,  int endMs,  String originalText,  String? translatedText)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SubtitleLine() when $default != null:
 return $default(_that.index,_that.startMs,_that.endMs,_that.originalText,_that.translatedText);case _:
@@ -178,7 +178,7 @@ return $default(_that.index,_that.startMs,_that.endMs,_that.originalText,_that.t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int index,  int startMs,  int endMs,  String originalText,  String? translatedText)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'cueIndex')  int index,  int startMs,  int endMs,  String originalText,  String? translatedText)  $default,) {final _that = this;
 switch (_that) {
 case _SubtitleLine():
 return $default(_that.index,_that.startMs,_that.endMs,_that.originalText,_that.translatedText);case _:
@@ -198,7 +198,7 @@ return $default(_that.index,_that.startMs,_that.endMs,_that.originalText,_that.t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int index,  int startMs,  int endMs,  String originalText,  String? translatedText)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'cueIndex')  int index,  int startMs,  int endMs,  String originalText,  String? translatedText)?  $default,) {final _that = this;
 switch (_that) {
 case _SubtitleLine() when $default != null:
 return $default(_that.index,_that.startMs,_that.endMs,_that.originalText,_that.translatedText);case _:
@@ -213,10 +213,10 @@ return $default(_that.index,_that.startMs,_that.endMs,_that.originalText,_that.t
 @JsonSerializable()
 
 class _SubtitleLine implements SubtitleLine {
-  const _SubtitleLine({required this.index, required this.startMs, required this.endMs, required this.originalText, this.translatedText});
+  const _SubtitleLine({@JsonKey(name: 'cueIndex') required this.index, required this.startMs, required this.endMs, required this.originalText, this.translatedText});
   factory _SubtitleLine.fromJson(Map<String, dynamic> json) => _$SubtitleLineFromJson(json);
 
-@override final  int index;
+@override@JsonKey(name: 'cueIndex') final  int index;
 @override final  int startMs;
 @override final  int endMs;
 @override final  String originalText;
@@ -255,7 +255,7 @@ abstract mixin class _$SubtitleLineCopyWith<$Res> implements $SubtitleLineCopyWi
   factory _$SubtitleLineCopyWith(_SubtitleLine value, $Res Function(_SubtitleLine) _then) = __$SubtitleLineCopyWithImpl;
 @override @useResult
 $Res call({
- int index, int startMs, int endMs, String originalText, String? translatedText
+@JsonKey(name: 'cueIndex') int index, int startMs, int endMs, String originalText, String? translatedText
 });
 
 

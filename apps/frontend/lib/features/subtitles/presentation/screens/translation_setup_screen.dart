@@ -45,7 +45,7 @@ class _TranslationSetupScreenState
               SectionHeader(
                 title: widget.args.title,
                 subtitle:
-                    'Choose the target language, review the subtitle source, and start the mock translation job.',
+                    'Choose the target language, review the subtitle source, and start the backend translation job.',
               ),
               const SizedBox(height: 16),
               AppSurfaceCard(

@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:subflix/core/providers/repository_providers.dart';
 import 'package:subflix/features/history/application/history_controller.dart';
+import 'package:subflix/features/history/application/translation_job_provider.dart';
 import 'package:subflix/features/subtitles/application/translation_flow_state.dart';
 import 'package:subflix/features/subtitles/domain/models/translation_request.dart';
 
@@ -34,8 +35,8 @@ class TranslationFlowController extends _$TranslationFlowController {
         .listen(
           (update) async {
             if (update.job != null) {
-              await ref.read(historyRepositoryProvider).saveJob(update.job!);
               ref.invalidate(historyControllerProvider);
+              ref.invalidate(translationJobProvider(update.job!.id));
               state = state.copyWith(
                 status: TranslationFlowStatus.completed,
                 progress: update.progress,

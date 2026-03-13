@@ -23,11 +23,14 @@ void main() {
       sourceName: file.name,
       sourceType: TranslationSourceType.upload,
       status: TranslationJobStatus.completed,
+      stageLabel: 'Translation ready',
       sourceLanguage: AppLanguage.english,
       targetLanguage: AppLanguage.spanish,
       createdAt: DateTime(2026, 3, 13),
       updatedAt: DateTime(2026, 3, 13),
       format: file.format,
+      lineCount: file.lineCount,
+      durationMs: file.durationMs,
       lines: file.lines
           .map(
             (line) => line.copyWith(translatedText: 'ES: ${line.originalText}'),

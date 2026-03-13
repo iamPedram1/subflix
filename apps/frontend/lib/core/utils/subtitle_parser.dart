@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:path/path.dart' as path;
 
@@ -8,6 +9,12 @@ import 'package:subflix/features/subtitles/domain/models/subtitle_format.dart';
 import 'package:subflix/features/subtitles/domain/models/subtitle_line.dart';
 
 class SubtitleParser {
+  String get demoSampleFileName => 'subflix_demo.srt';
+
+  String get demoSampleContent => utf8.decode(_demoSample);
+
+  Uint8List get demoSampleBytes => Uint8List.fromList(_demoSample);
+
   SubtitleFile parse({
     required String fileName,
     required String content,
@@ -30,6 +37,8 @@ class SubtitleParser {
       name: safeName,
       format: format,
       sourceLanguage: AppLanguage.english,
+      lineCount: lines.length,
+      durationMs: lines.isEmpty ? 0 : lines.last.endMs,
       lines: lines,
       originalPath: originalPath,
     );
@@ -37,8 +46,8 @@ class SubtitleParser {
 
   SubtitleFile parseDemoSample() {
     return parse(
-      fileName: 'subflix_demo.srt',
-      content: utf8.decode(_demoSample),
+      fileName: demoSampleFileName,
+      content: demoSampleContent,
     );
   }
 
