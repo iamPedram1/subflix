@@ -34,9 +34,7 @@ export class MockTranslationProvider implements TranslationProviderPort {
 
     const prefix = translationPrefixes[params.targetLanguage];
     return params.cues.map((cue) =>
-      params.targetLanguage === 'en'
-        ? cue.text
-        : `${prefix}${cue.text}`,
+      params.targetLanguage === 'en' ? cue.text : `${prefix}${cue.text}`,
     );
   }
 }

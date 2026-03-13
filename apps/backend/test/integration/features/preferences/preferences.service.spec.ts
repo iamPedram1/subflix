@@ -17,7 +17,12 @@ describeIfDatabase('PreferencesService integration', () => {
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [AppConfigModule, PrismaModule, DevicesModule, PreferencesModule],
+      imports: [
+        AppConfigModule,
+        PrismaModule,
+        DevicesModule,
+        PreferencesModule,
+      ],
     }).compile();
 
     prismaService = moduleRef.get(PrismaService);

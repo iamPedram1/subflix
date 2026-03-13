@@ -38,16 +38,15 @@ describeIfDatabase('SubtitlesService integration', () => {
   });
 
   it('parses and stores a subtitle file with cues', async () => {
-    const device = await devicesService.resolveDevice('subtitle-integration-001');
-
-    const result = await subtitlesService.parseAndStore(
-      device,
-      {
-        originalname: 'sample.srt',
-        size: Buffer.byteLength(sampleSrt),
-        buffer: Buffer.from(sampleSrt, 'utf8'),
-      } as Express.Multer.File,
+    const device = await devicesService.resolveDevice(
+      'subtitle-integration-001',
     );
+
+    const result = await subtitlesService.parseAndStore(device, {
+      originalname: 'sample.srt',
+      size: Buffer.byteLength(sampleSrt),
+      buffer: Buffer.from(sampleSrt, 'utf8'),
+    } as Express.Multer.File);
 
     const storedFile = await prismaService.parsedSubtitleFile.findUnique({
       where: { id: result.id },

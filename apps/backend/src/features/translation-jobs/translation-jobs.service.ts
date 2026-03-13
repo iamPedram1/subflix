@@ -1,13 +1,12 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import {
-  AppLanguage as PrismaAppLanguage,
+  AppLanguage,
   ClientDevice,
   SubtitleFormat,
   TranslationJobStatus as PrismaTranslationJobStatus,
   TranslationSourceType as PrismaTranslationSourceType,
 } from '@prisma/client';
 
-import { AppLanguage } from 'src/common/domain/enums/app-language.enum';
 import { TranslationSourceType } from 'src/common/domain/enums/translation-source-type.enum';
 import { ValidationDomainError } from 'src/common/domain/errors/domain.error';
 import { CatalogService } from 'src/features/catalog/catalog.service';
@@ -49,8 +48,8 @@ export class TranslationJobsService {
       stageLabel: 'Queued for translation',
       title: jobSeed.title,
       sourceName: jobSeed.sourceName,
-      sourceLanguage: PrismaAppLanguage.en,
-      targetLanguage: input.targetLanguage as PrismaAppLanguage,
+      sourceLanguage: AppLanguage.en,
+      targetLanguage: input.targetLanguage,
       format: jobSeed.format,
       progress: 0.05,
       lineCount: jobSeed.lineCount,
@@ -80,12 +79,18 @@ export class TranslationJobsService {
   }
 
   async getJob(device: ClientDevice, jobId: string) {
-    const job = await this.translationJobsRepository.findOwnedJob(device.id, jobId);
+    const job = await this.translationJobsRepository.findOwnedJob(
+      device.id,
+      jobId,
+    );
     return toTranslationJobSummary(job);
   }
 
   async retryJob(device: ClientDevice, jobId: string) {
-    const job = await this.translationJobsRepository.findOwnedJob(device.id, jobId);
+    const job = await this.translationJobsRepository.findOwnedJob(
+      device.id,
+      jobId,
+    );
 
     return this.createJob(device, {
       sourceType:
@@ -94,10 +99,10 @@ export class TranslationJobsService {
           : TranslationSourceType.Catalog,
       parsedFileId: job.parsedFileId ?? undefined,
       mediaId: (job.mediaRef as { mediaId?: string } | null)?.mediaId,
-      subtitleSourceId:
-        (job.subtitleSourceRef as { subtitleSourceId?: string } | null)
-          ?.subtitleSourceId,
-      targetLanguage: job.targetLanguage as AppLanguage,
+      subtitleSourceId: (
+        job.subtitleSourceRef as { subtitleSourceId?: string } | null
+      )?.subtitleSourceId,
+      targetLanguage: job.targetLanguage,
     });
   }
 
@@ -113,7 +118,10 @@ export class TranslationJobsService {
     limit: number,
     query?: string,
   ) {
-    const job = await this.translationJobsRepository.findOwnedJob(device.id, jobId);
+    const job = await this.translationJobsRepository.findOwnedJob(
+      device.id,
+      jobId,
+    );
     const preview = await this.translationJobsRepository.listPreviewCues({
       clientDeviceId: device.id,
       jobId,
@@ -134,7 +142,10 @@ export class TranslationJobsService {
     jobId: string,
     format?: string,
   ): Promise<{ fileName: string; content: string }> {
-    const job = await this.translationJobsRepository.findOwnedJob(device.id, jobId);
+    const job = await this.translationJobsRepository.findOwnedJob(
+      device.id,
+      jobId,
+    );
     if (job.status !== PrismaTranslationJobStatus.completed) {
       throw new ValidationDomainError(
         'Only completed translation jobs can be exported.',
@@ -182,7 +193,7 @@ export class TranslationJobsService {
     return {
       title: parsedFile.fileName.replace(/\.(srt|vtt)$/i, ''),
       sourceName: parsedFile.fileName,
-      format: parsedFile.format as SubtitleFormat,
+      format: parsedFile.format,
       lineCount: parsedFile.lineCount,
       durationMs: parsedFile.durationMs,
       parsedFileId: parsedFile.id,
@@ -200,10 +211,14 @@ export class TranslationJobsService {
 
     const media = await this.catalogService.findById(input.mediaId);
     if (!media) {
-      throw new ValidationDomainError('The requested media title was not found.');
+      throw new ValidationDomainError(
+        'The requested media title was not found.',
+      );
     }
 
-    const subtitleSources = await this.catalogService.getSubtitleSources(input.mediaId);
+    const subtitleSources = await this.catalogService.getSubtitleSources(
+      input.mediaId,
+    );
     const subtitleSource = subtitleSources.find(
       (source) => source.id === input.subtitleSourceId,
     );
@@ -216,7 +231,7 @@ export class TranslationJobsService {
     return {
       title: media.title,
       sourceName: subtitleSource.label,
-      format: subtitleSource.format as SubtitleFormat,
+      format: subtitleSource.format,
       lineCount: subtitleSource.lineCount,
       durationMs: 0,
       parsedFileId: null,

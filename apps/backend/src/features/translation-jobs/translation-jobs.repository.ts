@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, TranslationJob, TranslationJobStatus } from '@prisma/client';
 
-import { buildPagination, toPaginatedResult } from 'src/common/database/helpers/pagination.helper';
+import {
+  buildPagination,
+  toPaginatedResult,
+} from 'src/common/database/helpers/pagination.helper';
 import { requireEntity } from 'src/common/database/helpers/entity.helper';
 import { normalizeDatabaseError } from 'src/common/database/helpers/database-error.helper';
 import { PrismaService } from 'src/common/database/prisma/prisma.service';
@@ -72,7 +75,10 @@ export class TranslationJobsRepository {
     });
   }
 
-  async findOwnedJob(clientDeviceId: string, jobId: string): Promise<TranslationJob> {
+  async findOwnedJob(
+    clientDeviceId: string,
+    jobId: string,
+  ): Promise<TranslationJob> {
     const job = await this.prisma.translationJob.findFirst({
       where: {
         id: jobId,
@@ -158,10 +164,7 @@ export class TranslationJobsRepository {
     });
   }
 
-  async listAllOwnedJobCues(params: {
-    clientDeviceId: string;
-    jobId: string;
-  }) {
+  async listAllOwnedJobCues(params: { clientDeviceId: string; jobId: string }) {
     return this.prisma.translationJobCue.findMany({
       where: {
         job: {

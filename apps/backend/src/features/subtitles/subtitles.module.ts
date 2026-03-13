@@ -16,6 +16,11 @@ import { SubtitleParserService } from './utils/subtitle-parser.service';
     SubtitleParserService,
     SubtitleExportService,
   ],
-  exports: [SubtitlesRepository, SubtitlesService, SubtitleParserService, SubtitleExportService],
+  exports: [
+    SubtitlesRepository,
+    SubtitlesService,
+    SubtitleParserService,
+    SubtitleExportService,
+  ],
 })
 export class SubtitlesModule {}

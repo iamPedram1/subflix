@@ -36,8 +36,7 @@ export class PreferencesService {
 
     return this.preferencesRepository.upsertByClientDeviceId(device.id, {
       clientDeviceId: device.id,
-      hasSeenOnboarding:
-        input.hasSeenOnboarding ?? current.hasSeenOnboarding,
+      hasSeenOnboarding: input.hasSeenOnboarding ?? current.hasSeenOnboarding,
       preferredTargetLanguage:
         input.preferredTargetLanguage ?? current.preferredTargetLanguage,
       themePreference: input.themePreference ?? current.themePreference,

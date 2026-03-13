@@ -43,10 +43,14 @@ describe('PreferencesService', () => {
     const repository = {
       findByClientDeviceId: jest
         .fn()
-        .mockResolvedValue(createPreference({ themePreference: ThemePreference.System })),
+        .mockResolvedValue(
+          createPreference({ themePreference: ThemePreference.System }),
+        ),
       upsertByClientDeviceId: jest
         .fn()
-        .mockResolvedValue(createPreference({ themePreference: ThemePreference.Dark })),
+        .mockResolvedValue(
+          createPreference({ themePreference: ThemePreference.Dark }),
+        ),
     } as unknown as PreferencesRepository;
 
     const service = new PreferencesService(repository);

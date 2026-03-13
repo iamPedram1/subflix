@@ -1,6 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { MEDIA_CATALOG_PORT, MediaCatalogPort } from './ports/media-catalog.port';
+import {
+  MEDIA_CATALOG_PORT,
+  MediaCatalogPort,
+} from './ports/media-catalog.port';
 import {
   SUBTITLE_SOURCE_PORT,
   SubtitleSourcePort,

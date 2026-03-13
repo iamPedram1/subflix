@@ -6,9 +6,7 @@ import { SubtitleExportCue } from '../models/subtitle-cue.model';
 @Injectable()
 export class SubtitleExportService {
   formatCues(cues: SubtitleExportCue[], format: SubtitleFormat): string {
-    return format === SubtitleFormat.vtt
-      ? this.toVtt(cues)
-      : this.toSrt(cues);
+    return format === SubtitleFormat.vtt ? this.toVtt(cues) : this.toSrt(cues);
   }
 
   private toSrt(cues: SubtitleExportCue[]): string {

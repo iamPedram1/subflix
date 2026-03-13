@@ -24,7 +24,9 @@ export class SubtitleParserService {
       .filter((cue): cue is SubtitleCue => cue !== null);
 
     if (cues.length === 0) {
-      throw new ValidationDomainError('The subtitle file did not contain valid cues.');
+      throw new ValidationDomainError(
+        'The subtitle file did not contain valid cues.',
+      );
     }
 
     return cues;
@@ -70,7 +72,9 @@ export class SubtitleParserService {
     }
 
     const [hours, minutes, seconds] =
-      segments.length === 3 ? segments : [0, segments[0] ?? 0, segments[1] ?? 0];
+      segments.length === 3
+        ? segments
+        : [0, segments[0] ?? 0, segments[1] ?? 0];
 
     return (
       hours * 3_600_000 +

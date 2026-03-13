@@ -2,6 +2,8 @@ import { Test } from '@nestjs/testing';
 import { TranslationJobStatus } from '@prisma/client';
 
 import { AppConfigModule } from 'src/common/config/config.module';
+import { AppLanguage } from 'src/common/domain/enums/app-language.enum';
+import { TranslationSourceType } from 'src/common/domain/enums/translation-source-type.enum';
 import { PrismaModule } from 'src/common/database/prisma/prisma.module';
 import { PrismaService } from 'src/common/database/prisma/prisma.service';
 import { CatalogModule } from 'src/features/catalog/catalog.module';
@@ -71,19 +73,16 @@ describeIfDatabase('TranslationJobsService integration', () => {
 
   it('creates, completes, previews, exports, and retries an uploaded job', async () => {
     const device = await devicesService.resolveDevice('job-integration-001');
-    const parsed = await subtitlesService.parseAndStore(
-      device,
-      {
-        originalname: 'sample.srt',
-        size: Buffer.byteLength(sampleSrt),
-        buffer: Buffer.from(sampleSrt, 'utf8'),
-      } as Express.Multer.File,
-    );
+    const parsed = await subtitlesService.parseAndStore(device, {
+      originalname: 'sample.srt',
+      size: Buffer.byteLength(sampleSrt),
+      buffer: Buffer.from(sampleSrt, 'utf8'),
+    } as Express.Multer.File);
 
     const job = await translationJobsService.createJob(device, {
-      sourceType: 'upload',
+      sourceType: TranslationSourceType.Upload,
       parsedFileId: parsed.id,
-      targetLanguage: 'fr',
+      targetLanguage: AppLanguage.French,
     });
 
     const completed = await waitForCompletion(

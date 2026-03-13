@@ -26,9 +26,12 @@ export class SubtitlesService {
     const maxUploadBytes =
       this.configService.get<number>('app.maxUploadBytes') ?? 2 * 1024 * 1024;
     if (file.size > maxUploadBytes) {
-      throw new ValidationDomainError('Subtitle file exceeds the upload limit.', {
-        maxUploadBytes,
-      });
+      throw new ValidationDomainError(
+        'Subtitle file exceeds the upload limit.',
+        {
+          maxUploadBytes,
+        },
+      );
     }
 
     const format = this.resolveFormat(file.originalname);

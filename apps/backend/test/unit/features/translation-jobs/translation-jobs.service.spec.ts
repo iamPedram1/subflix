@@ -92,7 +92,9 @@ describe('TranslationJobsService', () => {
     const jobsRepository = {
       findOwnedJob: jest
         .fn()
-        .mockResolvedValue(createJobEntity({ status: TranslationJobStatus.queued })),
+        .mockResolvedValue(
+          createJobEntity({ status: TranslationJobStatus.queued }),
+        ),
     } as unknown as TranslationJobsRepository;
 
     const service = new TranslationJobsService(

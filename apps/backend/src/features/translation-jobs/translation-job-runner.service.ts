@@ -1,10 +1,13 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { AppLanguage, TranslationJobStatus, TranslationSourceType } from '@prisma/client';
+import { TranslationJobStatus, TranslationSourceType } from '@prisma/client';
 
 import { CatalogService } from 'src/features/catalog/catalog.service';
 import { SubtitlesRepository } from 'src/features/subtitles/subtitles.repository';
 
-import { TRANSLATION_PROVIDER_PORT, TranslationProviderPort } from './ports/translation-provider.port';
+import {
+  TRANSLATION_PROVIDER_PORT,
+  TranslationProviderPort,
+} from './ports/translation-provider.port';
 import { TranslationJobsRepository } from './translation-jobs.repository';
 
 const wait = async (milliseconds: number): Promise<void> =>
@@ -73,7 +76,7 @@ export class TranslationJobRunnerService {
 
       const translatedLines = await this.translationProvider.translate({
         title: job.title,
-        targetLanguage: job.targetLanguage as AppLanguage,
+        targetLanguage: job.targetLanguage,
         cues: sourceCues,
       });
 

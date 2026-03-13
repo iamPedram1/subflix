@@ -1,6 +1,6 @@
+import { AppLanguage } from '@prisma/client';
 import { IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
 
-import { AppLanguage } from 'src/common/domain/enums/app-language.enum';
 import { TranslationSourceType } from 'src/common/domain/enums/translation-source-type.enum';
 
 export class CreateTranslationJobDto {

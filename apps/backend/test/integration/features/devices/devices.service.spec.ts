@@ -32,7 +32,9 @@ describeIfDatabase('DevicesService integration', () => {
 
   it('upserts a device by header id', async () => {
     const device = await devicesService.resolveDevice('integration-device-001');
-    const sameDevice = await devicesService.resolveDevice('integration-device-001');
+    const sameDevice = await devicesService.resolveDevice(
+      'integration-device-001',
+    );
 
     expect(device.id).toBe(sameDevice.id);
     expect(device.deviceId).toBe('integration-device-001');

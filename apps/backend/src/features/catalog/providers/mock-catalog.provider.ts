@@ -19,7 +19,9 @@ const wait = async (milliseconds: number): Promise<void> =>
   new Promise((resolve) => setTimeout(resolve, milliseconds));
 
 @Injectable()
-export class MockCatalogProvider implements MediaCatalogPort, SubtitleSourcePort {
+export class MockCatalogProvider
+  implements MediaCatalogPort, SubtitleSourcePort
+{
   async search(query: string): Promise<CatalogMediaItem[]> {
     await wait(query.trim().length > 2 ? 350 : 150);
 
@@ -37,8 +39,10 @@ export class MockCatalogProvider implements MediaCatalogPort, SubtitleSourcePort
     );
   }
 
-  async findById(mediaId: string): Promise<CatalogMediaItem | null> {
-    return mockCatalog.find((item) => item.id === mediaId) ?? null;
+  findById(mediaId: string): Promise<CatalogMediaItem | null> {
+    return Promise.resolve(
+      mockCatalog.find((item) => item.id === mediaId) ?? null,
+    );
   }
 
   async getSubtitleSources(mediaId: string): Promise<CatalogSubtitleSource[]> {
@@ -53,17 +57,16 @@ export class MockCatalogProvider implements MediaCatalogPort, SubtitleSourcePort
     return buildMockSubtitleSources(mediaId);
   }
 
-  async getSubtitleCues(
-    mediaId: string,
-    subtitleSourceId: string,
-  ) {
+  async getSubtitleCues(mediaId: string, subtitleSourceId: string) {
     await wait(300);
 
     const hasSource = buildMockSubtitleSources(mediaId).some(
       (source) => source.id === subtitleSourceId,
     );
     if (!hasSource) {
-      throw new NotFoundDomainError('The requested subtitle source was not found.');
+      throw new NotFoundDomainError(
+        'The requested subtitle source was not found.',
+      );
     }
 
     return buildMockSubtitleCues(mediaId);

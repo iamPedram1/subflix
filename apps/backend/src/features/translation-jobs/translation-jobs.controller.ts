@@ -24,7 +24,9 @@ import { TranslationJobsService } from './translation-jobs.service';
 @UseGuards(DeviceContextGuard)
 @Controller('translation-jobs')
 export class TranslationJobsController {
-  constructor(private readonly translationJobsService: TranslationJobsService) {}
+  constructor(
+    private readonly translationJobsService: TranslationJobsService,
+  ) {}
 
   @Post()
   createJob(
@@ -78,7 +80,7 @@ export class TranslationJobsController {
     response.setHeader('Content-Type', 'text/plain; charset=utf-8');
     response.setHeader(
       'Content-Disposition',
-      `attachment; filename=\"${result.fileName}\"`,
+      `attachment; filename="${result.fileName}"`,
     );
 
     return result.content;

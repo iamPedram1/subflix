@@ -163,15 +163,13 @@ const cueLibrary: Record<string, string[]> = {
 };
 
 export const buildMockSubtitleCues = (mediaId: string): SubtitleCue[] => {
-  const lines =
-    cueLibrary[mediaId] ??
-    [
-      'Keep the channel open until I say otherwise.',
-      'The file moves at sunrise, not before.',
-      'Every second of silence matters right now.',
-      'We only get one version of this conversation.',
-      'Make sure the handoff looks invisible.',
-    ];
+  const lines = cueLibrary[mediaId] ?? [
+    'Keep the channel open until I say otherwise.',
+    'The file moves at sunrise, not before.',
+    'Every second of silence matters right now.',
+    'We only get one version of this conversation.',
+    'Make sure the handoff looks invisible.',
+  ];
 
   return lines.map((text, index) => ({
     cueIndex: index + 1,

@@ -1,5 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { AppLanguage, ParsedSubtitleFile, SubtitleFormat } from '@prisma/client';
+import {
+  AppLanguage,
+  ParsedSubtitleFile,
+  SubtitleFormat,
+} from '@prisma/client';
 
 import { normalizeDatabaseError } from 'src/common/database/helpers/database-error.helper';
 import { requireEntity } from 'src/common/database/helpers/entity.helper';
