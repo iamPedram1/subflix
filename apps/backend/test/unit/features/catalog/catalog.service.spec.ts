@@ -9,7 +9,7 @@ describe('CatalogService', () => {
       getOrSet: vi.fn(async (_key, loader: () => Promise<unknown>) => loader()),
     }) as unknown as AppCacheService;
 
-  it('reuses the normalized search cache key for equivalent queries', async () => {
+  it('normalizes search queries before delegating to the media provider', async () => {
     const cacheService = createCacheService();
     const mediaCatalogPort = {
       search: vi.fn().mockResolvedValue([]),
@@ -28,13 +28,7 @@ describe('CatalogService', () => {
 
     await service.search(' Dune ');
 
-    expect(cacheService.getOrSet).toHaveBeenCalledWith(
-      'catalog:search:dune',
-      expect.any(Function),
-      expect.objectContaining({
-        ttlMs: 5 * 60_000,
-      }),
-    );
+    expect(cacheService.getOrSet).not.toHaveBeenCalled();
     expect(mediaCatalogPort.search).toHaveBeenCalledWith('dune');
   });
 
@@ -60,5 +54,24 @@ describe('CatalogService', () => {
         ttlMs: 30 * 60_000,
       }),
     );
+  });
+
+  it('delegates findById directly to the media provider', async () => {
+    const cacheService = createCacheService();
+    const mediaCatalogPort = {
+      search: vi.fn(),
+      findById: vi.fn().mockResolvedValue(null),
+    } as unknown as MediaCatalogPort;
+
+    const service = new CatalogService(
+      cacheService,
+      mediaCatalogPort,
+      {} as SubtitleSourcePort,
+    );
+
+    await service.findById('movie_157336');
+
+    expect(cacheService.getOrSet).not.toHaveBeenCalled();
+    expect(mediaCatalogPort.findById).toHaveBeenCalledWith('movie_157336');
   });
 });

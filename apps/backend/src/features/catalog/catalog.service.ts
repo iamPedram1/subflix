@@ -11,7 +11,6 @@ import {
   SubtitleSourcePort,
 } from './ports/subtitle-source.port';
 
-const SEARCH_CACHE_TTL_MS = 5 * 60_000;
 const DETAIL_CACHE_TTL_MS = 15 * 60_000;
 const CUE_CACHE_TTL_MS = 30 * 60_000;
 
@@ -29,25 +28,12 @@ export class CatalogService {
   /** Searches the external media catalog by a free-form user query. */
   search(query: string) {
     const normalizedQuery = query.trim().toLowerCase();
-
-    return this.cacheService.getOrSet(
-      this.buildCacheKey('search', normalizedQuery),
-      () => this.mediaCatalogPort.search(normalizedQuery),
-      {
-        ttlMs: SEARCH_CACHE_TTL_MS,
-      },
-    );
+    return this.mediaCatalogPort.search(normalizedQuery);
   }
 
   /** Loads a single media item by its provider-specific identifier. */
   findById(mediaId: string) {
-    return this.cacheService.getOrSet(
-      this.buildCacheKey('media', mediaId),
-      () => this.mediaCatalogPort.findById(mediaId),
-      {
-        ttlMs: DETAIL_CACHE_TTL_MS,
-      },
-    );
+    return this.mediaCatalogPort.findById(mediaId);
   }
 
   /** Lists subtitle source options for the selected media item. */

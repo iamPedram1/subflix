@@ -32,3 +32,26 @@ export const databaseConfig = registerAs('database', () => ({
     process.env.DATABASE_URL ??
     'postgresql://postgres:postgres@localhost:5432/subflix',
 }));
+
+export const tmdbConfig = registerAs('tmdb', () => ({
+  apiBaseUrl: process.env.TMDB_API_BASE_URL ?? 'https://api.themoviedb.org/3',
+  apiReadToken: process.env.TMDB_API_READ_TOKEN ?? '',
+  movieSearchCacheTtlMs: parseNumber(
+    process.env.TMDB_MOVIE_SEARCH_CACHE_TTL_MS,
+    30 * 24 * 60 * 60_000,
+  ),
+  seriesSearchCacheTtlMs: parseNumber(
+    process.env.TMDB_SERIES_SEARCH_CACHE_TTL_MS,
+    24 * 60 * 60_000,
+  ),
+  movieDetailCacheTtlMs: parseNumber(
+    process.env.TMDB_MOVIE_DETAIL_CACHE_TTL_MS,
+    30 * 24 * 60 * 60_000,
+  ),
+  seriesDetailCacheTtlMs: parseNumber(
+    process.env.TMDB_SERIES_DETAIL_CACHE_TTL_MS,
+    24 * 60 * 60_000,
+  ),
+  includeAdult: process.env.TMDB_INCLUDE_ADULT === 'true',
+  defaultLanguage: process.env.TMDB_DEFAULT_LANGUAGE ?? 'en-US',
+}));

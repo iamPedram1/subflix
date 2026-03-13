@@ -1,7 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
-import { appConfig, databaseConfig } from './app.config';
+import { appConfig, databaseConfig, tmdbConfig } from './app.config';
 
 @Global()
 @Module({
@@ -9,7 +9,7 @@ import { appConfig, databaseConfig } from './app.config';
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
-      load: [appConfig, databaseConfig],
+      load: [appConfig, databaseConfig, tmdbConfig],
       envFilePath: ['.env.local', '.env'],
     }),
   ],

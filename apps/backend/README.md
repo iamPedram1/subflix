@@ -5,6 +5,7 @@ Production-oriented NestJS backend for the SubFlix subtitle translation app.
 ## What it does
 
 - Searches a mocked movie and series catalog
+- Searches movies and series through TMDb when a read token is configured
 - Returns mocked English subtitle source options
 - Accepts `.srt` and `.vtt` subtitle uploads
 - Parses subtitle files on the backend and stores normalized cues
@@ -61,6 +62,7 @@ NODE_ENV=development
 PORT=3000
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/subflix
 MAX_UPLOAD_BYTES=2097152
+TMDB_API_READ_TOKEN=your_tmdb_read_token
 ```
 
 ### 3. Start PostgreSQL
@@ -92,6 +94,14 @@ pnpm start:dev
 ```
 
 The app runs on `http://localhost:3000` and all routes are prefixed with `/v1`.
+
+## TMDb search integration
+
+- Set `TMDB_API_READ_TOKEN` in `.env.local` or `.env` to enable real movie and series search through TMDb.
+- Search results are cached aggressively to reduce TMDb usage:
+  - movie query results: 30 days
+  - series query results: 1 day
+- The backend keeps subtitle source and cue generation mocked for now, so only catalog search is live against TMDb.
 
 ## Core API routes
 
@@ -195,7 +205,7 @@ pnpm format
 - Repositories own Prisma access only.
 - Shared DB helpers are intentionally small: pagination, entity lookup, and DB error normalization.
 - Translation runs asynchronously in-process for now and is isolated behind a runner + provider boundary so it can move to a worker queue later.
-- Catalog search, subtitle source lookup, and translation execution all sit behind swappable mock provider interfaces.
+- Catalog search is now backed by TMDb when configured, while subtitle source lookup and translation execution still sit behind swappable provider interfaces.
 - Export generation happens on the backend, not in the client.
 
 ## Current limitations

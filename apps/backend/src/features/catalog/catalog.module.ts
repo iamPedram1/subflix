@@ -7,6 +7,7 @@ import { CatalogService } from './catalog.service';
 import { MEDIA_CATALOG_PORT } from './ports/media-catalog.port';
 import { SUBTITLE_SOURCE_PORT } from './ports/subtitle-source.port';
 import { MockCatalogProvider } from './providers/mock-catalog.provider';
+import { TmdbMediaCatalogProvider } from './providers/tmdb-media-catalog.provider';
 
 @Module({
   imports: [CacheModule],
@@ -14,9 +15,10 @@ import { MockCatalogProvider } from './providers/mock-catalog.provider';
   providers: [
     CatalogService,
     MockCatalogProvider,
+    TmdbMediaCatalogProvider,
     {
       provide: MEDIA_CATALOG_PORT,
-      useExisting: MockCatalogProvider,
+      useExisting: TmdbMediaCatalogProvider,
     },
     {
       provide: SUBTITLE_SOURCE_PORT,

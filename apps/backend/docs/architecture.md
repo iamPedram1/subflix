@@ -79,8 +79,9 @@ This layer should stop at generic persistence concerns. It should not absorb fea
 ### `catalog`
 
 - media search
+- TMDb-backed movie and TV discovery when a read token is configured
 - subtitle source discovery
-- mock provider adapter and data
+- mock subtitle source adapter and data
 - read-heavy and cache-friendly
 
 ### `preferences`
@@ -145,6 +146,8 @@ Abstractions that should stay feature-local:
 ## Performance Notes
 
 - public catalog routes are cached
+- TMDb movie queries are cached for 30 days
+- TMDb series queries are cached for 1 day
 - preferences reads are cached per device
 - upload-backed job creation reads file metadata without loading all cues
 - summary endpoints use lean DB selects rather than full row hydration
