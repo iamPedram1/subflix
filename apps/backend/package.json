@@ -4,6 +4,7 @@
   "description": "NestJS backend for the SubFlix subtitle translation app",
   "author": "SubFlix",
   "private": true,
+  "packageManager": "pnpm@10.32.1",
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
@@ -18,14 +19,14 @@
     "prisma:migrate:dev": "prisma migrate dev",
     "prisma:migrate:deploy": "prisma migrate deploy",
     "prisma:seed": "ts-node prisma/seed.ts",
-    "test": "npm run test:unit && npm run test:integration && npm run test:e2e",
+    "test": "pnpm test:unit && pnpm test:integration && pnpm test:e2e",
     "test:unit": "jest --config ./test/jest-unit.json --runInBand",
     "test:integration": "jest --config ./test/jest-integration.json --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json --runInBand",
     "test:watch": "jest --config ./test/jest-unit.json --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:all": "npm run test"
+    "test:all": "pnpm test"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",

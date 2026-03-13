@@ -49,7 +49,7 @@ test/
 ### 1. Install dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### 2. Configure environment
@@ -76,19 +76,19 @@ If you do not have Docker, point `DATABASE_URL` to an existing local PostgreSQL 
 ### 4. Generate Prisma client
 
 ```bash
-npm run prisma:generate
+pnpm prisma:generate
 ```
 
 ### 5. Apply migrations
 
 ```bash
-npm run prisma:migrate:dev
+pnpm prisma:migrate:dev
 ```
 
 ### 6. Run the API
 
 ```bash
-npm run start:dev
+pnpm start:dev
 ```
 
 The app runs on `http://localhost:3000` and all routes are prefixed with `/v1`.
@@ -157,15 +157,15 @@ curl -X POST "http://localhost:3000/v1/translation-jobs" \
 ### Run everything
 
 ```bash
-npm test
+pnpm test
 ```
 
 ### Run specific suites
 
 ```bash
-npm run test:unit
-npm run test:integration
-npm run test:e2e
+pnpm test:unit
+pnpm test:integration
+pnpm test:e2e
 ```
 
 ### Important test note
@@ -178,9 +178,9 @@ npm run test:e2e
 ## Quality commands
 
 ```bash
-npm run build
-npm run lint
-npm run format
+pnpm build
+pnpm lint
+pnpm format
 ```
 
 ## Current architecture decisions
