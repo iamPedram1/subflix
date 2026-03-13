@@ -12,3 +12,4 @@ pnpm-debug.log*
 postman/*.private.postman_environment.json
 postman/*.secret.postman_environment.json
 postman/private/
+.vscode/*
