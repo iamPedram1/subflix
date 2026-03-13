@@ -1,168 +1,153 @@
-# 🎬✨ SubFlix
+<div align="center">
 
-**SubFlix** is a premium Flutter mobile app for **AI subtitle translation**.  
-It lets users search for movies or series, fetch mocked English subtitle sources, translate them into a target language, upload their own subtitle files, preview results, export translated subtitles, and revisit past jobs from history.
+# 🎬 SubFlix
 
-> 🚧 **Current status:** production-style frontend with **mock repositories + fake APIs** only.  
-> The architecture is intentionally designed so a real **NestJS + Postgres** backend can be plugged in later with minimal UI rewrites.
+**A premium AI subtitle translation app built with Flutter.**
 
----
+Search for movies and series, fetch mocked English subtitle sources, upload your own subtitle files, translate them into your preferred language, preview the result, and export polished subtitle files with a premium mobile UX.
 
-## 🌟 Highlights
+<br/>
 
-- 🔎 **Search flow** for movies and series with debounced input
-- 📄 **Upload flow** for `.srt` and `.vtt` subtitle files
-- 🌍 **Target language selection** with saved user preference
-- 🧠 **Mock AI translation pipeline** with progress states
-- 👀 **Preview screen** with original / translated / bilingual modes
-- 📚 **Translation history** with reopenable jobs
-- ⚙️ **Settings** for language defaults, theme preference, cache clearing, and app info
-- 🎨 **Premium dark UI** with gradients, polished cards, strong spacing, and reusable design tokens
-- 🧱 **Feature-first architecture** using Riverpod code generation and clean repository seams
+![Flutter](https://img.shields.io/badge/Flutter-3.41+-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/Dart-3.11+-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![Riverpod](https://img.shields.io/badge/Riverpod-Codegen%20State%20Management-00B3E6?style=for-the-badge)
+![GoRouter](https://img.shields.io/badge/go_router-Navigation-5B5BD6?style=for-the-badge)
+![Freezed](https://img.shields.io/badge/Freezed-Immutable%20Models-8A2BE2?style=for-the-badge)
+![License](https://img.shields.io/badge/License-Private-red?style=for-the-badge)
+
+</div>
 
 ---
 
-## 📱 Core Features
+## ✨ Features
 
-### 🚀 Onboarding
-- 3-slide onboarding flow
-- Explains search, upload, translate, and export paths
-- Persists onboarding completion locally
-
-### 🏠 Home Dashboard
-- Premium hero section
-- Quick actions for search and upload
-- Recent jobs section
-- Trust/quality messaging
-
-### 🔎 Search & Translate
-- Debounced title search
-- Mock movie/series results
-- Mock subtitle source selection
-- Translation setup screen
-- Progress screen with staged updates
-
-### 📂 Upload & Translate
-- Local file picker for `.srt` and `.vtt`
-- Demo subtitle file support for quick testing
-- Local parsing into subtitle lines
-- Shared translation setup flow
-
-### 👀 Preview & Export
-- Subtitle line preview list
-- Original / translated / bilingual toggle
-- Search inside subtitle lines
-- Metadata summary
-- Local export to subtitle file
-
-### 📚 History
-- Saved translation jobs
-- Reopen past previews
-- Empty state support
-
-### ⚙️ Settings
-- Preferred target language
-- Theme mode selection
-- Premium placeholder section
-- About / support / legal placeholder pages
-- Clear cache action
+|  | Feature | Description |
+|---|---|---|
+| 🚀 | **Onboarding** | Premium 3-step onboarding flow introducing search, upload, translation, and export paths. |
+| 🏠 | **Home Dashboard** | Hero section, quick actions, recent translation jobs, and trust indicators. |
+| 🔎 | **Search Flow** | Debounced movie and series search with mocked subtitle source discovery. |
+| 🌍 | **Translation Setup** | Select a target language and launch a mocked translation pipeline with progress states. |
+| 📂 | **Upload Flow** | Import local `.srt` and `.vtt` files or use a built-in demo subtitle file. |
+| 👀 | **Preview** | Review subtitles in original, translated, or bilingual mode with in-preview search. |
+| 📚 | **History** | Reopen previous translation jobs from local history. |
+| ⚙️ | **Settings** | Preferred language, theme mode, legal placeholders, premium placeholder, and cache clearing. |
+| 📤 | **Export** | Save translated subtitle files locally in the proper subtitle format. |
 
 ---
 
-## 🧰 Tech Stack
+## 🛠️ Tech Stack
 
-| Layer | Tech |
+| Category | Libraries |
 |---|---|
-| UI | Flutter |
-| Routing | GoRouter |
-| State | Riverpod + `riverpod_annotation` |
-| Models | Freezed + JSON Serializable |
-| Networking seam | Dio |
-| Local persistence | SharedPreferences |
-| File import | File Picker |
-| Export | Local file generation |
-| Testing | `flutter_test` + Riverpod containers |
+| 🏗️ **Framework** | Flutter 3.41+ · Dart 3.11+ |
+| 🧠 **State Management** | Riverpod · `riverpod_annotation` · `riverpod_generator` |
+| 🧭 **Routing** | `go_router` |
+| 🧊 **Models** | Freezed · `json_serializable` |
+| 🌐 **Networking Seam** | Dio |
+| 💾 **Local Storage** | SharedPreferences |
+| 📁 **File Handling** | `file_picker` · `path_provider` |
+| 🎞️ **UI / Motion** | `flutter_animate` · `google_fonts` |
+| 🧪 **Testing** | `flutter_test` · Riverpod containers · `mocktail` |
+
+---
+
+## 📂 Project Structure
+
+```text
+lib/
+├── 🏛️ core/
+│   ├── app/           # App root, routing, bootstrap
+│   ├── providers/     # Shared repository and service providers
+│   ├── styles/        # Theme, colors, radii
+│   ├── ui/            # Reusable widgets and icon aliases
+│   ├── utils/         # Parsers, formatters, helpers
+│   └── extensions/    # Shared formatting extensions
+│
+└── 🧩 features/
+    ├── onboarding/    # Splash + onboarding flow
+    ├── home/          # Dashboard shell and home experience
+    ├── search/        # Title search and subtitle source discovery
+    ├── subtitles/     # Upload, translation, progress, preview, export
+    ├── history/       # Saved translation jobs
+    ├── settings/      # Preferences, legal placeholders, app info
+    └── shared/        # Cross-feature domain models and widgets
+
+test/
+├── core/shared/       # Shared test helpers
+└── features/          # Feature-level tests
+```
 
 ---
 
 ## 🏗️ Architecture
 
-SubFlix follows a **feature-first** structure:
+SubFlix follows a **feature-first clean architecture**.
 
-```text
-lib/
-├─ core/
-│  ├─ app/
-│  ├─ providers/
-│  ├─ styles/
-│  ├─ ui/
-│  ├─ utils/
-│  └─ extensions/
-├─ features/
-│  ├─ onboarding/
-│  ├─ home/
-│  ├─ search/
-│  ├─ subtitles/
-│  ├─ history/
-│  ├─ settings/
-│  └─ shared/
-test/
-├─ core/shared/
-└─ features/
-```
+Each feature is split into:
 
-Each feature is organized into:
+- `domain/` → models, enums, repository contracts, pure logic
+- `data/` → mock APIs, repositories, local data sources, platform adapters
+- `application/` → Riverpod controllers, providers, orchestration
+- `presentation/` → screens, widgets, and UI-specific helpers
 
-- `domain/` → models, enums, repositories, pure logic
-- `data/` → mock APIs, repositories, data sources, platform adapters
-- `application/` → Riverpod providers, controllers, orchestration
-- `presentation/` → screens, widgets, UI helpers
+### 🔌 Backend-ready by design
+
+The app currently uses:
+
+- mocked repositories
+- deterministic fake data
+- artificial latency
+- local persistence for settings and history
+
+This keeps the UI decoupled so a future **NestJS + Postgres** backend can replace only the repository and data-source layers.
 
 ---
 
-## 🧪 Mock-First by Design
+## 🎯 Product Scope
 
-This app does **not** call a real backend yet.
+SubFlix is built around two core user journeys:
 
-Instead it uses:
+### 🔎 Search and Translate
 
-- ⏳ artificial latency
-- 🎭 deterministic fake data
-- 🗂️ local persistence for settings + history
-- 🔌 clean repository abstractions for future backend replacement
+1. Search for a movie or series
+2. Choose an English subtitle source
+3. Pick a target language
+4. Watch translation progress
+5. Preview and export the result
 
-That means we can later wire:
+### 📂 Upload and Translate
 
-- NestJS APIs
-- Postgres persistence
-- real authentication
-- premium billing
-- cloud sync / job processing
-
-without rebuilding the whole app shell.
+1. Pick an `.srt` or `.vtt` file
+2. Validate and parse subtitle cues locally
+3. Choose a target language
+4. Run the same translation flow
+5. Preview and export the translated file
 
 ---
 
-## ▶️ Getting Started
+## 🚀 Getting Started
 
-### 1. Prerequisites
+### Prerequisites
 
-- Flutter `3.41+`
-- Dart `3.11+`
+- ✅ Flutter SDK `3.41+`
+- ✅ Dart SDK `3.11+`
+- ✅ Android Studio / Xcode / VS Code
 
-### 2. Install dependencies
+### 1️⃣ Install dependencies
 
 ```bash
 flutter pub get
 ```
 
-### 3. Generate code
+### 2️⃣ Run code generation
+
+SubFlix uses Riverpod generators, Freezed models, and JSON serialization.
 
 ```bash
 dart run build_runner build --delete-conflicting-outputs
 ```
 
-### 4. Run the app
+### 3️⃣ Run the app
 
 ```bash
 flutter run
@@ -170,21 +155,21 @@ flutter run
 
 ---
 
-## 🛠️ Useful Commands
+## 🧪 Development Commands
 
-### Generate providers / Freezed / JSON code
+### Generate code
 
 ```bash
 dart run build_runner build --delete-conflicting-outputs
 ```
 
-### Format the project
+### Format the codebase
 
 ```bash
 dart format lib test
 ```
 
-### Analyze the codebase
+### Analyze the project
 
 ```bash
 flutter analyze
@@ -198,15 +183,18 @@ flutter test
 
 ---
 
-## ✅ What’s Implemented
+## ✅ Implemented
 
 - ✅ Premium app shell and onboarding
-- ✅ Search flow with subtitle source selection
-- ✅ Translation setup + progress orchestration
-- ✅ Upload flow with subtitle parsing
-- ✅ Translation preview + local export
-- ✅ History and settings screens
-- ✅ Tests for critical providers and mock flows
+- ✅ Search flow with mocked movie / series results
+- ✅ Subtitle source selection
+- ✅ Translation setup and progress orchestration
+- ✅ Subtitle upload flow with `.srt` / `.vtt` parsing
+- ✅ Preview with original / translated / bilingual modes
+- ✅ Local subtitle export
+- ✅ Translation history
+- ✅ Settings and legal placeholders
+- ✅ Tests for critical providers, repository mocks, and parsing / translation flows
 
 ---
 
@@ -216,36 +204,35 @@ flutter test
 - ☁️ Cloud-based translation jobs
 - 👤 Authentication and user accounts
 - 💳 Premium subscription flow
-- 📤 Better share/export targets
-- 🌐 More subtitle languages and richer translation quality logic
+- 🌐 More subtitle languages and smarter translation quality layers
+- 📡 Better offline handling and sync support
+- 🧾 Richer app info, support, and legal content
 
 ---
 
 ## 🤝 Development Notes
 
-This repo is optimized for:
-
-- modular Flutter scaling
-- provider-driven orchestration
-- reusable shared UI
-- low-friction backend replacement later
-
-If you’re extending the project, try to keep new work inside the existing feature boundaries and prefer repository/provider seams over direct widget-side logic.
+- Use `dart run build_runner build --delete-conflicting-outputs` after changing annotated providers or Freezed models.
+- Keep feature logic inside `application/` and `domain/`, not inside screens.
+- Prefer repository abstractions over direct platform or API calls from widgets.
+- Shared reusable widgets belong in `lib/core/ui/widgets`.
 
 ---
 
-## 💙 SubFlix Vision
+## 💙 Vision
 
-SubFlix aims to feel like a **streaming-grade consumer app** mixed with a **smart AI productivity tool**:
+SubFlix is designed to feel like a **streaming-grade consumer product** mixed with an **AI productivity tool**:
 
 - cinematic
-- clean
+- polished
 - fast
 - trustworthy
 - future-ready
 
 ---
 
-## 📄 License
+<div align="center">
 
-Private project. `publish_to: none`
+Made with 💙 for SubFlix
+
+</div>
