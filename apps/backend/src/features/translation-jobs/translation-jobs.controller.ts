@@ -14,6 +14,7 @@ import { Response } from 'express';
 
 import { CurrentDevice } from 'src/common/http/decorators/current-device.decorator';
 import { DeviceContextGuard } from 'src/common/http/guards/device-context.guard';
+import { RateLimit } from 'src/common/rate-limit/rate-limit.decorator';
 
 import { CreateTranslationJobDto } from './dto/create-translation-job.dto';
 import { ExportJobQueryDto } from './dto/export-job-query.dto';
@@ -31,6 +32,11 @@ export class TranslationJobsController {
 
   /** Creates and queues a new translation job. */
   @Post()
+  @RateLimit({
+    limit: 12,
+    windowMs: 10 * 60_000,
+    key: 'translation-job-create',
+  })
   createJob(
     @CurrentDevice() device: ClientDevice,
     @Body() body: CreateTranslationJobDto,
@@ -94,6 +100,7 @@ export class TranslationJobsController {
 
   /** Replays an existing translation job with the same source context. */
   @Post(':jobId/retry')
+  @RateLimit({ limit: 6, windowMs: 10 * 60_000, key: 'translation-job-retry' })
   retryJob(
     @CurrentDevice() device: ClientDevice,
     @Param('jobId') jobId: string,

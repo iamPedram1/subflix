@@ -13,6 +13,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 
 import { CurrentDevice } from 'src/common/http/decorators/current-device.decorator';
 import { DeviceContextGuard } from 'src/common/http/guards/device-context.guard';
+import { RateLimit } from 'src/common/rate-limit/rate-limit.decorator';
 
 import {
   DEFAULT_MAX_UPLOAD_BYTES,
@@ -27,6 +28,7 @@ export class SubtitlesController {
   constructor(private readonly subtitlesService: SubtitlesService) {}
 
   @Post('parse')
+  @RateLimit({ limit: 8, windowMs: 10 * 60_000, key: 'subtitle-parse' })
   @HttpCode(HttpStatus.CREATED)
   @UseInterceptors(
     FileInterceptor('file', {

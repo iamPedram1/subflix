@@ -34,4 +34,14 @@ describe('Health endpoint', () => {
         });
     });
   });
+
+  it('skips rate limiting for repeated health checks', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+
+      for (let index = 0; index < 40; index += 1) {
+        await api.get('/v1/health').expect(200);
+      }
+    });
+  });
 });

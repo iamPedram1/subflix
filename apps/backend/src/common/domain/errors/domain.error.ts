@@ -63,6 +63,17 @@ export class ForbiddenDomainError extends DomainError {
   }
 }
 
+export class TooManyRequestsDomainError extends DomainError {
+  constructor(message: string, details?: unknown) {
+    super({
+      statusCode: 429,
+      code: 'rate_limited',
+      message,
+      details,
+    });
+  }
+}
+
 export class ServiceUnavailableDomainError extends DomainError {
   constructor(message: string, details?: unknown) {
     super({

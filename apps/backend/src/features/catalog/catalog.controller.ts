@@ -1,5 +1,7 @@
 import { Controller, Get, Header, Param, Query } from '@nestjs/common';
 
+import { RateLimit } from 'src/common/rate-limit/rate-limit.decorator';
+
 import { CatalogService } from './catalog.service';
 import { SearchCatalogQueryDto } from './dto/search-catalog-query.dto';
 
@@ -10,6 +12,7 @@ export class CatalogController {
 
   /** Searches the mocked media catalog by a user query. */
   @Get('search')
+  @RateLimit({ limit: 30, windowMs: 60_000, key: 'catalog-search' })
   @Header('Cache-Control', 'public, max-age=60, stale-while-revalidate=300')
   search(@Query() query: SearchCatalogQueryDto) {
     return this.catalogService.search(query.q);
@@ -17,6 +20,7 @@ export class CatalogController {
 
   /** Returns subtitle source options for a selected media item. */
   @Get('media/:mediaId/subtitle-sources')
+  @RateLimit({ limit: 60, windowMs: 60_000, key: 'catalog-subtitle-sources' })
   @Header('Cache-Control', 'public, max-age=300, stale-while-revalidate=900')
   getSubtitleSources(@Param('mediaId') mediaId: string) {
     return this.catalogService.getSubtitleSources(mediaId);
