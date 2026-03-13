@@ -1,98 +1,200 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# SubFlix Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Production-oriented NestJS backend for the SubFlix subtitle translation app.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## What it does
 
-## Description
+- Searches a mocked movie and series catalog
+- Returns mocked English subtitle source options
+- Accepts `.srt` and `.vtt` subtitle uploads
+- Parses subtitle files on the backend and stores normalized cues
+- Creates async translation jobs with persisted progress and stage labels
+- Exposes history, job status polling, preview, export, retry, and preferences APIs
+- Scopes user-owned data with the `x-device-id` header until real auth is added
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Stack
 
-## Project setup
+- NestJS
+- PostgreSQL
+- Prisma
+- Jest + Supertest
+- Feature-based module structure
 
-```bash
-$ npm install
+## Project structure
+
+```text
+src/
+  common/
+    config/
+    database/
+    domain/
+    http/
+  features/
+    catalog/
+    devices/
+    health/
+    preferences/
+    subtitles/
+    translation-jobs/
+
+test/
+  core/shared/
+  e2e/
+  integration/
+  unit/
 ```
 
-## Compile and run the project
+## Local setup
+
+### 1. Install dependencies
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
+### 2. Configure environment
+
+Copy `.env.example` to `.env` and update values if needed.
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+NODE_ENV=development
+PORT=3000
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/subflix
+MAX_UPLOAD_BYTES=2097152
 ```
 
-## Deployment
+### 3. Start PostgreSQL
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+If you have Docker:
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+docker compose up -d
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+If you do not have Docker, point `DATABASE_URL` to an existing local PostgreSQL instance.
 
-## Resources
+### 4. Generate Prisma client
 
-Check out a few resources that may come in handy when working with NestJS:
+```bash
+npm run prisma:generate
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### 5. Apply migrations
 
-## Support
+```bash
+npm run prisma:migrate:dev
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### 6. Run the API
 
-## Stay in touch
+```bash
+npm run start:dev
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+The app runs on `http://localhost:3000` and all routes are prefixed with `/v1`.
 
-## License
+## Core API routes
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### Public
+
+- `GET /v1/health`
+- `GET /v1/catalog/search?q=...`
+- `GET /v1/catalog/media/:mediaId/subtitle-sources`
+
+### Device-scoped
+
+These routes require the `x-device-id` header.
+
+- `GET /v1/preferences`
+- `PATCH /v1/preferences`
+- `POST /v1/subtitles/parse`
+- `POST /v1/translation-jobs`
+- `GET /v1/translation-jobs`
+- `GET /v1/translation-jobs/:jobId`
+- `GET /v1/translation-jobs/:jobId/preview`
+- `GET /v1/translation-jobs/:jobId/export`
+- `POST /v1/translation-jobs/:jobId/retry`
+- `DELETE /v1/translation-jobs`
+
+## Example requests
+
+### Search catalog
+
+```bash
+curl "http://localhost:3000/v1/catalog/search?q=dune"
+```
+
+### Fetch preferences
+
+```bash
+curl -H "x-device-id: simulator-001" \
+  "http://localhost:3000/v1/preferences"
+```
+
+### Parse subtitle upload
+
+```bash
+curl -X POST "http://localhost:3000/v1/subtitles/parse" \
+  -H "x-device-id: simulator-001" \
+  -F "file=@./sample.srt"
+```
+
+### Create translation job
+
+```bash
+curl -X POST "http://localhost:3000/v1/translation-jobs" \
+  -H "Content-Type: application/json" \
+  -H "x-device-id: simulator-001" \
+  -d '{
+    "sourceType": "upload",
+    "parsedFileId": "REPLACE_WITH_FILE_ID",
+    "targetLanguage": "fr"
+  }'
+```
+
+## Testing
+
+### Run everything
+
+```bash
+npm test
+```
+
+### Run specific suites
+
+```bash
+npm run test:unit
+npm run test:integration
+npm run test:e2e
+```
+
+### Important test note
+
+- Unit tests run without PostgreSQL.
+- Integration and DB-backed e2e tests are present in the repo from day one.
+- When `DATABASE_URL` is not configured, those DB-backed suites skip instead of failing the whole repo locally.
+- On a machine with PostgreSQL available, the same suites will execute against the configured database.
+
+## Quality commands
+
+```bash
+npm run build
+npm run lint
+npm run format
+```
+
+## Current architecture decisions
+
+- Controllers stay thin and delegate to feature services.
+- Repositories own Prisma access only.
+- Shared DB helpers are intentionally small: pagination, entity lookup, and DB error normalization.
+- Translation runs asynchronously in-process for now and is isolated behind a runner + provider boundary so it can move to a worker queue later.
+- Catalog search, subtitle source lookup, and translation execution all sit behind swappable mock provider interfaces.
+- Export generation happens on the backend, not in the client.
+
+## Current limitations
+
+- No real authentication yet. Ownership is header-based via `x-device-id`.
+- No external subtitle or translation providers yet. The current implementation uses deterministic mock adapters.
+- No Redis/BullMQ worker pipeline yet. Jobs are run in-process to keep V1 simple.
+- DB-backed tests require a reachable PostgreSQL database.
