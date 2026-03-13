@@ -23,4 +23,19 @@ describeIfDatabase('Subtitles parse endpoint', () => {
         });
     });
   });
+
+  it('rejects unsupported subtitle file extensions', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+
+      await api
+        .post('/v1/subtitles/parse')
+        .set(createDeviceHeaders('subtitle-e2e-002'))
+        .attach('file', Buffer.from(sampleSrt, 'utf8'), 'sample.exe')
+        .expect(400)
+        .expect(({ body }) => {
+          expect(body.code).toBe('http_error');
+        });
+    });
+  });
 });

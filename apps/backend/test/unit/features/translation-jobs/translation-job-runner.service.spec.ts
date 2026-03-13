@@ -62,7 +62,7 @@ describe('TranslationJobRunnerService', () => {
     vi.spyOn(Logger.prototype, 'error').mockImplementation(() => undefined);
 
     const translationJobsRepository = {
-      getJobForRunner: vi.fn().mockResolvedValue(createRunnerJob()),
+      claimQueuedJobForRunner: vi.fn().mockResolvedValue(createRunnerJob()),
       updateJob: vi.fn().mockResolvedValue(undefined),
       replaceJobCues: vi.fn().mockResolvedValue(undefined),
     } as unknown as TranslationJobsRepository;
@@ -93,14 +93,16 @@ describe('TranslationJobRunnerService', () => {
     await vi.runAllTimersAsync();
     await runPromise;
 
+    expect(
+      translationJobsRepository.claimQueuedJobForRunner,
+    ).toHaveBeenCalledWith('job-1');
     expect(translationJobsRepository.updateJob).toHaveBeenNthCalledWith(
       1,
       'job-1',
       expect.objectContaining({
         status: TranslationJobStatus.translating,
-        stageLabel: 'Loading source subtitle cues',
-        progress: 0.18,
-        errorMessage: null,
+        stageLabel: 'Translating subtitle lines',
+        progress: 0.56,
       }),
     );
     expect(translationJobsRepository.updateJob).toHaveBeenLastCalledWith(
@@ -112,5 +114,32 @@ describe('TranslationJobRunnerService', () => {
       }),
     );
     expect(translationJobsRepository.replaceJobCues).not.toHaveBeenCalled();
+  });
+
+  it('does nothing when another runner already claimed the job', async () => {
+    const translationJobsRepository = {
+      claimQueuedJobForRunner: vi.fn().mockResolvedValue(null),
+      updateJob: vi.fn(),
+      replaceJobCues: vi.fn(),
+    } as unknown as TranslationJobsRepository;
+    const translationProvider = {
+      translate: vi.fn(),
+    } as unknown as TranslationProviderPort;
+
+    const service = new TranslationJobRunnerService(
+      translationJobsRepository,
+      {} as SubtitlesRepository,
+      {} as CatalogService,
+      translationProvider,
+    );
+
+    await service.run('job-1');
+
+    expect(
+      translationJobsRepository.claimQueuedJobForRunner,
+    ).toHaveBeenCalledWith('job-1');
+    expect(translationJobsRepository.updateJob).not.toHaveBeenCalled();
+    expect(translationJobsRepository.replaceJobCues).not.toHaveBeenCalled();
+    expect(translationProvider.translate).not.toHaveBeenCalled();
   });
 });

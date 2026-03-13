@@ -6,6 +6,20 @@ import {
 } from 'test/core/shared/request.helper';
 
 describeIfDatabase('Preferences endpoints', () => {
+  it('rejects malformed device headers', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+
+      await api
+        .get('/v1/preferences')
+        .set('x-device-id', 'bad device id!')
+        .expect(400)
+        .expect(({ body }) => {
+          expect(body.code).toBe('http_error');
+        });
+    });
+  });
+
   it('returns default preferences for a new device', async () => {
     await withE2eApp(async (app) => {
       const api = createApiRequest(app);

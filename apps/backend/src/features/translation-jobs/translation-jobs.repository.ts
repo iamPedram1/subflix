@@ -14,6 +14,39 @@ import { PrismaService } from 'src/common/database/prisma/prisma.service';
 export class TranslationJobsRepository {
   constructor(private readonly prisma: PrismaService) {}
 
+  /** Atomically claims a queued job so only one runner can start processing it. */
+  async claimQueuedJobForRunner(jobId: string): Promise<TranslationJob | null> {
+    const startedAt = new Date();
+
+    try {
+      return await this.prisma.$transaction(async (tx) => {
+        const claimed = await tx.translationJob.updateMany({
+          where: {
+            id: jobId,
+            status: TranslationJobStatus.queued,
+          },
+          data: {
+            status: TranslationJobStatus.translating,
+            stageLabel: 'Loading source subtitle cues',
+            progress: 0.18,
+            startedAt,
+            errorMessage: null,
+          },
+        });
+
+        if (claimed.count === 0) {
+          return null;
+        }
+
+        return tx.translationJob.findUnique({
+          where: { id: jobId },
+        });
+      });
+    } catch (error) {
+      return normalizeDatabaseError(error);
+    }
+  }
+
   /** Persists a newly created translation job. */
   async createJob(
     data: Prisma.TranslationJobUncheckedCreateInput,
@@ -71,13 +104,6 @@ export class TranslationJobsRepository {
     } catch (error) {
       return normalizeDatabaseError(error);
     }
-  }
-
-  /** Loads the minimal job payload needed by the async runner. */
-  async getJobForRunner(jobId: string) {
-    return this.prisma.translationJob.findUnique({
-      where: { id: jobId },
-    });
   }
 
   /** Returns a single device-owned job or throws when it is missing. */

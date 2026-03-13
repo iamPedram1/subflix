@@ -6,6 +6,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { MulterError } from 'multer';
 
 import { DomainError } from 'src/common/domain/errors/domain.error';
 
@@ -25,6 +26,30 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         code: exception.code,
         message: exception.message,
         details: exception.details,
+        requestId,
+        timestamp,
+      });
+      return;
+    }
+
+    if (exception instanceof MulterError) {
+      const status =
+        exception.code === 'LIMIT_FILE_SIZE'
+          ? HttpStatus.PAYLOAD_TOO_LARGE
+          : HttpStatus.BAD_REQUEST;
+
+      response.status(status).json({
+        code:
+          exception.code === 'LIMIT_FILE_SIZE'
+            ? 'payload_too_large'
+            : 'upload_invalid',
+        message:
+          exception.code === 'LIMIT_FILE_SIZE'
+            ? 'Subtitle file exceeds the upload limit.'
+            : 'The uploaded subtitle file is invalid.',
+        details: {
+          multerCode: exception.code,
+        },
         requestId,
         timestamp,
       });

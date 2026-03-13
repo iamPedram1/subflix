@@ -8,9 +8,8 @@ import { ValidationDomainError } from 'src/common/domain/errors/domain.error';
 
 import { SubtitleCue } from './models/subtitle-cue.model';
 import { SubtitlesRepository } from './subtitles.repository';
+import { DEFAULT_MAX_UPLOAD_BYTES } from './subtitle-upload.constants';
 import { SubtitleParserService } from './utils/subtitle-parser.service';
-
-const DEFAULT_MAX_UPLOAD_BYTES = 2 * 1024 * 1024;
 
 @Injectable()
 /** Validates, parses, and persists uploaded subtitle files for device-scoped workflows. */

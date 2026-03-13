@@ -47,4 +47,18 @@ describe('Catalog endpoints', () => {
         });
     });
   });
+
+  it('rejects overly long catalog queries', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+
+      await api
+        .get('/v1/catalog/search')
+        .query({ q: 'd'.repeat(121) })
+        .expect(400)
+        .expect(({ body }) => {
+          expect(body.code).toBe('validation_failed');
+        });
+    });
+  });
 });

@@ -9,6 +9,7 @@ export const appConfig = registerAs('app', () => ({
   nodeEnv: process.env.NODE_ENV ?? 'development',
   port: parseNumber(process.env.PORT, 3000),
   maxUploadBytes: parseNumber(process.env.MAX_UPLOAD_BYTES, 2 * 1024 * 1024),
+  maxBodyBytes: parseNumber(process.env.MAX_BODY_BYTES, 32 * 1024),
 }));
 
 export const databaseConfig = registerAs('database', () => ({

@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   CanActivate,
   ExecutionContext,
   Injectable,
@@ -9,6 +10,7 @@ import { DevicesService } from 'src/features/devices/devices.service';
 
 import { DEVICE_ID_HEADER } from '../constants/request-context.constants';
 import { RequestWithContext } from '../types/request-context';
+import { requireSafeDeviceId } from '../utils/request-header.util';
 
 @Injectable()
 /** Resolves the required device header and attaches the owning device to the request. */
@@ -18,12 +20,23 @@ export class DeviceContextGuard implements CanActivate {
   /** Validates the ownership header before a device-scoped route executes. */
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest<RequestWithContext>();
-    const deviceId = request.header(DEVICE_ID_HEADER)?.trim();
+    const rawDeviceId = request.header(DEVICE_ID_HEADER);
 
-    if (!deviceId) {
+    if (!rawDeviceId?.trim()) {
       throw new UnauthorizedException(
         `Missing required ${DEVICE_ID_HEADER} header.`,
       );
+    }
+
+    let deviceId: string;
+    try {
+      deviceId = requireSafeDeviceId(rawDeviceId);
+    } catch (error) {
+      if (error instanceof BadRequestException) {
+        throw error;
+      }
+
+      throw new BadRequestException(`Invalid ${DEVICE_ID_HEADER} header.`);
     }
 
     request.device = await this.devicesService.resolveDevice(deviceId);

@@ -47,19 +47,13 @@ export class TranslationJobRunnerService {
 
   /** Processes a single translation job from queued state to completion or failure. */
   async run(jobId: string): Promise<void> {
-    const job = await this.translationJobsRepository.getJobForRunner(jobId);
+    const job =
+      await this.translationJobsRepository.claimQueuedJobForRunner(jobId);
     if (!job) {
       return;
     }
 
     try {
-      await this.markProgress(jobId, {
-        stageLabel: 'Loading source subtitle cues',
-        progress: 0.18,
-        startedAt: new Date(),
-        errorMessage: null,
-      });
-
       const sourceCues = await this.loadSourceCues(job);
 
       await delay(250);
@@ -162,7 +156,6 @@ export class TranslationJobRunnerService {
     data: {
       stageLabel: string;
       progress: number;
-      startedAt?: Date;
       errorMessage?: string | null;
     },
   ) {
@@ -170,7 +163,6 @@ export class TranslationJobRunnerService {
       status: TranslationJobStatus.translating,
       stageLabel: data.stageLabel,
       progress: data.progress,
-      ...(data.startedAt ? { startedAt: data.startedAt } : {}),
       ...(data.errorMessage !== undefined
         ? { errorMessage: data.errorMessage }
         : {}),
