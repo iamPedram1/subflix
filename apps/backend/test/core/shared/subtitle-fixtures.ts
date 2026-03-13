@@ -1,0 +1,19 @@
+export const sampleSrt = `1
+00:00:01,000 --> 00:00:03,500
+We only have one clean pass.
+
+2
+00:00:04,000 --> 00:00:06,250
+Keep the line open.
+`;
+
+export const sampleVtt = `WEBVTT
+
+1
+00:00:01.000 --> 00:00:03.500
+We only have one clean pass.
+
+2
+00:00:04.000 --> 00:00:06.250
+Keep the line open.
+`;
