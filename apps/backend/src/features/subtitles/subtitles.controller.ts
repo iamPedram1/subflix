@@ -17,12 +17,14 @@ import { SubtitlesService } from './subtitles.service';
 
 @UseGuards(DeviceContextGuard)
 @Controller('subtitles')
+/** Accepts subtitle uploads and forwards them into the parsing pipeline. */
 export class SubtitlesController {
   constructor(private readonly subtitlesService: SubtitlesService) {}
 
   @Post('parse')
   @HttpCode(HttpStatus.CREATED)
   @UseInterceptors(FileInterceptor('file'))
+  /** Parses and persists an uploaded subtitle file for the current device. */
   parseFile(
     @CurrentDevice() device: ClientDevice,
     @UploadedFile() file?: Express.Multer.File,

@@ -9,14 +9,17 @@ import { PreferencesService } from './preferences.service';
 
 @UseGuards(DeviceContextGuard)
 @Controller('preferences')
+/** Handles device-scoped preference reads and updates. */
 export class PreferencesController {
   constructor(private readonly preferencesService: PreferencesService) {}
 
+  /** Returns the current device's preference record. */
   @Get()
   getPreferences(@CurrentDevice() device: ClientDevice) {
     return this.preferencesService.getPreferences(device);
   }
 
+  /** Applies a partial preference update for the current device. */
   @Patch()
   updatePreferences(
     @CurrentDevice() device: ClientDevice,

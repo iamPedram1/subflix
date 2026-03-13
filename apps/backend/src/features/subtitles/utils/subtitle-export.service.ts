@@ -4,11 +4,14 @@ import { SubtitleFormat } from '@prisma/client';
 import { SubtitleExportCue } from '../models/subtitle-cue.model';
 
 @Injectable()
+/** Converts normalized subtitle cues back into downloadable subtitle file text. */
 export class SubtitleExportService {
+  /** Formats cues using either SRT or VTT output rules. */
   formatCues(cues: SubtitleExportCue[], format: SubtitleFormat): string {
     return format === SubtitleFormat.vtt ? this.toVtt(cues) : this.toSrt(cues);
   }
 
+  /** Serializes cues using the SRT format. */
   private toSrt(cues: SubtitleExportCue[]): string {
     return cues
       .map(
@@ -18,6 +21,7 @@ export class SubtitleExportService {
       .join('\n\n');
   }
 
+  /** Serializes cues using the VTT format with the required header. */
   private toVtt(cues: SubtitleExportCue[]): string {
     const body = cues
       .map(
@@ -29,6 +33,7 @@ export class SubtitleExportService {
     return `WEBVTT\n\n${body}`;
   }
 
+  /** Formats milliseconds into an SRT- or VTT-compatible timestamp token. */
   private formatTimestamp(milliseconds: number, separator: ',' | '.'): string {
     const totalMilliseconds = Math.max(0, milliseconds);
     const hours = Math.floor(totalMilliseconds / 3_600_000);

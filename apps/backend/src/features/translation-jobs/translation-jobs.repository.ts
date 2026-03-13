@@ -10,9 +10,11 @@ import { normalizeDatabaseError } from 'src/common/database/helpers/database-err
 import { PrismaService } from 'src/common/database/prisma/prisma.service';
 
 @Injectable()
+/** Encapsulates persistence for translation jobs, previews, and exports. */
 export class TranslationJobsRepository {
   constructor(private readonly prisma: PrismaService) {}
 
+  /** Persists a newly created translation job. */
   async createJob(
     data: Prisma.TranslationJobUncheckedCreateInput,
   ): Promise<TranslationJob> {
@@ -23,6 +25,7 @@ export class TranslationJobsRepository {
     }
   }
 
+  /** Applies a partial update to a persisted translation job. */
   async updateJob(
     jobId: string,
     data: Prisma.TranslationJobUncheckedUpdateInput,
@@ -37,6 +40,7 @@ export class TranslationJobsRepository {
     }
   }
 
+  /** Replaces all persisted preview/export cues for a translation job. */
   async replaceJobCues(
     jobId: string,
     cues: Array<{
@@ -69,12 +73,14 @@ export class TranslationJobsRepository {
     }
   }
 
+  /** Loads the minimal job payload needed by the async runner. */
   async getJobForRunner(jobId: string) {
     return this.prisma.translationJob.findUnique({
       where: { id: jobId },
     });
   }
 
+  /** Returns a single device-owned job or throws when it is missing. */
   async findOwnedJob(
     clientDeviceId: string,
     jobId: string,
@@ -89,6 +95,7 @@ export class TranslationJobsRepository {
     return requireEntity(job, 'The translation job was not found.');
   }
 
+  /** Lists paginated job summaries for a single device. */
   async listOwnedJobs(params: {
     clientDeviceId: string;
     page: number;
@@ -114,6 +121,7 @@ export class TranslationJobsRepository {
     });
   }
 
+  /** Lists paginated preview cues, optionally filtered by search text. */
   async listPreviewCues(params: {
     clientDeviceId: string;
     jobId: string;
@@ -164,6 +172,7 @@ export class TranslationJobsRepository {
     });
   }
 
+  /** Returns every cue needed to build a downloadable subtitle export. */
   async listAllOwnedJobCues(params: { clientDeviceId: string; jobId: string }) {
     return this.prisma.translationJobCue.findMany({
       where: {
@@ -176,6 +185,7 @@ export class TranslationJobsRepository {
     });
   }
 
+  /** Clears all persisted history and upload artifacts owned by one device. */
   async clearOwnedHistory(clientDeviceId: string): Promise<void> {
     try {
       await this.prisma.$transaction(async (tx) => {
@@ -197,6 +207,7 @@ export class TranslationJobsRepository {
     }
   }
 
+  /** Counts failed jobs for the current device. */
   async countOwnedFailedJobs(clientDeviceId: string): Promise<number> {
     return this.prisma.translationJob.count({
       where: {

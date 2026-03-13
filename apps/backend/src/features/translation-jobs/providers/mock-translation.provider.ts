@@ -1,10 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { AppLanguage } from '@prisma/client';
 
-import { TranslationProviderPort } from '../ports/translation-provider.port';
+import { delay } from 'src/common/utils/delay.util';
 
-const wait = async (milliseconds: number): Promise<void> =>
-  new Promise((resolve) => setTimeout(resolve, milliseconds));
+import { TranslationProviderPort } from '../ports/translation-provider.port';
 
 const translationPrefixes: Record<AppLanguage, string> = {
   en: '',
@@ -20,13 +19,15 @@ const translationPrefixes: Record<AppLanguage, string> = {
 };
 
 @Injectable()
+/** Mock translation adapter that mimics latency and deterministic translated output. */
 export class MockTranslationProvider implements TranslationProviderPort {
+  /** Translates normalized cues into a prefixed mock language variant. */
   async translate(params: {
     title: string;
     targetLanguage: AppLanguage;
     cues: { text: string }[];
   }): Promise<string[]> {
-    await wait(450);
+    await delay(450);
 
     if (params.title.toLowerCase().includes('error')) {
       throw new Error('Mock translation provider failed.');

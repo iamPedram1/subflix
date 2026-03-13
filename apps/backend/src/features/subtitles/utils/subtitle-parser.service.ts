@@ -6,7 +6,9 @@ import { ValidationDomainError } from 'src/common/domain/errors/domain.error';
 import { SubtitleCue } from '../models/subtitle-cue.model';
 
 @Injectable()
+/** Parses raw subtitle text into normalized cue objects shared across the app. */
 export class SubtitleParserService {
+  /** Parses `.srt` or `.vtt` content into normalized cues. */
   parse(params: { content: string; format: SubtitleFormat }): SubtitleCue[] {
     const normalizedContent = params.content.replace(/\r\n/g, '\n').trim();
     const withoutHeader =
@@ -32,6 +34,7 @@ export class SubtitleParserService {
     return cues;
   }
 
+  /** Parses a single subtitle block into a normalized cue when possible. */
   private parseBlock(block: string, fallbackIndex: number): SubtitleCue | null {
     const lines = block.split('\n').map((line) => line.trimEnd());
     const firstLine = lines[0]?.trim() ?? '';
@@ -62,6 +65,7 @@ export class SubtitleParserService {
     };
   }
 
+  /** Converts an SRT/VTT timestamp token into absolute milliseconds. */
   private parseTimestamp(value: string): number {
     const normalized = value.trim().replace(',', '.');
     const [timePart, millisecondsPart = '000'] = normalized.split('.');

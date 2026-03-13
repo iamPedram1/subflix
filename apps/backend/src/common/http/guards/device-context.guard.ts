@@ -11,9 +11,11 @@ import { DEVICE_ID_HEADER } from '../constants/request-context.constants';
 import { RequestWithContext } from '../types/request-context';
 
 @Injectable()
+/** Resolves the required device header and attaches the owning device to the request. */
 export class DeviceContextGuard implements CanActivate {
   constructor(private readonly devicesService: DevicesService) {}
 
+  /** Validates the ownership header before a device-scoped route executes. */
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest<RequestWithContext>();
     const deviceId = request.header(DEVICE_ID_HEADER)?.trim();

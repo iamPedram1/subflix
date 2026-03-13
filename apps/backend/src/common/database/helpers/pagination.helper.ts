@@ -11,6 +11,9 @@ export type PaginatedResult<T> = {
   totalPages: number;
 };
 
+/**
+ * Converts page and limit inputs into the Prisma pagination shape.
+ */
 export const buildPagination = ({
   page,
   limit,
@@ -19,6 +22,9 @@ export const buildPagination = ({
   take: limit,
 });
 
+/**
+ * Normalizes paginated persistence results into a transport-friendly shape.
+ */
 export const toPaginatedResult = <T>({
   items,
   total,

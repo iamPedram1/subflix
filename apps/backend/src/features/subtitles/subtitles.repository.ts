@@ -12,9 +12,11 @@ import { PrismaService } from 'src/common/database/prisma/prisma.service';
 import { SubtitleCue } from './models/subtitle-cue.model';
 
 @Injectable()
+/** Persists parsed subtitle uploads and their normalized cue rows. */
 export class SubtitlesRepository {
   constructor(private readonly prisma: PrismaService) {}
 
+  /** Stores a parsed subtitle file and its cues in one transaction. */
   async createParsedFile(params: {
     clientDeviceId: string;
     fileName: string;
@@ -58,6 +60,7 @@ export class SubtitlesRepository {
     }
   }
 
+  /** Loads a parsed subtitle file only when it belongs to the current device. */
   async findOwnedParsedFile(params: {
     clientDeviceId: string;
     parsedFileId: string;

@@ -1,5 +1,6 @@
 import { TranslationJob, TranslationJobCue } from '@prisma/client';
 
+/** Maps a persisted translation job into the public summary shape used by the API. */
 export const toTranslationJobSummary = (job: TranslationJob) => ({
   id: job.id,
   status: job.status,
@@ -18,6 +19,7 @@ export const toTranslationJobSummary = (job: TranslationJob) => ({
   errorMessage: job.errorMessage,
 });
 
+/** Maps a persisted cue into the preview payload returned by the API. */
 export const toTranslationPreviewCue = (cue: TranslationJobCue) => ({
   cueIndex: cue.cueIndex,
   startMs: cue.startMs,

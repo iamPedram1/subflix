@@ -23,11 +23,13 @@ import { TranslationJobsService } from './translation-jobs.service';
 
 @UseGuards(DeviceContextGuard)
 @Controller('translation-jobs')
+/** Exposes device-scoped translation job lifecycle endpoints. */
 export class TranslationJobsController {
   constructor(
     private readonly translationJobsService: TranslationJobsService,
   ) {}
 
+  /** Creates and queues a new translation job. */
   @Post()
   createJob(
     @CurrentDevice() device: ClientDevice,
@@ -36,6 +38,7 @@ export class TranslationJobsController {
     return this.translationJobsService.createJob(device, body);
   }
 
+  /** Lists the current device's historical translation jobs. */
   @Get()
   listJobs(
     @CurrentDevice() device: ClientDevice,
@@ -44,11 +47,13 @@ export class TranslationJobsController {
     return this.translationJobsService.listJobs(device, query);
   }
 
+  /** Returns the current status for a single translation job. */
   @Get(':jobId')
   getJob(@CurrentDevice() device: ClientDevice, @Param('jobId') jobId: string) {
     return this.translationJobsService.getJob(device, jobId);
   }
 
+  /** Returns paginated preview cues for a translation job. */
   @Get(':jobId/preview')
   getPreview(
     @CurrentDevice() device: ClientDevice,
@@ -64,6 +69,7 @@ export class TranslationJobsController {
     );
   }
 
+  /** Streams a translated subtitle export to the caller. */
   @Get(':jobId/export')
   async exportJob(
     @CurrentDevice() device: ClientDevice,
@@ -86,6 +92,7 @@ export class TranslationJobsController {
     return result.content;
   }
 
+  /** Replays an existing translation job with the same source context. */
   @Post(':jobId/retry')
   retryJob(
     @CurrentDevice() device: ClientDevice,
@@ -94,6 +101,7 @@ export class TranslationJobsController {
     return this.translationJobsService.retryJob(device, jobId);
   }
 
+  /** Clears all translation history owned by the current device. */
   @Delete()
   clearHistory(@CurrentDevice() device: ClientDevice) {
     return this.translationJobsService.clearHistory(device);

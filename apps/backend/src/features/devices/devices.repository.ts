@@ -5,9 +5,11 @@ import { normalizeDatabaseError } from 'src/common/database/helpers/database-err
 import { PrismaService } from 'src/common/database/prisma/prisma.service';
 
 @Injectable()
+/** Encapsulates persistence for device ownership records. */
 export class DevicesRepository {
   constructor(private readonly prisma: PrismaService) {}
 
+  /** Upserts a device row from the public header identifier. */
   async upsertByDeviceId(deviceId: string): Promise<ClientDevice> {
     try {
       return await this.prisma.clientDevice.upsert({

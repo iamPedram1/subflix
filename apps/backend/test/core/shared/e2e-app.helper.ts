@@ -4,6 +4,7 @@ import { Test } from '@nestjs/testing';
 import { AppModule } from 'src/app.module';
 import { configureApp } from 'src/app.bootstrap';
 
+/** Creates a fully initialized Nest application for end-to-end tests. */
 export const createE2eApp = async (): Promise<INestApplication> => {
   const moduleFixture = await Test.createTestingModule({
     imports: [AppModule],
@@ -14,4 +15,17 @@ export const createE2eApp = async (): Promise<INestApplication> => {
   await app.init();
 
   return app;
+};
+
+/** Runs an e2e test body with an application instance and guarantees cleanup. */
+export const withE2eApp = async <T>(
+  run: (app: INestApplication) => Promise<T>,
+): Promise<T> => {
+  const app = await createE2eApp();
+
+  try {
+    return await run(app);
+  } finally {
+    await app.close();
+  }
 };
