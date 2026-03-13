@@ -24,12 +24,12 @@ class BackendSubtitleExportRepository implements SubtitleExportRepository {
     final fallbackName =
         '${_sanitize(job.title)}_${job.targetLanguage.code}.${job.format.name}';
     final fileName = extractFileNameFromContentDisposition(
-          response.headers.value('content-disposition'),
+          response.response.headers.value('content-disposition'),
         ) ??
         fallbackName;
     final filePath = path.join(documentsDirectory.path, fileName);
     final file = File(filePath);
-    await file.writeAsString(response.data ?? '');
+    await file.writeAsString(response.data);
     return SubtitleExportResult(fileName: fileName, path: file.path);
   }
 

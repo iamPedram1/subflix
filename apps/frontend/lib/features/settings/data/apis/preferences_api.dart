@@ -1,32 +1,38 @@
 import 'package:dio/dio.dart';
+import 'package:retrofit/retrofit.dart';
 
-import 'package:subflix/core/network/api_exception.dart';
+import 'package:subflix/core/network/api_call_guard.dart';
+import 'package:subflix/core/network/api_paths.dart';
 import 'package:subflix/features/settings/domain/models/user_preference.dart';
+
+part 'preferences_api.g.dart';
 
 /// HTTP client for device-scoped preference endpoints.
 class PreferencesApi {
-  PreferencesApi(this._dio);
+  PreferencesApi(Dio dio, {String? baseUrl})
+    : _client = PreferencesRestClient(dio, baseUrl: baseUrl);
 
-  final Dio _dio;
+  final PreferencesRestClient _client;
 
-  Future<UserPreference> getPreferences() async {
-    try {
-      final response = await _dio.get<Map<String, dynamic>>('/v1/preferences');
-      return UserPreference.fromJson(response.data ?? const <String, dynamic>{});
-    } on DioException catch (error) {
-      throw ApiException.fromDioException(error);
-    }
+  Future<UserPreference> getPreferences() {
+    return _client.getPreferences().guardApiCall();
   }
 
-  Future<UserPreference> patchPreferences(Map<String, dynamic> payload) async {
-    try {
-      final response = await _dio.patch<Map<String, dynamic>>(
-        '/v1/preferences',
-        data: payload,
-      );
-      return UserPreference.fromJson(response.data ?? const <String, dynamic>{});
-    } on DioException catch (error) {
-      throw ApiException.fromDioException(error);
-    }
+  Future<UserPreference> patchPreferences(Map<String, dynamic> payload) {
+    return _client.patchPreferences(payload).guardApiCall();
   }
+}
+
+@RestApi()
+abstract class PreferencesRestClient {
+  factory PreferencesRestClient(Dio dio, {String? baseUrl}) =
+      _PreferencesRestClient;
+
+  @GET(ApiPaths.preferences)
+  Future<UserPreference> getPreferences();
+
+  @PATCH(ApiPaths.preferences)
+  Future<UserPreference> patchPreferences(
+    @Body() Map<String, dynamic> payload,
+  );
 }

@@ -1,68 +1,33 @@
 import 'package:dio/dio.dart';
+import 'package:retrofit/retrofit.dart';
 
-import 'package:subflix/core/network/api_exception.dart';
+import 'package:subflix/core/network/api_call_guard.dart';
+import 'package:subflix/core/network/api_paths.dart';
+import 'package:subflix/features/shared/data/models/translation_job_page_response.dart';
 import 'package:subflix/features/shared/domain/models/translation_job.dart';
 import 'package:subflix/features/subtitles/domain/models/translation_preview_page.dart';
 import 'package:subflix/features/subtitles/domain/models/translation_request.dart';
 
+part 'translation_jobs_api.g.dart';
+
 /// Shared API client for translation job summary, preview, and export flows.
 class TranslationJobsApi {
-  TranslationJobsApi(this._dio);
+  TranslationJobsApi(Dio dio, {String? baseUrl})
+    : _client = TranslationJobsRestClient(dio, baseUrl: baseUrl);
 
-  final Dio _dio;
+  final TranslationJobsRestClient _client;
 
   Future<TranslationJob> createJob(TranslationRequest request) async {
-    try {
-      final response = await _dio.post<Map<String, dynamic>>(
-        '/v1/translation-jobs',
-        data: request.map(
-          catalog: (catalogRequest) => <String, dynamic>{
-            'sourceType': 'catalog',
-            'mediaId': catalogRequest.item.id,
-            'subtitleSourceId': catalogRequest.source.id,
-            'targetLanguage': catalogRequest.targetLanguage.code,
-          },
-          upload: (uploadRequest) => <String, dynamic>{
-            'sourceType': 'upload',
-            'parsedFileId': uploadRequest.file.id,
-            'targetLanguage': uploadRequest.targetLanguage.code,
-          },
-        ),
-      );
-      return TranslationJob.fromJson(
-        response.data ?? const <String, dynamic>{},
-      );
-    } on DioException catch (error) {
-      throw ApiException.fromDioException(error);
-    }
+    return _client.createJob(_createJobPayload(request)).guardApiCall();
   }
 
   Future<List<TranslationJob>> listJobs({int page = 1, int limit = 100}) async {
-    try {
-      final response = await _dio.get<Map<String, dynamic>>(
-        '/v1/translation-jobs',
-        queryParameters: <String, dynamic>{'page': page, 'limit': limit},
-      );
-      final items = response.data?['items'] as List<dynamic>? ?? const <dynamic>[];
-      return items
-          .map((item) => TranslationJob.fromJson(Map<String, dynamic>.from(item as Map)))
-          .toList(growable: false);
-    } on DioException catch (error) {
-      throw ApiException.fromDioException(error);
-    }
+    final response = await _client.listJobs(page, limit).guardApiCall();
+    return response.items;
   }
 
-  Future<TranslationJob> getJob(String jobId) async {
-    try {
-      final response = await _dio.get<Map<String, dynamic>>(
-        '/v1/translation-jobs/$jobId',
-      );
-      return TranslationJob.fromJson(
-        response.data ?? const <String, dynamic>{},
-      );
-    } on DioException catch (error) {
-      throw ApiException.fromDioException(error);
-    }
+  Future<TranslationJob> getJob(String jobId) {
+    return _client.getJob(jobId).guardApiCall();
   }
 
   Future<TranslationPreviewPage> getPreview({
@@ -70,57 +35,82 @@ class TranslationJobsApi {
     int page = 1,
     int limit = 100,
     String query = '',
-  }) async {
-    try {
-      final response = await _dio.get<Map<String, dynamic>>(
-        '/v1/translation-jobs/$jobId/preview',
-        queryParameters: <String, dynamic>{
-          'page': page,
-          'limit': limit,
-          if (query.trim().isNotEmpty) 'q': query.trim(),
-        },
-      );
-      return TranslationPreviewPage.fromJson(
-        response.data ?? const <String, dynamic>{},
-      );
-    } on DioException catch (error) {
-      throw ApiException.fromDioException(error);
-    }
+  }) {
+    return _client.getPreview(
+      jobId,
+      page,
+      limit,
+      query.trim().isEmpty ? null : query.trim(),
+    ).guardApiCall();
   }
 
-  Future<Response<String>> exportJob({
+  Future<HttpResponse<String>> exportJob({
     required String jobId,
     required String format,
-  }) async {
-    try {
-      return _dio.get<String>(
-        '/v1/translation-jobs/$jobId/export',
-        queryParameters: <String, dynamic>{'format': format},
-        options: Options(responseType: ResponseType.plain),
-      );
-    } on DioException catch (error) {
-      throw ApiException.fromDioException(error);
-    }
+  }) {
+    return _client.exportJob(jobId, format).guardApiCall();
   }
 
-  Future<TranslationJob> retryJob(String jobId) async {
-    try {
-      final response = await _dio.post<Map<String, dynamic>>(
-        '/v1/translation-jobs/$jobId/retry',
-      );
-      return TranslationJob.fromJson(
-        response.data ?? const <String, dynamic>{},
-      );
-    } on DioException catch (error) {
-      throw ApiException.fromDioException(error);
-    }
+  Future<TranslationJob> retryJob(String jobId) {
+    return _client.retryJob(jobId).guardApiCall();
   }
 
-  Future<void> clearHistory() async {
-    try {
-      await _dio.delete<void>('/v1/translation-jobs');
-    } on DioException catch (error) {
-      throw ApiException.fromDioException(error);
-    }
+  Future<void> clearHistory() {
+    return _client.clearHistory().guardApiCall();
   }
+
+  Map<String, dynamic> _createJobPayload(TranslationRequest request) {
+    return request.map(
+      catalog: (catalogRequest) => <String, dynamic>{
+        'sourceType': 'catalog',
+        'mediaId': catalogRequest.item.id,
+        'subtitleSourceId': catalogRequest.source.id,
+        'targetLanguage': catalogRequest.targetLanguage.code,
+      },
+      upload: (uploadRequest) => <String, dynamic>{
+        'sourceType': 'upload',
+        'parsedFileId': uploadRequest.file.id,
+        'targetLanguage': uploadRequest.targetLanguage.code,
+      },
+    );
+  }
+}
+
+@RestApi()
+abstract class TranslationJobsRestClient {
+  factory TranslationJobsRestClient(Dio dio, {String? baseUrl}) =
+      _TranslationJobsRestClient;
+
+  @POST(ApiPaths.translationJobs)
+  Future<TranslationJob> createJob(@Body() Map<String, dynamic> payload);
+
+  @GET(ApiPaths.translationJobs)
+  Future<TranslationJobPageResponse> listJobs(
+    @Query('page') int page,
+    @Query('limit') int limit,
+  );
+
+  @GET(ApiPaths.translationJob)
+  Future<TranslationJob> getJob(@Path('jobId') String jobId);
+
+  @GET(ApiPaths.translationJobPreview)
+  Future<TranslationPreviewPage> getPreview(
+    @Path('jobId') String jobId,
+    @Query('page') int page,
+    @Query('limit') int limit,
+    @Query('q') String? query,
+  );
+
+  @GET(ApiPaths.translationJobExport)
+  @DioResponseType(ResponseType.plain)
+  Future<HttpResponse<String>> exportJob(
+    @Path('jobId') String jobId,
+    @Query('format') String format,
+  );
+
+  @POST(ApiPaths.translationJobRetry)
+  Future<TranslationJob> retryJob(@Path('jobId') String jobId);
+
+  @DELETE(ApiPaths.translationJobs)
+  Future<void> clearHistory();
 }

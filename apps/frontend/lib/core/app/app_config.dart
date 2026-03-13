@@ -7,6 +7,18 @@ abstract final class AppConfig {
   );
 
   static String get apiBaseUrl {
+    final rawBaseUrl = _resolvedApiBaseUrl;
+    final uri = Uri.parse(rawBaseUrl);
+    final segments = <String>[
+      ...uri.pathSegments.where((segment) => segment.isNotEmpty),
+    ];
+    if (segments.isEmpty || segments.last != 'v1') {
+      segments.add('v1');
+    }
+    return uri.replace(pathSegments: segments).toString();
+  }
+
+  static String get _resolvedApiBaseUrl {
     if (_apiBaseUrlOverride.trim().isNotEmpty) {
       return _apiBaseUrlOverride.trim();
     }

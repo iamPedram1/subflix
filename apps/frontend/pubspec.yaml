@@ -22,6 +22,7 @@ dependencies:
   json_annotation: ^4.9.0
   path: ^1.9.1
   path_provider: ^2.1.5
+  retrofit: ^4.7.2
   riverpod_annotation: ^3.0.3
   shared_preferences: ^2.5.3
 
@@ -33,6 +34,7 @@ dev_dependencies:
   freezed: ^3.2.3
   json_serializable: ^6.11.1
   mocktail: ^1.0.4
+  retrofit_generator: ^10.0.2
   riverpod_generator: ^3.0.3
 
 flutter:

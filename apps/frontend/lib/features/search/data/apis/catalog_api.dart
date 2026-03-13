@@ -1,41 +1,38 @@
 import 'package:dio/dio.dart';
+import 'package:retrofit/retrofit.dart';
 
-import 'package:subflix/core/network/api_exception.dart';
+import 'package:subflix/core/network/api_call_guard.dart';
+import 'package:subflix/core/network/api_paths.dart';
 import 'package:subflix/features/search/domain/models/movie_search_item.dart';
 import 'package:subflix/features/subtitles/domain/models/subtitle_source.dart';
 
+part 'catalog_api.g.dart';
+
 /// HTTP client for public catalog discovery endpoints.
 class CatalogApi {
-  CatalogApi(this._dio);
+  CatalogApi(Dio dio, {String? baseUrl})
+    : _client = CatalogRestClient(dio, baseUrl: baseUrl);
 
-  final Dio _dio;
+  final CatalogRestClient _client;
 
-  Future<List<MovieSearchItem>> searchTitles(String query) async {
-    try {
-      final response = await _dio.get<List<dynamic>>(
-        '/v1/catalog/search',
-        queryParameters: <String, dynamic>{'q': query},
-      );
-      final items = response.data ?? const <dynamic>[];
-      return items
-          .map((item) => MovieSearchItem.fromJson(Map<String, dynamic>.from(item as Map)))
-          .toList(growable: false);
-    } on DioException catch (error) {
-      throw ApiException.fromDioException(error);
-    }
+  Future<List<MovieSearchItem>> searchTitles(String query) {
+    return _client.searchTitles(query).guardApiCall();
   }
 
-  Future<List<SubtitleSource>> fetchSubtitleSources(String mediaId) async {
-    try {
-      final response = await _dio.get<List<dynamic>>(
-        '/v1/catalog/media/$mediaId/subtitle-sources',
-      );
-      final items = response.data ?? const <dynamic>[];
-      return items
-          .map((item) => SubtitleSource.fromJson(Map<String, dynamic>.from(item as Map)))
-          .toList(growable: false);
-    } on DioException catch (error) {
-      throw ApiException.fromDioException(error);
-    }
+  Future<List<SubtitleSource>> fetchSubtitleSources(String mediaId) {
+    return _client.fetchSubtitleSources(mediaId).guardApiCall();
   }
+}
+
+@RestApi()
+abstract class CatalogRestClient {
+  factory CatalogRestClient(Dio dio, {String? baseUrl}) = _CatalogRestClient;
+
+  @GET(ApiPaths.catalogSearch)
+  Future<List<MovieSearchItem>> searchTitles(@Query('q') String query);
+
+  @GET(ApiPaths.catalogSubtitleSources)
+  Future<List<SubtitleSource>> fetchSubtitleSources(
+    @Path('mediaId') String mediaId,
+  );
 }
