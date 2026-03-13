@@ -3,14 +3,18 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:subflix/core/app/router/app_routes.dart';
+import 'package:subflix/core/ui/widgets/route_state_missing_screen.dart';
 import 'package:subflix/features/history/presentation/screens/history_screen.dart';
 import 'package:subflix/features/home/presentation/screens/home_screen.dart';
 import 'package:subflix/features/home/presentation/widgets/home_shell.dart';
 import 'package:subflix/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:subflix/features/onboarding/presentation/screens/splash_screen.dart';
 import 'package:subflix/features/search/presentation/screens/search_screen.dart';
+import 'package:subflix/features/search/domain/models/movie_search_item.dart';
 import 'package:subflix/features/settings/presentation/screens/legal_placeholder_screen.dart';
 import 'package:subflix/features/settings/presentation/screens/settings_screen.dart';
+import 'package:subflix/features/subtitles/domain/models/translation_request.dart';
+import 'package:subflix/features/subtitles/presentation/models/translation_setup_args.dart';
 import 'package:subflix/features/subtitles/presentation/screens/subtitle_sources_screen.dart';
 import 'package:subflix/features/subtitles/presentation/screens/translation_preview_screen.dart';
 import 'package:subflix/features/subtitles/presentation/screens/translation_progress_screen.dart';
@@ -71,15 +75,48 @@ GoRouter appRouter(Ref ref) {
       ),
       GoRoute(
         path: AppRoutes.subtitleSources,
-        builder: (context, state) => const SubtitleSourcesScreen(),
+        builder: (context, state) {
+          final item = state.extra as MovieSearchItem?;
+          if (item == null) {
+            return const RouteStateMissingScreen(
+              title: 'Subtitle sources',
+              message:
+                  'We could not determine which title to load subtitle sources for. Start again from search.',
+            );
+          }
+
+          return SubtitleSourcesScreen(item: item);
+        },
       ),
       GoRoute(
         path: AppRoutes.translateSetup,
-        builder: (context, state) => const TranslationSetupScreen(),
+        builder: (context, state) {
+          final args = state.extra as TranslationSetupArgs?;
+          if (args == null) {
+            return const RouteStateMissingScreen(
+              title: 'Translation setup',
+              message:
+                  'A subtitle source is required before the translation setup screen can open.',
+            );
+          }
+
+          return TranslationSetupScreen(args: args);
+        },
       ),
       GoRoute(
         path: AppRoutes.translationProgress,
-        builder: (context, state) => const TranslationProgressScreen(),
+        builder: (context, state) {
+          final request = state.extra as TranslationRequest?;
+          if (request == null) {
+            return const RouteStateMissingScreen(
+              title: 'Translation progress',
+              message:
+                  'No translation request was provided. Start a new translation from search or upload.',
+            );
+          }
+
+          return TranslationProgressScreen(request: request);
+        },
       ),
       GoRoute(
         path: AppRoutes.translationPreview,
