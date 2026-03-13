@@ -62,3 +62,14 @@ export class ForbiddenDomainError extends DomainError {
     });
   }
 }
+
+export class ServiceUnavailableDomainError extends DomainError {
+  constructor(message: string, details?: unknown) {
+    super({
+      statusCode: 503,
+      code: 'service_unavailable',
+      message,
+      details,
+    });
+  }
+}
