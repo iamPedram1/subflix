@@ -11,11 +11,15 @@ import { AppLanguage } from 'src/common/domain/enums/app-language.enum';
 import { TranslationSourceType } from 'src/common/domain/enums/translation-source-type.enum';
 import { ValidationDomainError } from 'src/common/domain/errors/domain.error';
 import { CatalogService } from 'src/features/catalog/catalog.service';
+import { SubtitleExportService } from 'src/features/subtitles/utils/subtitle-export.service';
 import { SubtitlesRepository } from 'src/features/subtitles/subtitles.repository';
 
 import { CreateTranslationJobDto } from './dto/create-translation-job.dto';
 import { TranslationJobsQueryDto } from './dto/translation-jobs-query.dto';
-import { toTranslationJobSummary } from './translation-jobs.mapper';
+import {
+  toTranslationJobSummary,
+  toTranslationPreviewCue,
+} from './translation-jobs.mapper';
 import { TranslationJobRunnerService } from './translation-job-runner.service';
 import { TranslationJobsRepository } from './translation-jobs.repository';
 
@@ -25,6 +29,7 @@ export class TranslationJobsService {
     private readonly translationJobsRepository: TranslationJobsRepository,
     private readonly subtitlesRepository: SubtitlesRepository,
     private readonly catalogService: CatalogService,
+    private readonly subtitleExportService: SubtitleExportService,
     private readonly translationJobRunnerService: TranslationJobRunnerService,
   ) {}
 
@@ -120,6 +125,42 @@ export class TranslationJobsService {
     return {
       job: toTranslationJobSummary(job),
       ...preview,
+      items: preview.items.map(toTranslationPreviewCue),
+    };
+  }
+
+  async exportJob(
+    device: ClientDevice,
+    jobId: string,
+    format?: string,
+  ): Promise<{ fileName: string; content: string }> {
+    const job = await this.translationJobsRepository.findOwnedJob(device.id, jobId);
+    if (job.status !== PrismaTranslationJobStatus.completed) {
+      throw new ValidationDomainError(
+        'Only completed translation jobs can be exported.',
+      );
+    }
+
+    const cues = await this.translationJobsRepository.listAllOwnedJobCues({
+      clientDeviceId: device.id,
+      jobId,
+    });
+
+    const exportFormat = (format ?? job.format) as SubtitleFormat;
+    const content = this.subtitleExportService.formatCues(
+      cues.map((cue) => ({
+        cueIndex: cue.cueIndex,
+        startMs: cue.startMs,
+        endMs: cue.endMs,
+        text: cue.translatedText ?? cue.originalText,
+      })),
+      exportFormat,
+    );
+
+    const safeTitle = job.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    return {
+      fileName: `${safeTitle}-${job.targetLanguage}.${exportFormat}`,
+      content,
     };
   }
 

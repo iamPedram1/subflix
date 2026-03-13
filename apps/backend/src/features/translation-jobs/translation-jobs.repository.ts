@@ -158,6 +158,21 @@ export class TranslationJobsRepository {
     });
   }
 
+  async listAllOwnedJobCues(params: {
+    clientDeviceId: string;
+    jobId: string;
+  }) {
+    return this.prisma.translationJobCue.findMany({
+      where: {
+        job: {
+          id: params.jobId,
+          clientDeviceId: params.clientDeviceId,
+        },
+      },
+      orderBy: { cueIndex: 'asc' },
+    });
+  }
+
   async clearOwnedHistory(clientDeviceId: string): Promise<void> {
     try {
       await this.prisma.$transaction(async (tx) => {
