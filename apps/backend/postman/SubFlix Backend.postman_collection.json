@@ -114,6 +114,38 @@
                 ]
               }
             }
+          ],
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-request-id",
+                    "value": "{{$guid}}",
+                    "type": "text"
+                  }
+                ],
+                "description": "Returns the public readiness payload.\n\n### Example response\n```json\n{\n  \"status\": \"ok\",\n  \"service\": \"subflix-back\",\n  \"environment\": \"development\",\n  \"timestamp\": \"2026-03-13T20:00:00.000Z\"\n}\n```",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/health",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "health"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"status\": \"ok\",\n  \"service\": \"subflix-back\",\n  \"environment\": \"development\",\n  \"timestamp\": \"2026-03-14T00:00:00.000Z\"\n}"
+            }
           ]
         }
       ]
@@ -166,6 +198,45 @@
                 ]
               }
             }
+          ],
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-request-id",
+                    "value": "{{$guid}}",
+                    "type": "text"
+                  }
+                ],
+                "description": "Searches the mocked catalog by free-form query.\n\n### Query params\n- `q` (required): minimum 2, maximum 120 characters\n\n### Example response\n```json\n[\n  {\n    \"id\": \"dune_part_two\",\n    \"title\": \"Dune: Part Two\",\n    \"year\": 2024,\n    \"mediaType\": \"movie\",\n    \"synopsis\": \"Paul embraces destiny while balancing prophecy, power, and survival.\",\n    \"genres\": [\"Sci-Fi\", \"Epic\"],\n    \"runtimeMinutes\": 166,\n    \"popularity\": 9.6\n  }\n]\n```",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/catalog/search?q={{searchQuery}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "catalog", "search"],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "{{searchQuery}}",
+                      "description": "Search term, min length 2"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": \"dune_part_two\",\n    \"title\": \"Dune: Part Two\",\n    \"year\": 2024,\n    \"mediaType\": \"movie\",\n    \"synopsis\": \"Paul embraces destiny while balancing prophecy, power, and survival.\",\n    \"genres\": [\n      \"Sci-Fi\",\n      \"Epic\"\n    ],\n    \"runtimeMinutes\": 166,\n    \"popularity\": 9.6\n  }\n]"
+            }
           ]
         },
         {
@@ -211,6 +282,44 @@
                 ]
               }
             }
+          ],
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-request-id",
+                    "value": "{{$guid}}",
+                    "type": "text"
+                  }
+                ],
+                "description": "Returns subtitle source options for the selected media item.\n\n### Path params\n- `mediaId`: provider id from catalog search\n\n### Example response\n```json\n[\n  {\n    \"id\": \"dune_part_two-webdl\",\n    \"label\": \"English WEB-DL 1080p\",\n    \"releaseGroup\": \"SubFlix Studio\",\n    \"format\": \"srt\",\n    \"hearingImpaired\": false,\n    \"lineCount\": 612,\n    \"downloads\": 24870,\n    \"rating\": 4.9\n  }\n]\n```",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/catalog/media/{{mediaId}}/subtitle-sources",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "v1",
+                    "catalog",
+                    "media",
+                    "{{mediaId}}",
+                    "subtitle-sources"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": \"dune_part_two-webdl\",\n    \"label\": \"English WEB-DL 1080p\",\n    \"releaseGroup\": \"SubFlix Studio\",\n    \"format\": \"srt\",\n    \"hearingImpaired\": false,\n    \"lineCount\": 612,\n    \"downloads\": 24870,\n    \"rating\": 4.9\n  }\n]"
+            }
           ]
         },
         {
@@ -254,6 +363,44 @@
                   "});"
                 ]
               }
+            }
+          ],
+          "response": [
+            {
+              "name": "400 Bad Request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-request-id",
+                    "value": "{{$guid}}",
+                    "type": "text"
+                  }
+                ],
+                "description": "Intentional validation example. This uses a 1-character query to demonstrate the backend error envelope.",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/catalog/search?q=d",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "catalog", "search"],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "d"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": \"validation_failed\",\n  \"message\": [\n    \"q must be longer than or equal to 2 characters\"\n  ],\n  \"details\": {\n    \"message\": [\n      \"q must be longer than or equal to 2 characters\"\n    ],\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n  },\n  \"requestId\": \"7fd553a8-5e70-4ec7-a999-9c664949b5ab\",\n  \"timestamp\": \"2026-03-14T00:00:05.000Z\"\n}"
             }
           ]
         }
@@ -302,6 +449,43 @@
                   "});"
                 ]
               }
+            }
+          ],
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-device-id",
+                    "value": "{{deviceId}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-request-id",
+                    "value": "{{$guid}}",
+                    "type": "text"
+                  }
+                ],
+                "description": "Loads current device preferences, creating the default record automatically for new devices.\n\n### Example response\n```json\n{\n  \"id\": \"8d9c2c7e-4e9f-4e59-97c2-b6c2ef41df43\",\n  \"clientDeviceId\": \"4f055eba-8b81-4e0f-b8d0-0c605f98a2dc\",\n  \"hasSeenOnboarding\": false,\n  \"preferredTargetLanguage\": \"es\",\n  \"themePreference\": \"system\",\n  \"createdAt\": \"2026-03-13T20:00:00.000Z\",\n  \"updatedAt\": \"2026-03-13T20:00:00.000Z\"\n}\n```",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/preferences",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "preferences"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": \"8d9c2c7e-4e9f-4e59-97c2-b6c2ef41df43\",\n  \"clientDeviceId\": \"4f055eba-8b81-4e0f-b8d0-0c605f98a2dc\",\n  \"hasSeenOnboarding\": false,\n  \"preferredTargetLanguage\": \"es\",\n  \"themePreference\": \"system\",\n  \"createdAt\": \"2026-03-14T00:01:00.000Z\",\n  \"updatedAt\": \"2026-03-14T00:01:00.000Z\"\n}"
             }
           ]
         },
@@ -358,6 +542,57 @@
                 ]
               }
             }
+          ],
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "x-device-id",
+                    "value": "{{deviceId}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-request-id",
+                    "value": "{{$guid}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hasSeenOnboarding\": true,\n  \"preferredTargetLanguage\": \"{{targetLanguage}}\",\n  \"themePreference\": \"dark\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "description": "Applies a partial preference update.\n\n### Allowed values\n- `preferredTargetLanguage`: `en`, `es`, `ar`, `fr`, `de`, `pt`, `ja`, `ko`, `hi`, `tr`\n- `themePreference`: `system`, `dark`, `light`\n\n### Example response\n```json\n{\n  \"id\": \"8d9c2c7e-4e9f-4e59-97c2-b6c2ef41df43\",\n  \"clientDeviceId\": \"4f055eba-8b81-4e0f-b8d0-0c605f98a2dc\",\n  \"hasSeenOnboarding\": true,\n  \"preferredTargetLanguage\": \"fr\",\n  \"themePreference\": \"dark\",\n  \"createdAt\": \"2026-03-13T20:00:00.000Z\",\n  \"updatedAt\": \"2026-03-13T20:01:10.000Z\"\n}\n```",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/preferences",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "preferences"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": \"8d9c2c7e-4e9f-4e59-97c2-b6c2ef41df43\",\n  \"clientDeviceId\": \"4f055eba-8b81-4e0f-b8d0-0c605f98a2dc\",\n  \"hasSeenOnboarding\": true,\n  \"preferredTargetLanguage\": \"fr\",\n  \"themePreference\": \"dark\",\n  \"createdAt\": \"2026-03-14T00:01:00.000Z\",\n  \"updatedAt\": \"2026-03-14T00:02:10.000Z\"\n}"
+            }
           ]
         },
         {
@@ -394,6 +629,38 @@
                   "});"
                 ]
               }
+            }
+          ],
+          "response": [
+            {
+              "name": "401 Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-request-id",
+                    "value": "{{$guid}}",
+                    "type": "text"
+                  }
+                ],
+                "description": "Intentional authorization example. This omits `x-device-id` to demonstrate the required ownership header behavior.",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/preferences",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "preferences"]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": \"http_error\",\n  \"message\": \"Missing required x-device-id header.\",\n  \"details\": {\n    \"message\": \"Missing required x-device-id header.\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n  },\n  \"requestId\": \"8835b5d0-a780-4f6c-8209-fd95e77f2ea5\",\n  \"timestamp\": \"2026-03-14T00:02:30.000Z\"\n}"
             }
           ]
         }
@@ -456,6 +723,54 @@
                 ]
               }
             }
+          ],
+          "response": [
+            {
+              "name": "201 Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-device-id",
+                    "value": "{{deviceId}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-request-id",
+                    "value": "{{$guid}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": "{{sampleSubtitleFile}}",
+                      "description": "Local .srt or .vtt file to upload. A ready-to-use sample ships at postman/sample-upload.srt."
+                    }
+                  ]
+                },
+                "description": "Parses and persists a subtitle file for the current device.\n\n### Notes\n- Multipart field name must be `file`\n- Supported extensions: `.srt`, `.vtt`\n- Upload size limits are enforced by the backend\n\n### Example response\n```json\n{\n  \"id\": \"fc333db2-f0b4-46f5-b9ef-62c42d885b74\",\n  \"fileName\": \"sample-upload.srt\",\n  \"format\": \"srt\",\n  \"sourceLanguage\": \"en\",\n  \"lineCount\": 2,\n  \"durationMs\": 6250\n}\n```",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/subtitles/parse",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "subtitles", "parse"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": \"fc333db2-f0b4-46f5-b9ef-62c42d885b74\",\n  \"fileName\": \"sample-upload.srt\",\n  \"format\": \"srt\",\n  \"sourceLanguage\": \"en\",\n  \"lineCount\": 2,\n  \"durationMs\": 6250\n}"
+            }
           ]
         }
       ]
@@ -517,6 +832,57 @@
                 ]
               }
             }
+          ],
+          "response": [
+            {
+              "name": "201 Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-device-id",
+                    "value": "{{deviceId}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-request-id",
+                    "value": "{{$guid}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceType\": \"upload\",\n  \"parsedFileId\": \"{{parsedFileId}}\",\n  \"targetLanguage\": \"{{targetLanguage}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "description": "Creates and queues a translation job from a previously parsed subtitle upload.\n\n### Required body fields\n- `sourceType`: `upload`\n- `parsedFileId`: UUID returned by `/subtitles/parse`\n- `targetLanguage`: one of the supported language codes\n\n### Example response\n```json\n{\n  \"id\": \"7953c216-a4b2-41f2-a981-ea14bf124848\",\n  \"status\": \"queued\",\n  \"stageLabel\": \"Queued for translation\",\n  \"progress\": 0.05,\n  \"title\": \"sample-upload\",\n  \"sourceName\": \"sample-upload.srt\",\n  \"sourceType\": \"upload\",\n  \"sourceLanguage\": \"en\",\n  \"targetLanguage\": \"fr\",\n  \"format\": \"srt\",\n  \"createdAt\": \"2026-03-13T20:03:00.000Z\",\n  \"updatedAt\": \"2026-03-13T20:03:00.000Z\",\n  \"lineCount\": 2,\n  \"durationMs\": 6250,\n  \"errorMessage\": null\n}\n```",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/translation-jobs",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "translation-jobs"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": \"7953c216-a4b2-41f2-a981-ea14bf124848\",\n  \"status\": \"queued\",\n  \"stageLabel\": \"Queued for translation\",\n  \"progress\": 0.05,\n  \"title\": \"sample-upload\",\n  \"sourceName\": \"sample-upload.srt\",\n  \"sourceType\": \"upload\",\n  \"sourceLanguage\": \"en\",\n  \"targetLanguage\": \"fr\",\n  \"format\": \"srt\",\n  \"createdAt\": \"2026-03-14T00:03:00.000Z\",\n  \"updatedAt\": \"2026-03-14T00:03:00.000Z\",\n  \"lineCount\": 2,\n  \"durationMs\": 6250,\n  \"errorMessage\": null\n}"
+            }
           ]
         },
         {
@@ -571,6 +937,57 @@
                   "}"
                 ]
               }
+            }
+          ],
+          "response": [
+            {
+              "name": "201 Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-device-id",
+                    "value": "{{deviceId}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-request-id",
+                    "value": "{{$guid}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceType\": \"catalog\",\n  \"mediaId\": \"{{mediaId}}\",\n  \"subtitleSourceId\": \"{{subtitleSourceId}}\",\n  \"targetLanguage\": \"{{targetLanguage}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "description": "Creates and queues a translation job from a catalog title and subtitle source.\n\n### Required body fields\n- `sourceType`: `catalog`\n- `mediaId`: id from catalog search\n- `subtitleSourceId`: id from subtitle source discovery\n- `targetLanguage`: supported language code\n\n### Example response\n```json\n{\n  \"id\": \"a0cce0b5-4ef5-4ab2-b7f0-a1047a99e2c0\",\n  \"status\": \"queued\",\n  \"stageLabel\": \"Queued for translation\",\n  \"progress\": 0.05,\n  \"title\": \"Dune: Part Two\",\n  \"sourceName\": \"English WEB-DL 1080p\",\n  \"sourceType\": \"catalog\",\n  \"sourceLanguage\": \"en\",\n  \"targetLanguage\": \"fr\",\n  \"format\": \"srt\",\n  \"createdAt\": \"2026-03-13T20:05:00.000Z\",\n  \"updatedAt\": \"2026-03-13T20:05:00.000Z\",\n  \"lineCount\": 612,\n  \"durationMs\": 0,\n  \"errorMessage\": null\n}\n```",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/translation-jobs",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "translation-jobs"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": \"a0cce0b5-4ef5-4ab2-b7f0-a1047a99e2c0\",\n  \"status\": \"queued\",\n  \"stageLabel\": \"Queued for translation\",\n  \"progress\": 0.05,\n  \"title\": \"Dune: Part Two\",\n  \"sourceName\": \"English WEB-DL 1080p\",\n  \"sourceType\": \"catalog\",\n  \"sourceLanguage\": \"en\",\n  \"targetLanguage\": \"fr\",\n  \"format\": \"srt\",\n  \"createdAt\": \"2026-03-14T00:05:00.000Z\",\n  \"updatedAt\": \"2026-03-14T00:05:00.000Z\",\n  \"lineCount\": 612,\n  \"durationMs\": 0,\n  \"errorMessage\": null\n}"
             }
           ]
         },
@@ -627,6 +1044,53 @@
                 ]
               }
             }
+          ],
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-device-id",
+                    "value": "{{deviceId}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-request-id",
+                    "value": "{{$guid}}",
+                    "type": "text"
+                  }
+                ],
+                "description": "Lists paginated translation job summaries for the current device.\n\n### Query params\n- `page`: integer >= 1\n- `limit`: integer 1..100\n\n### Example response\n```json\n{\n  \"items\": [\n    {\n      \"id\": \"7953c216-a4b2-41f2-a981-ea14bf124848\",\n      \"status\": \"completed\",\n      \"stageLabel\": \"Translation ready\",\n      \"progress\": 1,\n      \"title\": \"sample-upload\",\n      \"sourceName\": \"sample-upload.srt\",\n      \"sourceType\": \"upload\",\n      \"sourceLanguage\": \"en\",\n      \"targetLanguage\": \"fr\",\n      \"format\": \"srt\",\n      \"createdAt\": \"2026-03-13T20:03:00.000Z\",\n      \"updatedAt\": \"2026-03-13T20:03:03.000Z\",\n      \"lineCount\": 2,\n      \"durationMs\": 6250,\n      \"errorMessage\": null\n    }\n  ],\n  \"page\": 1,\n  \"limit\": 20,\n  \"total\": 1,\n  \"totalPages\": 1\n}\n```",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/translation-jobs?page={{page}}&limit={{limit}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "translation-jobs"],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "{{page}}"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "{{limit}}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"7953c216-a4b2-41f2-a981-ea14bf124848\",\n      \"status\": \"completed\",\n      \"stageLabel\": \"Translation ready\",\n      \"progress\": 1,\n      \"title\": \"sample-upload\",\n      \"sourceName\": \"sample-upload.srt\",\n      \"sourceType\": \"upload\",\n      \"sourceLanguage\": \"en\",\n      \"targetLanguage\": \"fr\",\n      \"format\": \"srt\",\n      \"createdAt\": \"2026-03-14T00:03:00.000Z\",\n      \"updatedAt\": \"2026-03-14T00:03:03.000Z\",\n      \"lineCount\": 2,\n      \"durationMs\": 6250,\n      \"errorMessage\": null\n    }\n  ],\n  \"page\": 1,\n  \"limit\": 20,\n  \"total\": 1,\n  \"totalPages\": 1\n}"
+            }
           ]
         },
         {
@@ -668,6 +1132,43 @@
                   "});"
                 ]
               }
+            }
+          ],
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-device-id",
+                    "value": "{{deviceId}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-request-id",
+                    "value": "{{$guid}}",
+                    "type": "text"
+                  }
+                ],
+                "description": "Returns the latest summary and progress for a single job.\n\nUse this request for polling while the job is `queued` or `translating`.\n\n### Example response\n```json\n{\n  \"id\": \"7953c216-a4b2-41f2-a981-ea14bf124848\",\n  \"status\": \"translating\",\n  \"stageLabel\": \"Translating subtitle lines\",\n  \"progress\": 0.56,\n  \"title\": \"sample-upload\",\n  \"sourceName\": \"sample-upload.srt\",\n  \"sourceType\": \"upload\",\n  \"sourceLanguage\": \"en\",\n  \"targetLanguage\": \"fr\",\n  \"format\": \"srt\",\n  \"createdAt\": \"2026-03-13T20:03:00.000Z\",\n  \"updatedAt\": \"2026-03-13T20:03:01.000Z\",\n  \"lineCount\": 2,\n  \"durationMs\": 6250,\n  \"errorMessage\": null\n}\n```",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/translation-jobs/{{jobId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "translation-jobs", "{{jobId}}"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": \"7953c216-a4b2-41f2-a981-ea14bf124848\",\n  \"status\": \"translating\",\n  \"stageLabel\": \"Translating subtitle lines\",\n  \"progress\": 0.56,\n  \"title\": \"sample-upload\",\n  \"sourceName\": \"sample-upload.srt\",\n  \"sourceType\": \"upload\",\n  \"sourceLanguage\": \"en\",\n  \"targetLanguage\": \"fr\",\n  \"format\": \"srt\",\n  \"createdAt\": \"2026-03-14T00:03:00.000Z\",\n  \"updatedAt\": \"2026-03-14T00:03:01.000Z\",\n  \"lineCount\": 2,\n  \"durationMs\": 6250,\n  \"errorMessage\": null\n}"
             }
           ]
         },
@@ -726,6 +1227,58 @@
                 ]
               }
             }
+          ],
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-device-id",
+                    "value": "{{deviceId}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-request-id",
+                    "value": "{{$guid}}",
+                    "type": "text"
+                  }
+                ],
+                "description": "Returns paginated translated cues for a job, optionally filtered by search query.\n\n### Query params\n- `page`: integer >= 1\n- `limit`: integer 1..100\n- `q`: optional search text, max 120 characters\n\n### Example response\n```json\n{\n  \"job\": {\n    \"id\": \"7953c216-a4b2-41f2-a981-ea14bf124848\",\n    \"status\": \"completed\",\n    \"stageLabel\": \"Translation ready\",\n    \"progress\": 1,\n    \"title\": \"sample-upload\",\n    \"sourceName\": \"sample-upload.srt\",\n    \"sourceType\": \"upload\",\n    \"sourceLanguage\": \"en\",\n    \"targetLanguage\": \"fr\",\n    \"format\": \"srt\",\n    \"createdAt\": \"2026-03-13T20:03:00.000Z\",\n    \"updatedAt\": \"2026-03-13T20:03:03.000Z\",\n    \"lineCount\": 2,\n    \"durationMs\": 6250,\n    \"errorMessage\": null\n  },\n  \"items\": [\n    {\n      \"cueIndex\": 1,\n      \"startMs\": 1000,\n      \"endMs\": 3500,\n      \"originalText\": \"We only have one clean pass.\",\n      \"translatedText\": \"Version francaise: We only have one clean pass.\"\n    }\n  ],\n  \"page\": 1,\n  \"limit\": 20,\n  \"total\": 2,\n  \"totalPages\": 1\n}\n```",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/translation-jobs/{{jobId}}/preview?page={{page}}&limit={{limit}}&q={{previewQuery}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "translation-jobs", "{{jobId}}", "preview"],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "{{page}}"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "{{limit}}"
+                    },
+                    {
+                      "key": "q",
+                      "value": "{{previewQuery}}",
+                      "description": "Optional search term. Disable or clear to fetch all cues."
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"job\": {\n    \"id\": \"7953c216-a4b2-41f2-a981-ea14bf124848\",\n    \"status\": \"completed\",\n    \"stageLabel\": \"Translation ready\",\n    \"progress\": 1,\n    \"title\": \"sample-upload\",\n    \"sourceName\": \"sample-upload.srt\",\n    \"sourceType\": \"upload\",\n    \"sourceLanguage\": \"en\",\n    \"targetLanguage\": \"fr\",\n    \"format\": \"srt\",\n    \"createdAt\": \"2026-03-14T00:03:00.000Z\",\n    \"updatedAt\": \"2026-03-14T00:03:03.000Z\",\n    \"lineCount\": 2,\n    \"durationMs\": 6250,\n    \"errorMessage\": null\n  },\n  \"items\": [\n    {\n      \"cueIndex\": 1,\n      \"startMs\": 1000,\n      \"endMs\": 3500,\n      \"originalText\": \"We only have one clean pass.\",\n      \"translatedText\": \"Version francaise: We only have one clean pass.\"\n    }\n  ],\n  \"page\": 1,\n  \"limit\": 20,\n  \"total\": 2,\n  \"totalPages\": 1\n}"
+            }
           ]
         },
         {
@@ -773,6 +1326,53 @@
                 ]
               }
             }
+          ],
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-device-id",
+                    "value": "{{deviceId}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-request-id",
+                    "value": "{{$guid}}",
+                    "type": "text"
+                  }
+                ],
+                "description": "Streams the translated subtitle file as plain text.\n\n### Query params\n- `format` (optional): `srt` or `vtt`\n\n### Example response body (`text/plain`)\n```text\n1\n00:00:01,000 --> 00:00:03,500\nVersion francaise: We only have one clean pass.\n\n2\n00:00:04,000 --> 00:00:06,250\nVersion francaise: Keep the line open.\n```\n",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/translation-jobs/{{jobId}}/export?format={{exportFormat}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "translation-jobs", "{{jobId}}", "export"],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "{{exportFormat}}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain; charset=utf-8"
+                },
+                {
+                  "key": "Content-Disposition",
+                  "value": "attachment; filename=\"sample-upload-fr.srt\""
+                }
+              ],
+              "cookie": [],
+              "body": "1\n00:00:01,000 --> 00:00:03,500\nVersion francaise: We only have one clean pass.\n\n2\n00:00:04,000 --> 00:00:06,250\nVersion francaise: Keep the line open.\n"
+            }
           ]
         },
         {
@@ -814,6 +1414,43 @@
                   "}"
                 ]
               }
+            }
+          ],
+          "response": [
+            {
+              "name": "201 Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-device-id",
+                    "value": "{{deviceId}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-request-id",
+                    "value": "{{$guid}}",
+                    "type": "text"
+                  }
+                ],
+                "description": "Creates a new translation job using the original source context from an existing job.\n\n### Example response\n```json\n{\n  \"id\": \"23086d10-fe6b-44bf-b4e8-8d64aca364ec\",\n  \"status\": \"queued\",\n  \"stageLabel\": \"Queued for translation\",\n  \"progress\": 0.05,\n  \"title\": \"sample-upload\",\n  \"sourceName\": \"sample-upload.srt\",\n  \"sourceType\": \"upload\",\n  \"sourceLanguage\": \"en\",\n  \"targetLanguage\": \"fr\",\n  \"format\": \"srt\",\n  \"createdAt\": \"2026-03-13T20:06:00.000Z\",\n  \"updatedAt\": \"2026-03-13T20:06:00.000Z\",\n  \"lineCount\": 2,\n  \"durationMs\": 6250,\n  \"errorMessage\": null\n}\n```",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/translation-jobs/{{jobId}}/retry",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "translation-jobs", "{{jobId}}", "retry"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": \"23086d10-fe6b-44bf-b4e8-8d64aca364ec\",\n  \"status\": \"queued\",\n  \"stageLabel\": \"Queued for translation\",\n  \"progress\": 0.05,\n  \"title\": \"sample-upload\",\n  \"sourceName\": \"sample-upload.srt\",\n  \"sourceType\": \"upload\",\n  \"sourceLanguage\": \"en\",\n  \"targetLanguage\": \"fr\",\n  \"format\": \"srt\",\n  \"createdAt\": \"2026-03-14T00:06:00.000Z\",\n  \"updatedAt\": \"2026-03-14T00:06:00.000Z\",\n  \"lineCount\": 2,\n  \"durationMs\": 6250,\n  \"errorMessage\": null\n}"
             }
           ]
         },
@@ -858,6 +1495,43 @@
                   "pm.collectionVariables.set('parsedFileId', '');"
                 ]
               }
+            }
+          ],
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "x-device-id",
+                    "value": "{{deviceId}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-request-id",
+                    "value": "{{$guid}}",
+                    "type": "text"
+                  }
+                ],
+                "description": "Deletes all jobs and upload artifacts owned by the current device.\n\n### Example response\n```json\n{\n  \"cleared\": true\n}\n```",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/translation-jobs",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "translation-jobs"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"cleared\": true\n}"
             }
           ]
         }
