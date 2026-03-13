@@ -1,5 +1,6 @@
 import { SearchMediaType } from 'src/common/domain/enums/search-media-type.enum';
 import { SubtitleFormat } from 'src/common/domain/enums/subtitle-format.enum';
+import { SubtitleCue } from 'src/features/subtitles/models/subtitle-cue.model';
 
 import { CatalogMediaItem } from '../models/catalog-media-item.model';
 import { CatalogSubtitleSource } from '../models/catalog-subtitle-source.model';
@@ -129,3 +130,53 @@ export const buildMockSubtitleSources = (
     rating: 4.6,
   },
 ];
+
+const cueLibrary: Record<string, string[]> = {
+  inception: [
+    'You must not be afraid to dream a little bigger.',
+    'We only have one clean pass at this idea.',
+    'If the kick misses, we stay down there.',
+    'Keep your eyes on the totem.',
+    'We wake up when the van hits the water.',
+  ],
+  dune_part_two: [
+    'The desert does not forgive hesitation.',
+    'Power is moving faster than prophecy.',
+    'The south is ready, but not patient.',
+    'Every banner here is waiting for a decision.',
+    'Tonight decides whether legend becomes war.',
+  ],
+  breaking_bad: [
+    'Chemistry is the study of transformation.',
+    'No more half measures.',
+    'We are running out of clean exits.',
+    'This family is already paying the price.',
+    'The next move changes everything.',
+  ],
+  severance: [
+    'Your outie approved this procedure.',
+    'The numbers matter, even if you do not know why.',
+    'Every corridor here is designed to make you comply.',
+    'This file should never have reached your desk.',
+    'The board will ask for a cleaner explanation.',
+  ],
+};
+
+export const buildMockSubtitleCues = (mediaId: string): SubtitleCue[] => {
+  const lines =
+    cueLibrary[mediaId] ??
+    [
+      'Keep the channel open until I say otherwise.',
+      'The file moves at sunrise, not before.',
+      'Every second of silence matters right now.',
+      'We only get one version of this conversation.',
+      'Make sure the handoff looks invisible.',
+    ];
+
+  return lines.map((text, index) => ({
+    cueIndex: index + 1,
+    startMs: 1_000 + index * 3_000,
+    endMs: 3_200 + index * 3_000,
+    text,
+  }));
+};

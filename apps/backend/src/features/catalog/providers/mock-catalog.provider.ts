@@ -1,8 +1,15 @@
 import { Injectable } from '@nestjs/common';
 
-import { ServiceUnavailableDomainError } from 'src/common/domain/errors/domain.error';
+import {
+  NotFoundDomainError,
+  ServiceUnavailableDomainError,
+} from 'src/common/domain/errors/domain.error';
 
-import { buildMockSubtitleSources, mockCatalog } from '../data/mock-catalog.data';
+import {
+  buildMockSubtitleCues,
+  buildMockSubtitleSources,
+  mockCatalog,
+} from '../data/mock-catalog.data';
 import { CatalogMediaItem } from '../models/catalog-media-item.model';
 import { CatalogSubtitleSource } from '../models/catalog-subtitle-source.model';
 import { MediaCatalogPort } from '../ports/media-catalog.port';
@@ -30,6 +37,10 @@ export class MockCatalogProvider implements MediaCatalogPort, SubtitleSourcePort
     );
   }
 
+  async findById(mediaId: string): Promise<CatalogMediaItem | null> {
+    return mockCatalog.find((item) => item.id === mediaId) ?? null;
+  }
+
   async getSubtitleSources(mediaId: string): Promise<CatalogSubtitleSource[]> {
     await wait(500);
 
@@ -40,5 +51,21 @@ export class MockCatalogProvider implements MediaCatalogPort, SubtitleSourcePort
     }
 
     return buildMockSubtitleSources(mediaId);
+  }
+
+  async getSubtitleCues(
+    mediaId: string,
+    subtitleSourceId: string,
+  ) {
+    await wait(300);
+
+    const hasSource = buildMockSubtitleSources(mediaId).some(
+      (source) => source.id === subtitleSourceId,
+    );
+    if (!hasSource) {
+      throw new NotFoundDomainError('The requested subtitle source was not found.');
+    }
+
+    return buildMockSubtitleCues(mediaId);
   }
 }

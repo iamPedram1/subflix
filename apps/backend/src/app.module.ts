@@ -7,6 +7,7 @@ import { DevicesModule } from './features/devices/devices.module';
 import { HealthModule } from './features/health/health.module';
 import { PreferencesModule } from './features/preferences/preferences.module';
 import { SubtitlesModule } from './features/subtitles/subtitles.module';
+import { TranslationJobsModule } from './features/translation-jobs/translation-jobs.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { SubtitlesModule } from './features/subtitles/subtitles.module';
     CatalogModule,
     PreferencesModule,
     SubtitlesModule,
+    TranslationJobsModule,
   ],
 })
 export class AppModule {}

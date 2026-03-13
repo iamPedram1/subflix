@@ -19,7 +19,15 @@ export class CatalogService {
     return this.mediaCatalogPort.search(query);
   }
 
+  findById(mediaId: string) {
+    return this.mediaCatalogPort.findById(mediaId);
+  }
+
   getSubtitleSources(mediaId: string) {
     return this.subtitleSourcePort.getSubtitleSources(mediaId);
+  }
+
+  getSubtitleCues(mediaId: string, subtitleSourceId: string) {
+    return this.subtitleSourcePort.getSubtitleCues(mediaId, subtitleSourceId);
   }
 }
