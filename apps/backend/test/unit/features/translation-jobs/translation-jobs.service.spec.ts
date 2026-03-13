@@ -1,0 +1,110 @@
+import {
+  AppLanguage as PrismaAppLanguage,
+  ClientDevice,
+  SubtitleFormat,
+  TranslationJob,
+  TranslationJobStatus,
+  TranslationSourceType,
+} from '@prisma/client';
+
+import { AppLanguage } from 'src/common/domain/enums/app-language.enum';
+import { TranslationSourceType as TranslationSourceTypeDto } from 'src/common/domain/enums/translation-source-type.enum';
+import { ValidationDomainError } from 'src/common/domain/errors/domain.error';
+import { CatalogService } from 'src/features/catalog/catalog.service';
+import { SubtitlesRepository } from 'src/features/subtitles/subtitles.repository';
+import { SubtitleExportService } from 'src/features/subtitles/utils/subtitle-export.service';
+import { TranslationJobRunnerService } from 'src/features/translation-jobs/translation-job-runner.service';
+import { TranslationJobsRepository } from 'src/features/translation-jobs/translation-jobs.repository';
+import { TranslationJobsService } from 'src/features/translation-jobs/translation-jobs.service';
+
+describe('TranslationJobsService', () => {
+  const device = {
+    id: 'device-1',
+    deviceId: 'device-header-1',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  } satisfies ClientDevice;
+
+  const createJobEntity = (
+    overrides: Partial<TranslationJob> = {},
+  ): TranslationJob => ({
+    id: 'job-1',
+    clientDeviceId: device.id,
+    sourceType: TranslationSourceType.upload,
+    status: TranslationJobStatus.queued,
+    stageLabel: 'Queued for translation',
+    title: 'sample',
+    sourceName: 'sample.srt',
+    sourceLanguage: PrismaAppLanguage.en,
+    targetLanguage: PrismaAppLanguage.fr,
+    format: SubtitleFormat.srt,
+    progress: 0.05,
+    lineCount: 2,
+    durationMs: 6250,
+    errorMessage: null,
+    parsedFileId: 'parsed-file-1',
+    mediaRef: null,
+    subtitleSourceRef: null,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    startedAt: null,
+    completedAt: null,
+    ...overrides,
+  });
+
+  it('creates an upload translation job and schedules the runner', async () => {
+    const jobsRepository = {
+      createJob: jest.fn().mockResolvedValue(createJobEntity()),
+    } as unknown as TranslationJobsRepository;
+    const subtitlesRepository = {
+      findOwnedParsedFile: jest.fn().mockResolvedValue({
+        id: 'parsed-file-1',
+        fileName: 'sample.srt',
+        format: SubtitleFormat.srt,
+        lineCount: 2,
+        durationMs: 6250,
+      }),
+    } as unknown as SubtitlesRepository;
+    const runner = {
+      schedule: jest.fn(),
+    } as unknown as TranslationJobRunnerService;
+
+    const service = new TranslationJobsService(
+      jobsRepository,
+      subtitlesRepository,
+      {} as CatalogService,
+      new SubtitleExportService(),
+      runner,
+    );
+
+    const result = await service.createJob(device, {
+      sourceType: TranslationSourceTypeDto.Upload,
+      parsedFileId: 'parsed-file-1',
+      targetLanguage: AppLanguage.French,
+    });
+
+    expect(result.id).toBe('job-1');
+    expect(jobsRepository.createJob).toHaveBeenCalled();
+    expect(runner.schedule).toHaveBeenCalledWith('job-1');
+  });
+
+  it('blocks export before completion', async () => {
+    const jobsRepository = {
+      findOwnedJob: jest
+        .fn()
+        .mockResolvedValue(createJobEntity({ status: TranslationJobStatus.queued })),
+    } as unknown as TranslationJobsRepository;
+
+    const service = new TranslationJobsService(
+      jobsRepository,
+      {} as SubtitlesRepository,
+      {} as CatalogService,
+      new SubtitleExportService(),
+      {} as TranslationJobRunnerService,
+    );
+
+    await expect(service.exportJob(device, 'job-1')).rejects.toBeInstanceOf(
+      ValidationDomainError,
+    );
+  });
+});
