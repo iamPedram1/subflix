@@ -10,9 +10,12 @@ describe('Catalog endpoints', () => {
         .get('/v1/catalog/search')
         .query({ q: 'dune' })
         .expect(200)
-        .expect(({ body }) => {
+        .expect((response) => {
+          const { body, headers } = response;
+
           expect(body).toHaveLength(1);
           expect(body[0]?.id).toBe('dune_part_two');
+          expect(headers['cache-control']).toContain('public');
         });
     });
   });

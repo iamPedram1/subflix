@@ -5,7 +5,7 @@ import {
   NestInterceptor,
 } from '@nestjs/common';
 import { Response } from 'express';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 import {
   CACHE_CONTROL_HEADER,
@@ -23,9 +23,13 @@ export class RequestIdInterceptor implements NestInterceptor {
 
     request.requestId = requestId;
     response.setHeader(REQUEST_ID_HEADER, requestId);
-    response.setHeader(CACHE_CONTROL_HEADER, 'no-store, max-age=0');
-    response.setHeader('Pragma', 'no-cache');
-
-    return next.handle();
+    return next.handle().pipe(
+      tap(() => {
+        if (!response.getHeader(CACHE_CONTROL_HEADER)) {
+          response.setHeader(CACHE_CONTROL_HEADER, 'no-store, max-age=0');
+          response.setHeader('Pragma', 'no-cache');
+        }
+      }),
+    );
   }
 }
