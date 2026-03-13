@@ -19,6 +19,7 @@
     "strictBindCallApply": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
+    "types": ["node", "express", "multer", "vitest/globals"],
     "paths": {
       "src/*": ["src/*"],
       "test/*": ["test/*"]

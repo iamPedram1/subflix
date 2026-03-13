@@ -5,7 +5,7 @@ import { HealthService } from 'src/features/health/health.service';
 describe('HealthService', () => {
   it('returns a healthy payload', () => {
     const configService = {
-      get: jest.fn().mockReturnValue('test'),
+      get: vi.fn().mockReturnValue('test'),
     } as unknown as ConfigService;
     const service = new HealthService(configService);
 

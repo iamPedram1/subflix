@@ -28,8 +28,8 @@ describe('PreferencesService', () => {
 
   it('creates defaults when no preferences exist', async () => {
     const repository = {
-      findByClientDeviceId: jest.fn().mockResolvedValue(null),
-      upsertByClientDeviceId: jest.fn().mockResolvedValue(createPreference()),
+      findByClientDeviceId: vi.fn().mockResolvedValue(null),
+      upsertByClientDeviceId: vi.fn().mockResolvedValue(createPreference()),
     } as unknown as PreferencesRepository;
 
     const service = new PreferencesService(repository);
@@ -41,12 +41,12 @@ describe('PreferencesService', () => {
 
   it('updates a subset of preference fields', async () => {
     const repository = {
-      findByClientDeviceId: jest
+      findByClientDeviceId: vi
         .fn()
         .mockResolvedValue(
           createPreference({ themePreference: ThemePreference.System }),
         ),
-      upsertByClientDeviceId: jest
+      upsertByClientDeviceId: vi
         .fn()
         .mockResolvedValue(
           createPreference({ themePreference: ThemePreference.Dark }),

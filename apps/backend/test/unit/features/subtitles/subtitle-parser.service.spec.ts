@@ -1,5 +1,6 @@
 import { SubtitleFormat } from '@prisma/client';
 
+import { ValidationDomainError } from 'src/common/domain/errors/domain.error';
 import { SubtitleParserService } from 'src/features/subtitles/utils/subtitle-parser.service';
 
 import { sampleSrt, sampleVtt } from 'test/core/shared/subtitle-fixtures';
@@ -39,5 +40,14 @@ describe('SubtitleParserService', () => {
       endMs: 6250,
       text: 'Keep the line open.',
     });
+  });
+
+  it('rejects files that do not contain any valid subtitle cues', () => {
+    expect(() =>
+      service.parse({
+        content: 'WEBVTT\n\nthis is not a cue block',
+        format: SubtitleFormat.vtt,
+      }),
+    ).toThrow(ValidationDomainError);
   });
 });

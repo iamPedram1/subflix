@@ -54,10 +54,10 @@ describe('TranslationJobsService', () => {
 
   it('creates an upload translation job and schedules the runner', async () => {
     const jobsRepository = {
-      createJob: jest.fn().mockResolvedValue(createJobEntity()),
+      createJob: vi.fn().mockResolvedValue(createJobEntity()),
     } as unknown as TranslationJobsRepository;
     const subtitlesRepository = {
-      findOwnedParsedFile: jest.fn().mockResolvedValue({
+      findOwnedParsedFile: vi.fn().mockResolvedValue({
         id: 'parsed-file-1',
         fileName: 'sample.srt',
         format: SubtitleFormat.srt,
@@ -66,7 +66,7 @@ describe('TranslationJobsService', () => {
       }),
     } as unknown as SubtitlesRepository;
     const runner = {
-      schedule: jest.fn(),
+      schedule: vi.fn(),
     } as unknown as TranslationJobRunnerService;
 
     const service = new TranslationJobsService(
@@ -88,9 +88,72 @@ describe('TranslationJobsService', () => {
     expect(runner.schedule).toHaveBeenCalledWith('job-1');
   });
 
+  it('creates a catalog translation job from the selected source metadata', async () => {
+    const jobsRepository = {
+      createJob: vi.fn().mockResolvedValue(
+        createJobEntity({
+          sourceType: TranslationSourceType.catalog,
+          parsedFileId: null,
+          title: 'Dune: Part Two',
+          sourceName: 'OpenSubtitles BluRay',
+          mediaRef: { mediaId: 'dune_part_two' },
+          subtitleSourceRef: { subtitleSourceId: 'source-1' },
+        }),
+      ),
+    } as unknown as TranslationJobsRepository;
+    const catalogService = {
+      findById: vi.fn().mockResolvedValue({
+        id: 'dune_part_two',
+        title: 'Dune: Part Two',
+      }),
+      getSubtitleSources: vi.fn().mockResolvedValue([
+        {
+          id: 'source-1',
+          label: 'OpenSubtitles BluRay',
+          format: SubtitleFormat.srt,
+          lineCount: 1_248,
+        },
+      ]),
+    } as unknown as CatalogService;
+    const runner = {
+      schedule: vi.fn(),
+    } as unknown as TranslationJobRunnerService;
+
+    const service = new TranslationJobsService(
+      jobsRepository,
+      {} as SubtitlesRepository,
+      catalogService,
+      new SubtitleExportService(),
+      runner,
+    );
+
+    await service.createJob(device, {
+      sourceType: TranslationSourceTypeDto.Catalog,
+      mediaId: 'dune_part_two',
+      subtitleSourceId: 'source-1',
+      targetLanguage: AppLanguage.French,
+    });
+
+    expect(catalogService.findById).toHaveBeenCalledWith('dune_part_two');
+    expect(catalogService.getSubtitleSources).toHaveBeenCalledWith(
+      'dune_part_two',
+    );
+    expect(jobsRepository.createJob).toHaveBeenCalledWith(
+      expect.objectContaining({
+        sourceType: TranslationSourceType.catalog,
+        title: 'Dune: Part Two',
+        sourceName: 'OpenSubtitles BluRay',
+        parsedFileId: null,
+        mediaRef: { mediaId: 'dune_part_two' },
+        subtitleSourceRef: { subtitleSourceId: 'source-1' },
+      }),
+    );
+    expect(runner.schedule).toHaveBeenCalledWith('job-1');
+  });
+
   it('blocks export before completion', async () => {
     const jobsRepository = {
-      findOwnedJob: jest
+      findOwnedJob: vi
         .fn()
         .mockResolvedValue(
           createJobEntity({ status: TranslationJobStatus.queued }),

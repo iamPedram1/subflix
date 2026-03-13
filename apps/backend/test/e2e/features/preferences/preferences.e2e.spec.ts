@@ -1,14 +1,16 @@
-import request from 'supertest';
-
 import { createE2eApp } from 'test/core/shared/e2e-app.helper';
 import { describeIfDatabase } from 'test/core/shared/database-test.helper';
-import { createDeviceHeaders } from 'test/core/shared/request.helper';
+import {
+  createApiRequest,
+  createDeviceHeaders,
+} from 'test/core/shared/request.helper';
 
 describeIfDatabase('Preferences endpoints', () => {
   it('returns default preferences for a new device', async () => {
     const app = await createE2eApp();
+    const api = createApiRequest(app);
 
-    await request(app.getHttpServer())
+    await api
       .get('/v1/preferences')
       .set(createDeviceHeaders('preferences-e2e-001'))
       .expect(200)
@@ -23,9 +25,10 @@ describeIfDatabase('Preferences endpoints', () => {
 
   it('updates and persists preference fields', async () => {
     const app = await createE2eApp();
+    const api = createApiRequest(app);
     const headers = createDeviceHeaders('preferences-e2e-002');
 
-    await request(app.getHttpServer())
+    await api
       .patch('/v1/preferences')
       .set(headers)
       .send({
@@ -40,7 +43,7 @@ describeIfDatabase('Preferences endpoints', () => {
         expect(body.themePreference).toBe('dark');
       });
 
-    await request(app.getHttpServer())
+    await api
       .get('/v1/preferences')
       .set(headers)
       .expect(200)

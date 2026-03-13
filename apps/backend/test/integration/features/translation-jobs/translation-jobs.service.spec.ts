@@ -14,25 +14,12 @@ import { SubtitlesService } from 'src/features/subtitles/subtitles.service';
 import { TranslationJobsModule } from 'src/features/translation-jobs/translation-jobs.module';
 import { TranslationJobsService } from 'src/features/translation-jobs/translation-jobs.service';
 
-import { describeIfDatabase } from 'test/core/shared/database-test.helper';
+import {
+  describeIfDatabase,
+  resetDatabase,
+} from 'test/core/shared/database-test.helper';
+import { pollUntil } from 'test/core/shared/polling.helper';
 import { sampleSrt } from 'test/core/shared/subtitle-fixtures';
-
-const waitForCompletion = async (
-  translationJobsService: TranslationJobsService,
-  device: { id: string; deviceId: string; createdAt: Date; updatedAt: Date },
-  jobId: string,
-) => {
-  for (let attempt = 0; attempt < 20; attempt += 1) {
-    const job = await translationJobsService.getJob(device, jobId);
-    if (job.status === TranslationJobStatus.completed) {
-      return job;
-    }
-
-    await new Promise((resolve) => setTimeout(resolve, 200));
-  }
-
-  throw new Error(`Job ${jobId} did not complete in time.`);
-};
 
 describeIfDatabase('TranslationJobsService integration', () => {
   let prismaService: PrismaService;
@@ -59,12 +46,7 @@ describeIfDatabase('TranslationJobsService integration', () => {
   });
 
   beforeEach(async () => {
-    await prismaService.translationJobCue.deleteMany();
-    await prismaService.translationJob.deleteMany();
-    await prismaService.parsedSubtitleCue.deleteMany();
-    await prismaService.parsedSubtitleFile.deleteMany();
-    await prismaService.userPreference.deleteMany();
-    await prismaService.clientDevice.deleteMany();
+    await resetDatabase(prismaService);
   });
 
   afterAll(async () => {
@@ -85,11 +67,12 @@ describeIfDatabase('TranslationJobsService integration', () => {
       targetLanguage: AppLanguage.French,
     });
 
-    const completed = await waitForCompletion(
-      translationJobsService,
-      device,
-      job.id,
-    );
+    const completed = await pollUntil({
+      label: `Translation job ${job.id}`,
+      poll: () => translationJobsService.getJob(device, job.id),
+      isDone: (candidate) =>
+        candidate.status === TranslationJobStatus.completed,
+    });
     const preview = await translationJobsService.getPreview(
       device,
       job.id,

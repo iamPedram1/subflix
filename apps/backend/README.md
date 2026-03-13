@@ -17,7 +17,7 @@ Production-oriented NestJS backend for the SubFlix subtitle translation app.
 - NestJS
 - PostgreSQL
 - Prisma
-- Jest + Supertest
+- Vitest + Supertest
 - Feature-based module structure
 
 ## Project structure
@@ -167,6 +167,12 @@ pnpm test:unit
 pnpm test:integration
 pnpm test:e2e
 ```
+
+### Vitest notes
+
+- Unit, integration, and e2e suites all run through Vitest.
+- The repo uses a shared Vitest config with suite-specific entry configs so setup stays DRY.
+- Decorator metadata is preserved during tests, which keeps NestJS modules and DI behavior aligned with the runtime app.
 
 ### Important test note
 

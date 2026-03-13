@@ -1,12 +1,12 @@
-import request from 'supertest';
-
 import { createE2eApp } from 'test/core/shared/e2e-app.helper';
+import { createApiRequest } from 'test/core/shared/request.helper';
 
 describe('Catalog endpoints', () => {
   it('searches titles through the public catalog endpoint', async () => {
     const app = await createE2eApp();
+    const api = createApiRequest(app);
 
-    await request(app.getHttpServer())
+    await api
       .get('/v1/catalog/search')
       .query({ q: 'dune' })
       .expect(200)
@@ -20,8 +20,9 @@ describe('Catalog endpoints', () => {
 
   it('returns subtitle sources for a media title', async () => {
     const app = await createE2eApp();
+    const api = createApiRequest(app);
 
-    await request(app.getHttpServer())
+    await api
       .get('/v1/catalog/media/inception/subtitle-sources')
       .expect(200)
       .expect(({ body }) => {
@@ -37,8 +38,9 @@ describe('Catalog endpoints', () => {
 
   it('rejects short search queries through validation', async () => {
     const app = await createE2eApp();
+    const api = createApiRequest(app);
 
-    await request(app.getHttpServer())
+    await api
       .get('/v1/catalog/search')
       .query({ q: 'a' })
       .expect(400)

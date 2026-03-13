@@ -6,7 +6,10 @@ import { PrismaService } from 'src/common/database/prisma/prisma.service';
 import { DevicesModule } from 'src/features/devices/devices.module';
 import { DevicesService } from 'src/features/devices/devices.service';
 
-import { describeIfDatabase } from 'test/core/shared/database-test.helper';
+import {
+  describeIfDatabase,
+  resetDatabase,
+} from 'test/core/shared/database-test.helper';
 
 describeIfDatabase('DevicesService integration', () => {
   let prismaService: PrismaService;
@@ -22,8 +25,7 @@ describeIfDatabase('DevicesService integration', () => {
   });
 
   beforeEach(async () => {
-    await prismaService.userPreference.deleteMany();
-    await prismaService.clientDevice.deleteMany();
+    await resetDatabase(prismaService);
   });
 
   afterAll(async () => {

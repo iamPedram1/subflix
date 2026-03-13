@@ -8,7 +8,10 @@ import { DevicesService } from 'src/features/devices/devices.service';
 import { SubtitlesModule } from 'src/features/subtitles/subtitles.module';
 import { SubtitlesService } from 'src/features/subtitles/subtitles.service';
 
-import { describeIfDatabase } from 'test/core/shared/database-test.helper';
+import {
+  describeIfDatabase,
+  resetDatabase,
+} from 'test/core/shared/database-test.helper';
 import { sampleSrt } from 'test/core/shared/subtitle-fixtures';
 
 describeIfDatabase('SubtitlesService integration', () => {
@@ -27,10 +30,7 @@ describeIfDatabase('SubtitlesService integration', () => {
   });
 
   beforeEach(async () => {
-    await prismaService.parsedSubtitleCue.deleteMany();
-    await prismaService.parsedSubtitleFile.deleteMany();
-    await prismaService.userPreference.deleteMany();
-    await prismaService.clientDevice.deleteMany();
+    await resetDatabase(prismaService);
   });
 
   afterAll(async () => {

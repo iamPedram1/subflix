@@ -8,7 +8,10 @@ import { DevicesService } from 'src/features/devices/devices.service';
 import { PreferencesModule } from 'src/features/preferences/preferences.module';
 import { PreferencesService } from 'src/features/preferences/preferences.service';
 
-import { describeIfDatabase } from 'test/core/shared/database-test.helper';
+import {
+  describeIfDatabase,
+  resetDatabase,
+} from 'test/core/shared/database-test.helper';
 
 describeIfDatabase('PreferencesService integration', () => {
   let prismaService: PrismaService;
@@ -31,8 +34,7 @@ describeIfDatabase('PreferencesService integration', () => {
   });
 
   beforeEach(async () => {
-    await prismaService.userPreference.deleteMany();
-    await prismaService.clientDevice.deleteMany();
+    await resetDatabase(prismaService);
   });
 
   afterAll(async () => {
