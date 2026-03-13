@@ -12,6 +12,33 @@ import { PrismaService } from 'src/common/database/prisma/prisma.service';
 @Injectable()
 /** Encapsulates persistence for translation jobs, previews, and exports. */
 export class TranslationJobsRepository {
+  private static readonly translationJobSummarySelect =
+    Prisma.validator<Prisma.TranslationJobSelect>()({
+      id: true,
+      status: true,
+      stageLabel: true,
+      progress: true,
+      title: true,
+      sourceName: true,
+      sourceType: true,
+      sourceLanguage: true,
+      targetLanguage: true,
+      format: true,
+      createdAt: true,
+      updatedAt: true,
+      lineCount: true,
+      durationMs: true,
+      errorMessage: true,
+    });
+  private static readonly translationJobCuePayloadSelect =
+    Prisma.validator<Prisma.TranslationJobCueSelect>()({
+      cueIndex: true,
+      startMs: true,
+      endMs: true,
+      originalText: true,
+      translatedText: true,
+    });
+
   constructor(private readonly prisma: PrismaService) {}
 
   /** Atomically claims a queued job so only one runner can start processing it. */
@@ -121,6 +148,19 @@ export class TranslationJobsRepository {
     return requireEntity(job, 'The translation job was not found.');
   }
 
+  /** Returns a single device-owned job summary without loading internal-only fields. */
+  async findOwnedJobSummary(clientDeviceId: string, jobId: string) {
+    const job = await this.prisma.translationJob.findFirst({
+      where: {
+        id: jobId,
+        clientDeviceId,
+      },
+      select: TranslationJobsRepository.translationJobSummarySelect,
+    });
+
+    return requireEntity(job, 'The translation job was not found.');
+  }
+
   /** Lists paginated job summaries for a single device. */
   async listOwnedJobs(params: {
     clientDeviceId: string;
@@ -132,6 +172,7 @@ export class TranslationJobsRepository {
       this.prisma.translationJob.findMany({
         where: { clientDeviceId: params.clientDeviceId },
         orderBy: { createdAt: 'desc' },
+        select: TranslationJobsRepository.translationJobSummarySelect,
         ...pagination,
       }),
       this.prisma.translationJob.count({
@@ -185,6 +226,7 @@ export class TranslationJobsRepository {
       this.prisma.translationJobCue.findMany({
         where,
         orderBy: { cueIndex: 'asc' },
+        select: TranslationJobsRepository.translationJobCuePayloadSelect,
         ...pagination,
       }),
       this.prisma.translationJobCue.count({ where }),
@@ -208,6 +250,7 @@ export class TranslationJobsRepository {
         },
       },
       orderBy: { cueIndex: 'asc' },
+      select: TranslationJobsRepository.translationJobCuePayloadSelect,
     });
   }
 

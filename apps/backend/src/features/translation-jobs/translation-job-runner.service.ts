@@ -29,6 +29,8 @@ type PersistedJobCue = Parameters<
 @Injectable()
 export class TranslationJobRunnerService {
   private readonly logger = new Logger(TranslationJobRunnerService.name);
+  private readonly scheduledJobIds = new Set<string>();
+  private readonly activeJobIds = new Set<string>();
 
   constructor(
     private readonly translationJobsRepository: TranslationJobsRepository,
@@ -40,54 +42,70 @@ export class TranslationJobRunnerService {
 
   /** Schedules a persisted job to run after the request lifecycle completes. */
   schedule(jobId: string): void {
+    if (this.scheduledJobIds.has(jobId) || this.activeJobIds.has(jobId)) {
+      return;
+    }
+
+    this.scheduledJobIds.add(jobId);
     setTimeout(() => {
+      this.scheduledJobIds.delete(jobId);
       void this.run(jobId);
     }, 0);
   }
 
   /** Processes a single translation job from queued state to completion or failure. */
   async run(jobId: string): Promise<void> {
-    const job =
-      await this.translationJobsRepository.claimQueuedJobForRunner(jobId);
-    if (!job) {
+    if (this.activeJobIds.has(jobId)) {
       return;
     }
 
+    this.activeJobIds.add(jobId);
+
     try {
-      const sourceCues = await this.loadSourceCues(job);
+      const job =
+        await this.translationJobsRepository.claimQueuedJobForRunner(jobId);
+      if (!job) {
+        return;
+      }
 
-      await delay(250);
-      await this.markProgress(jobId, {
-        stageLabel: 'Translating subtitle lines',
-        progress: 0.56,
-      });
+      try {
+        const sourceCues = await this.loadSourceCues(job);
 
-      const translatedLines = await this.translationProvider.translate({
-        title: job.title,
-        targetLanguage: job.targetLanguage,
-        cues: sourceCues,
-      });
+        await delay(250);
+        await this.markProgress(jobId, {
+          stageLabel: 'Translating subtitle lines',
+          progress: 0.56,
+        });
 
-      await delay(220);
-      await this.markProgress(jobId, {
-        stageLabel: 'Building preview and export payloads',
-        progress: 0.86,
-      });
+        const translatedLines = await this.translationProvider.translate({
+          title: job.title,
+          targetLanguage: job.targetLanguage,
+          cues: sourceCues,
+        });
 
-      await this.translationJobsRepository.replaceJobCues(
-        jobId,
-        this.buildPersistedJobCues(sourceCues, translatedLines),
-      );
+        await delay(220);
+        await this.markProgress(jobId, {
+          stageLabel: 'Building preview and export payloads',
+          progress: 0.86,
+        });
 
-      await this.translationJobsRepository.updateJob(jobId, {
-        status: TranslationJobStatus.completed,
-        stageLabel: 'Translation ready',
-        progress: 1,
-        completedAt: new Date(),
-      });
-    } catch (error) {
-      this.logger.error(error);
-      await this.markFailure(jobId, error);
+        await this.translationJobsRepository.replaceJobCues(
+          jobId,
+          this.buildPersistedJobCues(sourceCues, translatedLines),
+        );
+
+        await this.translationJobsRepository.updateJob(jobId, {
+          status: TranslationJobStatus.completed,
+          stageLabel: 'Translation ready',
+          progress: 1,
+          completedAt: new Date(),
+        });
+      } catch (error) {
+        this.logger.error(error);
+        await this.markFailure(jobId, error);
+      }
+    } finally {
+      this.activeJobIds.delete(jobId);
     }
   }
 
@@ -108,17 +126,10 @@ export class TranslationJobRunnerService {
   private async loadUploadedSourceCues(
     job: TranslationJob,
   ): Promise<SubtitleCue[]> {
-    const parsedFile = await this.subtitlesRepository.findOwnedParsedFile({
+    return this.subtitlesRepository.listOwnedParsedFileCues({
       clientDeviceId: job.clientDeviceId,
       parsedFileId: this.requireParsedFileId(job),
     });
-
-    return parsedFile.cues.map((cue) => ({
-      cueIndex: cue.cueIndex,
-      startMs: cue.startMs,
-      endMs: cue.endMs,
-      text: cue.text,
-    }));
   }
 
   /** Extracts and validates the catalog references needed to replay a catalog job. */

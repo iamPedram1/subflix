@@ -57,7 +57,7 @@ describe('TranslationJobsService', () => {
       createJob: vi.fn().mockResolvedValue(createJobEntity()),
     } as unknown as TranslationJobsRepository;
     const subtitlesRepository = {
-      findOwnedParsedFile: vi.fn().mockResolvedValue({
+      findOwnedParsedFileSummary: vi.fn().mockResolvedValue({
         id: 'parsed-file-1',
         fileName: 'sample.srt',
         format: SubtitleFormat.srt,
@@ -84,6 +84,12 @@ describe('TranslationJobsService', () => {
     });
 
     expect(result.id).toBe('job-1');
+    expect(subtitlesRepository.findOwnedParsedFileSummary).toHaveBeenCalledWith(
+      {
+        clientDeviceId: device.id,
+        parsedFileId: 'parsed-file-1',
+      },
+    );
     expect(jobsRepository.createJob).toHaveBeenCalled();
     expect(runner.schedule).toHaveBeenCalledWith('job-1');
   });

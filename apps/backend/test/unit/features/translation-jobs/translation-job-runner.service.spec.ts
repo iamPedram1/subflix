@@ -57,6 +57,26 @@ describe('TranslationJobRunnerService', () => {
     expect(runSpy).toHaveBeenCalledWith('job-1');
   });
 
+  it('coalesces duplicate schedule requests for the same job id', async () => {
+    vi.useFakeTimers();
+
+    const service = new TranslationJobRunnerService(
+      {} as TranslationJobsRepository,
+      {} as SubtitlesRepository,
+      {} as CatalogService,
+      {} as TranslationProviderPort,
+    );
+    const runSpy = vi.spyOn(service, 'run').mockResolvedValue();
+
+    service.schedule('job-1');
+    service.schedule('job-1');
+
+    await vi.runAllTimersAsync();
+
+    expect(runSpy).toHaveBeenCalledTimes(1);
+    expect(runSpy).toHaveBeenCalledWith('job-1');
+  });
+
   it('marks a job as failed when translation execution throws', async () => {
     vi.useFakeTimers();
     vi.spyOn(Logger.prototype, 'error').mockImplementation(() => undefined);
@@ -67,16 +87,14 @@ describe('TranslationJobRunnerService', () => {
       replaceJobCues: vi.fn().mockResolvedValue(undefined),
     } as unknown as TranslationJobsRepository;
     const subtitlesRepository = {
-      findOwnedParsedFile: vi.fn().mockResolvedValue({
-        cues: [
-          {
-            cueIndex: 1,
-            startMs: 1_000,
-            endMs: 3_500,
-            text: 'We only have one clean pass.',
-          },
-        ],
-      }),
+      listOwnedParsedFileCues: vi.fn().mockResolvedValue([
+        {
+          cueIndex: 1,
+          startMs: 1_000,
+          endMs: 3_500,
+          text: 'We only have one clean pass.',
+        },
+      ]),
     } as unknown as SubtitlesRepository;
     const translationProvider = {
       translate: vi.fn().mockRejectedValue(new Error('Provider exploded.')),

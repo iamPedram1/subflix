@@ -36,6 +36,9 @@ type JobSeed = {
 
 type CreateJobPayload = Parameters<TranslationJobsRepository['createJob']>[0];
 type OwnedJob = Awaited<ReturnType<TranslationJobsRepository['findOwnedJob']>>;
+type OwnedJobSummary = Awaited<
+  ReturnType<TranslationJobsRepository['findOwnedJobSummary']>
+>;
 type ExportedCue = Awaited<
   ReturnType<TranslationJobsRepository['listAllOwnedJobCues']>
 >[number];
@@ -78,7 +81,7 @@ export class TranslationJobsService {
 
   /** Returns the current public state of a single device-owned job. */
   async getJob(device: ClientDevice, jobId: string) {
-    const job = await this.getOwnedJob(device.id, jobId);
+    const job = await this.getOwnedJobSummary(device.id, jobId);
     return toTranslationJobSummary(job);
   }
 
@@ -102,14 +105,16 @@ export class TranslationJobsService {
     limit: number,
     query?: string,
   ) {
-    const job = await this.getOwnedJob(device.id, jobId);
-    const preview = await this.translationJobsRepository.listPreviewCues({
-      clientDeviceId: device.id,
-      jobId,
-      page,
-      limit,
-      query,
-    });
+    const [job, preview] = await Promise.all([
+      this.getOwnedJobSummary(device.id, jobId),
+      this.translationJobsRepository.listPreviewCues({
+        clientDeviceId: device.id,
+        jobId,
+        page,
+        limit,
+        query,
+      }),
+    ]);
 
     return {
       job: toTranslationJobSummary(job),
@@ -191,6 +196,17 @@ export class TranslationJobsService {
     return this.translationJobsRepository.findOwnedJob(clientDeviceId, jobId);
   }
 
+  /** Loads a single job summary while enforcing device ownership in one shared place. */
+  private getOwnedJobSummary(
+    clientDeviceId: string,
+    jobId: string,
+  ): Promise<OwnedJobSummary> {
+    return this.translationJobsRepository.findOwnedJobSummary(
+      clientDeviceId,
+      jobId,
+    );
+  }
+
   /** Rehydrates the DTO shape needed to rerun a previously created translation job. */
   private toRetryRequest(job: OwnedJob): CreateTranslationJobDto {
     return {
@@ -243,10 +259,11 @@ export class TranslationJobsService {
       );
     }
 
-    const parsedFile = await this.subtitlesRepository.findOwnedParsedFile({
-      clientDeviceId: device.id,
-      parsedFileId: input.parsedFileId,
-    });
+    const parsedFile =
+      await this.subtitlesRepository.findOwnedParsedFileSummary({
+        clientDeviceId: device.id,
+        parsedFileId: input.parsedFileId,
+      });
 
     return {
       title: parsedFile.fileName.replace(/\.(srt|vtt)$/i, ''),
@@ -270,16 +287,16 @@ export class TranslationJobsService {
       );
     }
 
-    const media = await this.catalogService.findById(input.mediaId);
+    const [media, subtitleSources] = await Promise.all([
+      this.catalogService.findById(input.mediaId),
+      this.catalogService.getSubtitleSources(input.mediaId),
+    ]);
+
     if (!media) {
       throw new ValidationDomainError(
         'The requested media title was not found.',
       );
     }
-
-    const subtitleSources = await this.catalogService.getSubtitleSources(
-      input.mediaId,
-    );
     const subtitleSource = subtitleSources.find(
       (source) => source.id === input.subtitleSourceId,
     );
