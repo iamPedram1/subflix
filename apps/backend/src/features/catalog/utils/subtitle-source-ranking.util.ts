@@ -2,6 +2,11 @@ import { buildSubtitleSourceId } from 'features/catalog/utils/subtitle-source-id
 
 import { SubtitleSourceCandidate } from 'features/catalog/models/subtitle-source-candidate.model';
 import { SubtitleSourceSearchInput } from 'features/catalog/models/subtitle-source-search-input.model';
+import {
+  mergeReleaseHints,
+  parseReleaseHint,
+} from 'features/catalog/utils/release-hint-parser.util';
+import { scoreReleaseHintMatch } from 'features/catalog/utils/release-hint-match.util';
 
 const PROVIDER_PRIORITY: Record<SubtitleSourceCandidate['provider'], number> = {
   subdl: 0,
@@ -11,17 +16,6 @@ const PROVIDER_PRIORITY: Record<SubtitleSourceCandidate['provider'], number> = {
 
 const normalize = (value: string | undefined): string =>
   value?.trim().toLowerCase() ?? '';
-
-const tokenize = (values: string[]): string[] =>
-  values
-    .flatMap((value) =>
-      value
-        .toLowerCase()
-        .split(/[^a-z0-9]+/i)
-        .map((token) => token.trim())
-        .filter((token) => token.length >= 3),
-    )
-    .filter((token, index, list) => list.indexOf(token) === index);
 
 const hasExactIdentityMatch = (
   candidate: SubtitleSourceCandidate,
@@ -43,22 +37,29 @@ const hasPreferredLanguageMatch = (
   );
 };
 
-const hasReleaseHintMatch = (
+const calculateReleaseHintDelta = (
   candidate: SubtitleSourceCandidate,
   input: SubtitleSourceSearchInput,
-): boolean => {
-  const release = normalize(candidate.releaseName);
-  if (!release.length) {
-    return false;
+): number => {
+  const rawHints = (input.releaseHints ?? [])
+    .map((hint) => hint.trim())
+    .filter(Boolean);
+  if (rawHints.length === 0) {
+    return 0;
   }
 
-  const tokens = tokenize([
-    ...(input.releaseHints ?? []),
-    input.title,
-    input.originalTitle ?? '',
-  ]);
+  const preferred = mergeReleaseHints(
+    rawHints.map((hint) => parseReleaseHint(hint)),
+  );
+  const candidateHint = parseReleaseHint(candidate.releaseName ?? '', {
+    releaseGroupOverride: candidate.releaseGroup,
+  });
 
-  return tokens.some((token) => release.includes(token));
+  if (candidateHint.tokens.length === 0) {
+    return 0;
+  }
+
+  return scoreReleaseHintMatch(preferred, candidateHint).scoreDelta;
 };
 
 const calculateScore = (
@@ -97,9 +98,7 @@ const calculateScore = (
     score += 15;
   }
 
-  if (hasReleaseHintMatch(candidate, input)) {
-    score += 10;
-  }
+  score += calculateReleaseHintDelta(candidate, input);
 
   if (candidate.releaseName?.trim() || candidate.releaseGroup?.trim()) {
     score += 4;

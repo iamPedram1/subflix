@@ -4,11 +4,13 @@ import {
   IsOptional,
   IsString,
   Matches,
+  MaxLength,
   Min,
   ValidateIf,
 } from 'class-validator';
 
 const LANGUAGE_CODE_PATTERN = /^[A-Za-z_-]{2,10}$/;
+const RELEASE_HINT_PATTERN = /^[A-Za-z0-9][A-Za-z0-9 ._()\\[\\]-]{0,199}$/;
 
 const toOptionalNumber = ({ value }: { value: unknown }) => {
   if (value === undefined || value === null || value === '') {
@@ -45,4 +47,13 @@ export class GetSubtitleSourcesQueryDto {
   @IsInt()
   @Min(1)
   episodeNumber?: number;
+
+  @IsOptional()
+  @Transform(({ value }) =>
+    typeof value === 'string' ? value.trim() || undefined : value,
+  )
+  @IsString()
+  @MaxLength(200)
+  @Matches(RELEASE_HINT_PATTERN)
+  releaseHint?: string;
 }

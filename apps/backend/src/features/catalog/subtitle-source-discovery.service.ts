@@ -55,7 +55,7 @@ export class SubtitleSourceDiscoveryService {
       preferredLanguage:
         query.preferredLanguage?.trim().toLowerCase() ??
         DEFAULT_PREFERRED_LANGUAGE,
-      releaseHints: [],
+      releaseHints: query.releaseHint?.trim() ? [query.releaseHint.trim()] : [],
     };
     const cacheKey = buildSubtitleSourceCacheKey(searchInput);
 
