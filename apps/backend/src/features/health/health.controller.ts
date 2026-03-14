@@ -1,8 +1,8 @@
 import { Controller, Get } from '@nestjs/common';
 
-import { SkipRateLimit } from 'src/common/rate-limit/rate-limit.decorator';
+import { SkipRateLimit } from 'common/rate-limit/rate-limit.decorator';
 
-import { HealthService } from './health.service';
+import { HealthService } from 'features/health/health.service';
 
 @Controller('health')
 @SkipRateLimit()

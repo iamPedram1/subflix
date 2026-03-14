@@ -4,12 +4,12 @@ import { AppLanguage, ClientDevice, SubtitleFormat } from '@prisma/client';
 import { createHash } from 'node:crypto';
 import { extname } from 'node:path';
 
-import { ValidationDomainError } from 'src/common/domain/errors/domain.error';
+import { ValidationDomainError } from 'common/domain/errors/domain.error';
 
-import { SubtitleCue } from './models/subtitle-cue.model';
-import { SubtitlesRepository } from './subtitles.repository';
-import { DEFAULT_MAX_UPLOAD_BYTES } from './subtitle-upload.constants';
-import { SubtitleParserService } from './utils/subtitle-parser.service';
+import { SubtitleCue } from 'features/subtitles/models/subtitle-cue.model';
+import { SubtitlesRepository } from 'features/subtitles/subtitles.repository';
+import { DEFAULT_MAX_UPLOAD_BYTES } from 'features/subtitles/subtitle-upload.constants';
+import { SubtitleParserService } from 'features/subtitles/utils/subtitle-parser.service';
 
 @Injectable()
 /** Validates, parses, and persists uploaded subtitle files for device-scoped workflows. */
@@ -57,7 +57,13 @@ export class SubtitlesService {
   /** Ensures the upload route always receives a file payload. */
   private requireFile(file?: Express.Multer.File): Express.Multer.File {
     if (!file) {
-      throw new ValidationDomainError('A subtitle file is required.');
+      throw new ValidationDomainError(
+        'A subtitle file is required.',
+        undefined,
+        {
+          key: 'errors.subtitles.file_required',
+        },
+      );
     }
 
     return file;
@@ -74,6 +80,9 @@ export class SubtitlesService {
         'Subtitle file exceeds the upload limit.',
         {
           maxUploadBytes,
+        },
+        {
+          key: 'errors.subtitles.upload_limit_exceeded',
         },
       );
     }
@@ -93,6 +102,10 @@ export class SubtitlesService {
 
     throw new ValidationDomainError(
       'Unsupported file type. Only .srt and .vtt files are accepted.',
+      undefined,
+      {
+        key: 'errors.subtitles.unsupported_file_type',
+      },
     );
   }
 

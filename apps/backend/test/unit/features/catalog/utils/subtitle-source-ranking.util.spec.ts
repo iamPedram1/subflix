@@ -1,4 +1,4 @@
-import { rankSubtitleSourceCandidates } from 'src/features/catalog/utils/subtitle-source-ranking.util';
+import { rankSubtitleSourceCandidates } from 'features/catalog/utils/subtitle-source-ranking.util';
 
 describe('rankSubtitleSourceCandidates', () => {
   it('prioritizes exact identity, year, language, and provider priority', () => {

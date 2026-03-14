@@ -6,7 +6,7 @@ import {
   HEADER_TOKEN_PATTERN,
   MAX_DEVICE_ID_LENGTH,
   MAX_REQUEST_ID_LENGTH,
-} from '../constants/request-context.constants';
+} from 'common/http/constants/request-context.constants';
 
 const normalizeHeaderToken = (value: string | undefined): string | null => {
   const candidate = value?.trim();

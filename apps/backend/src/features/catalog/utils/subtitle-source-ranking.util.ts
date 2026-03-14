@@ -1,7 +1,7 @@
-import { buildSubtitleSourceId } from './subtitle-source-id.util';
+import { buildSubtitleSourceId } from 'features/catalog/utils/subtitle-source-id.util';
 
-import { SubtitleSourceCandidate } from '../models/subtitle-source-candidate.model';
-import { SubtitleSourceSearchInput } from '../models/subtitle-source-search-input.model';
+import { SubtitleSourceCandidate } from 'features/catalog/models/subtitle-source-candidate.model';
+import { SubtitleSourceSearchInput } from 'features/catalog/models/subtitle-source-search-input.model';
 
 const PROVIDER_PRIORITY: Record<SubtitleSourceCandidate['provider'], number> = {
   subdl: 0,

@@ -6,12 +6,12 @@ import {
   TranslationSourceType,
 } from '@prisma/client';
 
-import { CatalogService } from 'src/features/catalog/catalog.service';
-import { buildSubtitleSourceId } from 'src/features/catalog/utils/subtitle-source-id.util';
-import { SubtitlesRepository } from 'src/features/subtitles/subtitles.repository';
-import { TranslationProviderPort } from 'src/features/translation-jobs/ports/translation-provider.port';
-import { TranslationJobRunnerService } from 'src/features/translation-jobs/translation-job-runner.service';
-import { TranslationJobsRepository } from 'src/features/translation-jobs/translation-jobs.repository';
+import { CatalogService } from 'features/catalog/catalog.service';
+import { buildSubtitleSourceId } from 'features/catalog/utils/subtitle-source-id.util';
+import { SubtitlesRepository } from 'features/subtitles/subtitles.repository';
+import { TranslationProviderPort } from 'features/translation-jobs/ports/translation-provider.port';
+import { TranslationJobRunnerService } from 'features/translation-jobs/translation-job-runner.service';
+import { TranslationJobsRepository } from 'features/translation-jobs/translation-jobs.repository';
 
 describe('TranslationJobRunnerService', () => {
   const createRunnerJob = (overrides: Record<string, unknown> = {}) => ({

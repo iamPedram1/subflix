@@ -1,4 +1,4 @@
-import { SearchMediaType } from 'src/common/domain/enums/search-media-type.enum';
+import { SearchMediaType } from 'common/domain/enums/search-media-type.enum';
 
 export type CatalogMediaItem = {
   id: string;

@@ -1,8 +1,8 @@
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 
-import { AppModule } from 'src/app.module';
-import { configureApp } from 'src/app.bootstrap';
+import { AppModule } from 'app.module';
+import { configureApp } from 'app.bootstrap';
 
 /** Creates a fully initialized Nest application for end-to-end tests. */
 export const createE2eApp = async (): Promise<INestApplication> => {

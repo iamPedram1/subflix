@@ -1,4 +1,4 @@
-import { buildSubtitleSourceCacheKey } from 'src/features/catalog/utils/subtitle-source-cache-key.util';
+import { buildSubtitleSourceCacheKey } from 'features/catalog/utils/subtitle-source-cache-key.util';
 
 describe('buildSubtitleSourceCacheKey', () => {
   it('prefers canonical ids when available', () => {

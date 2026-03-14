@@ -5,18 +5,18 @@ import {
   NotFoundDomainError,
   ServiceUnavailableDomainError,
   ValidationDomainError,
-} from 'src/common/domain/errors/domain.error';
-import { AppCacheService } from 'src/common/cache/app-cache.service';
-import { SearchMediaType } from 'src/common/domain/enums/search-media-type.enum';
+} from 'common/domain/errors/domain.error';
+import { AppCacheService } from 'common/cache/app-cache.service';
+import { SearchMediaType } from 'common/domain/enums/search-media-type.enum';
 
 import {
   TMDB_MOVIE_GENRE_MAP,
   TMDB_SERIES_GENRE_MAP,
-} from '../data/tmdb-genre-map';
-import { CatalogMediaDetails } from '../models/catalog-media-details.model';
-import { CatalogMediaItem } from '../models/catalog-media-item.model';
-import { MediaCatalogPort } from '../ports/media-catalog.port';
-import { MockCatalogProvider } from './mock-catalog.provider';
+} from 'features/catalog/data/tmdb-genre-map';
+import { CatalogMediaDetails } from 'features/catalog/models/catalog-media-details.model';
+import { CatalogMediaItem } from 'features/catalog/models/catalog-media-item.model';
+import { MediaCatalogPort } from 'features/catalog/ports/media-catalog.port';
+import { MockCatalogProvider } from 'features/catalog/providers/mock-catalog.provider';
 
 type TmdbMultiSearchResult = {
   id: number;
@@ -152,6 +152,10 @@ export class TmdbMediaCatalogProvider implements MediaCatalogPort {
     if (!parsedMediaId) {
       throw new ValidationDomainError(
         'The requested catalog media id is invalid.',
+        undefined,
+        {
+          key: 'errors.catalog.invalid_media_id',
+        },
       );
     }
 
@@ -386,7 +390,13 @@ export class TmdbMediaCatalogProvider implements MediaCatalogPort {
       return payload;
     }
 
-    throw new NotFoundDomainError('The requested catalog title was not found.');
+    throw new NotFoundDomainError(
+      'The requested catalog title was not found.',
+      undefined,
+      {
+        key: 'errors.catalog.not_found',
+      },
+    );
   }
 
   private async fetchOptionalJson<T>(

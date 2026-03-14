@@ -1,4 +1,4 @@
-import { MockCatalogProvider } from 'src/features/catalog/providers/mock-catalog.provider';
+import { MockCatalogProvider } from 'features/catalog/providers/mock-catalog.provider';
 
 describe('MockCatalogProvider', () => {
   let provider: MockCatalogProvider;

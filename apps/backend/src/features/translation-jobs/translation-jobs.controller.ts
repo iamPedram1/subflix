@@ -12,15 +12,15 @@ import {
 import { ClientDevice } from '@prisma/client';
 import { Response } from 'express';
 
-import { CurrentDevice } from 'src/common/http/decorators/current-device.decorator';
-import { DeviceContextGuard } from 'src/common/http/guards/device-context.guard';
-import { RateLimit } from 'src/common/rate-limit/rate-limit.decorator';
+import { CurrentDevice } from 'common/http/decorators/current-device.decorator';
+import { DeviceContextGuard } from 'common/http/guards/device-context.guard';
+import { RateLimit } from 'common/rate-limit/rate-limit.decorator';
 
-import { CreateTranslationJobDto } from './dto/create-translation-job.dto';
-import { ExportJobQueryDto } from './dto/export-job-query.dto';
-import { JobPreviewQueryDto } from './dto/job-preview-query.dto';
-import { TranslationJobsQueryDto } from './dto/translation-jobs-query.dto';
-import { TranslationJobsService } from './translation-jobs.service';
+import { CreateTranslationJobDto } from 'features/translation-jobs/dto/create-translation-job.dto';
+import { ExportJobQueryDto } from 'features/translation-jobs/dto/export-job-query.dto';
+import { JobPreviewQueryDto } from 'features/translation-jobs/dto/job-preview-query.dto';
+import { TranslationJobsQueryDto } from 'features/translation-jobs/dto/translation-jobs-query.dto';
+import { TranslationJobsService } from 'features/translation-jobs/translation-jobs.service';
 
 @UseGuards(DeviceContextGuard)
 @Controller('translation-jobs')

@@ -1,4 +1,4 @@
-import { dedupeSubtitleSourceCandidates } from 'src/features/catalog/utils/subtitle-source-dedupe.util';
+import { dedupeSubtitleSourceCandidates } from 'features/catalog/utils/subtitle-source-dedupe.util';
 
 describe('dedupeSubtitleSourceCandidates', () => {
   it('dedupes by provider and provider subtitle id first', () => {

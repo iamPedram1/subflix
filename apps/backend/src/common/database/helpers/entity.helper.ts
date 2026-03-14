@@ -1,4 +1,4 @@
-import { NotFoundDomainError } from 'src/common/domain/errors/domain.error';
+import { NotFoundDomainError } from 'common/domain/errors/domain.error';
 
 /**
  * Ensures a nullable persistence result exists before the caller proceeds.

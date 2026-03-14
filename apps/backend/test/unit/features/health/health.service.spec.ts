@@ -1,6 +1,6 @@
 import { ConfigService } from '@nestjs/config';
 
-import { HealthService } from 'src/features/health/health.service';
+import { HealthService } from 'features/health/health.service';
 
 describe('HealthService', () => {
   it('returns a healthy payload', () => {

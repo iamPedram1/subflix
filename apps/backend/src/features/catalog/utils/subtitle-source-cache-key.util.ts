@@ -1,4 +1,4 @@
-import { SubtitleSourceSearchInput } from '../models/subtitle-source-search-input.model';
+import { SubtitleSourceSearchInput } from 'features/catalog/models/subtitle-source-search-input.model';
 
 const normalizeTextPart = (value: string | undefined): string => {
   const normalized = value?.trim().toLowerCase().replace(/\s+/g, '-');

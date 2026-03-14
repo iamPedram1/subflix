@@ -1,6 +1,6 @@
-import { SubtitleSourceCandidate } from '../models/subtitle-source-candidate.model';
-import { SubtitleSourceProviderName } from '../models/subtitle-source-provider-name.model';
-import { SubtitleSourceSearchInput } from '../models/subtitle-source-search-input.model';
+import { SubtitleSourceCandidate } from 'features/catalog/models/subtitle-source-candidate.model';
+import { SubtitleSourceProviderName } from 'features/catalog/models/subtitle-source-provider-name.model';
+import { SubtitleSourceSearchInput } from 'features/catalog/models/subtitle-source-search-input.model';
 
 export const SUBTITLE_SOURCE_PROVIDERS = Symbol('SUBTITLE_SOURCE_PROVIDERS');
 

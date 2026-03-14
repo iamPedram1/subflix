@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 
-import { SearchMediaType } from 'src/common/domain/enums/search-media-type.enum';
-import { delay } from 'src/common/utils/delay.util';
-import { ServiceUnavailableDomainError } from 'src/common/domain/errors/domain.error';
+import { SearchMediaType } from 'common/domain/enums/search-media-type.enum';
+import { delay } from 'common/utils/delay.util';
+import { ServiceUnavailableDomainError } from 'common/domain/errors/domain.error';
 
-import { mockCatalog } from '../data/mock-catalog.data';
-import { CatalogMediaDetails } from '../models/catalog-media-details.model';
-import { CatalogMediaItem } from '../models/catalog-media-item.model';
-import { MediaCatalogPort } from '../ports/media-catalog.port';
+import { mockCatalog } from 'features/catalog/data/mock-catalog.data';
+import { CatalogMediaDetails } from 'features/catalog/models/catalog-media-details.model';
+import { CatalogMediaItem } from 'features/catalog/models/catalog-media-item.model';
+import { MediaCatalogPort } from 'features/catalog/ports/media-catalog.port';
 
 @Injectable()
 /** Deterministic in-memory catalog adapter used while external providers are mocked. */

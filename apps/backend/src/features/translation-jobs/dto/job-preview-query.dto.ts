@@ -1,7 +1,7 @@
 import { Transform } from 'class-transformer';
 import { IsOptional, IsString, MaxLength } from 'class-validator';
 
-import { PaginationQueryDto } from 'src/common/http/dto/pagination-query.dto';
+import { PaginationQueryDto } from 'common/http/dto/pagination-query.dto';
 
 export class JobPreviewQueryDto extends PaginationQueryDto {
   @IsOptional()

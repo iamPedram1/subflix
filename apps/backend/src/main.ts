@@ -1,8 +1,8 @@
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 
-import { AppModule } from './app.module';
-import { configureApp } from './app.bootstrap';
+import { AppModule } from 'app.module';
+import { configureApp } from 'app.bootstrap';
 
 /**
  * Boots the HTTP application with the shared runtime configuration.

@@ -1,6 +1,6 @@
 import { SubtitleFormat } from '@prisma/client';
 
-import { SubtitleExportService } from 'src/features/subtitles/utils/subtitle-export.service';
+import { SubtitleExportService } from 'features/subtitles/utils/subtitle-export.service';
 
 describe('SubtitleExportService', () => {
   let service: SubtitleExportService;

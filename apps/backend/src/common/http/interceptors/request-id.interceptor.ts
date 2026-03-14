@@ -10,9 +10,9 @@ import { Observable, tap } from 'rxjs';
 import {
   CACHE_CONTROL_HEADER,
   REQUEST_ID_HEADER,
-} from '../constants/request-context.constants';
-import { RequestWithContext } from '../types/request-context';
-import { getSafeRequestId } from '../utils/request-header.util';
+} from 'common/http/constants/request-context.constants';
+import { RequestWithContext } from 'common/http/types/request-context';
+import { getSafeRequestId } from 'common/http/utils/request-header.util';
 
 @Injectable()
 export class RequestIdInterceptor implements NestInterceptor {

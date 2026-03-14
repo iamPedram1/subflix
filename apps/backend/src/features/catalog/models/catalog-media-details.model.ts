@@ -1,4 +1,4 @@
-import { CatalogMediaItem } from './catalog-media-item.model';
+import { CatalogMediaItem } from 'features/catalog/models/catalog-media-item.model';
 
 export type CatalogMediaDetails = CatalogMediaItem & {
   tmdbId?: number;

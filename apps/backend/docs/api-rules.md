@@ -7,6 +7,7 @@
 - Public read routes may be cacheable when safe
 - Device-scoped routes must require `x-device-id`
 - Each request should include `x-request-id` when available
+- Error `message` values may be localized using the `Accept-Language` header (fallback: `en`)
 
 ## Versioning
 
@@ -42,6 +43,11 @@ Every non-success response should use the normalized envelope:
   "timestamp": "2026-03-13T20:00:00.000Z"
 }
 ```
+
+Notes:
+
+- `code` values are stable and must not be localized.
+- `message` is human-readable and may be localized based on `Accept-Language` with fallback to English (`en`).
 
 ## Route Rules
 

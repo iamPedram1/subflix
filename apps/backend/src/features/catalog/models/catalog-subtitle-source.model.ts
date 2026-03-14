@@ -1,4 +1,4 @@
-import { SubtitleFormat } from 'src/common/domain/enums/subtitle-format.enum';
+import { SubtitleFormat } from 'common/domain/enums/subtitle-format.enum';
 
 export type CatalogSubtitleSource = {
   id: string;

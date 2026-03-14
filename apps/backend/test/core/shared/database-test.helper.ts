@@ -1,4 +1,4 @@
-import { PrismaService } from 'src/common/database/prisma/prisma.service';
+import { PrismaService } from 'common/database/prisma/prisma.service';
 
 export const hasDatabaseUrl = (): boolean =>
   Boolean(process.env.DATABASE_URL?.trim());

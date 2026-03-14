@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
 
-import { CatalogModule } from '../catalog/catalog.module';
-import { DevicesModule } from '../devices/devices.module';
-import { SubtitlesModule } from '../subtitles/subtitles.module';
-import { MockTranslationProvider } from './providers/mock-translation.provider';
-import { TRANSLATION_PROVIDER_PORT } from './ports/translation-provider.port';
-import { TranslationJobRunnerService } from './translation-job-runner.service';
-import { TranslationJobsController } from './translation-jobs.controller';
-import { TranslationJobsRepository } from './translation-jobs.repository';
-import { TranslationJobsService } from './translation-jobs.service';
+import { CatalogModule } from 'features/catalog/catalog.module';
+import { DevicesModule } from 'features/devices/devices.module';
+import { SubtitlesModule } from 'features/subtitles/subtitles.module';
+import { MockTranslationProvider } from 'features/translation-jobs/providers/mock-translation.provider';
+import { TRANSLATION_PROVIDER_PORT } from 'features/translation-jobs/ports/translation-provider.port';
+import { TranslationJobRunnerService } from 'features/translation-jobs/translation-job-runner.service';
+import { TranslationJobsController } from 'features/translation-jobs/translation-jobs.controller';
+import { TranslationJobsRepository } from 'features/translation-jobs/translation-jobs.repository';
+import { TranslationJobsService } from 'features/translation-jobs/translation-jobs.service';
 
 @Module({
   imports: [DevicesModule, CatalogModule, SubtitlesModule],

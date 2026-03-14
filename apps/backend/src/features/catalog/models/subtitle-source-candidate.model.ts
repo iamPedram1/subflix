@@ -1,6 +1,6 @@
-import { SubtitleFormat } from 'src/common/domain/enums/subtitle-format.enum';
+import { SubtitleFormat } from 'common/domain/enums/subtitle-format.enum';
 
-import { SubtitleSourceProviderName } from './subtitle-source-provider-name.model';
+import { SubtitleSourceProviderName } from 'features/catalog/models/subtitle-source-provider-name.model';
 
 export type SubtitleSourceCandidate = {
   provider: SubtitleSourceProviderName;

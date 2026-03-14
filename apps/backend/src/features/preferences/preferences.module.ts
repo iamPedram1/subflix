@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 
-import { CacheModule } from 'src/common/cache/cache.module';
+import { CacheModule } from 'common/cache/cache.module';
 
-import { DevicesModule } from '../devices/devices.module';
-import { PreferencesController } from './preferences.controller';
-import { PreferencesRepository } from './preferences.repository';
-import { PreferencesService } from './preferences.service';
+import { DevicesModule } from 'features/devices/devices.module';
+import { PreferencesController } from 'features/preferences/preferences.controller';
+import { PreferencesRepository } from 'features/preferences/preferences.repository';
+import { PreferencesService } from 'features/preferences/preferences.service';
 
 @Module({
   imports: [DevicesModule, CacheModule],

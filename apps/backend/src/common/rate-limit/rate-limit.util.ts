@@ -2,8 +2,8 @@ import { createHash } from 'node:crypto';
 
 import type { Request } from 'express';
 
-import { DEVICE_ID_HEADER } from 'src/common/http/constants/request-context.constants';
-import { requireSafeDeviceId } from 'src/common/http/utils/request-header.util';
+import { DEVICE_ID_HEADER } from 'common/http/constants/request-context.constants';
+import { requireSafeDeviceId } from 'common/http/utils/request-header.util';
 
 const normalizeIpValue = (value: string | undefined): string | null => {
   const candidate = value?.trim();

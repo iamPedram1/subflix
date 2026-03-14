@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { SubtitleFormat } from '@prisma/client';
 
-import { ValidationDomainError } from 'src/common/domain/errors/domain.error';
+import { ValidationDomainError } from 'common/domain/errors/domain.error';
 
-import { SubtitleCue } from '../models/subtitle-cue.model';
+import { SubtitleCue } from 'features/subtitles/models/subtitle-cue.model';
 
 @Injectable()
 /** Parses raw subtitle text into normalized cue objects shared across the app. */
@@ -28,6 +28,10 @@ export class SubtitleParserService {
     if (cues.length === 0) {
       throw new ValidationDomainError(
         'The subtitle file did not contain valid cues.',
+        undefined,
+        {
+          key: 'errors.subtitles.no_valid_cues',
+        },
       );
     }
 
@@ -72,7 +76,14 @@ export class SubtitleParserService {
     const segments = timePart.split(':').map((segment) => Number(segment));
 
     if (segments.some((segment) => Number.isNaN(segment))) {
-      throw new ValidationDomainError(`Invalid subtitle timestamp: ${value}`);
+      throw new ValidationDomainError(
+        `Invalid subtitle timestamp: ${value}`,
+        undefined,
+        {
+          key: 'errors.subtitles.invalid_timestamp',
+          args: { value },
+        },
+      );
     }
 
     const [hours, minutes, seconds] =

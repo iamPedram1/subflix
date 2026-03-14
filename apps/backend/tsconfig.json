@@ -21,7 +21,11 @@
     "noFallthroughCasesInSwitch": true,
     "types": ["node", "express", "multer", "vitest/globals"],
     "paths": {
+      "app.module": ["src/app.module"],
+      "app.bootstrap": ["src/app.bootstrap"],
       "src/*": ["src/*"],
+      "common/*": ["src/common/*"],
+      "features/*": ["src/features/*"],
       "test/*": ["test/*"]
     }
   }

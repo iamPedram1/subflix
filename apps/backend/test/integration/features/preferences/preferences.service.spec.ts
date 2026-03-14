@@ -1,12 +1,12 @@
 import { Test } from '@nestjs/testing';
 
-import { AppConfigModule } from 'src/common/config/config.module';
-import { PrismaModule } from 'src/common/database/prisma/prisma.module';
-import { PrismaService } from 'src/common/database/prisma/prisma.service';
-import { DevicesModule } from 'src/features/devices/devices.module';
-import { DevicesService } from 'src/features/devices/devices.service';
-import { PreferencesModule } from 'src/features/preferences/preferences.module';
-import { PreferencesService } from 'src/features/preferences/preferences.service';
+import { AppConfigModule } from 'common/config/config.module';
+import { PrismaModule } from 'common/database/prisma/prisma.module';
+import { PrismaService } from 'common/database/prisma/prisma.service';
+import { DevicesModule } from 'features/devices/devices.module';
+import { DevicesService } from 'features/devices/devices.service';
+import { PreferencesModule } from 'features/preferences/preferences.module';
+import { PreferencesService } from 'features/preferences/preferences.service';
 
 import {
   describeIfDatabase,

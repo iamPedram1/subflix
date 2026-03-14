@@ -8,9 +8,14 @@ import {
 import { Request, Response } from 'express';
 import { MulterError } from 'multer';
 
-import { DomainError } from 'src/common/domain/errors/domain.error';
+import { DomainError } from 'common/domain/errors/domain.error';
+import {
+  isI18nKey,
+  resolveLocaleFromAcceptLanguage,
+  translate,
+} from 'common/i18n/i18n.util';
 
-import { REQUEST_ID_HEADER } from '../constants/request-context.constants';
+import { REQUEST_ID_HEADER } from 'common/http/constants/request-context.constants';
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
@@ -20,11 +25,19 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     const request = context.getRequest<Request>();
     const requestId = request.header(REQUEST_ID_HEADER) ?? 'unknown';
     const timestamp = new Date().toISOString();
+    const locale = resolveLocaleFromAcceptLanguage(
+      request.header('accept-language'),
+    );
 
     if (exception instanceof DomainError) {
+      const message =
+        exception.i18nKey && isI18nKey(exception.i18nKey)
+          ? translate(locale, exception.i18nKey, exception.i18nArgs)
+          : exception.message;
+
       response.status(exception.statusCode).json({
         code: exception.code,
-        message: exception.message,
+        message,
         details: exception.details,
         requestId,
         timestamp,
@@ -45,8 +58,8 @@ export class GlobalExceptionFilter implements ExceptionFilter {
             : 'upload_invalid',
         message:
           exception.code === 'LIMIT_FILE_SIZE'
-            ? 'Subtitle file exceeds the upload limit.'
-            : 'The uploaded subtitle file is invalid.',
+            ? translate(locale, 'errors.payload_too_large')
+            : translate(locale, 'errors.upload_invalid'),
         details: {
           multerCode: exception.code,
         },
@@ -76,7 +89,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
 
     response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
       code: 'internal_error',
-      message: 'An unexpected error occurred.',
+      message: translate(locale, 'errors.internal_error'),
       requestId,
       timestamp,
     });

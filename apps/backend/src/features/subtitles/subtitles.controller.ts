@@ -11,15 +11,15 @@ import {
 import { ClientDevice } from '@prisma/client';
 import { FileInterceptor } from '@nestjs/platform-express';
 
-import { CurrentDevice } from 'src/common/http/decorators/current-device.decorator';
-import { DeviceContextGuard } from 'src/common/http/guards/device-context.guard';
-import { RateLimit } from 'src/common/rate-limit/rate-limit.decorator';
+import { CurrentDevice } from 'common/http/decorators/current-device.decorator';
+import { DeviceContextGuard } from 'common/http/guards/device-context.guard';
+import { RateLimit } from 'common/rate-limit/rate-limit.decorator';
 
 import {
   DEFAULT_MAX_UPLOAD_BYTES,
   SUBTITLE_FILE_NAME_PATTERN,
-} from './subtitle-upload.constants';
-import { SubtitlesService } from './subtitles.service';
+} from 'features/subtitles/subtitle-upload.constants';
+import { SubtitlesService } from 'features/subtitles/subtitles.service';
 
 @UseGuards(DeviceContextGuard)
 @Controller('subtitles')

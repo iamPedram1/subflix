@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { SubtitleFormat } from '@prisma/client';
 
-import { SubtitleExportCue } from '../models/subtitle-cue.model';
+import { SubtitleExportCue } from 'features/subtitles/models/subtitle-cue.model';
 
 @Injectable()
 /** Converts normalized subtitle cues back into downloadable subtitle file text. */

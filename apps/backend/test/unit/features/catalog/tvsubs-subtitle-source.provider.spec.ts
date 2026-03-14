@@ -1,6 +1,6 @@
 import { ConfigService } from '@nestjs/config';
 
-import { TvSubsSubtitleSourceProvider } from 'src/features/catalog/providers/tvsubs-subtitle-source.provider';
+import { TvSubsSubtitleSourceProvider } from 'features/catalog/providers/tvsubs-subtitle-source.provider';
 import {
   tvSubsSearchHtml,
   tvSubsSeasonHtml,

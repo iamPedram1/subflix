@@ -1,6 +1,6 @@
 import { ConfigService } from '@nestjs/config';
 
-import { AppCacheService } from 'src/common/cache/app-cache.service';
+import { AppCacheService } from 'common/cache/app-cache.service';
 
 describe('AppCacheService', () => {
   const createConfigService = () =>

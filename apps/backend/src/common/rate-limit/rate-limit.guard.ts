@@ -3,15 +3,18 @@ import { ConfigService } from '@nestjs/config';
 import { Reflector } from '@nestjs/core';
 import type { Request, Response } from 'express';
 
-import { TooManyRequestsDomainError } from 'src/common/domain/errors/domain.error';
+import { TooManyRequestsDomainError } from 'common/domain/errors/domain.error';
 
 import {
   RATE_LIMIT_METADATA_KEY,
   SKIP_RATE_LIMIT_METADATA_KEY,
-} from './rate-limit.constants';
-import type { RateLimitOptions } from './rate-limit.decorator';
-import { RateLimitService, type RateLimitDecision } from './rate-limit.service';
-import { resolveRateLimitActors } from './rate-limit.util';
+} from 'common/rate-limit/rate-limit.constants';
+import type { RateLimitOptions } from 'common/rate-limit/rate-limit.decorator';
+import {
+  RateLimitService,
+  type RateLimitDecision,
+} from 'common/rate-limit/rate-limit.service';
+import { resolveRateLimitActors } from 'common/rate-limit/rate-limit.util';
 
 /** Applies global and per-route request throttling using an in-memory fixed-window store. */
 @Injectable()
@@ -55,6 +58,9 @@ export class RateLimitGuard implements CanActivate {
           retryAfterSeconds: blockedDecision.retryAfterSeconds,
           resetAt: new Date(blockedDecision.resetAt).toISOString(),
           scope,
+        },
+        {
+          key: 'errors.rate_limited',
         },
       );
     }

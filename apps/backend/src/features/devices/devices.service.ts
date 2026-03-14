@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ClientDevice } from '@prisma/client';
 
-import { DevicesRepository } from './devices.repository';
+import { DevicesRepository } from 'features/devices/devices.repository';
 
 @Injectable()
 /** Resolves request-scoped device identities for header-based ownership. */

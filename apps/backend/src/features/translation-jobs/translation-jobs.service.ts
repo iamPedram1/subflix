@@ -7,21 +7,21 @@ import {
   TranslationSourceType as PrismaTranslationSourceType,
 } from '@prisma/client';
 
-import { TranslationSourceType } from 'src/common/domain/enums/translation-source-type.enum';
-import { ValidationDomainError } from 'src/common/domain/errors/domain.error';
-import { CatalogService } from 'src/features/catalog/catalog.service';
-import { SubtitleExportCue } from 'src/features/subtitles/models/subtitle-cue.model';
-import { SubtitleExportService } from 'src/features/subtitles/utils/subtitle-export.service';
-import { SubtitlesRepository } from 'src/features/subtitles/subtitles.repository';
+import { TranslationSourceType } from 'common/domain/enums/translation-source-type.enum';
+import { ValidationDomainError } from 'common/domain/errors/domain.error';
+import { CatalogService } from 'features/catalog/catalog.service';
+import { SubtitleExportCue } from 'features/subtitles/models/subtitle-cue.model';
+import { SubtitleExportService } from 'features/subtitles/utils/subtitle-export.service';
+import { SubtitlesRepository } from 'features/subtitles/subtitles.repository';
 
-import { CreateTranslationJobDto } from './dto/create-translation-job.dto';
-import { TranslationJobsQueryDto } from './dto/translation-jobs-query.dto';
+import { CreateTranslationJobDto } from 'features/translation-jobs/dto/create-translation-job.dto';
+import { TranslationJobsQueryDto } from 'features/translation-jobs/dto/translation-jobs-query.dto';
 import {
   toTranslationJobSummary,
   toTranslationPreviewCue,
-} from './translation-jobs.mapper';
-import { TranslationJobRunnerService } from './translation-job-runner.service';
-import { TranslationJobsRepository } from './translation-jobs.repository';
+} from 'features/translation-jobs/translation-jobs.mapper';
+import { TranslationJobRunnerService } from 'features/translation-jobs/translation-job-runner.service';
+import { TranslationJobsRepository } from 'features/translation-jobs/translation-jobs.repository';
 
 type JobSeed = {
   title: string;
@@ -228,6 +228,10 @@ export class TranslationJobsService {
     if (job.status !== PrismaTranslationJobStatus.completed) {
       throw new ValidationDomainError(
         'Only completed translation jobs can be exported.',
+        undefined,
+        {
+          key: 'errors.translation.export_requires_completion',
+        },
       );
     }
   }
@@ -256,6 +260,10 @@ export class TranslationJobsService {
     if (!input.parsedFileId) {
       throw new ValidationDomainError(
         'parsedFileId is required for uploaded subtitle translations.',
+        undefined,
+        {
+          key: 'errors.translation.missing_upload_reference',
+        },
       );
     }
 
@@ -284,6 +292,10 @@ export class TranslationJobsService {
     if (!input.mediaId || !input.subtitleSourceId) {
       throw new ValidationDomainError(
         'mediaId and subtitleSourceId are required for catalog translations.',
+        undefined,
+        {
+          key: 'errors.translation.missing_catalog_reference',
+        },
       );
     }
 
@@ -295,6 +307,10 @@ export class TranslationJobsService {
     if (!media) {
       throw new ValidationDomainError(
         'The requested media title was not found.',
+        undefined,
+        {
+          key: 'errors.translation.media_not_found',
+        },
       );
     }
     const subtitleSource = subtitleSources.find(
@@ -303,6 +319,10 @@ export class TranslationJobsService {
     if (!subtitleSource) {
       throw new ValidationDomainError(
         'The requested subtitle source was not found.',
+        undefined,
+        {
+          key: 'errors.translation.subtitle_source_not_found',
+        },
       );
     }
 

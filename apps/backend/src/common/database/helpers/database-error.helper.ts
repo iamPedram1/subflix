@@ -4,7 +4,7 @@ import {
   ConflictDomainError,
   DomainError,
   ValidationDomainError,
-} from 'src/common/domain/errors/domain.error';
+} from 'common/domain/errors/domain.error';
 
 export const normalizeDatabaseError = (error: unknown): never => {
   if (error instanceof DomainError) {
@@ -18,6 +18,9 @@ export const normalizeDatabaseError = (error: unknown): never => {
         {
           target: error.meta?.target,
         },
+        {
+          key: 'errors.db.unique_constraint',
+        },
       );
     }
 
@@ -26,6 +29,9 @@ export const normalizeDatabaseError = (error: unknown): never => {
         'A related record reference is invalid.',
         {
           field: error.meta?.field_name,
+        },
+        {
+          key: 'errors.db.invalid_reference',
         },
       );
     }

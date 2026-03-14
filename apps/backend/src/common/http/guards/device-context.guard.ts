@@ -6,11 +6,11 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 
-import { DevicesService } from 'src/features/devices/devices.service';
+import { DevicesService } from 'features/devices/devices.service';
 
-import { DEVICE_ID_HEADER } from '../constants/request-context.constants';
-import { RequestWithContext } from '../types/request-context';
-import { requireSafeDeviceId } from '../utils/request-header.util';
+import { DEVICE_ID_HEADER } from 'common/http/constants/request-context.constants';
+import { RequestWithContext } from 'common/http/types/request-context';
+import { requireSafeDeviceId } from 'common/http/utils/request-header.util';
 
 @Injectable()
 /** Resolves the required device header and attaches the owning device to the request. */

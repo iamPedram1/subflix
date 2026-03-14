@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { AppLanguage } from '@prisma/client';
 
-import { delay } from 'src/common/utils/delay.util';
+import { delay } from 'common/utils/delay.util';
 
-import { TranslationProviderPort } from '../ports/translation-provider.port';
+import { TranslationProviderPort } from 'features/translation-jobs/ports/translation-provider.port';
 
 const translationPrefixes: Record<AppLanguage, string> = {
   en: '',

@@ -5,16 +5,16 @@ import {
   TranslationSourceType,
 } from '@prisma/client';
 
-import { delay } from 'src/common/utils/delay.util';
-import { CatalogService } from 'src/features/catalog/catalog.service';
-import { SubtitleCue } from 'src/features/subtitles/models/subtitle-cue.model';
-import { SubtitlesRepository } from 'src/features/subtitles/subtitles.repository';
+import { delay } from 'common/utils/delay.util';
+import { CatalogService } from 'features/catalog/catalog.service';
+import { SubtitleCue } from 'features/subtitles/models/subtitle-cue.model';
+import { SubtitlesRepository } from 'features/subtitles/subtitles.repository';
 
 import {
   TRANSLATION_PROVIDER_PORT,
   TranslationProviderPort,
-} from './ports/translation-provider.port';
-import { TranslationJobsRepository } from './translation-jobs.repository';
+} from 'features/translation-jobs/ports/translation-provider.port';
+import { TranslationJobsRepository } from 'features/translation-jobs/translation-jobs.repository';
 
 type PersistedJobCue = Parameters<
   TranslationJobsRepository['replaceJobCues']

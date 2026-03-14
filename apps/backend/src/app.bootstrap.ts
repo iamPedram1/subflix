@@ -3,8 +3,8 @@ import { ConfigService } from '@nestjs/config';
 import { Application as ExpressApplication, json, urlencoded } from 'express';
 import helmet from 'helmet';
 
-import { GlobalExceptionFilter } from './common/http/filters/global-exception.filter';
-import { RequestIdInterceptor } from './common/http/interceptors/request-id.interceptor';
+import { GlobalExceptionFilter } from 'common/http/filters/global-exception.filter';
+import { RequestIdInterceptor } from 'common/http/interceptors/request-id.interceptor';
 
 /**
  * Applies the shared NestJS runtime configuration used by both the HTTP server

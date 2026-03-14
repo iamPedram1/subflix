@@ -1,10 +1,10 @@
 import { ConfigService } from '@nestjs/config';
 
-import { AppCacheService } from 'src/common/cache/app-cache.service';
-import { SearchMediaType } from 'src/common/domain/enums/search-media-type.enum';
-import { CatalogMediaItem } from 'src/features/catalog/models/catalog-media-item.model';
-import { MockCatalogProvider } from 'src/features/catalog/providers/mock-catalog.provider';
-import { TmdbMediaCatalogProvider } from 'src/features/catalog/providers/tmdb-media-catalog.provider';
+import { AppCacheService } from 'common/cache/app-cache.service';
+import { SearchMediaType } from 'common/domain/enums/search-media-type.enum';
+import { CatalogMediaItem } from 'features/catalog/models/catalog-media-item.model';
+import { MockCatalogProvider } from 'features/catalog/providers/mock-catalog.provider';
+import { TmdbMediaCatalogProvider } from 'features/catalog/providers/tmdb-media-catalog.provider';
 
 describe('TmdbMediaCatalogProvider', () => {
   const movieCacheTtlMs = 30 * 24 * 60 * 60_000;

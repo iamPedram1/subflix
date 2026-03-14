@@ -1,18 +1,18 @@
 import { Test } from '@nestjs/testing';
 import { TranslationJobStatus } from '@prisma/client';
 
-import { AppConfigModule } from 'src/common/config/config.module';
-import { AppLanguage } from 'src/common/domain/enums/app-language.enum';
-import { TranslationSourceType } from 'src/common/domain/enums/translation-source-type.enum';
-import { PrismaModule } from 'src/common/database/prisma/prisma.module';
-import { PrismaService } from 'src/common/database/prisma/prisma.service';
-import { CatalogModule } from 'src/features/catalog/catalog.module';
-import { DevicesModule } from 'src/features/devices/devices.module';
-import { DevicesService } from 'src/features/devices/devices.service';
-import { SubtitlesModule } from 'src/features/subtitles/subtitles.module';
-import { SubtitlesService } from 'src/features/subtitles/subtitles.service';
-import { TranslationJobsModule } from 'src/features/translation-jobs/translation-jobs.module';
-import { TranslationJobsService } from 'src/features/translation-jobs/translation-jobs.service';
+import { AppConfigModule } from 'common/config/config.module';
+import { AppLanguage } from 'common/domain/enums/app-language.enum';
+import { TranslationSourceType } from 'common/domain/enums/translation-source-type.enum';
+import { PrismaModule } from 'common/database/prisma/prisma.module';
+import { PrismaService } from 'common/database/prisma/prisma.service';
+import { CatalogModule } from 'features/catalog/catalog.module';
+import { DevicesModule } from 'features/devices/devices.module';
+import { DevicesService } from 'features/devices/devices.service';
+import { SubtitlesModule } from 'features/subtitles/subtitles.module';
+import { SubtitlesService } from 'features/subtitles/subtitles.service';
+import { TranslationJobsModule } from 'features/translation-jobs/translation-jobs.module';
+import { TranslationJobsService } from 'features/translation-jobs/translation-jobs.service';
 
 import {
   describeIfDatabase,

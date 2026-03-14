@@ -1,6 +1,6 @@
 import { ConfigService } from '@nestjs/config';
 
-import { PodnapisiSubtitleSourceProvider } from 'src/features/catalog/providers/podnapisi-subtitle-source.provider';
+import { PodnapisiSubtitleSourceProvider } from 'features/catalog/providers/podnapisi-subtitle-source.provider';
 import { podnapisiSearchHtml } from 'test/core/shared/catalog-subtitle-provider.fixtures';
 
 describe('PodnapisiSubtitleSourceProvider', () => {

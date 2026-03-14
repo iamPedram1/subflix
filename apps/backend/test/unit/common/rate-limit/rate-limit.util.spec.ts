@@ -1,6 +1,6 @@
 import type { Request } from 'express';
 
-import { resolveRateLimitActors } from 'src/common/rate-limit/rate-limit.util';
+import { resolveRateLimitActors } from 'common/rate-limit/rate-limit.util';
 
 describe('resolveRateLimitActors', () => {
   it('returns both ip and device actor keys when a valid device header exists', () => {

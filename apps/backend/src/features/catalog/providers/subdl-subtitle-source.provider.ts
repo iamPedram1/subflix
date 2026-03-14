@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
-import { SubtitleFormat } from 'src/common/domain/enums/subtitle-format.enum';
+import { SubtitleFormat } from 'common/domain/enums/subtitle-format.enum';
 
-import { SubtitleSourceCandidate } from '../models/subtitle-source-candidate.model';
-import { SubtitleSourceSearchInput } from '../models/subtitle-source-search-input.model';
-import { SubtitleSourceProvider } from '../ports/subtitle-source-provider.port';
-import { fetchWithTimeout } from '../utils/provider-fetch.util';
+import { SubtitleSourceCandidate } from 'features/catalog/models/subtitle-source-candidate.model';
+import { SubtitleSourceSearchInput } from 'features/catalog/models/subtitle-source-search-input.model';
+import { SubtitleSourceProvider } from 'features/catalog/ports/subtitle-source-provider.port';
+import { fetchWithTimeout } from 'features/catalog/utils/provider-fetch.util';
 
 type SubdlResponse = {
   status?: boolean;

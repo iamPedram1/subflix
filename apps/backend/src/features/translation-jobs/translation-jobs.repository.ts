@@ -4,10 +4,10 @@ import { Prisma, TranslationJob, TranslationJobStatus } from '@prisma/client';
 import {
   buildPagination,
   toPaginatedResult,
-} from 'src/common/database/helpers/pagination.helper';
-import { requireEntity } from 'src/common/database/helpers/entity.helper';
-import { normalizeDatabaseError } from 'src/common/database/helpers/database-error.helper';
-import { PrismaService } from 'src/common/database/prisma/prisma.service';
+} from 'common/database/helpers/pagination.helper';
+import { requireEntity } from 'common/database/helpers/entity.helper';
+import { normalizeDatabaseError } from 'common/database/helpers/database-error.helper';
+import { PrismaService } from 'common/database/prisma/prisma.service';
 
 @Injectable()
 /** Encapsulates persistence for translation jobs, previews, and exports. */

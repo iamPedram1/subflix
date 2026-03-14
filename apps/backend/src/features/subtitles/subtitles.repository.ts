@@ -7,11 +7,11 @@ import {
   SubtitleFormat,
 } from '@prisma/client';
 
-import { normalizeDatabaseError } from 'src/common/database/helpers/database-error.helper';
-import { requireEntity } from 'src/common/database/helpers/entity.helper';
-import { PrismaService } from 'src/common/database/prisma/prisma.service';
+import { normalizeDatabaseError } from 'common/database/helpers/database-error.helper';
+import { requireEntity } from 'common/database/helpers/entity.helper';
+import { PrismaService } from 'common/database/prisma/prisma.service';
 
-import { SubtitleCue } from './models/subtitle-cue.model';
+import { SubtitleCue } from 'features/subtitles/models/subtitle-cue.model';
 
 @Injectable()
 /** Persists parsed subtitle uploads and their normalized cue rows. */

@@ -6,7 +6,7 @@ import {
   databaseConfig,
   subtitleSourcesConfig,
   tmdbConfig,
-} from './app.config';
+} from 'common/config/app.config';
 
 @Global()
 @Module({

@@ -1,4 +1,4 @@
-import { SubtitleSourceCandidate } from '../models/subtitle-source-candidate.model';
+import { SubtitleSourceCandidate } from 'features/catalog/models/subtitle-source-candidate.model';
 
 const normalizeUrl = (value: string): string => value.trim().toLowerCase();
 

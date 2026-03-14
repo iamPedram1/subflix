@@ -1,6 +1,6 @@
 import { ConfigService } from '@nestjs/config';
 
-import { SubdlSubtitleSourceProvider } from 'src/features/catalog/providers/subdl-subtitle-source.provider';
+import { SubdlSubtitleSourceProvider } from 'features/catalog/providers/subdl-subtitle-source.provider';
 import { subdlMovieResponse } from 'test/core/shared/catalog-subtitle-provider.fixtures';
 
 describe('SubdlSubtitleSourceProvider', () => {

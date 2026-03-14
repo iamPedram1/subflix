@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, UserPreference } from '@prisma/client';
 
-import { normalizeDatabaseError } from 'src/common/database/helpers/database-error.helper';
-import { PrismaService } from 'src/common/database/prisma/prisma.service';
+import { normalizeDatabaseError } from 'common/database/helpers/database-error.helper';
+import { PrismaService } from 'common/database/prisma/prisma.service';
 
 @Injectable()
 /** Encapsulates persistence for device-scoped user preferences. */

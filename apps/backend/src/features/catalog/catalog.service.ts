@@ -1,15 +1,18 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { AppCacheService } from 'src/common/cache/app-cache.service';
-import { NotFoundDomainError } from 'src/common/domain/errors/domain.error';
+import { AppCacheService } from 'common/cache/app-cache.service';
+import { NotFoundDomainError } from 'common/domain/errors/domain.error';
 
 import {
   MEDIA_CATALOG_PORT,
   MediaCatalogPort,
-} from './ports/media-catalog.port';
-import { SUBTITLE_CUE_PORT, SubtitleCuePort } from './ports/subtitle-cue.port';
-import { GetSubtitleSourcesQueryDto } from './dto/get-subtitle-sources-query.dto';
-import { SubtitleSourceDiscoveryService } from './subtitle-source-discovery.service';
+} from 'features/catalog/ports/media-catalog.port';
+import {
+  SUBTITLE_CUE_PORT,
+  SubtitleCuePort,
+} from 'features/catalog/ports/subtitle-cue.port';
+import { GetSubtitleSourcesQueryDto } from 'features/catalog/dto/get-subtitle-sources-query.dto';
+import { SubtitleSourceDiscoveryService } from 'features/catalog/subtitle-source-discovery.service';
 
 const CUE_CACHE_TTL_MS = 30 * 60_000;
 
@@ -45,6 +48,10 @@ export class CatalogService {
     if (!media) {
       throw new NotFoundDomainError(
         'The requested catalog title was not found.',
+        undefined,
+        {
+          key: 'errors.catalog.not_found',
+        },
       );
     }
 

@@ -1,7 +1,7 @@
 import { SubtitleFormat } from '@prisma/client';
 
-import { ValidationDomainError } from 'src/common/domain/errors/domain.error';
-import { SubtitleParserService } from 'src/features/subtitles/utils/subtitle-parser.service';
+import { ValidationDomainError } from 'common/domain/errors/domain.error';
+import { SubtitleParserService } from 'features/subtitles/utils/subtitle-parser.service';
 
 import { sampleSrt, sampleVtt } from 'test/core/shared/subtitle-fixtures';
 

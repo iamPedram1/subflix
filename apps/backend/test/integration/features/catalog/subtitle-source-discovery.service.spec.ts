@@ -1,9 +1,9 @@
 import { ConfigService } from '@nestjs/config';
 
-import { AppCacheService } from 'src/common/cache/app-cache.service';
-import { SearchMediaType } from 'src/common/domain/enums/search-media-type.enum';
-import { SubtitleSourceDiscoveryService } from 'src/features/catalog/subtitle-source-discovery.service';
-import { SubtitleSourceProvider } from 'src/features/catalog/ports/subtitle-source-provider.port';
+import { AppCacheService } from 'common/cache/app-cache.service';
+import { SearchMediaType } from 'common/domain/enums/search-media-type.enum';
+import { SubtitleSourceDiscoveryService } from 'features/catalog/subtitle-source-discovery.service';
+import { SubtitleSourceProvider } from 'features/catalog/ports/subtitle-source-provider.port';
 
 describe('SubtitleSourceDiscoveryService integration', () => {
   const createConfigService = (overrides?: Record<string, unknown>) =>

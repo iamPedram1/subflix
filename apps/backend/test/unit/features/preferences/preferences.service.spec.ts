@@ -1,10 +1,10 @@
 import { ClientDevice, UserPreference } from '@prisma/client';
 
-import { AppCacheService } from 'src/common/cache/app-cache.service';
-import { AppLanguage } from 'src/common/domain/enums/app-language.enum';
-import { ThemePreference } from 'src/common/domain/enums/theme-preference.enum';
-import { PreferencesRepository } from 'src/features/preferences/preferences.repository';
-import { PreferencesService } from 'src/features/preferences/preferences.service';
+import { AppCacheService } from 'common/cache/app-cache.service';
+import { AppLanguage } from 'common/domain/enums/app-language.enum';
+import { ThemePreference } from 'common/domain/enums/theme-preference.enum';
+import { PreferencesRepository } from 'features/preferences/preferences.repository';
+import { PreferencesService } from 'features/preferences/preferences.service';
 
 describe('PreferencesService', () => {
   const device = {

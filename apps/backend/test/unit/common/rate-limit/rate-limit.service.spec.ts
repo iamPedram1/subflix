@@ -1,6 +1,6 @@
 import { ConfigService } from '@nestjs/config';
 
-import { RateLimitService } from 'src/common/rate-limit/rate-limit.service';
+import { RateLimitService } from 'common/rate-limit/rate-limit.service';
 
 describe('RateLimitService', () => {
   it('blocks requests after the configured limit and resets after the window', () => {

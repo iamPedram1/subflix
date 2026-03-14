@@ -3,7 +3,7 @@ import { SetMetadata } from '@nestjs/common';
 import {
   RATE_LIMIT_METADATA_KEY,
   SKIP_RATE_LIMIT_METADATA_KEY,
-} from './rate-limit.constants';
+} from 'common/rate-limit/rate-limit.constants';
 
 export type RateLimitOptions = {
   limit: number;

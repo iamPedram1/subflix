@@ -1,26 +1,26 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
-import { AppCacheService } from 'src/common/cache/app-cache.service';
+import { AppCacheService } from 'common/cache/app-cache.service';
 import {
   ServiceUnavailableDomainError,
   ValidationDomainError,
-} from 'src/common/domain/errors/domain.error';
-import { SearchMediaType } from 'src/common/domain/enums/search-media-type.enum';
+} from 'common/domain/errors/domain.error';
+import { SearchMediaType } from 'common/domain/enums/search-media-type.enum';
 
-import { GetSubtitleSourcesQueryDto } from './dto/get-subtitle-sources-query.dto';
-import { CatalogMediaDetails } from './models/catalog-media-details.model';
-import { CatalogSubtitleSource } from './models/catalog-subtitle-source.model';
-import { SubtitleSourceCandidate } from './models/subtitle-source-candidate.model';
-import { SubtitleSourceSearchInput } from './models/subtitle-source-search-input.model';
+import { GetSubtitleSourcesQueryDto } from 'features/catalog/dto/get-subtitle-sources-query.dto';
+import { CatalogMediaDetails } from 'features/catalog/models/catalog-media-details.model';
+import { CatalogSubtitleSource } from 'features/catalog/models/catalog-subtitle-source.model';
+import { SubtitleSourceCandidate } from 'features/catalog/models/subtitle-source-candidate.model';
+import { SubtitleSourceSearchInput } from 'features/catalog/models/subtitle-source-search-input.model';
 import {
   SUBTITLE_SOURCE_PROVIDERS,
   SubtitleSourceProvider,
-} from './ports/subtitle-source-provider.port';
-import { buildSubtitleSourceCacheKey } from './utils/subtitle-source-cache-key.util';
-import { dedupeSubtitleSourceCandidates } from './utils/subtitle-source-dedupe.util';
-import { rankSubtitleSourceCandidates } from './utils/subtitle-source-ranking.util';
-import { toCatalogSubtitleSource } from './utils/subtitle-source-response.mapper';
+} from 'features/catalog/ports/subtitle-source-provider.port';
+import { buildSubtitleSourceCacheKey } from 'features/catalog/utils/subtitle-source-cache-key.util';
+import { dedupeSubtitleSourceCandidates } from 'features/catalog/utils/subtitle-source-dedupe.util';
+import { rankSubtitleSourceCandidates } from 'features/catalog/utils/subtitle-source-ranking.util';
+import { toCatalogSubtitleSource } from 'features/catalog/utils/subtitle-source-response.mapper';
 
 const DEFAULT_PREFERRED_LANGUAGE = 'en';
 const MAX_PUBLIC_RESULTS = 20;
@@ -104,6 +104,10 @@ export class SubtitleSourceDiscoveryService {
           if (successfulProviderResponses === 0 && meaningfulFailures > 0) {
             throw new ServiceUnavailableDomainError(
               'Subtitle sources are temporarily unavailable for this title.',
+              undefined,
+              {
+                key: 'errors.catalog.subtitles_unavailable',
+              },
             );
           }
 
@@ -161,6 +165,10 @@ export class SubtitleSourceDiscoveryService {
     ) {
       throw new ValidationDomainError(
         'seasonNumber and episodeNumber are only supported for TV titles.',
+        undefined,
+        {
+          key: 'errors.catalog.tv_only_episode_scope',
+        },
       );
     }
   }

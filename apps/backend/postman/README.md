@@ -42,3 +42,4 @@ Those private variants are ignored by git through the root `.gitignore`.
 
 - `Catalog / Get Subtitle Sources` supports optional query params: `preferredLanguage`, `seasonNumber`, and `episodeNumber` (season/episode must be supplied together for TV).
 - `subtitleSourceId` values returned by the API are stable opaque ids in the `ssrc:*` format.
+- The backend localizes error `message` strings based on the `Accept-Language` header (fallback: `en`).

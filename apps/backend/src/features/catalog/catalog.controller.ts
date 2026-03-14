@@ -1,11 +1,11 @@
 import { Controller, Get, Header, Param, Query } from '@nestjs/common';
 
-import { RateLimit } from 'src/common/rate-limit/rate-limit.decorator';
+import { RateLimit } from 'common/rate-limit/rate-limit.decorator';
 
-import { CatalogService } from './catalog.service';
-import { GetSubtitleSourcesParamsDto } from './dto/get-subtitle-sources-params.dto';
-import { GetSubtitleSourcesQueryDto } from './dto/get-subtitle-sources-query.dto';
-import { SearchCatalogQueryDto } from './dto/search-catalog-query.dto';
+import { CatalogService } from 'features/catalog/catalog.service';
+import { GetSubtitleSourcesParamsDto } from 'features/catalog/dto/get-subtitle-sources-params.dto';
+import { GetSubtitleSourcesQueryDto } from 'features/catalog/dto/get-subtitle-sources-query.dto';
+import { SearchCatalogQueryDto } from 'features/catalog/dto/search-catalog-query.dto';
 
 @Controller('catalog')
 /** Exposes catalog search and subtitle source discovery endpoints. */

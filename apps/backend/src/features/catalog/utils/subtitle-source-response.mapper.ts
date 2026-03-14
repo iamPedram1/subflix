@@ -1,8 +1,8 @@
-import { SubtitleFormat } from 'src/common/domain/enums/subtitle-format.enum';
+import { SubtitleFormat } from 'common/domain/enums/subtitle-format.enum';
 
-import { CatalogSubtitleSource } from '../models/catalog-subtitle-source.model';
-import { SubtitleSourceCandidate } from '../models/subtitle-source-candidate.model';
-import { buildSubtitleSourceId } from './subtitle-source-id.util';
+import { CatalogSubtitleSource } from 'features/catalog/models/catalog-subtitle-source.model';
+import { SubtitleSourceCandidate } from 'features/catalog/models/subtitle-source-candidate.model';
+import { buildSubtitleSourceId } from 'features/catalog/utils/subtitle-source-id.util';
 
 const formatProviderName = (
   provider: SubtitleSourceCandidate['provider'],

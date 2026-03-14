@@ -1,9 +1,9 @@
-import { SearchMediaType } from 'src/common/domain/enums/search-media-type.enum';
-import { SubtitleFormat } from 'src/common/domain/enums/subtitle-format.enum';
-import { SubtitleCue } from 'src/features/subtitles/models/subtitle-cue.model';
+import { SearchMediaType } from 'common/domain/enums/search-media-type.enum';
+import { SubtitleFormat } from 'common/domain/enums/subtitle-format.enum';
+import { SubtitleCue } from 'features/subtitles/models/subtitle-cue.model';
 
-import { CatalogMediaItem } from '../models/catalog-media-item.model';
-import { CatalogSubtitleSource } from '../models/catalog-subtitle-source.model';
+import { CatalogMediaItem } from 'features/catalog/models/catalog-media-item.model';
+import { CatalogSubtitleSource } from 'features/catalog/models/catalog-subtitle-source.model';
 
 export const mockCatalog: CatalogMediaItem[] = [
   {

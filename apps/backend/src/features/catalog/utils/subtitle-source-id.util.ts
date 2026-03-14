@@ -1,4 +1,4 @@
-import { SubtitleSourceProviderName } from '../models/subtitle-source-provider-name.model';
+import { SubtitleSourceProviderName } from 'features/catalog/models/subtitle-source-provider-name.model';
 
 const SUBTITLE_SOURCE_ID_PATTERN =
   /^ssrc:(subdl|podnapisi|tvsubs):[A-Za-z0-9_-]+$/;

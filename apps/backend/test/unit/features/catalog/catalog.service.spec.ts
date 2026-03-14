@@ -1,8 +1,8 @@
-import { AppCacheService } from 'src/common/cache/app-cache.service';
-import { CatalogService } from 'src/features/catalog/catalog.service';
-import { MediaCatalogPort } from 'src/features/catalog/ports/media-catalog.port';
-import { SubtitleCuePort } from 'src/features/catalog/ports/subtitle-cue.port';
-import { SubtitleSourceDiscoveryService } from 'src/features/catalog/subtitle-source-discovery.service';
+import { AppCacheService } from 'common/cache/app-cache.service';
+import { CatalogService } from 'features/catalog/catalog.service';
+import { MediaCatalogPort } from 'features/catalog/ports/media-catalog.port';
+import { SubtitleCuePort } from 'features/catalog/ports/subtitle-cue.port';
+import { SubtitleSourceDiscoveryService } from 'features/catalog/subtitle-source-discovery.service';
 
 describe('CatalogService', () => {
   const createCacheService = () =>

@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { ClientDevice, UserPreference } from '@prisma/client';
 
-import { AppCacheService } from 'src/common/cache/app-cache.service';
-import { AppLanguage } from 'src/common/domain/enums/app-language.enum';
-import { ThemePreference } from 'src/common/domain/enums/theme-preference.enum';
+import { AppCacheService } from 'common/cache/app-cache.service';
+import { AppLanguage } from 'common/domain/enums/app-language.enum';
+import { ThemePreference } from 'common/domain/enums/theme-preference.enum';
 
-import { UpdatePreferencesDto } from './dto/update-preferences.dto';
-import { PreferencesRepository } from './preferences.repository';
+import { UpdatePreferencesDto } from 'features/preferences/dto/update-preferences.dto';
+import { PreferencesRepository } from 'features/preferences/preferences.repository';
 
 type PreferenceWriteModel = Parameters<
   PreferencesRepository['upsertByClientDeviceId']
