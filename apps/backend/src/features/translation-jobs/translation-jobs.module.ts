@@ -9,6 +9,7 @@ import { TranslationJobRunnerService } from 'features/translation-jobs/translati
 import { TranslationJobsController } from 'features/translation-jobs/translation-jobs.controller';
 import { TranslationJobsRepository } from 'features/translation-jobs/translation-jobs.repository';
 import { TranslationJobsService } from 'features/translation-jobs/translation-jobs.service';
+import { SubtitleAcquisitionStrategyService } from 'features/translation-jobs/subtitle-acquisition-strategy.service';
 
 @Module({
   imports: [DevicesModule, CatalogModule, SubtitlesModule],
@@ -17,6 +18,7 @@ import { TranslationJobsService } from 'features/translation-jobs/translation-jo
     TranslationJobsRepository,
     TranslationJobsService,
     TranslationJobRunnerService,
+    SubtitleAcquisitionStrategyService,
     MockTranslationProvider,
     {
       provide: TRANSLATION_PROVIDER_PORT,

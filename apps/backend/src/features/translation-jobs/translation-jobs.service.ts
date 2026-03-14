@@ -25,6 +25,7 @@ import { TranslationJobsRepository } from 'features/translation-jobs/translation
 
 type CatalogSubtitleSourceRef = {
   subtitleSourceId: string;
+  fallbackSubtitleSourceId?: string;
   seasonNumber?: number;
   episodeNumber?: number;
   releaseHint?: string;
@@ -228,9 +229,15 @@ export class TranslationJobsService {
       parsedFileId: job.parsedFileId ?? undefined,
       mediaId: (job.mediaRef as { mediaId?: string } | null)?.mediaId,
       subtitleSourceId: subtitleSourceRef?.subtitleSourceId,
-      seasonNumber: subtitleSourceRef?.seasonNumber,
-      episodeNumber: subtitleSourceRef?.episodeNumber,
-      releaseHint: subtitleSourceRef?.releaseHint,
+      ...(subtitleSourceRef?.seasonNumber !== undefined
+        ? { seasonNumber: subtitleSourceRef.seasonNumber }
+        : {}),
+      ...(subtitleSourceRef?.episodeNumber !== undefined
+        ? { episodeNumber: subtitleSourceRef.episodeNumber }
+        : {}),
+      ...(subtitleSourceRef?.releaseHint !== undefined
+        ? { releaseHint: subtitleSourceRef.releaseHint }
+        : {}),
       targetLanguage: job.targetLanguage,
     };
   }
@@ -352,6 +359,7 @@ export class TranslationJobsService {
       mediaRef: { mediaId: media.id },
       subtitleSourceRef: {
         subtitleSourceId: subtitleSource.id,
+        fallbackSubtitleSourceId: subtitleSource.id,
         ...(input.seasonNumber !== undefined
           ? { seasonNumber: input.seasonNumber }
           : {}),

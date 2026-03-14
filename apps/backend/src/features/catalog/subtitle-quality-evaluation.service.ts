@@ -16,6 +16,7 @@ export class SubtitleQualityEvaluationService {
     releaseHint?: string;
     seasonNumber?: number;
     episodeNumber?: number;
+    expectedLanguageCode?: string;
   }): SubtitleQualityEvaluation {
     return evaluateCatalogSubtitleQuality(params);
   }

@@ -58,7 +58,7 @@ export class CatalogService {
     return this.subtitleSourceDiscoveryService.discover(media, query);
   }
 
-  /** Retrieves normalized English subtitle cues for a chosen source. */
+  /** Retrieves normalized subtitle cues for a chosen source. */
   getSubtitleCues(mediaId: string, subtitleSourceId: string) {
     return this.cacheService.getOrSet(
       this.buildCacheKey('cues', mediaId, subtitleSourceId),

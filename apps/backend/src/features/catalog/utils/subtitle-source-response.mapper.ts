@@ -64,6 +64,8 @@ export const toCatalogSubtitleSource = (
   return {
     id: buildSubtitleSourceId(candidate.provider, candidate.providerSubtitleId),
     label: buildLabel(candidate),
+    languageCode: candidate.languageCode?.trim().toLowerCase() || undefined,
+    languageName: candidate.languageName?.trim() || undefined,
     releaseGroup: extractReleaseGroup(candidate),
     format: detectFormat(candidate),
     hearingImpaired: candidate.hearingImpaired ?? false,

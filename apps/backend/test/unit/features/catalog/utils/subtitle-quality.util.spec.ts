@@ -122,6 +122,7 @@ describe('evaluateCatalogSubtitleQuality', () => {
       media: movie,
       subtitleSourceId: 'ssrc:subdl:mno',
       sourceName: 'Inception.2010.1080p.BluRay.x264-GRP',
+      expectedLanguageCode: 'en',
       cues: [
         { cueIndex: 1, startMs: 1_000, endMs: 3_000, text: '12345 67890' },
         { cueIndex: 2, startMs: 4_000, endMs: 6_000, text: '... ... ...' },

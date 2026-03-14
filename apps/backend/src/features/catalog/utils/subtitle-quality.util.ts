@@ -124,6 +124,7 @@ export const evaluateCatalogSubtitleQuality = (params: {
   releaseHint?: string;
   seasonNumber?: number;
   episodeNumber?: number;
+  expectedLanguageCode?: string;
 }): SubtitleQualityEvaluation => {
   const warnings: string[] = [];
   const signals: Record<string, unknown> = {};
@@ -238,8 +239,11 @@ export const evaluateCatalogSubtitleQuality = (params: {
   }
 
   // Language sanity (very lightweight).
-  if (!looksLikeEnglish(params.cues)) {
-    warnings.push('language_unexpected');
+  const expectedLanguage = params.expectedLanguageCode?.trim().toLowerCase();
+  if (!expectedLanguage || expectedLanguage === 'en') {
+    if (!looksLikeEnglish(params.cues)) {
+      warnings.push('language_unexpected');
+    }
   }
 
   // Blocking policy: only block clearly broken subtitles.

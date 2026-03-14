@@ -159,7 +159,10 @@ describe('TranslationJobsService', () => {
         sourceName: 'OpenSubtitles BluRay',
         parsedFileId: null,
         mediaRef: { mediaId: 'dune_part_two' },
-        subtitleSourceRef: { subtitleSourceId: stableSubtitleSourceId },
+        subtitleSourceRef: {
+          subtitleSourceId: stableSubtitleSourceId,
+          fallbackSubtitleSourceId: stableSubtitleSourceId,
+        },
       }),
     );
     expect(runner.schedule).toHaveBeenCalledWith('job-1');

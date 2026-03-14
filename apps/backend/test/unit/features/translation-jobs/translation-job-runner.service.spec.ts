@@ -12,6 +12,7 @@ import { SubtitleQualityEvaluationService } from 'features/catalog/subtitle-qual
 import { SubtitleTimingAlignmentService } from 'features/catalog/subtitle-timing-alignment.service';
 import { SubtitlesRepository } from 'features/subtitles/subtitles.repository';
 import { TranslationProviderPort } from 'features/translation-jobs/ports/translation-provider.port';
+import { SubtitleAcquisitionStrategyService } from 'features/translation-jobs/subtitle-acquisition-strategy.service';
 import { TranslationJobRunnerService } from 'features/translation-jobs/translation-job-runner.service';
 import { TranslationJobsRepository } from 'features/translation-jobs/translation-jobs.repository';
 
@@ -52,6 +53,7 @@ describe('TranslationJobRunnerService', () => {
       {} as CatalogService,
       {} as SubtitleQualityEvaluationService,
       {} as SubtitleTimingAlignmentService,
+      {} as SubtitleAcquisitionStrategyService,
       {} as TranslationProviderPort,
     );
     const runSpy = vi.spyOn(service, 'run').mockResolvedValue();
@@ -74,6 +76,7 @@ describe('TranslationJobRunnerService', () => {
       {} as CatalogService,
       {} as SubtitleQualityEvaluationService,
       {} as SubtitleTimingAlignmentService,
+      {} as SubtitleAcquisitionStrategyService,
       {} as TranslationProviderPort,
     );
     const runSpy = vi.spyOn(service, 'run').mockResolvedValue();
@@ -116,6 +119,7 @@ describe('TranslationJobRunnerService', () => {
       {} as CatalogService,
       {} as SubtitleQualityEvaluationService,
       {} as SubtitleTimingAlignmentService,
+      {} as SubtitleAcquisitionStrategyService,
       translationProvider,
     );
 
@@ -162,6 +166,7 @@ describe('TranslationJobRunnerService', () => {
       {} as CatalogService,
       {} as SubtitleQualityEvaluationService,
       {} as SubtitleTimingAlignmentService,
+      {} as SubtitleAcquisitionStrategyService,
       translationProvider,
     );
 
@@ -230,6 +235,16 @@ describe('TranslationJobRunnerService', () => {
           },
         })),
       } as unknown as SubtitleTimingAlignmentService,
+      {
+        decideCatalogAcquisition: vi.fn().mockResolvedValue({
+          acquisitionMode: 'ai_translation',
+          subtitleSourceIdToUse: stableSubtitleSourceId,
+          selectedLanguageCode: 'en',
+          requestedTargetLanguage: 'fr',
+          reusedExistingSubtitle: false,
+          reason: 'no_target_subtitle_candidates',
+        }),
+      } as unknown as SubtitleAcquisitionStrategyService,
       translationProvider,
     );
 
@@ -298,6 +313,16 @@ describe('TranslationJobRunnerService', () => {
           },
         })),
       } as unknown as SubtitleTimingAlignmentService,
+      {
+        decideCatalogAcquisition: vi.fn().mockResolvedValue({
+          acquisitionMode: 'ai_translation',
+          subtitleSourceIdToUse: stableSubtitleSourceId,
+          selectedLanguageCode: 'en',
+          requestedTargetLanguage: 'fr',
+          reusedExistingSubtitle: false,
+          reason: 'no_target_subtitle_candidates',
+        }),
+      } as unknown as SubtitleAcquisitionStrategyService,
       translationProvider,
     );
 
@@ -372,6 +397,16 @@ describe('TranslationJobRunnerService', () => {
           },
         })),
       } as unknown as SubtitleTimingAlignmentService,
+      {
+        decideCatalogAcquisition: vi.fn().mockResolvedValue({
+          acquisitionMode: 'ai_translation',
+          subtitleSourceIdToUse: stableSubtitleSourceId,
+          selectedLanguageCode: 'en',
+          requestedTargetLanguage: 'fr',
+          reusedExistingSubtitle: false,
+          reason: 'no_target_subtitle_candidates',
+        }),
+      } as unknown as SubtitleAcquisitionStrategyService,
       translationProvider,
     );
 
@@ -387,6 +422,100 @@ describe('TranslationJobRunnerService', () => {
         status: TranslationJobStatus.failed,
         stageLabel: 'Translation failed',
       }),
+    );
+  });
+
+  it('reuses an existing target-language subtitle and skips translation', async () => {
+    vi.useFakeTimers();
+
+    const translationJobsRepository = {
+      claimQueuedJobForRunner: vi.fn().mockResolvedValue(
+        createRunnerJob({
+          sourceType: TranslationSourceType.catalog,
+          parsedFileId: null,
+          mediaRef: { mediaId: 'movie_27205' },
+          subtitleSourceRef: { subtitleSourceId: stableSubtitleSourceId },
+        }),
+      ),
+      updateJob: vi.fn().mockResolvedValue(undefined),
+      replaceJobCues: vi.fn().mockResolvedValue(undefined),
+      findReusableCatalogSourceCues: vi.fn().mockResolvedValue([]),
+    } as unknown as TranslationJobsRepository;
+
+    const catalogService = {
+      findById: vi.fn().mockResolvedValue(null),
+      getSubtitleCues: vi.fn(),
+    } as unknown as CatalogService;
+
+    const translationProvider = {
+      translate: vi.fn(),
+    } as unknown as TranslationProviderPort;
+
+    const service = new TranslationJobRunnerService(
+      translationJobsRepository,
+      {} as SubtitlesRepository,
+      catalogService,
+      {
+        evaluateCatalogJob: vi.fn().mockReturnValue({
+          confidenceScore: 70,
+          confidenceLevel: 'medium',
+          warnings: [],
+          shouldBlockAutoUse: false,
+          signals: {},
+        }),
+      } as unknown as SubtitleQualityEvaluationService,
+      {
+        alignCatalogCues: vi.fn((cues) => ({
+          cues,
+          analysis: {
+            detectedOffsetMs: 0,
+            confidence: 0,
+            appliedCorrection: false,
+            warnings: [],
+          },
+        })),
+      } as unknown as SubtitleTimingAlignmentService,
+      {
+        decideCatalogAcquisition: vi.fn().mockResolvedValue({
+          acquisitionMode: 'existing_target_subtitle',
+          subtitleSourceIdToUse: 'ssrc:subdl:fr',
+          selectedLanguageCode: 'fr',
+          requestedTargetLanguage: 'fr',
+          reusedExistingSubtitle: true,
+          reason: 'allowed',
+          subtitleSourceLabel: 'French Sub',
+          subtitleSourceFormat: SubtitleFormat.srt,
+          cues: [
+            {
+              cueIndex: 1,
+              startMs: 65_000,
+              endMs: 67_000,
+              text: 'Bonjour',
+            },
+          ],
+          reusedSubtitleQuality: {
+            confidenceScore: 70,
+            confidenceLevel: 'medium',
+            warnings: [],
+          },
+        }),
+      } as unknown as SubtitleAcquisitionStrategyService,
+      translationProvider,
+    );
+
+    const runPromise = service.run('job-1');
+    await vi.runAllTimersAsync();
+    await runPromise;
+
+    expect(translationProvider.translate).not.toHaveBeenCalled();
+    expect(translationJobsRepository.replaceJobCues).toHaveBeenCalledWith(
+      'job-1',
+      [
+        expect.objectContaining({
+          originalText: 'Bonjour',
+          translatedText: 'Bonjour',
+        }),
+      ],
     );
   });
 });

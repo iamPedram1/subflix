@@ -65,6 +65,7 @@ Notes:
 - `subtitle-sources` may accept optional `preferredLanguage`, `seasonNumber`, `episodeNumber`, and `releaseHint` query params
 - `seasonNumber` and `episodeNumber` must be supplied together and are only supported for TV titles (movies reject them with `400`)
 - `subtitleSourceId` values returned from `subtitle-sources` are stable opaque ids in the `ssrc:*` format and may be persisted by clients
+- `subtitle-sources` responses may include optional `languageCode` and `languageName` fields for display and selection logic
 
 ### Preferences
 
@@ -103,6 +104,11 @@ Rules:
   - `subtitleTimingOffsetMs` (detected offset in milliseconds)
   - `subtitleTimingConfidence` (0-100)
   - `subtitleTimingCorrected` (boolean)
+- catalog-backed jobs may include additional optional subtitle acquisition metadata on job reads:
+  - `subtitleAcquisitionMode` (`existing_target_subtitle` | `ai_translation`)
+  - `reusedExistingSubtitle` (boolean)
+  - `reusedSubtitleConfidenceScore` (0-100)
+  - `reusedSubtitleConfidenceLevel` (`high` | `medium` | `low`)
 - catalog-backed job creation may accept additional optional fields to improve subtitle matching:
   - `seasonNumber` and `episodeNumber` (must be supplied together for TV episode scope)
   - `releaseHint` (free-form filename/release hint used for ranking and quality signals)

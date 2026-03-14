@@ -32,6 +32,8 @@ const toOptionalSubtitleSourceMetadataFields = (subtitleSourceRef: unknown) => {
 
   const quality = (subtitleSourceRef as { quality?: unknown }).quality;
   const timing = (subtitleSourceRef as { timing?: unknown }).timing;
+  const acquisition = (subtitleSourceRef as { acquisition?: unknown })
+    .acquisition;
 
   const fields: Record<string, unknown> = {};
 
@@ -80,6 +82,30 @@ const toOptionalSubtitleSourceMetadataFields = (subtitleSourceRef: unknown) => {
     }
     if (typeof candidate.appliedCorrection === 'boolean') {
       fields.subtitleTimingCorrected = candidate.appliedCorrection;
+    }
+  }
+
+  if (acquisition && typeof acquisition === 'object') {
+    const candidate = acquisition as {
+      mode?: unknown;
+      reusedExistingSubtitle?: unknown;
+      reusedSubtitleConfidenceScore?: unknown;
+      reusedSubtitleConfidenceLevel?: unknown;
+    };
+
+    if (typeof candidate.mode === 'string') {
+      fields.subtitleAcquisitionMode = candidate.mode;
+    }
+    if (typeof candidate.reusedExistingSubtitle === 'boolean') {
+      fields.reusedExistingSubtitle = candidate.reusedExistingSubtitle;
+    }
+    if (typeof candidate.reusedSubtitleConfidenceScore === 'number') {
+      fields.reusedSubtitleConfidenceScore =
+        candidate.reusedSubtitleConfidenceScore;
+    }
+    if (typeof candidate.reusedSubtitleConfidenceLevel === 'string') {
+      fields.reusedSubtitleConfidenceLevel =
+        candidate.reusedSubtitleConfidenceLevel;
     }
   }
 

@@ -376,4 +376,168 @@ describeIfDatabase('Catalog translation jobs', () => {
       expect(completedJob.subtitleTimingConfidence).toBeGreaterThanOrEqual(60);
     });
   });
+
+  it('reuses an existing target-language subtitle and skips AI translation', async () => {
+    process.env.SUBDL_API_KEY = process.env.SUBDL_API_KEY || 'test-key';
+    process.env.SUBDL_ENABLED = 'true';
+    process.env.PODNAPISI_ENABLED = 'false';
+    process.env.TVSUBS_ENABLED = 'false';
+
+    const stableEnglishSubtitleSourceId = buildSubtitleSourceId('subdl', '123');
+    const englishZipBytes = Buffer.from(
+      zipSync({
+        'sub.srt': new TextEncoder().encode(sampleSrt),
+      }),
+    );
+
+    const frenchSrt = Array.from({ length: 20 })
+      .map((_, index) => {
+        const cueIndex = index + 1;
+        const startSeconds = cueIndex * 6;
+        const endSeconds = startSeconds + 2;
+        const toTimestamp = (seconds: number) => {
+          const mm = Math.floor(seconds / 60);
+          const ss = seconds % 60;
+          return `00:${mm.toString().padStart(2, '0')}:${ss.toString().padStart(2, '0')},000`;
+        };
+
+        return [
+          `${cueIndex}`,
+          `${toTimestamp(startSeconds)} --> ${toTimestamp(endSeconds)}`,
+          `Ligne francaise ${cueIndex}`,
+          '',
+        ].join('\n');
+      })
+      .join('\n');
+
+    const frenchZipBytes = Buffer.from(
+      zipSync({
+        'sub-fr.srt': new TextEncoder().encode(frenchSrt),
+      }),
+    );
+
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (input: RequestInfo | URL) => {
+        const url =
+          typeof input === 'string'
+            ? input
+            : input instanceof URL
+              ? input.toString()
+              : input.url;
+
+        if (url.startsWith('https://api.subdl.com/api/v1/subtitles')) {
+          return new Response(
+            JSON.stringify({
+              status: true,
+              subtitles: [
+                {
+                  subtitle_id: '123',
+                  movie_name: 'Inception',
+                  release_name: 'Inception.2010.1080p.BluRay.x264-GRP',
+                  language: 'EN',
+                  url: 'https://subdl.com/subtitle/123',
+                  downloads: 100,
+                },
+                {
+                  subtitle_id: '124',
+                  movie_name: 'Inception',
+                  release_name: 'Inception.2010.1080p.BluRay.x264-GRP',
+                  language: 'FR',
+                  url: 'https://subdl.com/subtitle/124',
+                  downloads: 90,
+                },
+              ],
+            }),
+            {
+              status: 200,
+              headers: { 'content-type': 'application/json' },
+            },
+          );
+        }
+
+        if (url === 'https://subdl.com/subtitle/123') {
+          return new Response(
+            `<html><body><a href="https://subdl.com/download/123.zip">download</a></body></html>`,
+            {
+              status: 200,
+              headers: { 'content-type': 'text/html' },
+            },
+          );
+        }
+
+        if (url === 'https://subdl.com/subtitle/124') {
+          return new Response(
+            `<html><body><a href="https://subdl.com/download/124.zip">download</a></body></html>`,
+            {
+              status: 200,
+              headers: { 'content-type': 'text/html' },
+            },
+          );
+        }
+
+        if (url === 'https://subdl.com/download/123.zip') {
+          return new Response(englishZipBytes, {
+            status: 200,
+            headers: {
+              'content-type': 'application/zip',
+              'content-disposition': 'attachment; filename="subtitles.zip"',
+            },
+          });
+        }
+
+        if (url === 'https://subdl.com/download/124.zip') {
+          return new Response(frenchZipBytes, {
+            status: 200,
+            headers: {
+              'content-type': 'application/zip',
+              'content-disposition': 'attachment; filename="subtitles.zip"',
+            },
+          });
+        }
+
+        return new Response('not found', { status: 404 });
+      }),
+    );
+
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+      const headers = createDeviceHeaders('catalog-translation-e2e-004');
+
+      const createResponse = await api
+        .post('/v1/translation-jobs')
+        .set(headers)
+        .send({
+          sourceType: 'catalog',
+          mediaId: 'inception',
+          subtitleSourceId: stableEnglishSubtitleSourceId,
+          targetLanguage: 'fr',
+        })
+        .expect(201);
+
+      const completedJob = await pollUntil({
+        label: `Catalog translation job ${createResponse.body.id}`,
+        poll: async () =>
+          (
+            await api
+              .get(`/v1/translation-jobs/${createResponse.body.id}`)
+              .set(headers)
+          ).body,
+        isDone: (candidate) => candidate.status === 'completed',
+      });
+
+      const exported = await api
+        .get(`/v1/translation-jobs/${createResponse.body.id}/export`)
+        .set(headers)
+        .expect(200);
+
+      expect(exported.text).toContain('Ligne francaise 1');
+      expect(exported.text).not.toContain('Version francaise');
+      expect(completedJob.subtitleAcquisitionMode).toBe(
+        'existing_target_subtitle',
+      );
+      expect(completedJob.reusedExistingSubtitle).toBe(true);
+      expect(completedJob.reusedSubtitleConfidenceScore).toBeGreaterThan(0);
+    });
+  });
 });

@@ -287,10 +287,20 @@ export class TranslationJobsRepository {
           path: ['mediaId'],
           equals: params.mediaId,
         },
-        subtitleSourceRef: {
-          path: ['subtitleSourceId'],
-          equals: params.subtitleSourceId,
-        },
+        OR: [
+          {
+            subtitleSourceRef: {
+              path: ['subtitleSourceId'],
+              equals: params.subtitleSourceId,
+            },
+          },
+          {
+            subtitleSourceRef: {
+              path: ['selectedSubtitleSourceId'],
+              equals: params.subtitleSourceId,
+            },
+          },
+        ],
         cues: {
           some: {},
         },
