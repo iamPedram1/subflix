@@ -89,3 +89,16 @@ export const subtitleSourcesConfig = registerAs('subtitleSources', () => ({
     timeoutMs: parseNumber(process.env.TVSUBS_TIMEOUT_MS, 10_000),
   },
 }));
+
+export const subtitleAlignmentConfig = registerAs('subtitleAlignment', () => ({
+  enabled: process.env.SUBTITLE_ALIGNMENT_ENABLED !== 'false',
+  maxOffsetMs: parseNumber(
+    process.env.SUBTITLE_ALIGNMENT_MAX_OFFSET_MS,
+    10_000,
+  ),
+  stepMs: parseNumber(process.env.SUBTITLE_ALIGNMENT_STEP_MS, 1_000),
+  confidenceThreshold: parseNumber(
+    process.env.SUBTITLE_ALIGNMENT_CONFIDENCE_THRESHOLD,
+    60,
+  ),
+}));

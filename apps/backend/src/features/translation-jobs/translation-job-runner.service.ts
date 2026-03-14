@@ -10,6 +10,7 @@ import { SearchMediaType } from 'common/domain/enums/search-media-type.enum';
 import { CatalogService } from 'features/catalog/catalog.service';
 import { CatalogMediaDetails } from 'features/catalog/models/catalog-media-details.model';
 import { SubtitleQualityEvaluationService } from 'features/catalog/subtitle-quality-evaluation.service';
+import { SubtitleTimingAlignmentService } from 'features/catalog/subtitle-timing-alignment.service';
 import { SubtitleCue } from 'features/subtitles/models/subtitle-cue.model';
 import { SubtitlesRepository } from 'features/subtitles/subtitles.repository';
 
@@ -25,6 +26,23 @@ type PersistedCatalogSubtitleSourceRef = {
   episodeNumber?: unknown;
   releaseHint?: unknown;
   quality?: unknown;
+};
+
+type PersistedSubtitleQualityMetadata = {
+  confidenceScore: number;
+  confidenceLevel: string;
+  warnings: string[];
+};
+
+type PersistedSubtitleTimingMetadata = {
+  detectedOffsetMs: number;
+  appliedCorrection: boolean;
+  confidence: number;
+};
+
+type PersistedCatalogSourceMetadata = {
+  quality: PersistedSubtitleQualityMetadata;
+  timing: PersistedSubtitleTimingMetadata | null;
 };
 
 type PersistedJobCue = Parameters<
@@ -48,6 +66,7 @@ export class TranslationJobRunnerService {
     private readonly subtitlesRepository: SubtitlesRepository,
     private readonly catalogService: CatalogService,
     private readonly subtitleQualityEvaluationService: SubtitleQualityEvaluationService,
+    private readonly subtitleTimingAlignmentService: SubtitleTimingAlignmentService,
     @Inject(TRANSLATION_PROVIDER_PORT)
     private readonly translationProvider: TranslationProviderPort,
   ) {}
@@ -81,18 +100,11 @@ export class TranslationJobRunnerService {
       }
 
       try {
-        const sourceCues = await this.loadSourceCues(job);
-        if (job.sourceType === TranslationSourceType.catalog) {
-          const evaluation = await this.evaluateAndPersistCatalogQuality(
-            job,
-            sourceCues,
-          );
-          if (evaluation.shouldBlockAutoUse) {
-            throw new Error(
-              'The selected subtitle file appears invalid or unusable. Please choose a different subtitle source.',
-            );
-          }
-        }
+        const loadedSourceCues = await this.loadSourceCues(job);
+        const sourceCues =
+          job.sourceType === TranslationSourceType.catalog
+            ? await this.applyCatalogQualityAndAlignment(job, loadedSourceCues)
+            : loadedSourceCues;
 
         await delay(250);
         await this.markProgress(jobId, {
@@ -202,7 +214,7 @@ export class TranslationJobRunnerService {
     };
   }
 
-  private async evaluateAndPersistCatalogQuality(
+  private async applyCatalogQualityAndAlignment(
     job: TranslationJob,
     cues: SubtitleCue[],
   ) {
@@ -224,24 +236,57 @@ export class TranslationJobRunnerService {
       },
     );
 
+    if (evaluation.shouldBlockAutoUse) {
+      await this.persistCatalogSourceMetadata(job, cues, {
+        quality: evaluation,
+        timing: null,
+      });
+      throw new Error(
+        'The selected subtitle file appears invalid or unusable. Please choose a different subtitle source.',
+      );
+    }
+
+    const alignment =
+      this.subtitleTimingAlignmentService.alignCatalogCues(cues);
+
+    await this.persistCatalogSourceMetadata(job, alignment.cues, {
+      quality: evaluation,
+      timing: alignment.analysis,
+    });
+
+    return alignment.cues;
+  }
+
+  private persistCatalogSourceMetadata(
+    job: TranslationJob,
+    cues: SubtitleCue[],
+    metadata: PersistedCatalogSourceMetadata,
+  ) {
     const durationMs = cues.reduce((max, cue) => Math.max(max, cue.endMs), 0);
     const existingSubtitleSourceRef =
       (job.subtitleSourceRef as Record<string, unknown> | null) ?? {};
 
-    await this.translationJobsRepository.updateJob(job.id, {
+    return this.translationJobsRepository.updateJob(job.id, {
       lineCount: cues.length,
       durationMs,
       subtitleSourceRef: {
         ...existingSubtitleSourceRef,
         quality: {
-          confidenceScore: evaluation.confidenceScore,
-          confidenceLevel: evaluation.confidenceLevel,
-          warnings: evaluation.warnings,
+          confidenceScore: metadata.quality.confidenceScore,
+          confidenceLevel: metadata.quality.confidenceLevel,
+          warnings: metadata.quality.warnings,
         },
+        ...(metadata.timing
+          ? {
+              timing: {
+                detectedOffsetMs: metadata.timing.detectedOffsetMs,
+                appliedCorrection: metadata.timing.appliedCorrection,
+                confidence: metadata.timing.confidence,
+              },
+            }
+          : {}),
       },
     });
-
-    return evaluation;
   }
 
   private buildFallbackMedia(

@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import {
   appConfig,
   databaseConfig,
+  subtitleAlignmentConfig,
   subtitleSourcesConfig,
   tmdbConfig,
 } from 'common/config/app.config';
@@ -14,7 +15,13 @@ import {
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
-      load: [appConfig, databaseConfig, tmdbConfig, subtitleSourcesConfig],
+      load: [
+        appConfig,
+        databaseConfig,
+        tmdbConfig,
+        subtitleSourcesConfig,
+        subtitleAlignmentConfig,
+      ],
       envFilePath: ['.env.local', '.env'],
     }),
   ],

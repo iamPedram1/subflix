@@ -139,6 +139,9 @@ describeIfDatabase('Catalog translation jobs', () => {
         completedJob.subtitleConfidenceLevel,
       );
       expect(Array.isArray(completedJob.subtitleWarnings)).toBe(true);
+      expect(typeof completedJob.subtitleTimingOffsetMs).toBe('number');
+      expect(typeof completedJob.subtitleTimingConfidence).toBe('number');
+      expect(typeof completedJob.subtitleTimingCorrected).toBe('boolean');
     });
   });
 
@@ -252,6 +255,125 @@ describeIfDatabase('Catalog translation jobs', () => {
       expect(failedJob.subtitleWarnings).toEqual(
         expect.arrayContaining(['invalid_timing_ranges']),
       );
+    });
+  });
+
+  it('detects and corrects a constant timing offset before translation', async () => {
+    process.env.SUBDL_API_KEY = process.env.SUBDL_API_KEY || 'test-key';
+    process.env.SUBDL_ENABLED = 'true';
+    process.env.PODNAPISI_ENABLED = 'false';
+    process.env.TVSUBS_ENABLED = 'false';
+    process.env.SUBTITLE_ALIGNMENT_ENABLED = 'true';
+    process.env.SUBTITLE_ALIGNMENT_MAX_OFFSET_MS = '10000';
+    process.env.SUBTITLE_ALIGNMENT_STEP_MS = '1000';
+    process.env.SUBTITLE_ALIGNMENT_CONFIDENCE_THRESHOLD = '60';
+
+    const stableSubtitleSourceId = buildSubtitleSourceId('subdl', '789');
+    const offsetSrt = [
+      '1',
+      '00:00:00,000 --> 00:00:01,200',
+      'I am the one.',
+      '',
+      '2',
+      '00:00:01,500 --> 00:00:03,000',
+      'And the only.',
+      '',
+      '3',
+      '00:00:04,000 --> 00:00:06,000',
+      'You and I will go to the end.',
+      '',
+    ].join('\n');
+    const zipBytes = Buffer.from(
+      zipSync({
+        'sub.srt': new TextEncoder().encode(offsetSrt),
+      }),
+    );
+
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (input: RequestInfo | URL) => {
+        const url =
+          typeof input === 'string'
+            ? input
+            : input instanceof URL
+              ? input.toString()
+              : input.url;
+
+        if (url.startsWith('https://api.subdl.com/api/v1/subtitles')) {
+          return new Response(
+            JSON.stringify({
+              status: true,
+              subtitles: [
+                {
+                  subtitle_id: '789',
+                  movie_name: 'Inception',
+                  release_name: 'Inception.2010.1080p.BluRay.x264-GRP',
+                  language: 'EN',
+                  url: 'https://subdl.com/subtitle/789',
+                  downloads: 100,
+                },
+              ],
+            }),
+            {
+              status: 200,
+              headers: { 'content-type': 'application/json' },
+            },
+          );
+        }
+
+        if (url === 'https://subdl.com/subtitle/789') {
+          return new Response(
+            `<html><body><a href="https://subdl.com/download/789.zip">download</a></body></html>`,
+            {
+              status: 200,
+              headers: { 'content-type': 'text/html' },
+            },
+          );
+        }
+
+        if (url === 'https://subdl.com/download/789.zip') {
+          return new Response(zipBytes, {
+            status: 200,
+            headers: {
+              'content-type': 'application/zip',
+              'content-disposition': 'attachment; filename="subtitles.zip"',
+            },
+          });
+        }
+
+        return new Response('not found', { status: 404 });
+      }),
+    );
+
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+      const headers = createDeviceHeaders('catalog-translation-e2e-003');
+
+      const createResponse = await api
+        .post('/v1/translation-jobs')
+        .set(headers)
+        .send({
+          sourceType: 'catalog',
+          mediaId: 'inception',
+          subtitleSourceId: stableSubtitleSourceId,
+          targetLanguage: 'fr',
+        })
+        .expect(201);
+
+      const completedJob = await pollUntil({
+        label: `Catalog translation job ${createResponse.body.id}`,
+        poll: async () =>
+          (
+            await api
+              .get(`/v1/translation-jobs/${createResponse.body.id}`)
+              .set(headers)
+          ).body,
+        isDone: (candidate) => candidate.status === 'completed',
+      });
+
+      expect(completedJob.subtitleTimingCorrected).toBe(true);
+      expect(completedJob.subtitleTimingOffsetMs).toBe(1000);
+      expect(completedJob.subtitleTimingConfidence).toBeGreaterThanOrEqual(60);
     });
   });
 });

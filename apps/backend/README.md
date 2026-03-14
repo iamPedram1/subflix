@@ -117,7 +117,8 @@ The app runs on `http://localhost:3000` and all routes are prefixed with `/v1`.
   - Podnapisi scraper fallback
   - TVSubs scraper fallback
 - Subtitle source lookup is provider-backed, and catalog translation jobs download and parse real subtitle payloads (supports direct `.srt`/`.vtt` and `.zip` archives).
-- Catalog translation jobs also compute deterministic subtitle confidence metadata (score, level, and warning codes) after cues are parsed, so suspicious subtitle matches can be flagged before translation completes.
+- Catalog translation jobs compute deterministic subtitle confidence metadata (score, level, and warning codes) after cues are parsed, so suspicious subtitle matches can be flagged.
+- Catalog translation jobs also attempt deterministic timing offset correction for constant subtitle shifts before translation starts.
 
 ## Core API routes
 

@@ -25,48 +25,70 @@ type TranslationPreviewCueSource = Pick<
   'cueIndex' | 'startMs' | 'endMs' | 'originalText' | 'translatedText'
 >;
 
-const toOptionalSubtitleQualityFields = (subtitleSourceRef: unknown) => {
+const toOptionalSubtitleSourceMetadataFields = (subtitleSourceRef: unknown) => {
   if (!subtitleSourceRef || typeof subtitleSourceRef !== 'object') {
     return {};
   }
 
   const quality = (subtitleSourceRef as { quality?: unknown }).quality;
-  if (!quality || typeof quality !== 'object') {
-    return {};
+  const timing = (subtitleSourceRef as { timing?: unknown }).timing;
+
+  const fields: Record<string, unknown> = {};
+
+  if (quality && typeof quality === 'object') {
+    const candidate = quality as {
+      confidenceScore?: unknown;
+      confidenceLevel?: unknown;
+      warnings?: unknown;
+    };
+
+    const subtitleConfidenceScore =
+      typeof candidate.confidenceScore === 'number'
+        ? candidate.confidenceScore
+        : undefined;
+    const subtitleConfidenceLevel =
+      typeof candidate.confidenceLevel === 'string'
+        ? candidate.confidenceLevel
+        : undefined;
+    const subtitleWarnings = Array.isArray(candidate.warnings)
+      ? candidate.warnings.filter((warning) => typeof warning === 'string')
+      : undefined;
+
+    if (subtitleConfidenceScore !== undefined) {
+      fields.subtitleConfidenceScore = subtitleConfidenceScore;
+    }
+    if (subtitleConfidenceLevel !== undefined) {
+      fields.subtitleConfidenceLevel = subtitleConfidenceLevel;
+    }
+    if (subtitleWarnings !== undefined) {
+      fields.subtitleWarnings = subtitleWarnings;
+    }
   }
 
-  const candidate = quality as {
-    confidenceScore?: unknown;
-    confidenceLevel?: unknown;
-    warnings?: unknown;
-  };
+  if (timing && typeof timing === 'object') {
+    const candidate = timing as {
+      detectedOffsetMs?: unknown;
+      confidence?: unknown;
+      appliedCorrection?: unknown;
+    };
 
-  const subtitleConfidenceScore =
-    typeof candidate.confidenceScore === 'number'
-      ? candidate.confidenceScore
-      : undefined;
-  const subtitleConfidenceLevel =
-    typeof candidate.confidenceLevel === 'string'
-      ? candidate.confidenceLevel
-      : undefined;
-  const subtitleWarnings = Array.isArray(candidate.warnings)
-    ? candidate.warnings.filter((warning) => typeof warning === 'string')
-    : undefined;
+    if (typeof candidate.detectedOffsetMs === 'number') {
+      fields.subtitleTimingOffsetMs = candidate.detectedOffsetMs;
+    }
+    if (typeof candidate.confidence === 'number') {
+      fields.subtitleTimingConfidence = candidate.confidence;
+    }
+    if (typeof candidate.appliedCorrection === 'boolean') {
+      fields.subtitleTimingCorrected = candidate.appliedCorrection;
+    }
+  }
 
-  return {
-    ...(subtitleConfidenceScore !== undefined
-      ? { subtitleConfidenceScore }
-      : {}),
-    ...(subtitleConfidenceLevel !== undefined
-      ? { subtitleConfidenceLevel }
-      : {}),
-    ...(subtitleWarnings !== undefined ? { subtitleWarnings } : {}),
-  };
+  return fields;
 };
 
 /** Maps a persisted translation job into the public summary shape used by the API. */
 export const toTranslationJobSummary = (job: TranslationJobSummarySource) => ({
-  ...toOptionalSubtitleQualityFields(job.subtitleSourceRef),
+  ...toOptionalSubtitleSourceMetadataFields(job.subtitleSourceRef),
   id: job.id,
   status: job.status,
   stageLabel: job.stageLabel,

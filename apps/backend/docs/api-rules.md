@@ -99,6 +99,10 @@ Rules:
   - `subtitleConfidenceScore` (0-100)
   - `subtitleConfidenceLevel` (`high` | `medium` | `low`)
   - `subtitleWarnings` (stable warning codes)
+- catalog-backed jobs may include additional optional subtitle timing alignment metadata on job reads:
+  - `subtitleTimingOffsetMs` (detected offset in milliseconds)
+  - `subtitleTimingConfidence` (0-100)
+  - `subtitleTimingCorrected` (boolean)
 - catalog-backed job creation may accept additional optional fields to improve subtitle matching:
   - `seasonNumber` and `episodeNumber` (must be supplied together for TV episode scope)
   - `releaseHint` (free-form filename/release hint used for ranking and quality signals)

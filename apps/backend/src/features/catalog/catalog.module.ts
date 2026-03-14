@@ -21,6 +21,7 @@ import { SUBTITLE_SOURCE_PROVIDERS } from 'features/catalog/ports/subtitle-sourc
 import { SubtitleSourceDiscoveryService } from 'features/catalog/subtitle-source-discovery.service';
 import { SubtitlesModule } from 'features/subtitles/subtitles.module';
 import { SubtitleQualityEvaluationService } from 'features/catalog/subtitle-quality-evaluation.service';
+import { SubtitleTimingAlignmentService } from 'features/catalog/subtitle-timing-alignment.service';
 
 @Module({
   imports: [CacheModule, SubtitlesModule],
@@ -29,6 +30,7 @@ import { SubtitleQualityEvaluationService } from 'features/catalog/subtitle-qual
     CatalogService,
     SubtitleSourceDiscoveryService,
     SubtitleQualityEvaluationService,
+    SubtitleTimingAlignmentService,
     MockCatalogProvider,
     CatalogSubtitleCueProvider,
     TmdbMediaCatalogProvider,
@@ -132,6 +134,7 @@ import { SubtitleQualityEvaluationService } from 'features/catalog/subtitle-qual
     MEDIA_CATALOG_PORT,
     SUBTITLE_CUE_PORT,
     SubtitleQualityEvaluationService,
+    SubtitleTimingAlignmentService,
   ],
 })
 export class CatalogModule {}

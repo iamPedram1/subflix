@@ -9,6 +9,7 @@ import {
 import { CatalogService } from 'features/catalog/catalog.service';
 import { buildSubtitleSourceId } from 'features/catalog/utils/subtitle-source-id.util';
 import { SubtitleQualityEvaluationService } from 'features/catalog/subtitle-quality-evaluation.service';
+import { SubtitleTimingAlignmentService } from 'features/catalog/subtitle-timing-alignment.service';
 import { SubtitlesRepository } from 'features/subtitles/subtitles.repository';
 import { TranslationProviderPort } from 'features/translation-jobs/ports/translation-provider.port';
 import { TranslationJobRunnerService } from 'features/translation-jobs/translation-job-runner.service';
@@ -50,6 +51,7 @@ describe('TranslationJobRunnerService', () => {
       {} as SubtitlesRepository,
       {} as CatalogService,
       {} as SubtitleQualityEvaluationService,
+      {} as SubtitleTimingAlignmentService,
       {} as TranslationProviderPort,
     );
     const runSpy = vi.spyOn(service, 'run').mockResolvedValue();
@@ -71,6 +73,7 @@ describe('TranslationJobRunnerService', () => {
       {} as SubtitlesRepository,
       {} as CatalogService,
       {} as SubtitleQualityEvaluationService,
+      {} as SubtitleTimingAlignmentService,
       {} as TranslationProviderPort,
     );
     const runSpy = vi.spyOn(service, 'run').mockResolvedValue();
@@ -112,6 +115,7 @@ describe('TranslationJobRunnerService', () => {
       subtitlesRepository,
       {} as CatalogService,
       {} as SubtitleQualityEvaluationService,
+      {} as SubtitleTimingAlignmentService,
       translationProvider,
     );
 
@@ -157,6 +161,7 @@ describe('TranslationJobRunnerService', () => {
       {} as SubtitlesRepository,
       {} as CatalogService,
       {} as SubtitleQualityEvaluationService,
+      {} as SubtitleTimingAlignmentService,
       translationProvider,
     );
 
@@ -214,6 +219,17 @@ describe('TranslationJobRunnerService', () => {
           signals: {},
         }),
       } as unknown as SubtitleQualityEvaluationService,
+      {
+        alignCatalogCues: vi.fn((cues) => ({
+          cues,
+          analysis: {
+            detectedOffsetMs: 0,
+            confidence: 0,
+            appliedCorrection: false,
+            warnings: [],
+          },
+        })),
+      } as unknown as SubtitleTimingAlignmentService,
       translationProvider,
     );
 
@@ -271,6 +287,17 @@ describe('TranslationJobRunnerService', () => {
           signals: {},
         }),
       } as unknown as SubtitleQualityEvaluationService,
+      {
+        alignCatalogCues: vi.fn((cues) => ({
+          cues,
+          analysis: {
+            detectedOffsetMs: 0,
+            confidence: 0,
+            appliedCorrection: false,
+            warnings: [],
+          },
+        })),
+      } as unknown as SubtitleTimingAlignmentService,
       translationProvider,
     );
 
@@ -334,6 +361,17 @@ describe('TranslationJobRunnerService', () => {
           signals: {},
         }),
       } as unknown as SubtitleQualityEvaluationService,
+      {
+        alignCatalogCues: vi.fn((cues) => ({
+          cues,
+          analysis: {
+            detectedOffsetMs: 0,
+            confidence: 0,
+            appliedCorrection: false,
+            warnings: [],
+          },
+        })),
+      } as unknown as SubtitleTimingAlignmentService,
       translationProvider,
     );
 
