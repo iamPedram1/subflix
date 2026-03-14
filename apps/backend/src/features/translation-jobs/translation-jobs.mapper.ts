@@ -34,6 +34,8 @@ const toOptionalSubtitleSourceMetadataFields = (subtitleSourceRef: unknown) => {
   const timing = (subtitleSourceRef as { timing?: unknown }).timing;
   const acquisition = (subtitleSourceRef as { acquisition?: unknown })
     .acquisition;
+  const translationReuse = (subtitleSourceRef as { translationReuse?: unknown })
+    .translationReuse;
 
   const fields: Record<string, unknown> = {};
 
@@ -106,6 +108,20 @@ const toOptionalSubtitleSourceMetadataFields = (subtitleSourceRef: unknown) => {
     if (typeof candidate.reusedSubtitleConfidenceLevel === 'string') {
       fields.reusedSubtitleConfidenceLevel =
         candidate.reusedSubtitleConfidenceLevel;
+    }
+  }
+
+  if (translationReuse && typeof translationReuse === 'object') {
+    const candidate = translationReuse as {
+      reused?: unknown;
+      reusedFromJobId?: unknown;
+    };
+
+    if (typeof candidate.reused === 'boolean') {
+      fields.translationReuse = candidate.reused;
+    }
+    if (typeof candidate.reusedFromJobId === 'string') {
+      fields.translationReusedFromJobId = candidate.reusedFromJobId;
     }
   }
 

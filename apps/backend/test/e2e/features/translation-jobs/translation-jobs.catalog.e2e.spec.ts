@@ -10,6 +10,7 @@ import {
 import { sampleSrt } from 'test/core/shared/subtitle-fixtures';
 
 import { buildSubtitleSourceId } from 'features/catalog/utils/subtitle-source-id.util';
+import { TRANSLATION_PROVIDER_PORT } from 'features/translation-jobs/ports/translation-provider.port';
 
 describeIfDatabase('Catalog translation jobs', () => {
   it('downloads and parses real catalog subtitle cues and completes a job', async () => {
@@ -142,6 +143,128 @@ describeIfDatabase('Catalog translation jobs', () => {
       expect(typeof completedJob.subtitleTimingOffsetMs).toBe('number');
       expect(typeof completedJob.subtitleTimingConfidence).toBe('number');
       expect(typeof completedJob.subtitleTimingCorrected).toBe('boolean');
+    });
+  });
+
+  it('reuses a previously completed translation for the same subtitle source and target language', async () => {
+    process.env.SUBDL_API_KEY = process.env.SUBDL_API_KEY || 'test-key';
+    process.env.SUBDL_ENABLED = 'true';
+    process.env.PODNAPISI_ENABLED = 'false';
+    process.env.TVSUBS_ENABLED = 'false';
+
+    const stableSubtitleSourceId = buildSubtitleSourceId('subdl', '789');
+    const zipBytes = Buffer.from(
+      zipSync({
+        'sub.srt': new TextEncoder().encode(sampleSrt),
+      }),
+    );
+
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (input: RequestInfo | URL) => {
+        const url =
+          typeof input === 'string'
+            ? input
+            : input instanceof URL
+              ? input.toString()
+              : input.url;
+
+        if (url.startsWith('https://api.subdl.com/api/v1/subtitles')) {
+          return new Response(
+            JSON.stringify({
+              status: true,
+              subtitles: [
+                {
+                  subtitle_id: '789',
+                  movie_name: 'Inception',
+                  release_name: 'Inception.2010.1080p.BluRay.x264-GRP',
+                  language: 'EN',
+                  url: 'https://subdl.com/subtitle/789',
+                  downloads: 100,
+                },
+              ],
+            }),
+            {
+              status: 200,
+              headers: { 'content-type': 'application/json' },
+            },
+          );
+        }
+
+        if (url === 'https://subdl.com/subtitle/789') {
+          return new Response(
+            `<html><body><a href="https://subdl.com/download/789.zip">download</a></body></html>`,
+            {
+              status: 200,
+              headers: { 'content-type': 'text/html' },
+            },
+          );
+        }
+
+        if (url === 'https://subdl.com/download/789.zip') {
+          return new Response(zipBytes, {
+            status: 200,
+            headers: {
+              'content-type': 'application/zip',
+              'content-disposition': 'attachment; filename="subtitles.zip"',
+            },
+          });
+        }
+
+        return new Response('not found', { status: 404 });
+      }),
+    );
+
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+      const headers = createDeviceHeaders('catalog-translation-e2e-003');
+
+      const translationProvider = app.get(TRANSLATION_PROVIDER_PORT);
+      const translateSpy = vi.spyOn(translationProvider, 'translate');
+
+      const first = await api
+        .post('/v1/translation-jobs')
+        .set(headers)
+        .send({
+          sourceType: 'catalog',
+          mediaId: 'inception',
+          subtitleSourceId: stableSubtitleSourceId,
+          targetLanguage: 'fr',
+        })
+        .expect(201);
+
+      await pollUntil({
+        label: `Catalog translation job ${first.body.id}`,
+        poll: async () =>
+          (await api.get(`/v1/translation-jobs/${first.body.id}`).set(headers))
+            .body,
+        isDone: (candidate) => candidate.status === 'completed',
+      });
+
+      expect(translateSpy).toHaveBeenCalledTimes(1);
+
+      const second = await api
+        .post('/v1/translation-jobs')
+        .set(headers)
+        .send({
+          sourceType: 'catalog',
+          mediaId: 'inception',
+          subtitleSourceId: stableSubtitleSourceId,
+          targetLanguage: 'fr',
+        })
+        .expect(201);
+
+      const completedSecond = await pollUntil({
+        label: `Catalog translation job ${second.body.id}`,
+        poll: async () =>
+          (await api.get(`/v1/translation-jobs/${second.body.id}`).set(headers))
+            .body,
+        isDone: (candidate) => candidate.status === 'completed',
+      });
+
+      expect(translateSpy).toHaveBeenCalledTimes(1);
+      expect(completedSecond.translationReuse).toBe(true);
+      expect(completedSecond.translationReusedFromJobId).toBe(first.body.id);
     });
   });
 

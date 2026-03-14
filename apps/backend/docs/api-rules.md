@@ -109,6 +109,9 @@ Rules:
   - `reusedExistingSubtitle` (boolean)
   - `reusedSubtitleConfidenceScore` (0-100)
   - `reusedSubtitleConfidenceLevel` (`high` | `medium` | `low`)
+- catalog-backed jobs may include additional optional translation reuse metadata on job reads:
+  - `translationReuse` (boolean)
+  - `translationReusedFromJobId` (job id when reuse is applied)
 - catalog-backed job creation may accept additional optional fields to improve subtitle matching:
   - `seasonNumber` and `episodeNumber` (must be supplied together for TV episode scope)
   - `releaseHint` (free-form filename/release hint used for ranking and quality signals)

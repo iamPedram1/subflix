@@ -15,6 +15,7 @@ import { TranslationProviderPort } from 'features/translation-jobs/ports/transla
 import { SubtitleAcquisitionStrategyService } from 'features/translation-jobs/subtitle-acquisition-strategy.service';
 import { TranslationJobRunnerService } from 'features/translation-jobs/translation-job-runner.service';
 import { TranslationJobsRepository } from 'features/translation-jobs/translation-jobs.repository';
+import { TranslationReuseService } from 'features/translation-jobs/translation-reuse.service';
 
 describe('TranslationJobRunnerService', () => {
   const createRunnerJob = (overrides: Record<string, unknown> = {}) => ({
@@ -54,6 +55,7 @@ describe('TranslationJobRunnerService', () => {
       {} as SubtitleQualityEvaluationService,
       {} as SubtitleTimingAlignmentService,
       {} as SubtitleAcquisitionStrategyService,
+      {} as TranslationReuseService,
       {} as TranslationProviderPort,
     );
     const runSpy = vi.spyOn(service, 'run').mockResolvedValue();
@@ -77,6 +79,7 @@ describe('TranslationJobRunnerService', () => {
       {} as SubtitleQualityEvaluationService,
       {} as SubtitleTimingAlignmentService,
       {} as SubtitleAcquisitionStrategyService,
+      {} as TranslationReuseService,
       {} as TranslationProviderPort,
     );
     const runSpy = vi.spyOn(service, 'run').mockResolvedValue();
@@ -120,6 +123,7 @@ describe('TranslationJobRunnerService', () => {
       {} as SubtitleQualityEvaluationService,
       {} as SubtitleTimingAlignmentService,
       {} as SubtitleAcquisitionStrategyService,
+      {} as TranslationReuseService,
       translationProvider,
     );
 
@@ -167,6 +171,7 @@ describe('TranslationJobRunnerService', () => {
       {} as SubtitleQualityEvaluationService,
       {} as SubtitleTimingAlignmentService,
       {} as SubtitleAcquisitionStrategyService,
+      {} as TranslationReuseService,
       translationProvider,
     );
 
@@ -245,6 +250,12 @@ describe('TranslationJobRunnerService', () => {
           reason: 'no_target_subtitle_candidates',
         }),
       } as unknown as SubtitleAcquisitionStrategyService,
+      {
+        decideCatalogTranslationReuse: vi.fn().mockResolvedValue({
+          reuseAllowed: false,
+          reuseReason: 'no_reusable_translation',
+        }),
+      } as unknown as TranslationReuseService,
       translationProvider,
     );
 
@@ -323,6 +334,12 @@ describe('TranslationJobRunnerService', () => {
           reason: 'no_target_subtitle_candidates',
         }),
       } as unknown as SubtitleAcquisitionStrategyService,
+      {
+        decideCatalogTranslationReuse: vi.fn().mockResolvedValue({
+          reuseAllowed: false,
+          reuseReason: 'no_reusable_translation',
+        }),
+      } as unknown as TranslationReuseService,
       translationProvider,
     );
 
@@ -407,6 +424,12 @@ describe('TranslationJobRunnerService', () => {
           reason: 'no_target_subtitle_candidates',
         }),
       } as unknown as SubtitleAcquisitionStrategyService,
+      {
+        decideCatalogTranslationReuse: vi.fn().mockResolvedValue({
+          reuseAllowed: false,
+          reuseReason: 'no_reusable_translation',
+        }),
+      } as unknown as TranslationReuseService,
       translationProvider,
     );
 
@@ -500,6 +523,12 @@ describe('TranslationJobRunnerService', () => {
           },
         }),
       } as unknown as SubtitleAcquisitionStrategyService,
+      {
+        decideCatalogTranslationReuse: vi.fn().mockResolvedValue({
+          reuseAllowed: false,
+          reuseReason: 'no_reusable_translation',
+        }),
+      } as unknown as TranslationReuseService,
       translationProvider,
     );
 
@@ -516,6 +545,121 @@ describe('TranslationJobRunnerService', () => {
           translatedText: 'Bonjour',
         }),
       ],
+    );
+  });
+
+  it('reuses a previously completed translation and skips the translation provider', async () => {
+    vi.useFakeTimers();
+
+    const translationJobsRepository = {
+      claimQueuedJobForRunner: vi.fn().mockResolvedValue(
+        createRunnerJob({
+          sourceType: TranslationSourceType.catalog,
+          parsedFileId: null,
+          mediaRef: { mediaId: 'movie_27205' },
+          subtitleSourceRef: { subtitleSourceId: stableSubtitleSourceId },
+        }),
+      ),
+      findReusableCatalogSourceCues: vi.fn().mockResolvedValue([]),
+      updateJob: vi.fn().mockResolvedValue(undefined),
+      replaceJobCues: vi.fn().mockResolvedValue(undefined),
+    } as unknown as TranslationJobsRepository;
+
+    const catalogService = {
+      findById: vi.fn().mockResolvedValue(null),
+      getSubtitleCues: vi.fn().mockResolvedValue([
+        {
+          cueIndex: 1,
+          startMs: 1_000,
+          endMs: 3_000,
+          text: 'Dream bigger.',
+        },
+      ]),
+    } as unknown as CatalogService;
+
+    const translationProvider = {
+      translate: vi.fn(),
+    } as unknown as TranslationProviderPort;
+
+    const service = new TranslationJobRunnerService(
+      translationJobsRepository,
+      {} as SubtitlesRepository,
+      catalogService,
+      {
+        evaluateCatalogJob: vi.fn().mockReturnValue({
+          confidenceScore: 85,
+          confidenceLevel: 'high',
+          warnings: [],
+          shouldBlockAutoUse: false,
+          signals: {},
+        }),
+      } as unknown as SubtitleQualityEvaluationService,
+      {
+        alignCatalogCues: vi.fn((cues) => ({
+          cues,
+          analysis: {
+            detectedOffsetMs: 0,
+            confidence: 0,
+            appliedCorrection: false,
+            warnings: [],
+          },
+        })),
+      } as unknown as SubtitleTimingAlignmentService,
+      {
+        decideCatalogAcquisition: vi.fn().mockResolvedValue({
+          acquisitionMode: 'ai_translation',
+          subtitleSourceIdToUse: stableSubtitleSourceId,
+          selectedLanguageCode: 'en',
+          requestedTargetLanguage: 'fr',
+          reusedExistingSubtitle: false,
+          reason: 'no_target_subtitle_candidates',
+        }),
+      } as unknown as SubtitleAcquisitionStrategyService,
+      {
+        decideCatalogTranslationReuse: vi.fn().mockResolvedValue({
+          reuseAllowed: true,
+          reusableJobId: 'job-old',
+          reuseReason: 'reused_completed_translation',
+          translatedCues: [
+            {
+              cueIndex: 1,
+              startMs: 1_000,
+              endMs: 3_000,
+              translatedText: 'Reve plus grand.',
+            },
+          ],
+        }),
+      } as unknown as TranslationReuseService,
+      translationProvider,
+    );
+
+    const runPromise = service.run('job-1');
+    await vi.runAllTimersAsync();
+    await runPromise;
+
+    expect(translationProvider.translate).not.toHaveBeenCalled();
+    expect(translationJobsRepository.replaceJobCues).toHaveBeenCalledWith(
+      'job-1',
+      [
+        {
+          cueIndex: 1,
+          startMs: 1_000,
+          endMs: 3_000,
+          originalText: 'Dream bigger.',
+          translatedText: 'Reve plus grand.',
+        },
+      ],
+    );
+    expect(translationJobsRepository.updateJob).toHaveBeenCalledWith(
+      'job-1',
+      expect.objectContaining({
+        subtitleSourceRef: expect.objectContaining({
+          translationReuse: {
+            reused: true,
+            reusedFromJobId: 'job-old',
+          },
+        }),
+      }),
     );
   });
 });

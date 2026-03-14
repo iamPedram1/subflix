@@ -21,6 +21,7 @@ import {
 import { TranslationJobsRepository } from 'features/translation-jobs/translation-jobs.repository';
 import { SubtitleAcquisitionStrategyService } from 'features/translation-jobs/subtitle-acquisition-strategy.service';
 import { SubtitleAcquisitionDecision } from 'features/translation-jobs/models/subtitle-acquisition-decision.model';
+import { TranslationReuseService } from 'features/translation-jobs/translation-reuse.service';
 
 type PersistedCatalogSubtitleSourceRef = {
   subtitleSourceId?: string;
@@ -69,6 +70,7 @@ export class TranslationJobRunnerService {
     private readonly subtitleQualityEvaluationService: SubtitleQualityEvaluationService,
     private readonly subtitleTimingAlignmentService: SubtitleTimingAlignmentService,
     private readonly subtitleAcquisitionStrategyService: SubtitleAcquisitionStrategyService,
+    private readonly translationReuseService: TranslationReuseService,
     @Inject(TRANSLATION_PROVIDER_PORT)
     private readonly translationProvider: TranslationProviderPort,
   ) {}
@@ -272,9 +274,11 @@ export class TranslationJobRunnerService {
     },
     decision: SubtitleAcquisitionDecision,
   ) {
+    const subtitleSourceIdToTranslate = decision.subtitleSourceIdToUse;
+
     const loadedSourceCues = await this.loadCatalogSourceCues(job, {
       mediaId: references.mediaId,
-      subtitleSourceId: references.subtitleSourceId,
+      subtitleSourceId: subtitleSourceIdToTranslate,
     });
 
     const media =
@@ -286,7 +290,7 @@ export class TranslationJobRunnerService {
         media,
         cues: loadedSourceCues,
         sourceName: job.sourceName,
-        subtitleSourceId: references.subtitleSourceId,
+        subtitleSourceId: subtitleSourceIdToTranslate,
         releaseHint: references.releaseHint,
         seasonNumber: references.seasonNumber,
         episodeNumber: references.episodeNumber,
@@ -311,6 +315,15 @@ export class TranslationJobRunnerService {
     const alignment =
       this.subtitleTimingAlignmentService.alignCatalogCues(loadedSourceCues);
 
+    const reuseDecision =
+      await this.translationReuseService.decideCatalogTranslationReuse({
+        clientDeviceId: job.clientDeviceId,
+        subtitleSourceId: subtitleSourceIdToTranslate,
+        targetLanguage: job.targetLanguage,
+        alignedCues: alignment.cues,
+        excludeJobId: job.id,
+      });
+
     await this.persistCatalogAcquisitionResult(job, {
       cues: alignment.cues,
       references,
@@ -318,7 +331,50 @@ export class TranslationJobRunnerService {
       quality: evaluation,
       timing: alignment.analysis,
       sourceLanguage: 'en',
+      ...(reuseDecision.reuseAllowed && reuseDecision.reusableJobId
+        ? {
+            translationReuse: {
+              reused: true,
+              reusedFromJobId: reuseDecision.reusableJobId,
+            },
+          }
+        : {}),
     });
+
+    if (
+      reuseDecision.reuseAllowed &&
+      reuseDecision.reusableJobId &&
+      reuseDecision.translatedCues
+    ) {
+      await delay(120);
+      await this.markProgress(job.id, {
+        stageLabel: 'Reusing previous translation',
+        progress: 0.62,
+      });
+
+      await delay(140);
+      await this.markProgress(job.id, {
+        stageLabel: 'Building preview and export payloads',
+        progress: 0.86,
+      });
+
+      await this.translationJobsRepository.replaceJobCues(
+        job.id,
+        this.buildReusedTranslationJobCues(
+          alignment.cues,
+          reuseDecision.translatedCues,
+        ),
+      );
+
+      await this.translationJobsRepository.updateJob(job.id, {
+        status: TranslationJobStatus.completed,
+        stageLabel: 'Translation ready',
+        progress: 1,
+        completedAt: new Date(),
+      });
+
+      return;
+    }
 
     await delay(250);
     await this.markProgress(job.id, {
@@ -459,6 +515,10 @@ export class TranslationJobRunnerService {
       sourceName?: string;
       format?: TranslationJob['format'];
       sourceLanguage: TranslationJob['sourceLanguage'];
+      translationReuse?: {
+        reused: boolean;
+        reusedFromJobId: string;
+      };
     },
   ) {
     const existingSubtitleSourceRef =
@@ -506,6 +566,9 @@ export class TranslationJobRunnerService {
                 confidence: params.timing.confidence,
               },
             }
+          : {}),
+        ...(params.translationReuse
+          ? { translationReuse: params.translationReuse }
           : {}),
       },
       lineCount: params.cues.length,
@@ -587,5 +650,23 @@ export class TranslationJobRunnerService {
       errorMessage:
         error instanceof Error ? error.message : 'Translation failed.',
     });
+  }
+
+  private buildReusedTranslationJobCues(
+    sourceCues: SubtitleCue[],
+    translatedCues: Array<{
+      cueIndex: number;
+      startMs: number;
+      endMs: number;
+      translatedText: string;
+    }>,
+  ): PersistedJobCue[] {
+    return sourceCues.map((cue, index) => ({
+      cueIndex: cue.cueIndex,
+      startMs: cue.startMs,
+      endMs: cue.endMs,
+      originalText: cue.text,
+      translatedText: translatedCues[index]?.translatedText ?? cue.text,
+    }));
   }
 }

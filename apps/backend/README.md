@@ -120,6 +120,7 @@ The app runs on `http://localhost:3000` and all routes are prefixed with `/v1`.
 - Catalog translation jobs compute deterministic subtitle confidence metadata (score, level, and warning codes) after cues are parsed, so suspicious subtitle matches can be flagged.
 - Catalog translation jobs attempt deterministic timing offset correction for constant subtitle shifts before translation starts.
 - Catalog translation jobs can reuse an existing target-language subtitle when one is available with sufficient confidence, skipping AI translation entirely.
+- Catalog translation jobs reuse previously completed translations for the same subtitle source + target language (device-scoped) to avoid repeated AI translation requests.
 
 ## Core API routes
 

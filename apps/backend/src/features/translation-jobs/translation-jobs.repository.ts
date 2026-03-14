@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {
+  AppLanguage,
   Prisma,
   TranslationJob,
   TranslationJobStatus,
@@ -330,6 +331,86 @@ export class TranslationJobsRepository {
       endMs: cue.endMs,
       text: cue.originalText,
     }));
+  }
+
+  /**
+   * Returns translated cues from the most recent completed catalog job that used the same
+   * subtitle source id + target language. This avoids re-issuing translation provider requests.
+   */
+  async findReusableCatalogTranslation(params: {
+    clientDeviceId: string;
+    subtitleSourceId: string;
+    targetLanguage: AppLanguage;
+    excludeJobId?: string;
+  }): Promise<{
+    jobId: string;
+    cues: Array<{
+      cueIndex: number;
+      startMs: number;
+      endMs: number;
+      translatedText: string;
+    }>;
+  } | null> {
+    const job = await this.prisma.translationJob.findFirst({
+      where: {
+        clientDeviceId: params.clientDeviceId,
+        ...(params.excludeJobId ? { id: { not: params.excludeJobId } } : {}),
+        sourceType: TranslationSourceType.catalog,
+        status: TranslationJobStatus.completed,
+        targetLanguage: params.targetLanguage,
+        OR: [
+          {
+            subtitleSourceRef: {
+              path: ['subtitleSourceId'],
+              equals: params.subtitleSourceId,
+            },
+          },
+          {
+            subtitleSourceRef: {
+              path: ['selectedSubtitleSourceId'],
+              equals: params.subtitleSourceId,
+            },
+          },
+        ],
+        cues: {
+          some: {},
+        },
+      },
+      orderBy: [{ completedAt: 'desc' }, { createdAt: 'desc' }],
+      select: { id: true },
+    });
+
+    if (!job) {
+      return null;
+    }
+
+    const cues = await this.prisma.translationJobCue.findMany({
+      where: { jobId: job.id },
+      orderBy: { cueIndex: 'asc' },
+      select: {
+        cueIndex: true,
+        startMs: true,
+        endMs: true,
+        translatedText: true,
+      },
+    });
+
+    if (
+      cues.length === 0 ||
+      cues.some((cue) => typeof cue.translatedText !== 'string')
+    ) {
+      return null;
+    }
+
+    return {
+      jobId: job.id,
+      cues: cues.map((cue) => ({
+        cueIndex: cue.cueIndex,
+        startMs: cue.startMs,
+        endMs: cue.endMs,
+        translatedText: cue.translatedText as string,
+      })),
+    };
   }
 
   /** Clears all persisted history and upload artifacts owned by one device. */
