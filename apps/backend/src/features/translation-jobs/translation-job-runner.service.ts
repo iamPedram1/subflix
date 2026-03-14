@@ -6,7 +6,10 @@ import {
 } from '@prisma/client';
 
 import { delay } from 'common/utils/delay.util';
+import { SearchMediaType } from 'common/domain/enums/search-media-type.enum';
 import { CatalogService } from 'features/catalog/catalog.service';
+import { CatalogMediaDetails } from 'features/catalog/models/catalog-media-details.model';
+import { SubtitleQualityEvaluationService } from 'features/catalog/subtitle-quality-evaluation.service';
 import { SubtitleCue } from 'features/subtitles/models/subtitle-cue.model';
 import { SubtitlesRepository } from 'features/subtitles/subtitles.repository';
 
@@ -15,6 +18,14 @@ import {
   TranslationProviderPort,
 } from 'features/translation-jobs/ports/translation-provider.port';
 import { TranslationJobsRepository } from 'features/translation-jobs/translation-jobs.repository';
+
+type PersistedCatalogSubtitleSourceRef = {
+  subtitleSourceId?: string;
+  seasonNumber?: unknown;
+  episodeNumber?: unknown;
+  releaseHint?: unknown;
+  quality?: unknown;
+};
 
 type PersistedJobCue = Parameters<
   TranslationJobsRepository['replaceJobCues']
@@ -36,6 +47,7 @@ export class TranslationJobRunnerService {
     private readonly translationJobsRepository: TranslationJobsRepository,
     private readonly subtitlesRepository: SubtitlesRepository,
     private readonly catalogService: CatalogService,
+    private readonly subtitleQualityEvaluationService: SubtitleQualityEvaluationService,
     @Inject(TRANSLATION_PROVIDER_PORT)
     private readonly translationProvider: TranslationProviderPort,
   ) {}
@@ -70,6 +82,17 @@ export class TranslationJobRunnerService {
 
       try {
         const sourceCues = await this.loadSourceCues(job);
+        if (job.sourceType === TranslationSourceType.catalog) {
+          const evaluation = await this.evaluateAndPersistCatalogQuality(
+            job,
+            sourceCues,
+          );
+          if (evaluation.shouldBlockAutoUse) {
+            throw new Error(
+              'The selected subtitle file appears invalid or unusable. Please choose a different subtitle source.',
+            );
+          }
+        }
 
         await delay(250);
         await this.markProgress(jobId, {
@@ -148,11 +171,14 @@ export class TranslationJobRunnerService {
   private getCatalogReferences(job: TranslationJob): {
     mediaId: string;
     subtitleSourceId: string;
+    seasonNumber?: number;
+    episodeNumber?: number;
+    releaseHint?: string;
   } {
     const mediaId = (job.mediaRef as { mediaId?: string } | null)?.mediaId;
-    const subtitleSourceId = (
-      job.subtitleSourceRef as { subtitleSourceId?: string } | null
-    )?.subtitleSourceId;
+    const subtitleSourceRef =
+      job.subtitleSourceRef as PersistedCatalogSubtitleSourceRef | null;
+    const subtitleSourceId = subtitleSourceRef?.subtitleSourceId;
 
     if (!mediaId || !subtitleSourceId) {
       throw new Error('Catalog translation job is missing source references.');
@@ -161,6 +187,85 @@ export class TranslationJobRunnerService {
     return {
       mediaId,
       subtitleSourceId,
+      seasonNumber:
+        typeof subtitleSourceRef?.seasonNumber === 'number'
+          ? subtitleSourceRef.seasonNumber
+          : undefined,
+      episodeNumber:
+        typeof subtitleSourceRef?.episodeNumber === 'number'
+          ? subtitleSourceRef.episodeNumber
+          : undefined,
+      releaseHint:
+        typeof subtitleSourceRef?.releaseHint === 'string'
+          ? subtitleSourceRef.releaseHint
+          : undefined,
+    };
+  }
+
+  private async evaluateAndPersistCatalogQuality(
+    job: TranslationJob,
+    cues: SubtitleCue[],
+  ) {
+    const references = this.getCatalogReferences(job);
+    const resolvedMedia = await this.catalogService.findById(
+      references.mediaId,
+    );
+    const media = resolvedMedia ?? this.buildFallbackMedia(job, references);
+
+    const evaluation = this.subtitleQualityEvaluationService.evaluateCatalogJob(
+      {
+        media,
+        cues,
+        sourceName: job.sourceName,
+        subtitleSourceId: references.subtitleSourceId,
+        releaseHint: references.releaseHint,
+        seasonNumber: references.seasonNumber,
+        episodeNumber: references.episodeNumber,
+      },
+    );
+
+    const durationMs = cues.reduce((max, cue) => Math.max(max, cue.endMs), 0);
+    const existingSubtitleSourceRef =
+      (job.subtitleSourceRef as Record<string, unknown> | null) ?? {};
+
+    await this.translationJobsRepository.updateJob(job.id, {
+      lineCount: cues.length,
+      durationMs,
+      subtitleSourceRef: {
+        ...existingSubtitleSourceRef,
+        quality: {
+          confidenceScore: evaluation.confidenceScore,
+          confidenceLevel: evaluation.confidenceLevel,
+          warnings: evaluation.warnings,
+        },
+      },
+    });
+
+    return evaluation;
+  }
+
+  private buildFallbackMedia(
+    job: TranslationJob,
+    references: {
+      mediaId: string;
+      seasonNumber?: number;
+      episodeNumber?: number;
+    },
+  ): CatalogMediaDetails {
+    const isTv =
+      references.seasonNumber !== undefined ||
+      references.episodeNumber !== undefined;
+
+    return {
+      id: references.mediaId,
+      title: job.title,
+      year: 0,
+      mediaType: isTv ? SearchMediaType.Series : SearchMediaType.Movie,
+      synopsis: '',
+      genres: [],
+      runtimeMinutes: 0,
+      popularity: 0,
+      providerMediaType: isTv ? 'tv' : 'movie',
     };
   }
 

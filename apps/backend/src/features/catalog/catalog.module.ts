@@ -20,6 +20,7 @@ import { SUBTITLE_CUE_PORT } from 'features/catalog/ports/subtitle-cue.port';
 import { SUBTITLE_SOURCE_PROVIDERS } from 'features/catalog/ports/subtitle-source-provider.port';
 import { SubtitleSourceDiscoveryService } from 'features/catalog/subtitle-source-discovery.service';
 import { SubtitlesModule } from 'features/subtitles/subtitles.module';
+import { SubtitleQualityEvaluationService } from 'features/catalog/subtitle-quality-evaluation.service';
 
 @Module({
   imports: [CacheModule, SubtitlesModule],
@@ -27,6 +28,7 @@ import { SubtitlesModule } from 'features/subtitles/subtitles.module';
   providers: [
     CatalogService,
     SubtitleSourceDiscoveryService,
+    SubtitleQualityEvaluationService,
     MockCatalogProvider,
     CatalogSubtitleCueProvider,
     TmdbMediaCatalogProvider,
@@ -125,6 +127,11 @@ import { SubtitlesModule } from 'features/subtitles/subtitles.module';
       },
     },
   ],
-  exports: [CatalogService, MEDIA_CATALOG_PORT, SUBTITLE_CUE_PORT],
+  exports: [
+    CatalogService,
+    MEDIA_CATALOG_PORT,
+    SUBTITLE_CUE_PORT,
+    SubtitleQualityEvaluationService,
+  ],
 })
 export class CatalogModule {}

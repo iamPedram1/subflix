@@ -146,6 +146,11 @@ describe('TranslationJobsService', () => {
     expect(catalogService.findById).toHaveBeenCalledWith('dune_part_two');
     expect(catalogService.getSubtitleSources).toHaveBeenCalledWith(
       'dune_part_two',
+      {
+        seasonNumber: undefined,
+        episodeNumber: undefined,
+        releaseHint: undefined,
+      },
     );
     expect(jobsRepository.createJob).toHaveBeenCalledWith(
       expect.objectContaining({

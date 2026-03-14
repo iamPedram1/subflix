@@ -8,6 +8,7 @@ import {
 
 import { CatalogService } from 'features/catalog/catalog.service';
 import { buildSubtitleSourceId } from 'features/catalog/utils/subtitle-source-id.util';
+import { SubtitleQualityEvaluationService } from 'features/catalog/subtitle-quality-evaluation.service';
 import { SubtitlesRepository } from 'features/subtitles/subtitles.repository';
 import { TranslationProviderPort } from 'features/translation-jobs/ports/translation-provider.port';
 import { TranslationJobRunnerService } from 'features/translation-jobs/translation-job-runner.service';
@@ -48,6 +49,7 @@ describe('TranslationJobRunnerService', () => {
       {} as TranslationJobsRepository,
       {} as SubtitlesRepository,
       {} as CatalogService,
+      {} as SubtitleQualityEvaluationService,
       {} as TranslationProviderPort,
     );
     const runSpy = vi.spyOn(service, 'run').mockResolvedValue();
@@ -68,6 +70,7 @@ describe('TranslationJobRunnerService', () => {
       {} as TranslationJobsRepository,
       {} as SubtitlesRepository,
       {} as CatalogService,
+      {} as SubtitleQualityEvaluationService,
       {} as TranslationProviderPort,
     );
     const runSpy = vi.spyOn(service, 'run').mockResolvedValue();
@@ -108,6 +111,7 @@ describe('TranslationJobRunnerService', () => {
       translationJobsRepository,
       subtitlesRepository,
       {} as CatalogService,
+      {} as SubtitleQualityEvaluationService,
       translationProvider,
     );
 
@@ -152,6 +156,7 @@ describe('TranslationJobRunnerService', () => {
       translationJobsRepository,
       {} as SubtitlesRepository,
       {} as CatalogService,
+      {} as SubtitleQualityEvaluationService,
       translationProvider,
     );
 
@@ -182,6 +187,7 @@ describe('TranslationJobRunnerService', () => {
       replaceJobCues: vi.fn().mockResolvedValue(undefined),
     } as unknown as TranslationJobsRepository;
     const catalogService = {
+      findById: vi.fn().mockResolvedValue(null),
       getSubtitleCues: vi.fn().mockResolvedValue([
         {
           cueIndex: 1,
@@ -199,6 +205,15 @@ describe('TranslationJobRunnerService', () => {
       translationJobsRepository,
       {} as SubtitlesRepository,
       catalogService,
+      {
+        evaluateCatalogJob: vi.fn().mockReturnValue({
+          confidenceScore: 85,
+          confidenceLevel: 'high',
+          warnings: [],
+          shouldBlockAutoUse: false,
+          signals: {},
+        }),
+      } as unknown as SubtitleQualityEvaluationService,
       translationProvider,
     );
 
@@ -236,6 +251,7 @@ describe('TranslationJobRunnerService', () => {
       replaceJobCues: vi.fn().mockResolvedValue(undefined),
     } as unknown as TranslationJobsRepository;
     const catalogService = {
+      findById: vi.fn().mockResolvedValue(null),
       getSubtitleCues: vi.fn(),
     } as unknown as CatalogService;
     const translationProvider = {
@@ -246,6 +262,15 @@ describe('TranslationJobRunnerService', () => {
       translationJobsRepository,
       {} as SubtitlesRepository,
       catalogService,
+      {
+        evaluateCatalogJob: vi.fn().mockReturnValue({
+          confidenceScore: 85,
+          confidenceLevel: 'high',
+          warnings: [],
+          shouldBlockAutoUse: false,
+          signals: {},
+        }),
+      } as unknown as SubtitleQualityEvaluationService,
       translationProvider,
     );
 
@@ -262,5 +287,68 @@ describe('TranslationJobRunnerService', () => {
       }),
     );
     expect(catalogService.getSubtitleCues).not.toHaveBeenCalled();
+  });
+
+  it('fails early when catalog subtitle quality evaluation blocks auto use', async () => {
+    vi.useFakeTimers();
+    vi.spyOn(Logger.prototype, 'error').mockImplementation(() => undefined);
+
+    const translationJobsRepository = {
+      claimQueuedJobForRunner: vi.fn().mockResolvedValue(
+        createRunnerJob({
+          sourceType: TranslationSourceType.catalog,
+          parsedFileId: null,
+          mediaRef: { mediaId: 'movie_27205' },
+          subtitleSourceRef: { subtitleSourceId: stableSubtitleSourceId },
+        }),
+      ),
+      findReusableCatalogSourceCues: vi.fn().mockResolvedValue([]),
+      updateJob: vi.fn().mockResolvedValue(undefined),
+      replaceJobCues: vi.fn().mockResolvedValue(undefined),
+    } as unknown as TranslationJobsRepository;
+    const catalogService = {
+      findById: vi.fn().mockResolvedValue(null),
+      getSubtitleCues: vi.fn().mockResolvedValue([
+        {
+          cueIndex: 1,
+          startMs: 5_000,
+          endMs: 1_000,
+          text: 'I am the one.',
+        },
+      ]),
+    } as unknown as CatalogService;
+    const translationProvider = {
+      translate: vi.fn(),
+    } as unknown as TranslationProviderPort;
+
+    const service = new TranslationJobRunnerService(
+      translationJobsRepository,
+      {} as SubtitlesRepository,
+      catalogService,
+      {
+        evaluateCatalogJob: vi.fn().mockReturnValue({
+          confidenceScore: 5,
+          confidenceLevel: 'low',
+          warnings: ['invalid_timing_ranges'],
+          shouldBlockAutoUse: true,
+          signals: {},
+        }),
+      } as unknown as SubtitleQualityEvaluationService,
+      translationProvider,
+    );
+
+    const runPromise = service.run('job-1');
+    await vi.runAllTimersAsync();
+    await runPromise;
+
+    expect(translationProvider.translate).not.toHaveBeenCalled();
+    expect(translationJobsRepository.replaceJobCues).not.toHaveBeenCalled();
+    expect(translationJobsRepository.updateJob).toHaveBeenLastCalledWith(
+      'job-1',
+      expect.objectContaining({
+        status: TranslationJobStatus.failed,
+        stageLabel: 'Translation failed',
+      }),
+    );
   });
 });

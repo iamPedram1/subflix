@@ -17,6 +17,7 @@ type TranslationJobSummarySource = Pick<
   | 'lineCount'
   | 'durationMs'
   | 'errorMessage'
+  | 'subtitleSourceRef'
 >;
 
 type TranslationPreviewCueSource = Pick<
@@ -24,8 +25,48 @@ type TranslationPreviewCueSource = Pick<
   'cueIndex' | 'startMs' | 'endMs' | 'originalText' | 'translatedText'
 >;
 
+const toOptionalSubtitleQualityFields = (subtitleSourceRef: unknown) => {
+  if (!subtitleSourceRef || typeof subtitleSourceRef !== 'object') {
+    return {};
+  }
+
+  const quality = (subtitleSourceRef as { quality?: unknown }).quality;
+  if (!quality || typeof quality !== 'object') {
+    return {};
+  }
+
+  const candidate = quality as {
+    confidenceScore?: unknown;
+    confidenceLevel?: unknown;
+    warnings?: unknown;
+  };
+
+  const subtitleConfidenceScore =
+    typeof candidate.confidenceScore === 'number'
+      ? candidate.confidenceScore
+      : undefined;
+  const subtitleConfidenceLevel =
+    typeof candidate.confidenceLevel === 'string'
+      ? candidate.confidenceLevel
+      : undefined;
+  const subtitleWarnings = Array.isArray(candidate.warnings)
+    ? candidate.warnings.filter((warning) => typeof warning === 'string')
+    : undefined;
+
+  return {
+    ...(subtitleConfidenceScore !== undefined
+      ? { subtitleConfidenceScore }
+      : {}),
+    ...(subtitleConfidenceLevel !== undefined
+      ? { subtitleConfidenceLevel }
+      : {}),
+    ...(subtitleWarnings !== undefined ? { subtitleWarnings } : {}),
+  };
+};
+
 /** Maps a persisted translation job into the public summary shape used by the API. */
 export const toTranslationJobSummary = (job: TranslationJobSummarySource) => ({
+  ...toOptionalSubtitleQualityFields(job.subtitleSourceRef),
   id: job.id,
   status: job.status,
   stageLabel: job.stageLabel,

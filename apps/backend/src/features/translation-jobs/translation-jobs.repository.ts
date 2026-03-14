@@ -34,6 +34,7 @@ export class TranslationJobsRepository {
       lineCount: true,
       durationMs: true,
       errorMessage: true,
+      subtitleSourceRef: true,
     });
   private static readonly translationJobCuePayloadSelect =
     Prisma.validator<Prisma.TranslationJobCueSelect>()({

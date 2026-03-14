@@ -23,6 +23,13 @@ import {
 import { TranslationJobRunnerService } from 'features/translation-jobs/translation-job-runner.service';
 import { TranslationJobsRepository } from 'features/translation-jobs/translation-jobs.repository';
 
+type CatalogSubtitleSourceRef = {
+  subtitleSourceId: string;
+  seasonNumber?: number;
+  episodeNumber?: number;
+  releaseHint?: string;
+};
+
 type JobSeed = {
   title: string;
   sourceName: string;
@@ -31,7 +38,7 @@ type JobSeed = {
   durationMs: number;
   parsedFileId: string | null;
   mediaRef: { mediaId: string } | null;
-  subtitleSourceRef: { subtitleSourceId: string } | null;
+  subtitleSourceRef: CatalogSubtitleSourceRef | null;
 };
 
 type CreateJobPayload = Parameters<TranslationJobsRepository['createJob']>[0];
@@ -209,6 +216,10 @@ export class TranslationJobsService {
 
   /** Rehydrates the DTO shape needed to rerun a previously created translation job. */
   private toRetryRequest(job: OwnedJob): CreateTranslationJobDto {
+    const subtitleSourceRef =
+      (job.subtitleSourceRef as Partial<CatalogSubtitleSourceRef> | null) ??
+      null;
+
     return {
       sourceType:
         job.sourceType === PrismaTranslationSourceType.upload
@@ -216,9 +227,10 @@ export class TranslationJobsService {
           : TranslationSourceType.Catalog,
       parsedFileId: job.parsedFileId ?? undefined,
       mediaId: (job.mediaRef as { mediaId?: string } | null)?.mediaId,
-      subtitleSourceId: (
-        job.subtitleSourceRef as { subtitleSourceId?: string } | null
-      )?.subtitleSourceId,
+      subtitleSourceId: subtitleSourceRef?.subtitleSourceId,
+      seasonNumber: subtitleSourceRef?.seasonNumber,
+      episodeNumber: subtitleSourceRef?.episodeNumber,
+      releaseHint: subtitleSourceRef?.releaseHint,
       targetLanguage: job.targetLanguage,
     };
   }
@@ -301,7 +313,11 @@ export class TranslationJobsService {
 
     const [media, subtitleSources] = await Promise.all([
       this.catalogService.findById(input.mediaId),
-      this.catalogService.getSubtitleSources(input.mediaId),
+      this.catalogService.getSubtitleSources(input.mediaId, {
+        seasonNumber: input.seasonNumber,
+        episodeNumber: input.episodeNumber,
+        releaseHint: input.releaseHint,
+      }),
     ]);
 
     if (!media) {
@@ -334,7 +350,16 @@ export class TranslationJobsService {
       durationMs: 0,
       parsedFileId: null,
       mediaRef: { mediaId: media.id },
-      subtitleSourceRef: { subtitleSourceId: subtitleSource.id },
+      subtitleSourceRef: {
+        subtitleSourceId: subtitleSource.id,
+        ...(input.seasonNumber !== undefined
+          ? { seasonNumber: input.seasonNumber }
+          : {}),
+        ...(input.episodeNumber !== undefined
+          ? { episodeNumber: input.episodeNumber }
+          : {}),
+        ...(input.releaseHint ? { releaseHint: input.releaseHint } : {}),
+      },
     };
   }
 }

@@ -117,6 +117,7 @@ The app runs on `http://localhost:3000` and all routes are prefixed with `/v1`.
   - Podnapisi scraper fallback
   - TVSubs scraper fallback
 - Subtitle source lookup is provider-backed, and catalog translation jobs download and parse real subtitle payloads (supports direct `.srt`/`.vtt` and `.zip` archives).
+- Catalog translation jobs also compute deterministic subtitle confidence metadata (score, level, and warning codes) after cues are parsed, so suspicious subtitle matches can be flagged before translation completes.
 
 ## Core API routes
 
@@ -173,6 +174,21 @@ curl -X POST "http://localhost:3000/v1/translation-jobs" \
   -d '{
     "sourceType": "upload",
     "parsedFileId": "REPLACE_WITH_FILE_ID",
+    "targetLanguage": "fr"
+  }'
+```
+
+### Create catalog translation job (optional release hints)
+
+```bash
+curl -X POST "http://localhost:3000/v1/translation-jobs" \
+  -H "Content-Type: application/json" \
+  -H "x-device-id: simulator-001" \
+  -d '{
+    "sourceType": "catalog",
+    "mediaId": "inception",
+    "subtitleSourceId": "REPLACE_WITH_SSRC_ID",
+    "releaseHint": "Inception.2010.1080p.BluRay.x264-GRP",
     "targetLanguage": "fr"
   }'
 ```
