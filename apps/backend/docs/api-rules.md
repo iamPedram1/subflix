@@ -56,6 +56,7 @@ Every non-success response should use the normalized envelope:
 - `GET /v1/catalog/media/:mediaId/subtitle-sources`
 - These routes are public and cacheable
 - Search queries must be trimmed and validated
+- `subtitle-sources` may accept optional `preferredLanguage`, `seasonNumber`, and `episodeNumber` query params
 
 ### Preferences
 

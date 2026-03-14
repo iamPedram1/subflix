@@ -55,3 +55,29 @@ export const tmdbConfig = registerAs('tmdb', () => ({
   includeAdult: process.env.TMDB_INCLUDE_ADULT === 'true',
   defaultLanguage: process.env.TMDB_DEFAULT_LANGUAGE ?? 'en-US',
 }));
+
+export const subtitleSourcesConfig = registerAs('subtitleSources', () => ({
+  cacheTtlMs: parseNumber(
+    process.env.SUBTITLE_SOURCE_CACHE_TTL_MS,
+    6 * 60 * 60_000,
+  ),
+  subdl: {
+    apiBaseUrl:
+      process.env.SUBDL_API_BASE_URL ?? 'https://api.subdl.com/api/v1',
+    apiKey: process.env.SUBDL_API_KEY ?? '',
+    enabled:
+      process.env.SUBDL_ENABLED !== 'false' &&
+      (process.env.SUBDL_API_KEY ?? '').trim().length > 0,
+    timeoutMs: parseNumber(process.env.SUBDL_TIMEOUT_MS, 7_000),
+  },
+  podnapisi: {
+    baseUrl: process.env.PODNAPISI_BASE_URL ?? 'https://www.podnapisi.net',
+    enabled: process.env.PODNAPISI_ENABLED !== 'false',
+    timeoutMs: parseNumber(process.env.PODNAPISI_TIMEOUT_MS, 10_000),
+  },
+  tvsubs: {
+    baseUrl: process.env.TVSUBS_BASE_URL ?? 'https://www.tvsubtitles.net',
+    enabled: process.env.TVSUBS_ENABLED !== 'false',
+    timeoutMs: parseNumber(process.env.TVSUBS_TIMEOUT_MS, 10_000),
+  },
+}));

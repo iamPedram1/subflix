@@ -1,0 +1,48 @@
+import { Transform } from 'class-transformer';
+import {
+  IsInt,
+  IsOptional,
+  IsString,
+  Matches,
+  Min,
+  ValidateIf,
+} from 'class-validator';
+
+const LANGUAGE_CODE_PATTERN = /^[A-Za-z_-]{2,10}$/;
+
+const toOptionalNumber = ({ value }: { value: unknown }) => {
+  if (value === undefined || value === null || value === '') {
+    return undefined;
+  }
+
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : value;
+};
+
+export class GetSubtitleSourcesQueryDto {
+  @IsOptional()
+  @Transform(({ value }) =>
+    typeof value === 'string' ? value.trim().toLowerCase() : value,
+  )
+  @IsString()
+  @Matches(LANGUAGE_CODE_PATTERN)
+  preferredLanguage?: string;
+
+  @Transform(toOptionalNumber)
+  @ValidateIf(
+    ({ seasonNumber, episodeNumber }: GetSubtitleSourcesQueryDto) =>
+      seasonNumber !== undefined || episodeNumber !== undefined,
+  )
+  @IsInt()
+  @Min(1)
+  seasonNumber?: number;
+
+  @Transform(toOptionalNumber)
+  @ValidateIf(
+    ({ seasonNumber, episodeNumber }: GetSubtitleSourcesQueryDto) =>
+      seasonNumber !== undefined || episodeNumber !== undefined,
+  )
+  @IsInt()
+  @Min(1)
+  episodeNumber?: number;
+}

@@ -1,7 +1,8 @@
 import { AppCacheService } from 'src/common/cache/app-cache.service';
 import { CatalogService } from 'src/features/catalog/catalog.service';
 import { MediaCatalogPort } from 'src/features/catalog/ports/media-catalog.port';
-import { SubtitleSourcePort } from 'src/features/catalog/ports/subtitle-source.port';
+import { SubtitleCuePort } from 'src/features/catalog/ports/subtitle-cue.port';
+import { SubtitleSourceDiscoveryService } from 'src/features/catalog/subtitle-source-discovery.service';
 
 describe('CatalogService', () => {
   const createCacheService = () =>
@@ -15,15 +16,15 @@ describe('CatalogService', () => {
       search: vi.fn().mockResolvedValue([]),
       findById: vi.fn(),
     } as unknown as MediaCatalogPort;
-    const subtitleSourcePort = {
-      getSubtitleSources: vi.fn(),
+    const subtitleCuePort = {
       getSubtitleCues: vi.fn(),
-    } as unknown as SubtitleSourcePort;
+    } as unknown as SubtitleCuePort;
 
     const service = new CatalogService(
       cacheService,
+      {} as SubtitleSourceDiscoveryService,
       mediaCatalogPort,
-      subtitleSourcePort,
+      subtitleCuePort,
     );
 
     await service.search(' Dune ');
@@ -34,15 +35,15 @@ describe('CatalogService', () => {
 
   it('caches subtitle cues per media and source combination', async () => {
     const cacheService = createCacheService();
-    const subtitleSourcePort = {
-      getSubtitleSources: vi.fn(),
+    const subtitleCuePort = {
       getSubtitleCues: vi.fn().mockResolvedValue([]),
-    } as unknown as SubtitleSourcePort;
+    } as unknown as SubtitleCuePort;
 
     const service = new CatalogService(
       cacheService,
+      {} as SubtitleSourceDiscoveryService,
       {} as MediaCatalogPort,
-      subtitleSourcePort,
+      subtitleCuePort,
     );
 
     await service.getSubtitleCues('inception', 'webdl');
@@ -65,8 +66,9 @@ describe('CatalogService', () => {
 
     const service = new CatalogService(
       cacheService,
+      {} as SubtitleSourceDiscoveryService,
       mediaCatalogPort,
-      {} as SubtitleSourcePort,
+      {} as SubtitleCuePort,
     );
 
     await service.findById('movie_157336');

@@ -81,7 +81,9 @@ This layer should stop at generic persistence concerns. It should not absorb fea
 - media search
 - TMDb-backed movie and TV discovery when a read token is configured
 - subtitle source discovery
-- mock subtitle source adapter and data
+- provider-backed subtitle source orchestration with cache-first lookup
+- SubDL primary provider with scraper fallbacks
+- mock cue adapter retained only until real catalog subtitle downloads land
 - read-heavy and cache-friendly
 
 ### `preferences`

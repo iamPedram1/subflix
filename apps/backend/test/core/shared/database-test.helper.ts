@@ -3,7 +3,11 @@ import { PrismaService } from 'src/common/database/prisma/prisma.service';
 export const hasDatabaseUrl = (): boolean =>
   Boolean(process.env.DATABASE_URL?.trim());
 
-export const describeIfDatabase = hasDatabaseUrl() ? describe : describe.skip;
+type DescribeBlock = (name: string, run: () => void) => void;
+
+export const describeIfDatabase: DescribeBlock = (name, run) => {
+  (hasDatabaseUrl() ? describe : describe.skip)(name, run);
+};
 
 /** Clears persisted test data in dependency order. */
 export const resetDatabase = async (prisma: PrismaService): Promise<void> => {

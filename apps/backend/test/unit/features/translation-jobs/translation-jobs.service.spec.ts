@@ -11,6 +11,7 @@ import { AppLanguage } from 'src/common/domain/enums/app-language.enum';
 import { TranslationSourceType as TranslationSourceTypeDto } from 'src/common/domain/enums/translation-source-type.enum';
 import { ValidationDomainError } from 'src/common/domain/errors/domain.error';
 import { CatalogService } from 'src/features/catalog/catalog.service';
+import { buildSubtitleSourceId } from 'src/features/catalog/utils/subtitle-source-id.util';
 import { SubtitlesRepository } from 'src/features/subtitles/subtitles.repository';
 import { SubtitleExportService } from 'src/features/subtitles/utils/subtitle-export.service';
 import { TranslationJobRunnerService } from 'src/features/translation-jobs/translation-job-runner.service';
@@ -18,6 +19,8 @@ import { TranslationJobsRepository } from 'src/features/translation-jobs/transla
 import { TranslationJobsService } from 'src/features/translation-jobs/translation-jobs.service';
 
 describe('TranslationJobsService', () => {
+  const stableSubtitleSourceId = buildSubtitleSourceId('subdl', 'source-1');
+
   const device = {
     id: 'device-1',
     deviceId: 'device-header-1',
@@ -103,7 +106,7 @@ describe('TranslationJobsService', () => {
           title: 'Dune: Part Two',
           sourceName: 'OpenSubtitles BluRay',
           mediaRef: { mediaId: 'dune_part_two' },
-          subtitleSourceRef: { subtitleSourceId: 'source-1' },
+          subtitleSourceRef: { subtitleSourceId: stableSubtitleSourceId },
         }),
       ),
     } as unknown as TranslationJobsRepository;
@@ -114,7 +117,7 @@ describe('TranslationJobsService', () => {
       }),
       getSubtitleSources: vi.fn().mockResolvedValue([
         {
-          id: 'source-1',
+          id: stableSubtitleSourceId,
           label: 'OpenSubtitles BluRay',
           format: SubtitleFormat.srt,
           lineCount: 1_248,
@@ -136,7 +139,7 @@ describe('TranslationJobsService', () => {
     await service.createJob(device, {
       sourceType: TranslationSourceTypeDto.Catalog,
       mediaId: 'dune_part_two',
-      subtitleSourceId: 'source-1',
+      subtitleSourceId: stableSubtitleSourceId,
       targetLanguage: AppLanguage.French,
     });
 
@@ -151,7 +154,7 @@ describe('TranslationJobsService', () => {
         sourceName: 'OpenSubtitles BluRay',
         parsedFileId: null,
         mediaRef: { mediaId: 'dune_part_two' },
-        subtitleSourceRef: { subtitleSourceId: 'source-1' },
+        subtitleSourceRef: { subtitleSourceId: stableSubtitleSourceId },
       }),
     );
     expect(runner.schedule).toHaveBeenCalledWith('job-1');

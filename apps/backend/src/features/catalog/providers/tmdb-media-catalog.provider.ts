@@ -13,6 +13,7 @@ import {
   TMDB_MOVIE_GENRE_MAP,
   TMDB_SERIES_GENRE_MAP,
 } from '../data/tmdb-genre-map';
+import { CatalogMediaDetails } from '../models/catalog-media-details.model';
 import { CatalogMediaItem } from '../models/catalog-media-item.model';
 import { MediaCatalogPort } from '../ports/media-catalog.port';
 import { MockCatalogProvider } from './mock-catalog.provider';
@@ -32,6 +33,7 @@ type TmdbMultiSearchResult = {
 type TmdbMovieDetail = {
   id: number;
   title?: string;
+  original_title?: string;
   overview?: string;
   popularity?: number;
   genres?: Array<{ id: number; name: string }>;
@@ -42,11 +44,16 @@ type TmdbMovieDetail = {
 type TmdbSeriesDetail = {
   id: number;
   name?: string;
+  original_name?: string;
   overview?: string;
   popularity?: number;
   genres?: Array<{ id: number; name: string }>;
   first_air_date?: string;
   episode_run_time?: number[];
+};
+
+type TmdbExternalIds = {
+  imdb_id?: string | null;
 };
 
 type TmdbListResponse<T> = {
@@ -125,7 +132,7 @@ export class TmdbMediaCatalogProvider implements MediaCatalogPort {
     return this.mergeSearchResults(movies, series);
   }
 
-  async findById(mediaId: string): Promise<CatalogMediaItem | null> {
+  async findById(mediaId: string): Promise<CatalogMediaDetails | null> {
     if (!this.hasToken()) {
       return this.cacheService.getOrSet(
         this.buildFallbackMediaCacheKey(mediaId),
@@ -133,7 +140,7 @@ export class TmdbMediaCatalogProvider implements MediaCatalogPort {
       );
     }
 
-    const cachedItem = this.cacheService.get<CatalogMediaItem>(
+    const cachedItem = this.cacheService.get<CatalogMediaDetails>(
       this.buildMediaCacheKey(mediaId),
     );
     if (cachedItem) {
@@ -163,13 +170,16 @@ export class TmdbMediaCatalogProvider implements MediaCatalogPort {
 
   private async fetchMovieById(
     tmdbId: number,
-  ): Promise<CatalogMediaItem | null> {
-    const movie = await this.fetchOptionalJson<TmdbMovieDetail>(
-      `/movie/${tmdbId}`,
-      {
+  ): Promise<CatalogMediaDetails | null> {
+    const [movie, externalIds] = await Promise.all([
+      this.fetchOptionalJson<TmdbMovieDetail>(`/movie/${tmdbId}`, {
         language: this.language,
-      },
-    );
+      }),
+      this.fetchOptionalJson<TmdbExternalIds>(
+        `/movie/${tmdbId}/external_ids`,
+        {},
+      ),
+    ]);
     if (!movie) {
       return null;
     }
@@ -189,18 +199,22 @@ export class TmdbMediaCatalogProvider implements MediaCatalogPort {
         movie.runtime ?? undefined,
       ),
       popularity: this.normalizePopularity(movie.popularity),
+      tmdbId,
+      imdbId: externalIds?.imdb_id?.trim() || undefined,
+      originalTitle: movie.original_title?.trim() || movie.title?.trim(),
+      providerMediaType: 'movie',
     };
   }
 
   private async fetchSeriesById(
     tmdbId: number,
-  ): Promise<CatalogMediaItem | null> {
-    const series = await this.fetchOptionalJson<TmdbSeriesDetail>(
-      `/tv/${tmdbId}`,
-      {
+  ): Promise<CatalogMediaDetails | null> {
+    const [series, externalIds] = await Promise.all([
+      this.fetchOptionalJson<TmdbSeriesDetail>(`/tv/${tmdbId}`, {
         language: this.language,
-      },
-    );
+      }),
+      this.fetchOptionalJson<TmdbExternalIds>(`/tv/${tmdbId}/external_ids`, {}),
+    ]);
     if (!series) {
       return null;
     }
@@ -220,6 +234,10 @@ export class TmdbMediaCatalogProvider implements MediaCatalogPort {
         series.episode_run_time?.[0],
       ),
       popularity: this.normalizePopularity(series.popularity),
+      tmdbId,
+      imdbId: externalIds?.imdb_id?.trim() || undefined,
+      originalTitle: series.original_name?.trim() || series.name?.trim(),
+      providerMediaType: 'tv',
     };
   }
 
@@ -257,7 +275,7 @@ export class TmdbMediaCatalogProvider implements MediaCatalogPort {
         : (result.media_type ?? 'tv') === 'tv',
     );
 
-    const items = filteredResults.map((result) => ({
+    return filteredResults.map((result) => ({
       id: this.buildMediaId(mediaType, result.id),
       title:
         mediaType === SearchMediaType.Movie
@@ -279,12 +297,6 @@ export class TmdbMediaCatalogProvider implements MediaCatalogPort {
       runtimeMinutes: this.normalizeRuntime(mediaType),
       popularity: this.normalizePopularity(result.popularity),
     }));
-
-    for (const item of items) {
-      this.cacheMediaItem(item);
-    }
-
-    return items;
   }
 
   private mergeSearchResults(
@@ -308,7 +320,7 @@ export class TmdbMediaCatalogProvider implements MediaCatalogPort {
     );
   }
 
-  private cacheMediaItem(item: CatalogMediaItem): void {
+  private cacheMediaItem(item: CatalogMediaDetails): void {
     this.cacheService.set(
       this.buildMediaCacheKey(item.id),
       item,

@@ -6,7 +6,7 @@ Production-oriented NestJS backend for the SubFlix subtitle translation app.
 
 - Searches a mocked movie and series catalog
 - Searches movies and series through TMDb when a read token is configured
-- Returns mocked English subtitle source options
+- Returns provider-backed subtitle source options through a backend-owned chain
 - Accepts `.srt` and `.vtt` subtitle uploads
 - Parses subtitle files on the backend and stores normalized cues
 - Creates async translation jobs with persisted progress and stage labels
@@ -63,6 +63,7 @@ PORT=3000
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/subflix
 MAX_UPLOAD_BYTES=2097152
 TMDB_API_READ_TOKEN=your_tmdb_read_token
+SUBDL_API_KEY=your_subdl_api_key
 ```
 
 ### 3. Start PostgreSQL
@@ -101,7 +102,20 @@ The app runs on `http://localhost:3000` and all routes are prefixed with `/v1`.
 - Search results are cached aggressively to reduce TMDb usage:
   - movie query results: 30 days
   - series query results: 1 day
-- The backend keeps subtitle source and cue generation mocked for now, so only catalog search is live against TMDb.
+
+## Subtitle source provider chain
+
+- Subtitle source discovery is backend-owned and public through `GET /v1/catalog/media/:mediaId/subtitle-sources`.
+- Optional query params are supported for discovery:
+  - `preferredLanguage`
+  - `seasonNumber`
+  - `episodeNumber`
+- Provider order is:
+  - cache
+  - SubDL API
+  - Podnapisi scraper fallback
+  - TVSubs scraper fallback
+- Real subtitle source lookup is live behind provider adapters, while cue loading for catalog translation jobs remains on the existing mock path in this phase.
 
 ## Core API routes
 
@@ -205,12 +219,13 @@ pnpm format
 - Repositories own Prisma access only.
 - Shared DB helpers are intentionally small: pagination, entity lookup, and DB error normalization.
 - Translation runs asynchronously in-process for now and is isolated behind a runner + provider boundary so it can move to a worker queue later.
-- Catalog search is now backed by TMDb when configured, while subtitle source lookup and translation execution still sit behind swappable provider interfaces.
+- Catalog search is backed by TMDb when configured, and subtitle source lookup now runs through swappable SubDL + scraper provider adapters behind the catalog feature.
 - Export generation happens on the backend, not in the client.
 
 ## Current limitations
 
 - No real authentication yet. Ownership is header-based via `x-device-id`.
-- No external subtitle or translation providers yet. The current implementation uses deterministic mock adapters.
+- Catalog subtitle cue downloads are still mocked for now, even though subtitle source lookup is provider-backed.
+- Translation execution is still mocked behind its provider boundary.
 - No Redis/BullMQ worker pipeline yet. Jobs are run in-process to keep V1 simple.
 - DB-backed tests require a reachable PostgreSQL database.

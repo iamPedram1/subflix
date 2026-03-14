@@ -7,13 +7,14 @@ import {
 } from '@prisma/client';
 
 import { CatalogService } from 'src/features/catalog/catalog.service';
+import { buildSubtitleSourceId } from 'src/features/catalog/utils/subtitle-source-id.util';
 import { SubtitlesRepository } from 'src/features/subtitles/subtitles.repository';
 import { TranslationProviderPort } from 'src/features/translation-jobs/ports/translation-provider.port';
 import { TranslationJobRunnerService } from 'src/features/translation-jobs/translation-job-runner.service';
 import { TranslationJobsRepository } from 'src/features/translation-jobs/translation-jobs.repository';
 
 describe('TranslationJobRunnerService', () => {
-  const createRunnerJob = () => ({
+  const createRunnerJob = (overrides: Record<string, unknown> = {}) => ({
     id: 'job-1',
     clientDeviceId: 'device-1',
     sourceType: TranslationSourceType.upload,
@@ -35,7 +36,10 @@ describe('TranslationJobRunnerService', () => {
     updatedAt: new Date(),
     startedAt: null,
     completedAt: null,
+    ...overrides,
   });
+
+  const stableSubtitleSourceId = buildSubtitleSourceId('subdl', 'source-1');
 
   it('schedules job execution asynchronously', async () => {
     vi.useFakeTimers();
@@ -159,5 +163,51 @@ describe('TranslationJobRunnerService', () => {
     expect(translationJobsRepository.updateJob).not.toHaveBeenCalled();
     expect(translationJobsRepository.replaceJobCues).not.toHaveBeenCalled();
     expect(translationProvider.translate).not.toHaveBeenCalled();
+  });
+
+  it('reuses stable catalog subtitle source ids when loading cues', async () => {
+    vi.useFakeTimers();
+
+    const translationJobsRepository = {
+      claimQueuedJobForRunner: vi.fn().mockResolvedValue(
+        createRunnerJob({
+          sourceType: TranslationSourceType.catalog,
+          parsedFileId: null,
+          mediaRef: { mediaId: 'movie_27205' },
+          subtitleSourceRef: { subtitleSourceId: stableSubtitleSourceId },
+        }),
+      ),
+      updateJob: vi.fn().mockResolvedValue(undefined),
+      replaceJobCues: vi.fn().mockResolvedValue(undefined),
+    } as unknown as TranslationJobsRepository;
+    const catalogService = {
+      getSubtitleCues: vi.fn().mockResolvedValue([
+        {
+          cueIndex: 1,
+          startMs: 1_000,
+          endMs: 3_000,
+          text: 'Dream bigger.',
+        },
+      ]),
+    } as unknown as CatalogService;
+    const translationProvider = {
+      translate: vi.fn().mockResolvedValue(['Dream bigger.']),
+    } as unknown as TranslationProviderPort;
+
+    const service = new TranslationJobRunnerService(
+      translationJobsRepository,
+      {} as SubtitlesRepository,
+      catalogService,
+      translationProvider,
+    );
+
+    const runPromise = service.run('job-1');
+    await vi.runAllTimersAsync();
+    await runPromise;
+
+    expect(catalogService.getSubtitleCues).toHaveBeenCalledWith(
+      'movie_27205',
+      stableSubtitleSourceId,
+    );
   });
 });

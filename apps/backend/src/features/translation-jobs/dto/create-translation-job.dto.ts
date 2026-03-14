@@ -9,9 +9,8 @@ import {
   MaxLength,
 } from 'class-validator';
 
+import { PROVIDER_IDENTIFIER_PATTERN } from 'src/common/domain/constants/provider-identifier.pattern';
 import { TranslationSourceType } from 'src/common/domain/enums/translation-source-type.enum';
-
-const PROVIDER_IDENTIFIER_PATTERN = /^[A-Za-z0-9._:-]+$/;
 
 export class CreateTranslationJobDto {
   @IsEnum(TranslationSourceType)
