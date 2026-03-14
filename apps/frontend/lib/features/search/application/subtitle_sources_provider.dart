@@ -8,5 +8,7 @@ part 'subtitle_sources_provider.g.dart';
 
 @riverpod
 Future<List<SubtitleSource>> subtitleSources(Ref ref, MovieSearchItem item) {
-  return ref.watch(searchRepositoryProvider).fetchSubtitleSources(item.id);
+  return ref
+      .watch(searchRepositoryProvider)
+      .fetchSubtitleSources(item.id, preferredLanguage: 'en');
 }

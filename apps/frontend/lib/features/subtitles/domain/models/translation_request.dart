@@ -13,6 +13,9 @@ sealed class TranslationRequest with _$TranslationRequest {
     required MovieSearchItem item,
     required SubtitleSource source,
     required AppLanguage targetLanguage,
+    int? seasonNumber,
+    int? episodeNumber,
+    String? releaseHint,
   }) = CatalogTranslationRequest;
 
   const factory TranslationRequest.upload({

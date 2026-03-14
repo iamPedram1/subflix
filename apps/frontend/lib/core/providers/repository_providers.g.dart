@@ -175,7 +175,7 @@ final class DioProvider extends $FunctionalProvider<Dio, Dio, Dio>
   }
 }
 
-String _$dioHash() => r'7b9d28b3a14baf706d284f7d0645a8477cabfcf9';
+String _$dioHash() => r'6ebdb201f52f7475e32a35c6c5ee0aa3a776331d';
 
 @ProviderFor(subtitleParser)
 const subtitleParserProvider = SubtitleParserProvider._();

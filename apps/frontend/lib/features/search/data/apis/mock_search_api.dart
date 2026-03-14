@@ -119,7 +119,13 @@ class MockSearchApi {
         .toList(growable: false);
   }
 
-  Future<List<SubtitleSource>> fetchSubtitleSources(String mediaId) async {
+  Future<List<SubtitleSource>> fetchSubtitleSources(
+    String mediaId, {
+    String preferredLanguage = 'en',
+    int? seasonNumber,
+    int? episodeNumber,
+    String? releaseHint,
+  }) async {
     await fakeDelay(const Duration(milliseconds: 900));
 
     if (mediaId.contains('error')) {

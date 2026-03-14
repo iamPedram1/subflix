@@ -4,5 +4,11 @@ import 'package:subflix/features/subtitles/domain/models/subtitle_source.dart';
 abstract interface class SearchRepository {
   Future<List<MovieSearchItem>> searchTitles(String query);
 
-  Future<List<SubtitleSource>> fetchSubtitleSources(String mediaId);
+  Future<List<SubtitleSource>> fetchSubtitleSources(
+    String mediaId, {
+    String preferredLanguage = 'en',
+    int? seasonNumber,
+    int? episodeNumber,
+    String? releaseHint,
+  });
 }

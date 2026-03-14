@@ -66,7 +66,7 @@ final class SubtitleSourcesProvider
   }
 }
 
-String _$subtitleSourcesHash() => r'27e5d7022689b044357f2de8d29acfd78937e37c';
+String _$subtitleSourcesHash() => r'e5f6caf3797cee1dc5eff9090e850552e4e34a34';
 
 final class SubtitleSourcesFamily extends $Family
     with

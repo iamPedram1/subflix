@@ -5,6 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:subflix/core/app/app_config.dart';
+import 'package:subflix/core/network/accept_language.dart';
 import 'package:subflix/core/network/request_identity.dart';
 import 'package:subflix/core/utils/subtitle_parser.dart';
 import 'package:subflix/features/history/data/repositories/backend_history_repository.dart';
@@ -73,6 +74,7 @@ Dio dio(Ref ref) {
       onRequest: (options, handler) {
         options.headers.putIfAbsent('x-device-id', () => deviceId);
         options.headers.putIfAbsent('x-request-id', createRequestId);
+        options.headers['accept-language'] = resolveAcceptLanguageHeader();
         handler.next(options);
       },
     ),

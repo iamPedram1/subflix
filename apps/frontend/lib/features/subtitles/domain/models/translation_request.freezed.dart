@@ -150,10 +150,10 @@ return upload(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( MovieSearchItem item,  SubtitleSource source,  AppLanguage targetLanguage)?  catalog,TResult Function( SubtitleFile file,  AppLanguage targetLanguage)?  upload,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( MovieSearchItem item,  SubtitleSource source,  AppLanguage targetLanguage,  int? seasonNumber,  int? episodeNumber,  String? releaseHint)?  catalog,TResult Function( SubtitleFile file,  AppLanguage targetLanguage)?  upload,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case CatalogTranslationRequest() when catalog != null:
-return catalog(_that.item,_that.source,_that.targetLanguage);case UploadTranslationRequest() when upload != null:
+return catalog(_that.item,_that.source,_that.targetLanguage,_that.seasonNumber,_that.episodeNumber,_that.releaseHint);case UploadTranslationRequest() when upload != null:
 return upload(_that.file,_that.targetLanguage);case _:
   return orElse();
 
@@ -172,10 +172,10 @@ return upload(_that.file,_that.targetLanguage);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( MovieSearchItem item,  SubtitleSource source,  AppLanguage targetLanguage)  catalog,required TResult Function( SubtitleFile file,  AppLanguage targetLanguage)  upload,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( MovieSearchItem item,  SubtitleSource source,  AppLanguage targetLanguage,  int? seasonNumber,  int? episodeNumber,  String? releaseHint)  catalog,required TResult Function( SubtitleFile file,  AppLanguage targetLanguage)  upload,}) {final _that = this;
 switch (_that) {
 case CatalogTranslationRequest():
-return catalog(_that.item,_that.source,_that.targetLanguage);case UploadTranslationRequest():
+return catalog(_that.item,_that.source,_that.targetLanguage,_that.seasonNumber,_that.episodeNumber,_that.releaseHint);case UploadTranslationRequest():
 return upload(_that.file,_that.targetLanguage);}
 }
 /// A variant of `when` that fallback to returning `null`
@@ -190,10 +190,10 @@ return upload(_that.file,_that.targetLanguage);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( MovieSearchItem item,  SubtitleSource source,  AppLanguage targetLanguage)?  catalog,TResult? Function( SubtitleFile file,  AppLanguage targetLanguage)?  upload,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( MovieSearchItem item,  SubtitleSource source,  AppLanguage targetLanguage,  int? seasonNumber,  int? episodeNumber,  String? releaseHint)?  catalog,TResult? Function( SubtitleFile file,  AppLanguage targetLanguage)?  upload,}) {final _that = this;
 switch (_that) {
 case CatalogTranslationRequest() when catalog != null:
-return catalog(_that.item,_that.source,_that.targetLanguage);case UploadTranslationRequest() when upload != null:
+return catalog(_that.item,_that.source,_that.targetLanguage,_that.seasonNumber,_that.episodeNumber,_that.releaseHint);case UploadTranslationRequest() when upload != null:
 return upload(_that.file,_that.targetLanguage);case _:
   return null;
 
@@ -206,12 +206,15 @@ return upload(_that.file,_that.targetLanguage);case _:
 
 
 class CatalogTranslationRequest implements TranslationRequest {
-  const CatalogTranslationRequest({required this.item, required this.source, required this.targetLanguage});
+  const CatalogTranslationRequest({required this.item, required this.source, required this.targetLanguage, this.seasonNumber, this.episodeNumber, this.releaseHint});
   
 
  final  MovieSearchItem item;
  final  SubtitleSource source;
 @override final  AppLanguage targetLanguage;
+ final  int? seasonNumber;
+ final  int? episodeNumber;
+ final  String? releaseHint;
 
 /// Create a copy of TranslationRequest
 /// with the given fields replaced by the non-null parameter values.
@@ -223,16 +226,16 @@ $CatalogTranslationRequestCopyWith<CatalogTranslationRequest> get copyWith => _$
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CatalogTranslationRequest&&(identical(other.item, item) || other.item == item)&&(identical(other.source, source) || other.source == source)&&(identical(other.targetLanguage, targetLanguage) || other.targetLanguage == targetLanguage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CatalogTranslationRequest&&(identical(other.item, item) || other.item == item)&&(identical(other.source, source) || other.source == source)&&(identical(other.targetLanguage, targetLanguage) || other.targetLanguage == targetLanguage)&&(identical(other.seasonNumber, seasonNumber) || other.seasonNumber == seasonNumber)&&(identical(other.episodeNumber, episodeNumber) || other.episodeNumber == episodeNumber)&&(identical(other.releaseHint, releaseHint) || other.releaseHint == releaseHint));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,item,source,targetLanguage);
+int get hashCode => Object.hash(runtimeType,item,source,targetLanguage,seasonNumber,episodeNumber,releaseHint);
 
 @override
 String toString() {
-  return 'TranslationRequest.catalog(item: $item, source: $source, targetLanguage: $targetLanguage)';
+  return 'TranslationRequest.catalog(item: $item, source: $source, targetLanguage: $targetLanguage, seasonNumber: $seasonNumber, episodeNumber: $episodeNumber, releaseHint: $releaseHint)';
 }
 
 
@@ -243,7 +246,7 @@ abstract mixin class $CatalogTranslationRequestCopyWith<$Res> implements $Transl
   factory $CatalogTranslationRequestCopyWith(CatalogTranslationRequest value, $Res Function(CatalogTranslationRequest) _then) = _$CatalogTranslationRequestCopyWithImpl;
 @override @useResult
 $Res call({
- MovieSearchItem item, SubtitleSource source, AppLanguage targetLanguage
+ MovieSearchItem item, SubtitleSource source, AppLanguage targetLanguage, int? seasonNumber, int? episodeNumber, String? releaseHint
 });
 
 
@@ -260,12 +263,15 @@ class _$CatalogTranslationRequestCopyWithImpl<$Res>
 
 /// Create a copy of TranslationRequest
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? item = null,Object? source = null,Object? targetLanguage = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? item = null,Object? source = null,Object? targetLanguage = null,Object? seasonNumber = freezed,Object? episodeNumber = freezed,Object? releaseHint = freezed,}) {
   return _then(CatalogTranslationRequest(
 item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
 as MovieSearchItem,source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
 as SubtitleSource,targetLanguage: null == targetLanguage ? _self.targetLanguage : targetLanguage // ignore: cast_nullable_to_non_nullable
-as AppLanguage,
+as AppLanguage,seasonNumber: freezed == seasonNumber ? _self.seasonNumber : seasonNumber // ignore: cast_nullable_to_non_nullable
+as int?,episodeNumber: freezed == episodeNumber ? _self.episodeNumber : episodeNumber // ignore: cast_nullable_to_non_nullable
+as int?,releaseHint: freezed == releaseHint ? _self.releaseHint : releaseHint // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

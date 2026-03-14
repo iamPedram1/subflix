@@ -19,8 +19,22 @@ class CatalogApi {
     return _client.searchTitles(query).guardApiCall();
   }
 
-  Future<List<SubtitleSource>> fetchSubtitleSources(String mediaId) {
-    return _client.fetchSubtitleSources(mediaId).guardApiCall();
+  Future<List<SubtitleSource>> fetchSubtitleSources(
+    String mediaId, {
+    String preferredLanguage = 'en',
+    int? seasonNumber,
+    int? episodeNumber,
+    String? releaseHint,
+  }) {
+    return _client
+        .fetchSubtitleSources(
+          mediaId,
+          preferredLanguage,
+          seasonNumber,
+          episodeNumber,
+          releaseHint,
+        )
+        .guardApiCall();
   }
 }
 
@@ -34,5 +48,9 @@ abstract class CatalogRestClient {
   @GET(ApiPaths.catalogSubtitleSources)
   Future<List<SubtitleSource>> fetchSubtitleSources(
     @Path('mediaId') String mediaId,
+    @Query('preferredLanguage') String preferredLanguage,
+    @Query('seasonNumber') int? seasonNumber,
+    @Query('episodeNumber') int? episodeNumber,
+    @Query('releaseHint') String? releaseHint,
   );
 }

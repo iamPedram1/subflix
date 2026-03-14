@@ -9,8 +9,20 @@ class MockSearchRepository implements SearchRepository {
   final MockSearchApi _api;
 
   @override
-  Future<List<SubtitleSource>> fetchSubtitleSources(String mediaId) {
-    return _api.fetchSubtitleSources(mediaId);
+  Future<List<SubtitleSource>> fetchSubtitleSources(
+    String mediaId, {
+    String preferredLanguage = 'en',
+    int? seasonNumber,
+    int? episodeNumber,
+    String? releaseHint,
+  }) {
+    return _api.fetchSubtitleSources(
+      mediaId,
+      preferredLanguage: preferredLanguage,
+      seasonNumber: seasonNumber,
+      episodeNumber: episodeNumber,
+      releaseHint: releaseHint,
+    );
   }
 
   @override

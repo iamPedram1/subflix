@@ -67,6 +67,12 @@ class JobCard extends StatelessWidget {
               ),
               _InfoChip(label: job.format.label),
               _InfoChip(label: job.status.label),
+              if (job.translationReuse == true)
+                const _InfoChip(label: 'Reuse translation'),
+              if (job.reusedExistingSubtitle == true)
+                const _InfoChip(label: 'Reuse subtitle'),
+              if (job.subtitleConfidenceLevel != null)
+                _InfoChip(label: 'Confidence: ${job.subtitleConfidenceLevel}'),
             ],
           ),
           Text(

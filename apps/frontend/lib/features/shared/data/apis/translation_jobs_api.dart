@@ -65,6 +65,12 @@ class TranslationJobsApi {
         'sourceType': 'catalog',
         'mediaId': catalogRequest.item.id,
         'subtitleSourceId': catalogRequest.source.id,
+        if (catalogRequest.seasonNumber != null)
+          'seasonNumber': catalogRequest.seasonNumber,
+        if (catalogRequest.episodeNumber != null)
+          'episodeNumber': catalogRequest.episodeNumber,
+        if (catalogRequest.releaseHint != null)
+          'releaseHint': catalogRequest.releaseHint,
         'targetLanguage': catalogRequest.targetLanguage.code,
       },
       upload: (uploadRequest) => <String, dynamic>{

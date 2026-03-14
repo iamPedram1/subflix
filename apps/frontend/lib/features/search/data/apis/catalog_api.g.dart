@@ -51,9 +51,21 @@ class _CatalogRestClient implements CatalogRestClient {
   }
 
   @override
-  Future<List<SubtitleSource>> fetchSubtitleSources(String mediaId) async {
+  Future<List<SubtitleSource>> fetchSubtitleSources(
+    String mediaId,
+    String preferredLanguage,
+    int? seasonNumber,
+    int? episodeNumber,
+    String? releaseHint,
+  ) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'preferredLanguage': preferredLanguage,
+      r'seasonNumber': seasonNumber,
+      r'episodeNumber': episodeNumber,
+      r'releaseHint': releaseHint,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<List<SubtitleSource>>(

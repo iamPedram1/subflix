@@ -28,6 +28,18 @@ abstract class TranslationJob with _$TranslationJob {
     @Default(<SubtitleLine>[]) List<SubtitleLine> lines,
     required double progress,
     String? errorMessage,
+    int? subtitleConfidenceScore,
+    String? subtitleConfidenceLevel,
+    @Default(<String>[]) List<String> subtitleWarnings,
+    int? subtitleTimingOffsetMs,
+    int? subtitleTimingConfidence,
+    bool? subtitleTimingCorrected,
+    String? subtitleAcquisitionMode,
+    bool? reusedExistingSubtitle,
+    int? reusedSubtitleConfidenceScore,
+    String? reusedSubtitleConfidenceLevel,
+    bool? translationReuse,
+    String? translationReusedFromJobId,
   }) = _TranslationJob;
 
   factory TranslationJob.fromJson(Map<String, dynamic> json) =>
