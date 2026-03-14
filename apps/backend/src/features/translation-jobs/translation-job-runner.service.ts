@@ -116,6 +116,18 @@ export class TranslationJobRunnerService {
     }
 
     const references = this.getCatalogReferences(job);
+    const reusable =
+      await this.translationJobsRepository.findReusableCatalogSourceCues({
+        clientDeviceId: job.clientDeviceId,
+        mediaId: references.mediaId,
+        subtitleSourceId: references.subtitleSourceId,
+        excludeJobId: job.id,
+      });
+
+    if (reusable.length > 0) {
+      return reusable;
+    }
+
     return this.catalogService.getSubtitleCues(
       references.mediaId,
       references.subtitleSourceId,

@@ -177,6 +177,7 @@ describe('TranslationJobRunnerService', () => {
           subtitleSourceRef: { subtitleSourceId: stableSubtitleSourceId },
         }),
       ),
+      findReusableCatalogSourceCues: vi.fn().mockResolvedValue([]),
       updateJob: vi.fn().mockResolvedValue(undefined),
       replaceJobCues: vi.fn().mockResolvedValue(undefined),
     } as unknown as TranslationJobsRepository;
@@ -209,5 +210,57 @@ describe('TranslationJobRunnerService', () => {
       'movie_27205',
       stableSubtitleSourceId,
     );
+  });
+
+  it('reuses persisted catalog source cues before redownloading', async () => {
+    vi.useFakeTimers();
+
+    const translationJobsRepository = {
+      claimQueuedJobForRunner: vi.fn().mockResolvedValue(
+        createRunnerJob({
+          sourceType: TranslationSourceType.catalog,
+          parsedFileId: null,
+          mediaRef: { mediaId: 'movie_27205' },
+          subtitleSourceRef: { subtitleSourceId: stableSubtitleSourceId },
+        }),
+      ),
+      findReusableCatalogSourceCues: vi.fn().mockResolvedValue([
+        {
+          cueIndex: 1,
+          startMs: 1_000,
+          endMs: 3_000,
+          text: 'Dream bigger.',
+        },
+      ]),
+      updateJob: vi.fn().mockResolvedValue(undefined),
+      replaceJobCues: vi.fn().mockResolvedValue(undefined),
+    } as unknown as TranslationJobsRepository;
+    const catalogService = {
+      getSubtitleCues: vi.fn(),
+    } as unknown as CatalogService;
+    const translationProvider = {
+      translate: vi.fn().mockResolvedValue(['Dream bigger.']),
+    } as unknown as TranslationProviderPort;
+
+    const service = new TranslationJobRunnerService(
+      translationJobsRepository,
+      {} as SubtitlesRepository,
+      catalogService,
+      translationProvider,
+    );
+
+    const runPromise = service.run('job-1');
+    await vi.runAllTimersAsync();
+    await runPromise;
+
+    expect(
+      translationJobsRepository.findReusableCatalogSourceCues,
+    ).toHaveBeenCalledWith(
+      expect.objectContaining({
+        mediaId: 'movie_27205',
+        subtitleSourceId: stableSubtitleSourceId,
+      }),
+    );
+    expect(catalogService.getSubtitleCues).not.toHaveBeenCalled();
   });
 });

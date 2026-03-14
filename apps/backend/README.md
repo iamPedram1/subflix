@@ -110,12 +110,13 @@ The app runs on `http://localhost:3000` and all routes are prefixed with `/v1`.
   - `preferredLanguage`
   - `seasonNumber`
   - `episodeNumber`
+  - `releaseHint`
 - Provider order is:
   - cache
   - SubDL API
   - Podnapisi scraper fallback
   - TVSubs scraper fallback
-- Real subtitle source lookup is live behind provider adapters, while cue loading for catalog translation jobs remains on the existing mock path in this phase.
+- Subtitle source lookup is provider-backed, and catalog translation jobs download and parse real subtitle payloads (supports direct `.srt`/`.vtt` and `.zip` archives).
 
 ## Core API routes
 
@@ -225,7 +226,7 @@ pnpm format
 ## Current limitations
 
 - No real authentication yet. Ownership is header-based via `x-device-id`.
-- Catalog subtitle cue downloads are still mocked for now, even though subtitle source lookup is provider-backed.
+- `.zip` archive extraction is supported for catalog subtitle downloads. `.rar` archives are not supported yet.
 - Translation execution is still mocked behind its provider boundary.
 - No Redis/BullMQ worker pipeline yet. Jobs are run in-process to keep V1 simple.
 - DB-backed tests require a reachable PostgreSQL database.

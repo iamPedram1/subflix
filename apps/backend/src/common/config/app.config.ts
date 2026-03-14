@@ -61,6 +61,14 @@ export const subtitleSourcesConfig = registerAs('subtitleSources', () => ({
     process.env.SUBTITLE_SOURCE_CACHE_TTL_MS,
     6 * 60 * 60_000,
   ),
+  downloadMaxBytes: parseNumber(
+    process.env.SUBTITLE_DOWNLOAD_MAX_BYTES,
+    5 * 1024 * 1024,
+  ),
+  zipMaxExtractedBytes: parseNumber(
+    process.env.SUBTITLE_ZIP_MAX_EXTRACTED_BYTES,
+    10 * 1024 * 1024,
+  ),
   subdl: {
     apiBaseUrl:
       process.env.SUBDL_API_BASE_URL ?? 'https://api.subdl.com/api/v1',

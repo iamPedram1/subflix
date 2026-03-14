@@ -1,5 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma, TranslationJob, TranslationJobStatus } from '@prisma/client';
+import {
+  Prisma,
+  TranslationJob,
+  TranslationJobStatus,
+  TranslationSourceType,
+} from '@prisma/client';
 
 import {
   buildPagination,
@@ -252,6 +257,68 @@ export class TranslationJobsRepository {
       orderBy: { cueIndex: 'asc' },
       select: TranslationJobsRepository.translationJobCuePayloadSelect,
     });
+  }
+
+  /**
+   * Returns persisted source cues from the most recent completed catalog job that used the
+   * same media id + subtitle source id. This avoids redownloading/reparsing on retries.
+   */
+  async findReusableCatalogSourceCues(params: {
+    clientDeviceId: string;
+    mediaId: string;
+    subtitleSourceId: string;
+    excludeJobId?: string;
+  }): Promise<
+    Array<{
+      cueIndex: number;
+      startMs: number;
+      endMs: number;
+      text: string;
+    }>
+  > {
+    const job = await this.prisma.translationJob.findFirst({
+      where: {
+        clientDeviceId: params.clientDeviceId,
+        ...(params.excludeJobId ? { id: { not: params.excludeJobId } } : {}),
+        sourceType: TranslationSourceType.catalog,
+        status: TranslationJobStatus.completed,
+        mediaRef: {
+          path: ['mediaId'],
+          equals: params.mediaId,
+        },
+        subtitleSourceRef: {
+          path: ['subtitleSourceId'],
+          equals: params.subtitleSourceId,
+        },
+        cues: {
+          some: {},
+        },
+      },
+      orderBy: [{ completedAt: 'desc' }, { createdAt: 'desc' }],
+      select: { id: true },
+    });
+
+    if (!job) {
+      return [];
+    }
+
+    const cues = await this.prisma.translationJobCue.findMany({
+      where: { jobId: job.id },
+      orderBy: { cueIndex: 'asc' },
+      select: {
+        cueIndex: true,
+        startMs: true,
+        endMs: true,
+        originalText: true,
+      },
+    });
+
+    return cues.map((cue) => ({
+      cueIndex: cue.cueIndex,
+      startMs: cue.startMs,
+      endMs: cue.endMs,
+      text: cue.originalText,
+    }));
   }
 
   /** Clears all persisted history and upload artifacts owned by one device. */
