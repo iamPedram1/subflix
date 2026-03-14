@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "1d1da8ab-9ef7-4f01-8f93-f75967c59517",
     "name": "SubFlix Backend API",
-    "description": "# SubFlix Backend API\n\nComprehensive Postman collection for the NestJS + PostgreSQL backend.\n\n## Base setup\n- Default base URL: `http://localhost:3000`\n- Global API prefix: `/v1`\n- Private routes require `x-device-id`\n- A fresh `x-request-id` is sent on every request using Postman dynamic variables\n\n## Recommended flow\n1. Run **Health / Get Health** to confirm the API is up.\n2. Use **Catalog / Search Catalog** to populate `mediaId`.\n3. Use **Catalog / Get Subtitle Sources** to populate `subtitleSourceId`.\n4. Use **Subtitles / Parse Subtitle File** to populate `parsedFileId`.\n5. Create a job from either upload or catalog.\n6. Poll **Translation Jobs / Get Translation Job** until the status becomes `completed`.\n7. Open **Get Translation Job Preview** and **Export Translation Job**.\n\n## Collection variables\n- `baseUrl`: API server root\n- `deviceId`: device ownership header used by private routes\n- `searchQuery`: catalog search query\n- `mediaId`: selected catalog media identifier\n- `subtitleSourceId`: selected subtitle source identifier\n- `parsedFileId`: parsed upload identifier from `/subtitles/parse`\n- `jobId`: active translation job identifier\n- `retryJobId`: most recent retried job id\n- `targetLanguage`: one of `en`, `es`, `ar`, `fr`, `de`, `pt`, `ja`, `ko`, `hi`, `tr`\n- `page`, `limit`: pagination controls\n- `previewQuery`: optional preview search term\n- `exportFormat`: `srt` or `vtt`\n- `sampleSubtitleFile`: local file path for the upload request\n\n## Error envelope\nMost error responses use this shape:\n\n```json\n{\n  \"code\": \"validation_failed\",\n  \"message\": [\"q must be longer than or equal to 2 characters\"],\n  \"details\": {\n    \"message\": [\"q must be longer than or equal to 2 characters\"],\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n  },\n  \"requestId\": \"9a8e7b1d-...\",\n  \"timestamp\": \"2026-03-13T20:00:00.000Z\"\n}\n```\n\nDevice-scoped routes will return `401` when `x-device-id` is missing.\n",
+    "description": "# SubFlix Backend API\n\nComprehensive Postman collection for the NestJS + PostgreSQL backend.\n\n## Base setup\n- Default base URL: `http://localhost:3000`\n- Global API prefix: `/v1`\n- Private routes require `x-device-id`\n- A fresh `x-request-id` is sent on every request using Postman dynamic variables\n\n## Recommended flow\n1. Run **Health / Get Health** to confirm the API is up.\n2. Use **Catalog / Search Catalog** to populate `mediaId`.\n3. Use **Catalog / Get Subtitle Sources** to populate `subtitleSourceId`.\n4. Use **Subtitles / Parse Subtitle File** to populate `parsedFileId`.\n5. Create a job from either upload or catalog.\n6. Poll **Translation Jobs / Get Translation Job** until the status becomes `completed`.\n7. Open **Get Translation Job Preview** and **Export Translation Job**.\n\n## Collection variables\n- `baseUrl`: API server root\n- `deviceId`: device ownership header used by private routes\n- `searchQuery`: catalog search query\n- `mediaId`: selected catalog media identifier\n- `subtitleSourceId`: selected subtitle source identifier (stable `ssrc:*` id)\n- `preferredLanguage`: optional subtitle language hint for discovery\n- `seasonNumber`, `episodeNumber`: optional TV episode scope (must be supplied together)\n- `parsedFileId`: parsed upload identifier from `/subtitles/parse`\n- `jobId`: active translation job identifier\n- `retryJobId`: most recent retried job id\n- `targetLanguage`: one of `en`, `es`, `ar`, `fr`, `de`, `pt`, `ja`, `ko`, `hi`, `tr`\n- `page`, `limit`: pagination controls\n- `previewQuery`: optional preview search term\n- `exportFormat`: `srt` or `vtt`\n- `sampleSubtitleFile`: local file path for the upload request\n\n## Error envelope\nMost error responses use this shape:\n\n```json\n{\n  \"code\": \"validation_failed\",\n  \"message\": [\"q must be longer than or equal to 2 characters\"],\n  \"details\": {\n    \"message\": [\"q must be longer than or equal to 2 characters\"],\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n  },\n  \"requestId\": \"9a8e7b1d-...\",\n  \"timestamp\": \"2026-03-13T20:00:00.000Z\"\n}\n```\n\nDevice-scoped routes will return `401` when `x-device-id` is missing.\n",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "event": [
@@ -27,15 +27,27 @@
     },
     {
       "key": "searchQuery",
-      "value": "dune"
+      "value": "inception"
     },
     {
       "key": "mediaId",
-      "value": "dune_part_two"
+      "value": "inception"
     },
     {
       "key": "subtitleSourceId",
-      "value": "dune_part_two-webdl"
+      "value": "ssrc:subdl:c3ViZGwtMQ"
+    },
+    {
+      "key": "preferredLanguage",
+      "value": "en"
+    },
+    {
+      "key": "seasonNumber",
+      "value": "5"
+    },
+    {
+      "key": "episodeNumber",
+      "value": "16"
     },
     {
       "key": "parsedFileId",
@@ -165,7 +177,7 @@
                 "type": "text"
               }
             ],
-            "description": "Searches the mocked catalog by free-form query.\n\n### Query params\n- `q` (required): minimum 2, maximum 120 characters\n\n### Example response\n```json\n[\n  {\n    \"id\": \"dune_part_two\",\n    \"title\": \"Dune: Part Two\",\n    \"year\": 2024,\n    \"mediaType\": \"movie\",\n    \"synopsis\": \"Paul embraces destiny while balancing prophecy, power, and survival.\",\n    \"genres\": [\"Sci-Fi\", \"Epic\"],\n    \"runtimeMinutes\": 166,\n    \"popularity\": 9.6\n  }\n]\n```",
+            "description": "Searches the catalog by free-form query.\n\nWhen `TMDB_API_READ_TOKEN` is configured, results come from TMDb and the returned `id` values will look like `movie_27205` or `series_1396`. Otherwise the backend falls back to the deterministic mock catalog.\n\n### Query params\n- `q` (required): minimum 2, maximum 120 characters\n\n### Example response\n```json\n[\n  {\n    \"id\": \"inception\",\n    \"title\": \"Inception\",\n    \"year\": 2010,\n    \"mediaType\": \"movie\",\n    \"synopsis\": \"A dream-hacking team tries to plant an idea before time runs out.\",\n    \"genres\": [\"Sci-Fi\", \"Thriller\"],\n    \"runtimeMinutes\": 148,\n    \"popularity\": 9.4\n  }\n]\n```",
             "url": {
               "raw": "{{baseUrl}}/v1/catalog/search?q={{searchQuery}}",
               "host": ["{{baseUrl}}"],
@@ -211,7 +223,7 @@
                     "type": "text"
                   }
                 ],
-                "description": "Searches the mocked catalog by free-form query.\n\n### Query params\n- `q` (required): minimum 2, maximum 120 characters\n\n### Example response\n```json\n[\n  {\n    \"id\": \"dune_part_two\",\n    \"title\": \"Dune: Part Two\",\n    \"year\": 2024,\n    \"mediaType\": \"movie\",\n    \"synopsis\": \"Paul embraces destiny while balancing prophecy, power, and survival.\",\n    \"genres\": [\"Sci-Fi\", \"Epic\"],\n    \"runtimeMinutes\": 166,\n    \"popularity\": 9.6\n  }\n]\n```",
+                "description": "Searches the catalog by free-form query.\n\nWhen `TMDB_API_READ_TOKEN` is configured, results come from TMDb and the returned `id` values will look like `movie_27205` or `series_1396`. Otherwise the backend falls back to the deterministic mock catalog.\n\n### Query params\n- `q` (required): minimum 2, maximum 120 characters\n\n### Example response\n```json\n[\n  {\n    \"id\": \"inception\",\n    \"title\": \"Inception\",\n    \"year\": 2010,\n    \"mediaType\": \"movie\",\n    \"synopsis\": \"A dream-hacking team tries to plant an idea before time runs out.\",\n    \"genres\": [\"Sci-Fi\", \"Thriller\"],\n    \"runtimeMinutes\": 148,\n    \"popularity\": 9.4\n  }\n]\n```",
                 "url": {
                   "raw": "{{baseUrl}}/v1/catalog/search?q={{searchQuery}}",
                   "host": ["{{baseUrl}}"],
@@ -235,7 +247,7 @@
                 }
               ],
               "cookie": [],
-              "body": "[\n  {\n    \"id\": \"dune_part_two\",\n    \"title\": \"Dune: Part Two\",\n    \"year\": 2024,\n    \"mediaType\": \"movie\",\n    \"synopsis\": \"Paul embraces destiny while balancing prophecy, power, and survival.\",\n    \"genres\": [\n      \"Sci-Fi\",\n      \"Epic\"\n    ],\n    \"runtimeMinutes\": 166,\n    \"popularity\": 9.6\n  }\n]"
+              "body": "[\n  {\n    \"id\": \"inception\",\n    \"title\": \"Inception\",\n    \"year\": 2010,\n    \"mediaType\": \"movie\",\n    \"synopsis\": \"A dream-hacking team tries to plant an idea before time runs out.\",\n    \"genres\": [\n      \"Sci-Fi\",\n      \"Thriller\"\n    ],\n    \"runtimeMinutes\": 148,\n    \"popularity\": 9.4\n  }\n]"
             }
           ]
         },
@@ -250,7 +262,7 @@
                 "type": "text"
               }
             ],
-            "description": "Returns subtitle source options for the selected media item.\n\n### Path params\n- `mediaId`: provider id from catalog search\n\n### Example response\n```json\n[\n  {\n    \"id\": \"dune_part_two-webdl\",\n    \"label\": \"English WEB-DL 1080p\",\n    \"releaseGroup\": \"SubFlix Studio\",\n    \"format\": \"srt\",\n    \"hearingImpaired\": false,\n    \"lineCount\": 612,\n    \"downloads\": 24870,\n    \"rating\": 4.9\n  }\n]\n```",
+            "description": "Returns subtitle source options for the selected media item.\n\n### Path params\n- `mediaId`: provider id from catalog search\n\n### Optional query params\n- `preferredLanguage`: preferred language code (defaults to `en`)\n- `seasonNumber`, `episodeNumber`: TV episode scope (must be supplied together)\n\n### Notes\n- The returned `id` values are stable opaque ids in the `ssrc:*` format.\n\n### Example response\n```json\n[\n  {\n    \"id\": \"ssrc:subdl:c3ViZGwtMQ\",\n    \"label\": \"English Inception.2010.1080p.BluRay.x264-GRP\",\n    \"releaseGroup\": \"SubDL\",\n    \"format\": \"srt\",\n    \"hearingImpaired\": true,\n    \"lineCount\": 0,\n    \"downloads\": 1200,\n    \"rating\": 4.8\n  }\n]\n```",
             "url": {
               "raw": "{{baseUrl}}/v1/catalog/media/{{mediaId}}/subtitle-sources",
               "host": ["{{baseUrl}}"],
@@ -259,7 +271,27 @@
                 "catalog",
                 "media",
                 "{{mediaId}}",
-                "subtitle-sources"
+                 "subtitle-sources"
+              ],
+              "query": [
+                {
+                  "key": "preferredLanguage",
+                  "value": "{{preferredLanguage}}",
+                  "description": "Optional language hint (defaults to en)",
+                  "disabled": true
+                },
+                {
+                  "key": "seasonNumber",
+                  "value": "{{seasonNumber}}",
+                  "description": "TV-only: must be supplied with episodeNumber",
+                  "disabled": true
+                },
+                {
+                  "key": "episodeNumber",
+                  "value": "{{episodeNumber}}",
+                  "description": "TV-only: must be supplied with seasonNumber",
+                  "disabled": true
+                }
               ]
             }
           },
@@ -295,7 +327,7 @@
                     "type": "text"
                   }
                 ],
-                "description": "Returns subtitle source options for the selected media item.\n\n### Path params\n- `mediaId`: provider id from catalog search\n\n### Example response\n```json\n[\n  {\n    \"id\": \"dune_part_two-webdl\",\n    \"label\": \"English WEB-DL 1080p\",\n    \"releaseGroup\": \"SubFlix Studio\",\n    \"format\": \"srt\",\n    \"hearingImpaired\": false,\n    \"lineCount\": 612,\n    \"downloads\": 24870,\n    \"rating\": 4.9\n  }\n]\n```",
+                "description": "Returns subtitle source options for the selected media item.\n\n### Path params\n- `mediaId`: provider id from catalog search\n\n### Optional query params\n- `preferredLanguage`: preferred language code (defaults to `en`)\n- `seasonNumber`, `episodeNumber`: TV episode scope (must be supplied together)\n\n### Notes\n- The returned `id` values are stable opaque ids in the `ssrc:*` format.\n\n### Example response\n```json\n[\n  {\n    \"id\": \"ssrc:subdl:c3ViZGwtMQ\",\n    \"label\": \"English Inception.2010.1080p.BluRay.x264-GRP\",\n    \"releaseGroup\": \"SubDL\",\n    \"format\": \"srt\",\n    \"hearingImpaired\": true,\n    \"lineCount\": 0,\n    \"downloads\": 1200,\n    \"rating\": 4.8\n  }\n]\n```",
                 "url": {
                   "raw": "{{baseUrl}}/v1/catalog/media/{{mediaId}}/subtitle-sources",
                   "host": ["{{baseUrl}}"],
@@ -305,6 +337,26 @@
                     "media",
                     "{{mediaId}}",
                     "subtitle-sources"
+                  ],
+                  "query": [
+                    {
+                      "key": "preferredLanguage",
+                      "value": "{{preferredLanguage}}",
+                      "description": "Optional language hint (defaults to en)",
+                      "disabled": true
+                    },
+                    {
+                      "key": "seasonNumber",
+                      "value": "{{seasonNumber}}",
+                      "description": "TV-only: must be supplied with episodeNumber",
+                      "disabled": true
+                    },
+                    {
+                      "key": "episodeNumber",
+                      "value": "{{episodeNumber}}",
+                      "description": "TV-only: must be supplied with seasonNumber",
+                      "disabled": true
+                    }
                   ]
                 }
               },
@@ -318,7 +370,7 @@
                 }
               ],
               "cookie": [],
-              "body": "[\n  {\n    \"id\": \"dune_part_two-webdl\",\n    \"label\": \"English WEB-DL 1080p\",\n    \"releaseGroup\": \"SubFlix Studio\",\n    \"format\": \"srt\",\n    \"hearingImpaired\": false,\n    \"lineCount\": 612,\n    \"downloads\": 24870,\n    \"rating\": 4.9\n  }\n]"
+              "body": "[\n  {\n    \"id\": \"ssrc:subdl:c3ViZGwtMQ\",\n    \"label\": \"English Inception.2010.1080p.BluRay.x264-GRP\",\n    \"releaseGroup\": \"SubDL\",\n    \"format\": \"srt\",\n    \"hearingImpaired\": true,\n    \"lineCount\": 0,\n    \"downloads\": 1200,\n    \"rating\": 4.8\n  }\n]"
             }
           ]
         },

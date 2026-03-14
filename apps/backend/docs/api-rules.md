@@ -57,6 +57,8 @@ Every non-success response should use the normalized envelope:
 - These routes are public and cacheable
 - Search queries must be trimmed and validated
 - `subtitle-sources` may accept optional `preferredLanguage`, `seasonNumber`, and `episodeNumber` query params
+- `seasonNumber` and `episodeNumber` must be supplied together and are only supported for TV titles (movies reject them with `400`)
+- `subtitleSourceId` values returned from `subtitle-sources` are stable opaque ids in the `ssrc:*` format and may be persisted by clients
 
 ### Preferences
 

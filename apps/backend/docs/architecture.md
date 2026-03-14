@@ -83,6 +83,7 @@ This layer should stop at generic persistence concerns. It should not absorb fea
 - subtitle source discovery
 - provider-backed subtitle source orchestration with cache-first lookup
 - SubDL primary provider with scraper fallbacks
+- stable opaque subtitle source ids (`ssrc:*`) returned to the client for later reuse (for example translation job creation)
 - mock cue adapter retained only until real catalog subtitle downloads land
 - read-heavy and cache-friendly
 

@@ -37,3 +37,8 @@ Those private variants are ignored by git through the root `.gitignore`.
 2. Import the sample environment.
 3. Duplicate the environment locally if you want custom values.
 4. Keep secrets only in your duplicated private environment.
+
+## Notes
+
+- `Catalog / Get Subtitle Sources` supports optional query params: `preferredLanguage`, `seasonNumber`, and `episodeNumber` (season/episode must be supplied together for TV).
+- `subtitleSourceId` values returned by the API are stable opaque ids in the `ssrc:*` format.
