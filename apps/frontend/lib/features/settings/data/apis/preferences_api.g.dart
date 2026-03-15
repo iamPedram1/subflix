@@ -29,7 +29,7 @@ class _PreferencesRestClient implements PreferencesRestClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'preferences',
+            '/preferences',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -57,7 +57,7 @@ class _PreferencesRestClient implements PreferencesRestClient {
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'preferences',
+            '/preferences',
             queryParameters: queryParameters,
             data: _data,
           )

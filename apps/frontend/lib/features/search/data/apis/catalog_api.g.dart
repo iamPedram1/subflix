@@ -29,7 +29,7 @@ class _CatalogRestClient implements CatalogRestClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'catalog/search',
+            '/catalog/search',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -72,7 +72,7 @@ class _CatalogRestClient implements CatalogRestClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'catalog/media/${mediaId}/subtitle-sources',
+            '/catalog/media/${mediaId}/subtitle-sources',
             queryParameters: queryParameters,
             data: _data,
           )

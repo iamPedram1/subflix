@@ -11,17 +11,26 @@ import 'package:subflix/core/ui/widgets/section_header.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
 import 'package:subflix/features/search/application/subtitle_sources_provider.dart';
 import 'package:subflix/features/search/domain/models/movie_search_item.dart';
+import 'package:subflix/features/subtitles/presentation/models/subtitle_sources_args.dart';
 import 'package:subflix/features/subtitles/presentation/models/translation_setup_args.dart';
 import 'package:subflix/features/subtitles/presentation/widgets/subtitle_source_card.dart';
 
 class SubtitleSourcesScreen extends ConsumerWidget {
-  const SubtitleSourcesScreen({required this.item, super.key});
+  const SubtitleSourcesScreen({required this.args, super.key});
 
-  final MovieSearchItem item;
+  final SubtitleSourcesArgs args;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final sources = ref.watch(subtitleSourcesProvider(item));
+    final item = args.item;
+    final request = SubtitleSourcesRequest(
+      item: item,
+      seasonNumber: args.seasonNumber,
+      episodeNumber: args.episodeNumber,
+      releaseHint: args.releaseHint,
+    );
+    final sources = ref.watch(subtitleSourcesSelectionProvider(request));
+    final subtitleTarget = _buildSubtitleTarget(args);
 
     return Scaffold(
       appBar: AppBar(title: Text(item.title)),
@@ -33,10 +42,10 @@ class SubtitleSourcesScreen extends ConsumerWidget {
               SectionHeader(
                 title: 'English subtitle sources',
                 subtitle:
-                    'Pick a subtitle source for ${item.title}, then choose the target language in the next step.',
+                    'Pick a subtitle source for ${item.title}$subtitleTarget, then choose the target language in the next step.',
               ),
               const SizedBox(height: 16),
-              _TitleSummary(item: item),
+              _TitleSummary(item: item, args: args),
               const SizedBox(height: 18),
               sources.when(
                 data: (items) => Column(
@@ -50,6 +59,9 @@ class SubtitleSourcesScreen extends ConsumerWidget {
                             extra: TranslationSetupArgs.catalog(
                               item: item,
                               source: source,
+                              seasonNumber: args.seasonNumber,
+                              episodeNumber: args.episodeNumber,
+                              releaseHint: args.releaseHint,
                             ),
                           ),
                         ),
@@ -61,8 +73,9 @@ class SubtitleSourcesScreen extends ConsumerWidget {
                   title: 'Could not load subtitle sources',
                   message: error.toString().replaceFirst('Exception: ', ''),
                   action: OutlinedButton.icon(
-                    onPressed: () =>
-                        ref.invalidate(subtitleSourcesProvider(item)),
+                    onPressed: () => ref.invalidate(
+                      subtitleSourcesSelectionProvider(request),
+                    ),
                     icon: const Icon(Iconsax.refresh),
                     label: const Text('Retry'),
                   ),
@@ -85,12 +98,21 @@ class SubtitleSourcesScreen extends ConsumerWidget {
 }
 
 class _TitleSummary extends StatelessWidget {
-  const _TitleSummary({required this.item});
+  const _TitleSummary({required this.item, required this.args});
 
   final MovieSearchItem item;
+  final SubtitleSourcesArgs args;
 
   @override
   Widget build(BuildContext context) {
+    final seasonLabel = _buildSeasonLabel(args);
+    final metadata = [
+      item.mediaType.label,
+      '${item.year}',
+      ?seasonLabel,
+      '${item.runtimeMinutes}m',
+    ].join(' \u2022 ');
+
     return DecoratedBox(
       decoration: BoxDecoration(
         color: AppColors.surfaceMuted.withValues(alpha: 0.4),
@@ -121,7 +143,7 @@ class _TitleSummary extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   Text(
-                    '${item.mediaType.label} • ${item.year} • ${item.runtimeMinutes}m',
+                    metadata,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.textSecondary,
                     ),
@@ -134,4 +156,27 @@ class _TitleSummary extends StatelessWidget {
       ),
     );
   }
+}
+
+String _buildSubtitleTarget(SubtitleSourcesArgs args) {
+  if (args.seasonNumber == null) {
+    return '';
+  }
+
+  final episode = args.episodeNumber == null
+      ? ''
+      : ' \u2022 Episode ${args.episodeNumber}';
+  return ' \u2022 Season ${args.seasonNumber}$episode';
+}
+
+String? _buildSeasonLabel(SubtitleSourcesArgs args) {
+  if (args.seasonNumber == null) {
+    return null;
+  }
+
+  if (args.episodeNumber == null) {
+    return 'Season ${args.seasonNumber}';
+  }
+
+  return 'Season ${args.seasonNumber}, Ep ${args.episodeNumber}';
 }

@@ -30,7 +30,7 @@ class _TranslationJobsRestClient implements TranslationJobsRestClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'translation-jobs',
+            '/translation-jobs',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -57,7 +57,7 @@ class _TranslationJobsRestClient implements TranslationJobsRestClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'translation-jobs',
+            '/translation-jobs',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -84,7 +84,7 @@ class _TranslationJobsRestClient implements TranslationJobsRestClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'translation-jobs/${jobId}',
+            '/translation-jobs/${jobId}',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -121,7 +121,7 @@ class _TranslationJobsRestClient implements TranslationJobsRestClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'translation-jobs/${jobId}/preview',
+            '/translation-jobs/${jobId}/preview',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -153,7 +153,7 @@ class _TranslationJobsRestClient implements TranslationJobsRestClient {
           )
           .compose(
             _dio.options,
-            'translation-jobs/${jobId}/export',
+            '/translation-jobs/${jobId}/export',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -181,7 +181,7 @@ class _TranslationJobsRestClient implements TranslationJobsRestClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'translation-jobs/${jobId}/retry',
+            '/translation-jobs/${jobId}/retry',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -208,7 +208,7 @@ class _TranslationJobsRestClient implements TranslationJobsRestClient {
       Options(method: 'DELETE', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'translation-jobs',
+            '/translation-jobs',
             queryParameters: queryParameters,
             data: _data,
           )

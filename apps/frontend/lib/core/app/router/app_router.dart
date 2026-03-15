@@ -9,11 +9,15 @@ import 'package:subflix/features/home/presentation/screens/home_screen.dart';
 import 'package:subflix/features/home/presentation/widgets/home_shell.dart';
 import 'package:subflix/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:subflix/features/onboarding/presentation/screens/splash_screen.dart';
-import 'package:subflix/features/search/presentation/screens/search_screen.dart';
 import 'package:subflix/features/search/domain/models/movie_search_item.dart';
+import 'package:subflix/features/search/presentation/models/series_selection_args.dart';
+import 'package:subflix/features/search/presentation/screens/search_screen.dart';
+import 'package:subflix/features/search/presentation/screens/series_episodes_screen.dart';
+import 'package:subflix/features/search/presentation/screens/series_seasons_screen.dart';
 import 'package:subflix/features/settings/presentation/screens/legal_placeholder_screen.dart';
 import 'package:subflix/features/settings/presentation/screens/settings_screen.dart';
 import 'package:subflix/features/subtitles/domain/models/translation_request.dart';
+import 'package:subflix/features/subtitles/presentation/models/subtitle_sources_args.dart';
 import 'package:subflix/features/subtitles/presentation/models/translation_setup_args.dart';
 import 'package:subflix/features/subtitles/presentation/screens/subtitle_sources_screen.dart';
 import 'package:subflix/features/subtitles/presentation/screens/translation_preview_screen.dart';
@@ -76,8 +80,14 @@ GoRouter appRouter(Ref ref) {
       GoRoute(
         path: AppRoutes.subtitleSources,
         builder: (context, state) {
-          final item = state.extra as MovieSearchItem?;
-          if (item == null) {
+          final extra = state.extra;
+          final args = switch (extra) {
+            SubtitleSourcesArgs args => args,
+            MovieSearchItem item => SubtitleSourcesArgs(item: item),
+            _ => null,
+          };
+
+          if (args == null) {
             return const RouteStateMissingScreen(
               title: 'Subtitle sources',
               message:
@@ -85,7 +95,37 @@ GoRouter appRouter(Ref ref) {
             );
           }
 
-          return SubtitleSourcesScreen(item: item);
+          return SubtitleSourcesScreen(args: args);
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.seriesSeasons,
+        builder: (context, state) {
+          final item = state.extra as MovieSearchItem?;
+          if (item == null) {
+            return const RouteStateMissingScreen(
+              title: 'Series seasons',
+              message:
+                  'We could not determine which series to load. Start again from search.',
+            );
+          }
+
+          return SeriesSeasonsScreen(item: item);
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.seriesEpisodes,
+        builder: (context, state) {
+          final args = state.extra as SeriesEpisodesArgs?;
+          if (args == null) {
+            return const RouteStateMissingScreen(
+              title: 'Season episodes',
+              message:
+                  'We could not determine which season to load. Start again from search.',
+            );
+          }
+
+          return SeriesEpisodesScreen(args: args);
         },
       ),
       GoRoute(

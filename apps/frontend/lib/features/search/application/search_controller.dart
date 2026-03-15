@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:subflix/core/providers/repository_providers.dart';
@@ -10,16 +8,12 @@ part 'search_controller.g.dart';
 
 @riverpod
 class SearchController extends _$SearchController {
-  Timer? _debounce;
-
   @override
   SearchState build() {
-    ref.onDispose(() => _debounce?.cancel());
     return const SearchState.initial();
   }
 
-  void onQueryChanged(String query) {
-    _debounce?.cancel();
+  Future<void> onQueryChanged(String query) async {
     final normalized = query.trim();
 
     if (normalized.isEmpty) {
@@ -34,34 +28,32 @@ class SearchController extends _$SearchController {
       clearError: true,
     );
 
-    _debounce = Timer(const Duration(milliseconds: 320), () async {
-      final requestQuery = normalized;
+    final requestQuery = normalized;
 
-      try {
-        final results = await ref
-            .read(searchRepositoryProvider)
-            .searchTitles(requestQuery);
-        if (state.query.trim() != requestQuery) {
-          return;
-        }
-
-        state = state.copyWith(
-          isLoading: false,
-          results: results,
-          clearError: true,
-        );
-      } catch (error) {
-        if (state.query.trim() != requestQuery) {
-          return;
-        }
-
-        state = state.copyWith(
-          isLoading: false,
-          results: const <MovieSearchItem>[],
-          errorMessage: error.toString().replaceFirst('Exception: ', ''),
-        );
+    try {
+      final results = await ref
+          .read(searchRepositoryProvider)
+          .searchTitles(requestQuery);
+      if (state.query.trim() != requestQuery) {
+        return;
       }
-    });
+
+      state = state.copyWith(
+        isLoading: false,
+        results: results,
+        clearError: true,
+      );
+    } catch (error) {
+      if (state.query.trim() != requestQuery) {
+        return;
+      }
+
+      state = state.copyWith(
+        isLoading: false,
+        results: const <MovieSearchItem>[],
+        errorMessage: error.toString().replaceFirst('Exception: ', ''),
+      );
+    }
   }
 
   void retry() {

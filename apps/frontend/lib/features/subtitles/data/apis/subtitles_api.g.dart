@@ -35,7 +35,7 @@ class _SubtitlesRestClient implements SubtitlesRestClient {
           )
           .compose(
             _dio.options,
-            'subtitles/parse',
+            '/subtitles/parse',
             queryParameters: queryParameters,
             data: _data,
           )

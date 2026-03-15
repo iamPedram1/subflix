@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/radii.dart';
+import 'package:subflix/core/ui/icons/iconsax.dart';
 
 class OnboardingPageCard extends StatelessWidget {
   const OnboardingPageCard({
@@ -78,7 +79,7 @@ class OnboardingPageCard extends StatelessWidget {
                       spacing: 10,
                       children: <Widget>[
                         const Icon(
-                          Icons.check_circle_outline_rounded,
+                          Iconsax.tickCircle,
                           color: Colors.white,
                           size: 20,
                         ),

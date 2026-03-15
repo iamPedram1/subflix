@@ -6,6 +6,8 @@ abstract final class AppRoutes {
   static const String settings = '/settings';
   static const String search = '/search';
   static const String subtitleSources = '/search/sources';
+  static const String seriesSeasons = '/search/series/seasons';
+  static const String seriesEpisodes = '/search/series/episodes';
   static const String translateSetup = '/translate/setup';
   static const String translationProgress = '/translate/progress';
   static const String translationPreview = '/translate/preview/:jobId';

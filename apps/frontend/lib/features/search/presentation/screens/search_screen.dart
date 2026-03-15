@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -12,6 +14,8 @@ import 'package:subflix/features/search/application/search_controller.dart';
 import 'package:subflix/features/search/application/search_state.dart';
 import 'package:subflix/features/search/domain/models/movie_search_item.dart';
 import 'package:subflix/features/search/presentation/widgets/search_result_card.dart';
+import 'package:subflix/features/shared/domain/models/search_media_type.dart';
+import 'package:subflix/features/subtitles/presentation/models/subtitle_sources_args.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
@@ -22,6 +26,8 @@ class SearchScreen extends ConsumerStatefulWidget {
 
 class _SearchScreenState extends ConsumerState<SearchScreen> {
   late final TextEditingController _controller;
+  Timer? _searchDebounce;
+  String _query = '';
 
   @override
   void initState() {
@@ -31,6 +37,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 
   @override
   void dispose() {
+    _searchDebounce?.cancel();
     _controller.dispose();
     super.dispose();
   }
@@ -54,22 +61,18 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               const SizedBox(height: 16),
               TextField(
                 controller: _controller,
-                onChanged: ref
-                    .read(searchControllerProvider.notifier)
-                    .onQueryChanged,
+                onChanged: _onQueryChanged,
                 decoration: InputDecoration(
                   hintText: 'Search for Dune, Breaking Bad, Severance...',
                   prefixIcon: const Icon(Iconsax.searchNormal),
-                  suffixIcon: searchState.query.isEmpty
+                  suffixIcon: _query.isEmpty
                       ? null
                       : IconButton(
                           onPressed: () {
                             _controller.clear();
-                            ref
-                                .read(searchControllerProvider.notifier)
-                                .onQueryChanged('');
+                            _onQueryChanged('');
                           },
-                          icon: const Icon(Icons.close_rounded),
+                          icon: const Icon(Iconsax.closeCircle),
                         ),
                 ),
               ),
@@ -82,8 +85,17 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   ),
                   state: searchState,
                   onRetry: ref.read(searchControllerProvider.notifier).retry,
-                  onTapItem: (item) =>
-                      context.push(AppRoutes.subtitleSources, extra: item),
+                  onTapItem: (item) {
+                    if (item.mediaType == SearchMediaType.series) {
+                      context.push(AppRoutes.seriesSeasons, extra: item);
+                      return;
+                    }
+
+                    context.push(
+                      AppRoutes.subtitleSources,
+                      extra: SubtitleSourcesArgs(item: item),
+                    );
+                  },
                 ),
               ),
             ],
@@ -91,6 +103,23 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
         ),
       ),
     );
+  }
+
+  void _onQueryChanged(String value) {
+    _searchDebounce?.cancel();
+    setState(() => _query = value);
+
+    if (value.trim().isEmpty) {
+      ref.read(searchControllerProvider.notifier).onQueryChanged('');
+      return;
+    }
+
+    _searchDebounce = Timer(const Duration(milliseconds: 360), () {
+      if (!mounted) {
+        return;
+      }
+      ref.read(searchControllerProvider.notifier).onQueryChanged(value);
+    });
   }
 }
 
