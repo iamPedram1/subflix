@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:subflix/core/app/router/app_routes.dart';
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
@@ -28,15 +29,6 @@ class _TranslationProgressScreenState
   late final ProviderSubscription<TranslationFlowState> _subscription;
   bool _didStart = false;
   bool _navigated = false;
-
-  static const List<String> _stages = <String>[
-    'Queued for translation',
-    'Preparing subtitle package',
-    'Aligning timestamps and scene context',
-    'Generating subtitle translation',
-    'Applying readability pass',
-    'Translation ready',
-  ];
 
   @override
   void initState() {
@@ -84,9 +76,13 @@ class _TranslationProgressScreenState
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(translationFlowControllerProvider);
+    final stages = _localizedStages(context);
+    final stageLabel = state.status == TranslationFlowStatus.idle
+        ? context.t.translationStageIdle
+        : state.stageLabel;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Translation progress')),
+      appBar: AppBar(title: Text(context.t.translationProgressTitle)),
       body: AppBackground(
         child: SafeArea(
           child: ListView(
@@ -98,11 +94,11 @@ class _TranslationProgressScreenState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'AI subtitle translation in progress',
+                      context.t.translationProgressHeadline,
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     Text(
-                      state.stageLabel,
+                      stageLabel,
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -134,10 +130,11 @@ class _TranslationProgressScreenState
               if (state.status == TranslationFlowStatus.failed)
                 StatePanel(
                   icon: Iconsax.warning2,
-                  title: 'Translation could not finish',
-                  message: state.errorMessage ?? 'Something went wrong.',
+                  title: context.t.translationFailedTitle,
+                  message:
+                      state.errorMessage ?? context.t.translationFailedMessage,
                   action: AppGradientButton(
-                    label: 'Retry translation',
+                    label: context.t.retryTranslation,
                     icon: Iconsax.refresh,
                     onPressed: () => ref
                         .read(translationFlowControllerProvider.notifier)
@@ -148,16 +145,18 @@ class _TranslationProgressScreenState
                 AppSurfaceCard(
                   child: Column(
                     spacing: 14,
-                    children: _stages
+                    children: stages
                         .asMap()
                         .entries
                         .map(
                           (entry) => _StageTile(
-                            label: entry.value,
-                            isActive: entry.value == state.stageLabel,
+                            label: stages[entry.key].label,
+                            isActive:
+                                stages[entry.key].backendLabel ==
+                                state.stageLabel,
                             isComplete:
                                 state.progress >=
-                                ((entry.key + 1) / _stages.length),
+                                ((entry.key + 1) / stages.length),
                           ),
                         )
                         .toList(growable: false),
@@ -169,6 +168,42 @@ class _TranslationProgressScreenState
       ),
     );
   }
+
+  List<_StageDefinition> _localizedStages(BuildContext context) {
+    return <_StageDefinition>[
+      _StageDefinition(
+        backendLabel: 'Queued for translation',
+        label: context.t.translationStageQueued,
+      ),
+      _StageDefinition(
+        backendLabel: 'Preparing subtitle package',
+        label: context.t.translationStagePreparing,
+      ),
+      _StageDefinition(
+        backendLabel: 'Aligning timestamps and scene context',
+        label: context.t.translationStageAligning,
+      ),
+      _StageDefinition(
+        backendLabel: 'Generating subtitle translation',
+        label: context.t.translationStageGenerating,
+      ),
+      _StageDefinition(
+        backendLabel: 'Applying readability pass',
+        label: context.t.translationStageReadability,
+      ),
+      _StageDefinition(
+        backendLabel: 'Translation ready',
+        label: context.t.translationStageReady,
+      ),
+    ];
+  }
+}
+
+class _StageDefinition {
+  const _StageDefinition({required this.backendLabel, required this.label});
+
+  final String backendLabel;
+  final String label;
 }
 
 class _StageTile extends StatelessWidget {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 
@@ -20,15 +21,18 @@ class HomeShell extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
           child: NavigationBar(
             selectedIndex: navigationShell.currentIndex,
-            destinations: const <NavigationDestination>[
-              NavigationDestination(icon: Icon(Iconsax.video), label: 'Home'),
+            destinations: <NavigationDestination>[
               NavigationDestination(
-                icon: Icon(Iconsax.archive),
-                label: 'History',
+                icon: const Icon(Iconsax.video),
+                label: context.t.navHome,
               ),
               NavigationDestination(
-                icon: Icon(Iconsax.setting2),
-                label: 'Settings',
+                icon: const Icon(Iconsax.archive),
+                label: context.t.navHistory,
+              ),
+              NavigationDestination(
+                icon: const Icon(Iconsax.setting2),
+                label: context.t.navSettings,
               ),
             ],
             onDestinationSelected: (index) {

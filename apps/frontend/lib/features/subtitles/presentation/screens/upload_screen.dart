@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:subflix/core/app/router/app_routes.dart';
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
@@ -23,16 +24,15 @@ class UploadScreen extends ConsumerWidget {
     final uploadController = ref.read(uploadControllerProvider.notifier);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Upload subtitle')),
+      appBar: AppBar(title: Text(context.t.uploadSubtitleTitle)),
       body: AppBackground(
         child: SafeArea(
           child: ListView(
             padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
             children: <Widget>[
-              const SectionHeader(
-                title: 'Bring your own subtitle file',
-                subtitle:
-                    'Import an English `.srt` or `.vtt` file, let the backend validate and parse it, then continue into translation setup.',
+              SectionHeader(
+                title: context.t.uploadIntroTitle,
+                subtitle: context.t.uploadIntroSubtitle,
               ),
               const SizedBox(height: 16),
               AppSurfaceCard(
@@ -62,11 +62,11 @@ class UploadScreen extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                'Supported formats',
+                                context.t.uploadSupportedFormatsTitle,
                                 style: Theme.of(context).textTheme.titleMedium,
                               ),
                               Text(
-                                'English `.srt` and `.vtt` subtitle files',
+                                context.t.uploadSupportedFormatsSubtitle,
                                 style: Theme.of(context).textTheme.bodySmall
                                     ?.copyWith(color: AppColors.textSecondary),
                               ),
@@ -81,8 +81,8 @@ class UploadScreen extends ConsumerWidget {
                         Expanded(
                           child: AppGradientButton(
                             label: uploadState.status == UploadStatus.picking
-                                ? 'Opening picker...'
-                                : 'Choose file',
+                                ? context.t.uploadOpeningPicker
+                                : context.t.uploadChooseFileShort,
                             icon: Iconsax.documentUpload,
                             onPressed:
                                 uploadState.status == UploadStatus.picking
@@ -97,7 +97,7 @@ class UploadScreen extends ConsumerWidget {
                                 ? null
                                 : () => uploadController.loadDemoFile(),
                             icon: const Icon(Iconsax.magicStar),
-                            label: const Text('Use demo file'),
+                            label: Text(context.t.uploadUseDemoFile),
                           ),
                         ),
                       ],
@@ -109,14 +109,14 @@ class UploadScreen extends ConsumerWidget {
               if (uploadState.status == UploadStatus.failed)
                 StatePanel(
                   icon: Iconsax.warning2,
-                  title: 'File import failed',
+                  title: context.t.uploadFailedTitle,
                   message:
                       uploadState.errorMessage ??
-                      'Please try another subtitle file.',
+                      context.t.uploadFailedFallback,
                   action: OutlinedButton.icon(
                     onPressed: () => uploadController.pickFile(),
                     icon: const Icon(Iconsax.refresh),
-                    label: const Text('Try again'),
+                    label: Text(context.t.tryAgain),
                   ),
                 ),
               if (uploadState.file != null) ...<Widget>[
@@ -126,7 +126,7 @@ class UploadScreen extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'Ready to translate',
+                        context.t.uploadReadyTitle,
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                       Text(
@@ -141,13 +141,15 @@ class UploadScreen extends ConsumerWidget {
                         children: <Widget>[
                           _MetaChip(label: uploadState.file!.format.label),
                           _MetaChip(
-                            label: '${uploadState.file!.lineCount} lines',
+                            label: context.t.uploadLineCount(
+                              uploadState.file!.lineCount,
+                            ),
                           ),
-                          const _MetaChip(label: 'English source'),
+                          _MetaChip(label: context.t.uploadEnglishSource),
                         ],
                       ),
                       AppGradientButton(
-                        label: 'Continue to translation setup',
+                        label: context.t.uploadContinueSetup,
                         icon: Iconsax.arrowRight,
                         onPressed: () => context.push(
                           AppRoutes.translateSetup,

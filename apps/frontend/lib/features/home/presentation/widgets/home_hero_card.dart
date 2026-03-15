@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
@@ -30,18 +31,18 @@ class HomeHeroCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(999),
             ),
             child: Text(
-              'Premium subtitle workflow',
+              context.t.heroBadge,
               style: Theme.of(
                 context,
               ).textTheme.labelLarge?.copyWith(color: AppColors.primary),
             ),
           ),
           Text(
-            'Translate movie and series subtitles with a studio-grade flow.',
+            context.t.heroHeadline,
             style: Theme.of(context).textTheme.headlineMedium,
           ),
           Text(
-            'Choose between a searchable title catalog or direct file upload, then preview and export polished subtitles in minutes.',
+            context.t.heroBody,
             style: Theme.of(
               context,
             ).textTheme.bodyLarge?.copyWith(color: AppColors.textSecondary),
@@ -51,7 +52,7 @@ class HomeHeroCard extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: AppGradientButton(
-                  label: 'Search movie / series',
+                  label: context.t.heroSearchCta,
                   icon: Iconsax.searchNormal,
                   onPressed: onSearchTap,
                 ),
@@ -60,7 +61,7 @@ class HomeHeroCard extends StatelessWidget {
                 child: OutlinedButton.icon(
                   onPressed: onUploadTap,
                   icon: const Icon(Iconsax.documentUpload),
-                  label: const Text('Upload subtitle'),
+                  label: Text(context.t.heroUploadCta),
                 ),
               ),
             ],
@@ -79,15 +80,24 @@ class _HeroStatStrip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       spacing: 12,
-      children: const <Widget>[
+      children: <Widget>[
         Expanded(
-          child: _HeroStat(title: '2 paths', value: 'Search or upload'),
+          child: _HeroStat(
+            title: context.t.heroStatPathsTitle,
+            value: context.t.heroStatPathsValue,
+          ),
         ),
         Expanded(
-          child: _HeroStat(title: '10 languages', value: 'Ready for preview'),
+          child: _HeroStat(
+            title: context.t.heroStatLanguagesTitle,
+            value: context.t.heroStatLanguagesValue,
+          ),
         ),
         Expanded(
-          child: _HeroStat(title: 'Mock APIs', value: 'Backend-ready seam'),
+          child: _HeroStat(
+            title: context.t.heroStatMockTitle,
+            value: context.t.heroStatMockValue,
+          ),
         ),
       ],
     );

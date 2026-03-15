@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:subflix/core/app/router/app_routes.dart';
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/ui/widgets/route_state_missing_screen.dart';
 import 'package:subflix/features/history/presentation/screens/history_screen.dart';
 import 'package:subflix/features/home/presentation/screens/home_screen.dart';
@@ -88,10 +89,9 @@ GoRouter appRouter(Ref ref) {
           };
 
           if (args == null) {
-            return const RouteStateMissingScreen(
-              title: 'Subtitle sources',
-              message:
-                  'We could not determine which title to load subtitle sources for. Start again from search.',
+            return RouteStateMissingScreen(
+              title: context.t.routeMissingSubtitleSourcesTitle,
+              message: context.t.routeMissingSubtitleSourcesMessage,
             );
           }
 
@@ -103,10 +103,9 @@ GoRouter appRouter(Ref ref) {
         builder: (context, state) {
           final item = state.extra as MovieSearchItem?;
           if (item == null) {
-            return const RouteStateMissingScreen(
-              title: 'Series seasons',
-              message:
-                  'We could not determine which series to load. Start again from search.',
+            return RouteStateMissingScreen(
+              title: context.t.routeMissingSeriesSeasonsTitle,
+              message: context.t.routeMissingSeriesSeasonsMessage,
             );
           }
 
@@ -118,10 +117,9 @@ GoRouter appRouter(Ref ref) {
         builder: (context, state) {
           final args = state.extra as SeriesEpisodesArgs?;
           if (args == null) {
-            return const RouteStateMissingScreen(
-              title: 'Season episodes',
-              message:
-                  'We could not determine which season to load. Start again from search.',
+            return RouteStateMissingScreen(
+              title: context.t.routeMissingSeasonEpisodesTitle,
+              message: context.t.routeMissingSeasonEpisodesMessage,
             );
           }
 
@@ -133,10 +131,9 @@ GoRouter appRouter(Ref ref) {
         builder: (context, state) {
           final args = state.extra as TranslationSetupArgs?;
           if (args == null) {
-            return const RouteStateMissingScreen(
-              title: 'Translation setup',
-              message:
-                  'A subtitle source is required before the translation setup screen can open.',
+            return RouteStateMissingScreen(
+              title: context.t.routeMissingTranslationSetupTitle,
+              message: context.t.routeMissingTranslationSetupMessage,
             );
           }
 
@@ -148,10 +145,9 @@ GoRouter appRouter(Ref ref) {
         builder: (context, state) {
           final request = state.extra as TranslationRequest?;
           if (request == null) {
-            return const RouteStateMissingScreen(
-              title: 'Translation progress',
-              message:
-                  'No translation request was provided. Start a new translation from search or upload.',
+            return RouteStateMissingScreen(
+              title: context.t.routeMissingTranslationProgressTitle,
+              message: context.t.routeMissingTranslationProgressMessage,
             );
           }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:subflix/core/extensions/date_time_extensions.dart';
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
@@ -68,11 +69,15 @@ class JobCard extends StatelessWidget {
               _InfoChip(label: job.format.label),
               _InfoChip(label: job.status.label),
               if (job.translationReuse == true)
-                const _InfoChip(label: 'Reuse translation'),
+                _InfoChip(label: context.t.jobReuseTranslation),
               if (job.reusedExistingSubtitle == true)
-                const _InfoChip(label: 'Reuse subtitle'),
+                _InfoChip(label: context.t.jobReuseSubtitle),
               if (job.subtitleConfidenceLevel != null)
-                _InfoChip(label: 'Confidence: ${job.subtitleConfidenceLevel}'),
+                _InfoChip(
+                  label: context.t.jobConfidence(
+                    '${job.subtitleConfidenceLevel}',
+                  ),
+                ),
             ],
           ),
           Text(

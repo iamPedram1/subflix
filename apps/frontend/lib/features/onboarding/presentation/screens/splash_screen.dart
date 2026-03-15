@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:subflix/core/app/router/app_routes.dart';
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
@@ -64,7 +65,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                 children: <Widget>[
                   const SubflixWordmark(),
                   Text(
-                    'Preparing your subtitle studio',
+                    context.t.splashPreparing,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: AppColors.textSecondary,
                     ),

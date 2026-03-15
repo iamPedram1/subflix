@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/features/search/domain/models/movie_search_item.dart';
+import 'package:subflix/features/shared/domain/models/search_media_type.dart';
 
 class SearchResultCard extends StatelessWidget {
   const SearchResultCard({required this.item, required this.onTap, super.key});
@@ -42,7 +44,7 @@ class SearchResultCard extends StatelessWidget {
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     Text(
-                      '${item.mediaType.label} • ${item.year}',
+                      '${item.mediaType.label(context)} \u2022 ${item.year}',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -66,7 +68,9 @@ class SearchResultCard extends StatelessWidget {
               _MiniChip(label: item.genres.first),
               _MiniChip(label: '${item.runtimeMinutes}m'),
               _MiniChip(
-                label: 'Popularity ${item.popularity.toStringAsFixed(1)}',
+                label: context.t.searchResultPopularity(
+                  item.popularity.toStringAsFixed(1),
+                ),
               ),
             ],
           ),

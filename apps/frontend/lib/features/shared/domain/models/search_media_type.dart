@@ -1,8 +1,12 @@
-enum SearchMediaType {
-  movie('Movie'),
-  series('Series');
+import 'package:flutter/material.dart';
 
-  const SearchMediaType(this.label);
+import 'package:subflix/core/localization/app_localizations.dart';
 
-  final String label;
+enum SearchMediaType { movie, series }
+
+extension SearchMediaTypeLabel on SearchMediaType {
+  String label(BuildContext context) => switch (this) {
+    SearchMediaType.movie => context.t.mediaTypeMovie,
+    SearchMediaType.series => context.t.mediaTypeSeries,
+  };
 }

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:subflix/core/app/router/app_routes.dart';
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
@@ -26,20 +27,18 @@ class HistoryScreen extends ConsumerWidget {
             child: ListView(
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 120),
               children: <Widget>[
-                const SectionHeader(
-                  title: 'Translation history',
-                  subtitle:
-                      'Reopen previous subtitle jobs, inspect the preview again, or export them later.',
+                SectionHeader(
+                  title: context.t.historyTitle,
+                  subtitle: context.t.historySubtitle,
                 ),
                 const SizedBox(height: 16),
                 history.when(
                   data: (jobs) {
                     if (jobs.isEmpty) {
-                      return const StatePanel(
+                      return StatePanel(
                         icon: Iconsax.archive,
-                        title: 'History is empty',
-                        message:
-                            'Your translated subtitle jobs will appear here after you complete a search or upload workflow.',
+                        title: context.t.historyEmptyTitle,
+                        message: context.t.historyEmptyMessage,
                       );
                     }
 
@@ -62,14 +61,14 @@ class HistoryScreen extends ConsumerWidget {
                   },
                   error: (error, stackTrace) => StatePanel(
                     icon: Iconsax.warning2,
-                    title: 'Could not load history',
+                    title: context.t.historyFailedTitle,
                     message: error.toString(),
                     action: OutlinedButton.icon(
                       onPressed: () => ref
                           .read(historyControllerProvider.notifier)
                           .refresh(),
                       icon: const Icon(Iconsax.refresh),
-                      label: const Text('Retry'),
+                      label: Text(context.t.retry),
                     ),
                   ),
                   loading: () => Column(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:subflix/core/app/router/app_routes.dart';
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
@@ -30,8 +31,8 @@ class SeriesEpisodesScreen extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
             children: <Widget>[
               SectionHeader(
-                title: 'Season ${args.seasonNumber}',
-                subtitle: _seasonSubtitle(),
+                title: context.t.seriesEpisodesTitle(args.seasonNumber),
+                subtitle: _seasonSubtitle(context),
               ),
               const SizedBox(height: 16),
               Column(
@@ -69,13 +70,13 @@ class SeriesEpisodesScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    'Episode $episode',
+                                    context.t.seriesEpisodeLabel(episode),
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleMedium,
                                   ),
                                   Text(
-                                    _episodeSubtitle(),
+                                    _episodeSubtitle(context),
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodySmall
@@ -103,12 +104,12 @@ class SeriesEpisodesScreen extends StatelessWidget {
     );
   }
 
-  String _seasonSubtitle() {
+  String _seasonSubtitle(BuildContext context) {
     final year = args.seasonYear == null ? '' : ' \u2022 ${args.seasonYear}';
-    return '${args.episodeCount} episodes$year';
+    return context.t.seriesEpisodesSubtitle(args.episodeCount, year);
   }
 
-  String _episodeSubtitle() {
-    return 'Approx. ${args.item.runtimeMinutes} min';
+  String _episodeSubtitle(BuildContext context) {
+    return context.t.seriesEpisodeMeta(args.item.runtimeMinutes);
   }
 }

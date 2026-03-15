@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:subflix/core/app/router/app_routes.dart';
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
@@ -28,10 +29,9 @@ class SettingsScreen extends ConsumerWidget {
           child: ListView(
             padding: const EdgeInsets.fromLTRB(20, 20, 20, 120),
             children: <Widget>[
-              const SectionHeader(
-                title: 'Settings',
-                subtitle:
-                    'Manage subtitle defaults, appearance, app information, and placeholder premium controls.',
+              SectionHeader(
+                title: context.t.settingsTitle,
+                subtitle: context.t.settingsSubtitle,
               ),
               const SizedBox(height: 16),
               settings.when(
@@ -44,7 +44,7 @@ class SettingsScreen extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'Preferred target language',
+                            context.t.settingsLanguageLabel,
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                           Wrap(
@@ -75,7 +75,7 @@ class SettingsScreen extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'Appearance',
+                            context.t.settingsThemeLabel,
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                           SegmentedButton<ThemePreference>(
@@ -84,7 +84,7 @@ class SettingsScreen extends ConsumerWidget {
                                   (preference) =>
                                       ButtonSegment<ThemePreference>(
                                         value: preference,
-                                        label: Text(preference.label),
+                                        label: Text(preference.label(context)),
                                       ),
                                 )
                                 .toList(growable: false),
@@ -127,13 +127,13 @@ class SettingsScreen extends ConsumerWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      'Premium placeholder',
+                                      context.t.settingsPremiumTitle,
                                       style: Theme.of(
                                         context,
                                       ).textTheme.titleMedium,
                                     ),
                                     Text(
-                                      'Later we can connect subscriptions, billing, and cloud project sync here.',
+                                      context.t.settingsPremiumSubtitle,
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodySmall
@@ -155,32 +155,32 @@ class SettingsScreen extends ConsumerWidget {
                         children: <Widget>[
                           _SettingsTile(
                             icon: Iconsax.infoCircle,
-                            title: 'About SubFlix',
-                            subtitle: 'Version 1.0.0+1',
+                            title: context.t.settingsAboutTitle,
+                            subtitle: context.t.settingsVersion('1.0.0+1'),
                             onTap: () => context.push(
                               AppRoutes.legal.replaceFirst(':slug', 'about'),
                             ),
                           ),
                           _SettingsTile(
                             icon: Iconsax.messageQuestion,
-                            title: 'Support placeholder',
-                            subtitle: 'Mock help and contact page',
+                            title: context.t.settingsSupportTitle,
+                            subtitle: context.t.settingsSupportSubtitle,
                             onTap: () => context.push(
                               AppRoutes.legal.replaceFirst(':slug', 'support'),
                             ),
                           ),
                           _SettingsTile(
                             icon: Iconsax.book,
-                            title: 'Privacy policy',
-                            subtitle: 'Mock privacy content',
+                            title: context.t.settingsPrivacyTitle,
+                            subtitle: context.t.settingsPrivacySubtitle,
                             onTap: () => context.push(
                               AppRoutes.legal.replaceFirst(':slug', 'privacy'),
                             ),
                           ),
                           _SettingsTile(
                             icon: Iconsax.book,
-                            title: 'Terms of service',
-                            subtitle: 'Mock terms content',
+                            title: context.t.settingsTermsTitle,
+                            subtitle: context.t.settingsTermsSubtitle,
                             onTap: () => context.push(
                               AppRoutes.legal.replaceFirst(':slug', 'terms'),
                             ),
@@ -194,11 +194,11 @@ class SettingsScreen extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'Maintenance',
+                            context.t.settingsMaintenanceTitle,
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                           Text(
-                            'Clear backend-owned translation jobs for this device and start with an empty history state.',
+                            context.t.settingsMaintenanceSubtitle,
                             style: Theme.of(context).textTheme.bodySmall
                                 ?.copyWith(color: AppColors.textSecondary),
                           ),
@@ -211,15 +211,15 @@ class SettingsScreen extends ConsumerWidget {
                                 return;
                               }
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
+                                SnackBar(
                                   content: Text(
-                                    'Translation history cleared for this device',
+                                    context.t.settingsHistoryClearedSnack,
                                   ),
                                 ),
                               );
                             },
                             icon: const Icon(Iconsax.trash),
-                            label: const Text('Clear cache'),
+                            label: Text(context.t.settingsClearCache),
                           ),
                         ],
                       ),
@@ -228,12 +228,12 @@ class SettingsScreen extends ConsumerWidget {
                 ),
                 error: (error, stackTrace) => StatePanel(
                   icon: Iconsax.warning2,
-                  title: 'Settings failed to load',
+                  title: context.t.settingsFailedTitle,
                   message: error.toString(),
                   action: OutlinedButton.icon(
                     onPressed: () => ref.invalidate(settingsControllerProvider),
                     icon: const Icon(Iconsax.refresh),
-                    label: const Text('Retry'),
+                    label: Text(context.t.retry),
                   ),
                 ),
                 loading: () => Column(

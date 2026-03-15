@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:subflix/core/app/router/app_routes.dart';
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
@@ -47,23 +48,22 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     final searchState = ref.watch(searchControllerProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Search titles')),
+      appBar: AppBar(title: Text(context.t.searchTitles)),
       body: AppBackground(
         child: SafeArea(
           child: ListView(
             padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
             children: <Widget>[
-              const SectionHeader(
-                title: 'Search movie or series',
-                subtitle:
-                    'Find a title, inspect subtitle sources, and launch a translation job with a few taps.',
+              SectionHeader(
+                title: context.t.searchMovieOrSeriesTitle,
+                subtitle: context.t.searchMovieOrSeriesSubtitle,
               ),
               const SizedBox(height: 16),
               TextField(
                 controller: _controller,
                 onChanged: _onQueryChanged,
                 decoration: InputDecoration(
-                  hintText: 'Search for Dune, Breaking Bad, Severance...',
+                  hintText: context.t.searchHintText,
                   prefixIcon: const Icon(Iconsax.searchNormal),
                   suffixIcon: _query.isEmpty
                       ? null
@@ -138,11 +138,10 @@ class _SearchBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (state.query.trim().isEmpty) {
-      return const StatePanel(
+      return StatePanel(
         icon: Iconsax.magicStar,
-        title: 'Search anything in the mock catalog',
-        message:
-            'Try titles like Inception, Dune, Breaking Bad, Severance, or The Last of Us to explore the subtitle source flow.',
+        title: context.t.searchMockTitle,
+        message: context.t.searchMockMessage,
       );
     }
 
@@ -160,22 +159,21 @@ class _SearchBody extends StatelessWidget {
     if (state.errorMessage != null) {
       return StatePanel(
         icon: Iconsax.warning2,
-        title: 'Search failed',
+        title: context.t.searchFailedTitle,
         message: state.errorMessage!,
         action: OutlinedButton.icon(
           onPressed: onRetry,
           icon: const Icon(Iconsax.refresh),
-          label: const Text('Retry'),
+          label: Text(context.t.retry),
         ),
       );
     }
 
     if (state.showEmpty) {
-      return const StatePanel(
+      return StatePanel(
         icon: Iconsax.searchNormal,
-        title: 'No titles matched',
-        message:
-            'We could not find that title in the mock catalog. Try a broader search or one of the suggested shows.',
+        title: context.t.noTitlesMatchedTitle,
+        message: context.t.noTitlesMatchedMessage,
       );
     }
 

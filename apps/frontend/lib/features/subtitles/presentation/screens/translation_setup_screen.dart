@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:subflix/core/app/router/app_routes.dart';
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
@@ -36,7 +37,7 @@ class _TranslationSetupScreenState
         AppLanguage.spanish;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Translate setup')),
+      appBar: AppBar(title: Text(context.t.translateSetupTitle)),
       body: AppBackground(
         child: SafeArea(
           child: ListView(
@@ -44,8 +45,7 @@ class _TranslationSetupScreenState
             children: <Widget>[
               SectionHeader(
                 title: widget.args.title,
-                subtitle:
-                    'Choose the target language, review the subtitle source, and start the backend translation job.',
+                subtitle: context.t.translateSetupSubtitle,
               ),
               const SizedBox(height: 16),
               AppSurfaceCard(
@@ -79,7 +79,9 @@ class _TranslationSetupScreenState
                                 style: Theme.of(context).textTheme.titleMedium,
                               ),
                               Text(
-                                '${widget.args.format.label} subtitle source',
+                                context.t.subtitleSourceFormatLabel(
+                                  widget.args.format.label,
+                                ),
                                 style: Theme.of(context).textTheme.bodySmall
                                     ?.copyWith(color: AppColors.textSecondary),
                               ),
@@ -89,7 +91,7 @@ class _TranslationSetupScreenState
                       ],
                     ),
                     Text(
-                      'Target language',
+                      context.t.targetLanguage,
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     Wrap(
@@ -112,7 +114,7 @@ class _TranslationSetupScreenState
               ),
               const SizedBox(height: 18),
               AppGradientButton(
-                label: 'Start translation',
+                label: context.t.startTranslation,
                 icon: Iconsax.magicStar,
                 onPressed: () async {
                   await ref

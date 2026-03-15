@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
-enum ThemePreference {
-  system('System'),
-  dark('Dark'),
-  light('Light');
+import 'package:subflix/core/localization/app_localizations.dart';
 
-  const ThemePreference(this.label);
+enum ThemePreference { system, dark, light }
 
-  final String label;
+extension ThemePreferenceLabel on ThemePreference {
+  String label(BuildContext context) => switch (this) {
+    ThemePreference.system => context.t.themeSystem,
+    ThemePreference.dark => context.t.themeDark,
+    ThemePreference.light => context.t.themeLight,
+  };
+}
 
+extension ThemePreferenceMode on ThemePreference {
   ThemeMode toThemeMode() {
     return switch (this) {
       ThemePreference.system => ThemeMode.system,

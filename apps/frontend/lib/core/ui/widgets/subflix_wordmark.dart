@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/icons/brand.dart';
 
@@ -37,13 +38,13 @@ class SubflixWordmark extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'SubFlix',
+              context.t.appTitle,
               style: titleStyle?.copyWith(fontWeight: FontWeight.w700),
             ),
             Text(
               compact
-                  ? 'Subtitle intelligence'
-                  : 'AI subtitle translation studio',
+                  ? context.t.brandSubtitleCompact
+                  : context.t.brandSubtitleFull,
               style: Theme.of(
                 context,
               ).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),

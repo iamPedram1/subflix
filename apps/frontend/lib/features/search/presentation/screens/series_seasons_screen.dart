@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:subflix/core/app/router/app_routes.dart';
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
@@ -28,9 +29,8 @@ class SeriesSeasonsScreen extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
             children: <Widget>[
               SectionHeader(
-                title: 'Choose a season',
-                subtitle:
-                    'Pick a season of ${item.title} to browse available episodes.',
+                title: context.t.seriesSeasonsTitle,
+                subtitle: context.t.seriesSeasonsSubtitle(item.title),
               ),
               const SizedBox(height: 16),
               Column(
@@ -69,13 +69,13 @@ class SeriesSeasonsScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    'Season ${season.number}',
+                                    context.t.seriesSeasonLabel(season.number),
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleMedium,
                                   ),
                                   Text(
-                                    _seasonSubtitle(season),
+                                    _seasonSubtitle(context, season),
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodySmall
@@ -103,8 +103,8 @@ class SeriesSeasonsScreen extends StatelessWidget {
     );
   }
 
-  String _seasonSubtitle(SeasonDetails season) {
+  String _seasonSubtitle(BuildContext context, SeasonDetails season) {
     final year = season.year == null ? '' : ' \u2022 ${season.year}';
-    return '${season.episodeCount} episodes$year';
+    return context.t.seriesSeasonMeta(season.episodeCount, year);
   }
 }

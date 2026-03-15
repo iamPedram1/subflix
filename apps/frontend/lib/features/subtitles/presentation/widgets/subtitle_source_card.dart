@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
@@ -65,10 +66,19 @@ class SubtitleSourceCard extends StatelessWidget {
             runSpacing: 8,
             children: <Widget>[
               _SourceChip(label: source.format.label),
-              _SourceChip(label: '${source.lineCount} lines'),
-              _SourceChip(label: '${source.downloads} downloads'),
-              _SourceChip(label: '${source.rating.toStringAsFixed(1)} rating'),
-              if (source.hearingImpaired) const _SourceChip(label: 'HI / SDH'),
+              _SourceChip(
+                label: context.t.subtitleSourceLines('${source.lineCount}'),
+              ),
+              _SourceChip(
+                label: context.t.subtitleSourceDownloads('${source.downloads}'),
+              ),
+              _SourceChip(
+                label: context.t.subtitleSourceRating(
+                  source.rating.toStringAsFixed(1),
+                ),
+              ),
+              if (source.hearingImpaired)
+                _SourceChip(label: context.t.subtitleSourceHiLabel),
             ],
           ),
         ],

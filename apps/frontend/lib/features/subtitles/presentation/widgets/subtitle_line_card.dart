@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 
 import 'package:subflix/core/extensions/duration_extensions.dart';
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/features/subtitles/domain/models/subtitle_line.dart';
 
 enum PreviewMode {
-  original('Original'),
-  translated('Translated'),
-  bilingual('Bilingual');
+  original,
+  translated,
+  bilingual;
+}
 
-  const PreviewMode(this.label);
-
-  final String label;
+extension PreviewModeLabels on PreviewMode {
+  String label(BuildContext context) => switch (this) {
+    PreviewMode.original => context.t.previewModeOriginal,
+    PreviewMode.translated => context.t.previewModeTranslated,
+    PreviewMode.bilingual => context.t.previewModeBilingual,
+  };
 }
 
 class SubtitleLineCard extends StatelessWidget {

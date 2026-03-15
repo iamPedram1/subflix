@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:subflix/core/extensions/duration_extensions.dart';
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/providers/repository_providers.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
@@ -54,15 +55,15 @@ class _TranslationPreviewScreenState
     );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Translation preview')),
+      appBar: AppBar(title: Text(context.t.translationPreviewTitle)),
       bottomNavigationBar: previewAsync.asData?.value == null
           ? null
           : Padding(
               padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
               child: AppGradientButton(
                 label: _isExporting
-                    ? 'Exporting...'
-                    : 'Export translated subtitle',
+                    ? context.t.exportingLabel
+                    : context.t.exportSubtitleLabel,
                 icon: Iconsax.export,
                 onPressed: _isExporting
                     ? null
@@ -79,10 +80,9 @@ class _TranslationPreviewScreenState
               return ListView(
                 padding: const EdgeInsets.fromLTRB(20, 12, 20, 120),
                 children: <Widget>[
-                  const SectionHeader(
-                    title: 'Review translated subtitles',
-                    subtitle:
-                        'Search inside cues, switch preview modes, then export once the translation looks right.',
+                  SectionHeader(
+                    title: context.t.translationPreviewHeader,
+                    subtitle: context.t.translationPreviewSubtitle,
                   ),
                   const SizedBox(height: 16),
                   _MetadataCard(job: job),
@@ -97,7 +97,7 @@ class _TranslationPreviewScreenState
                               .map(
                                 (mode) => ButtonSegment<PreviewMode>(
                                   value: mode,
-                                  label: Text(mode.label),
+                                  label: Text(mode.label(context)),
                                 ),
                               )
                               .toList(growable: false),
@@ -109,7 +109,7 @@ class _TranslationPreviewScreenState
                         TextField(
                           onChanged: _onQueryChanged,
                           decoration: InputDecoration(
-                            hintText: 'Search subtitle lines',
+                            hintText: context.t.translationPreviewSearchHint,
                             prefixIcon: const Icon(Iconsax.searchNormal),
                             suffixIcon: _query.isEmpty
                                 ? null
@@ -127,11 +127,11 @@ class _TranslationPreviewScreenState
                     StatePanel(
                       icon: Iconsax.searchNormal,
                       title: _committedQuery.isEmpty
-                          ? 'Preview cues are not available yet'
-                          : 'No subtitle lines matched',
+                          ? context.t.previewNotReadyTitle
+                          : context.t.previewNoMatchesTitle,
                       message: _committedQuery.isEmpty
-                          ? 'The translation finished, but the backend did not return preview cues yet. Try reloading this screen in a moment.'
-                          : 'Try a different search term or clear the filter to inspect the full translation.',
+                          ? context.t.previewNotReadyMessage
+                          : context.t.previewNoMatchesMessage,
                     )
                   else
                     Column(
@@ -152,7 +152,7 @@ class _TranslationPreviewScreenState
               padding: const EdgeInsets.all(20),
               child: StatePanel(
                 icon: Iconsax.warning2,
-                title: 'Preview failed to load',
+                title: context.t.previewFailedTitle,
                 message: error.toString(),
                 action: OutlinedButton.icon(
                   onPressed: () => ref.invalidate(
@@ -164,7 +164,7 @@ class _TranslationPreviewScreenState
                     ),
                   ),
                   icon: const Icon(Iconsax.refresh),
-                  label: const Text('Retry'),
+                  label: Text(context.t.retry),
                 ),
               ),
             ),
@@ -206,7 +206,9 @@ class _TranslationPreviewScreenState
       }
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Exported ${result.fileName} to ${result.path}'),
+          content: Text(
+            context.t.exportedSnack(result.fileName, result.path),
+          ),
         ),
       );
     } catch (error) {
@@ -215,7 +217,9 @@ class _TranslationPreviewScreenState
       }
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text('Export failed: $error')));
+      ).showSnackBar(
+        SnackBar(content: Text(context.t.exportFailedSnack('$error'))),
+      );
     } finally {
       if (mounted) {
         setState(() => _isExporting = false);
@@ -236,14 +240,17 @@ class _MetadataCard extends StatelessWidget {
         spacing: 12,
         runSpacing: 12,
         children: <Widget>[
-          _MetaTile(label: 'Format', value: job.format.label),
-          _MetaTile(label: 'Lines', value: '${job.lineCount}'),
+          _MetaTile(label: context.t.metadataFormat, value: job.format.label),
           _MetaTile(
-            label: 'Languages',
+            label: context.t.metadataLines,
+            value: '${job.lineCount}',
+          ),
+          _MetaTile(
+            label: context.t.metadataLanguages,
             value: '${job.sourceLanguage.label} -> ${job.targetLanguage.label}',
           ),
           _MetaTile(
-            label: 'Estimated duration',
+            label: context.t.metadataEstimatedDuration,
             value: Duration(milliseconds: job.durationMs).toStatLabel(),
           ),
         ],

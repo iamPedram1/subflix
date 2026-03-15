@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:subflix/core/app/router/app_routes.dart';
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
@@ -42,20 +43,18 @@ class HomeScreen extends ConsumerWidget {
                         .fadeIn(duration: 350.ms)
                         .moveY(begin: 8, end: 0),
                     const SizedBox(height: 28),
-                    const SectionHeader(
-                      title: 'Recent jobs',
-                      subtitle:
-                          'Reopen your latest subtitle sessions without starting over.',
+                    SectionHeader(
+                      title: context.t.homeRecentJobsTitle,
+                      subtitle: context.t.homeRecentJobsSubtitle,
                     ),
                     const SizedBox(height: 16),
                     recentJobs.when(
                       data: (jobs) {
                         if (jobs.isEmpty) {
-                          return const StatePanel(
+                          return StatePanel(
                             icon: Iconsax.archive,
-                            title: 'No recent jobs yet',
-                            message:
-                                'Start with a movie search or upload a subtitle file and your recent translations will appear here.',
+                            title: context.t.homeNoRecentTitle,
+                            message: context.t.homeNoRecentMessage,
                           );
                         }
 
@@ -78,14 +77,14 @@ class HomeScreen extends ConsumerWidget {
                       },
                       error: (error, stackTrace) => StatePanel(
                         icon: Iconsax.warning2,
-                        title: 'Could not load recent jobs',
+                        title: context.t.homeFailedRecentTitle,
                         message: error.toString(),
                         action: OutlinedButton.icon(
                           onPressed: () => ref
                               .read(historyControllerProvider.notifier)
                               .refresh(),
                           icon: const Icon(Iconsax.refresh),
-                          label: const Text('Retry'),
+                          label: Text(context.t.retry),
                         ),
                       ),
                       loading: () => Column(
@@ -97,31 +96,27 @@ class HomeScreen extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 28),
-                    const SectionHeader(
-                      title: 'Why teams trust it',
-                      subtitle:
-                          'Mocked today, but structured like a product that can ship for real.',
+                    SectionHeader(
+                      title: context.t.homeTrustTitle,
+                      subtitle: context.t.homeTrustSubtitle,
                     ),
                     const SizedBox(height: 16),
-                    const TrustSignalTile(
+                    TrustSignalTile(
                       icon: Iconsax.shieldTick,
-                      title: 'Future-ready repositories',
-                      subtitle:
-                          'Swappable mock repositories keep UI code insulated from backend changes.',
+                      title: context.t.homeFutureTitle,
+                      subtitle: context.t.homeFutureSubtitle,
                     ),
                     const SizedBox(height: 12),
-                    const TrustSignalTile(
+                    TrustSignalTile(
                       icon: Iconsax.magicStar,
-                      title: 'Preview-first translation flow',
-                      subtitle:
-                          'Inspect results before export with original, translated, or bilingual views.',
+                      title: context.t.homePreviewTitle,
+                      subtitle: context.t.homePreviewSubtitle,
                     ),
                     const SizedBox(height: 12),
-                    const TrustSignalTile(
+                    TrustSignalTile(
                       icon: Iconsax.wifiSquare,
-                      title: 'Graceful states included',
-                      subtitle:
-                          'Loading, empty, retry, validation, and mock offline scenarios are part of the UX from day one.',
+                      title: context.t.homeStatesTitle,
+                      subtitle: context.t.homeStatesSubtitle,
                     ),
                   ],
                 ),

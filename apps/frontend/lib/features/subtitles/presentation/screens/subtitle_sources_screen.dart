@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:subflix/core/app/router/app_routes.dart';
+import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
@@ -11,6 +12,7 @@ import 'package:subflix/core/ui/widgets/section_header.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
 import 'package:subflix/features/search/application/subtitle_sources_provider.dart';
 import 'package:subflix/features/search/domain/models/movie_search_item.dart';
+import 'package:subflix/features/shared/domain/models/search_media_type.dart';
 import 'package:subflix/features/subtitles/presentation/models/subtitle_sources_args.dart';
 import 'package:subflix/features/subtitles/presentation/models/translation_setup_args.dart';
 import 'package:subflix/features/subtitles/presentation/widgets/subtitle_source_card.dart';
@@ -30,7 +32,7 @@ class SubtitleSourcesScreen extends ConsumerWidget {
       releaseHint: args.releaseHint,
     );
     final sources = ref.watch(subtitleSourcesSelectionProvider(request));
-    final subtitleTarget = _buildSubtitleTarget(args);
+    final subtitleTarget = _buildSubtitleTarget(context, args);
 
     return Scaffold(
       appBar: AppBar(title: Text(item.title)),
@@ -40,9 +42,11 @@ class SubtitleSourcesScreen extends ConsumerWidget {
             padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
             children: <Widget>[
               SectionHeader(
-                title: 'English subtitle sources',
-                subtitle:
-                    'Pick a subtitle source for ${item.title}$subtitleTarget, then choose the target language in the next step.',
+                title: context.t.subtitleSourcesTitle,
+                subtitle: context.t.subtitleSourcesSubtitle(
+                  item.title,
+                  subtitleTarget,
+                ),
               ),
               const SizedBox(height: 16),
               _TitleSummary(item: item, args: args),
@@ -70,14 +74,14 @@ class SubtitleSourcesScreen extends ConsumerWidget {
                 ),
                 error: (error, stackTrace) => StatePanel(
                   icon: Iconsax.warning2,
-                  title: 'Could not load subtitle sources',
+                  title: context.t.subtitleSourcesFailedTitle,
                   message: error.toString().replaceFirst('Exception: ', ''),
                   action: OutlinedButton.icon(
                     onPressed: () => ref.invalidate(
                       subtitleSourcesSelectionProvider(request),
                     ),
                     icon: const Icon(Iconsax.refresh),
-                    label: const Text('Retry'),
+                    label: Text(context.t.retry),
                   ),
                 ),
                 loading: () => Column(
@@ -105,11 +109,11 @@ class _TitleSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final seasonLabel = _buildSeasonLabel(args);
+    final seasonLabel = _buildSeasonLabel(context, args);
     final metadata = [
-      item.mediaType.label,
+      item.mediaType.label(context),
       '${item.year}',
-      ?seasonLabel,
+      if (seasonLabel != null) seasonLabel,
       '${item.runtimeMinutes}m',
     ].join(' \u2022 ');
 
@@ -158,25 +162,27 @@ class _TitleSummary extends StatelessWidget {
   }
 }
 
-String _buildSubtitleTarget(SubtitleSourcesArgs args) {
+String _buildSubtitleTarget(BuildContext context, SubtitleSourcesArgs args) {
   if (args.seasonNumber == null) {
     return '';
   }
 
-  final episode = args.episodeNumber == null
+  final seasonLabel = context.t.seriesSeasonLabel(args.seasonNumber!);
+  final episodeLabel = args.episodeNumber == null
       ? ''
-      : ' \u2022 Episode ${args.episodeNumber}';
-  return ' \u2022 Season ${args.seasonNumber}$episode';
+      : ' \u2022 ${context.t.seriesEpisodeLabel(args.episodeNumber!)}';
+  return ' \u2022 $seasonLabel$episodeLabel';
 }
 
-String? _buildSeasonLabel(SubtitleSourcesArgs args) {
+String? _buildSeasonLabel(BuildContext context, SubtitleSourcesArgs args) {
   if (args.seasonNumber == null) {
     return null;
   }
 
   if (args.episodeNumber == null) {
-    return 'Season ${args.seasonNumber}';
+    return context.t.seriesSeasonLabel(args.seasonNumber!);
   }
 
-  return 'Season ${args.seasonNumber}, Ep ${args.episodeNumber}';
+  return '${context.t.seriesSeasonLabel(args.seasonNumber!)}'
+      ', ${context.t.seriesEpisodeLabel(args.episodeNumber!)}';
 }
