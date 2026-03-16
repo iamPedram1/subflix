@@ -40,6 +40,7 @@ Those private variants are ignored by git through the root `.gitignore`.
 
 ## Notes
 
+- `Auth / Sign Up` and `Auth / Sign In` store `accessToken` and `refreshToken` in collection variables for reuse.
 - `Catalog / Get Subtitle Sources` supports optional query params: `preferredLanguage`, `seasonNumber`, `episodeNumber` (season/episode must be supplied together for TV), and `releaseHint`.
 - `subtitleSourceId` values returned by the API are stable opaque ids in the `ssrc:*` format.
 - The backend localizes error `message` strings based on the `Accept-Language` header (fallback: `en`).

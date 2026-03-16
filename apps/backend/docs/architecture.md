@@ -25,6 +25,7 @@ src/
     http/
     utils/
   features/
+    auth/
     catalog/
     devices/
     health/
@@ -70,6 +71,12 @@ This layer should stop at generic persistence concerns. It should not absorb fea
 
 - public health endpoint
 - intentionally lightweight
+
+### `auth`
+
+- email/password sign-up and sign-in
+- Firebase OAuth sign-in (Google, Facebook, Apple)
+- access + refresh token issuance and rotation
 
 ### `devices`
 

@@ -102,3 +102,23 @@ export const subtitleAlignmentConfig = registerAs('subtitleAlignment', () => ({
     60,
   ),
 }));
+
+export const authConfig = registerAs('auth', () => ({
+  jwtSecret: process.env.AUTH_JWT_SECRET ?? '',
+  accessTokenTtlSeconds: parseNumber(
+    process.env.AUTH_ACCESS_TOKEN_TTL_SECONDS,
+    15 * 60,
+  ),
+  refreshTokenTtlDays: parseNumber(
+    process.env.AUTH_REFRESH_TOKEN_TTL_DAYS,
+    30,
+  ),
+  bcryptSaltRounds: parseNumber(process.env.AUTH_BCRYPT_SALT_ROUNDS, 12),
+}));
+
+export const firebaseConfig = registerAs('firebase', () => ({
+  projectId: process.env.FIREBASE_PROJECT_ID ?? '',
+  clientEmail: process.env.FIREBASE_CLIENT_EMAIL ?? '',
+  privateKey: process.env.FIREBASE_PRIVATE_KEY ?? '',
+  serviceAccountJson: process.env.FIREBASE_SERVICE_ACCOUNT_JSON ?? '',
+}));

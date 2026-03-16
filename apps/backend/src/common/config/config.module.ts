@@ -3,7 +3,9 @@ import { ConfigModule } from '@nestjs/config';
 
 import {
   appConfig,
+  authConfig,
   databaseConfig,
+  firebaseConfig,
   subtitleAlignmentConfig,
   subtitleSourcesConfig,
   tmdbConfig,
@@ -17,7 +19,9 @@ import {
       cache: true,
       load: [
         appConfig,
+        authConfig,
         databaseConfig,
+        firebaseConfig,
         tmdbConfig,
         subtitleSourcesConfig,
         subtitleAlignmentConfig,

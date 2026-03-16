@@ -67,6 +67,22 @@ Notes:
 - `subtitleSourceId` values returned from `subtitle-sources` are stable opaque ids in the `ssrc:*` format and may be persisted by clients
 - `subtitle-sources` responses may include optional `languageCode` and `languageName` fields for display and selection logic
 
+### Auth
+
+- `POST /v1/auth/signup`
+- `POST /v1/auth/signin`
+- `POST /v1/auth/oauth/firebase`
+- `POST /v1/auth/refresh`
+- `POST /v1/auth/signout`
+- `GET /v1/auth/me`
+
+Rules:
+
+- access tokens must be sent via `Authorization: Bearer <accessToken>`
+- refresh tokens must be sent in the request body
+- email sign-ups must normalize emails to lowercase
+- OAuth sign-ins must validate Firebase id tokens
+
 ### Preferences
 
 - `GET /v1/preferences`

@@ -64,7 +64,16 @@ DATABASE_URL=postgresql://postgres:postgres@localhost:5432/subflix
 MAX_UPLOAD_BYTES=2097152
 TMDB_API_READ_TOKEN=your_tmdb_read_token
 SUBDL_API_KEY=your_subdl_api_key
+AUTH_JWT_SECRET=replace_with_secure_secret
+AUTH_ACCESS_TOKEN_TTL_SECONDS=900
+AUTH_REFRESH_TOKEN_TTL_DAYS=30
+AUTH_BCRYPT_SALT_ROUNDS=12
+FIREBASE_PROJECT_ID=your_firebase_project_id
+FIREBASE_CLIENT_EMAIL=your_firebase_client_email
+FIREBASE_PRIVATE_KEY=your_firebase_private_key
 ```
+
+You can also set `FIREBASE_SERVICE_ACCOUNT_JSON` instead of the individual Firebase fields.
 
 ### 3. Start PostgreSQL
 
@@ -133,6 +142,15 @@ The app runs on `http://localhost:3000` and all routes are prefixed with `/v1`.
 - `GET /v1/health`
 - `GET /v1/catalog/search?q=...`
 - `GET /v1/catalog/media/:mediaId/subtitle-sources`
+
+### Auth
+
+- `POST /v1/auth/signup`
+- `POST /v1/auth/signin`
+- `POST /v1/auth/oauth/firebase`
+- `POST /v1/auth/refresh`
+- `POST /v1/auth/signout`
+- `GET /v1/auth/me`
 
 ### Device-scoped
 
@@ -248,7 +266,7 @@ pnpm format
 
 ## Current limitations
 
-- No real authentication yet. Ownership is header-based via `x-device-id`.
+- Device-scoped data is still owned by `x-device-id`; authenticated user ownership is not wired into those flows yet.
 - `.zip` archive extraction is supported for catalog subtitle downloads. `.rar` archives are not supported yet.
 - Translation execution is still mocked behind its provider boundary.
 - No Redis/BullMQ worker pipeline yet. Jobs are run in-process to keep V1 simple.
