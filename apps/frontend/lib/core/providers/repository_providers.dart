@@ -9,18 +9,22 @@ import 'package:subflix/core/network/accept_language.dart';
 import 'package:subflix/core/network/request_identity.dart';
 import 'package:subflix/core/utils/subtitle_parser.dart';
 import 'package:subflix/features/history/data/repositories/backend_history_repository.dart';
+import 'package:subflix/features/history/data/repositories/cached_history_repository.dart';
 import 'package:subflix/features/history/domain/repositories/history_repository.dart';
 import 'package:subflix/features/search/data/apis/catalog_api.dart';
 import 'package:subflix/features/search/data/repositories/backend_search_repository.dart';
+import 'package:subflix/features/search/data/repositories/cached_search_repository.dart';
 import 'package:subflix/features/search/domain/repositories/search_repository.dart';
 import 'package:subflix/features/settings/data/apis/preferences_api.dart';
 import 'package:subflix/features/settings/data/repositories/backend_settings_repository.dart';
+import 'package:subflix/features/settings/data/repositories/cached_settings_repository.dart';
 import 'package:subflix/features/settings/domain/repositories/settings_repository.dart';
 import 'package:subflix/features/shared/data/apis/translation_jobs_api.dart';
 import 'package:subflix/features/subtitles/data/apis/subtitles_api.dart';
 import 'package:subflix/features/subtitles/data/repositories/backend_subtitle_export_repository.dart';
 import 'package:subflix/features/subtitles/data/repositories/backend_subtitle_import_repository.dart';
 import 'package:subflix/features/subtitles/data/repositories/backend_translation_repository.dart';
+import 'package:subflix/features/subtitles/data/repositories/cached_translation_repository.dart';
 import 'package:subflix/features/subtitles/domain/repositories/subtitle_export_repository.dart';
 import 'package:subflix/features/subtitles/domain/repositories/subtitle_import_repository.dart';
 import 'package:subflix/features/subtitles/domain/repositories/translation_repository.dart';
@@ -109,17 +113,23 @@ SubtitlesApi subtitlesApi(Ref ref) {
 
 @Riverpod(keepAlive: true)
 SettingsRepository settingsRepository(Ref ref) {
-  return BackendSettingsRepository(ref.watch(preferencesApiProvider));
+  return CachedSettingsRepository(
+    BackendSettingsRepository(ref.watch(preferencesApiProvider)),
+  );
 }
 
 @Riverpod(keepAlive: true)
 HistoryRepository historyRepository(Ref ref) {
-  return BackendHistoryRepository(ref.watch(translationJobsApiProvider));
+  return CachedHistoryRepository(
+    BackendHistoryRepository(ref.watch(translationJobsApiProvider)),
+  );
 }
 
 @Riverpod(keepAlive: true)
 SearchRepository searchRepository(Ref ref) {
-  return BackendSearchRepository(ref.watch(catalogApiProvider));
+  return CachedSearchRepository(
+    BackendSearchRepository(ref.watch(catalogApiProvider)),
+  );
 }
 
 @Riverpod(keepAlive: true)
@@ -137,5 +147,7 @@ SubtitleExportRepository subtitleExportRepository(Ref ref) {
 
 @Riverpod(keepAlive: true)
 TranslationRepository translationRepository(Ref ref) {
-  return BackendTranslationRepository(ref.watch(translationJobsApiProvider));
+  return CachedTranslationRepository(
+    BackendTranslationRepository(ref.watch(translationJobsApiProvider)),
+  );
 }

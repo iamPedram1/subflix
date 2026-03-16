@@ -15,24 +15,56 @@ class SettingsController extends _$SettingsController {
   }
 
   Future<void> markOnboardingSeen() async {
-    state = await AsyncValue.guard(
-      ref.watch(settingsRepositoryProvider).markOnboardingSeen,
-    );
+    final previous = state;
+    final current = state.asData?.value;
+    if (current != null) {
+      state = AsyncValue.data(
+        current.copyWith(hasSeenOnboarding: true),
+      );
+    }
+    try {
+      final updated = await ref
+          .watch(settingsRepositoryProvider)
+          .markOnboardingSeen();
+      state = AsyncValue.data(updated);
+    } catch (_) {
+      state = previous;
+    }
   }
 
   Future<void> setPreferredTargetLanguage(AppLanguage language) async {
-    state = await AsyncValue.guard(
-      () => ref
+    final previous = state;
+    final current = state.asData?.value;
+    if (current != null) {
+      state = AsyncValue.data(
+        current.copyWith(preferredTargetLanguage: language),
+      );
+    }
+    try {
+      final updated = await ref
           .watch(settingsRepositoryProvider)
-          .setPreferredTargetLanguage(language),
-    );
+          .setPreferredTargetLanguage(language);
+      state = AsyncValue.data(updated);
+    } catch (_) {
+      state = previous;
+    }
   }
 
   Future<void> setThemePreference(ThemePreference themePreference) async {
-    state = await AsyncValue.guard(
-      () => ref
+    final previous = state;
+    final current = state.asData?.value;
+    if (current != null) {
+      state = AsyncValue.data(
+        current.copyWith(themePreference: themePreference),
+      );
+    }
+    try {
+      final updated = await ref
           .watch(settingsRepositoryProvider)
-          .setThemePreference(themePreference),
-    );
+          .setThemePreference(themePreference);
+      state = AsyncValue.data(updated);
+    } catch (_) {
+      state = previous;
+    }
   }
 }

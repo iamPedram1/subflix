@@ -20,7 +20,12 @@ class HistoryController extends _$HistoryController {
 
   Future<void> clear() async {
     final repository = ref.watch(historyRepositoryProvider);
-    await repository.clear();
+    final previous = state;
     state = const AsyncValue.data(<TranslationJob>[]);
+    try {
+      await repository.clear();
+    } catch (_) {
+      state = previous;
+    }
   }
 }
