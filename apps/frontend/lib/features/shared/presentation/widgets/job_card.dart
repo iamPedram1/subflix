@@ -51,7 +51,7 @@ class JobCard extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textSecondary,
+                        color: AppColors.textSecondaryFor(context),
                       ),
                     ),
                   ],
@@ -85,7 +85,7 @@ class JobCard extends StatelessWidget {
             job.createdAt.toJobTimestamp(),
             style: Theme.of(
               context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.textMuted),
+            ).textTheme.bodySmall?.copyWith(color: AppColors.textMutedFor(context)),
           ),
         ],
       ),
@@ -102,7 +102,7 @@ class _InfoChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.surfaceMuted.withValues(alpha: 0.6),
+        color: AppColors.surfaceMutedFor(context).withValues(alpha: 0.6),
         borderRadius: BorderRadius.circular(999),
       ),
       child: Padding(
@@ -111,7 +111,7 @@ class _InfoChip extends StatelessWidget {
           label,
           style: Theme.of(
             context,
-          ).textTheme.labelMedium?.copyWith(color: AppColors.textSecondary),
+          ).textTheme.labelMedium?.copyWith(color: AppColors.textSecondaryFor(context)),
         ),
       ),
     );

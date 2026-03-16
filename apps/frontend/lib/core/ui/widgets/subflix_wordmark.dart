@@ -47,7 +47,7 @@ class SubflixWordmark extends StatelessWidget {
                   : context.t.brandSubtitleFull,
               style: Theme.of(
                 context,
-              ).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
+              ).textTheme.bodySmall?.copyWith(color: AppColors.textSecondaryFor(context)),
             ),
           ],
         ),

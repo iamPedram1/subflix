@@ -19,6 +19,46 @@ abstract final class AppColors {
   static const Color danger = Color(0xFFFF6B7A);
   static const Color info = Color(0xFF53C4FF);
 
+  static Color textSecondaryFor(BuildContext context) {
+    return textSecondaryForScheme(Theme.of(context).colorScheme);
+  }
+
+  static Color textMutedFor(BuildContext context) {
+    return textMutedForScheme(Theme.of(context).colorScheme);
+  }
+
+  static Color surfaceMutedFor(BuildContext context) {
+    return surfaceMutedForScheme(Theme.of(context).colorScheme);
+  }
+
+  static Color outlineSoftFor(BuildContext context) {
+    return outlineSoftForScheme(Theme.of(context).colorScheme);
+  }
+
+  static Color textSecondaryForScheme(ColorScheme scheme) {
+    return scheme.brightness == Brightness.dark
+        ? textSecondary
+        : scheme.onSurface.withValues(alpha: 0.68);
+  }
+
+  static Color textMutedForScheme(ColorScheme scheme) {
+    return scheme.brightness == Brightness.dark
+        ? textMuted
+        : scheme.onSurface.withValues(alpha: 0.5);
+  }
+
+  static Color surfaceMutedForScheme(ColorScheme scheme) {
+    return scheme.brightness == Brightness.dark
+        ? surfaceMuted
+        : scheme.surface.withValues(alpha: 0.78);
+  }
+
+  static Color outlineSoftForScheme(ColorScheme scheme) {
+    return scheme.brightness == Brightness.dark
+        ? outlineSoft
+        : scheme.outline.withValues(alpha: 0.5);
+  }
+
   static const LinearGradient heroGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,

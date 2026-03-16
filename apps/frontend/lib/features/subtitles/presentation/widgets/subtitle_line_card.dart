@@ -49,7 +49,7 @@ class SubtitleLineCard extends StatelessWidget {
                 '${Duration(milliseconds: line.startMs).toClock()} - ${Duration(milliseconds: line.endMs).toClock()}',
                 style: Theme.of(
                   context,
-                ).textTheme.bodySmall?.copyWith(color: AppColors.textMuted),
+                ).textTheme.bodySmall?.copyWith(color: AppColors.textMutedFor(context)),
               ),
             ],
           ),

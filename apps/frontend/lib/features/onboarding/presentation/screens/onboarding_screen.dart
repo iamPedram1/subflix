@@ -111,6 +111,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                         ? context.t.onboardingEnterApp
                         : context.t.onboardingContinue,
                     icon: Iconsax.arrowRight,
+                    mirrorIconInRtl: true,
                     onPressed: _handleContinue,
                   ),
                 ],

@@ -7,6 +7,7 @@ import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
+import 'package:subflix/core/ui/widgets/app_directional_icon.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/section_header.dart';
@@ -86,15 +87,15 @@ class SeriesEpisodesScreen extends StatelessWidget {
                                           .textTheme
                                           .bodySmall
                                           ?.copyWith(
-                                            color: AppColors.textSecondary,
+                                            color: AppColors.textSecondaryFor(context),
                                           ),
                                     ),
                                   ],
                                 ),
                               ),
-                              const Icon(
-                                Iconsax.arrowRight,
-                                color: AppColors.textMuted,
+                              AppDirectionalIcon(
+                                icon: Iconsax.arrowRight,
+                                color: AppColors.textMutedFor(context),
                               ),
                             ],
                           ),

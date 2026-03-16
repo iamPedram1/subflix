@@ -4,6 +4,7 @@ import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
+import 'package:subflix/core/ui/widgets/app_directional_icon.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/features/search/domain/models/movie_search_item.dart';
 import 'package:subflix/features/shared/domain/models/search_media_type.dart';
@@ -47,20 +48,23 @@ class SearchResultCard extends StatelessWidget {
                     Text(
                       '${item.mediaType.label(context)} \u2022 ${item.year}',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textSecondary,
+                        color: AppColors.textSecondaryFor(context),
                       ),
                     ),
                   ],
                 ),
               ),
-              const Icon(Iconsax.arrowRight, color: AppColors.textMuted),
+          AppDirectionalIcon(
+            icon: Iconsax.arrowRight,
+            color: AppColors.textMutedFor(context),
+          ),
             ],
           ),
           Text(
             item.synopsis,
             style: Theme.of(
               context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
+            ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondaryFor(context)),
           ),
           Wrap(
             spacing: 8,
@@ -90,7 +94,7 @@ class _MiniChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.surfaceMuted.withValues(alpha: 0.52),
+        color: AppColors.surfaceMutedFor(context).withValues(alpha: 0.52),
         borderRadius: BorderRadius.circular(999),
       ),
       child: Padding(
@@ -99,7 +103,7 @@ class _MiniChip extends StatelessWidget {
           label,
           style: Theme.of(
             context,
-          ).textTheme.labelMedium?.copyWith(color: AppColors.textSecondary),
+          ).textTheme.labelMedium?.copyWith(color: AppColors.textSecondaryFor(context)),
         ),
       ),
     );

@@ -44,25 +44,27 @@ class HomeHeroCard extends StatelessWidget {
           ),
           Text(
             context.t.heroBody,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyLarge?.copyWith(color: AppColors.textSecondary),
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              color: AppColors.textSecondaryFor(context),
+            ),
           ),
-          Row(
+          Column(
             spacing: AppSpacing.sm,
             children: <Widget>[
-              Expanded(
-                child: AppGradientButton(
-                  label: context.t.heroSearchCta,
-                  icon: Iconsax.searchNormal,
-                  onPressed: onSearchTap,
-                ),
+              AppGradientButton(
+                fullWidth: true,
+                label: context.t.heroSearchCta,
+                icon: Iconsax.searchNormal,
+                onPressed: onSearchTap,
               ),
-              Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: onUploadTap,
-                  icon: const Icon(Iconsax.documentUpload),
-                  label: Text(context.t.heroUploadCta),
+              OutlinedButton.icon(
+                onPressed: onUploadTap,
+                icon: const Icon(Iconsax.documentUpload),
+                label: Text(
+                  context.t.heroUploadCta,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
                 ),
               ),
             ],
@@ -79,28 +81,75 @@ class _HeroStatStrip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      spacing: AppSpacing.sm,
-      children: <Widget>[
-        Expanded(
-          child: _HeroStat(
-            title: context.t.heroStatPathsTitle,
-            value: context.t.heroStatPathsValue,
-          ),
-        ),
-        Expanded(
-          child: _HeroStat(
-            title: context.t.heroStatLanguagesTitle,
-            value: context.t.heroStatLanguagesValue,
-          ),
-        ),
-        Expanded(
-          child: _HeroStat(
-            title: context.t.heroStatMockTitle,
-            value: context.t.heroStatMockValue,
-          ),
-        ),
-      ],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isCompact = constraints.maxWidth < 420;
+        final itemHeight = isCompact ? 74.0 : 80.0;
+        final itemSpacing = isCompact ? AppSpacing.xs : AppSpacing.sm;
+
+        if (isCompact) {
+          return Column(
+            spacing: itemSpacing,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              SizedBox(
+                height: itemHeight,
+                child: _HeroStat(
+                  title: context.t.heroStatPathsTitle,
+                  value: context.t.heroStatPathsValue,
+                ),
+              ),
+              SizedBox(
+                height: itemHeight,
+                child: _HeroStat(
+                  title: context.t.heroStatLanguagesTitle,
+                  value: context.t.heroStatLanguagesValue,
+                ),
+              ),
+              SizedBox(
+                height: itemHeight,
+                child: _HeroStat(
+                  title: context.t.heroStatMockTitle,
+                  value: context.t.heroStatMockValue,
+                ),
+              ),
+            ],
+          );
+        }
+
+        return Row(
+          spacing: itemSpacing,
+          children: <Widget>[
+            Expanded(
+              child: SizedBox(
+                height: itemHeight,
+                child: _HeroStat(
+                  title: context.t.heroStatPathsTitle,
+                  value: context.t.heroStatPathsValue,
+                ),
+              ),
+            ),
+            Expanded(
+              child: SizedBox(
+                height: itemHeight,
+                child: _HeroStat(
+                  title: context.t.heroStatLanguagesTitle,
+                  value: context.t.heroStatLanguagesValue,
+                ),
+              ),
+            ),
+            Expanded(
+              child: SizedBox(
+                height: itemHeight,
+                child: _HeroStat(
+                  title: context.t.heroStatMockTitle,
+                  value: context.t.heroStatMockValue,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
@@ -115,7 +164,7 @@ class _HeroStat extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.surfaceMuted.withValues(alpha: 0.55),
+        color: AppColors.surfaceMutedFor(context).withValues(alpha: 0.55),
         borderRadius: BorderRadius.circular(18),
       ),
       child: Padding(
@@ -126,11 +175,18 @@ class _HeroStat extends StatelessWidget {
           children: <Widget>[
             Text(
               title,
-              style: Theme.of(
-                context,
-              ).textTheme.labelMedium?.copyWith(color: AppColors.textMuted),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                color: AppColors.textMutedFor(context),
+              ),
             ),
-            Text(value, style: Theme.of(context).textTheme.titleSmall),
+            Text(
+              value,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
           ],
         ),
       ),

@@ -273,7 +273,7 @@ class _MetaTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.surfaceMuted.withValues(alpha: 0.45),
+        color: AppColors.surfaceMutedFor(context).withValues(alpha: 0.45),
         borderRadius: BorderRadius.circular(18),
       ),
       child: Padding(
@@ -287,7 +287,7 @@ class _MetaTile extends StatelessWidget {
               label,
               style: Theme.of(
                 context,
-              ).textTheme.labelMedium?.copyWith(color: AppColors.textMuted),
+              ).textTheme.labelMedium?.copyWith(color: AppColors.textMutedFor(context)),
             ),
             Text(value, style: Theme.of(context).textTheme.titleSmall),
           ],

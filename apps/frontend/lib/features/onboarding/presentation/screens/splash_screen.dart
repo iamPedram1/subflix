@@ -70,7 +70,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                     Text(
                       context.t.splashPreparing,
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: AppColors.textSecondary,
+                        color: AppColors.textSecondaryFor(context),
                       ),
                     ),
                     const LoadingSkeleton(width: 220, height: 10),

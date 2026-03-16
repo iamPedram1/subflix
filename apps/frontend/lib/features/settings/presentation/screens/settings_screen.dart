@@ -8,6 +8,7 @@ import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
+import 'package:subflix/core/ui/widgets/app_directional_icon.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
@@ -53,13 +54,27 @@ class SettingsScreen extends ConsumerWidget {
                             Wrap(
                               spacing: 10,
                               runSpacing: 10,
+                              crossAxisAlignment: WrapCrossAlignment.center,
                               children: AppLanguage.values
                                   .map(
                                     (language) => ChoiceChip(
                                       selected:
                                           language ==
                                           preference.preferredTargetLanguage,
-                                      label: Text(language.label),
+                                      label: Text(
+                                        language.label,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      showCheckmark: false,
+                                      labelPadding:
+                                          const EdgeInsets.symmetric(
+                                            horizontal: 12,
+                                            vertical: 6,
+                                          ),
+                                      visualDensity: VisualDensity.compact,
+                                      materialTapTargetSize:
+                                          MaterialTapTargetSize.shrinkWrap,
                                       onSelected: (_) => ref
                                           .read(
                                             settingsControllerProvider.notifier,
@@ -83,24 +98,30 @@ class SettingsScreen extends ConsumerWidget {
                               context.t.settingsThemeLabel,
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
-                            SegmentedButton<ThemePreference>(
-                              segments: ThemePreference.values
-                                  .map(
-                                    (preference) =>
-                                        ButtonSegment<ThemePreference>(
-                                          value: preference,
-                                          label: Text(
-                                            preference.label(context),
+                            SizedBox(
+                              width: double.infinity,
+                              child: SegmentedButton<ThemePreference>(
+                                showSelectedIcon: false,
+                                segments: ThemePreference.values
+                                    .map(
+                                      (preference) =>
+                                          ButtonSegment<ThemePreference>(
+                                            value: preference,
+                                            label: Text(
+                                              preference.label(context),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
                                           ),
-                                        ),
-                                  )
-                                  .toList(growable: false),
-                              selected: <ThemePreference>{
-                                preference.themePreference,
-                              },
-                              onSelectionChanged: (selection) => ref
-                                  .read(settingsControllerProvider.notifier)
-                                  .setThemePreference(selection.first),
+                                    )
+                                    .toList(growable: false),
+                                selected: <ThemePreference>{
+                                  preference.themePreference,
+                                },
+                                onSelectionChanged: (selection) => ref
+                                    .read(settingsControllerProvider.notifier)
+                                    .setThemePreference(selection.first),
+                              ),
                             ),
                           ],
                         ),
@@ -146,7 +167,7 @@ class SettingsScreen extends ConsumerWidget {
                                             .textTheme
                                             .bodySmall
                                             ?.copyWith(
-                                              color: AppColors.textSecondary,
+                                              color: AppColors.textSecondaryFor(context),
                                             ),
                                       ),
                                     ],
@@ -208,7 +229,7 @@ class SettingsScreen extends ConsumerWidget {
                             Text(
                               context.t.settingsMaintenanceSubtitle,
                               style: Theme.of(context).textTheme.bodySmall
-                                  ?.copyWith(color: AppColors.textSecondary),
+                                  ?.copyWith(color: AppColors.textSecondaryFor(context)),
                             ),
                             OutlinedButton.icon(
                               onPressed: () async {
@@ -292,7 +313,7 @@ class _SettingsTile extends StatelessWidget {
       ),
       title: Text(title),
       subtitle: Text(subtitle),
-      trailing: const Icon(Iconsax.arrowRight),
+      trailing: const AppDirectionalIcon(icon: Iconsax.arrowRight),
       onTap: onTap,
     );
   }

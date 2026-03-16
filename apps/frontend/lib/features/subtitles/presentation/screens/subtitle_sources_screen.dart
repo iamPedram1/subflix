@@ -123,7 +123,7 @@ class _TitleSummary extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.surfaceMuted.withValues(alpha: 0.4),
+        color: AppColors.surfaceMutedFor(context).withValues(alpha: 0.4),
         borderRadius: BorderRadius.circular(22),
       ),
       child: Padding(
@@ -153,7 +153,7 @@ class _TitleSummary extends StatelessWidget {
                   Text(
                     metadata,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.textSecondary,
+                      color: AppColors.textSecondaryFor(context),
                     ),
                   ),
                 ],

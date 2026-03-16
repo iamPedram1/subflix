@@ -48,11 +48,11 @@ class _LoadingSkeletonState extends State<LoadingSkeleton>
             borderRadius: widget.borderRadius,
             gradient: LinearGradient(
               colors: <Color>[
-                AppColors.surfaceMuted.withValues(alpha: 0.55),
+                AppColors.surfaceMutedFor(context).withValues(alpha: 0.55),
                 AppColors.outline.withValues(
                   alpha: 0.35 + (_controller.value * 0.2),
                 ),
-                AppColors.surfaceMuted.withValues(alpha: 0.55),
+                AppColors.surfaceMutedFor(context).withValues(alpha: 0.55),
               ],
             ),
           ),

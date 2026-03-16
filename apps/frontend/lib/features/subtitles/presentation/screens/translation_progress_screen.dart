@@ -103,7 +103,7 @@ class _TranslationProgressScreenState
                       Text(
                         stageLabel,
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: AppColors.textSecondary,
+                          color: AppColors.textSecondaryFor(context),
                         ),
                       ),
                       ClipRRect(
@@ -230,7 +230,7 @@ class _StageTile extends StatelessWidget {
         ? AppColors.primary
         : isComplete
         ? AppColors.emerald
-        : AppColors.textMuted;
+        : AppColors.textMutedFor(context);
 
     return Row(
       spacing: 12,
@@ -242,7 +242,7 @@ class _StageTile extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: isActive
                   ? Theme.of(context).colorScheme.onSurface
-                  : AppColors.textSecondary,
+                  : AppColors.textSecondaryFor(context),
               fontWeight: isActive ? FontWeight.w700 : FontWeight.w500,
             ),
           ),

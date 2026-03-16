@@ -27,7 +27,7 @@ class OnboardingPageCard extends StatelessWidget {
         gradient: AppColors.heroGradient,
         borderRadius: AppRadii.card,
         border: Border.all(
-          color: AppColors.outlineSoft.withValues(alpha: 0.85),
+          color: AppColors.outlineSoftFor(context).withValues(alpha: 0.85),
         ),
       ),
       child: Padding(

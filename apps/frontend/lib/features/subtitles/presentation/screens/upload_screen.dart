@@ -66,16 +66,17 @@ class UploadScreen extends ConsumerWidget {
                               children: <Widget>[
                                 Text(
                                   context.t.uploadSupportedFormatsTitle,
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium,
+                                  style: Theme.of(
+                                    context,
+                                  ).textTheme.titleMedium,
                                 ),
                                 Text(
                                   context.t.uploadSupportedFormatsSubtitle,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall
+                                  style: Theme.of(context).textTheme.bodySmall
                                       ?.copyWith(
-                                        color: AppColors.textSecondary,
+                                        color: AppColors.textSecondaryFor(
+                                          context,
+                                        ),
                                       ),
                                 ),
                               ],
@@ -139,9 +140,10 @@ class UploadScreen extends ConsumerWidget {
                         ),
                         Text(
                           uploadState.file!.name,
-                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            color: AppColors.textSecondary,
-                          ),
+                          style: Theme.of(context).textTheme.bodyLarge
+                              ?.copyWith(
+                                color: AppColors.textSecondaryFor(context),
+                              ),
                         ),
                         Wrap(
                           spacing: 8,
@@ -159,6 +161,7 @@ class UploadScreen extends ConsumerWidget {
                         AppGradientButton(
                           label: context.t.uploadContinueSetup,
                           icon: Iconsax.arrowRight,
+                          mirrorIconInRtl: true,
                           onPressed: () => context.push(
                             AppRoutes.translateSetup,
                             extra: TranslationSetupArgs.upload(
@@ -189,16 +192,16 @@ class _MetaChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.surfaceMuted.withValues(alpha: 0.5),
+        color: AppColors.surfaceMutedFor(context).withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(999),
       ),
       child: Padding(
         padding: AppInsets.chip,
         child: Text(
           label,
-          style: Theme.of(
-            context,
-          ).textTheme.labelMedium?.copyWith(color: AppColors.textSecondary),
+          style: Theme.of(context).textTheme.labelMedium?.copyWith(
+            color: AppColors.textSecondaryFor(context),
+          ),
         ),
       ),
     );

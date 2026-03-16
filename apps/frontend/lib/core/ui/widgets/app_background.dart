@@ -9,45 +9,63 @@ class AppBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Stack(
+      fit: StackFit.expand,
+      children: <Widget>[
+        const Positioned.fill(
+          child: RepaintBoundary(child: _BackgroundLayer()),
+        ),
+        child,
+      ],
+    );
+  }
+}
+
+class _BackgroundLayer extends StatelessWidget {
+  const _BackgroundLayer();
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final isDark = scheme.brightness == Brightness.dark;
     return DecoratedBox(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: <Color>[
-            AppColors.midnight,
-            AppColors.abyss,
-            AppColors.midnight,
-          ],
+          colors: isDark
+              ? const <Color>[
+                  AppColors.midnight,
+                  AppColors.abyss,
+                  AppColors.midnight,
+                ]
+              : <Color>[
+                  scheme.surface,
+                  scheme.surface.withValues(alpha: 0.92),
+                  scheme.surface,
+                ],
         ),
       ),
       child: Stack(
         children: <Widget>[
-          const Positioned(
-            top: -120,
-            right: -40,
-            child: _GlowOrb(
-              size: 240,
-              colors: <Color>[AppColors.secondary, AppColors.primary],
+          if (isDark)
+            const Positioned(
+              top: 260,
+              left: -90,
+              child: _GlowOrb(
+                size: 220,
+                colors: <Color>[AppColors.emerald, Colors.transparent],
+              ),
             ),
-          ),
-          const Positioned(
-            top: 260,
-            left: -90,
-            child: _GlowOrb(
-              size: 220,
-              colors: <Color>[AppColors.emerald, Colors.transparent],
+          if (isDark)
+            const Positioned(
+              bottom: -100,
+              right: -30,
+              child: _GlowOrb(
+                size: 210,
+                colors: <Color>[AppColors.primary, Colors.transparent],
+              ),
             ),
-          ),
-          const Positioned(
-            bottom: -100,
-            right: -30,
-            child: _GlowOrb(
-              size: 210,
-              colors: <Color>[AppColors.primary, Colors.transparent],
-            ),
-          ),
-          child,
         ],
       ),
     );

@@ -124,11 +124,13 @@ class MockTranslationComposer {
 
     final opener = switch (targetLanguage) {
       AppLanguage.spanish => 'Version ${targetLanguage.label}: ',
+      AppLanguage.persian => '\u0646\u0633\u062e\u0629 ${targetLanguage.label}: ',
       AppLanguage.arabic => 'نسخة ${targetLanguage.label}: ',
       AppLanguage.french => 'Version ${targetLanguage.label} : ',
       AppLanguage.german => '${targetLanguage.label}-Fassung: ',
       AppLanguage.portuguese => 'Versao ${targetLanguage.label}: ',
       AppLanguage.japanese => '${targetLanguage.nativeLabel}版: ',
+      AppLanguage.chinese => '${targetLanguage.nativeLabel}\u7248\u672c: ',
       AppLanguage.korean => '${targetLanguage.nativeLabel} 버전: ',
       AppLanguage.hindi => '${targetLanguage.nativeLabel} संस्करण: ',
       AppLanguage.turkish => '${targetLanguage.label} surumu: ',

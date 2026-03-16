@@ -90,7 +90,7 @@ class _TranslationSetupScreenState
                                       .textTheme
                                       .bodySmall
                                       ?.copyWith(
-                                        color: AppColors.textSecondary,
+                                        color: AppColors.textSecondaryFor(context),
                                       ),
                                 ),
                               ],

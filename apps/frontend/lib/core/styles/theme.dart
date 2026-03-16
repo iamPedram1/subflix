@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:subflix/core/styles/colors.dart';
 
 abstract final class AppTheme {
-  static ThemeData light() {
+  static ThemeData light({Locale? locale}) {
     final colorScheme =
         ColorScheme.fromSeed(
           brightness: Brightness.light,
@@ -25,10 +25,11 @@ abstract final class AppTheme {
       colorScheme,
       scaffoldBackgroundColor: const Color(0xFFF3F6FC),
       cardColor: Colors.white,
+      locale: locale,
     );
   }
 
-  static ThemeData dark() {
+  static ThemeData dark({Locale? locale}) {
     final colorScheme =
         ColorScheme.fromSeed(
           brightness: Brightness.dark,
@@ -49,6 +50,7 @@ abstract final class AppTheme {
       colorScheme,
       scaffoldBackgroundColor: AppColors.midnight,
       cardColor: AppColors.surface,
+      locale: locale,
     );
   }
 
@@ -56,13 +58,23 @@ abstract final class AppTheme {
     ColorScheme colorScheme, {
     required Color scaffoldBackgroundColor,
     required Color cardColor,
+    Locale? locale,
   }) {
-    final baseTextTheme = GoogleFonts.plusJakartaSansTextTheme().apply(
-      bodyColor: colorScheme.onSurface,
-      displayColor: colorScheme.onSurface,
-    );
+    final languageCode = locale?.languageCode;
+    final useArabicFont = languageCode == 'ar' || languageCode == 'fa';
 
-    final displayTextTheme = GoogleFonts.spaceGroteskTextTheme(baseTextTheme);
+    final baseTextTheme =
+        (useArabicFont
+                ? GoogleFonts.notoSansArabicTextTheme()
+                : GoogleFonts.plusJakartaSansTextTheme())
+            .apply(
+              bodyColor: colorScheme.onSurface,
+              displayColor: colorScheme.onSurface,
+            );
+
+    final displayTextTheme = useArabicFont
+        ? GoogleFonts.notoSansArabicTextTheme(baseTextTheme)
+        : GoogleFonts.spaceGroteskTextTheme(baseTextTheme);
     final textTheme = baseTextTheme.copyWith(
       displayLarge: displayTextTheme.displayLarge?.copyWith(
         fontWeight: FontWeight.w700,
@@ -99,14 +111,30 @@ abstract final class AppTheme {
       scaffoldBackgroundColor: scaffoldBackgroundColor,
       cardColor: cardColor,
       textTheme: textTheme,
+      fontFamilyFallback: const <String>[
+        'Noto Sans Arabic',
+        'Noto Sans',
+        'Noto Sans SC',
+        'Noto Sans JP',
+        'Noto Sans Devanagari',
+      ],
       visualDensity: VisualDensity.standard,
       appBarTheme: AppBarTheme(
-        backgroundColor: Colors.transparent,
+        backgroundColor: colorScheme.brightness == Brightness.light
+            ? Colors.white
+            : colorScheme.surface,
+        surfaceTintColor: Colors.transparent,
         foregroundColor: colorScheme.onSurface,
         centerTitle: false,
         elevation: 0,
         scrolledUnderElevation: 0,
+        shadowColor: Colors.transparent,
         titleTextStyle: textTheme.titleLarge,
+        shape: Border(
+          bottom: BorderSide(
+            color: colorScheme.outline.withValues(alpha: 0.35),
+          ),
+        ),
       ),
       chipTheme: ChipThemeData(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -127,14 +155,14 @@ abstract final class AppTheme {
           (states) => IconThemeData(
             color: states.contains(WidgetState.selected)
                 ? colorScheme.primary
-                : AppColors.textMuted,
+                : AppColors.textMutedForScheme(colorScheme),
           ),
         ),
         labelTextStyle: WidgetStateProperty.resolveWith(
           (states) => textTheme.labelMedium?.copyWith(
             color: states.contains(WidgetState.selected)
                 ? colorScheme.onSurface
-                : AppColors.textMuted,
+                : AppColors.textMutedForScheme(colorScheme),
           ),
         ),
       ),
@@ -157,7 +185,11 @@ abstract final class AppTheme {
           minimumSize: const Size.fromHeight(56),
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
           textStyle: textTheme.labelLarge,
-          side: BorderSide(color: colorScheme.outline.withValues(alpha: 0.4)),
+          side: BorderSide(
+            color: colorScheme.brightness == Brightness.dark
+                ? Colors.white
+                : Colors.black,
+          ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18),
           ),
@@ -170,7 +202,9 @@ abstract final class AppTheme {
           horizontal: 18,
           vertical: 18,
         ),
-        hintStyle: textTheme.bodyMedium?.copyWith(color: AppColors.textMuted),
+        hintStyle: textTheme.bodyMedium?.copyWith(
+          color: AppColors.textMutedForScheme(colorScheme),
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
           borderSide: BorderSide(

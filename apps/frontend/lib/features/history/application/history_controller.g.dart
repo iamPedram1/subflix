@@ -33,7 +33,7 @@ final class HistoryControllerProvider
   HistoryController create() => HistoryController();
 }
 
-String _$historyControllerHash() => r'd8a8df2921495b70d566931cbf6c0e9d75158b26';
+String _$historyControllerHash() => r'1804ecfaa1d61a678c2a2a9b447da198c343511e';
 
 abstract class _$HistoryController
     extends $AsyncNotifier<List<TranslationJob>> {

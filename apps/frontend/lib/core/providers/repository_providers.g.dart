@@ -435,7 +435,7 @@ final class SettingsRepositoryProvider
 }
 
 String _$settingsRepositoryHash() =>
-    r'156646015e028493dead3b3ff48333c606aa831d';
+    r'3f5a4c4a2c486e282d43df456c1e65a12027bdc4';
 
 @ProviderFor(historyRepository)
 const historyRepositoryProvider = HistoryRepositoryProvider._();
@@ -482,7 +482,7 @@ final class HistoryRepositoryProvider
   }
 }
 
-String _$historyRepositoryHash() => r'78cc404e5c81b3cc00eb6793d87afb432ed3af10';
+String _$historyRepositoryHash() => r'afcddab0cc358a6ce1631e7fbf2e2af9f289efcf';
 
 @ProviderFor(searchRepository)
 const searchRepositoryProvider = SearchRepositoryProvider._();
@@ -528,7 +528,7 @@ final class SearchRepositoryProvider
   }
 }
 
-String _$searchRepositoryHash() => r'f9bd980f01fc2c056468861b02c3f4fdc5dd3811';
+String _$searchRepositoryHash() => r'5296f6e43d98392c654c832f0fa8ec15f8f7bdd7';
 
 @ProviderFor(subtitleImportRepository)
 const subtitleImportRepositoryProvider = SubtitleImportRepositoryProvider._();
@@ -672,4 +672,4 @@ final class TranslationRepositoryProvider
 }
 
 String _$translationRepositoryHash() =>
-    r'8ae64749558055b9bf321ad46e96b7dfea535534';
+    r'39ff15a93f3ff16f126c14ac4753f120f4f85402';

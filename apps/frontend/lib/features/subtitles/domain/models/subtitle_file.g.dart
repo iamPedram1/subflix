@@ -42,11 +42,13 @@ const _$SubtitleFormatEnumMap = {
 const _$AppLanguageEnumMap = {
   AppLanguage.english: 'en',
   AppLanguage.spanish: 'es',
+  AppLanguage.persian: 'fa',
   AppLanguage.arabic: 'ar',
   AppLanguage.french: 'fr',
   AppLanguage.german: 'de',
   AppLanguage.portuguese: 'pt',
   AppLanguage.japanese: 'ja',
+  AppLanguage.chinese: 'zh',
   AppLanguage.korean: 'ko',
   AppLanguage.hindi: 'hi',
   AppLanguage.turkish: 'tr',

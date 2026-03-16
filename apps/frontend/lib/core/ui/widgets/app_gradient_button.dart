@@ -9,14 +9,48 @@ class AppGradientButton extends StatelessWidget {
     required this.onPressed,
     super.key,
     this.icon,
+    this.mirrorIconInRtl = false,
+    this.padding,
+    this.minimumHeight,
+    this.borderRadius,
+    this.gradient,
+    this.shadow,
+    this.labelStyle,
+    this.iconSize,
+    this.iconColor,
+    this.fullWidth = false,
   });
 
   final String label;
   final IconData? icon;
   final VoidCallback? onPressed;
+  final bool mirrorIconInRtl;
+  final EdgeInsetsGeometry? padding;
+  final double? minimumHeight;
+  final BorderRadius? borderRadius;
+  final Gradient? gradient;
+  final BoxShadow? shadow;
+  final TextStyle? labelStyle;
+  final double? iconSize;
+  final Color? iconColor;
+  final bool fullWidth;
 
   @override
   Widget build(BuildContext context) {
+    final isRtl = Directionality.of(context) == TextDirection.rtl;
+    final iconWidget = icon == null
+        ? const SizedBox.shrink()
+        : (mirrorIconInRtl && isRtl)
+            ? Transform(
+                alignment: Alignment.center,
+                transform: Matrix4.rotationY(3.1415926535897932),
+                child: Icon(icon, size: iconSize, color: iconColor),
+              )
+            : Icon(icon, size: iconSize, color: iconColor);
+    final resolvedPadding =
+        padding ?? const EdgeInsets.symmetric(horizontal: 18, vertical: 18);
+    final resolvedMinHeight = minimumHeight ?? 54;
+    final resolvedRadius = borderRadius ?? AppRadii.medium;
     return DecoratedBox(
       decoration: BoxDecoration(
         gradient: onPressed == null
@@ -26,25 +60,29 @@ class AppGradientButton extends StatelessWidget {
                   AppColors.outline.withValues(alpha: 0.4),
                 ],
               )
-            : AppColors.accentGradient,
-        borderRadius: AppRadii.medium,
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: AppColors.primary.withValues(alpha: 0.18),
-            blurRadius: 24,
-            offset: const Offset(0, 14),
-          ),
-        ],
+            : (gradient ?? AppColors.accentGradient),
+        borderRadius: resolvedRadius,
+        boxShadow: shadow == null ? <BoxShadow>[] : <BoxShadow>[shadow!],
       ),
-      child: ElevatedButton.icon(
-        onPressed: onPressed,
-        icon: icon == null ? const SizedBox.shrink() : Icon(icon),
-        label: Text(label),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
-          shape: const RoundedRectangleBorder(borderRadius: AppRadii.medium),
+      child: SizedBox(
+        width: fullWidth ? double.infinity : null,
+        child: ElevatedButton.icon(
+          onPressed: onPressed,
+          icon: iconWidget,
+          label: Text(
+            label,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: labelStyle,
+          ),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.transparent,
+            shadowColor: Colors.transparent,
+            padding: resolvedPadding,
+            minimumSize: Size(0, resolvedMinHeight),
+            shape: RoundedRectangleBorder(borderRadius: resolvedRadius),
+          ),
         ),
       ),
     );

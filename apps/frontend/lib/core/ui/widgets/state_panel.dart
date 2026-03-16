@@ -24,7 +24,7 @@ class StatePanel extends StatelessWidget {
         color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.9),
         borderRadius: AppRadii.large,
         border: Border.all(
-          color: AppColors.outlineSoft.withValues(alpha: 0.85),
+          color: AppColors.outlineSoftFor(context).withValues(alpha: 0.85),
         ),
       ),
       child: Padding(
@@ -48,7 +48,7 @@ class StatePanel extends StatelessWidget {
               message,
               style: Theme.of(
                 context,
-              ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
+              ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondaryFor(context)),
             ),
             ?action,
           ],

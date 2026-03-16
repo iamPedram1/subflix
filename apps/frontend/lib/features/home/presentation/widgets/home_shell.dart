@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:subflix/core/localization/app_localizations.dart';
-import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 
 class HomeShell extends StatelessWidget {
@@ -41,7 +40,8 @@ class HomeShell extends StatelessWidget {
                 initialLocation: index == navigationShell.currentIndex,
               );
             },
-            backgroundColor: AppColors.surface.withValues(alpha: 0.95),
+            backgroundColor:
+                Theme.of(context).colorScheme.surface.withValues(alpha: 0.98),
           ),
         ),
       ),

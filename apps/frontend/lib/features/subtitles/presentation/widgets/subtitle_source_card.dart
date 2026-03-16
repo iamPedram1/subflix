@@ -4,6 +4,7 @@ import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
+import 'package:subflix/core/ui/widgets/app_directional_icon.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/features/subtitles/domain/models/subtitle_source.dart';
 
@@ -53,13 +54,16 @@ class SubtitleSourceCard extends StatelessWidget {
                     Text(
                       source.releaseGroup,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textSecondary,
+                        color: AppColors.textSecondaryFor(context),
                       ),
                     ),
                   ],
                 ),
               ),
-              const Icon(Iconsax.arrowRight, color: AppColors.textMuted),
+          AppDirectionalIcon(
+            icon: Iconsax.arrowRight,
+            color: AppColors.textMutedFor(context),
+          ),
             ],
           ),
           Wrap(
@@ -97,7 +101,7 @@ class _SourceChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.surfaceMuted.withValues(alpha: 0.5),
+        color: AppColors.surfaceMutedFor(context).withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(999),
       ),
       child: Padding(
@@ -106,7 +110,7 @@ class _SourceChip extends StatelessWidget {
           label,
           style: Theme.of(
             context,
-          ).textTheme.labelMedium?.copyWith(color: AppColors.textSecondary),
+          ).textTheme.labelMedium?.copyWith(color: AppColors.textSecondaryFor(context)),
         ),
       ),
     );

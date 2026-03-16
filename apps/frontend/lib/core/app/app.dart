@@ -17,13 +17,21 @@ class App extends ConsumerWidget {
     final themeMode =
         settings.asData?.value.themePreference.toThemeMode() ??
         ThemeMode.system;
+    final preferredLanguage = settings.asData?.value.preferredTargetLanguage;
+    final preferredLocale = preferredLanguage == null
+        ? null
+        : AppLocalizations.supportedLocales.firstWhere(
+            (locale) => locale.languageCode == preferredLanguage.code,
+            orElse: () => const Locale('en'),
+          );
 
     return MaterialApp.router(
       onGenerateTitle: (context) => context.t.appTitle,
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.light(),
-      darkTheme: AppTheme.dark(),
+      theme: AppTheme.light(locale: preferredLocale),
+      darkTheme: AppTheme.dark(locale: preferredLocale),
       themeMode: themeMode,
+      locale: preferredLocale,
       routerConfig: router,
       localizationsDelegates: AppLocalizations.globalDelegates,
       supportedLocales: AppLocalizations.supportedLocales,

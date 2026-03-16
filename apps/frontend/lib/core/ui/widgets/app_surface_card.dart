@@ -20,11 +20,15 @@ class AppSurfaceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     final card = DecoratedBox(
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.9),
         borderRadius: borderRadius,
-        border: Border.all(color: AppColors.outlineSoft.withValues(alpha: 0.8)),
+        border: Border.all(
+          color:
+              AppColors.outlineSoftForScheme(scheme).withValues(alpha: 0.8),
+        ),
         boxShadow: <BoxShadow>[
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.16),
