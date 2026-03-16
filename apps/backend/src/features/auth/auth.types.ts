@@ -26,6 +26,17 @@ export type AuthResponse = {
   user: AuthUser;
 } & AuthTokens;
 
+export type AuthSignUpResponse = {
+  user: AuthUser;
+  verificationRequired: boolean;
+  verificationToken?: string;
+};
+
+export type AuthForgotPasswordResponse = {
+  sent: boolean;
+  resetToken?: string;
+};
+
 export type RequestMeta = {
   ipAddress?: string;
   userAgent?: string;

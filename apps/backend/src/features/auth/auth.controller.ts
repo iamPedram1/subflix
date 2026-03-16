@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  HttpCode,
   Post,
   Req,
   UseGuards,
@@ -16,6 +17,9 @@ import { AuthSignUpDto } from 'features/auth/dto/auth-signup.dto';
 import { AuthSignInDto } from 'features/auth/dto/auth-signin.dto';
 import { AuthRefreshDto } from 'features/auth/dto/auth-refresh.dto';
 import { AuthFirebaseDto } from 'features/auth/dto/auth-firebase.dto';
+import { AuthConfirmEmailDto } from 'features/auth/dto/auth-confirm-email.dto';
+import { AuthForgotPasswordDto } from 'features/auth/dto/auth-forgot-password.dto';
+import { AuthResetPasswordDto } from 'features/auth/dto/auth-reset-password.dto';
 import { AccessTokenGuard } from 'features/auth/guards/access-token.guard';
 import { toAuthUser } from 'features/auth/auth.mapper';
 import type { RequestMeta } from 'features/auth/auth.types';
@@ -33,6 +37,14 @@ export class AuthController {
     return this.authService.signUp(body, this.getRequestMeta(request));
   }
 
+  /** Confirms a user's email with a verification token. */
+  @Post('confirm-email')
+  @HttpCode(200)
+  @RateLimit({ limit: 20, windowMs: 10 * 60_000, key: 'auth-confirm-email' })
+  confirmEmail(@Body() body: AuthConfirmEmailDto) {
+    return this.authService.confirmEmail(body);
+  }
+
   /** Signs in a user with email and password. */
   @Post('signin')
   @RateLimit({ limit: 20, windowMs: 10 * 60_000, key: 'auth-signin' })
@@ -47,6 +59,22 @@ export class AuthController {
     return this.authService.refresh(body, this.getRequestMeta(request));
   }
 
+  /** Starts the password reset flow for a user. */
+  @Post('forgot-password')
+  @HttpCode(200)
+  @RateLimit({ limit: 15, windowMs: 15 * 60_000, key: 'auth-forgot-password' })
+  forgotPassword(@Body() body: AuthForgotPasswordDto) {
+    return this.authService.forgotPassword(body);
+  }
+
+  /** Resets a password using a reset token. */
+  @Post('reset-password')
+  @HttpCode(200)
+  @RateLimit({ limit: 15, windowMs: 15 * 60_000, key: 'auth-reset-password' })
+  resetPassword(@Body() body: AuthResetPasswordDto) {
+    return this.authService.resetPassword(body);
+  }
+
   /** Signs in or registers a user using a Firebase id token. */
   @Post('oauth/firebase')
   @RateLimit({ limit: 20, windowMs: 10 * 60_000, key: 'auth-firebase' })
@@ -59,6 +87,7 @@ export class AuthController {
 
   /** Revokes a refresh token (sign out). */
   @Post('signout')
+  @HttpCode(200)
   signOut(@Body() body: AuthRefreshDto) {
     return this.authService.signOut(body);
   }

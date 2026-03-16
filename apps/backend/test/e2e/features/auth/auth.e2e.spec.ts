@@ -13,32 +13,57 @@ const createAuthPayload = () => {
   };
 };
 
+const signUpAndConfirm = async (api: ReturnType<typeof createApiRequest>) => {
+  const payload = createAuthPayload();
+  const signUpResponse = await api.post('/v1/auth/signup').send(payload).expect(201);
+
+  expect(signUpResponse.body.verificationRequired).toBe(true);
+  const verificationToken = signUpResponse.body.verificationToken as string | undefined;
+  if (!verificationToken) {
+    throw new Error('Expected verificationToken in non-production environments.');
+  }
+
+  await api
+    .post('/v1/auth/confirm-email')
+    .send({ token: verificationToken })
+    .expect(200)
+    .expect(({ body }) => {
+      expect(body.verified).toBe(true);
+    });
+
+  return { payload, verificationToken };
+};
+
 describeIfDatabase('Auth endpoints', () => {
-  it('registers a user and returns tokens', async () => {
+  it('requires email verification before sign in', async () => {
     await withE2eApp(async (app) => {
       const api = createApiRequest(app);
       const payload = createAuthPayload();
 
-      await api
+      const signUpResponse = await api
         .post('/v1/auth/signup')
         .send(payload)
-        .expect(201)
+        .expect(201);
+
+      expect(signUpResponse.body.verificationRequired).toBe(true);
+
+      await api
+        .post('/v1/auth/signin')
+        .send({ email: payload.email, password: payload.password })
+        .expect(403)
         .expect(({ body }) => {
-          expect(body.user.email).toBe(payload.email.toLowerCase());
-          expect(body.accessToken).toBeTruthy();
-          expect(body.refreshToken).toBeTruthy();
-          expect(body.tokenType).toBe('Bearer');
-          expect(body.expiresIn).toBeGreaterThan(0);
+          expect(body.code).toBe('forbidden');
         });
-    });
-  });
 
-  it('signs in an existing user and returns tokens', async () => {
-    await withE2eApp(async (app) => {
-      const api = createApiRequest(app);
-      const payload = createAuthPayload();
+      const verificationToken = signUpResponse.body.verificationToken as string | undefined;
+      if (!verificationToken) {
+        throw new Error('Expected verificationToken in non-production environments.');
+      }
 
-      await api.post('/v1/auth/signup').send(payload).expect(201);
+      await api
+        .post('/v1/auth/confirm-email')
+        .send({ token: verificationToken })
+        .expect(200);
 
       await api
         .post('/v1/auth/signin')
@@ -52,27 +77,9 @@ describeIfDatabase('Auth endpoints', () => {
     });
   });
 
-  it('rejects sign in when credentials are invalid', async () => {
-    await withE2eApp(async (app) => {
-      const api = createApiRequest(app);
-      const payload = createAuthPayload();
-
-      await api.post('/v1/auth/signup').send(payload).expect(201);
-
-      await api
-        .post('/v1/auth/signin')
-        .send({ email: payload.email, password: 'WrongPassword123!' })
-        .expect(403)
-        .expect(({ body }) => {
-          expect(body.code).toBe('forbidden');
-        });
-    });
-  });
-
   it('requires an access token for the profile endpoint', async () => {
     await withE2eApp(async (app) => {
       const api = createApiRequest(app);
-      const payload = createAuthPayload();
 
       await api
         .get('/v1/auth/me')
@@ -81,12 +88,14 @@ describeIfDatabase('Auth endpoints', () => {
           expect(body.code).toBe('http_error');
         });
 
-      const signUpResponse = await api
-        .post('/v1/auth/signup')
-        .send(payload)
+      const { payload } = await signUpAndConfirm(api);
+
+      const signInResponse = await api
+        .post('/v1/auth/signin')
+        .send({ email: payload.email, password: payload.password })
         .expect(201);
 
-      const accessToken = signUpResponse.body.accessToken;
+      const accessToken = signInResponse.body.accessToken;
 
       await api
         .get('/v1/auth/me')
@@ -101,14 +110,14 @@ describeIfDatabase('Auth endpoints', () => {
   it('rotates refresh tokens and rejects reuse', async () => {
     await withE2eApp(async (app) => {
       const api = createApiRequest(app);
-      const payload = createAuthPayload();
+      const { payload } = await signUpAndConfirm(api);
 
-      const signUpResponse = await api
-        .post('/v1/auth/signup')
-        .send(payload)
+      const signInResponse = await api
+        .post('/v1/auth/signin')
+        .send({ email: payload.email, password: payload.password })
         .expect(201);
 
-      const originalRefreshToken = signUpResponse.body.refreshToken;
+      const originalRefreshToken = signInResponse.body.refreshToken;
 
       const refreshResponse = await api
         .post('/v1/auth/refresh')
@@ -131,14 +140,14 @@ describeIfDatabase('Auth endpoints', () => {
   it('revokes refresh tokens on sign out', async () => {
     await withE2eApp(async (app) => {
       const api = createApiRequest(app);
-      const payload = createAuthPayload();
+      const { payload } = await signUpAndConfirm(api);
 
-      const signUpResponse = await api
-        .post('/v1/auth/signup')
-        .send(payload)
+      const signInResponse = await api
+        .post('/v1/auth/signin')
+        .send({ email: payload.email, password: payload.password })
         .expect(201);
 
-      const refreshToken = signUpResponse.body.refreshToken;
+      const refreshToken = signInResponse.body.refreshToken;
 
       await api
         .post('/v1/auth/signout')
@@ -154,6 +163,46 @@ describeIfDatabase('Auth endpoints', () => {
         .expect(403)
         .expect(({ body }) => {
           expect(body.code).toBe('forbidden');
+        });
+    });
+  });
+
+  it('resets passwords with a valid reset token', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+      const { payload } = await signUpAndConfirm(api);
+
+      const forgotResponse = await api
+        .post('/v1/auth/forgot-password')
+        .send({ email: payload.email })
+        .expect(200);
+
+      expect(forgotResponse.body.sent).toBe(true);
+      const resetToken = forgotResponse.body.resetToken as string | undefined;
+      if (!resetToken) {
+        throw new Error('Expected resetToken in non-production environments.');
+      }
+
+      const newPassword = 'ChangeMe456!';
+      await api
+        .post('/v1/auth/reset-password')
+        .send({ token: resetToken, password: newPassword })
+        .expect(200)
+        .expect(({ body }) => {
+          expect(body.reset).toBe(true);
+        });
+
+      await api
+        .post('/v1/auth/signin')
+        .send({ email: payload.email, password: payload.password })
+        .expect(403);
+
+      await api
+        .post('/v1/auth/signin')
+        .send({ email: payload.email, password: newPassword })
+        .expect(201)
+        .expect(({ body }) => {
+          expect(body.accessToken).toBeTruthy();
         });
     });
   });

@@ -67,6 +67,8 @@ SUBDL_API_KEY=your_subdl_api_key
 AUTH_JWT_SECRET=replace_with_secure_secret
 AUTH_ACCESS_TOKEN_TTL_SECONDS=900
 AUTH_REFRESH_TOKEN_TTL_DAYS=30
+AUTH_EMAIL_VERIFICATION_TTL_HOURS=24
+AUTH_PASSWORD_RESET_TTL_HOURS=2
 AUTH_BCRYPT_SALT_ROUNDS=12
 FIREBASE_PROJECT_ID=your_firebase_project_id
 FIREBASE_CLIENT_EMAIL=your_firebase_client_email
@@ -146,9 +148,12 @@ The app runs on `http://localhost:3000` and all routes are prefixed with `/v1`.
 ### Auth
 
 - `POST /v1/auth/signup`
+- `POST /v1/auth/confirm-email`
 - `POST /v1/auth/signin`
 - `POST /v1/auth/oauth/firebase`
 - `POST /v1/auth/refresh`
+- `POST /v1/auth/forgot-password`
+- `POST /v1/auth/reset-password`
 - `POST /v1/auth/signout`
 - `GET /v1/auth/me`
 

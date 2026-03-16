@@ -16,6 +16,8 @@ import { toAuthUser } from 'features/auth/auth.mapper';
 import { FirebaseAuthService } from 'features/auth/firebase-auth.service';
 import type {
   AuthResponse,
+  AuthForgotPasswordResponse,
+  AuthSignUpResponse,
   AuthTokenPayload,
   RequestMeta,
 } from 'features/auth/auth.types';
@@ -23,6 +25,9 @@ import { AuthSignInDto } from 'features/auth/dto/auth-signin.dto';
 import { AuthSignUpDto } from 'features/auth/dto/auth-signup.dto';
 import { AuthRefreshDto } from 'features/auth/dto/auth-refresh.dto';
 import { AuthFirebaseDto } from 'features/auth/dto/auth-firebase.dto';
+import { AuthConfirmEmailDto } from 'features/auth/dto/auth-confirm-email.dto';
+import { AuthForgotPasswordDto } from 'features/auth/dto/auth-forgot-password.dto';
+import { AuthResetPasswordDto } from 'features/auth/dto/auth-reset-password.dto';
 import type { User } from '@prisma/client';
 
 const FIREBASE_PROVIDER_MAP: Record<string, AuthProvider> = {
@@ -37,6 +42,9 @@ export class AuthService {
   private readonly accessTokenTtlSeconds: number;
   private readonly refreshTokenTtlDays: number;
   private readonly bcryptSaltRounds: number;
+  private readonly emailVerificationTokenTtlHours: number;
+  private readonly passwordResetTokenTtlHours: number;
+  private readonly nodeEnv: string;
 
   constructor(
     private readonly authRepository: AuthRepository,
@@ -48,12 +56,21 @@ export class AuthService {
       this.configService.get<number>('auth.accessTokenTtlSeconds') ?? 900;
     this.refreshTokenTtlDays =
       this.configService.get<number>('auth.refreshTokenTtlDays') ?? 30;
+    this.emailVerificationTokenTtlHours =
+      this.configService.get<number>('auth.emailVerificationTokenTtlHours') ??
+      24;
+    this.passwordResetTokenTtlHours =
+      this.configService.get<number>('auth.passwordResetTokenTtlHours') ?? 2;
     this.bcryptSaltRounds =
       this.configService.get<number>('auth.bcryptSaltRounds') ?? 12;
+    this.nodeEnv = this.configService.get<string>('app.nodeEnv') ?? 'development';
   }
 
   /** Registers a new user with email and password. */
-  async signUp(input: AuthSignUpDto, meta: RequestMeta): Promise<AuthResponse> {
+  async signUp(
+    input: AuthSignUpDto,
+    _meta: RequestMeta,
+  ): Promise<AuthSignUpResponse> {
     const email = this.normalizeEmail(input.email);
     const existing = await this.authRepository.findUserByEmail(email);
     if (existing) {
@@ -77,7 +94,13 @@ export class AuthService {
       user: { connect: { id: user.id } },
     });
 
-    return this.issueTokens(user, meta);
+    const verificationToken = await this.issueEmailVerification(user);
+
+    return {
+      user: toAuthUser(user),
+      verificationRequired: true,
+      ...(verificationToken ? { verificationToken } : {}),
+    };
   }
 
   /** Signs in a user using email and password. */
@@ -87,6 +110,10 @@ export class AuthService {
 
     if (!user?.passwordHash) {
       throw new ForbiddenDomainError('Invalid email or password.');
+    }
+
+    if (!user.emailVerified) {
+      throw new ForbiddenDomainError('Email is not verified.');
     }
 
     const passwordMatches = await compare(input.password, user.passwordHash);
@@ -154,6 +181,80 @@ export class AuthService {
     });
 
     return this.issueTokens(user, meta);
+  }
+
+  /** Confirms a user's email using a verification token. */
+  async confirmEmail(input: AuthConfirmEmailDto): Promise<{ verified: boolean }> {
+    const tokenHash = this.hashToken(input.token);
+    const record =
+      await this.authRepository.findEmailVerificationTokenByHash(tokenHash);
+
+    if (!record || record.consumedAt) {
+      throw new ForbiddenDomainError('Invalid verification token.');
+    }
+
+    const now = new Date();
+    if (record.expiresAt <= now) {
+      throw new ForbiddenDomainError('Verification token has expired.');
+    }
+
+    const user = record.user;
+    if (!user) {
+      throw new ForbiddenDomainError('Invalid verification token.');
+    }
+
+    if (!user.emailVerified) {
+      await this.authRepository.updateUser(user.id, { emailVerified: true });
+    }
+    await this.authRepository.consumeEmailVerificationToken(record.id, now);
+
+    return { verified: true };
+  }
+
+  /** Starts the password reset flow for a user. */
+  async forgotPassword(
+    input: AuthForgotPasswordDto,
+  ): Promise<AuthForgotPasswordResponse> {
+    const email = this.normalizeEmail(input.email);
+    const user = await this.authRepository.findUserByEmail(email);
+
+    if (!user) {
+      return { sent: true };
+    }
+
+    const resetToken = await this.issuePasswordReset(user);
+    return {
+      sent: true,
+      ...(resetToken ? { resetToken } : {}),
+    };
+  }
+
+  /** Resets a user's password using a reset token. */
+  async resetPassword(input: AuthResetPasswordDto): Promise<{ reset: boolean }> {
+    const tokenHash = this.hashToken(input.token);
+    const record =
+      await this.authRepository.findPasswordResetTokenByHash(tokenHash);
+
+    if (!record || record.consumedAt) {
+      throw new ForbiddenDomainError('Invalid reset token.');
+    }
+
+    const now = new Date();
+    if (record.expiresAt <= now) {
+      throw new ForbiddenDomainError('Reset token has expired.');
+    }
+
+    const user = record.user;
+    if (!user) {
+      throw new ForbiddenDomainError('Invalid reset token.');
+    }
+
+    const passwordHash = await hash(input.password, this.bcryptSaltRounds);
+    await this.authRepository.updateUser(user.id, { passwordHash });
+    await this.authRepository.consumePasswordResetToken(record.id, now);
+    await this.authRepository.revokeAllRefreshTokensForUser(user.id, now);
+
+    return { reset: true };
   }
 
   /** Refreshes the access token using a valid refresh token. */
@@ -263,5 +364,45 @@ export class AuthService {
 
   private hashToken(value: string): string {
     return createHash('sha256').update(value).digest('hex');
+  }
+
+  private isProduction(): boolean {
+    return this.nodeEnv === 'production';
+  }
+
+  private async issueEmailVerification(user: User): Promise<string | undefined> {
+    await this.authRepository.clearEmailVerificationTokens(user.id);
+
+    const token = randomBytes(32).toString('base64url');
+    const tokenHash = this.hashToken(token);
+    const expiresAt = new Date(
+      Date.now() + this.emailVerificationTokenTtlHours * 60 * 60_000,
+    );
+
+    await this.authRepository.createEmailVerificationToken({
+      userId: user.id,
+      tokenHash,
+      expiresAt,
+    });
+
+    return this.isProduction() ? undefined : token;
+  }
+
+  private async issuePasswordReset(user: User): Promise<string | undefined> {
+    await this.authRepository.clearPasswordResetTokens(user.id);
+
+    const token = randomBytes(32).toString('base64url');
+    const tokenHash = this.hashToken(token);
+    const expiresAt = new Date(
+      Date.now() + this.passwordResetTokenTtlHours * 60 * 60_000,
+    );
+
+    await this.authRepository.createPasswordResetToken({
+      userId: user.id,
+      tokenHash,
+      expiresAt,
+    });
+
+    return this.isProduction() ? undefined : token;
   }
 }

@@ -113,6 +113,14 @@ export const authConfig = registerAs('auth', () => ({
     process.env.AUTH_REFRESH_TOKEN_TTL_DAYS,
     30,
   ),
+  emailVerificationTokenTtlHours: parseNumber(
+    process.env.AUTH_EMAIL_VERIFICATION_TTL_HOURS,
+    24,
+  ),
+  passwordResetTokenTtlHours: parseNumber(
+    process.env.AUTH_PASSWORD_RESET_TTL_HOURS,
+    2,
+  ),
   bcryptSaltRounds: parseNumber(process.env.AUTH_BCRYPT_SALT_ROUNDS, 12),
 }));
 

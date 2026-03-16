@@ -70,9 +70,12 @@ Notes:
 ### Auth
 
 - `POST /v1/auth/signup`
+- `POST /v1/auth/confirm-email`
 - `POST /v1/auth/signin`
 - `POST /v1/auth/oauth/firebase`
 - `POST /v1/auth/refresh`
+- `POST /v1/auth/forgot-password`
+- `POST /v1/auth/reset-password`
 - `POST /v1/auth/signout`
 - `GET /v1/auth/me`
 
@@ -81,6 +84,7 @@ Rules:
 - access tokens must be sent via `Authorization: Bearer <accessToken>`
 - refresh tokens must be sent in the request body
 - email sign-ups must normalize emails to lowercase
+- email/password sign-in requires a confirmed email
 - OAuth sign-ins must validate Firebase id tokens
 
 ### Preferences

@@ -15,6 +15,8 @@ export const resetDatabase = async (prisma: PrismaService): Promise<void> => {
   await prisma.translationJob.deleteMany();
   await prisma.parsedSubtitleCue.deleteMany();
   await prisma.parsedSubtitleFile.deleteMany();
+  await prisma.emailVerificationToken.deleteMany();
+  await prisma.passwordResetToken.deleteMany();
   await prisma.refreshToken.deleteMany();
   await prisma.userIdentity.deleteMany();
   await prisma.user.deleteMany();

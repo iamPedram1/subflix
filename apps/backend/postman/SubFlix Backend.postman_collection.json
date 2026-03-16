@@ -2,7 +2,7 @@
     "info":  {
                  "_postman_id":  "1d1da8ab-9ef7-4f01-8f93-f75967c59517",
                  "name":  "SubFlix Backend API",
-                 "description":  "# SubFlix Backend API\n\nComprehensive Postman collection for the NestJS + PostgreSQL backend.\n\n## Base setup\n- Default base URL: `http://localhost:3000`\n- Global API prefix: `/v1`\n- Private routes require `x-device-id`\n- A fresh `x-request-id` is sent on every request using Postman dynamic variables\n\n## Recommended flow\n1. Run **Health / Get Health** to confirm the API is up.\n2. Use **Catalog / Search Catalog** to populate `mediaId`.\n3. Use **Catalog / Get Subtitle Sources** to populate `subtitleSourceId`.\n4. Use **Subtitles / Parse Subtitle File** to populate `parsedFileId`.\n5. Create a job from either upload or catalog.\n6. Poll **Translation Jobs / Get Translation Job** until the status becomes `completed`.\n7. Open **Get Translation Job Preview** and **Export Translation Job**.\n\n## Collection variables\n- `baseUrl`: API server root\n- `deviceId`: device ownership header used by private routes\n- `acceptLanguage`: request language tag used for localizing error messages (fallback: `en`)\n- `searchQuery`: catalog search query\n- `mediaId`: selected catalog media identifier\n- `subtitleSourceId`: selected subtitle source identifier (stable `ssrc:*` id)\n- `preferredLanguage`: optional subtitle language hint for discovery\n- `releaseHint`: optional release/filename hint used to rank subtitle candidates\n- `seasonNumber`, `episodeNumber`: optional TV episode scope (must be supplied together)\n- `parsedFileId`: parsed upload identifier from `/subtitles/parse`\n- `jobId`: active translation job identifier\n- `retryJobId`: most recent retried job id\n- `targetLanguage`: one of `en`, `es`, `ar`, `fr`, `de`, `pt`, `ja`, `ko`, `hi`, `tr`\n- `page`, `limit`: pagination controls\n- `previewQuery`: optional preview search term\n- `exportFormat`: `srt` or `vtt`\n- `sampleSubtitleFile`: local file path for the upload request\n- `authEmail`: email used for auth sign-up/sign-in\n- `authPassword`: password used for auth sign-up/sign-in\n- `authDisplayName`: optional display name for sign-up\n- `accessToken`: bearer token set after auth\n- `refreshToken`: refresh token set after auth\n- `firebaseIdToken`: Firebase OAuth id token (Google/Facebook/Apple)\n\n## Error envelope\nMost error responses use this shape:\n\n```json\n{\n  \"code\": \"validation_failed\",\n  \"message\": [\"q must be longer than or equal to 2 characters\"],\n  \"details\": {\n    \"message\": [\"q must be longer than or equal to 2 characters\"],\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n  },\n  \"requestId\": \"9a8e7b1d-...\",\n  \"timestamp\": \"2026-03-13T20:00:00.000Z\"\n}\n```\n\nDevice-scoped routes will return `401` when `x-device-id` is missing.\n## Auth flow\n1. Run **Auth / Sign Up** or **Auth / Sign In** to populate `accessToken` and `refreshToken`.\n2. Use **Auth / Me** to validate the access token.\n3. Use **Auth / Refresh** to rotate tokens, or **Auth / Sign Out** to revoke refresh tokens.",
+                 "description":  "# SubFlix Backend API\n\nComprehensive Postman collection for the NestJS + PostgreSQL backend.\n\n## Base setup\n- Default base URL: `http://localhost:3000`\n- Global API prefix: `/v1`\n- Private routes require `x-device-id`\n- A fresh `x-request-id` is sent on every request using Postman dynamic variables\n\n## Recommended flow\n1. Run **Health / Get Health** to confirm the API is up.\n2. Use **Catalog / Search Catalog** to populate `mediaId`.\n3. Use **Catalog / Get Subtitle Sources** to populate `subtitleSourceId`.\n4. Use **Subtitles / Parse Subtitle File** to populate `parsedFileId`.\n5. Create a job from either upload or catalog.\n6. Poll **Translation Jobs / Get Translation Job** until the status becomes `completed`.\n7. Open **Get Translation Job Preview** and **Export Translation Job**.\n\n## Collection variables\n- `baseUrl`: API server root\n- `deviceId`: device ownership header used by private routes\n- `acceptLanguage`: request language tag used for localizing error messages (fallback: `en`)\n- `searchQuery`: catalog search query\n- `mediaId`: selected catalog media identifier\n- `subtitleSourceId`: selected subtitle source identifier (stable `ssrc:*` id)\n- `preferredLanguage`: optional subtitle language hint for discovery\n- `releaseHint`: optional release/filename hint used to rank subtitle candidates\n- `seasonNumber`, `episodeNumber`: optional TV episode scope (must be supplied together)\n- `parsedFileId`: parsed upload identifier from `/subtitles/parse`\n- `jobId`: active translation job identifier\n- `retryJobId`: most recent retried job id\n- `targetLanguage`: one of `en`, `es`, `ar`, `fr`, `de`, `pt`, `ja`, `ko`, `hi`, `tr`\n- `page`, `limit`: pagination controls\n- `previewQuery`: optional preview search term\n- `exportFormat`: `srt` or `vtt`\n- `sampleSubtitleFile`: local file path for the upload request\n- `authEmail`: email used for auth sign-up/sign-in\n- `authPassword`: password used for auth sign-up/sign-in\n- `authDisplayName`: optional display name for sign-up\n- `accessToken`: bearer token set after auth\n- `refreshToken`: refresh token set after auth\n- `firebaseIdToken`: Firebase OAuth id token (Google/Facebook/Apple)\n- `emailVerificationToken`: verification token from sign-up (dev only)\n- `passwordResetToken`: reset token from forgot-password (dev only)\n- `authNewPassword`: new password used in reset flow\n\n## Error envelope\nMost error responses use this shape:\n\n```json\n{\n  \"code\": \"validation_failed\",\n  \"message\": [\"q must be longer than or equal to 2 characters\"],\n  \"details\": {\n    \"message\": [\"q must be longer than or equal to 2 characters\"],\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n  },\n  \"requestId\": \"9a8e7b1d-...\",\n  \"timestamp\": \"2026-03-13T20:00:00.000Z\"\n}\n```\n\nDevice-scoped routes will return `401` when `x-device-id` is missing.\n## Auth flow\n1. Run **Auth / Sign Up** or **Auth / Sign In** to populate `accessToken` and `refreshToken`.\n2. Use **Auth / Me** to validate the access token.\n3. Use **Auth / Refresh** to rotate tokens, or **Auth / Sign Out** to revoke refresh tokens.",
                  "schema":  "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
              },
     "event":  [
@@ -124,6 +124,18 @@
                      {
                          "key":  "firebaseIdToken",
                          "value":  ""
+                     },
+                     {
+                         "key":  "emailVerificationToken",
+                         "value":  ""
+                     },
+                     {
+                         "key":  "passwordResetToken",
+                         "value":  ""
+                     },
+                     {
+                         "key":  "authNewPassword",
+                         "value":  "ChangeMe456!"
                      }
                  ],
     "item":  [
@@ -234,7 +246,7 @@
                                                                          "type":  "text"
                                                                      }
                                                                  ],
-                                                      "description":  "Registers a new user with email and password.",
+                                                      "description":  "Registers a new user and sends a verification token.",
                                                       "body":  {
                                                                    "mode":  "raw",
                                                                    "raw":  "{\n  \"email\": \"{{authEmail}}\",\n  \"password\": \"{{authPassword}}\",\n  \"displayName\": \"{{authDisplayName}}\"\n}"
@@ -261,12 +273,63 @@
                                                                                     "  pm.response.to.have.status(201);",
                                                                                     "});",
                                                                                     "const json = pm.response.json();",
-                                                                                    "pm.test(\u0027Sign up returns tokens\u0027, function () {",
-                                                                                    "  pm.expect(json.accessToken).to.be.a(\u0027string\u0027);",
-                                                                                    "  pm.expect(json.refreshToken).to.be.a(\u0027string\u0027);",
+                                                                                    "pm.test(\u0027Sign up requires email verification\u0027, function () {",
+                                                                                    "  pm.expect(json.verificationRequired).to.eql(true);",
                                                                                     "});",
-                                                                                    "pm.collectionVariables.set(\u0027accessToken\u0027, json.accessToken);",
-                                                                                    "pm.collectionVariables.set(\u0027refreshToken\u0027, json.refreshToken);"
+                                                                                    "if (json.verificationToken) {",
+                                                                                    "  pm.collectionVariables.set(\u0027emailVerificationToken\u0027, json.verificationToken);",
+                                                                                    "}"
+                                                                                ]
+                                                                   }
+                                                    }
+                                                ]
+                                  },
+                                  {
+                                      "name":  "Confirm Email",
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json",
+                                                                         "type":  "text"
+                                                                     },
+                                                                     {
+                                                                         "key":  "x-request-id",
+                                                                         "value":  "{{}}",
+                                                                         "type":  "text"
+                                                                     }
+                                                                 ],
+                                                      "description":  "Confirms the user\u0027s email using a verification token.",
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"token\": \"{{emailVerificationToken}}\"\n}"
+                                                               },
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrl}}/v1/auth/confirm-email",
+                                                                  "host":  [
+                                                                               "{{baseUrl}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "v1",
+                                                                               "auth",
+                                                                               "confirm-email"
+                                                                           ]
+                                                              }
+                                                  },
+                                      "event":  [
+                                                    {
+                                                        "listen":  "test",
+                                                        "script":  {
+                                                                       "type":  "text/javascript",
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Confirm email responds with 200\u0027, function () {",
+                                                                                    "  pm.response.to.have.status(200);",
+                                                                                    "});",
+                                                                                    "const json = pm.response.json();",
+                                                                                    "pm.test(\u0027Confirm email returns verified true\u0027, function () {",
+                                                                                    "  pm.expect(json.verified).to.eql(true);",
+                                                                                    "});"
                                                                                 ]
                                                                    }
                                                     }
@@ -418,6 +481,111 @@
                                                                                     "});",
                                                                                     "pm.collectionVariables.set(\u0027accessToken\u0027, json.accessToken);",
                                                                                     "pm.collectionVariables.set(\u0027refreshToken\u0027, json.refreshToken);"
+                                                                                ]
+                                                                   }
+                                                    }
+                                                ]
+                                  },
+                                  {
+                                      "name":  "Forgot Password",
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json",
+                                                                         "type":  "text"
+                                                                     },
+                                                                     {
+                                                                         "key":  "x-request-id",
+                                                                         "value":  "{{}}",
+                                                                         "type":  "text"
+                                                                     }
+                                                                 ],
+                                                      "description":  "Starts the password reset flow.",
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"email\": \"{{authEmail}}\"\n}"
+                                                               },
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrl}}/v1/auth/forgot-password",
+                                                                  "host":  [
+                                                                               "{{baseUrl}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "v1",
+                                                                               "auth",
+                                                                               "forgot-password"
+                                                                           ]
+                                                              }
+                                                  },
+                                      "event":  [
+                                                    {
+                                                        "listen":  "test",
+                                                        "script":  {
+                                                                       "type":  "text/javascript",
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Forgot password responds with 200\u0027, function () {",
+                                                                                    "  pm.response.to.have.status(200);",
+                                                                                    "});",
+                                                                                    "const json = pm.response.json();",
+                                                                                    "pm.test(\u0027Forgot password returns sent flag\u0027, function () {",
+                                                                                    "  pm.expect(json.sent).to.eql(true);",
+                                                                                    "});",
+                                                                                    "if (json.resetToken) {",
+                                                                                    "  pm.collectionVariables.set(\u0027passwordResetToken\u0027, json.resetToken);",
+                                                                                    "}"
+                                                                                ]
+                                                                   }
+                                                    }
+                                                ]
+                                  },
+                                  {
+                                      "name":  "Reset Password",
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json",
+                                                                         "type":  "text"
+                                                                     },
+                                                                     {
+                                                                         "key":  "x-request-id",
+                                                                         "value":  "{{}}",
+                                                                         "type":  "text"
+                                                                     }
+                                                                 ],
+                                                      "description":  "Resets the password using a reset token.",
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"token\": \"{{passwordResetToken}}\",\n  \"password\": \"{{authNewPassword}}\"\n}"
+                                                               },
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrl}}/v1/auth/reset-password",
+                                                                  "host":  [
+                                                                               "{{baseUrl}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "v1",
+                                                                               "auth",
+                                                                               "reset-password"
+                                                                           ]
+                                                              }
+                                                  },
+                                      "event":  [
+                                                    {
+                                                        "listen":  "test",
+                                                        "script":  {
+                                                                       "type":  "text/javascript",
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Reset password responds with 200\u0027, function () {",
+                                                                                    "  pm.response.to.have.status(200);",
+                                                                                    "});",
+                                                                                    "const json = pm.response.json();",
+                                                                                    "pm.test(\u0027Reset password returns reset flag\u0027, function () {",
+                                                                                    "  pm.expect(json.reset).to.eql(true);",
+                                                                                    "});"
                                                                                 ]
                                                                    }
                                                     }

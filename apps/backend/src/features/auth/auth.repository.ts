@@ -90,4 +90,94 @@ export class AuthRepository {
       return normalizeDatabaseError(error);
     }
   }
+
+  async revokeAllRefreshTokensForUser(
+    userId: string,
+    revokedAt: Date,
+  ): Promise<void> {
+    try {
+      await this.prisma.refreshToken.updateMany({
+        where: { userId, revokedAt: null },
+        data: { revokedAt, lastUsedAt: revokedAt },
+      });
+    } catch (error) {
+      return normalizeDatabaseError(error);
+    }
+  }
+
+  async clearEmailVerificationTokens(userId: string): Promise<void> {
+    try {
+      await this.prisma.emailVerificationToken.deleteMany({
+        where: { userId },
+      });
+    } catch (error) {
+      return normalizeDatabaseError(error);
+    }
+  }
+
+  async createEmailVerificationToken(
+    data: Prisma.EmailVerificationTokenUncheckedCreateInput,
+  ) {
+    try {
+      return await this.prisma.emailVerificationToken.create({ data });
+    } catch (error) {
+      return normalizeDatabaseError(error);
+    }
+  }
+
+  findEmailVerificationTokenByHash(tokenHash: string) {
+    return this.prisma.emailVerificationToken.findUnique({
+      where: { tokenHash },
+      include: { user: true },
+    });
+  }
+
+  async consumeEmailVerificationToken(id: string, consumedAt: Date) {
+    try {
+      return await this.prisma.emailVerificationToken.update({
+        where: { id },
+        data: { consumedAt },
+      });
+    } catch (error) {
+      return normalizeDatabaseError(error);
+    }
+  }
+
+  async clearPasswordResetTokens(userId: string): Promise<void> {
+    try {
+      await this.prisma.passwordResetToken.deleteMany({
+        where: { userId },
+      });
+    } catch (error) {
+      return normalizeDatabaseError(error);
+    }
+  }
+
+  async createPasswordResetToken(
+    data: Prisma.PasswordResetTokenUncheckedCreateInput,
+  ) {
+    try {
+      return await this.prisma.passwordResetToken.create({ data });
+    } catch (error) {
+      return normalizeDatabaseError(error);
+    }
+  }
+
+  findPasswordResetTokenByHash(tokenHash: string) {
+    return this.prisma.passwordResetToken.findUnique({
+      where: { tokenHash },
+      include: { user: true },
+    });
+  }
+
+  async consumePasswordResetToken(id: string, consumedAt: Date) {
+    try {
+      return await this.prisma.passwordResetToken.update({
+        where: { id },
+        data: { consumedAt },
+      });
+    } catch (error) {
+      return normalizeDatabaseError(error);
+    }
+  }
 }
