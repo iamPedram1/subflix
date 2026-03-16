@@ -1,4 +1,4 @@
-﻿-- CreateEnum
+-- CreateEnum
 CREATE TYPE "AppLanguage" AS ENUM ('en', 'es', 'ar', 'fr', 'de', 'pt', 'ja', 'ko', 'hi', 'tr');
 
 -- CreateEnum

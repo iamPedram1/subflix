@@ -22,7 +22,10 @@ import {
         subtitleSourcesConfig,
         subtitleAlignmentConfig,
       ],
-      envFilePath: ['.env.local', '.env'],
+      envFilePath:
+        process.env.NODE_ENV === 'production'
+          ? '.env.production'
+          : '.env.local',
     }),
   ],
 })

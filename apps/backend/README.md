@@ -88,6 +88,10 @@ pnpm prisma:generate
 pnpm prisma:migrate:dev
 ```
 
+Notes on Prisma commands:
+- `pnpm db:push:local` syncs the schema to your local database without creating migration files (fast for local iteration).
+- `pnpm db:migrate:local` creates/applies migration files and is the right choice for shared or production-bound changes.
+
 ### 6. Run the API
 
 ```bash

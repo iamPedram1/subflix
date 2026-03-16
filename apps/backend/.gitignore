@@ -2,9 +2,7 @@ node_modules/
 package-lock.json
 dist/
 coverage/
-.env
-.env.local
-.env.test
+.env.*
 .turbo/
 *.log
 pnpm-debug.log*

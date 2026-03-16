@@ -18,6 +18,10 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate:dev": "prisma migrate dev",
     "prisma:migrate:deploy": "prisma migrate deploy",
+    "db:push:local": "dotenv -e .env.local -- prisma db push",
+    "db:push:prod": "dotenv -e .env.production -- prisma db push",
+    "db:migrate:local": "dotenv -e .env.local -- prisma migrate dev",
+    "db:migrate:prod": "dotenv -e .env.production -- prisma migrate deploy",
     "prisma:seed": "ts-node prisma/seed.ts",
     "test": "pnpm test:unit && pnpm test:integration && pnpm test:e2e",
     "test:unit": "vitest run --config ./vitest.unit.config.ts",
@@ -69,7 +73,8 @@
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.20.0",
     "unplugin-swc": "^1.5.9",
-    "vitest": "^4.1.0"
+    "vitest": "^4.1.0",
+    "dotenv-cli": "^7.4.4"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
