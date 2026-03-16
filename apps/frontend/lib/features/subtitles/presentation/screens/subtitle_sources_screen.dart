@@ -9,6 +9,7 @@ import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
+import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/section_header.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
 import 'package:subflix/features/search/application/subtitle_sources_provider.dart';
@@ -39,62 +40,64 @@ class SubtitleSourcesScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(item.title)),
       body: AppBackground(
         child: SafeArea(
-          child: ListView(
-            padding: AppInsets.page,
-            children: <Widget>[
-              SectionHeader(
-                title: context.t.subtitleSourcesTitle,
-                subtitle: context.t.subtitleSourcesSubtitle(
-                  item.title,
-                  subtitleTarget,
-                ),
-              ),
-              const SizedBox(height: 16),
-              _TitleSummary(item: item, args: args),
-              const SizedBox(height: 18),
-              sources.when(
-                data: (items) => Column(
-                  spacing: 14,
-                  children: items
-                      .map(
-                        (source) => SubtitleSourceCard(
-                          source: source,
-                          onTap: () => context.push(
-                            AppRoutes.translateSetup,
-                            extra: TranslationSetupArgs.catalog(
-                              item: item,
-                              source: source,
-                              seasonNumber: args.seasonNumber,
-                              episodeNumber: args.episodeNumber,
-                              releaseHint: args.releaseHint,
-                            ),
-                          ),
-                        ),
-                      )
-                      .toList(growable: false),
-                ),
-                error: (error, stackTrace) => StatePanel(
-                  icon: Iconsax.warning2,
-                  title: context.t.subtitleSourcesFailedTitle,
-                  message: error.toString().replaceFirst('Exception: ', ''),
-                  action: OutlinedButton.icon(
-                    onPressed: () => ref.invalidate(
-                      subtitleSourcesSelectionProvider(request),
-                    ),
-                    icon: const Icon(Iconsax.refresh),
-                    label: Text(context.t.retry),
+          child: ResponsiveCenter(
+            child: ListView(
+              padding: AppInsets.page,
+              children: <Widget>[
+                SectionHeader(
+                  title: context.t.subtitleSourcesTitle,
+                  subtitle: context.t.subtitleSourcesSubtitle(
+                    item.title,
+                    subtitleTarget,
                   ),
                 ),
-                loading: () => Column(
-                  spacing: 14,
-                  children: const <Widget>[
-                    LoadingSkeleton(height: 132),
-                    LoadingSkeleton(height: 132),
-                    LoadingSkeleton(height: 132),
-                  ],
+                const SizedBox(height: 16),
+                _TitleSummary(item: item, args: args),
+                const SizedBox(height: 18),
+                sources.when(
+                  data: (items) => Column(
+                    spacing: 14,
+                    children: items
+                        .map(
+                          (source) => SubtitleSourceCard(
+                            source: source,
+                            onTap: () => context.push(
+                              AppRoutes.translateSetup,
+                              extra: TranslationSetupArgs.catalog(
+                                item: item,
+                                source: source,
+                                seasonNumber: args.seasonNumber,
+                                episodeNumber: args.episodeNumber,
+                                releaseHint: args.releaseHint,
+                              ),
+                            ),
+                          ),
+                        )
+                        .toList(growable: false),
+                  ),
+                  error: (error, stackTrace) => StatePanel(
+                    icon: Iconsax.warning2,
+                    title: context.t.subtitleSourcesFailedTitle,
+                    message: error.toString().replaceFirst('Exception: ', ''),
+                    action: OutlinedButton.icon(
+                      onPressed: () => ref.invalidate(
+                        subtitleSourcesSelectionProvider(request),
+                      ),
+                      icon: const Icon(Iconsax.refresh),
+                      label: Text(context.t.retry),
+                    ),
+                  ),
+                  loading: () => Column(
+                    spacing: 14,
+                    children: const <Widget>[
+                      LoadingSkeleton(height: 132),
+                      LoadingSkeleton(height: 132),
+                      LoadingSkeleton(height: 132),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

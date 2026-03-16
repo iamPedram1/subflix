@@ -13,6 +13,7 @@ import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
+import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/section_header.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
 import 'package:subflix/features/shared/domain/models/translation_job.dart';
@@ -73,111 +74,113 @@ class _TranslationPreviewScreenState
             ),
       body: AppBackground(
         child: SafeArea(
-          child: previewAsync.when(
-            data: (preview) {
-              final filteredLines = preview.items;
-              final job = preview.job;
+          child: ResponsiveCenter(
+            child: previewAsync.when(
+              data: (preview) {
+                final filteredLines = preview.items;
+                final job = preview.job;
 
-              return ListView(
-                padding: AppInsets.pageWithNav,
-                children: <Widget>[
-                  SectionHeader(
-                    title: context.t.translationPreviewHeader,
-                    subtitle: context.t.translationPreviewSubtitle,
-                  ),
-                  const SizedBox(height: 16),
-                  _MetadataCard(job: job),
-                  const SizedBox(height: 16),
-                  AppSurfaceCard(
-                    child: Column(
-                      spacing: 16,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        SegmentedButton<PreviewMode>(
-                          segments: PreviewMode.values
-                              .map(
-                                (mode) => ButtonSegment<PreviewMode>(
-                                  value: mode,
-                                  label: Text(mode.label(context)),
-                                ),
-                              )
-                              .toList(growable: false),
-                          selected: <PreviewMode>{_previewMode},
-                          onSelectionChanged: (selection) {
-                            setState(() => _previewMode = selection.first);
-                          },
-                        ),
-                        TextField(
-                          onChanged: _onQueryChanged,
-                          decoration: InputDecoration(
-                            hintText: context.t.translationPreviewSearchHint,
-                            prefixIcon: const Icon(Iconsax.searchNormal),
-                            suffixIcon: _query.isEmpty
-                                ? null
-                                : IconButton(
-                                    onPressed: () => _onQueryChanged(''),
-                                    icon: const Icon(Iconsax.closeCircle),
+                return ListView(
+                  padding: AppInsets.pageWithNav,
+                  children: <Widget>[
+                    SectionHeader(
+                      title: context.t.translationPreviewHeader,
+                      subtitle: context.t.translationPreviewSubtitle,
+                    ),
+                    const SizedBox(height: 16),
+                    _MetadataCard(job: job),
+                    const SizedBox(height: 16),
+                    AppSurfaceCard(
+                      child: Column(
+                        spacing: 16,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          SegmentedButton<PreviewMode>(
+                            segments: PreviewMode.values
+                                .map(
+                                  (mode) => ButtonSegment<PreviewMode>(
+                                    value: mode,
+                                    label: Text(mode.label(context)),
                                   ),
+                                )
+                                .toList(growable: false),
+                            selected: <PreviewMode>{_previewMode},
+                            onSelectionChanged: (selection) {
+                              setState(() => _previewMode = selection.first);
+                            },
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  if (filteredLines.isEmpty)
-                    StatePanel(
-                      icon: Iconsax.searchNormal,
-                      title: _committedQuery.isEmpty
-                          ? context.t.previewNotReadyTitle
-                          : context.t.previewNoMatchesTitle,
-                      message: _committedQuery.isEmpty
-                          ? context.t.previewNotReadyMessage
-                          : context.t.previewNoMatchesMessage,
-                    )
-                  else
-                    Column(
-                      spacing: 12,
-                      children: filteredLines
-                          .map(
-                            (line) => SubtitleLineCard(
-                              line: line,
-                              mode: _previewMode,
+                          TextField(
+                            onChanged: _onQueryChanged,
+                            decoration: InputDecoration(
+                              hintText: context.t.translationPreviewSearchHint,
+                              prefixIcon: const Icon(Iconsax.searchNormal),
+                              suffixIcon: _query.isEmpty
+                                  ? null
+                                  : IconButton(
+                                      onPressed: () => _onQueryChanged(''),
+                                      icon: const Icon(Iconsax.closeCircle),
+                                    ),
                             ),
-                          )
-                          .toList(growable: false),
-                    ),
-                ],
-              );
-            },
-            error: (error, stackTrace) => Padding(
-              padding: AppInsets.card,
-              child: StatePanel(
-                icon: Iconsax.warning2,
-                title: context.t.previewFailedTitle,
-                message: error.toString(),
-                action: OutlinedButton.icon(
-                  onPressed: () => ref.invalidate(
-                    translationPreviewProvider(
-                      TranslationPreviewQuery(
-                        jobId: widget.jobId,
-                        query: _committedQuery,
+                          ),
+                        ],
                       ),
                     ),
+                    const SizedBox(height: 16),
+                    if (filteredLines.isEmpty)
+                      StatePanel(
+                        icon: Iconsax.searchNormal,
+                        title: _committedQuery.isEmpty
+                            ? context.t.previewNotReadyTitle
+                            : context.t.previewNoMatchesTitle,
+                        message: _committedQuery.isEmpty
+                            ? context.t.previewNotReadyMessage
+                            : context.t.previewNoMatchesMessage,
+                      )
+                    else
+                      Column(
+                        spacing: 12,
+                        children: filteredLines
+                            .map(
+                              (line) => SubtitleLineCard(
+                                line: line,
+                                mode: _previewMode,
+                              ),
+                            )
+                            .toList(growable: false),
+                      ),
+                  ],
+                );
+              },
+              error: (error, stackTrace) => Padding(
+                padding: AppInsets.card,
+                child: StatePanel(
+                  icon: Iconsax.warning2,
+                  title: context.t.previewFailedTitle,
+                  message: error.toString(),
+                  action: OutlinedButton.icon(
+                    onPressed: () => ref.invalidate(
+                      translationPreviewProvider(
+                        TranslationPreviewQuery(
+                          jobId: widget.jobId,
+                          query: _committedQuery,
+                        ),
+                      ),
+                    ),
+                    icon: const Icon(Iconsax.refresh),
+                    label: Text(context.t.retry),
                   ),
-                  icon: const Icon(Iconsax.refresh),
-                  label: Text(context.t.retry),
                 ),
               ),
-            ),
-            loading: () => ListView(
-              padding: AppInsets.card,
-              children: const <Widget>[
-                LoadingSkeleton(height: 120),
-                SizedBox(height: 16),
-                LoadingSkeleton(height: 94),
-                SizedBox(height: 16),
-                LoadingSkeleton(height: 160),
-              ],
+              loading: () => ListView(
+                padding: AppInsets.card,
+                children: const <Widget>[
+                  LoadingSkeleton(height: 120),
+                  SizedBox(height: 16),
+                  LoadingSkeleton(height: 94),
+                  SizedBox(height: 16),
+                  LoadingSkeleton(height: 160),
+                ],
+              ),
             ),
           ),
         ),

@@ -9,6 +9,7 @@ import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
+import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/subflix_wordmark.dart';
 import 'package:subflix/features/onboarding/presentation/widgets/onboarding_page_card.dart';
 import 'package:subflix/features/settings/application/settings_controller.dart';
@@ -59,59 +60,61 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     return Scaffold(
       body: AppBackground(
         child: SafeArea(
-          child: Padding(
-            padding: AppInsets.page,
-            child: Column(
-              spacing: 24,
-              children: <Widget>[
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: SubflixWordmark(compact: true),
-                ),
-                Expanded(
-                  child: PageView.builder(
-                    controller: _pageController,
-                    itemCount: pages.length,
-                    onPageChanged: (value) =>
-                        setState(() => _pageIndex = value),
-                    itemBuilder: (context, index) {
-                      final page = pages[index];
-                      return OnboardingPageCard(
-                        eyebrow: page.eyebrow,
-                        title: page.title,
-                        description: page.description,
-                        icon: page.icon,
-                        highlights: page.highlights,
-                      );
-                    },
+          child: ResponsiveCenter(
+            child: Padding(
+              padding: AppInsets.page,
+              child: Column(
+                spacing: 24,
+                children: <Widget>[
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: SubflixWordmark(compact: true),
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: 10,
-                  children: List<Widget>.generate(
-                    pages.length,
-                    (index) => AnimatedContainer(
-                      duration: const Duration(milliseconds: 220),
-                      width: _pageIndex == index ? 28 : 10,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        color: _pageIndex == index
-                            ? AppColors.primary
-                            : Colors.white.withValues(alpha: 0.18),
-                        borderRadius: BorderRadius.circular(999),
+                  Expanded(
+                    child: PageView.builder(
+                      controller: _pageController,
+                      itemCount: pages.length,
+                      onPageChanged: (value) =>
+                          setState(() => _pageIndex = value),
+                      itemBuilder: (context, index) {
+                        final page = pages[index];
+                        return OnboardingPageCard(
+                          eyebrow: page.eyebrow,
+                          title: page.title,
+                          description: page.description,
+                          icon: page.icon,
+                          highlights: page.highlights,
+                        );
+                      },
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: 10,
+                    children: List<Widget>.generate(
+                      pages.length,
+                      (index) => AnimatedContainer(
+                        duration: const Duration(milliseconds: 220),
+                        width: _pageIndex == index ? 28 : 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: _pageIndex == index
+                              ? AppColors.primary
+                              : Colors.white.withValues(alpha: 0.18),
+                          borderRadius: BorderRadius.circular(999),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                AppGradientButton(
-                  label: _pageIndex == pages.length - 1
-                      ? context.t.onboardingEnterApp
-                      : context.t.onboardingContinue,
-                  icon: Iconsax.arrowRight,
-                  onPressed: _handleContinue,
-                ),
-              ],
+                  AppGradientButton(
+                    label: _pageIndex == pages.length - 1
+                        ? context.t.onboardingEnterApp
+                        : context.t.onboardingContinue,
+                    icon: Iconsax.arrowRight,
+                    onPressed: _handleContinue,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

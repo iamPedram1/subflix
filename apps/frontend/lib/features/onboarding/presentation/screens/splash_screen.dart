@@ -8,6 +8,7 @@ import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
+import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/subflix_wordmark.dart';
 import 'package:subflix/features/settings/application/settings_controller.dart';
 import 'package:subflix/features/settings/domain/models/user_preference.dart';
@@ -57,22 +58,24 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     return Scaffold(
       body: AppBackground(
         child: SafeArea(
-          child: Center(
-            child: Padding(
-              padding: AppInsets.cardLarge,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 24,
-                children: <Widget>[
-                  const SubflixWordmark(),
-                  Text(
-                    context.t.splashPreparing,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: AppColors.textSecondary,
+          child: ResponsiveCenter(
+            child: Center(
+              child: Padding(
+                padding: AppInsets.cardLarge,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: 24,
+                  children: <Widget>[
+                    const SubflixWordmark(),
+                    Text(
+                      context.t.splashPreparing,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: AppColors.textSecondary,
+                      ),
                     ),
-                  ),
-                  const LoadingSkeleton(width: 220, height: 10),
-                ],
+                    const LoadingSkeleton(width: 220, height: 10),
+                  ],
+                ),
               ),
             ),
           ),

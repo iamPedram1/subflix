@@ -9,6 +9,7 @@ import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
+import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/section_header.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
 import 'package:subflix/core/styles/spacing.dart';
@@ -52,54 +53,58 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
       appBar: AppBar(title: Text(context.t.searchTitles)),
       body: AppBackground(
         child: SafeArea(
-          child: ListView(
-            padding: AppInsets.page,
-            children: <Widget>[
-              SectionHeader(
-                title: context.t.searchMovieOrSeriesTitle,
-                subtitle: context.t.searchMovieOrSeriesSubtitle,
-              ),
-              const SizedBox(height: 16),
-              TextField(
-                controller: _controller,
-                onChanged: _onQueryChanged,
-                decoration: InputDecoration(
-                  hintText: context.t.searchHintText,
-                  prefixIcon: const Icon(Iconsax.searchNormal),
-                  suffixIcon: _query.isEmpty
-                      ? null
-                      : IconButton(
-                          onPressed: () {
-                            _controller.clear();
-                            _onQueryChanged('');
-                          },
-                          icon: const Icon(Iconsax.closeCircle),
-                        ),
+          child: ResponsiveCenter(
+            child: ListView(
+              padding: AppInsets.page,
+              children: <Widget>[
+                SectionHeader(
+                  title: context.t.searchMovieOrSeriesTitle,
+                  subtitle: context.t.searchMovieOrSeriesSubtitle,
                 ),
-              ),
-              const SizedBox(height: 18),
-              AnimatedSwitcher(
-                duration: const Duration(milliseconds: 220),
-                child: _SearchBody(
-                  key: ValueKey<String>(
-                    '${searchState.query}_${searchState.isLoading}_${searchState.results.length}_${searchState.errorMessage}',
+                const SizedBox(height: 16),
+                TextField(
+                  controller: _controller,
+                  onChanged: _onQueryChanged,
+                  decoration: InputDecoration(
+                    hintText: context.t.searchHintText,
+                    prefixIcon: const Icon(Iconsax.searchNormal),
+                    suffixIcon: _query.isEmpty
+                        ? null
+                        : IconButton(
+                            onPressed: () {
+                              _controller.clear();
+                              _onQueryChanged('');
+                            },
+                            icon: const Icon(Iconsax.closeCircle),
+                          ),
                   ),
-                  state: searchState,
-                  onRetry: ref.read(searchControllerProvider.notifier).retry,
-                  onTapItem: (item) {
-                    if (item.mediaType == SearchMediaType.series) {
-                      context.push(AppRoutes.seriesSeasons, extra: item);
-                      return;
-                    }
-
-                    context.push(
-                      AppRoutes.subtitleSources,
-                      extra: SubtitleSourcesArgs(item: item),
-                    );
-                  },
                 ),
-              ),
-            ],
+                const SizedBox(height: 18),
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 220),
+                  child: _SearchBody(
+                    key: ValueKey<String>(
+                      '${searchState.query}_${searchState.isLoading}_${searchState.results.length}_${searchState.errorMessage}',
+                    ),
+                    state: searchState,
+                    onRetry: ref
+                        .read(searchControllerProvider.notifier)
+                        .retry,
+                    onTapItem: (item) {
+                      if (item.mediaType == SearchMediaType.series) {
+                        context.push(AppRoutes.seriesSeasons, extra: item);
+                        return;
+                      }
+
+                      context.push(
+                        AppRoutes.subtitleSources,
+                        extra: SubtitleSourcesArgs(item: item),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
