@@ -2,6 +2,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'package:subflix/core/localization/strings_ar.dart';
+import 'package:subflix/core/localization/strings_de.dart';
+import 'package:subflix/core/localization/strings_es.dart';
+import 'package:subflix/core/localization/strings_fa.dart';
+import 'package:subflix/core/localization/strings_fr.dart';
+import 'package:subflix/core/localization/strings_hi.dart';
+import 'package:subflix/core/localization/strings_ja.dart';
+import 'package:subflix/core/localization/strings_pt.dart';
+import 'package:subflix/core/localization/strings_zh.dart';
+
 class AppLocalizations {
   const AppLocalizations(this.locale);
 
@@ -283,6 +293,15 @@ class AppLocalizations {
       'comingSoonTitle': 'Coming soon',
       'comingSoonMessage': 'We are still preparing this screen.',
     },
+    'fa': kStringsFa,
+    'ar': kStringsAr,
+    'fr': kStringsFr,
+    'de': kStringsDe,
+    'ja': kStringsJa,
+    'zh': kStringsZh,
+    'hi': kStringsHi,
+    'pt': kStringsPt,
+    'es': kStringsEs,
   };
 
   String _t(String key) =>
