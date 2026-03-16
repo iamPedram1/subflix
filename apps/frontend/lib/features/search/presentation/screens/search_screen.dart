@@ -11,6 +11,7 @@ import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
 import 'package:subflix/core/ui/widgets/section_header.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
+import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/features/search/application/search_controller.dart';
 import 'package:subflix/features/search/application/search_state.dart';
 import 'package:subflix/features/search/domain/models/movie_search_item.dart';
@@ -52,7 +53,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
       body: AppBackground(
         child: SafeArea(
           child: ListView(
-            padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
+            padding: AppInsets.page,
             children: <Widget>[
               SectionHeader(
                 title: context.t.searchMovieOrSeriesTitle,

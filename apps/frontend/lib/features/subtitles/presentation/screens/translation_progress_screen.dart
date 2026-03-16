@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:subflix/core/app/router/app_routes.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
+import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
@@ -86,7 +87,7 @@ class _TranslationProgressScreenState
       body: AppBackground(
         child: SafeArea(
           child: ListView(
-            padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
+            padding: AppInsets.page,
             children: <Widget>[
               AppSurfaceCard(
                 child: Column(

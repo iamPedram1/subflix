@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
+import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/features/subtitles/domain/models/subtitle_source.dart';
@@ -100,7 +101,7 @@ class _SourceChip extends StatelessWidget {
         borderRadius: BorderRadius.circular(999),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        padding: AppInsets.chip,
         child: Text(
           label,
           style: Theme.of(

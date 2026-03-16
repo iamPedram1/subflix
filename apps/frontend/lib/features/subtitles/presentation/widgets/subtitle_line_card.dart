@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:subflix/core/extensions/duration_extensions.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
+import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/features/subtitles/domain/models/subtitle_line.dart';
 
@@ -29,7 +30,7 @@ class SubtitleLineCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppSurfaceCard(
-      padding: const EdgeInsets.all(18),
+      padding: AppInsets.cardCompact,
       borderRadius: BorderRadius.circular(22),
       child: Column(
         spacing: 12,

@@ -9,6 +9,7 @@ import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
 import 'package:subflix/core/ui/widgets/section_header.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
+import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/features/history/application/history_controller.dart';
 import 'package:subflix/features/shared/presentation/widgets/job_card.dart';
 
@@ -25,7 +26,7 @@ class HistoryScreen extends ConsumerWidget {
           child: RefreshIndicator(
             onRefresh: ref.read(historyControllerProvider.notifier).refresh,
             child: ListView(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 120),
+              padding: AppInsets.pageWithNavComfort,
               children: <Widget>[
                 SectionHeader(
                   title: context.t.historyTitle,

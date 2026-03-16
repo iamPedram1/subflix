@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:subflix/core/app/router/app_routes.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
+import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
@@ -36,7 +37,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   Future<void> _handleContinue() async {
-    if (_pageIndex < _pages.length - 1) {
+    final totalPages = _localizedPages(context).length;
+    if (_pageIndex < totalPages - 1) {
       await _pageController.nextPage(
         duration: const Duration(milliseconds: 280),
         curve: Curves.easeOutCubic,
@@ -58,7 +60,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       body: AppBackground(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
+            padding: AppInsets.page,
             child: Column(
               spacing: 24,
               children: <Widget>[

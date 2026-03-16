@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:subflix/core/styles/colors.dart';
+import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 
 class TrustSignalTile extends StatelessWidget {
@@ -18,10 +19,10 @@ class TrustSignalTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppSurfaceCard(
-      padding: const EdgeInsets.all(18),
+      padding: AppInsets.cardCompact,
       borderRadius: BorderRadius.circular(22),
       child: Row(
-        spacing: 14,
+        spacing: AppSpacing.sm,
         children: <Widget>[
           Container(
             width: 44,
@@ -35,7 +36,7 @@ class TrustSignalTile extends StatelessWidget {
           ),
           Expanded(
             child: Column(
-              spacing: 4,
+              spacing: AppSpacing.xxs,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(title, style: Theme.of(context).textTheme.titleSmall),

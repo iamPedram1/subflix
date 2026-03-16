@@ -11,6 +11,7 @@ import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
 import 'package:subflix/core/ui/widgets/section_header.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
 import 'package:subflix/core/ui/widgets/subflix_wordmark.dart';
+import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/features/history/application/history_controller.dart';
 import 'package:subflix/features/home/application/home_providers.dart';
 import 'package:subflix/features/home/presentation/widgets/home_hero_card.dart';
@@ -30,7 +31,7 @@ class HomeScreen extends ConsumerWidget {
           child: CustomScrollView(
             slivers: <Widget>[
               SliverPadding(
-                padding: const EdgeInsets.fromLTRB(20, 16, 20, 120),
+                padding: AppInsets.pageWithNav,
                 sliver: SliverList.list(
                   children: <Widget>[
                     const SubflixWordmark(compact: true),

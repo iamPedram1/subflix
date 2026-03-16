@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:subflix/core/app/router/app_router.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/theme.dart';
+import 'package:subflix/features/shared/domain/models/theme_preference.dart';
 import 'package:subflix/features/settings/application/settings_controller.dart';
 
 class App extends ConsumerWidget {

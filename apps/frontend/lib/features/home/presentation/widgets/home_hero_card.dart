@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
+import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
@@ -19,13 +20,13 @@ class HomeHeroCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppSurfaceCard(
-      padding: const EdgeInsets.all(24),
+      padding: AppInsets.cardLarge,
       child: Column(
-        spacing: 22,
+        spacing: AppSpacing.xxl,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            padding: AppInsets.chip,
             decoration: BoxDecoration(
               color: AppColors.primary.withValues(alpha: 0.14),
               borderRadius: BorderRadius.circular(999),
@@ -48,7 +49,7 @@ class HomeHeroCard extends StatelessWidget {
             ).textTheme.bodyLarge?.copyWith(color: AppColors.textSecondary),
           ),
           Row(
-            spacing: 12,
+            spacing: AppSpacing.sm,
             children: <Widget>[
               Expanded(
                 child: AppGradientButton(
@@ -79,7 +80,7 @@ class _HeroStatStrip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      spacing: 12,
+      spacing: AppSpacing.sm,
       children: <Widget>[
         Expanded(
           child: _HeroStat(
@@ -118,9 +119,9 @@ class _HeroStat extends StatelessWidget {
         borderRadius: BorderRadius.circular(18),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(14),
+        padding: const EdgeInsets.all(AppSpacing.sm),
         child: Column(
-          spacing: 6,
+          spacing: AppSpacing.xs,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(

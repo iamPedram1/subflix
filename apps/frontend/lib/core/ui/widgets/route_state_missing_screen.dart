@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:subflix/core/ui/icons/iconsax.dart';
+import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
 
@@ -21,7 +22,7 @@ class RouteStateMissingScreen extends StatelessWidget {
       body: AppBackground(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: AppInsets.card,
             child: StatePanel(
               icon: Iconsax.warning2,
               title: title,

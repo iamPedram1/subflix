@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/radii.dart';
+import 'package:subflix/core/styles/spacing.dart';
 
 class AppSurfaceCard extends StatelessWidget {
   const AppSurfaceCard({
     required this.child,
     super.key,
-    this.padding = const EdgeInsets.all(20),
+    this.padding = AppInsets.card,
     this.borderRadius = AppRadii.card,
     this.onTap,
   });

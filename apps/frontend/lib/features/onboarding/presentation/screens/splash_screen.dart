@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:subflix/core/app/router/app_routes.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
+import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
 import 'package:subflix/core/ui/widgets/subflix_wordmark.dart';
@@ -58,7 +59,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
         child: SafeArea(
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.all(24),
+              padding: AppInsets.cardLarge,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 spacing: 24,

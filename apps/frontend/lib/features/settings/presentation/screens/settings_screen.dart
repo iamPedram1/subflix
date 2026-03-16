@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:subflix/core/app/router/app_routes.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
+import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
@@ -27,7 +28,7 @@ class SettingsScreen extends ConsumerWidget {
       body: AppBackground(
         child: SafeArea(
           child: ListView(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 120),
+            padding: AppInsets.pageWithNavComfort,
             children: <Widget>[
               SectionHeader(
                 title: context.t.settingsTitle,

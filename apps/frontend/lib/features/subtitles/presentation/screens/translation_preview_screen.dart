@@ -7,6 +7,7 @@ import 'package:subflix/core/extensions/duration_extensions.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/providers/repository_providers.dart';
 import 'package:subflix/core/styles/colors.dart';
+import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
@@ -59,7 +60,7 @@ class _TranslationPreviewScreenState
       bottomNavigationBar: previewAsync.asData?.value == null
           ? null
           : Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
+              padding: AppInsets.bottomBar,
               child: AppGradientButton(
                 label: _isExporting
                     ? context.t.exportingLabel
@@ -78,7 +79,7 @@ class _TranslationPreviewScreenState
               final job = preview.job;
 
               return ListView(
-                padding: const EdgeInsets.fromLTRB(20, 12, 20, 120),
+                padding: AppInsets.pageWithNav,
                 children: <Widget>[
                   SectionHeader(
                     title: context.t.translationPreviewHeader,
@@ -149,7 +150,7 @@ class _TranslationPreviewScreenState
               );
             },
             error: (error, stackTrace) => Padding(
-              padding: const EdgeInsets.all(20),
+              padding: AppInsets.card,
               child: StatePanel(
                 icon: Iconsax.warning2,
                 title: context.t.previewFailedTitle,
@@ -169,7 +170,7 @@ class _TranslationPreviewScreenState
               ),
             ),
             loading: () => ListView(
-              padding: const EdgeInsets.all(20),
+              padding: AppInsets.card,
               children: const <Widget>[
                 LoadingSkeleton(height: 120),
                 SizedBox(height: 16),
