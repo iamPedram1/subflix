@@ -41,7 +41,7 @@ Search for movies and series, fetch mocked English subtitle sources, upload your
 |---|---|
 | 🏗️ **Framework** | Flutter 3.41+ · Dart 3.11+ |
 | 🧠 **State Management** | Riverpod · `riverpod_annotation` · `riverpod_generator` |
-| 🧭 **Routing** | `go_router` |
+| 🧭 **Routing** | `go_router` · `go_router_builder` |
 | 🧊 **Models** | Freezed · `json_serializable` |
 | 🌐 **Networking Seam** | Dio |
 | 💾 **Local Storage** | SharedPreferences |
@@ -141,7 +141,7 @@ flutter pub get
 
 ### 2️⃣ Run code generation
 
-SubFlix uses Riverpod generators, Freezed models, and JSON serialization.
+SubFlix uses Riverpod generators, Freezed models, JSON serialization, and `go_router_builder` for typed routes.
 
 ```bash
 dart run build_runner build --delete-conflicting-outputs
@@ -212,7 +212,7 @@ flutter test
 
 ## 🤝 Development Notes
 
-- Use `dart run build_runner build --delete-conflicting-outputs` after changing annotated providers or Freezed models.
+- Use `dart run build_runner build --delete-conflicting-outputs` after changing annotated providers, Freezed models, or typed routes in `lib/core/app/router/app_routes_data.dart`.
 - Keep feature logic inside `application/` and `domain/`, not inside screens.
 - Prefer repository abstractions over direct platform or API calls from widgets.
 - Shared reusable widgets belong in `lib/core/ui/widgets`.

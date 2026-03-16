@@ -15,7 +15,7 @@ const subtitleSourcesProvider = SubtitleSourcesFamily._();
 final class SubtitleSourcesProvider
     extends
         $FunctionalProvider<
-          AsyncValue<List<SubtitleSource>>,
+          rp.AsyncValue<List<SubtitleSource>>,
           List<SubtitleSource>,
           FutureOr<List<SubtitleSource>>
         >
