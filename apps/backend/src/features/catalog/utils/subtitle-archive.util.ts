@@ -40,7 +40,42 @@ export const unzipToEntries = (
   const maxTotalUncompressedBytes =
     options?.maxTotalUncompressedBytes ?? 10 * 1024 * 1024;
 
-  const unzipped = unzipSync(new Uint8Array(archiveBytes));
+  if (archiveBytes.length > maxTotalUncompressedBytes) {
+    throw new Error('Zip archive exceeds the maximum allowed compressed size.');
+  }
+
+  let expectedTotalBytes = 0;
+  let acceptedFiles = 0;
+  const unzipped = unzipSync(new Uint8Array(archiveBytes), {
+    filter: (file) => {
+      if (acceptedFiles >= maxFiles) {
+        return false;
+      }
+
+      const originalSize =
+        Number.isFinite(file.originalSize) && (file.originalSize ?? 0) > 0
+          ? (file.originalSize as number)
+          : Number.isFinite(file.size) && (file.size ?? 0) > 0
+            ? (file.size as number)
+            : 0;
+
+      if (originalSize > maxTotalUncompressedBytes) {
+        throw new Error(
+          'Zip archive exceeds the maximum allowed extracted size.',
+        );
+      }
+
+      if (expectedTotalBytes + originalSize > maxTotalUncompressedBytes) {
+        throw new Error(
+          'Zip archive exceeds the maximum allowed extracted size.',
+        );
+      }
+
+      expectedTotalBytes += originalSize;
+      acceptedFiles += 1;
+      return true;
+    },
+  });
   const entries: ArchiveEntry[] = [];
   let totalBytes = 0;
 

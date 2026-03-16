@@ -16,6 +16,8 @@ const translationPrefixes: Record<AppLanguage, string> = {
   ko: '한국어 버전: ',
   hi: 'हिंदी संस्करण: ',
   tr: 'Turkce surum: ',
+  fa: 'Persian version: ',
+  zh: 'Chinese version: ',
 };
 
 @Injectable()

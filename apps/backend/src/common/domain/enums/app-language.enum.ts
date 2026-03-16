@@ -9,6 +9,8 @@ export enum AppLanguage {
   Korean = 'ko',
   Hindi = 'hi',
   Turkish = 'tr',
+  Persian = 'fa',
+  Chinese = 'zh',
 }
 
 export const supportedLanguages = Object.values(AppLanguage);

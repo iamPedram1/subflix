@@ -18,6 +18,8 @@ enum AppLanguage {
   ko
   hi
   tr
+  fa
+  zh
 }
 
 enum SubtitleFormat {

@@ -10,6 +10,7 @@ import {
 import { fetchWithTimeout } from 'features/catalog/utils/provider-fetch.util';
 import {
   assertLooksLikeBinarySubtitleResponse,
+  assertAllowedDownloadUrl,
   assertNotHtmlPayload,
   readDownloadFilename,
   readResponseBuffer,
@@ -99,6 +100,7 @@ export class SubdlSubtitleFileProvider implements CatalogSubtitleFileProvider {
     if (!downloadUrl) {
       throw new Error('SubDL download link was not found.');
     }
+    assertAllowedDownloadUrl(downloadUrl, pageUrl);
 
     const downloadResponse = await fetchWithTimeout(downloadUrl.toString(), {
       timeoutMs,
@@ -112,6 +114,7 @@ export class SubdlSubtitleFileProvider implements CatalogSubtitleFileProvider {
         `SubDL download request failed with status ${downloadResponse.status}.`,
       );
     }
+    assertAllowedDownloadUrl(new URL(downloadResponse.url), pageUrl);
 
     await assertLooksLikeBinarySubtitleResponse(downloadResponse);
 

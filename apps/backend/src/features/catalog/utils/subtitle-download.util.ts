@@ -82,3 +82,33 @@ export const assertNotHtmlPayload = (bytes: Buffer): void => {
     throw new Error('Provider returned HTML instead of a subtitle download.');
   }
 };
+
+const normalizeHost = (host: string): string => host.trim().toLowerCase();
+
+const getBaseDomain = (host: string): string =>
+  normalizeHost(host).replace(/^www\./, '');
+
+const isAllowedDownloadHost = (downloadHost: string, baseHost: string): boolean => {
+  const normalizedDownloadHost = normalizeHost(downloadHost);
+  const normalizedBaseHost = normalizeHost(baseHost);
+  const baseDomain = getBaseDomain(normalizedBaseHost);
+
+  return (
+    normalizedDownloadHost === normalizedBaseHost ||
+    normalizedDownloadHost === baseDomain ||
+    normalizedDownloadHost.endsWith(`.${baseDomain}`)
+  );
+};
+
+export const assertAllowedDownloadUrl = (
+  downloadUrl: URL,
+  pageUrl: URL,
+): void => {
+  if (downloadUrl.protocol !== 'https:') {
+    throw new Error('Subtitle download URL must use HTTPS.');
+  }
+
+  if (!isAllowedDownloadHost(downloadUrl.hostname, pageUrl.hostname)) {
+    throw new Error('Subtitle download URL points to an untrusted host.');
+  }
+};

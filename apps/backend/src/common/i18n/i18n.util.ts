@@ -11,12 +11,16 @@ import type {
 } from 'common/i18n/i18n.types';
 import { AR_MESSAGES } from 'common/i18n/messages/ar.messages';
 import { EN_MESSAGES } from 'common/i18n/messages/en.messages';
+import { FA_MESSAGES } from 'common/i18n/messages/fa.messages';
 import { FR_MESSAGES } from 'common/i18n/messages/fr.messages';
+import { ZH_MESSAGES } from 'common/i18n/messages/zh.messages';
 
 const MESSAGE_CATALOGS: Partial<Record<SupportedLocale, I18nMessageCatalog>> = {
   [AppLanguage.English]: EN_MESSAGES,
   [AppLanguage.French]: FR_MESSAGES,
   [AppLanguage.Arabic]: AR_MESSAGES,
+  [AppLanguage.Persian]: FA_MESSAGES,
+  [AppLanguage.Chinese]: ZH_MESSAGES,
 };
 
 const normalizeLocaleCandidate = (value: string): string => {

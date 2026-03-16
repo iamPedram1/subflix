@@ -10,6 +10,7 @@ import {
 import { fetchWithTimeout } from 'features/catalog/utils/provider-fetch.util';
 import {
   assertLooksLikeBinarySubtitleResponse,
+  assertAllowedDownloadUrl,
   assertNotHtmlPayload,
   readDownloadFilename,
   readResponseBuffer,
@@ -76,6 +77,7 @@ export class TvSubsSubtitleFileProvider implements CatalogSubtitleFileProvider {
     if (!downloadUrl) {
       throw new Error('TVSubs download link was not found.');
     }
+    assertAllowedDownloadUrl(downloadUrl, pageUrl);
 
     const downloadResponse = await fetchWithTimeout(downloadUrl.toString(), {
       timeoutMs,
@@ -89,6 +91,7 @@ export class TvSubsSubtitleFileProvider implements CatalogSubtitleFileProvider {
         `TVSubs download request failed with status ${downloadResponse.status}.`,
       );
     }
+    assertAllowedDownloadUrl(new URL(downloadResponse.url), pageUrl);
 
     await assertLooksLikeBinarySubtitleResponse(downloadResponse);
 
