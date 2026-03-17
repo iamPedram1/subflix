@@ -71,14 +71,14 @@ describe('TranslationJobRecoveryService', () => {
 
       const result = await service.recoverStalledJobs(T0);
 
-      expect(result).toEqual({ requeued: 0, failed: 0 });
+      expect(result).toEqual({ requeued: 0, failed: 0, scanned: 0 });
       expect(repo.findStalledJobs).not.toHaveBeenCalled();
     });
 
     it('returns zeros when no stalled jobs exist', async () => {
       const service = createService();
       const result = await service.recoverStalledJobs(T0);
-      expect(result).toEqual({ requeued: 0, failed: 0 });
+      expect(result).toEqual({ requeued: 0, failed: 0, scanned: 0 });
     });
 
     it('requeues a stalled job below maxAttempts', async () => {
@@ -143,6 +143,7 @@ describe('TranslationJobRecoveryService', () => {
 
       expect(result.requeued).toBe(1);
       expect(result.failed).toBe(1);
+      expect(result.scanned).toBe(2);
       expect(runner.schedule).toHaveBeenCalledTimes(1);
       expect(runner.schedule).toHaveBeenCalledWith('job-1');
     });

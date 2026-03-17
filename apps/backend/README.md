@@ -269,6 +269,33 @@ pnpm format
 - Catalog search is backed by TMDb when configured, and subtitle source lookup now runs through swappable SubDL + scraper provider adapters behind the catalog feature.
 - Export generation happens on the backend, not in the client.
 
+## Stalled job recovery
+
+Translation jobs that get stuck in the `translating` state (e.g. due to a process crash mid-flight) are automatically recovered on a schedule.
+
+### How it works
+
+- On application startup, a recovery pass runs immediately if `TRANSLATION_JOB_STARTUP_RECOVERY_ENABLED=true`.
+- A periodic recovery interval fires every `TRANSLATION_JOB_RECOVERY_INTERVAL_MS` milliseconds (default: 60 seconds).
+- A job is considered stalled when its `updatedAt` has not advanced for longer than `TRANSLATION_JOB_STALE_AFTER_MS` (default: 5 minutes). The runner heartbeats `updatedAt` via every progress update, so this doubles as an activity signal.
+- Recovery policy per stalled job:
+  - `attemptCount < TRANSLATION_JOB_MAX_ATTEMPTS` → requeue (status: `queued`, `recoveredFromStall: true` in metadata)
+  - `attemptCount >= TRANSLATION_JOB_MAX_ATTEMPTS` → permanently fail with reason `stall_recovery_exhausted`
+
+### Recovery config
+
+| Variable | Default | Description |
+|---|---|---|
+| `TRANSLATION_JOB_RECOVERY_ENABLED` | `true` | Master switch. Set to `false` to disable all recovery. |
+| `TRANSLATION_JOB_RECOVERY_INTERVAL_MS` | `60000` | How often the periodic recovery cycle runs (ms). |
+| `TRANSLATION_JOB_STARTUP_RECOVERY_ENABLED` | `true` | Whether to run a recovery pass on application startup. |
+| `TRANSLATION_JOB_STALE_AFTER_MS` | `300000` | How long a job must be inactive to be considered stalled (ms). |
+| `TRANSLATION_JOB_MAX_ATTEMPTS` | `3` | Maximum stall-recovery attempts before a job is permanently failed. |
+
+### Single-instance limitation
+
+The recovery scheduler runs in-process using `setInterval`. It is safe for single-instance deployments. If you run multiple instances behind a load balancer, concurrent recovery cycles are possible. The repository's atomic `updateMany(status: translating)` pre-check prevents double-recovery of the same job (concurrent attempts just silently skip), but for true leader-election behavior you would need a database advisory lock or an external coordination mechanism.
+
 ## Current limitations
 
 - Device-scoped data is still owned by `x-device-id`; authenticated user ownership is not wired into those flows yet.
@@ -276,3 +303,4 @@ pnpm format
 - Translation execution is still mocked behind its provider boundary.
 - No Redis/BullMQ worker pipeline yet. Jobs are run in-process to keep V1 simple.
 - DB-backed tests require a reachable PostgreSQL database.
+- Stalled job recovery uses in-process scheduling, not distributed locks (see above).

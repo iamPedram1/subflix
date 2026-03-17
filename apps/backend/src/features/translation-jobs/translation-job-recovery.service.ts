@@ -45,13 +45,13 @@ export class TranslationJobRecoveryService {
    */
   async recoverStalledJobs(
     now?: Date,
-  ): Promise<{ requeued: number; failed: number }> {
+  ): Promise<{ requeued: number; failed: number; scanned: number }> {
     const recoveryEnabled = this.configService.get<boolean>(
       'translationJobs.recoveryEnabled',
     );
 
     if (!recoveryEnabled) {
-      return { requeued: 0, failed: 0 };
+      return { requeued: 0, failed: 0, scanned: 0 };
     }
 
     const staleAfterMs = this.configService.get<number>(
@@ -122,6 +122,6 @@ export class TranslationJobRecoveryService {
       }
     }
 
-    return { requeued, failed };
+    return { requeued, failed, scanned: stalledJobs.length };
   }
 }

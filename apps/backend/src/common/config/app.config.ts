@@ -139,6 +139,12 @@ export const translationJobsConfig = registerAs('translationJobs', () => ({
   ),
   maxAttempts: parseNumber(process.env.TRANSLATION_JOB_MAX_ATTEMPTS, 3),
   recoveryEnabled: process.env.TRANSLATION_JOB_RECOVERY_ENABLED !== 'false',
+  recoveryIntervalMs: parseNumber(
+    process.env.TRANSLATION_JOB_RECOVERY_INTERVAL_MS,
+    60_000, // 1 minute
+  ),
+  startupRecoveryEnabled:
+    process.env.TRANSLATION_JOB_STARTUP_RECOVERY_ENABLED !== 'false',
 }));
 
 export const firebaseConfig = registerAs('firebase', () => ({
