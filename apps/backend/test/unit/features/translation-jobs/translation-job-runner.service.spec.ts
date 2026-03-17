@@ -12,6 +12,7 @@ import { SubtitleQualityEvaluationService } from 'features/catalog/subtitle-qual
 import { SubtitleTimingAlignmentService } from 'features/catalog/subtitle-timing-alignment.service';
 import { SubtitlesRepository } from 'features/subtitles/subtitles.repository';
 import { TranslationProviderPort } from 'features/translation-jobs/ports/translation-provider.port';
+import { TranslationJobExecutionLimiterService } from 'features/translation-jobs/translation-job-execution-limiter.service';
 import { SubtitleAcquisitionStrategyService } from 'features/translation-jobs/subtitle-acquisition-strategy.service';
 import { TranslationJobRunnerService } from 'features/translation-jobs/translation-job-runner.service';
 import { TranslationJobsRepository } from 'features/translation-jobs/translation-jobs.repository';
@@ -160,6 +161,20 @@ const makeTranslationProvider = (
     ...overrides,
   }) as unknown as TranslationProviderPort;
 
+const makeExecutionLimiter = (
+  overrides: Partial<{
+    tryAcquireSlot: ReturnType<typeof vi.fn>;
+    releaseSlot: ReturnType<typeof vi.fn>;
+    getMetrics: ReturnType<typeof vi.fn>;
+  }> = {},
+): TranslationJobExecutionLimiterService =>
+  ({
+    tryAcquireSlot: vi.fn().mockReturnValue(true),
+    releaseSlot: vi.fn(),
+    getMetrics: vi.fn().mockReturnValue({ activeCount: 0, maxConcurrency: 3 }),
+    ...overrides,
+  }) as unknown as TranslationJobExecutionLimiterService;
+
 // ---------------------------------------------------------------------------
 // Service builder
 // ---------------------------------------------------------------------------
@@ -173,6 +188,7 @@ const buildRunner = ({
   acquisitionStrategyService = makeAcquisitionStrategyService(),
   reuseService = makeReuseService(),
   translationProvider = makeTranslationProvider(),
+  executionLimiter = makeExecutionLimiter(),
 }: Partial<{
   jobsRepository: TranslationJobsRepository;
   subtitlesRepository: SubtitlesRepository;
@@ -182,6 +198,7 @@ const buildRunner = ({
   acquisitionStrategyService: SubtitleAcquisitionStrategyService;
   reuseService: TranslationReuseService;
   translationProvider: TranslationProviderPort;
+  executionLimiter: TranslationJobExecutionLimiterService;
 }> = {}): TranslationJobRunnerService =>
   new TranslationJobRunnerService(
     jobsRepository,
@@ -192,6 +209,7 @@ const buildRunner = ({
     acquisitionStrategyService,
     reuseService,
     translationProvider,
+    executionLimiter,
   );
 
 // ---------------------------------------------------------------------------
@@ -538,5 +556,126 @@ describe('TranslationJobRunnerService', () => {
         }),
       }),
     );
+  });
+
+  describe('execution concurrency control', () => {
+    it('defers a job when the concurrency limit is full', async () => {
+      const jobsRepository = makeJobsRepository();
+      const executionLimiter = makeExecutionLimiter({
+        tryAcquireSlot: vi.fn().mockReturnValue(false),
+      });
+      const service = buildRunner({ jobsRepository, executionLimiter });
+
+      await service.run('job-1');
+
+      expect(jobsRepository.claimQueuedJobForRunner).not.toHaveBeenCalled();
+    });
+
+    it('acquires a slot before claiming the job from the database', async () => {
+      const claimMock = vi.fn().mockResolvedValue(null);
+      const jobsRepository = makeJobsRepository({
+        claimQueuedJobForRunner: claimMock,
+      });
+      const acquireMock = vi.fn().mockReturnValue(true);
+      const executionLimiter = makeExecutionLimiter({
+        tryAcquireSlot: acquireMock,
+      });
+      const service = buildRunner({ jobsRepository, executionLimiter });
+
+      await service.run('job-1');
+
+      const acquireOrder = acquireMock.mock.invocationCallOrder[0];
+      const claimOrder = claimMock.mock.invocationCallOrder[0];
+      expect(acquireOrder).toBeLessThan(claimOrder);
+    });
+
+    it('releases the slot after successful execution', async () => {
+      const jobsRepository = makeJobsRepository();
+      const releaseMock = vi.fn();
+      const executionLimiter = makeExecutionLimiter({ releaseSlot: releaseMock });
+      const service = buildRunner({ jobsRepository, executionLimiter });
+
+      await service.run('job-1');
+
+      expect(releaseMock).toHaveBeenCalledWith('job-1');
+    });
+
+    it('releases the slot when execution throws', async () => {
+      vi.useFakeTimers();
+      vi.spyOn(Logger.prototype, 'error').mockImplementation(() => undefined);
+
+      const jobsRepository = makeJobsRepository({
+        claimQueuedJobForRunner: vi.fn().mockResolvedValue(createRunnerJob()),
+      });
+      const subtitlesRepository = makeSubtitlesRepository({
+        listOwnedParsedFileCues: vi.fn().mockResolvedValue([
+          { cueIndex: 1, startMs: 1_000, endMs: 3_500, text: 'Hello.' },
+        ]),
+      });
+      const translationProvider = makeTranslationProvider({
+        translate: vi.fn().mockRejectedValue(new Error('Provider exploded.')),
+      });
+      const releaseMock = vi.fn();
+      const executionLimiter = makeExecutionLimiter({ releaseSlot: releaseMock });
+
+      const service = buildRunner({
+        jobsRepository,
+        subtitlesRepository,
+        translationProvider,
+        executionLimiter,
+      });
+
+      const runPromise = service.run('job-1');
+      await vi.runAllTimersAsync();
+      await runPromise;
+
+      expect(releaseMock).toHaveBeenCalledWith('job-1');
+    });
+
+    it('does not add the same job to the pending queue twice', async () => {
+      const jobsRepository = makeJobsRepository();
+      const executionLimiter = makeExecutionLimiter({
+        tryAcquireSlot: vi.fn().mockReturnValue(false),
+      });
+      const service = buildRunner({ jobsRepository, executionLimiter });
+
+      await service.run('job-1');
+      await service.run('job-1');
+
+      // claimQueuedJobForRunner should never be called — job stays deferred
+      expect(jobsRepository.claimQueuedJobForRunner).not.toHaveBeenCalled();
+    });
+
+    it('dispatches the next deferred job after the current job finishes', async () => {
+      vi.useFakeTimers();
+
+      let acquireCallCount = 0;
+      const executionLimiter = makeExecutionLimiter({
+        tryAcquireSlot: vi.fn().mockImplementation(() => {
+          acquireCallCount++;
+          // First call (job-1): capacity full — defer
+          // Second call (job-2): slot available — run
+          // Third call (job-1 re-dispatched): slot available
+          return acquireCallCount !== 1;
+        }),
+        releaseSlot: vi.fn(),
+      });
+
+      const jobsRepository = makeJobsRepository({
+        claimQueuedJobForRunner: vi.fn().mockResolvedValue(null),
+      });
+
+      const service = buildRunner({ jobsRepository, executionLimiter });
+      const scheduleSpy = vi.spyOn(service, 'schedule');
+
+      // job-1 is deferred (capacity full on first acquireSlot call)
+      await service.run('job-1');
+      expect(scheduleSpy).not.toHaveBeenCalled();
+
+      // job-2 runs (slot available), and in its finally it dispatches job-1
+      await service.run('job-2');
+
+      expect(scheduleSpy).toHaveBeenCalledWith('job-1');
+    });
   });
 });

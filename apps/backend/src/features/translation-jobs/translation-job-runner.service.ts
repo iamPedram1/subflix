@@ -21,6 +21,7 @@ import {
   TRANSLATION_PROVIDER_PORT,
   TranslationProviderPort,
 } from 'features/translation-jobs/ports/translation-provider.port';
+import { TranslationJobExecutionLimiterService } from 'features/translation-jobs/translation-job-execution-limiter.service';
 import { TranslationJobsRepository } from 'features/translation-jobs/translation-jobs.repository';
 import { SubtitleAcquisitionStrategyService } from 'features/translation-jobs/subtitle-acquisition-strategy.service';
 import { SubtitleAcquisitionDecision } from 'features/translation-jobs/models/subtitle-acquisition-decision.model';
@@ -71,6 +72,14 @@ export class TranslationJobRunnerService {
   private readonly scheduledJobIds = new Set<string>();
   private readonly activeJobIds = new Set<string>();
 
+  /**
+   * Jobs that were deferred because the concurrency limit was full when they
+   * were dispatched. The runner pops from this FIFO queue each time a slot is
+   * released, so deferred jobs are picked up as soon as capacity opens.
+   */
+  private readonly pendingJobIds: string[] = [];
+  private readonly pendingSet = new Set<string>();
+
   constructor(
     private readonly translationJobsRepository: TranslationJobsRepository,
     private readonly subtitlesRepository: SubtitlesRepository,
@@ -81,6 +90,7 @@ export class TranslationJobRunnerService {
     private readonly translationReuseService: TranslationReuseService,
     @Inject(TRANSLATION_PROVIDER_PORT)
     private readonly translationProvider: TranslationProviderPort,
+    private readonly executionLimiter: TranslationJobExecutionLimiterService,
   ) {}
 
   /** Schedules a persisted job to run after the request lifecycle completes. */
@@ -99,6 +109,18 @@ export class TranslationJobRunnerService {
   /** Processes a single translation job from queued state to completion or failure. */
   async run(jobId: string): Promise<void> {
     if (this.activeJobIds.has(jobId)) {
+      return;
+    }
+
+    if (!this.executionLimiter.tryAcquireSlot(jobId)) {
+      if (!this.pendingSet.has(jobId)) {
+        this.pendingJobIds.push(jobId);
+        this.pendingSet.add(jobId);
+        this.log.info('translation.execution.deferred', {
+          jobId,
+          pendingCount: this.pendingJobIds.length,
+        });
+      }
       return;
     }
 
@@ -215,6 +237,21 @@ export class TranslationJobRunnerService {
       }
     } finally {
       this.activeJobIds.delete(jobId);
+      this.executionLimiter.releaseSlot(jobId);
+      this.dispatchNextPending();
+    }
+  }
+
+  /**
+   * Pops the oldest deferred job from the pending queue and schedules it now
+   * that a concurrency slot has opened. This ensures jobs deferred due to a
+   * full concurrency limit are picked up as soon as capacity is available.
+   */
+  private dispatchNextPending(): void {
+    const nextId = this.pendingJobIds.shift();
+    if (nextId !== undefined) {
+      this.pendingSet.delete(nextId);
+      this.schedule(nextId);
     }
   }
 

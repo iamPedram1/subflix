@@ -145,6 +145,10 @@ export const translationJobsConfig = registerAs('translationJobs', () => ({
   ),
   startupRecoveryEnabled:
     process.env.TRANSLATION_JOB_STARTUP_RECOVERY_ENABLED !== 'false',
+  maxConcurrency: parseNumber(
+    process.env.TRANSLATION_JOB_MAX_CONCURRENCY,
+    3, // 3 concurrent jobs per process
+  ),
 }));
 
 export const firebaseConfig = registerAs('firebase', () => ({

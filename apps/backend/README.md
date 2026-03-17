@@ -296,6 +296,33 @@ Translation jobs that get stuck in the `translating` state (e.g. due to a proces
 
 The recovery scheduler runs in-process using `setInterval`. It is safe for single-instance deployments. If you run multiple instances behind a load balancer, concurrent recovery cycles are possible. The repository's atomic `updateMany(status: translating)` pre-check prevents double-recovery of the same job (concurrent attempts just silently skip), but for true leader-election behavior you would need a database advisory lock or an external coordination mechanism.
 
+## Execution concurrency control
+
+The runner enforces a per-process ceiling on how many translation jobs can execute at the same time. This keeps AI/provider usage predictable and prevents the process from being overwhelmed under load.
+
+### How it works
+
+- Before a job is claimed from the database, the runner acquires an execution slot from `TranslationJobExecutionLimiterService`.
+- If the concurrency limit is already reached, the job is added to an in-memory FIFO pending queue and the current dispatch is skipped. The job remains in `queued` status in the database — nothing is lost.
+- When a running job completes or fails, its slot is released and the runner immediately dispatches the oldest job from the pending queue.
+- Slot release always happens in a `finally` block, so slots are never leaked even when execution throws.
+
+### Concurrency config
+
+| Variable | Default | Description |
+|---|---|---|
+| `TRANSLATION_JOB_MAX_CONCURRENCY` | `3` | Maximum number of translation jobs that may execute simultaneously per process. |
+
+### Single-instance limitation
+
+The concurrency limit is in-memory and per-process. Running multiple instances behind a load balancer means each process enforces its own budget independently — global concurrency across instances is not bounded by this mechanism. The pending queue is also in-process: if the process restarts with deferred jobs in the queue, those jobs remain `queued` in the database and will be dispatched on the next trigger.
+
+### Interaction with stalled job recovery
+
+The concurrency limit and the stalled-job recovery system work together cleanly:
+- Recovery requeues stalled jobs (status `translating` → `queued`) and calls `schedule()` on them, which routes through the same concurrency-limited dispatch path.
+- If the process is at capacity when a recovered job is rescheduled, it is deferred to the pending queue like any other job.
+
 ## Current limitations
 
 - Device-scoped data is still owned by `x-device-id`; authenticated user ownership is not wired into those flows yet.
