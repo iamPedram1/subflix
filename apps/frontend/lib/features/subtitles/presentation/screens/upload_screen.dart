@@ -6,12 +6,10 @@ import 'package:subflix/core/app/router/app_routes.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
-import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
-import 'package:subflix/core/ui/widgets/section_header.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
 import 'package:subflix/features/subtitles/application/upload_controller.dart';
 import 'package:subflix/features/subtitles/application/upload_state.dart';
@@ -23,156 +21,162 @@ class UploadScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final uploadState = ref.watch(uploadControllerProvider);
-    final uploadController = ref.read(uploadControllerProvider.notifier);
+    final controller = ref.read(uploadControllerProvider.notifier);
 
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.uploadSubtitleTitle)),
       body: AppBackground(
         child: SafeArea(
           child: ResponsiveCenter(
             child: ListView(
-              padding: AppInsets.page,
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 28),
               children: <Widget>[
-                SectionHeader(
-                  title: context.t.uploadIntroTitle,
-                  subtitle: context.t.uploadIntroSubtitle,
+                Row(
+                  children: <Widget>[
+                    IconButton(
+                      onPressed: () => context.go(AppRoutes.home),
+                      icon: const Icon(Icons.arrow_back_rounded),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 16),
-                AppSurfaceCard(
+                const SizedBox(height: 4),
+                Text(
+                  context.t.uploadSubtitleTitle,
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  context.t.uploadIntroSubtitle,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: AppColors.textSecondaryFor(context),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  padding: AppInsets.cardXL,
+                  decoration: BoxDecoration(
+                    gradient: AppColors.heroGradient,
+                    borderRadius: BorderRadius.circular(28),
+                  ),
                   child: Column(
-                    spacing: 16,
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Row(
-                        spacing: 12,
-                        children: <Widget>[
-                          Container(
-                            width: 52,
-                            height: 52,
-                            decoration: BoxDecoration(
-                              color: AppColors.emerald.withValues(alpha: 0.14),
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            alignment: Alignment.center,
-                            child: const Icon(
-                              Iconsax.documentUpload,
-                              color: AppColors.emerald,
-                            ),
-                          ),
-                          Expanded(
-                            child: Column(
-                              spacing: 4,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  context.t.uploadSupportedFormatsTitle,
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.titleMedium,
-                                ),
-                                Text(
-                                  context.t.uploadSupportedFormatsSubtitle,
-                                  style: Theme.of(context).textTheme.bodySmall
-                                      ?.copyWith(
-                                        color: AppColors.textSecondaryFor(
-                                          context,
-                                        ),
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                      Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.18),
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                        child: const Icon(
+                          Icons.upload_file_rounded,
+                          size: 40,
+                          color: Colors.white,
+                        ),
                       ),
-                      Row(
-                        spacing: 12,
-                        children: <Widget>[
-                          Expanded(
-                            child: AppGradientButton(
-                              label: uploadState.status == UploadStatus.picking
-                                  ? context.t.uploadOpeningPicker
-                                  : context.t.uploadChooseFileShort,
-                              icon: Iconsax.documentUpload,
-                              onPressed:
-                                  uploadState.status == UploadStatus.picking
-                                  ? null
-                                  : () => uploadController.pickFile(),
+                      const SizedBox(height: 20),
+                      Text(
+                        context.t.uploadIntroTitle,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.headlineSmall
+                            ?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
                             ),
-                          ),
-                          Expanded(
-                            child: OutlinedButton.icon(
-                              onPressed:
-                                  uploadState.status == UploadStatus.picking
-                                  ? null
-                                  : () => uploadController.loadDemoFile(),
-                              icon: const Icon(Iconsax.magicStar),
-                              label: Text(context.t.uploadUseDemoFile),
-                            ),
-                          ),
-                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        context.t.uploadSupportedFormatsSubtitle,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Colors.white.withValues(alpha: 0.78),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      AppGradientButton(
+                        label: uploadState.status == UploadStatus.picking
+                            ? context.t.uploadOpeningPicker
+                            : context.t.uploadChooseFileShort,
+                        icon: Icons.upload_file_rounded,
+                        gradient: const LinearGradient(
+                          colors: <Color>[Colors.white, Colors.white],
+                        ),
+                        iconColor: AppColors.primary,
+                        labelStyle: Theme.of(context).textTheme.labelLarge
+                            ?.copyWith(color: AppColors.primary),
+                        onPressed: uploadState.status == UploadStatus.picking
+                            ? null
+                            : () => controller.pickFile(),
+                        fullWidth: true,
+                      ),
+                      const SizedBox(height: 12),
+                      OutlinedButton.icon(
+                        onPressed: uploadState.status == UploadStatus.picking
+                            ? null
+                            : () => controller.loadDemoFile(),
+                        icon: const Icon(Icons.bolt_rounded),
+                        label: Text(context.t.uploadUseDemoFile),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 18),
+                const SizedBox(height: 16),
                 if (uploadState.status == UploadStatus.failed)
                   StatePanel(
-                    icon: Iconsax.warning2,
+                    icon: Icons.error_outline_rounded,
                     title: context.t.uploadFailedTitle,
                     message:
                         uploadState.errorMessage ??
                         context.t.uploadFailedFallback,
                     action: OutlinedButton.icon(
-                      onPressed: () => uploadController.pickFile(),
-                      icon: const Icon(Iconsax.refresh),
+                      onPressed: () => controller.pickFile(),
+                      icon: const Icon(Icons.refresh_rounded),
                       label: Text(context.t.tryAgain),
                     ),
                   ),
                 if (uploadState.file != null) ...<Widget>[
                   AppSurfaceCard(
                     child: Column(
-                      spacing: 14,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
                           context.t.uploadReadyTitle,
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
+                        const SizedBox(height: 10),
                         Text(
                           uploadState.file!.name,
-                          style: Theme.of(context).textTheme.bodyLarge
-                              ?.copyWith(
-                                color: AppColors.textSecondaryFor(context),
-                              ),
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
+                        const SizedBox(height: 12),
                         Wrap(
                           spacing: 8,
                           runSpacing: 8,
                           children: <Widget>[
-                            _MetaChip(label: uploadState.file!.format.label),
-                            _MetaChip(
+                            _Chip(label: uploadState.file!.format.label),
+                            _Chip(
                               label: context.t.uploadLineCount(
                                 uploadState.file!.lineCount,
                               ),
                             ),
-                            _MetaChip(label: context.t.uploadEnglishSource),
+                            _Chip(label: context.t.uploadEnglishSource),
                           ],
                         ),
+                        const SizedBox(height: 16),
                         AppGradientButton(
                           label: context.t.uploadContinueSetup,
-                          icon: Iconsax.arrowRight,
-                          mirrorIconInRtl: true,
+                          icon: Icons.arrow_forward_rounded,
                           onPressed: () => context.push(
                             AppRoutes.translateSetup,
                             extra: TranslationSetupArgs.upload(
                               file: uploadState.file!,
                             ),
                           ),
+                          fullWidth: true,
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 18),
                 ],
               ],
             ),
@@ -183,25 +187,23 @@ class UploadScreen extends ConsumerWidget {
   }
 }
 
-class _MetaChip extends StatelessWidget {
-  const _MetaChip({required this.label});
+class _Chip extends StatelessWidget {
+  const _Chip({required this.label});
 
   final String label;
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       decoration: BoxDecoration(
-        color: AppColors.surfaceMutedFor(context).withValues(alpha: 0.5),
-        borderRadius: BorderRadius.circular(999),
+        color: AppColors.surfaceMutedFor(context),
+        borderRadius: BorderRadius.circular(12),
       ),
-      child: Padding(
-        padding: AppInsets.chip,
-        child: Text(
-          label,
-          style: Theme.of(context).textTheme.labelMedium?.copyWith(
-            color: AppColors.textSecondaryFor(context),
-          ),
+      child: Text(
+        label,
+        style: Theme.of(context).textTheme.labelMedium?.copyWith(
+          color: AppColors.textSecondaryFor(context),
         ),
       ),
     );

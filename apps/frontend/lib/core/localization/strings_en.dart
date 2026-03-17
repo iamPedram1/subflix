@@ -135,6 +135,15 @@ const Map<String, String> kStringsEn = <String, String>{
   'historyEmptyMessage':
       'Your translated subtitle jobs will appear here after you complete a search or upload workflow.',
   'historyFailedTitle': 'Could not load history',
+  'historyCountLabel': '{count} translations',
+  'historyFilterAll': 'All',
+  'historyFilterMovies': 'Movies',
+  'historyFilterSeries': 'Series',
+  'historyFilterCompleted': 'Completed',
+  'historyFilterAiTranslated': 'AI translated',
+  'historyFilterFailed': 'Failed',
+  'historyFilterReused': 'Reused',
+  'historyFailedItemMessage': 'Translation failed. Tap to start again.',
   'homeRecentJobsTitle': 'Recent jobs',
   'homeRecentJobsSubtitle':
       'Reopen your latest subtitle sessions without starting over.',
@@ -184,6 +193,8 @@ const Map<String, String> kStringsEn = <String, String>{
   'settingsTitle': 'Settings',
   'settingsSubtitle':
       'Manage subtitle defaults, appearance, app information, and placeholder premium controls.',
+  'settingsProfileName': 'SubFlix User',
+  'settingsProfileTier': 'Premium member',
   'settingsLanguageLabel': 'Preferred target language',
   'settingsThemeLabel': 'Appearance',
   'themeSystem': 'System',
@@ -192,6 +203,10 @@ const Map<String, String> kStringsEn = <String, String>{
   'settingsPremiumTitle': 'Premium placeholder',
   'settingsPremiumSubtitle':
       'Later we can connect subscriptions, billing, and cloud project sync here.',
+  'settingsNotificationsTitle': 'Notifications',
+  'settingsNotificationsSubtitle': 'Manage notification preferences',
+  'settingsHelpCenterTitle': 'Help center',
+  'settingsContactTitle': 'Contact us',
   'settingsSupportTitle': 'Support placeholder',
   'settingsSupportSubtitle': 'Mock help and contact page',
   'settingsPrivacyTitle': 'Privacy policy',

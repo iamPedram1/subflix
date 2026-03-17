@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:subflix/core/localization/app_localizations.dart';
+import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
-import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
@@ -16,47 +16,70 @@ class LegalPlaceholderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final title = _title(context);
     final body = _body(context);
+
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
       body: AppBackground(
         child: SafeArea(
           child: ResponsiveCenter(
             child: ListView(
-              padding: AppInsets.card,
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 28),
               children: <Widget>[
-                AppSurfaceCard(
+                Row(
+                  children: <Widget>[
+                    IconButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      icon: const Icon(Icons.arrow_back_rounded),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Container(
+                  padding: AppInsets.cardXL,
+                  decoration: BoxDecoration(
+                    gradient: AppColors.heroGradient,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
                   child: Column(
-                    spacing: 16,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Row(
-                        spacing: 12,
-                        children: <Widget>[
-                          Container(
-                            width: 46,
-                            height: 46,
-                            decoration: BoxDecoration(
-                              color: const Color(
-                                0xFF5D8BFF,
-                              ).withValues(alpha: 0.14),
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            alignment: Alignment.center,
-                            child: const Icon(
-                              Iconsax.book,
-                              color: Color(0xFF5D8BFF),
-                            ),
-                          ),
-                          Expanded(
-                            child: Text(
-                              title,
-                              style: Theme.of(context).textTheme.headlineSmall,
-                            ),
-                          ),
-                        ],
+                      Container(
+                        width: 58,
+                        height: 58,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.18),
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        child: const Icon(
+                          Icons.gavel_rounded,
+                          color: Colors.white,
+                        ),
                       ),
-                      Text(body, style: Theme.of(context).textTheme.bodyLarge),
+                      const SizedBox(height: 18),
+                      Text(
+                        title,
+                        style: Theme.of(context).textTheme.headlineMedium
+                            ?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        context.t.legalPlaceholderBody,
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: Colors.white.withValues(alpha: 0.82),
+                        ),
+                      ),
                     ],
+                  ),
+                ),
+                const SizedBox(height: 18),
+                AppSurfaceCard(
+                  child: Text(
+                    body,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: AppColors.textSecondaryFor(context),
+                    ),
                   ),
                 ),
               ],

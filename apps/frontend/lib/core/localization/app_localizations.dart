@@ -233,6 +233,16 @@ class AppLocalizations {
   String get historyEmptyTitle => _t('historyEmptyTitle');
   String get historyEmptyMessage => _t('historyEmptyMessage');
   String get historyFailedTitle => _t('historyFailedTitle');
+  String historyCountLabel(int count) =>
+      _format('historyCountLabel', <String, String>{'count': '$count'});
+  String get historyFilterAll => _t('historyFilterAll');
+  String get historyFilterMovies => _t('historyFilterMovies');
+  String get historyFilterSeries => _t('historyFilterSeries');
+  String get historyFilterCompleted => _t('historyFilterCompleted');
+  String get historyFilterAiTranslated => _t('historyFilterAiTranslated');
+  String get historyFilterFailed => _t('historyFilterFailed');
+  String get historyFilterReused => _t('historyFilterReused');
+  String get historyFailedItemMessage => _t('historyFailedItemMessage');
   String get homeRecentJobsTitle => _t('homeRecentJobsTitle');
   String get homeRecentJobsSubtitle => _t('homeRecentJobsSubtitle');
   String get homeNoRecentTitle => _t('homeNoRecentTitle');
@@ -272,6 +282,8 @@ class AppLocalizations {
   String get heroStatMockValue => _t('heroStatMockValue');
   String get settingsTitle => _t('settingsTitle');
   String get settingsSubtitle => _t('settingsSubtitle');
+  String get settingsProfileName => _t('settingsProfileName');
+  String get settingsProfileTier => _t('settingsProfileTier');
   String get settingsLanguageLabel => _t('settingsLanguageLabel');
   String get settingsThemeLabel => _t('settingsThemeLabel');
   String get themeSystem => _t('themeSystem');
@@ -279,6 +291,11 @@ class AppLocalizations {
   String get themeLight => _t('themeLight');
   String get settingsPremiumTitle => _t('settingsPremiumTitle');
   String get settingsPremiumSubtitle => _t('settingsPremiumSubtitle');
+  String get settingsNotificationsTitle => _t('settingsNotificationsTitle');
+  String get settingsNotificationsSubtitle =>
+      _t('settingsNotificationsSubtitle');
+  String get settingsHelpCenterTitle => _t('settingsHelpCenterTitle');
+  String get settingsContactTitle => _t('settingsContactTitle');
   String get settingsSupportTitle => _t('settingsSupportTitle');
   String get settingsSupportSubtitle => _t('settingsSupportSubtitle');
   String get settingsPrivacyTitle => _t('settingsPrivacyTitle');
