@@ -120,6 +120,60 @@ describeIfDatabase('Translation jobs endpoints', () => {
   });
 
   // -------------------------------------------------------------------------
+  // Pagination contract
+  // -------------------------------------------------------------------------
+
+  it('returns 400 when limit exceeds the maximum of 100', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+      const headers = createDeviceHeaders('translation-pagination-limit-001');
+
+      await api
+        .get('/v1/translation-jobs?limit=101')
+        .set(headers)
+        .expect(400)
+        .expect(({ body }) => {
+          expect(body.code).toBe('http_error');
+        });
+    });
+  });
+
+  it('returns 400 when page is less than 1', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+      const headers = createDeviceHeaders('translation-pagination-page-001');
+
+      await api
+        .get('/v1/translation-jobs?page=0')
+        .set(headers)
+        .expect(400)
+        .expect(({ body }) => {
+          expect(body.code).toBe('http_error');
+        });
+    });
+  });
+
+  it('returns the full paginated response envelope on a list call', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+      const headers = createDeviceHeaders('translation-pagination-shape-001');
+
+      await api
+        .get('/v1/translation-jobs?page=1&limit=10')
+        .set(headers)
+        .expect(200)
+        .expect(({ body }) => {
+          expect(Array.isArray(body.items)).toBe(true);
+          expect(typeof body.total).toBe('number');
+          expect(body.page).toBe(1);
+          expect(body.limit).toBe(10);
+          expect(typeof body.totalPages).toBe('number');
+          expect(body.totalPages).toBeGreaterThanOrEqual(1);
+        });
+    });
+  });
+
+  // -------------------------------------------------------------------------
   // List jobs
   // -------------------------------------------------------------------------
 
