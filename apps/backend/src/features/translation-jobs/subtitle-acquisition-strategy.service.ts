@@ -1,6 +1,7 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { AppLanguage } from '@prisma/client';
 
+import { StructuredLogger } from 'common/utils/structured-logger';
 import { CatalogService } from 'features/catalog/catalog.service';
 import { SubtitleQualityEvaluationService } from 'features/catalog/subtitle-quality-evaluation.service';
 import { CatalogSubtitleSource } from 'features/catalog/models/catalog-subtitle-source.model';
@@ -12,7 +13,9 @@ const normalizeLang = (value: string): string => value.trim().toLowerCase();
 
 @Injectable()
 export class SubtitleAcquisitionStrategyService {
-  private readonly logger = new Logger(SubtitleAcquisitionStrategyService.name);
+  private readonly log = new StructuredLogger(
+    SubtitleAcquisitionStrategyService.name,
+  );
 
   constructor(
     private readonly catalogService: CatalogService,
@@ -29,9 +32,15 @@ export class SubtitleAcquisitionStrategyService {
   }): Promise<SubtitleAcquisitionDecision> {
     const requestedTargetLanguage = normalizeLang(params.targetLanguage);
 
+    this.log.info('subtitle.acquisition.start', {
+      mediaId: params.mediaId,
+      targetLanguage: requestedTargetLanguage,
+      fallbackSubtitleSourceId: params.fallbackSubtitleSourceId,
+    });
+
     const media = await this.catalogService.findById(params.mediaId);
     if (!media) {
-      return {
+      const decision: SubtitleAcquisitionDecision = {
         acquisitionMode: 'ai_translation',
         subtitleSourceIdToUse: params.fallbackSubtitleSourceId,
         selectedLanguageCode: 'en',
@@ -39,6 +48,15 @@ export class SubtitleAcquisitionStrategyService {
         reusedExistingSubtitle: false,
         reason: 'media_not_found',
       };
+
+      this.log.warn('subtitle.acquisition.decision', {
+        mediaId: params.mediaId,
+        mode: decision.acquisitionMode,
+        reason: decision.reason,
+        subtitleSourceIdToUse: decision.subtitleSourceIdToUse,
+      });
+
+      return decision;
     }
 
     let candidates: CatalogSubtitleSource[] = [];
@@ -60,14 +78,22 @@ export class SubtitleAcquisitionStrategyService {
       );
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Unknown error';
-      this.logger.warn(
-        `Target-language subtitle discovery failed for ${params.mediaId}: ${message}`,
-      );
+      this.log.warn('subtitle.acquisition.discovery.failed', {
+        mediaId: params.mediaId,
+        targetLanguage: requestedTargetLanguage,
+        message,
+      });
       candidates = [];
     }
 
+    this.log.info('subtitle.acquisition.candidates.found', {
+      mediaId: params.mediaId,
+      targetLanguage: requestedTargetLanguage,
+      count: candidates.length,
+    });
+
     if (candidates.length === 0) {
-      return {
+      const decision: SubtitleAcquisitionDecision = {
         acquisitionMode: 'ai_translation',
         subtitleSourceIdToUse: params.fallbackSubtitleSourceId,
         selectedLanguageCode: 'en',
@@ -75,6 +101,15 @@ export class SubtitleAcquisitionStrategyService {
         reusedExistingSubtitle: false,
         reason: 'no_target_subtitle_candidates',
       };
+
+      this.log.info('subtitle.acquisition.decision', {
+        mediaId: params.mediaId,
+        mode: decision.acquisitionMode,
+        reason: decision.reason,
+        subtitleSourceIdToUse: decision.subtitleSourceIdToUse,
+      });
+
+      return decision;
     }
 
     const candidatesToEvaluate = candidates.slice(0, 2);
@@ -100,7 +135,7 @@ export class SubtitleAcquisitionStrategyService {
 
         const policy = canReuseTargetLanguageSubtitle(evaluation);
         if (policy.allowed) {
-          return {
+          const decision: SubtitleAcquisitionDecision = {
             acquisitionMode: 'existing_target_subtitle',
             subtitleSourceIdToUse: candidate.id,
             selectedLanguageCode: requestedTargetLanguage,
@@ -116,17 +151,30 @@ export class SubtitleAcquisitionStrategyService {
             },
             cues,
           };
+
+          this.log.info('subtitle.acquisition.decision', {
+            mediaId: params.mediaId,
+            mode: decision.acquisitionMode,
+            reason: decision.reason,
+            subtitleSourceIdToUse: decision.subtitleSourceIdToUse,
+            confidenceScore: evaluation.confidenceScore,
+            confidenceLevel: evaluation.confidenceLevel,
+          });
+
+          return decision;
         }
       } catch (error) {
         const message =
           error instanceof Error ? error.message : 'Unknown error';
-        this.logger.warn(
-          `Target-language subtitle evaluation failed for ${candidate.id}: ${message}`,
-        );
+        this.log.warn('subtitle.acquisition.candidate.failed', {
+          subtitleSourceId: candidate.id,
+          mediaId: params.mediaId,
+          message,
+        });
       }
     }
 
-    return {
+    const decision: SubtitleAcquisitionDecision = {
       acquisitionMode: 'ai_translation',
       subtitleSourceIdToUse: params.fallbackSubtitleSourceId,
       selectedLanguageCode: 'en',
@@ -134,5 +182,14 @@ export class SubtitleAcquisitionStrategyService {
       reusedExistingSubtitle: false,
       reason: 'target_subtitle_rejected',
     };
+
+    this.log.info('subtitle.acquisition.decision', {
+      mediaId: params.mediaId,
+      mode: decision.acquisitionMode,
+      reason: decision.reason,
+      subtitleSourceIdToUse: decision.subtitleSourceIdToUse,
+    });
+
+    return decision;
   }
 }

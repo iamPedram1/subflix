@@ -1,4 +1,4 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import {
   TranslationJob,
   TranslationJobStatus,
@@ -6,6 +6,8 @@ import {
 } from '@prisma/client';
 
 import { delay } from 'common/utils/delay.util';
+import { StructuredLogger } from 'common/utils/structured-logger';
+import { timed } from 'common/utils/timed.util';
 import { SearchMediaType } from 'common/domain/enums/search-media-type.enum';
 import { CatalogService } from 'features/catalog/catalog.service';
 import { CatalogMediaDetails } from 'features/catalog/models/catalog-media-details.model';
@@ -59,7 +61,7 @@ type PersistedJobCue = Parameters<
  */
 @Injectable()
 export class TranslationJobRunnerService {
-  private readonly logger = new Logger(TranslationJobRunnerService.name);
+  private readonly log = new StructuredLogger(TranslationJobRunnerService.name);
   private readonly scheduledJobIds = new Set<string>();
   private readonly activeJobIds = new Set<string>();
 
@@ -95,6 +97,7 @@ export class TranslationJobRunnerService {
     }
 
     this.activeJobIds.add(jobId);
+    const startedAt = Date.now();
 
     try {
       const job =
@@ -103,9 +106,23 @@ export class TranslationJobRunnerService {
         return;
       }
 
+      this.log.info('translation.started', {
+        jobId,
+        sourceType: job.sourceType,
+        deviceId: job.clientDeviceId,
+        targetLanguage: job.targetLanguage,
+      });
+
       try {
         if (job.sourceType === TranslationSourceType.catalog) {
           await this.runCatalogJob(job);
+
+          this.log.info('translation.completed', {
+            jobId,
+            sourceType: job.sourceType,
+            durationMs: Date.now() - startedAt,
+          });
+
           return;
         }
 
@@ -117,10 +134,19 @@ export class TranslationJobRunnerService {
           progress: 0.56,
         });
 
-        const translatedLines = await this.translationProvider.translate({
-          title: job.title,
-          targetLanguage: job.targetLanguage,
-          cues: sourceCues,
+        const { result: translatedLines, durationMs: translationDurationMs } =
+          await timed(() =>
+            this.translationProvider.translate({
+              title: job.title,
+              targetLanguage: job.targetLanguage,
+              cues: sourceCues,
+            }),
+          );
+
+        this.log.info('translation.provider.completed', {
+          jobId,
+          cueCount: sourceCues.length,
+          durationMs: translationDurationMs,
         });
 
         await delay(220);
@@ -140,8 +166,23 @@ export class TranslationJobRunnerService {
           progress: 1,
           completedAt: new Date(),
         });
+
+        this.log.info('translation.completed', {
+          jobId,
+          sourceType: job.sourceType,
+          durationMs: Date.now() - startedAt,
+        });
       } catch (error) {
-        this.logger.error(error);
+        this.log.error('translation.failed', {
+          jobId,
+          sourceType: job.sourceType,
+          errorType:
+            error instanceof Error ? error.constructor.name : typeof error,
+          message:
+            error instanceof Error ? error.message : 'Translation failed.',
+          durationMs: Date.now() - startedAt,
+        });
+
         await this.markFailure(jobId, error);
       }
     } finally {
@@ -162,6 +203,15 @@ export class TranslationJobRunnerService {
         episodeNumber: references.episodeNumber,
         releaseHint: references.releaseHint,
       });
+
+    this.log.info('subtitle.acquisition.decision', {
+      jobId: job.id,
+      mediaId: references.mediaId,
+      mode: decision.acquisitionMode,
+      reason: decision.reason,
+      subtitleSourceIdToUse: decision.subtitleSourceIdToUse,
+      reusedExistingSubtitle: decision.reusedExistingSubtitle,
+    });
 
     if (decision.acquisitionMode === 'existing_target_subtitle') {
       await this.completeCatalogJobWithReuse(job, references, decision);
@@ -207,6 +257,15 @@ export class TranslationJobRunnerService {
       },
     );
 
+    this.log.info('subtitle.quality.evaluated', {
+      jobId: job.id,
+      subtitleSourceId: decision.subtitleSourceIdToUse,
+      confidenceScore: evaluation.confidenceScore,
+      confidenceLevel: evaluation.confidenceLevel,
+      warnings: evaluation.warnings,
+      blocked: evaluation.shouldBlockAutoUse,
+    });
+
     if (evaluation.shouldBlockAutoUse) {
       await this.persistCatalogAcquisitionResult(job, {
         cues,
@@ -225,6 +284,13 @@ export class TranslationJobRunnerService {
 
     const alignment =
       this.subtitleTimingAlignmentService.alignCatalogCues(cues);
+
+    this.log.info('subtitle.timing.aligned', {
+      jobId: job.id,
+      detectedOffsetMs: alignment.analysis.detectedOffsetMs,
+      appliedCorrection: alignment.analysis.appliedCorrection,
+      confidence: alignment.analysis.confidence,
+    });
 
     await this.persistCatalogAcquisitionResult(job, {
       cues: alignment.cues,
@@ -298,6 +364,15 @@ export class TranslationJobRunnerService {
       },
     );
 
+    this.log.info('subtitle.quality.evaluated', {
+      jobId: job.id,
+      subtitleSourceId: subtitleSourceIdToTranslate,
+      confidenceScore: evaluation.confidenceScore,
+      confidenceLevel: evaluation.confidenceLevel,
+      warnings: evaluation.warnings,
+      blocked: evaluation.shouldBlockAutoUse,
+    });
+
     if (evaluation.shouldBlockAutoUse) {
       await this.persistCatalogAcquisitionResult(job, {
         cues: loadedSourceCues,
@@ -314,6 +389,13 @@ export class TranslationJobRunnerService {
 
     const alignment =
       this.subtitleTimingAlignmentService.alignCatalogCues(loadedSourceCues);
+
+    this.log.info('subtitle.timing.aligned', {
+      jobId: job.id,
+      detectedOffsetMs: alignment.analysis.detectedOffsetMs,
+      appliedCorrection: alignment.analysis.appliedCorrection,
+      confidence: alignment.analysis.confidence,
+    });
 
     const reuseDecision =
       await this.translationReuseService.decideCatalogTranslationReuse({
@@ -382,10 +464,19 @@ export class TranslationJobRunnerService {
       progress: 0.56,
     });
 
-    const translatedLines = await this.translationProvider.translate({
-      title: job.title,
-      targetLanguage: job.targetLanguage,
-      cues: alignment.cues,
+    const { result: translatedLines, durationMs: translationDurationMs } =
+      await timed(() =>
+        this.translationProvider.translate({
+          title: job.title,
+          targetLanguage: job.targetLanguage,
+          cues: alignment.cues,
+        }),
+      );
+
+    this.log.info('translation.provider.completed', {
+      jobId: job.id,
+      cueCount: alignment.cues.length,
+      durationMs: translationDurationMs,
     });
 
     await delay(220);
@@ -421,13 +512,31 @@ export class TranslationJobRunnerService {
       });
 
     if (reusable.length > 0) {
+      this.log.info('subtitle.source.cues.reused', {
+        jobId: job.id,
+        mediaId: params.mediaId,
+        subtitleSourceId: params.subtitleSourceId,
+        cueCount: reusable.length,
+      });
       return reusable;
     }
 
-    return this.catalogService.getSubtitleCues(
-      params.mediaId,
-      params.subtitleSourceId,
+    const { result: cues, durationMs } = await timed(() =>
+      this.catalogService.getSubtitleCues(
+        params.mediaId,
+        params.subtitleSourceId,
+      ),
     );
+
+    this.log.info('subtitle.source.cues.downloaded', {
+      jobId: job.id,
+      mediaId: params.mediaId,
+      subtitleSourceId: params.subtitleSourceId,
+      cueCount: cues.length,
+      durationMs,
+    });
+
+    return cues;
   }
 
   /** Loads normalized cues from a previously parsed upload owned by the device. */

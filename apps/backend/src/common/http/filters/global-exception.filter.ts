@@ -4,6 +4,7 @@ import {
   ExceptionFilter,
   HttpException,
   HttpStatus,
+  Logger,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { MulterError } from 'multer';
@@ -19,6 +20,8 @@ import { REQUEST_ID_HEADER } from 'common/http/constants/request-context.constan
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
+  private readonly logger = new Logger(GlobalExceptionFilter.name);
+
   catch(exception: unknown, host: ArgumentsHost): void {
     const context = host.switchToHttp();
     const response = context.getResponse<Response>();
@@ -86,6 +89,20 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       });
       return;
     }
+
+    this.logger.error(
+      JSON.stringify({
+        event: 'error.internal',
+        errorType:
+          exception instanceof Error
+            ? exception.constructor.name
+            : typeof exception,
+        message:
+          exception instanceof Error ? exception.message : 'Unknown error',
+        requestId,
+        stack: exception instanceof Error ? exception.stack : undefined,
+      }),
+    );
 
     response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
       code: 'internal_error',

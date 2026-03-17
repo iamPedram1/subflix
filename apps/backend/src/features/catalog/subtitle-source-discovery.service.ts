@@ -1,4 +1,4 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 import { AppCacheService } from 'common/cache/app-cache.service';
@@ -7,6 +7,8 @@ import {
   ValidationDomainError,
 } from 'common/domain/errors/domain.error';
 import { SearchMediaType } from 'common/domain/enums/search-media-type.enum';
+import { StructuredLogger } from 'common/utils/structured-logger';
+import { timed } from 'common/utils/timed.util';
 
 import { GetSubtitleSourcesQueryDto } from 'features/catalog/dto/get-subtitle-sources-query.dto';
 import { CatalogMediaDetails } from 'features/catalog/models/catalog-media-details.model';
@@ -27,7 +29,9 @@ const MAX_PUBLIC_RESULTS = 20;
 
 @Injectable()
 export class SubtitleSourceDiscoveryService {
-  private readonly logger = new Logger(SubtitleSourceDiscoveryService.name);
+  private readonly log = new StructuredLogger(
+    SubtitleSourceDiscoveryService.name,
+  );
 
   constructor(
     private readonly cacheService: AppCacheService,
@@ -59,7 +63,24 @@ export class SubtitleSourceDiscoveryService {
     };
     const cacheKey = buildSubtitleSourceCacheKey(searchInput);
 
-    return this.cacheService.getOrSet(
+    this.log.info('subtitle.discovery.start', {
+      mediaId: media.id,
+      preferredLanguage: searchInput.preferredLanguage,
+    });
+
+    // Cheap in-memory peek — used only to determine cache state for the log.
+    // Single-process Node.js means there is no TOCTOU risk between this and getOrSet.
+    const isCacheHit =
+      this.cacheService.get<CatalogSubtitleSource[]>(cacheKey) !== undefined;
+
+    this.log.info(
+      isCacheHit
+        ? 'subtitle.discovery.cache.hit'
+        : 'subtitle.discovery.cache.miss',
+      { mediaId: media.id },
+    );
+
+    const results = await this.cacheService.getOrSet(
       cacheKey,
       async () => {
         const [primaryProvider, ...fallbackProviders] = this.providers;
@@ -72,13 +93,26 @@ export class SubtitleSourceDiscoveryService {
         const collectedResults: SubtitleSourceCandidate[] = [];
 
         try {
-          const primaryResults =
-            await primaryProvider.searchSources(searchInput);
+          const { result: primaryResults, durationMs } = await timed(() =>
+            primaryProvider.searchSources(searchInput),
+          );
           successfulProviderResponses += 1;
+
+          this.log.info('subtitle.discovery.provider.success', {
+            provider: primaryProvider.name,
+            mediaId: media.id,
+            resultCount: primaryResults.length,
+            durationMs,
+          });
 
           if (primaryResults.length > 0) {
             collectedResults.push(...primaryResults);
           } else {
+            this.log.info('subtitle.discovery.fallback', {
+              mediaId: media.id,
+              reason: 'primary_returned_empty',
+            });
+
             const fallbackResults = await this.collectFallbackResults(
               fallbackProviders,
               searchInput,
@@ -89,7 +123,18 @@ export class SubtitleSourceDiscoveryService {
           }
         } catch (error) {
           meaningfulFailures += 1;
-          this.logProviderFailure(primaryProvider.name, media.id, error);
+
+          this.log.warn('subtitle.discovery.provider.failure', {
+            provider: primaryProvider.name,
+            mediaId: media.id,
+            message:
+              error instanceof Error ? error.message : 'Unknown provider error',
+          });
+
+          this.log.info('subtitle.discovery.fallback', {
+            mediaId: media.id,
+            reason: 'primary_failed',
+          });
 
           const fallbackResults = await this.collectFallbackResults(
             fallbackProviders,
@@ -127,6 +172,13 @@ export class SubtitleSourceDiscoveryService {
           6 * 60 * 60_000,
       },
     );
+
+    this.log.info('subtitle.discovery.complete', {
+      mediaId: media.id,
+      resultCount: results.length,
+    });
+
+    return results;
   }
 
   private async collectFallbackResults(
@@ -139,12 +191,27 @@ export class SubtitleSourceDiscoveryService {
 
     for (const provider of providers) {
       try {
-        const providerResults = await provider.searchSources(searchInput);
+        const { result: providerResults, durationMs } = await timed(() =>
+          provider.searchSources(searchInput),
+        );
         successfulResponses += 1;
         results.push(...providerResults);
+
+        this.log.info('subtitle.discovery.provider.success', {
+          provider: provider.name,
+          mediaId: searchInput.mediaId,
+          resultCount: providerResults.length,
+          durationMs,
+        });
       } catch (error) {
         meaningfulFailures += 1;
-        this.logProviderFailure(provider.name, searchInput.mediaId, error);
+
+        this.log.warn('subtitle.discovery.provider.failure', {
+          provider: provider.name,
+          mediaId: searchInput.mediaId,
+          message:
+            error instanceof Error ? error.message : 'Unknown provider error',
+        });
       }
     }
 
@@ -171,17 +238,5 @@ export class SubtitleSourceDiscoveryService {
         },
       );
     }
-  }
-
-  private logProviderFailure(
-    providerName: string,
-    mediaId: string,
-    error: unknown,
-  ): void {
-    const message =
-      error instanceof Error ? error.message : 'Unknown provider failure.';
-    this.logger.warn(
-      `Subtitle source provider ${providerName} failed for ${mediaId}: ${message}`,
-    );
   }
 }

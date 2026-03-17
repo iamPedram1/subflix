@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { AppLanguage } from '@prisma/client';
 
+import { StructuredLogger } from 'common/utils/structured-logger';
 import { SubtitleCue } from 'features/subtitles/models/subtitle-cue.model';
 import { TranslationJobsRepository } from 'features/translation-jobs/translation-jobs.repository';
 import { TranslationReuseDecision } from 'features/translation-jobs/models/translation-reuse-decision.model';
@@ -11,6 +12,8 @@ import {
 
 @Injectable()
 export class TranslationReuseService {
+  private readonly log = new StructuredLogger(TranslationReuseService.name);
+
   constructor(
     private readonly translationJobsRepository: TranslationJobsRepository,
   ) {}
@@ -31,6 +34,11 @@ export class TranslationReuseService {
       });
 
     if (!reusable) {
+      this.log.info('translation.reuse.miss', {
+        subtitleSourceId: params.subtitleSourceId,
+        targetLanguage: params.targetLanguage,
+        reason: 'no_reusable_translation',
+      });
       return { reuseAllowed: false, reuseReason: 'no_reusable_translation' };
     }
 
@@ -39,11 +47,23 @@ export class TranslationReuseService {
       reusable.cues,
     );
     if (!compatibility.compatible) {
+      this.log.info('translation.reuse.miss', {
+        subtitleSourceId: params.subtitleSourceId,
+        targetLanguage: params.targetLanguage,
+        reason: compatibility.reason,
+      });
       return {
         reuseAllowed: false,
         reuseReason: compatibility.reason,
       };
     }
+
+    this.log.info('translation.reuse.hit', {
+      subtitleSourceId: params.subtitleSourceId,
+      targetLanguage: params.targetLanguage,
+      reusableJobId: reusable.jobId,
+      cueCount: reusable.cues.length,
+    });
 
     return {
       reuseAllowed: true,
