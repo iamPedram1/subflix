@@ -69,6 +69,14 @@ export const subtitleSourcesConfig = registerAs('subtitleSources', () => ({
     process.env.SUBTITLE_ZIP_MAX_EXTRACTED_BYTES,
     10 * 1024 * 1024,
   ),
+  providerFailureThreshold: parseNumber(
+    process.env.SUBTITLE_PROVIDER_FAILURE_THRESHOLD,
+    3,
+  ),
+  providerCooldownMs: parseNumber(
+    process.env.SUBTITLE_PROVIDER_COOLDOWN_MS,
+    60_000,
+  ),
   subdl: {
     apiBaseUrl:
       process.env.SUBDL_API_BASE_URL ?? 'https://api.subdl.com/api/v1',

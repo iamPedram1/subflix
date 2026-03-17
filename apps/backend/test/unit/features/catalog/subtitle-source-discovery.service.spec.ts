@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { AppCacheService } from 'common/cache/app-cache.service';
 import { ServiceUnavailableDomainError } from 'common/domain/errors/domain.error';
 import { SearchMediaType } from 'common/domain/enums/search-media-type.enum';
+import { SubtitleProviderHealthService } from 'features/catalog/subtitle-provider-health.service';
 import { SubtitleSourceDiscoveryService } from 'features/catalog/subtitle-source-discovery.service';
 import { SubtitleSourceProvider } from 'features/catalog/ports/subtitle-source-provider.port';
 
@@ -12,12 +13,17 @@ describe('SubtitleSourceDiscoveryService', () => {
       get: vi.fn((key: string) => {
         const defaults: Record<string, unknown> = {
           'subtitleSources.cacheTtlMs': 60_000,
+          'subtitleSources.providerFailureThreshold': 3,
+          'subtitleSources.providerCooldownMs': 60_000,
           ...overrides,
         };
 
         return defaults[key];
       }),
     }) as unknown as ConfigService;
+
+  const createHealthService = () =>
+    new SubtitleProviderHealthService(createConfigService());
 
   const media = {
     id: 'movie_27205',
@@ -80,6 +86,7 @@ describe('SubtitleSourceDiscoveryService', () => {
       createCacheService(),
       createConfigService(),
       [subdlProvider, podnapisiProvider, tvSubsProvider],
+      createHealthService(),
     );
 
     const results = await service.discover(media);
@@ -108,6 +115,7 @@ describe('SubtitleSourceDiscoveryService', () => {
       createCacheService(),
       createConfigService(),
       [subdlProvider, podnapisiProvider, tvSubsProvider],
+      createHealthService(),
     );
 
     const results = await service.discover(media);
@@ -127,6 +135,7 @@ describe('SubtitleSourceDiscoveryService', () => {
         createProvider('podnapisi', vi.fn().mockResolvedValue([])),
         createProvider('tvsubs', vi.fn().mockResolvedValue([])),
       ],
+      createHealthService(),
     );
 
     await expect(service.discover(media)).resolves.toEqual([]);
@@ -150,6 +159,7 @@ describe('SubtitleSourceDiscoveryService', () => {
           vi.fn().mockRejectedValue(new Error('tvsubs down')),
         ),
       ],
+      createHealthService(),
     );
 
     await expect(service.discover(media)).rejects.toBeInstanceOf(
@@ -162,6 +172,7 @@ describe('SubtitleSourceDiscoveryService', () => {
       createCacheService(),
       createConfigService(),
       [createProvider('subdl', vi.fn().mockResolvedValue([]))],
+      createHealthService(),
     );
 
     await expect(

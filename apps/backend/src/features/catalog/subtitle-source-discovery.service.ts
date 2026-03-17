@@ -19,6 +19,7 @@ import {
   SUBTITLE_SOURCE_PROVIDERS,
   SubtitleSourceProvider,
 } from 'features/catalog/ports/subtitle-source-provider.port';
+import { SubtitleProviderHealthService } from 'features/catalog/subtitle-provider-health.service';
 import { buildSubtitleSourceCacheKey } from 'features/catalog/utils/subtitle-source-cache-key.util';
 import { dedupeSubtitleSourceCandidates } from 'features/catalog/utils/subtitle-source-dedupe.util';
 import { rankSubtitleSourceCandidates } from 'features/catalog/utils/subtitle-source-ranking.util';
@@ -38,6 +39,7 @@ export class SubtitleSourceDiscoveryService {
     private readonly configService: ConfigService,
     @Inject(SUBTITLE_SOURCE_PROVIDERS)
     private readonly providers: SubtitleSourceProvider[],
+    private readonly providerHealthService: SubtitleProviderHealthService,
   ) {}
 
   async discover(
@@ -92,25 +94,64 @@ export class SubtitleSourceDiscoveryService {
         let meaningfulFailures = 0;
         const collectedResults: SubtitleSourceCandidate[] = [];
 
-        try {
-          const { result: primaryResults, durationMs } = await timed(() =>
-            primaryProvider.searchSources(searchInput),
-          );
-          successfulProviderResponses += 1;
-
-          this.log.info('subtitle.discovery.provider.success', {
+        if (!this.providerHealthService.isAllowed(primaryProvider.name)) {
+          this.log.info('subtitle.discovery.provider.skipped_unhealthy', {
             provider: primaryProvider.name,
             mediaId: media.id,
-            resultCount: primaryResults.length,
-            durationMs,
           });
 
-          if (primaryResults.length > 0) {
-            collectedResults.push(...primaryResults);
-          } else {
+          const fallbackResults = await this.collectFallbackResults(
+            fallbackProviders,
+            searchInput,
+          );
+          successfulProviderResponses += fallbackResults.successfulResponses;
+          meaningfulFailures += fallbackResults.meaningfulFailures;
+          collectedResults.push(...fallbackResults.results);
+        } else {
+          try {
+            const { result: primaryResults, durationMs } = await timed(() =>
+              primaryProvider.searchSources(searchInput),
+            );
+            successfulProviderResponses += 1;
+            this.providerHealthService.recordSuccess(primaryProvider.name);
+
+            this.log.info('subtitle.discovery.provider.success', {
+              provider: primaryProvider.name,
+              mediaId: media.id,
+              resultCount: primaryResults.length,
+              durationMs,
+            });
+
+            if (primaryResults.length > 0) {
+              collectedResults.push(...primaryResults);
+            } else {
+              this.log.info('subtitle.discovery.fallback', {
+                mediaId: media.id,
+                reason: 'primary_returned_empty',
+              });
+
+              const fallbackResults = await this.collectFallbackResults(
+                fallbackProviders,
+                searchInput,
+              );
+              successfulProviderResponses += fallbackResults.successfulResponses;
+              meaningfulFailures += fallbackResults.meaningfulFailures;
+              collectedResults.push(...fallbackResults.results);
+            }
+          } catch (error) {
+            meaningfulFailures += 1;
+            this.providerHealthService.recordFailure(primaryProvider.name);
+
+            this.log.warn('subtitle.discovery.provider.failure', {
+              provider: primaryProvider.name,
+              mediaId: media.id,
+              message:
+                error instanceof Error ? error.message : 'Unknown provider error',
+            });
+
             this.log.info('subtitle.discovery.fallback', {
               mediaId: media.id,
-              reason: 'primary_returned_empty',
+              reason: 'primary_failed',
             });
 
             const fallbackResults = await this.collectFallbackResults(
@@ -121,28 +162,6 @@ export class SubtitleSourceDiscoveryService {
             meaningfulFailures += fallbackResults.meaningfulFailures;
             collectedResults.push(...fallbackResults.results);
           }
-        } catch (error) {
-          meaningfulFailures += 1;
-
-          this.log.warn('subtitle.discovery.provider.failure', {
-            provider: primaryProvider.name,
-            mediaId: media.id,
-            message:
-              error instanceof Error ? error.message : 'Unknown provider error',
-          });
-
-          this.log.info('subtitle.discovery.fallback', {
-            mediaId: media.id,
-            reason: 'primary_failed',
-          });
-
-          const fallbackResults = await this.collectFallbackResults(
-            fallbackProviders,
-            searchInput,
-          );
-          successfulProviderResponses += fallbackResults.successfulResponses;
-          meaningfulFailures += fallbackResults.meaningfulFailures;
-          collectedResults.push(...fallbackResults.results);
         }
 
         if (collectedResults.length === 0) {
@@ -190,11 +209,20 @@ export class SubtitleSourceDiscoveryService {
     const results: SubtitleSourceCandidate[] = [];
 
     for (const provider of providers) {
+      if (!this.providerHealthService.isAllowed(provider.name)) {
+        this.log.info('subtitle.discovery.provider.skipped_unhealthy', {
+          provider: provider.name,
+          mediaId: searchInput.mediaId,
+        });
+        continue;
+      }
+
       try {
         const { result: providerResults, durationMs } = await timed(() =>
           provider.searchSources(searchInput),
         );
         successfulResponses += 1;
+        this.providerHealthService.recordSuccess(provider.name);
         results.push(...providerResults);
 
         this.log.info('subtitle.discovery.provider.success', {
@@ -205,6 +233,7 @@ export class SubtitleSourceDiscoveryService {
         });
       } catch (error) {
         meaningfulFailures += 1;
+        this.providerHealthService.recordFailure(provider.name);
 
         this.log.warn('subtitle.discovery.provider.failure', {
           provider: provider.name,

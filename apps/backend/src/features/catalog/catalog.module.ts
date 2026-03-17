@@ -18,6 +18,7 @@ import { TvSubsSubtitleSourceProvider } from 'features/catalog/providers/tvsubs-
 import { TvSubsSubtitleFileProvider } from 'features/catalog/providers/tvsubs-subtitle-file.provider';
 import { SUBTITLE_CUE_PORT } from 'features/catalog/ports/subtitle-cue.port';
 import { SUBTITLE_SOURCE_PROVIDERS } from 'features/catalog/ports/subtitle-source-provider.port';
+import { SubtitleProviderHealthService } from 'features/catalog/subtitle-provider-health.service';
 import { SubtitleSourceDiscoveryService } from 'features/catalog/subtitle-source-discovery.service';
 import { SubtitlesModule } from 'features/subtitles/subtitles.module';
 import { SubtitleQualityEvaluationService } from 'features/catalog/subtitle-quality-evaluation.service';
@@ -28,6 +29,7 @@ import { SubtitleTimingAlignmentService } from 'features/catalog/subtitle-timing
   controllers: [CatalogController],
   providers: [
     CatalogService,
+    SubtitleProviderHealthService,
     SubtitleSourceDiscoveryService,
     SubtitleQualityEvaluationService,
     SubtitleTimingAlignmentService,
