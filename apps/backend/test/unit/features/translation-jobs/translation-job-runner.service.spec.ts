@@ -41,6 +41,7 @@ const createRunnerJob = (overrides: Record<string, unknown> = {}) => ({
   parsedFileId: 'parsed-file-1',
   mediaRef: null,
   subtitleSourceRef: null,
+  jobMeta: null,
   createdAt: new Date(),
   updatedAt: new Date(),
   startedAt: null,
@@ -254,8 +255,14 @@ describe('TranslationJobRunnerService', () => {
     await runPromise;
 
     expect(jobsRepository.claimQueuedJobForRunner).toHaveBeenCalledWith('job-1');
+    // Call 1 is the jobMeta attempt increment; call 2 is the first progress update.
     expect(jobsRepository.updateJob).toHaveBeenNthCalledWith(
       1,
+      'job-1',
+      expect.objectContaining({ jobMeta: expect.objectContaining({ attemptCount: 1 }) }),
+    );
+    expect(jobsRepository.updateJob).toHaveBeenNthCalledWith(
+      2,
       'job-1',
       expect.objectContaining({
         status: TranslationJobStatus.translating,

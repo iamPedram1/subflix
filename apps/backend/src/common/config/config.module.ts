@@ -9,6 +9,7 @@ import {
   subtitleAlignmentConfig,
   subtitleSourcesConfig,
   tmdbConfig,
+  translationJobsConfig,
 } from 'common/config/app.config';
 
 @Global()
@@ -25,6 +26,7 @@ import {
         tmdbConfig,
         subtitleSourcesConfig,
         subtitleAlignmentConfig,
+        translationJobsConfig,
       ],
       envFilePath:
         process.env.NODE_ENV === 'production'

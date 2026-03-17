@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import {
+  Prisma,
   TranslationJob,
   TranslationJobStatus,
   TranslationSourceType,
@@ -24,6 +25,11 @@ import { TranslationJobsRepository } from 'features/translation-jobs/translation
 import { SubtitleAcquisitionStrategyService } from 'features/translation-jobs/subtitle-acquisition-strategy.service';
 import { SubtitleAcquisitionDecision } from 'features/translation-jobs/models/subtitle-acquisition-decision.model';
 import { TranslationReuseService } from 'features/translation-jobs/translation-reuse.service';
+import {
+  applyAttemptFailed,
+  applyAttemptStarted,
+  parseJobRetryMeta,
+} from 'features/translation-jobs/utils/job-staleness.util';
 
 type PersistedCatalogSubtitleSourceRef = {
   subtitleSourceId?: string;
@@ -106,6 +112,20 @@ export class TranslationJobRunnerService {
         return;
       }
 
+      // Increment attempt count now that the job has been claimed.
+      const claimTime = new Date();
+      const currentMeta = parseJobRetryMeta(job.jobMeta);
+      const attemptMeta = applyAttemptStarted(currentMeta, claimTime);
+      await this.translationJobsRepository.updateJob(jobId, {
+        jobMeta: attemptMeta as unknown as Prisma.InputJsonValue,
+      });
+
+      this.log.info('translation.attempt.started', {
+        jobId,
+        attemptCount: attemptMeta.attemptCount,
+        recoveredFromStall: attemptMeta.recoveredFromStall ?? false,
+      });
+
       this.log.info('translation.started', {
         jobId,
         sourceType: job.sourceType,
@@ -173,6 +193,13 @@ export class TranslationJobRunnerService {
           durationMs: Date.now() - startedAt,
         });
       } catch (error) {
+        const failedAt = new Date();
+        const failedMeta = applyAttemptFailed(
+          attemptMeta,
+          'execution_error',
+          failedAt,
+        );
+
         this.log.error('translation.failed', {
           jobId,
           sourceType: job.sourceType,
@@ -181,9 +208,10 @@ export class TranslationJobRunnerService {
           message:
             error instanceof Error ? error.message : 'Translation failed.',
           durationMs: Date.now() - startedAt,
+          attemptCount: failedMeta.attemptCount,
         });
 
-        await this.markFailure(jobId, error);
+        await this.markFailure(jobId, error, failedMeta);
       }
     } finally {
       this.activeJobIds.delete(jobId);
@@ -751,13 +779,18 @@ export class TranslationJobRunnerService {
     }));
   }
 
-  /** Marks the job as failed while preserving a human-readable error message. */
-  private markFailure(jobId: string, error: unknown) {
+  /** Marks the job as failed while preserving a human-readable error message and retry metadata. */
+  private markFailure(
+    jobId: string,
+    error: unknown,
+    meta?: import('features/translation-jobs/utils/job-staleness.util').JobRetryMeta,
+  ) {
     return this.translationJobsRepository.updateJob(jobId, {
       status: TranslationJobStatus.failed,
       stageLabel: 'Translation failed',
       errorMessage:
         error instanceof Error ? error.message : 'Translation failed.',
+      ...(meta ? { jobMeta: meta as unknown as Prisma.InputJsonValue } : {}),
     });
   }
 

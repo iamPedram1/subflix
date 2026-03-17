@@ -36,6 +36,7 @@ export class TranslationJobsRepository {
       durationMs: true,
       errorMessage: true,
       subtitleSourceRef: true,
+      jobMeta: true,
     });
   private static readonly translationJobCuePayloadSelect =
     Prisma.validator<Prisma.TranslationJobCueSelect>()({
@@ -443,5 +444,97 @@ export class TranslationJobsRepository {
         status: TranslationJobStatus.failed,
       },
     });
+  }
+
+  /**
+   * Returns translating jobs that have had no DB activity since before the
+   * given cutoff date. The `updatedAt` column serves as an implicit heartbeat
+   * because every markProgress() call triggers an update.
+   */
+  async findStalledJobs(params: {
+    staleBeforeDate: Date;
+    limit?: number;
+  }): Promise<
+    Array<{
+      id: string;
+      clientDeviceId: string;
+      jobMeta: Prisma.JsonValue;
+      updatedAt: Date;
+      startedAt: Date | null;
+    }>
+  > {
+    return this.prisma.translationJob.findMany({
+      where: {
+        status: TranslationJobStatus.translating,
+        updatedAt: { lt: params.staleBeforeDate },
+      },
+      orderBy: { updatedAt: 'asc' },
+      take: params.limit ?? 100,
+      select: {
+        id: true,
+        clientDeviceId: true,
+        jobMeta: true,
+        updatedAt: true,
+        startedAt: true,
+      },
+    });
+  }
+
+  /**
+   * Atomically transitions a stalled translating job back to queued so the
+   * runner can reclaim it. Returns true when the update was applied.
+   */
+  async requeueStalledJob(
+    jobId: string,
+    jobMeta: Prisma.InputJsonValue,
+  ): Promise<boolean> {
+    try {
+      const result = await this.prisma.translationJob.updateMany({
+        where: {
+          id: jobId,
+          status: TranslationJobStatus.translating,
+        },
+        data: {
+          status: TranslationJobStatus.queued,
+          stageLabel: 'Queued for translation',
+          progress: 0.05,
+          errorMessage: null,
+          jobMeta,
+        },
+      });
+
+      return result.count > 0;
+    } catch (error) {
+      return normalizeDatabaseError(error);
+    }
+  }
+
+  /**
+   * Atomically transitions a stalled translating job to failed when retry
+   * attempts have been exhausted. Returns true when the update was applied.
+   */
+  async failStalledJob(
+    jobId: string,
+    jobMeta: Prisma.InputJsonValue,
+    errorMessage: string,
+  ): Promise<boolean> {
+    try {
+      const result = await this.prisma.translationJob.updateMany({
+        where: {
+          id: jobId,
+          status: TranslationJobStatus.translating,
+        },
+        data: {
+          status: TranslationJobStatus.failed,
+          stageLabel: 'Translation failed',
+          errorMessage,
+          jobMeta,
+        },
+      });
+
+      return result.count > 0;
+    } catch (error) {
+      return normalizeDatabaseError(error);
+    }
   }
 }

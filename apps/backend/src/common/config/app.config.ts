@@ -132,6 +132,15 @@ export const authConfig = registerAs('auth', () => ({
   bcryptSaltRounds: parseNumber(process.env.AUTH_BCRYPT_SALT_ROUNDS, 12),
 }));
 
+export const translationJobsConfig = registerAs('translationJobs', () => ({
+  staleAfterMs: parseNumber(
+    process.env.TRANSLATION_JOB_STALE_AFTER_MS,
+    5 * 60_000, // 5 minutes
+  ),
+  maxAttempts: parseNumber(process.env.TRANSLATION_JOB_MAX_ATTEMPTS, 3),
+  recoveryEnabled: process.env.TRANSLATION_JOB_RECOVERY_ENABLED !== 'false',
+}));
+
 export const firebaseConfig = registerAs('firebase', () => ({
   projectId: process.env.FIREBASE_PROJECT_ID ?? '',
   clientEmail: process.env.FIREBASE_CLIENT_EMAIL ?? '',

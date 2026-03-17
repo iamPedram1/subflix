@@ -1,5 +1,7 @@
 import { TranslationJob, TranslationJobCue } from '@prisma/client';
 
+import { parseJobRetryMeta } from 'features/translation-jobs/utils/job-staleness.util';
+
 type TranslationJobSummarySource = Pick<
   TranslationJob,
   | 'id'
@@ -18,6 +20,7 @@ type TranslationJobSummarySource = Pick<
   | 'durationMs'
   | 'errorMessage'
   | 'subtitleSourceRef'
+  | 'jobMeta'
 >;
 
 type TranslationPreviewCueSource = Pick<
@@ -128,9 +131,27 @@ const toOptionalSubtitleSourceMetadataFields = (subtitleSourceRef: unknown) => {
   return fields;
 };
 
+const toOptionalRetryMetadataFields = (jobMeta: unknown) => {
+  const meta = parseJobRetryMeta(jobMeta);
+  const fields: Record<string, unknown> = {};
+
+  if (meta.attemptCount > 0) {
+    fields.attemptCount = meta.attemptCount;
+  }
+  if (meta.recoveredFromStall === true) {
+    fields.recoveredFromStall = true;
+  }
+  if (typeof meta.lastFailureReasonCode === 'string') {
+    fields.lastFailureReasonCode = meta.lastFailureReasonCode;
+  }
+
+  return fields;
+};
+
 /** Maps a persisted translation job into the public summary shape used by the API. */
 export const toTranslationJobSummary = (job: TranslationJobSummarySource) => ({
   ...toOptionalSubtitleSourceMetadataFields(job.subtitleSourceRef),
+  ...toOptionalRetryMetadataFields(job.jobMeta),
   id: job.id,
   status: job.status,
   stageLabel: job.stageLabel,

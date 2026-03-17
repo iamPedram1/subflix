@@ -53,16 +53,18 @@ enum AuthProvider {
 }
 
 model User {
-  id            String         @id @default(uuid()) @db.Uuid
-  email         String         @unique
-  passwordHash  String?        @db.Text
-  displayName   String?
-  photoUrl      String?
-  emailVerified Boolean        @default(false)
-  identities    UserIdentity[]
-  refreshTokens RefreshToken[]
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  id                     String                   @id @default(uuid()) @db.Uuid
+  email                  String                   @unique
+  passwordHash           String?                  @db.Text
+  displayName            String?
+  photoUrl               String?
+  emailVerified          Boolean                  @default(false)
+  identities             UserIdentity[]
+  refreshTokens          RefreshToken[]
+  emailVerificationTokens EmailVerificationToken[]
+  passwordResetTokens    PasswordResetToken[]
+  createdAt              DateTime                 @default(now())
+  updatedAt              DateTime                 @updatedAt
 }
 
 model UserIdentity {
@@ -194,6 +196,7 @@ model TranslationJob {
   parsedFile        ParsedSubtitleFile?   @relation(fields: [parsedFileId], references: [id], onDelete: SetNull)
   mediaRef          Json?
   subtitleSourceRef Json?
+  jobMeta           Json?
   cues              TranslationJobCue[]
   createdAt         DateTime              @default(now())
   updatedAt         DateTime              @updatedAt
