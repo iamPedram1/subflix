@@ -18,48 +18,129 @@ import { TranslationJobRunnerService } from 'features/translation-jobs/translati
 import { TranslationJobsRepository } from 'features/translation-jobs/translation-jobs.repository';
 import { TranslationJobsService } from 'features/translation-jobs/translation-jobs.service';
 
-describe('TranslationJobsService', () => {
-  const stableSubtitleSourceId = buildSubtitleSourceId('subdl', 'source-1');
+// ---------------------------------------------------------------------------
+// Shared fixtures
+// ---------------------------------------------------------------------------
 
-  const device = {
-    id: 'device-1',
-    deviceId: 'device-header-1',
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  } satisfies ClientDevice;
+const stableSubtitleSourceId = buildSubtitleSourceId('subdl', 'source-1');
 
-  const createJobEntity = (
-    overrides: Partial<TranslationJob> = {},
-  ): TranslationJob => ({
-    id: 'job-1',
-    clientDeviceId: device.id,
-    sourceType: TranslationSourceType.upload,
-    status: TranslationJobStatus.queued,
-    stageLabel: 'Queued for translation',
-    title: 'sample',
-    sourceName: 'sample.srt',
-    sourceLanguage: PrismaAppLanguage.en,
-    targetLanguage: PrismaAppLanguage.fr,
-    format: SubtitleFormat.srt,
-    progress: 0.05,
-    lineCount: 2,
-    durationMs: 6250,
-    errorMessage: null,
-    parsedFileId: 'parsed-file-1',
-    mediaRef: null,
-    subtitleSourceRef: null,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    startedAt: null,
-    completedAt: null,
+const device = {
+  id: 'device-1',
+  deviceId: 'device-header-1',
+  createdAt: new Date(),
+  updatedAt: new Date(),
+} satisfies ClientDevice;
+
+const createJobEntity = (overrides: Partial<TranslationJob> = {}): TranslationJob => ({
+  id: 'job-1',
+  clientDeviceId: device.id,
+  sourceType: TranslationSourceType.upload,
+  status: TranslationJobStatus.queued,
+  stageLabel: 'Queued for translation',
+  title: 'sample',
+  sourceName: 'sample.srt',
+  sourceLanguage: PrismaAppLanguage.en,
+  targetLanguage: PrismaAppLanguage.fr,
+  format: SubtitleFormat.srt,
+  progress: 0.05,
+  lineCount: 2,
+  durationMs: 6250,
+  errorMessage: null,
+  parsedFileId: 'parsed-file-1',
+  mediaRef: null,
+  subtitleSourceRef: null,
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  startedAt: null,
+  completedAt: null,
+  ...overrides,
+});
+
+// ---------------------------------------------------------------------------
+// Mock factories
+// ---------------------------------------------------------------------------
+
+const makeJobsRepository = (
+  overrides: Partial<{
+    createJob: ReturnType<typeof vi.fn>;
+    findOwnedJob: ReturnType<typeof vi.fn>;
+    listOwnedJobs: ReturnType<typeof vi.fn>;
+    clearOwnedHistory: ReturnType<typeof vi.fn>;
+    listAllOwnedJobCues: ReturnType<typeof vi.fn>;
+  }> = {},
+): TranslationJobsRepository =>
+  ({
+    createJob: vi.fn().mockResolvedValue(createJobEntity()),
+    findOwnedJob: vi.fn().mockResolvedValue(null),
+    listOwnedJobs: vi.fn().mockResolvedValue({ items: [], total: 0, page: 1, limit: 20 }),
+    clearOwnedHistory: vi.fn().mockResolvedValue(undefined),
+    listAllOwnedJobCues: vi.fn().mockResolvedValue([]),
     ...overrides,
-  });
+  }) as unknown as TranslationJobsRepository;
 
+const makeSubtitlesRepository = (
+  overrides: Partial<{
+    findOwnedParsedFileSummary: ReturnType<typeof vi.fn>;
+  }> = {},
+): SubtitlesRepository =>
+  ({
+    findOwnedParsedFileSummary: vi.fn().mockResolvedValue(null),
+    ...overrides,
+  }) as unknown as SubtitlesRepository;
+
+const makeCatalogService = (
+  overrides: Partial<{
+    findById: ReturnType<typeof vi.fn>;
+    getSubtitleSources: ReturnType<typeof vi.fn>;
+  }> = {},
+): CatalogService =>
+  ({
+    findById: vi.fn().mockResolvedValue(null),
+    getSubtitleSources: vi.fn().mockResolvedValue([]),
+    ...overrides,
+  }) as unknown as CatalogService;
+
+const makeRunner = (
+  overrides: Partial<{ schedule: ReturnType<typeof vi.fn> }> = {},
+): TranslationJobRunnerService =>
+  ({
+    schedule: vi.fn(),
+    ...overrides,
+  }) as unknown as TranslationJobRunnerService;
+
+// ---------------------------------------------------------------------------
+// Service builder
+// ---------------------------------------------------------------------------
+
+const buildService = ({
+  jobsRepository = makeJobsRepository(),
+  subtitlesRepository = makeSubtitlesRepository(),
+  catalogService = makeCatalogService(),
+  runner = makeRunner(),
+}: Partial<{
+  jobsRepository: TranslationJobsRepository;
+  subtitlesRepository: SubtitlesRepository;
+  catalogService: CatalogService;
+  runner: TranslationJobRunnerService;
+}> = {}): TranslationJobsService =>
+  new TranslationJobsService(
+    jobsRepository,
+    subtitlesRepository,
+    catalogService,
+    new SubtitleExportService(),
+    runner,
+  );
+
+// ---------------------------------------------------------------------------
+// Tests
+// ---------------------------------------------------------------------------
+
+describe('TranslationJobsService', () => {
   it('creates an upload translation job and schedules the runner', async () => {
-    const jobsRepository = {
+    const jobsRepository = makeJobsRepository({
       createJob: vi.fn().mockResolvedValue(createJobEntity()),
-    } as unknown as TranslationJobsRepository;
-    const subtitlesRepository = {
+    });
+    const subtitlesRepository = makeSubtitlesRepository({
       findOwnedParsedFileSummary: vi.fn().mockResolvedValue({
         id: 'parsed-file-1',
         fileName: 'sample.srt',
@@ -67,18 +148,9 @@ describe('TranslationJobsService', () => {
         lineCount: 2,
         durationMs: 6250,
       }),
-    } as unknown as SubtitlesRepository;
-    const runner = {
-      schedule: vi.fn(),
-    } as unknown as TranslationJobRunnerService;
-
-    const service = new TranslationJobsService(
-      jobsRepository,
-      subtitlesRepository,
-      {} as CatalogService,
-      new SubtitleExportService(),
-      runner,
-    );
+    });
+    const runner = makeRunner({ schedule: vi.fn() });
+    const service = buildService({ jobsRepository, subtitlesRepository, runner });
 
     const result = await service.createJob(device, {
       sourceType: TranslationSourceTypeDto.Upload,
@@ -87,18 +159,16 @@ describe('TranslationJobsService', () => {
     });
 
     expect(result.id).toBe('job-1');
-    expect(subtitlesRepository.findOwnedParsedFileSummary).toHaveBeenCalledWith(
-      {
-        clientDeviceId: device.id,
-        parsedFileId: 'parsed-file-1',
-      },
-    );
+    expect(subtitlesRepository.findOwnedParsedFileSummary).toHaveBeenCalledWith({
+      clientDeviceId: device.id,
+      parsedFileId: 'parsed-file-1',
+    });
     expect(jobsRepository.createJob).toHaveBeenCalled();
     expect(runner.schedule).toHaveBeenCalledWith('job-1');
   });
 
   it('creates a catalog translation job from the selected source metadata', async () => {
-    const jobsRepository = {
+    const jobsRepository = makeJobsRepository({
       createJob: vi.fn().mockResolvedValue(
         createJobEntity({
           sourceType: TranslationSourceType.catalog,
@@ -109,12 +179,9 @@ describe('TranslationJobsService', () => {
           subtitleSourceRef: { subtitleSourceId: stableSubtitleSourceId },
         }),
       ),
-    } as unknown as TranslationJobsRepository;
-    const catalogService = {
-      findById: vi.fn().mockResolvedValue({
-        id: 'dune_part_two',
-        title: 'Dune: Part Two',
-      }),
+    });
+    const catalogService = makeCatalogService({
+      findById: vi.fn().mockResolvedValue({ id: 'dune_part_two', title: 'Dune: Part Two' }),
       getSubtitleSources: vi.fn().mockResolvedValue([
         {
           id: stableSubtitleSourceId,
@@ -123,18 +190,9 @@ describe('TranslationJobsService', () => {
           lineCount: 1_248,
         },
       ]),
-    } as unknown as CatalogService;
-    const runner = {
-      schedule: vi.fn(),
-    } as unknown as TranslationJobRunnerService;
-
-    const service = new TranslationJobsService(
-      jobsRepository,
-      {} as SubtitlesRepository,
-      catalogService,
-      new SubtitleExportService(),
-      runner,
-    );
+    });
+    const runner = makeRunner({ schedule: vi.fn() });
+    const service = buildService({ jobsRepository, catalogService, runner });
 
     await service.createJob(device, {
       sourceType: TranslationSourceTypeDto.Catalog,
@@ -169,21 +227,12 @@ describe('TranslationJobsService', () => {
   });
 
   it('blocks export before completion', async () => {
-    const jobsRepository = {
-      findOwnedJob: vi
-        .fn()
-        .mockResolvedValue(
-          createJobEntity({ status: TranslationJobStatus.queued }),
-        ),
-    } as unknown as TranslationJobsRepository;
-
-    const service = new TranslationJobsService(
-      jobsRepository,
-      {} as SubtitlesRepository,
-      {} as CatalogService,
-      new SubtitleExportService(),
-      {} as TranslationJobRunnerService,
-    );
+    const jobsRepository = makeJobsRepository({
+      findOwnedJob: vi.fn().mockResolvedValue(
+        createJobEntity({ status: TranslationJobStatus.queued }),
+      ),
+    });
+    const service = buildService({ jobsRepository });
 
     await expect(service.exportJob(device, 'job-1')).rejects.toBeInstanceOf(
       ValidationDomainError,
@@ -195,13 +244,7 @@ describe('TranslationJobsService', () => {
   // -------------------------------------------------------------------------
 
   it('throws ValidationDomainError when upload job is missing parsedFileId', async () => {
-    const service = new TranslationJobsService(
-      {} as TranslationJobsRepository,
-      {} as SubtitlesRepository,
-      {} as CatalogService,
-      new SubtitleExportService(),
-      {} as TranslationJobRunnerService,
-    );
+    const service = buildService();
 
     await expect(
       service.createJob(device, {
@@ -217,13 +260,7 @@ describe('TranslationJobsService', () => {
   // -------------------------------------------------------------------------
 
   it('throws ValidationDomainError when catalog job is missing mediaId', async () => {
-    const service = new TranslationJobsService(
-      {} as TranslationJobsRepository,
-      {} as SubtitlesRepository,
-      {} as CatalogService,
-      new SubtitleExportService(),
-      {} as TranslationJobRunnerService,
-    );
+    const service = buildService();
 
     await expect(
       service.createJob(device, {
@@ -236,13 +273,7 @@ describe('TranslationJobsService', () => {
   });
 
   it('throws ValidationDomainError when catalog job is missing subtitleSourceId', async () => {
-    const service = new TranslationJobsService(
-      {} as TranslationJobsRepository,
-      {} as SubtitlesRepository,
-      {} as CatalogService,
-      new SubtitleExportService(),
-      {} as TranslationJobRunnerService,
-    );
+    const service = buildService();
 
     await expect(
       service.createJob(device, {
@@ -255,18 +286,10 @@ describe('TranslationJobsService', () => {
   });
 
   it('throws ValidationDomainError when the requested media title is not found', async () => {
-    const catalogService = {
+    const catalogService = makeCatalogService({
       findById: vi.fn().mockResolvedValue(null),
-      getSubtitleSources: vi.fn().mockResolvedValue([]),
-    } as unknown as CatalogService;
-
-    const service = new TranslationJobsService(
-      {} as TranslationJobsRepository,
-      {} as SubtitlesRepository,
-      catalogService,
-      new SubtitleExportService(),
-      {} as TranslationJobRunnerService,
-    );
+    });
+    const service = buildService({ catalogService });
 
     await expect(
       service.createJob(device, {
@@ -279,7 +302,7 @@ describe('TranslationJobsService', () => {
   });
 
   it('throws ValidationDomainError when the subtitle source is not in the catalog results', async () => {
-    const catalogService = {
+    const catalogService = makeCatalogService({
       findById: vi.fn().mockResolvedValue({ id: 'inception', title: 'Inception' }),
       getSubtitleSources: vi.fn().mockResolvedValue([
         {
@@ -289,15 +312,8 @@ describe('TranslationJobsService', () => {
           lineCount: 100,
         },
       ]),
-    } as unknown as CatalogService;
-
-    const service = new TranslationJobsService(
-      {} as TranslationJobsRepository,
-      {} as SubtitlesRepository,
-      catalogService,
-      new SubtitleExportService(),
-      {} as TranslationJobRunnerService,
-    );
+    });
+    const service = buildService({ catalogService });
 
     await expect(
       service.createJob(device, {
@@ -314,22 +330,15 @@ describe('TranslationJobsService', () => {
   // -------------------------------------------------------------------------
 
   it('returns a paginated list of device-owned jobs', async () => {
-    const jobsRepository = {
+    const jobsRepository = makeJobsRepository({
       listOwnedJobs: vi.fn().mockResolvedValue({
         items: [createJobEntity()],
         total: 1,
         page: 1,
         limit: 20,
       }),
-    } as unknown as TranslationJobsRepository;
-
-    const service = new TranslationJobsService(
-      jobsRepository,
-      {} as SubtitlesRepository,
-      {} as CatalogService,
-      new SubtitleExportService(),
-      {} as TranslationJobRunnerService,
-    );
+    });
+    const service = buildService({ jobsRepository });
 
     const result = await service.listJobs(device, { page: 1, limit: 20 });
 
@@ -345,17 +354,10 @@ describe('TranslationJobsService', () => {
   // -------------------------------------------------------------------------
 
   it('delegates history clearing and returns { cleared: true }', async () => {
-    const jobsRepository = {
+    const jobsRepository = makeJobsRepository({
       clearOwnedHistory: vi.fn().mockResolvedValue(undefined),
-    } as unknown as TranslationJobsRepository;
-
-    const service = new TranslationJobsService(
-      jobsRepository,
-      {} as SubtitlesRepository,
-      {} as CatalogService,
-      new SubtitleExportService(),
-      {} as TranslationJobRunnerService,
-    );
+    });
+    const service = buildService({ jobsRepository });
 
     const result = await service.clearHistory(device);
 
@@ -382,22 +384,15 @@ describe('TranslationJobsService', () => {
       durationMs: 6250,
     };
 
-    const jobsRepository = {
+    const jobsRepository = makeJobsRepository({
       findOwnedJob: vi.fn().mockResolvedValue(originalJob),
       createJob: vi.fn().mockResolvedValue(newJob),
-    } as unknown as TranslationJobsRepository;
-    const subtitlesRepository = {
+    });
+    const subtitlesRepository = makeSubtitlesRepository({
       findOwnedParsedFileSummary: vi.fn().mockResolvedValue(parsedFileSummary),
-    } as unknown as SubtitlesRepository;
-    const runner = { schedule: vi.fn() } as unknown as TranslationJobRunnerService;
-
-    const service = new TranslationJobsService(
-      jobsRepository,
-      subtitlesRepository,
-      {} as CatalogService,
-      new SubtitleExportService(),
-      runner,
-    );
+    });
+    const runner = makeRunner({ schedule: vi.fn() });
+    const service = buildService({ jobsRepository, subtitlesRepository, runner });
 
     const retried = await service.retryJob(device, 'job-1');
 
@@ -422,8 +417,7 @@ describe('TranslationJobsService', () => {
       title: 'Inception',
       targetLanguage: PrismaAppLanguage.fr,
     });
-
-    const jobsRepository = {
+    const jobsRepository = makeJobsRepository({
       findOwnedJob: vi.fn().mockResolvedValue(completedJob),
       listAllOwnedJobCues: vi.fn().mockResolvedValue([
         {
@@ -434,15 +428,8 @@ describe('TranslationJobsService', () => {
           translatedText: 'Reve plus grand.',
         },
       ]),
-    } as unknown as TranslationJobsRepository;
-
-    const service = new TranslationJobsService(
-      jobsRepository,
-      {} as SubtitlesRepository,
-      {} as CatalogService,
-      new SubtitleExportService(),
-      {} as TranslationJobRunnerService,
-    );
+    });
+    const service = buildService({ jobsRepository });
 
     const exported = await service.exportJob(device, 'job-1');
 
