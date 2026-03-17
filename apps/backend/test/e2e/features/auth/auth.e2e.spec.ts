@@ -207,6 +207,179 @@ describeIfDatabase('Auth endpoints', () => {
     });
   });
 
+  // -------------------------------------------------------------------------
+  // Input validation – signup
+  // -------------------------------------------------------------------------
+
+  it('rejects signup with a missing email', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+
+      await api
+        .post('/v1/auth/signup')
+        .send({ password: 'Password1!' })
+        .expect(400)
+        .expect(({ body }) => {
+          expect(body.code).toBe('http_error');
+        });
+    });
+  });
+
+  it('rejects signup with an invalid email format', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+
+      await api
+        .post('/v1/auth/signup')
+        .send({ email: 'not-an-email', password: 'Password1!' })
+        .expect(400)
+        .expect(({ body }) => {
+          expect(body.code).toBe('http_error');
+        });
+    });
+  });
+
+  it('rejects signup with a password that is too short', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+
+      await api
+        .post('/v1/auth/signup')
+        .send({ email: 'alice@example.com', password: 'short' })
+        .expect(400)
+        .expect(({ body }) => {
+          expect(body.code).toBe('http_error');
+        });
+    });
+  });
+
+  it('returns 409 when the email is already registered', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+      const payload = createAuthPayload();
+
+      await api.post('/v1/auth/signup').send(payload).expect(201);
+
+      await api
+        .post('/v1/auth/signup')
+        .send(payload)
+        .expect(409)
+        .expect(({ body }) => {
+          expect(body.code).toBe('conflict');
+        });
+    });
+  });
+
+  // -------------------------------------------------------------------------
+  // Input validation – signin
+  // -------------------------------------------------------------------------
+
+  it('rejects signin with a missing password', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+
+      await api
+        .post('/v1/auth/signin')
+        .send({ email: 'alice@example.com' })
+        .expect(400)
+        .expect(({ body }) => {
+          expect(body.code).toBe('http_error');
+        });
+    });
+  });
+
+  it('rejects signin with an invalid email format', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+
+      await api
+        .post('/v1/auth/signin')
+        .send({ email: 'bad-email', password: 'Password1!' })
+        .expect(400)
+        .expect(({ body }) => {
+          expect(body.code).toBe('http_error');
+        });
+    });
+  });
+
+  // -------------------------------------------------------------------------
+  // Input validation – confirm-email
+  // -------------------------------------------------------------------------
+
+  it('rejects confirm-email when token is missing', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+
+      await api
+        .post('/v1/auth/confirm-email')
+        .send({})
+        .expect(400)
+        .expect(({ body }) => {
+          expect(body.code).toBe('http_error');
+        });
+    });
+  });
+
+  it('returns 403 when an invalid verification token is submitted', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+
+      await api
+        .post('/v1/auth/confirm-email')
+        .send({ token: 'completely-invalid-token' })
+        .expect(403)
+        .expect(({ body }) => {
+          expect(body.code).toBe('forbidden');
+        });
+    });
+  });
+
+  // -------------------------------------------------------------------------
+  // Input validation – forgot/reset password
+  // -------------------------------------------------------------------------
+
+  it('rejects forgot-password with a missing email', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+
+      await api
+        .post('/v1/auth/forgot-password')
+        .send({})
+        .expect(400)
+        .expect(({ body }) => {
+          expect(body.code).toBe('http_error');
+        });
+    });
+  });
+
+  it('returns 403 when an invalid reset token is submitted', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+
+      await api
+        .post('/v1/auth/reset-password')
+        .send({ token: 'bad-token', password: 'NewPass1!' })
+        .expect(403)
+        .expect(({ body }) => {
+          expect(body.code).toBe('forbidden');
+        });
+    });
+  });
+
+  it('rejects reset-password with a password that is too short', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+
+      await api
+        .post('/v1/auth/reset-password')
+        .send({ token: 'some-token', password: 'short' })
+        .expect(400)
+        .expect(({ body }) => {
+          expect(body.code).toBe('http_error');
+        });
+    });
+  });
+
   const hasFirebaseConfig = Boolean(
     process.env.FIREBASE_SERVICE_ACCOUNT_JSON?.trim() ||
       (process.env.FIREBASE_PROJECT_ID?.trim() &&
