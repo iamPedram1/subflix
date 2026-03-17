@@ -117,6 +117,20 @@ class AppLocalizations {
   String get uploadContinueSetup => _t('uploadContinueSetup');
   String get translateSetupTitle => _t('translateSetupTitle');
   String get translateSetupSubtitle => _t('translateSetupSubtitle');
+  String get translateSetupSourceTitle => _t('translateSetupSourceTitle');
+  String get translateSetupLanguageTitle => _t('translateSetupLanguageTitle');
+  String get translateSetupOptionsTitle => _t('translateSetupOptionsTitle');
+  String get translateSetupSelectLanguage => _t('translateSetupSelectLanguage');
+  String get translateSetupReadyTitle => _t('translateSetupReadyTitle');
+  String translateSetupReadyBody(String language) => _format(
+    'translateSetupReadyBody',
+    <String, String>{'language': language},
+  );
+  String get translateSetupPreserveTiming => _t('translateSetupPreserveTiming');
+  String get translateSetupPreserveTimingBody =>
+      _t('translateSetupPreserveTimingBody');
+  String get translateSetupAutoDetect => _t('translateSetupAutoDetect');
+  String get translateSetupAutoDetectBody => _t('translateSetupAutoDetectBody');
   String subtitleSourceFormatLabel(String format) =>
       _format('subtitleSourceFormatLabel', <String, String>{'format': format});
   String get targetLanguage => _t('targetLanguage');
@@ -186,6 +200,8 @@ class AppLocalizations {
     'subtitleSourcesSubtitle',
     <String, String>{'title': title, 'target': target},
   );
+  String get subtitleSourcesBannerTitle => _t('subtitleSourcesBannerTitle');
+  String get subtitleSourcesBannerMessage => _t('subtitleSourcesBannerMessage');
   String get subtitleSourcesFailedTitle => _t('subtitleSourcesFailedTitle');
   String get seriesSeasonsTitle => _t('seriesSeasonsTitle');
   String seriesSeasonsSubtitle(String title) =>

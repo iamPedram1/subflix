@@ -3,18 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:subflix/core/extensions/duration_extensions.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/providers/repository_providers.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
-import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
-import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
-import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
-import 'package:subflix/core/ui/widgets/section_header.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
 import 'package:subflix/features/shared/domain/models/translation_job.dart';
 import 'package:subflix/features/subtitles/application/translation_preview_provider.dart';
@@ -49,136 +44,102 @@ class _TranslationPreviewScreenState
   Widget build(BuildContext context) {
     final previewAsync = ref.watch(
       translationPreviewProvider(
-        TranslationPreviewQuery(
-          jobId: widget.jobId,
-          query: _committedQuery,
-        ),
+        TranslationPreviewQuery(jobId: widget.jobId, query: _committedQuery),
       ),
     );
 
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.translationPreviewTitle)),
-      bottomNavigationBar: previewAsync.asData?.value == null
-          ? null
-          : Padding(
-              padding: AppInsets.bottomBar,
-              child: AppGradientButton(
-                label: _isExporting
-                    ? context.t.exportingLabel
-                    : context.t.exportSubtitleLabel,
-                icon: Iconsax.export,
-                onPressed: _isExporting
-                    ? null
-                    : () => _exportJob(previewAsync.asData!.value.job, context),
-              ),
-            ),
       body: AppBackground(
         child: SafeArea(
           child: ResponsiveCenter(
             child: previewAsync.when(
               data: (preview) {
-                final filteredLines = preview.items;
+                final lines = preview.items;
                 final job = preview.job;
 
-                return ListView(
-                  padding: AppInsets.pageWithNav,
+                return Column(
                   children: <Widget>[
-                    SectionHeader(
-                      title: context.t.translationPreviewHeader,
-                      subtitle: context.t.translationPreviewSubtitle,
+                    _PreviewHeader(
+                      job: job,
+                      query: _query,
+                      onBack: () => Navigator.of(context).pop(),
+                      onQueryChanged: _onQueryChanged,
+                      onClear: () => _onQueryChanged(''),
+                      onExport: _isExporting
+                          ? null
+                          : () => _exportJob(job, context),
                     ),
-                    const SizedBox(height: 16),
-                    _MetadataCard(job: job),
-                    const SizedBox(height: 16),
-                    AppSurfaceCard(
-                      child: Column(
-                        spacing: 16,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    Expanded(
+                      child: ListView(
+                        padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
                         children: <Widget>[
-                          SegmentedButton<PreviewMode>(
-                            segments: PreviewMode.values
-                                .map(
-                                  (mode) => ButtonSegment<PreviewMode>(
-                                    value: mode,
-                                    label: Text(mode.label(context)),
-                                  ),
-                                )
-                                .toList(growable: false),
-                            selected: <PreviewMode>{_previewMode},
-                            onSelectionChanged: (selection) {
-                              setState(() => _previewMode = selection.first);
-                            },
+                          _ModeToggle(
+                            mode: _previewMode,
+                            onChanged: (mode) =>
+                                setState(() => _previewMode = mode),
                           ),
-                          TextField(
-                            onChanged: _onQueryChanged,
-                            decoration: InputDecoration(
-                              hintText: context.t.translationPreviewSearchHint,
-                              prefixIcon: const Icon(Iconsax.searchNormal),
-                              suffixIcon: _query.isEmpty
-                                  ? null
-                                  : IconButton(
-                                      onPressed: () => _onQueryChanged(''),
-                                      icon: const Icon(Iconsax.closeCircle),
-                                    ),
+                          const SizedBox(height: 16),
+                          _PreviewInfo(mode: _previewMode),
+                          const SizedBox(height: 16),
+                          if (lines.isEmpty)
+                            StatePanel(
+                              icon: Icons.search_off_rounded,
+                              title: _committedQuery.isEmpty
+                                  ? context.t.previewNotReadyTitle
+                                  : context.t.previewNoMatchesTitle,
+                              message: _committedQuery.isEmpty
+                                  ? context.t.previewNotReadyMessage
+                                  : context.t.previewNoMatchesMessage,
+                            )
+                          else
+                            ...lines.map(
+                              (line) => Padding(
+                                padding: const EdgeInsets.only(bottom: 12),
+                                child: SubtitleLineCard(
+                                  line: line,
+                                  mode: _previewMode,
+                                ),
+                              ),
                             ),
-                          ),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    if (filteredLines.isEmpty)
-                      StatePanel(
-                        icon: Iconsax.searchNormal,
-                        title: _committedQuery.isEmpty
-                            ? context.t.previewNotReadyTitle
-                            : context.t.previewNoMatchesTitle,
-                        message: _committedQuery.isEmpty
-                            ? context.t.previewNotReadyMessage
-                            : context.t.previewNoMatchesMessage,
-                      )
-                    else
-                      Column(
-                        spacing: 12,
-                        children: filteredLines
-                            .map(
-                              (line) => SubtitleLineCard(
-                                line: line,
-                                mode: _previewMode,
-                              ),
-                            )
-                            .toList(growable: false),
-                      ),
                   ],
                 );
               },
-              error: (error, stackTrace) => Padding(
-                padding: AppInsets.card,
-                child: StatePanel(
-                  icon: Iconsax.warning2,
-                  title: context.t.previewFailedTitle,
-                  message: error.toString(),
-                  action: OutlinedButton.icon(
-                    onPressed: () => ref.invalidate(
-                      translationPreviewProvider(
-                        TranslationPreviewQuery(
-                          jobId: widget.jobId,
-                          query: _committedQuery,
+              error: (error, stackTrace) => ListView(
+                padding: AppInsets.page,
+                children: <Widget>[
+                  const SizedBox(height: 40),
+                  StatePanel(
+                    icon: Icons.error_outline_rounded,
+                    title: context.t.previewFailedTitle,
+                    message: '$error',
+                    action: OutlinedButton.icon(
+                      onPressed: () => ref.invalidate(
+                        translationPreviewProvider(
+                          TranslationPreviewQuery(
+                            jobId: widget.jobId,
+                            query: _committedQuery,
+                          ),
                         ),
                       ),
+                      icon: const Icon(Icons.refresh_rounded),
+                      label: Text(context.t.retry),
                     ),
-                    icon: const Icon(Iconsax.refresh),
-                    label: Text(context.t.retry),
                   ),
-                ),
+                ],
               ),
               loading: () => ListView(
-                padding: AppInsets.card,
+                padding: AppInsets.page,
                 children: const <Widget>[
-                  LoadingSkeleton(height: 120),
-                  SizedBox(height: 16),
-                  LoadingSkeleton(height: 94),
-                  SizedBox(height: 16),
-                  LoadingSkeleton(height: 160),
+                  LoadingSkeleton(height: 140),
+                  SizedBox(height: 12),
+                  LoadingSkeleton(height: 80),
+                  SizedBox(height: 12),
+                  LoadingSkeleton(height: 180),
+                  SizedBox(height: 12),
+                  LoadingSkeleton(height: 180),
                 ],
               ),
             ),
@@ -210,18 +171,14 @@ class _TranslationPreviewScreenState
       }
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
-            context.t.exportedSnack(result.fileName, result.path),
-          ),
+          content: Text(context.t.exportedSnack(result.fileName, result.path)),
         ),
       );
     } catch (error) {
       if (!context.mounted) {
         return;
       }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(context.t.exportFailedSnack('$error'))),
       );
     } finally {
@@ -232,30 +189,81 @@ class _TranslationPreviewScreenState
   }
 }
 
-class _MetadataCard extends StatelessWidget {
-  const _MetadataCard({required this.job});
+class _PreviewHeader extends StatelessWidget {
+  const _PreviewHeader({
+    required this.job,
+    required this.query,
+    required this.onBack,
+    required this.onQueryChanged,
+    required this.onClear,
+    required this.onExport,
+  });
 
   final TranslationJob job;
+  final String query;
+  final VoidCallback onBack;
+  final ValueChanged<String> onQueryChanged;
+  final VoidCallback onClear;
+  final VoidCallback? onExport;
 
   @override
   Widget build(BuildContext context) {
-    return AppSurfaceCard(
-      child: Wrap(
-        spacing: 12,
-        runSpacing: 12,
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
+      decoration: BoxDecoration(
+        color: Theme.of(
+          context,
+        ).scaffoldBackgroundColor.withValues(alpha: 0.94),
+        border: Border(
+          bottom: BorderSide(color: Theme.of(context).colorScheme.outline),
+        ),
+      ),
+      child: Column(
         children: <Widget>[
-          _MetaTile(label: context.t.metadataFormat, value: job.format.label),
-          _MetaTile(
-            label: context.t.metadataLines,
-            value: '${job.lineCount}',
+          Row(
+            children: <Widget>[
+              IconButton(
+                onPressed: onBack,
+                icon: const Icon(Icons.arrow_back_rounded),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      context.t.translationPreviewTitle,
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      job.title,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: AppColors.textSecondaryFor(context),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              IconButton(
+                onPressed: onExport,
+                style: IconButton.styleFrom(backgroundColor: AppColors.primary),
+                icon: const Icon(Icons.download_rounded, color: Colors.white),
+              ),
+            ],
           ),
-          _MetaTile(
-            label: context.t.metadataLanguages,
-            value: '${job.sourceLanguage.label} -> ${job.targetLanguage.label}',
-          ),
-          _MetaTile(
-            label: context.t.metadataEstimatedDuration,
-            value: Duration(milliseconds: job.durationMs).toStatLabel(),
+          const SizedBox(height: 10),
+          TextField(
+            onChanged: onQueryChanged,
+            decoration: InputDecoration(
+              hintText: context.t.translationPreviewSearchHint,
+              prefixIcon: const Icon(Icons.search_rounded),
+              suffixIcon: query.isEmpty
+                  ? null
+                  : IconButton(
+                      onPressed: onClear,
+                      icon: const Icon(Icons.close_rounded),
+                    ),
+            ),
           ),
         ],
       ),
@@ -263,35 +271,88 @@ class _MetadataCard extends StatelessWidget {
   }
 }
 
-class _MetaTile extends StatelessWidget {
-  const _MetaTile({required this.label, required this.value});
+class _ModeToggle extends StatelessWidget {
+  const _ModeToggle({required this.mode, required this.onChanged});
 
-  final String label;
-  final String value;
+  final PreviewMode mode;
+  final ValueChanged<PreviewMode> onChanged;
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: AppColors.surfaceMutedFor(context).withValues(alpha: 0.45),
-        borderRadius: BorderRadius.circular(18),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(14),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          spacing: 6,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              label,
-              style: Theme.of(
-                context,
-              ).textTheme.labelMedium?.copyWith(color: AppColors.textMutedFor(context)),
+    return Row(
+      children: PreviewMode.values
+          .map(
+            (item) => Expanded(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  right: item == PreviewMode.values.last ? 0 : 8,
+                ),
+                child: ChoiceChip(
+                  selected: item == mode,
+                  label: SizedBox(
+                    width: double.infinity,
+                    child: Text(
+                      item.label(context),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  onSelected: (_) => onChanged(item),
+                ),
+              ),
             ),
-            Text(value, style: Theme.of(context).textTheme.titleSmall),
+          )
+          .toList(growable: false),
+    );
+  }
+}
+
+class _PreviewInfo extends StatelessWidget {
+  const _PreviewInfo({required this.mode});
+
+  final PreviewMode mode;
+
+  @override
+  Widget build(BuildContext context) {
+    final message = switch (mode) {
+      PreviewMode.bilingual => context.t.translationPreviewSubtitle,
+      PreviewMode.original => context.t.previewModeOriginal,
+      PreviewMode.translated => context.t.previewModeTranslated,
+    };
+
+    return Container(
+      padding: AppInsets.card,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: <Color>[
+            AppColors.primary.withValues(alpha: 0.10),
+            AppColors.secondary.withValues(alpha: 0.08),
           ],
         ),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: AppColors.primary.withValues(alpha: 0.18)),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              gradient: AppColors.accentGradient,
+              borderRadius: BorderRadius.circular(14),
+            ),
+            child: const Icon(Icons.translate_rounded, color: Colors.white),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              message,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: AppColors.textSecondaryFor(context),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

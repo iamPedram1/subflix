@@ -5,10 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:subflix/core/app/router/app_routes.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
-import 'package:subflix/core/styles/spacing.dart';
-import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
-import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
@@ -46,13 +43,13 @@ class _TranslationProgressScreenState
         }
 
         _navigated = true;
-        Future<void>.delayed(const Duration(milliseconds: 350), () {
+        Future<void>.delayed(const Duration(milliseconds: 500), () {
           if (!mounted) {
             return;
           }
 
           context.pushReplacement(
-            AppRoutes.translationPreview.replaceFirst(':jobId', job.id),
+            AppRoutes.translationResult.replaceFirst(':jobId', job.id),
           );
         });
       },
@@ -79,95 +76,115 @@ class _TranslationProgressScreenState
   Widget build(BuildContext context) {
     final state = ref.watch(translationFlowControllerProvider);
     final stages = _localizedStages(context);
-    final stageLabel = state.status == TranslationFlowStatus.idle
-        ? context.t.translationStageIdle
-        : state.stageLabel;
 
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.translationProgressTitle)),
       body: AppBackground(
         child: SafeArea(
           child: ResponsiveCenter(
             child: ListView(
-              padding: AppInsets.page,
+              padding: const EdgeInsets.fromLTRB(16, 40, 16, 28),
               children: <Widget>[
+                const SizedBox(height: 20),
+                Center(
+                  child: Container(
+                    width: 108,
+                    height: 108,
+                    decoration: BoxDecoration(
+                      gradient: AppColors.accentGradient,
+                      shape: BoxShape.circle,
+                      boxShadow: <BoxShadow>[
+                        BoxShadow(
+                          color: AppColors.primary.withValues(alpha: 0.30),
+                          blurRadius: 30,
+                          offset: const Offset(0, 18),
+                        ),
+                      ],
+                    ),
+                    child: const Icon(
+                      Icons.auto_awesome_rounded,
+                      color: Colors.white,
+                      size: 48,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 28),
+                Text(
+                  context.t.translationProgressHeadline,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  state.status == TranslationFlowStatus.idle
+                      ? context.t.translationStageIdle
+                      : state.stageLabel,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: AppColors.textSecondaryFor(context),
+                  ),
+                ),
+                const SizedBox(height: 24),
                 AppSurfaceCard(
                   child: Column(
-                    spacing: 18,
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        context.t.translationProgressHeadline,
-                        style: Theme.of(context).textTheme.headlineSmall,
+                      Row(
+                        children: <Widget>[
+                          Text(
+                            context.t.translationProgressTitle,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          const Spacer(),
+                          Text('${(state.progress * 100).round()}%'),
+                        ],
                       ),
-                      Text(
-                        stageLabel,
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: AppColors.textSecondaryFor(context),
-                        ),
-                      ),
+                      const SizedBox(height: 12),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(999),
                         child: LinearProgressIndicator(
                           value: state.progress,
-                          minHeight: 12,
-                          backgroundColor: AppColors.outline.withValues(
-                            alpha: 0.3,
+                          minHeight: 10,
+                          backgroundColor: AppColors.surfaceMutedFor(context),
+                          valueColor: const AlwaysStoppedAnimation<Color>(
+                            AppColors.primary,
                           ),
-                          color: AppColors.primary,
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          '${(state.progress * 100).round()}%',
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.copyWith(
-                                color: AppColors.primary,
-                              ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 18),
+                const SizedBox(height: 16),
                 if (state.status == TranslationFlowStatus.failed)
                   StatePanel(
-                    icon: Iconsax.warning2,
+                    icon: Icons.error_outline_rounded,
                     title: context.t.translationFailedTitle,
                     message:
-                        state.errorMessage ?? context.t.translationFailedMessage,
-                    action: AppGradientButton(
-                      label: context.t.retryTranslation,
-                      icon: Iconsax.refresh,
+                        state.errorMessage ??
+                        context.t.translationFailedMessage,
+                    action: OutlinedButton.icon(
                       onPressed: () => ref
                           .read(translationFlowControllerProvider.notifier)
                           .retry(),
+                      icon: const Icon(Icons.refresh_rounded),
+                      label: Text(context.t.retryTranslation),
                     ),
                   )
                 else
-                  AppSurfaceCard(
-                    child: Column(
-                      spacing: 14,
-                      children: stages
-                          .asMap()
-                          .entries
-                          .map(
-                            (entry) => _StageTile(
-                              label: stages[entry.key].label,
-                              isActive:
-                                  stages[entry.key].backendLabel ==
-                                  state.stageLabel,
-                              isComplete:
-                                  state.progress >=
-                                  ((entry.key + 1) / stages.length),
-                            ),
-                          )
-                          .toList(growable: false),
-                    ),
-                  ),
+                  ...stages.asMap().entries.map((entry) {
+                    final stage = entry.value;
+                    final isActive = stage.backendLabel == state.stageLabel;
+                    final isComplete =
+                        state.progress >= ((entry.key + 1) / stages.length);
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: _ProgressStageTile(
+                        label: stage.label,
+                        isActive: isActive,
+                        isComplete: isComplete,
+                      ),
+                    );
+                  }),
               ],
             ),
           ),
@@ -213,8 +230,8 @@ class _StageDefinition {
   final String label;
 }
 
-class _StageTile extends StatelessWidget {
-  const _StageTile({
+class _ProgressStageTile extends StatelessWidget {
+  const _ProgressStageTile({
     required this.label,
     required this.isActive,
     required this.isComplete,
@@ -226,28 +243,53 @@ class _StageTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = isActive
-        ? AppColors.primary
-        : isComplete
+    final bgColor = isComplete
+        ? AppColors.emerald.withValues(alpha: 0.10)
+        : isActive
+        ? AppColors.primary.withValues(alpha: 0.10)
+        : Theme.of(context).colorScheme.surface;
+    final iconColor = isComplete
         ? AppColors.emerald
-        : AppColors.textMutedFor(context);
+        : isActive
+        ? AppColors.primary
+        : AppColors.textSecondaryFor(context);
 
-    return Row(
-      spacing: 12,
-      children: <Widget>[
-        Icon(isComplete ? Iconsax.tickCircle : Iconsax.clock, color: color),
-        Expanded(
-          child: Text(
-            label,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: isActive
-                  ? Theme.of(context).colorScheme.onSurface
-                  : AppColors.textSecondaryFor(context),
-              fontWeight: isActive ? FontWeight.w700 : FontWeight.w500,
+    return AppSurfaceCard(
+      child: Row(
+        children: <Widget>[
+          Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              color: bgColor,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Icon(
+              isComplete
+                  ? Icons.check_circle_rounded
+                  : Icons.auto_awesome_rounded,
+              color: iconColor,
             ),
           ),
-        ),
-      ],
+          const SizedBox(width: 14),
+          Expanded(
+            child: Text(
+              label,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: isActive || isComplete
+                    ? Theme.of(context).colorScheme.onSurface
+                    : AppColors.textSecondaryFor(context),
+              ),
+            ),
+          ),
+          if (isActive)
+            const SizedBox(
+              width: 20,
+              height: 20,
+              child: CircularProgressIndicator(strokeWidth: 2),
+            ),
+        ],
+      ),
     );
   }
 }

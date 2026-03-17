@@ -5,12 +5,9 @@ import 'package:subflix/core/app/router/app_routes.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
-import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
-import 'package:subflix/core/ui/widgets/app_directional_icon.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
-import 'package:subflix/core/ui/widgets/section_header.dart';
 import 'package:subflix/features/search/presentation/models/series_selection_args.dart';
 import 'package:subflix/features/subtitles/presentation/models/subtitle_sources_args.dart';
 
@@ -27,81 +24,58 @@ class SeriesEpisodesScreen extends StatelessWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(title: Text(args.item.title)),
       body: AppBackground(
         child: SafeArea(
           child: ResponsiveCenter(
             child: ListView(
-              padding: AppInsets.page,
+              padding: EdgeInsets.zero,
               children: <Widget>[
-                SectionHeader(
-                  title: context.t.seriesEpisodesTitle(args.seasonNumber),
-                  subtitle: _seasonSubtitle(context),
-                ),
-                const SizedBox(height: 16),
-                Column(
-                  spacing: 12,
-                  children: episodes
-                      .map(
-                        (episode) => AppSurfaceCard(
-                          onTap: () => context.push(
-                            AppRoutes.subtitleSources,
-                            extra: SubtitleSourcesArgs(
-                              item: args.item,
-                              seasonNumber: args.seasonNumber,
-                              episodeNumber: episode,
+                _EpisodesHeader(args: args),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 28),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        context.t.seriesEpisodesTitle(args.seasonNumber),
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        context.t.seriesEpisodesSubtitle(
+                          args.episodeCount,
+                          args.seasonYear == null
+                              ? ''
+                              : ' • ${args.seasonYear}',
+                        ),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: AppColors.textSecondaryFor(context),
+                        ),
+                      ),
+                      const SizedBox(height: 18),
+                      ...episodes.map(
+                        (episode) => Padding(
+                          padding: const EdgeInsets.only(bottom: 14),
+                          child: _EpisodeCard(
+                            title: context.t.seriesEpisodeLabel(episode),
+                            runtime: context.t.seriesEpisodeMeta(
+                              args.item.runtimeMinutes,
+                            ),
+                            description:
+                                '${args.item.title} • ${context.t.seriesSeasonLabel(args.seasonNumber)}',
+                            onTap: () => context.push(
+                              AppRoutes.subtitleSources,
+                              extra: SubtitleSourcesArgs(
+                                item: args.item,
+                                seasonNumber: args.seasonNumber,
+                                episodeNumber: episode,
+                              ),
                             ),
                           ),
-                          child: Row(
-                            spacing: 12,
-                            children: <Widget>[
-                              Container(
-                                width: 48,
-                                height: 48,
-                                decoration: BoxDecoration(
-                                  color: AppColors.primary.withValues(
-                                    alpha: 0.16,
-                                  ),
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                alignment: Alignment.center,
-                                child: const Icon(
-                                  Iconsax.monitor,
-                                  color: AppColors.primary,
-                                ),
-                              ),
-                              Expanded(
-                                child: Column(
-                                  spacing: 6,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      context.t.seriesEpisodeLabel(episode),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium,
-                                    ),
-                                    Text(
-                                      _episodeSubtitle(context),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall
-                                          ?.copyWith(
-                                            color: AppColors.textSecondaryFor(context),
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              AppDirectionalIcon(
-                                icon: Iconsax.arrowRight,
-                                color: AppColors.textMutedFor(context),
-                              ),
-                            ],
-                          ),
                         ),
-                      )
-                      .toList(growable: false),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -110,13 +84,138 @@ class SeriesEpisodesScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  String _seasonSubtitle(BuildContext context) {
-    final year = args.seasonYear == null ? '' : ' \u2022 ${args.seasonYear}';
-    return context.t.seriesEpisodesSubtitle(args.episodeCount, year);
+class _EpisodesHeader extends StatelessWidget {
+  const _EpisodesHeader({required this.args});
+
+  final SeriesEpisodesArgs args;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 20),
+      child: Row(
+        children: <Widget>[
+          IconButton(
+            onPressed: () => context.pop(),
+            style: IconButton.styleFrom(
+              backgroundColor: Theme.of(
+                context,
+              ).colorScheme.surface.withValues(alpha: 0.88),
+            ),
+            icon: const Icon(Icons.arrow_back_rounded),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  args.item.title,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  context.t.seriesSeasonLabel(args.seasonNumber),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: AppColors.textSecondaryFor(context),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
+}
 
-  String _episodeSubtitle(BuildContext context) {
-    return context.t.seriesEpisodeMeta(args.item.runtimeMinutes);
+class _EpisodeCard extends StatelessWidget {
+  const _EpisodeCard({
+    required this.title,
+    required this.runtime,
+    required this.description,
+    required this.onTap,
+  });
+
+  final String title;
+  final String runtime;
+  final String description;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppSurfaceCard(
+      onTap: onTap,
+      padding: EdgeInsets.zero,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            height: 168,
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: <Color>[Color(0xFF312E81), Color(0xFF7C3AED)],
+              ),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(28),
+              ),
+            ),
+            child: Stack(
+              children: <Widget>[
+                Positioned(
+                  right: 18,
+                  top: 18,
+                  child: Icon(
+                    Icons.play_circle_outline_rounded,
+                    size: 72,
+                    color: Colors.white.withValues(alpha: 0.20),
+                  ),
+                ),
+                Positioned(
+                  left: 16,
+                  bottom: 16,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.black.withValues(alpha: 0.26),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      runtime,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.labelLarge?.copyWith(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: AppInsets.card,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(title, style: Theme.of(context).textTheme.titleMedium),
+                const SizedBox(height: 8),
+                Text(
+                  description,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: AppColors.textSecondaryFor(context),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

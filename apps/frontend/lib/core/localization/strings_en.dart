@@ -44,6 +44,19 @@ const Map<String, String> kStringsEn = <String, String>{
   'translateSetupTitle': 'Translate setup',
   'translateSetupSubtitle':
       'Choose the target language, review the subtitle source, and start the backend translation job.',
+  'translateSetupSourceTitle': 'Source subtitle',
+  'translateSetupLanguageTitle': 'Translate to',
+  'translateSetupOptionsTitle': 'Options',
+  'translateSetupSelectLanguage': 'Select language',
+  'translateSetupReadyTitle': 'AI translation ready',
+  'translateSetupReadyBody':
+      'Our translation flow will adapt this subtitle into {language} with preserved timing and clean cue structure.',
+  'translateSetupPreserveTiming': 'Preserve timing',
+  'translateSetupPreserveTimingBody':
+      'Keep original subtitle timings aligned to the source file.',
+  'translateSetupAutoDetect': 'Auto-detect format',
+  'translateSetupAutoDetectBody':
+      'Choose the right subtitle output structure automatically.',
   'subtitleSourceFormatLabel': '{format} subtitle source',
   'targetLanguage': 'Target language',
   'startTranslation': 'Start translation',
@@ -102,6 +115,9 @@ const Map<String, String> kStringsEn = <String, String>{
   'subtitleSourcesTitle': 'English subtitle sources',
   'subtitleSourcesSubtitle':
       'Pick a subtitle source for {title}{target}, then choose the target language in the next step.',
+  'subtitleSourcesBannerTitle': 'AI translation available',
+  'subtitleSourcesBannerMessage':
+      'Select a subtitle source and continue into a polished translation setup tuned for subtitle timing.',
   'subtitleSourcesFailedTitle': 'Could not load subtitle sources',
   'seriesSeasonsTitle': 'Choose a season',
   'seriesSeasonsSubtitle':
