@@ -9,13 +9,16 @@ part of 'app_routes_data.dart';
 List<RouteBase> get $appRoutes => [
   $splashRoute,
   $onboardingRoute,
-  $homeShellRoute,
+  $homeRoute,
+  $historyRoute,
+  $settingsRoute,
   $searchRoute,
   $subtitleSourcesRoute,
   $seriesSeasonsRoute,
   $seriesEpisodesRoute,
   $translationSetupRoute,
   $translationProgressRoute,
+  $translationResultRoute,
   $translationPreviewRoute,
   $uploadRoute,
   $legalRoute,
@@ -70,34 +73,8 @@ mixin $OnboardingRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $homeShellRoute => StatefulShellRouteData.$route(
-  factory: $HomeShellRouteExtension._fromState,
-  branches: [
-    StatefulShellBranchData.$branch(
-      routes: [
-        GoRouteData.$route(path: '/home', factory: $HomeRoute._fromState),
-      ],
-    ),
-    StatefulShellBranchData.$branch(
-      routes: [
-        GoRouteData.$route(path: '/history', factory: $HistoryRoute._fromState),
-      ],
-    ),
-    StatefulShellBranchData.$branch(
-      routes: [
-        GoRouteData.$route(
-          path: '/settings',
-          factory: $SettingsRoute._fromState,
-        ),
-      ],
-    ),
-  ],
-);
-
-extension $HomeShellRouteExtension on HomeShellRoute {
-  static HomeShellRoute _fromState(GoRouterState state) =>
-      const HomeShellRoute();
-}
+RouteBase get $homeRoute =>
+    GoRouteData.$route(path: '/home', factory: $HomeRoute._fromState);
 
 mixin $HomeRoute on GoRouteData {
   static HomeRoute _fromState(GoRouterState state) => const HomeRoute();
@@ -119,6 +96,9 @@ mixin $HomeRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
+RouteBase get $historyRoute =>
+    GoRouteData.$route(path: '/history', factory: $HistoryRoute._fromState);
+
 mixin $HistoryRoute on GoRouteData {
   static HistoryRoute _fromState(GoRouterState state) => const HistoryRoute();
 
@@ -138,6 +118,9 @@ mixin $HistoryRoute on GoRouteData {
   @override
   void replace(BuildContext context) => context.replace(location);
 }
+
+RouteBase get $settingsRoute =>
+    GoRouteData.$route(path: '/settings', factory: $SettingsRoute._fromState);
 
 mixin $SettingsRoute on GoRouteData {
   static SettingsRoute _fromState(GoRouterState state) => const SettingsRoute();
@@ -297,6 +280,36 @@ mixin $TranslationProgressRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/translate/progress');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $translationResultRoute => GoRouteData.$route(
+  path: '/translate/result/:jobId',
+  factory: $TranslationResultRoute._fromState,
+);
+
+mixin $TranslationResultRoute on GoRouteData {
+  static TranslationResultRoute _fromState(GoRouterState state) =>
+      TranslationResultRoute(jobId: state.pathParameters['jobId']!);
+
+  TranslationResultRoute get _self => this as TranslationResultRoute;
+
+  @override
+  String get location => GoRouteData.$location(
+    '/translate/result/${Uri.encodeComponent(_self.jobId)}',
+  );
 
   @override
   void go(BuildContext context) => context.go(location);

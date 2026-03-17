@@ -41,12 +41,12 @@ class AppGradientButton extends StatelessWidget {
     final iconWidget = icon == null
         ? const SizedBox.shrink()
         : (mirrorIconInRtl && isRtl)
-            ? Transform(
-                alignment: Alignment.center,
-                transform: Matrix4.rotationY(3.1415926535897932),
-                child: Icon(icon, size: iconSize, color: iconColor),
-              )
-            : Icon(icon, size: iconSize, color: iconColor);
+        ? Transform(
+            alignment: Alignment.center,
+            transform: Matrix4.rotationY(3.1415926535897932),
+            child: Icon(icon, size: iconSize, color: iconColor),
+          )
+        : Icon(icon, size: iconSize, color: iconColor);
     final resolvedPadding =
         padding ?? const EdgeInsets.symmetric(horizontal: 18, vertical: 18);
     final resolvedMinHeight = minimumHeight ?? 54;
@@ -56,13 +56,21 @@ class AppGradientButton extends StatelessWidget {
         gradient: onPressed == null
             ? LinearGradient(
                 colors: <Color>[
-                  AppColors.outline.withValues(alpha: 0.5),
-                  AppColors.outline.withValues(alpha: 0.4),
+                  AppColors.outlineDark.withValues(alpha: 0.5),
+                  AppColors.outlineDark.withValues(alpha: 0.4),
                 ],
               )
             : (gradient ?? AppColors.accentGradient),
         borderRadius: resolvedRadius,
-        boxShadow: shadow == null ? <BoxShadow>[] : <BoxShadow>[shadow!],
+        boxShadow: <BoxShadow>[
+          if (onPressed != null)
+            shadow ??
+                BoxShadow(
+                  color: AppColors.primary.withValues(alpha: 0.32),
+                  blurRadius: 26,
+                  offset: const Offset(0, 14),
+                ),
+        ],
       ),
       child: SizedBox(
         width: fullWidth ? double.infinity : null,

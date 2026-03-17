@@ -21,19 +21,19 @@ class AppSurfaceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final isDark = scheme.brightness == Brightness.dark;
     final card = DecoratedBox(
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.9),
+        color: isDark
+            ? AppColors.surfaceDark.withValues(alpha: 0.94)
+            : AppColors.surfaceLight.withValues(alpha: 0.98),
         borderRadius: borderRadius,
-        border: Border.all(
-          color:
-              AppColors.outlineSoftForScheme(scheme).withValues(alpha: 0.8),
-        ),
+        border: Border.all(color: AppColors.outlineSoftForScheme(scheme)),
         boxShadow: <BoxShadow>[
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.16),
-            blurRadius: 30,
-            offset: const Offset(0, 20),
+            color: Colors.black.withValues(alpha: isDark ? 0.26 : 0.08),
+            blurRadius: isDark ? 24 : 18,
+            offset: const Offset(0, 12),
           ),
         ],
       ),

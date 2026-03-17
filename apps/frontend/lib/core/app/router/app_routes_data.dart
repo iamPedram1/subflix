@@ -5,7 +5,6 @@ import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/ui/widgets/route_state_missing_screen.dart';
 import 'package:subflix/features/history/presentation/screens/history_screen.dart';
 import 'package:subflix/features/home/presentation/screens/home_screen.dart';
-import 'package:subflix/features/home/presentation/widgets/home_shell.dart';
 import 'package:subflix/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:subflix/features/onboarding/presentation/screens/splash_screen.dart';
 import 'package:subflix/features/search/domain/models/movie_search_item.dart';
@@ -21,6 +20,7 @@ import 'package:subflix/features/subtitles/presentation/models/translation_setup
 import 'package:subflix/features/subtitles/presentation/screens/subtitle_sources_screen.dart';
 import 'package:subflix/features/subtitles/presentation/screens/translation_preview_screen.dart';
 import 'package:subflix/features/subtitles/presentation/screens/translation_progress_screen.dart';
+import 'package:subflix/features/subtitles/presentation/screens/translation_result_screen.dart';
 import 'package:subflix/features/subtitles/presentation/screens/translation_setup_screen.dart';
 import 'package:subflix/features/subtitles/presentation/screens/upload_screen.dart';
 
@@ -44,38 +44,7 @@ class OnboardingRoute extends GoRouteData with $OnboardingRoute {
       const OnboardingScreen();
 }
 
-@TypedStatefulShellRoute<HomeShellRoute>(
-  branches: <TypedStatefulShellBranch>[
-    TypedStatefulShellBranch(
-      routes: <TypedRoute<RouteData>>[
-        TypedGoRoute<HomeRoute>(path: AppRoutes.home),
-      ],
-    ),
-    TypedStatefulShellBranch(
-      routes: <TypedRoute<RouteData>>[
-        TypedGoRoute<HistoryRoute>(path: AppRoutes.history),
-      ],
-    ),
-    TypedStatefulShellBranch(
-      routes: <TypedRoute<RouteData>>[
-        TypedGoRoute<SettingsRoute>(path: AppRoutes.settings),
-      ],
-    ),
-  ],
-)
-class HomeShellRoute extends StatefulShellRouteData {
-  const HomeShellRoute();
-
-  @override
-  Widget builder(
-    BuildContext context,
-    GoRouterState state,
-    StatefulNavigationShell navigationShell,
-  ) {
-    return HomeShell(navigationShell: navigationShell);
-  }
-}
-
+@TypedGoRoute<HomeRoute>(path: AppRoutes.home)
 class HomeRoute extends GoRouteData with $HomeRoute {
   const HomeRoute();
 
@@ -83,6 +52,7 @@ class HomeRoute extends GoRouteData with $HomeRoute {
   Widget build(BuildContext context, GoRouterState state) => const HomeScreen();
 }
 
+@TypedGoRoute<HistoryRoute>(path: AppRoutes.history)
 class HistoryRoute extends GoRouteData with $HistoryRoute {
   const HistoryRoute();
 
@@ -91,6 +61,7 @@ class HistoryRoute extends GoRouteData with $HistoryRoute {
       const HistoryScreen();
 }
 
+@TypedGoRoute<SettingsRoute>(path: AppRoutes.settings)
 class SettingsRoute extends GoRouteData with $SettingsRoute {
   const SettingsRoute();
 
@@ -181,7 +152,8 @@ class TranslationSetupRoute extends GoRouteData with $TranslationSetupRoute {
 }
 
 @TypedGoRoute<TranslationProgressRoute>(path: AppRoutes.translationProgress)
-class TranslationProgressRoute extends GoRouteData with $TranslationProgressRoute {
+class TranslationProgressRoute extends GoRouteData
+    with $TranslationProgressRoute {
   const TranslationProgressRoute();
 
   @override
@@ -198,8 +170,20 @@ class TranslationProgressRoute extends GoRouteData with $TranslationProgressRout
   }
 }
 
+@TypedGoRoute<TranslationResultRoute>(path: AppRoutes.translationResult)
+class TranslationResultRoute extends GoRouteData with $TranslationResultRoute {
+  const TranslationResultRoute({required this.jobId});
+
+  final String jobId;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      TranslationResultScreen(jobId: jobId);
+}
+
 @TypedGoRoute<TranslationPreviewRoute>(path: AppRoutes.translationPreview)
-class TranslationPreviewRoute extends GoRouteData with $TranslationPreviewRoute {
+class TranslationPreviewRoute extends GoRouteData
+    with $TranslationPreviewRoute {
   const TranslationPreviewRoute({required this.jobId});
 
   final String jobId;

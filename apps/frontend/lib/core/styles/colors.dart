@@ -1,23 +1,36 @@
 import 'package:flutter/material.dart';
 
-/// Central color tokens for the SubFlix design system.
 abstract final class AppColors {
-  static const Color midnight = Color(0xFF07111F);
-  static const Color abyss = Color(0xFF0B1630);
-  static const Color surface = Color(0xFF101D36);
-  static const Color surfaceElevated = Color(0xFF162747);
-  static const Color surfaceMuted = Color(0xFF1A2D4F);
-  static const Color outline = Color(0xFF2A4169);
-  static const Color outlineSoft = Color(0xFF223555);
-  static const Color textPrimary = Color(0xFFF4F7FF);
-  static const Color textSecondary = Color(0xFFB9C5DD);
-  static const Color textMuted = Color(0xFF8B9AB8);
-  static const Color primary = Color(0xFF5D8BFF);
-  static const Color secondary = Color(0xFF8A6BFF);
-  static const Color emerald = Color(0xFF15C998);
-  static const Color warning = Color(0xFFF6B84B);
-  static const Color danger = Color(0xFFFF6B7A);
-  static const Color info = Color(0xFF53C4FF);
+  static const Color midnight = backgroundDark;
+  static const Color abyss = Color(0xFF13131B);
+  static const Color surface = surfaceDark;
+  static const Color surfaceElevated = surfaceDark;
+  static const Color surfaceMuted = surfaceMutedDark;
+  static const Color outline = outlineDark;
+  static const Color outlineSoft = outlineDark;
+  static const Color textPrimary = textPrimaryDark;
+  static const Color textSecondary = textSecondaryDark;
+  static const Color textMuted = textSecondaryDark;
+  static const Color backgroundLight = Color(0xFFFAFAFA);
+  static const Color backgroundDark = Color(0xFF0A0A0A);
+  static const Color surfaceLight = Color(0xFFFFFFFF);
+  static const Color surfaceDark = Color(0xFF18181B);
+  static const Color surfaceMutedLight = Color(0xFFF4F4F5);
+  static const Color surfaceMutedDark = Color(0xFF27272A);
+  static const Color outlineLight = Color(0xFFE5E7EB);
+  static const Color outlineDark = Color(0xFF27272A);
+  static const Color textPrimaryLight = Color(0xFF0A0A0A);
+  static const Color textPrimaryDark = Color(0xFFFAFAFA);
+  static const Color textSecondaryLight = Color(0xFF6B7280);
+  static const Color textSecondaryDark = Color(0xFFA1A1AA);
+  static const Color primary = Color(0xFF6366F1);
+  static const Color primaryDark = Color(0xFF818CF8);
+  static const Color secondary = Color(0xFF8B5CF6);
+  static const Color tertiary = Color(0xFFEC4899);
+  static const Color emerald = Color(0xFF10B981);
+  static const Color warning = Color(0xFFF59E0B);
+  static const Color danger = Color(0xFFEF4444);
+  static const Color info = Color(0xFF38BDF8);
 
   static Color textSecondaryFor(BuildContext context) {
     return textSecondaryForScheme(Theme.of(context).colorScheme);
@@ -37,37 +50,43 @@ abstract final class AppColors {
 
   static Color textSecondaryForScheme(ColorScheme scheme) {
     return scheme.brightness == Brightness.dark
-        ? textSecondary
+        ? textSecondaryDark
         : scheme.onSurface.withValues(alpha: 0.68);
   }
 
   static Color textMutedForScheme(ColorScheme scheme) {
     return scheme.brightness == Brightness.dark
-        ? textMuted
+        ? textSecondaryDark.withValues(alpha: 0.72)
         : scheme.onSurface.withValues(alpha: 0.5);
   }
 
   static Color surfaceMutedForScheme(ColorScheme scheme) {
     return scheme.brightness == Brightness.dark
-        ? surfaceMuted
-        : scheme.surface.withValues(alpha: 0.78);
+        ? surfaceMutedDark
+        : surfaceMutedLight;
   }
 
   static Color outlineSoftForScheme(ColorScheme scheme) {
     return scheme.brightness == Brightness.dark
-        ? outlineSoft
+        ? outlineDark.withValues(alpha: 0.88)
         : scheme.outline.withValues(alpha: 0.5);
   }
 
   static const LinearGradient heroGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: <Color>[Color(0xFF12244A), Color(0xFF1C235A), Color(0xFF0D5A72)],
+    colors: <Color>[primary, secondary, tertiary],
   );
 
   static const LinearGradient accentGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: <Color>[primary, secondary, emerald],
+    colors: <Color>[primary, secondary],
+  );
+
+  static const LinearGradient successGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: <Color>[emerald, Color(0xFF059669)],
   );
 }

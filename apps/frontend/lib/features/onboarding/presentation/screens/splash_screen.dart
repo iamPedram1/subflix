@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:subflix/core/app/router/app_routes.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
-import 'package:subflix/core/styles/spacing.dart';
-import 'package:subflix/core/ui/widgets/app_background.dart';
-import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
-import 'package:subflix/core/ui/widgets/responsive_center.dart';
-import 'package:subflix/core/ui/widgets/subflix_wordmark.dart';
 import 'package:subflix/features/settings/application/settings_controller.dart';
 import 'package:subflix/features/settings/domain/models/user_preference.dart';
 
@@ -41,10 +37,14 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     if (!mounted) {
       return;
     }
-
-    context.go(
-      preference.hasSeenOnboarding ? AppRoutes.home : AppRoutes.onboarding,
-    );
+    Future<void>.delayed(const Duration(milliseconds: 2200), () {
+      if (!mounted) {
+        return;
+      }
+      context.go(
+        preference.hasSeenOnboarding ? AppRoutes.home : AppRoutes.onboarding,
+      );
+    });
   }
 
   @override
@@ -56,30 +56,168 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AppBackground(
-        child: SafeArea(
-          child: ResponsiveCenter(
-            child: Center(
-              child: Padding(
-                padding: AppInsets.cardLarge,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: 24,
-                  children: <Widget>[
-                    const SubflixWordmark(),
-                    Text(
-                      context.t.splashPreparing,
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: AppColors.textSecondaryFor(context),
-                      ),
-                    ),
-                    const LoadingSkeleton(width: 220, height: 10),
-                  ],
-                ),
-              ),
-            ),
+      body: DecoratedBox(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: <Color>[
+              Color(0xFF0A0A0A),
+              Color(0xFF1A1A2E),
+              Color(0xFF16213E),
+            ],
           ),
         ),
+        child: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            const _ParticleField(),
+            SafeArea(
+              child: Column(
+                children: <Widget>[
+                  const Spacer(),
+                  Column(
+                    children: <Widget>[
+                      Container(
+                            width: 112,
+                            height: 112,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: AppColors.accentGradient,
+                              boxShadow: <BoxShadow>[
+                                BoxShadow(
+                                  color: AppColors.secondary.withValues(
+                                    alpha: 0.45,
+                                  ),
+                                  blurRadius: 36,
+                                  offset: const Offset(0, 18),
+                                ),
+                              ],
+                            ),
+                            child: const Icon(
+                              Icons.movie_creation_outlined,
+                              size: 54,
+                              color: Colors.white,
+                            ),
+                          )
+                          .animate(onPlay: (controller) => controller.repeat())
+                          .rotate(duration: 20.seconds),
+                      const SizedBox(height: 28),
+                      Text(
+                            context.t.splashHeadline,
+                            style: Theme.of(context).textTheme.displayMedium
+                                ?.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                          )
+                          .animate()
+                          .fadeIn(duration: 450.ms)
+                          .moveY(begin: 12, end: 0),
+                      const SizedBox(height: 8),
+                      Text(
+                        context.t.brandSubtitleFull,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: Colors.white.withValues(alpha: 0.68),
+                          letterSpacing: 1.2,
+                        ),
+                      ).animate().fadeIn(delay: 200.ms, duration: 450.ms),
+                    ],
+                  ),
+                  const Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 56),
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List<Widget>.generate(
+                            3,
+                            (index) =>
+                                Container(
+                                      width: 8,
+                                      height: 8,
+                                      margin: const EdgeInsets.symmetric(
+                                        horizontal: 4,
+                                      ),
+                                      decoration: const BoxDecoration(
+                                        color: Color(0xFF818CF8),
+                                        shape: BoxShape.circle,
+                                      ),
+                                    )
+                                    .animate(
+                                      delay: Duration(
+                                        milliseconds: index * 180,
+                                      ),
+                                      onPlay: (controller) =>
+                                          controller.repeat(),
+                                    )
+                                    .scaleXY(
+                                      begin: 1,
+                                      end: 1.5,
+                                      duration: 900.ms,
+                                    )
+                                    .then()
+                                    .scaleXY(
+                                      begin: 1.5,
+                                      end: 1,
+                                      duration: 900.ms,
+                                    ),
+                          ),
+                        ),
+                        const SizedBox(height: 14),
+                        Text(
+                          context.t.splashPreparing,
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(
+                                color: Colors.white.withValues(alpha: 0.62),
+                              ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ParticleField extends StatelessWidget {
+  const _ParticleField();
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      child: Stack(
+        children: List<Widget>.generate(18, (index) {
+          final top = (index * 37.0) % 700;
+          final left = (index * 53.0) % 360;
+          return Positioned(
+            top: top,
+            left: left,
+            child:
+                Container(
+                      width: index.isEven ? 4 : 6,
+                      height: index.isEven ? 4 : 6,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.16),
+                        shape: BoxShape.circle,
+                      ),
+                    )
+                    .animate(
+                      delay: Duration(milliseconds: 120 * index),
+                      onPlay: (controller) => controller.repeat(),
+                    )
+                    .fadeIn(duration: 900.ms)
+                    .moveY(begin: -12, end: 24, duration: 2800.ms)
+                    .fadeOut(delay: 1800.ms, duration: 900.ms),
+          );
+        }),
       ),
     );
   }

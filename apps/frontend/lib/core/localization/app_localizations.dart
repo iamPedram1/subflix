@@ -40,25 +40,25 @@ class AppLocalizations {
 
   static const List<LocalizationsDelegate<dynamic>> globalDelegates =
       <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-  ];
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ];
 
   static const Map<String, Map<String, String>> _localizedValues =
       <String, Map<String, String>>{
-    'en': kStringsEn,
-    'fa': kStringsFa,
-    'ar': kStringsAr,
-    'fr': kStringsFr,
-    'de': kStringsDe,
-    'ja': kStringsJa,
-    'zh': kStringsZh,
-    'hi': kStringsHi,
-    'pt': kStringsPt,
-    'es': kStringsEs,
-  };
+        'en': kStringsEn,
+        'fa': kStringsFa,
+        'ar': kStringsAr,
+        'fr': kStringsFr,
+        'de': kStringsDe,
+        'ja': kStringsJa,
+        'zh': kStringsZh,
+        'hi': kStringsHi,
+        'pt': kStringsPt,
+        'es': kStringsEs,
+      };
 
   String _t(String key) =>
       _localizedValues[locale.languageCode]?[key] ??
@@ -82,6 +82,15 @@ class AppLocalizations {
   String get searchFailedTitle => _t('searchFailedTitle');
   String get noTitlesMatchedTitle => _t('noTitlesMatchedTitle');
   String get noTitlesMatchedMessage => _t('noTitlesMatchedMessage');
+  String get searchTrendingTitle => _t('searchTrendingTitle');
+  String get searchLoadingLabel => _t('searchLoadingLabel');
+  String searchFoundResults(int count, String query) => _format(
+    'searchFoundResults',
+    <String, String>{'count': '$count', 'query': query},
+  );
+  String searchNoResultsFor(String query) =>
+      _format('searchNoResultsFor', <String, String>{'query': query});
+  String get searchTryDifferentKeywords => _t('searchTryDifferentKeywords');
   String get retry => _t('retry');
   String get retryTranslation => _t('retryTranslation');
   String get uploadSubtitleTitle => _t('uploadSubtitleTitle');
@@ -103,17 +112,13 @@ class AppLocalizations {
   String get uploadMetadataTitle => _t('uploadMetadataTitle');
   String get uploadReadyTitle => _t('uploadReadyTitle');
   String uploadLineCount(int lineCount) =>
-      _format('uploadLineCount', <String, String>{
-        'lineCount': '$lineCount',
-      });
+      _format('uploadLineCount', <String, String>{'lineCount': '$lineCount'});
   String get uploadEnglishSource => _t('uploadEnglishSource');
   String get uploadContinueSetup => _t('uploadContinueSetup');
   String get translateSetupTitle => _t('translateSetupTitle');
   String get translateSetupSubtitle => _t('translateSetupSubtitle');
   String subtitleSourceFormatLabel(String format) =>
-      _format('subtitleSourceFormatLabel', <String, String>{
-        'format': format,
-      });
+      _format('subtitleSourceFormatLabel', <String, String>{'format': format});
   String get targetLanguage => _t('targetLanguage');
   String get startTranslation => _t('startTranslation');
   String get translationProgressTitle => _t('translationProgressTitle');
@@ -127,6 +132,31 @@ class AppLocalizations {
   String get translationStageGenerating => _t('translationStageGenerating');
   String get translationStageReadability => _t('translationStageReadability');
   String get translationStageReady => _t('translationStageReady');
+  String get translationResultCompleteTitle =>
+      _t('translationResultCompleteTitle');
+  String get translationResultCompleteSubtitle =>
+      _t('translationResultCompleteSubtitle');
+  String get translationResultDetailsTitle =>
+      _t('translationResultDetailsTitle');
+  String get translationResultMediaLabel => _t('translationResultMediaLabel');
+  String get translationResultSourceLabel => _t('translationResultSourceLabel');
+  String get translationResultTargetLabel => _t('translationResultTargetLabel');
+  String get translationResultMethodAi => _t('translationResultMethodAi');
+  String get translationResultMetricsTitle =>
+      _t('translationResultMetricsTitle');
+  String get translationResultConfidenceLabel =>
+      _t('translationResultConfidenceLabel');
+  String get translationResultTimingLabel => _t('translationResultTimingLabel');
+  String get translationResultTimingPreserved =>
+      _t('translationResultTimingPreserved');
+  String translationResultProcessedIn(String duration) => _format(
+    'translationResultProcessedIn',
+    <String, String>{'duration': duration},
+  );
+  String get translationResultWarning => _t('translationResultWarning');
+  String get translationResultPreviewCta => _t('translationResultPreviewCta');
+  String get translationResultDownloadCta => _t('translationResultDownloadCta');
+  String get translationResultHomeCta => _t('translationResultHomeCta');
   String get translationPreviewTitle => _t('translationPreviewTitle');
   String get translationPreviewHeader => _t('translationPreviewHeader');
   String get translationPreviewSubtitle => _t('translationPreviewSubtitle');
@@ -141,11 +171,10 @@ class AppLocalizations {
   String get previewFailedTitle => _t('previewFailedTitle');
   String get exportingLabel => _t('exportingLabel');
   String get exportSubtitleLabel => _t('exportSubtitleLabel');
-  String exportedSnack(String fileName, String path) =>
-      _format('exportedSnack', <String, String>{
-        'fileName': fileName,
-        'path': path,
-      });
+  String exportedSnack(String fileName, String path) => _format(
+    'exportedSnack',
+    <String, String>{'fileName': fileName, 'path': path},
+  );
   String exportFailedSnack(String error) =>
       _format('exportFailedSnack', <String, String>{'error': error});
   String get metadataFormat => _t('metadataFormat');
@@ -153,41 +182,36 @@ class AppLocalizations {
   String get metadataLanguages => _t('metadataLanguages');
   String get metadataEstimatedDuration => _t('metadataEstimatedDuration');
   String get subtitleSourcesTitle => _t('subtitleSourcesTitle');
-  String subtitleSourcesSubtitle(String title, String target) =>
-      _format('subtitleSourcesSubtitle', <String, String>{
-        'title': title,
-        'target': target,
-      });
+  String subtitleSourcesSubtitle(String title, String target) => _format(
+    'subtitleSourcesSubtitle',
+    <String, String>{'title': title, 'target': target},
+  );
   String get subtitleSourcesFailedTitle => _t('subtitleSourcesFailedTitle');
   String get seriesSeasonsTitle => _t('seriesSeasonsTitle');
   String seriesSeasonsSubtitle(String title) =>
       _format('seriesSeasonsSubtitle', <String, String>{'title': title});
-  String seriesSeasonLabel(int seasonNumber) =>
-      _format('seriesSeasonLabel', <String, String>{
-        'seasonNumber': '$seasonNumber',
-      });
-  String seriesSeasonMeta(int episodeCount, String year) =>
-      _format('seriesSeasonMeta', <String, String>{
-        'episodeCount': '$episodeCount',
-        'year': year,
-      });
-  String seriesEpisodesTitle(int seasonNumber) =>
-      _format('seriesEpisodesTitle', <String, String>{
-        'seasonNumber': '$seasonNumber',
-      });
-  String seriesEpisodesSubtitle(int episodeCount, String year) =>
-      _format('seriesEpisodesSubtitle', <String, String>{
-        'episodeCount': '$episodeCount',
-        'year': year,
-      });
-  String seriesEpisodeLabel(int episodeNumber) =>
-      _format('seriesEpisodeLabel', <String, String>{
-        'episodeNumber': '$episodeNumber',
-      });
+  String seriesSeasonLabel(int seasonNumber) => _format(
+    'seriesSeasonLabel',
+    <String, String>{'seasonNumber': '$seasonNumber'},
+  );
+  String seriesSeasonMeta(int episodeCount, String year) => _format(
+    'seriesSeasonMeta',
+    <String, String>{'episodeCount': '$episodeCount', 'year': year},
+  );
+  String seriesEpisodesTitle(int seasonNumber) => _format(
+    'seriesEpisodesTitle',
+    <String, String>{'seasonNumber': '$seasonNumber'},
+  );
+  String seriesEpisodesSubtitle(int episodeCount, String year) => _format(
+    'seriesEpisodesSubtitle',
+    <String, String>{'episodeCount': '$episodeCount', 'year': year},
+  );
+  String seriesEpisodeLabel(int episodeNumber) => _format(
+    'seriesEpisodeLabel',
+    <String, String>{'episodeNumber': '$episodeNumber'},
+  );
   String seriesEpisodeMeta(int runtime) =>
-      _format('seriesEpisodeMeta', <String, String>{
-        'runtime': '$runtime',
-      });
+      _format('seriesEpisodeMeta', <String, String>{'runtime': '$runtime'});
   String get historyTitle => _t('historyTitle');
   String get historySubtitle => _t('historySubtitle');
   String get historyEmptyTitle => _t('historyEmptyTitle');
@@ -198,6 +222,14 @@ class AppLocalizations {
   String get homeNoRecentTitle => _t('homeNoRecentTitle');
   String get homeNoRecentMessage => _t('homeNoRecentMessage');
   String get homeFailedRecentTitle => _t('homeFailedRecentTitle');
+  String get homeWelcomeTitle => _t('homeWelcomeTitle');
+  String get homeWelcomeSubtitle => _t('homeWelcomeSubtitle');
+  String get homeSearchPlaceholder => _t('homeSearchPlaceholder');
+  String get homeQuickSearch => _t('homeQuickSearch');
+  String get homeQuickHistory => _t('homeQuickHistory');
+  String get homeQuickUpload => _t('homeQuickUpload');
+  String get homeViewAll => _t('homeViewAll');
+  String get homeTrendingNow => _t('homeTrendingNow');
   String get homeTrustTitle => _t('homeTrustTitle');
   String get homeTrustSubtitle => _t('homeTrustSubtitle');
   String get homeFutureTitle => _t('homeFutureTitle');
@@ -280,9 +312,9 @@ class AppLocalizations {
   String subtitleSourceLines(String lineCount) =>
       _format('subtitleSourceLines', <String, String>{'lineCount': lineCount});
   String subtitleSourceDownloads(String downloads) => _format(
-        'subtitleSourceDownloads',
-        <String, String>{'downloads': downloads},
-      );
+    'subtitleSourceDownloads',
+    <String, String>{'downloads': downloads},
+  );
   String subtitleSourceRating(String rating) =>
       _format('subtitleSourceRating', <String, String>{'rating': rating});
   String get subtitleSourceHiLabel => _t('subtitleSourceHiLabel');
@@ -330,8 +362,9 @@ class _AppLocalizationsDelegate
   const _AppLocalizationsDelegate();
 
   @override
-  bool isSupported(Locale locale) => AppLocalizations.supportedLocales
-      .any((supported) => supported.languageCode == locale.languageCode);
+  bool isSupported(Locale locale) => AppLocalizations.supportedLocales.any(
+    (supported) => supported.languageCode == locale.languageCode,
+  );
 
   @override
   Future<AppLocalizations> load(Locale locale) {

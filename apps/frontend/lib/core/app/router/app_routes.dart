@@ -10,6 +10,7 @@ abstract final class AppRoutes {
   static const String seriesEpisodes = '/search/series/episodes';
   static const String translateSetup = '/translate/setup';
   static const String translationProgress = '/translate/progress';
+  static const String translationResult = '/translate/result/:jobId';
   static const String translationPreview = '/translate/preview/:jobId';
   static const String upload = '/upload';
   static const String legal = '/legal/:slug';

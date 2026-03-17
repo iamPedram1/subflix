@@ -30,42 +30,64 @@ class _BackgroundLayer extends StatelessWidget {
     final isDark = scheme.brightness == Brightness.dark;
     return DecoratedBox(
       decoration: BoxDecoration(
+        color: isDark ? AppColors.backgroundDark : AppColors.backgroundLight,
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: isDark
               ? const <Color>[
-                  AppColors.midnight,
-                  AppColors.abyss,
-                  AppColors.midnight,
+                  AppColors.backgroundDark,
+                  Color(0xFF13131B),
+                  AppColors.backgroundDark,
                 ]
-              : <Color>[
-                  scheme.surface,
-                  scheme.surface.withValues(alpha: 0.92),
-                  scheme.surface,
+              : const <Color>[
+                  AppColors.backgroundLight,
+                  Color(0xFFF7F7FB),
+                  AppColors.backgroundLight,
                 ],
         ),
       ),
       child: Stack(
         children: <Widget>[
-          if (isDark)
-            const Positioned(
-              top: 260,
-              left: -90,
+          Positioned(
+            top: -120,
+            right: -80,
+            child: _GlowOrb(
+              size: isDark ? 260 : 220,
+              colors: <Color>[
+                (isDark ? AppColors.primaryDark : AppColors.primary).withValues(
+                  alpha: isDark ? 0.18 : 0.10,
+                ),
+                Colors.transparent,
+              ],
+            ),
+          ),
+          Positioned(
+            top: 80,
+            left: -70,
+            child: _GlowOrb(
+              size: isDark ? 220 : 180,
+              colors: <Color>[
+                AppColors.secondary.withValues(alpha: isDark ? 0.16 : 0.08),
+                Colors.transparent,
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: -120,
+            left: 0,
+            right: 0,
+            child: Align(
+              alignment: Alignment.bottomCenter,
               child: _GlowOrb(
-                size: 220,
-                colors: <Color>[AppColors.emerald, Colors.transparent],
+                size: isDark ? 320 : 260,
+                colors: <Color>[
+                  AppColors.tertiary.withValues(alpha: isDark ? 0.10 : 0.05),
+                  Colors.transparent,
+                ],
               ),
             ),
-          if (isDark)
-            const Positioned(
-              bottom: -100,
-              right: -30,
-              child: _GlowOrb(
-                size: 210,
-                colors: <Color>[AppColors.primary, Colors.transparent],
-              ),
-            ),
+          ),
         ],
       ),
     );
