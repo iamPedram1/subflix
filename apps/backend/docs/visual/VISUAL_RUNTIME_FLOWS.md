@@ -1,6 +1,6 @@
 # Visual Runtime Flows
 
-> **Docs index:** [README.md](README.md) · **See also:** [VISUAL_ARCHITECTURE.md](VISUAL_ARCHITECTURE.md) · [VISUAL_STATE_MAP.md](VISUAL_STATE_MAP.md) · [KEY_DIAGRAMS.md](KEY_DIAGRAMS.md)
+> **Docs index:** [README.md](../README.md) · **See also:** [VISUAL_ARCHITECTURE.md](VISUAL_ARCHITECTURE.md) · [VISUAL_STATE_MAP.md](VISUAL_STATE_MAP.md) · [KEY_DIAGRAMS.md](../KEY_DIAGRAMS.md)
 >
 > **Covers:** 12 runtime flows with diagrams — auth, upload, catalog search, subtitle discovery, job creation, job execution (both paths), catalog decision tree, target-language reuse, translation reuse, stall recovery, dispatch.
 > **Does not cover:** state machine internals (→ VISUAL_STATE_MAP), data model (→ VISUAL_DATA_MAP), module structure (→ VISUAL_ARCHITECTURE).

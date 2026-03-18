@@ -1,0 +1,32 @@
+graph TD
+    subgraph "HIGH RISK"
+        R1["claimQueuedJobForRunner()\nMust stay SKIP LOCKED atomic"]
+        R2["recoverStalledJobs()\ntry/finally — advisory lock must release"]
+        R3["jobMeta mutations\nAlways use job-staleness.util.ts"]
+        R4["replaceJobCues()\nNot idempotent — second call clears first"]
+    end
+
+    subgraph "MEDIUM RISK"
+        M1["dispatch() priority scoring\nAffects all job ordering globally"]
+        M2["SubtitleProviderHealthService\nShared state across all 3 providers"]
+        M3["AppCacheService.getOrSet()\nCoalescing relies on promise reference"]
+    end
+
+    subgraph "LOW RISK — isolated pure functions"
+        L1["SubtitleParserService"]
+        L2["SubtitleTimingAlignmentService"]
+        L3["SubtitleExportService"]
+        L4["translation-job-priority.util.ts"]
+    end
+
+    style R1 fill:#fce4ec,stroke:#c62828
+    style R2 fill:#fce4ec,stroke:#c62828
+    style R3 fill:#fce4ec,stroke:#c62828
+    style R4 fill:#fce4ec,stroke:#c62828
+    style M1 fill:#fff8e1,stroke:#f9a825
+    style M2 fill:#fff8e1,stroke:#f9a825
+    style M3 fill:#fff8e1,stroke:#f9a825
+    style L1 fill:#e8f5e9,stroke:#388e3c
+    style L2 fill:#e8f5e9,stroke:#388e3c
+    style L3 fill:#e8f5e9,stroke:#388e3c
+    style L4 fill:#e8f5e9,stroke:#388e3c

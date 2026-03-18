@@ -1,0 +1,34 @@
+graph TD
+    subgraph "Terminal Consumer"
+        TJ["TranslationJobsModule"]
+    end
+
+    subgraph "Feature Modules"
+        CAT["CatalogModule"]
+        SUB["SubtitlesModule"]
+        AUTH["AuthModule"]
+        PREF["PreferencesModule"]
+        DEV["DevicesModule"]
+        HEALTH["HealthModule"]
+    end
+
+    subgraph "Common Modules"
+        PRISMA["PrismaModule"]
+        CACHE["AppCacheModule"]
+        CFGM["AppConfigModule"]
+    end
+
+    TJ -->|imports| CAT
+    TJ -->|imports| SUB
+    TJ --> PRISMA & DEV & CFGM
+
+    CAT --> CACHE & CFGM
+    SUB --> PRISMA & DEV & CFGM
+    AUTH --> PRISMA & CFGM
+    PREF --> PRISMA & CACHE & DEV & CFGM
+    DEV --> PRISMA & CFGM
+    HEALTH --> CFGM
+
+    style TJ fill:#ffc,stroke:#cc0
+    style CAT fill:#dfd,stroke:#0a0
+    style SUB fill:#dfd,stroke:#0a0

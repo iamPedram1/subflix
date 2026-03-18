@@ -1,6 +1,6 @@
 # Codebase Review Notes
 
-> **Docs index:** [README.md](README.md) · **See also:** [VISUAL_CONTRIBUTOR_GUIDE.md](VISUAL_CONTRIBUTOR_GUIDE.md) · [BACKEND_ARCHITECTURE_OVERVIEW.md](BACKEND_ARCHITECTURE_OVERVIEW.md)
+> **Docs index:** [README.md](../README.md) · **See also:** [VISUAL_CONTRIBUTOR_GUIDE.md](../visual/VISUAL_CONTRIBUTOR_GUIDE.md) · [BACKEND_ARCHITECTURE_OVERVIEW.md](../architecture/BACKEND_ARCHITECTURE_OVERVIEW.md)
 >
 > **Covers:** what is well-designed, hard-to-understand areas, coupling, clean abstractions, naming issues, maintenance risks, future refactor opportunities, "be careful here" warnings.
 

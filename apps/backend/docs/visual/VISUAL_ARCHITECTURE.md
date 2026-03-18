@@ -1,6 +1,6 @@
 # Visual Architecture
 
-> **Docs index:** [README.md](README.md) · **See also:** [BACKEND_ARCHITECTURE_OVERVIEW.md](BACKEND_ARCHITECTURE_OVERVIEW.md) · [VISUAL_RUNTIME_FLOWS.md](VISUAL_RUNTIME_FLOWS.md) · [KEY_DIAGRAMS.md](KEY_DIAGRAMS.md)
+> **Docs index:** [README.md](../README.md) · **See also:** [BACKEND_ARCHITECTURE_OVERVIEW.md](../architecture/BACKEND_ARCHITECTURE_OVERVIEW.md) · [VISUAL_RUNTIME_FLOWS.md](VISUAL_RUNTIME_FLOWS.md) · [KEY_DIAGRAMS.md](../KEY_DIAGRAMS.md)
 >
 > **Covers:** system context, module layout, layer diagram, background processing, integrations map.
 > **Does not cover:** runtime flows (→ VISUAL_RUNTIME_FLOWS), state machines (→ VISUAL_STATE_MAP), data model (→ VISUAL_DATA_MAP).

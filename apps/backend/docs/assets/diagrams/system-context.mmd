@@ -1,0 +1,23 @@
+C4Context
+    title SubFlix Back — System Context
+
+    Person(user, "Flutter App User", "Uses device ID to upload subtitles, discover catalog sources, and get translations")
+
+    System(backend, "SubFlix Back", "NestJS REST API\nTranslation job orchestration\nSubtitle sourcing")
+
+    System_Ext(tmdb, "TMDb API", "Movie & TV metadata")
+    System_Ext(subdl, "SubDL API", "Subtitle search (primary)")
+    System_Ext(podnapisi, "Podnapisi", "Subtitle search (scraper)")
+    System_Ext(tvsubs, "TVSubs", "Subtitle search (scraper)")
+    System_Ext(firebase, "Firebase Admin", "OAuth token verification")
+    System_Ext(translation, "Translation Provider", "Currently: Mock\nFuture: Claude / DeepL")
+    SystemDb(db, "PostgreSQL", "All durable state:\njobs, users, files, prefs")
+
+    Rel(user, backend, "REST API calls", "HTTPS")
+    Rel(backend, tmdb, "Media search")
+    Rel(backend, subdl, "Subtitle search")
+    Rel(backend, podnapisi, "Subtitle search")
+    Rel(backend, tvsubs, "Subtitle search")
+    Rel(backend, firebase, "Verify OAuth tokens")
+    Rel(backend, translation, "Translate cues")
+    Rel(backend, db, "Read / Write")

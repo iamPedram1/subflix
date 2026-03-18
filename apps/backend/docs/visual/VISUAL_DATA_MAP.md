@@ -1,6 +1,6 @@
 # Visual Data Map
 
-> **Docs index:** [README.md](README.md) · **See also:** [DATA_AND_STATE_MODEL.md](DATA_AND_STATE_MODEL.md) · [VISUAL_STATE_MAP.md](VISUAL_STATE_MAP.md) · [KEY_DIAGRAMS.md](KEY_DIAGRAMS.md)
+> **Docs index:** [README.md](../README.md) · **See also:** [DATA_AND_STATE_MODEL.md](../reference/DATA_AND_STATE_MODEL.md) · [VISUAL_STATE_MAP.md](VISUAL_STATE_MAP.md) · [KEY_DIAGRAMS.md](../KEY_DIAGRAMS.md)
 >
 > **Covers:** full ERD, ownership hierarchy, all three JSON blob schemas (`mediaRef` / `subtitleSourceRef` / `jobMeta`), read/write ownership map, DB index → query pattern map, `SubtitleCue` internal model flow.
 > **Does not cover:** state transitions (→ VISUAL_STATE_MAP), field-level reference tables (→ DATA_AND_STATE_MODEL).

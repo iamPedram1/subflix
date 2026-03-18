@@ -1,6 +1,6 @@
 # Feature Map
 
-> **Docs index:** [README.md](README.md) · **See also:** [VISUAL_ARCHITECTURE.md](VISUAL_ARCHITECTURE.md) · [VISUAL_CONTRIBUTOR_GUIDE.md](VISUAL_CONTRIBUTOR_GUIDE.md)
+> **Docs index:** [README.md](../README.md) · **See also:** [VISUAL_ARCHITECTURE.md](../visual/VISUAL_ARCHITECTURE.md) · [VISUAL_CONTRIBUTOR_GUIDE.md](../visual/VISUAL_CONTRIBUTOR_GUIDE.md)
 >
 > **Covers:** every feature module — problem solved, key files, public/internal responsibilities, inter-module dependencies, important models/DTOs.
 > **Does not cover:** runtime flows (→ VISUAL_RUNTIME_FLOWS), visual module graph (→ VISUAL_ARCHITECTURE).

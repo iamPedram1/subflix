@@ -1,0 +1,17 @@
+graph LR
+    A["HTTP Request"] --> B
+    B["Guards\nDeviceContextGuard\nAccessTokenGuard"] --> C
+    C["Controller\nHTTP mapping only\nno business logic"] --> D
+    D["Service\nOrchestration\nbusiness rules"] --> E
+    E["Repository\nPrisma access only\nnormalizes DB errors"] --> F
+    F[("PostgreSQL")]
+
+    D --> G["Port interface\nMediaCatalogPort\nTranslationProviderPort\nSubtitleSourceProvider"]
+    G --> H["Provider\nTMDb · SubDL · Podnapisi\nMockTranslation"]
+    H --> I["External API / Web"]
+
+    style B fill:#fff3cd,stroke:#ffc107
+    style C fill:#d4edda,stroke:#28a745
+    style D fill:#cce5ff,stroke:#004085
+    style E fill:#f8d7da,stroke:#721c24
+    style G fill:#e2d9f3,stroke:#6f42c1

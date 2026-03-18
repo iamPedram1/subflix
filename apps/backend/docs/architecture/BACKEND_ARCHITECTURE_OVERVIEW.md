@@ -141,7 +141,7 @@ Multi-instance safety is handled at the DB layer:
 - Job claiming uses `SELECT ... FOR UPDATE SKIP LOCKED` so two workers cannot claim the same job.
 - Stall recovery is protected by a PostgreSQL session-level advisory lock so only one instance runs recovery at a time.
 
-See [REQUEST_AND_JOB_FLOWS.md](REQUEST_AND_JOB_FLOWS.md) for detailed flow diagrams.
+See [REQUEST_AND_JOB_FLOWS.md](../reference/REQUEST_AND_JOB_FLOWS.md) for detailed flow diagrams.
 
 ---
 
@@ -159,7 +159,7 @@ See [REQUEST_AND_JOB_FLOWS.md](REQUEST_AND_JOB_FLOWS.md) for detailed flow diagr
 
 All integrations are optional or have mock fallbacks. When `TMDB_API_READ_TOKEN` is absent, `MockCatalogProvider` is used. When `SUBDL_API_KEY` is absent, SubDL is disabled. The translation provider is currently `MockTranslationProvider` — a production translation engine (e.g., Claude API, DeepL) would implement `TranslationProviderPort` and be injected without touching runner logic.
 
-See [EXTERNAL_INTEGRATIONS.md](EXTERNAL_INTEGRATIONS.md) for details.
+See [EXTERNAL_INTEGRATIONS.md](../reference/EXTERNAL_INTEGRATIONS.md) for details.
 
 ---
 

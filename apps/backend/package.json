@@ -30,7 +30,8 @@
     "test:watch": "vitest --config ./vitest.unit.config.ts",
     "test:cov": "vitest run --config ./vitest.unit.config.ts --coverage",
     "test:debug": "vitest --config ./vitest.unit.config.ts --inspect-brk",
-    "test:all": "pnpm test"
+    "test:all": "pnpm test",
+    "docs:diagrams": "bash docs/scripts/export-diagrams.sh"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",

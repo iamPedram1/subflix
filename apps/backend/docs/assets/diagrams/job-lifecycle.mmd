@@ -1,0 +1,15 @@
+stateDiagram-v2
+    direction LR
+
+    [*] --> queued : POST /v1/translation-jobs\n(or recovery requeue)
+
+    queued --> translating : runner.run()\nSELECT FOR UPDATE SKIP LOCKED\nUPDATE status=translating\nstartedAt=now, attemptCount++
+
+    translating --> completed : job success\nreplaceJobCues()\nUPDATE status=completed\nprogress=1
+
+    translating --> failed : error thrown\nor stall_recovery_exhausted\nUPDATE status=failed\nerrorMessage set
+
+    translating --> queued : stall recovery\n(updatedAt stale + retries remain)\nUPDATE status=queued\nrecoveredFromStall=true
+
+    completed --> [*]
+    failed --> [*]

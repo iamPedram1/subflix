@@ -1,0 +1,33 @@
+flowchart TD
+    A["GET /v1/catalog/media/:id/subtitle-sources"] --> B["SubtitleSourceDiscoveryService\n.discover"]
+
+    B --> C{Cache hit?\n6h TTL}
+    C -- yes --> DONE["Return CatalogSubtitleSource[]"]
+    C -- no --> D["Start provider chain"]
+
+    D --> E{SubDL enabled\nand healthy?}
+    E -- yes --> F["SubDLProvider\n.searchSources"]
+    F -- success --> FA["recordSuccess · add candidates"]
+    F -- error --> FB["recordFailure\n≥3 failures → 60s cooldown"]
+    E -- no/cooldown --> G
+
+    FA --> G
+    FB --> G
+
+    G{Podnapisi healthy?} -- yes --> H["PodnapisiProvider\n.searchSources (scraper)"]
+    H -- success --> HA["add candidates"]
+    H -- error --> HB["recordFailure"]
+    G -- no --> I
+
+    HA --> I
+    HB --> I
+
+    I{TVSubs healthy?} -- yes --> J["TVSubsProvider\n.searchSources (scraper)"]
+    J -- success --> JA["add candidates"]
+    J -- error --> JB["recordFailure"]
+    I -- no --> K
+
+    JA --> K
+    JB --> K
+
+    K["Deduplicate · Rank · Limit 20 · Cache 6h"] --> DONE

@@ -1,12 +1,16 @@
 # Key Diagrams
 
-The highest-value diagrams for understanding SubFlix Back quickly. Each diagram is embedded with a one-line explanation and a link to its source document for fuller context.
+The highest-value diagrams for understanding SubFlix Back quickly. Each section shows the rendered diagram image followed by the Mermaid source for in-context editing.
+
+> **Rendered assets:** [`docs/assets/diagrams/`](assets/diagrams/) · **Regenerate:** `pnpm docs:diagrams`
 
 ---
 
 ## 1. System Context
 
 > What the backend is, who uses it, and what it talks to.
+
+![System Context](assets/diagrams/system-context.svg)
 
 ```mermaid
 C4Context
@@ -34,13 +38,15 @@ C4Context
     Rel(backend, db, "Read / Write")
 ```
 
-**Full context:** [VISUAL_ARCHITECTURE.md](VISUAL_ARCHITECTURE.md)
+**Full context:** [VISUAL_ARCHITECTURE.md](visual/VISUAL_ARCHITECTURE.md)
 
 ---
 
 ## 2. Module Dependency Graph
 
 > Which NestJS modules depend on which. `TranslationJobsModule` is the only cross-feature consumer.
+
+![Module Dependency Graph](assets/diagrams/module-dependency.svg)
 
 ```mermaid
 graph TD
@@ -79,13 +85,15 @@ graph TD
     style SUB fill:#dfd,stroke:#0a0
 ```
 
-**Full context:** [VISUAL_ARCHITECTURE.md](VISUAL_ARCHITECTURE.md)
+**Full context:** [VISUAL_ARCHITECTURE.md](visual/VISUAL_ARCHITECTURE.md)
 
 ---
 
 ## 3. Layer Architecture
 
 > The request pipeline every call passes through, from guard to database.
+
+![Layer Architecture](assets/diagrams/layer-architecture.svg)
 
 ```mermaid
 graph LR
@@ -107,13 +115,15 @@ graph LR
     style G fill:#e2d9f3,stroke:#6f42c1
 ```
 
-**Full context:** [VISUAL_ARCHITECTURE.md](VISUAL_ARCHITECTURE.md)
+**Full context:** [VISUAL_ARCHITECTURE.md](visual/VISUAL_ARCHITECTURE.md)
 
 ---
 
 ## 4. TranslationJob Lifecycle State Machine
 
 > The job state machine. Recovery adds a re-entry path from `translating` back to `queued`.
+
+![Translation Job Lifecycle](assets/diagrams/job-lifecycle.svg)
 
 ```mermaid
 stateDiagram-v2
@@ -133,13 +143,15 @@ stateDiagram-v2
     failed --> [*]
 ```
 
-**Full context:** [VISUAL_STATE_MAP.md](VISUAL_STATE_MAP.md)
+**Full context:** [VISUAL_STATE_MAP.md](visual/VISUAL_STATE_MAP.md)
 
 ---
 
 ## 5. Background Processing Architecture
 
 > How the scheduler, recovery, dispatch, runner, and limiter interact. This is the async core of the system.
+
+![Background Processing Architecture](assets/diagrams/background-processing.svg)
 
 ```mermaid
 graph TB
@@ -177,13 +189,15 @@ graph TB
     style SKIP fill:#ede7f6,stroke:#7b1fa2
 ```
 
-**Full context:** [VISUAL_ARCHITECTURE.md](VISUAL_ARCHITECTURE.md) · [VISUAL_RUNTIME_FLOWS.md](VISUAL_RUNTIME_FLOWS.md)
+**Full context:** [VISUAL_ARCHITECTURE.md](visual/VISUAL_ARCHITECTURE.md) · [VISUAL_RUNTIME_FLOWS.md](visual/VISUAL_RUNTIME_FLOWS.md)
 
 ---
 
 ## 6. Catalog Job Decision Tree
 
 > The most complex flow in the system. Every catalog job passes through this branching logic.
+
+![Catalog Job Decision Tree](assets/diagrams/catalog-decision-tree.svg)
 
 ```mermaid
 flowchart TD
@@ -216,13 +230,15 @@ flowchart TD
     style Q fill:#e8f5e9
 ```
 
-**Full context:** [VISUAL_RUNTIME_FLOWS.md](VISUAL_RUNTIME_FLOWS.md)
+**Full context:** [VISUAL_RUNTIME_FLOWS.md](visual/VISUAL_RUNTIME_FLOWS.md)
 
 ---
 
 ## 7. Subtitle Discovery + Provider Fallback
 
 > How subtitle sources are found for a media item, with circuit-breaker fallback logic.
+
+![Subtitle Discovery and Provider Fallback](assets/diagrams/subtitle-discovery.svg)
 
 ```mermaid
 flowchart TD
@@ -260,13 +276,15 @@ flowchart TD
     K["Deduplicate · Rank · Limit 20 · Cache 6h"] --> DONE
 ```
 
-**Full context:** [VISUAL_RUNTIME_FLOWS.md](VISUAL_RUNTIME_FLOWS.md) · [EXTERNAL_INTEGRATIONS.md](EXTERNAL_INTEGRATIONS.md)
+**Full context:** [VISUAL_RUNTIME_FLOWS.md](visual/VISUAL_RUNTIME_FLOWS.md) · [EXTERNAL_INTEGRATIONS.md](reference/EXTERNAL_INTEGRATIONS.md)
 
 ---
 
 ## 8. Risky Areas Map
 
 > Before changing anything non-trivial, check this map.
+
+![Risky Areas Map](assets/diagrams/risky-areas.svg)
 
 ```mermaid
 graph TD
@@ -303,13 +321,15 @@ graph TD
     style L4 fill:#e8f5e9,stroke:#388e3c
 ```
 
-**Full context:** [VISUAL_CONTRIBUTOR_GUIDE.md](VISUAL_CONTRIBUTOR_GUIDE.md) · [CODEBASE_REVIEW_NOTES.md](CODEBASE_REVIEW_NOTES.md)
+**Full context:** [VISUAL_CONTRIBUTOR_GUIDE.md](visual/VISUAL_CONTRIBUTOR_GUIDE.md) · [CODEBASE_REVIEW_NOTES.md](reference/CODEBASE_REVIEW_NOTES.md)
 
 ---
 
 ## 9. Entity Relationship Overview
 
 > Ownership hierarchy and key relationships at a glance.
+
+![Entity Relationship Overview](assets/diagrams/entity-relationship.svg)
 
 ```mermaid
 graph TD
@@ -332,21 +352,20 @@ graph TD
     style USER fill:#f3e5f5,stroke:#7b1fa2
 ```
 
-**Full context:** [VISUAL_DATA_MAP.md](VISUAL_DATA_MAP.md) · [DATA_AND_STATE_MODEL.md](DATA_AND_STATE_MODEL.md)
+**Full context:** [VISUAL_DATA_MAP.md](visual/VISUAL_DATA_MAP.md) · [DATA_AND_STATE_MODEL.md](reference/DATA_AND_STATE_MODEL.md)
 
 ---
 
-## Diagram Export Notes
+## Regenerating Diagram Assets
 
-These diagrams are good candidates for SVG/PNG export (e.g. for wikis, onboarding slides, or README headers):
+SVG assets live in [`docs/assets/diagrams/`](assets/diagrams/). To regenerate after editing a diagram:
 
-| Diagram | Priority | Notes |
-|---------|----------|-------|
-| System Context (C4) | High | Best overview for external audiences |
-| TranslationJob Lifecycle | High | Core state machine — reference in any job-related PR |
-| Module Dependency Graph | High | Useful in onboarding materials |
-| Catalog Job Decision Tree | Medium | Complex; SVG makes it easier to zoom |
-| Background Processing Architecture | Medium | Good for ops/infra understanding |
-| Risky Areas Map | Medium | Useful to include in contributor onboarding |
+```bash
+# Regenerate all diagrams
+pnpm docs:diagrams
 
-To export: run any Mermaid CLI tool (`mmdc`) or use the Mermaid Live Editor at [mermaid.live](https://mermaid.live). Place exported assets in `docs/assets/`.
+# Regenerate a single diagram manually
+mmdc -i docs/assets/diagrams/<name>.mmd -o docs/assets/diagrams/<name>.svg --backgroundColor transparent
+```
+
+The `.mmd` source files in `docs/assets/diagrams/` are the export sources. The Mermaid code blocks in this document are the **authoritative source of truth** — keep them in sync when editing.

@@ -1,0 +1,28 @@
+flowchart TD
+    A["runCatalogJob(job)"] --> B
+
+    B["SubtitleAcquisitionStrategy\n.decideCatalogAcquisition\n(search subtitle sources in targetLanguage)"] --> C{acquisitionMode?}
+
+    C -- existing_target_subtitle --> D["Load cues from\ntarget-language source"]
+    D --> E["QualityEvaluation\nconfidenceScore · warnings"]
+    E --> F{shouldBlockAutoUse?}
+    F -- yes --> FAIL1["Persist quality metadata\nthrow → job fails"]
+    F -- no --> G["TimingAlignment\nalignCatalogCues\ndetect constant offset"]
+    G --> H["replaceJobCues (cues as-is)\nUPDATE status=completed"]
+
+    C -- ai_translation --> I["loadCatalogSourceCues\n(DB-cached or download from provider)"]
+    I --> J["QualityEvaluation"]
+    J --> K{shouldBlockAutoUse?}
+    K -- yes --> FAIL2["Persist + throw → job fails"]
+    K -- no --> L["TimingAlignment"]
+    L --> M["TranslationReuseService\n.decideCatalogTranslationReuse"]
+    M --> N{prior translation\nreusable?}
+    N -- yes --> O["Copy translated cues\nfrom prior job\nUPDATE status=completed"]
+    N -- no --> P["translationProvider\n.translate(cues)"]
+    P --> Q["replaceJobCues\nUPDATE status=completed"]
+
+    style FAIL1 fill:#fce4ec
+    style FAIL2 fill:#fce4ec
+    style O fill:#e8f5e9
+    style H fill:#e8f5e9
+    style Q fill:#e8f5e9

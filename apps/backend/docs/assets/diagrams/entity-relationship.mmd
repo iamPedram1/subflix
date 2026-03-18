@@ -1,0 +1,18 @@
+graph TD
+    CD["ClientDevice\n(x-device-id header)"]
+
+    CD --> PREF["UserPreference\n1:1"]
+    CD --> FILE["ParsedSubtitleFile\n1:N"]
+    CD --> JOB["TranslationJob\n1:N"]
+
+    FILE --> CUE1["ParsedSubtitleCue\n1:N"]
+    FILE -.->|parsedFileId| JOB
+    JOB --> CUE2["TranslationJobCue\n1:N (written on completion)"]
+
+    USER["User\n(optional — auth only)"] --> IDENT["UserIdentity\n1:N\nemail · firebase_*"]
+    USER --> TOK["RefreshToken\n1:N"]
+
+    style CD fill:#e3f2fd,stroke:#1976d2,font-weight:bold
+    style JOB fill:#fff3cd,stroke:#f9a825
+    style CUE2 fill:#fff3cd
+    style USER fill:#f3e5f5,stroke:#7b1fa2

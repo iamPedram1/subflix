@@ -1,6 +1,6 @@
 # Visual Contributor Guide
 
-> **Docs index:** [README.md](README.md) · **See also:** [CODEBASE_REVIEW_NOTES.md](CODEBASE_REVIEW_NOTES.md) · [FEATURE_MAP.md](FEATURE_MAP.md) · [KEY_DIAGRAMS.md](KEY_DIAGRAMS.md)
+> **Docs index:** [README.md](../README.md) · **See also:** [CODEBASE_REVIEW_NOTES.md](../reference/CODEBASE_REVIEW_NOTES.md) · [FEATURE_MAP.md](../architecture/FEATURE_MAP.md) · [KEY_DIAGRAMS.md](../KEY_DIAGRAMS.md)
 >
 > **Covers:** "where do I go" flowchart, module ownership, request tracing, job tracing, risky areas (red/amber/green), safe-change checklist, test coverage map, add-a-provider guides.
 > **Does not cover:** candid written review (→ CODEBASE_REVIEW_NOTES), full feature responsibilities (→ FEATURE_MAP).

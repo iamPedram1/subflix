@@ -1,6 +1,6 @@
 # Visual State Map
 
-> **Docs index:** [README.md](README.md) · **See also:** [VISUAL_RUNTIME_FLOWS.md](VISUAL_RUNTIME_FLOWS.md) · [DATA_AND_STATE_MODEL.md](DATA_AND_STATE_MODEL.md) · [KEY_DIAGRAMS.md](KEY_DIAGRAMS.md)
+> **Docs index:** [README.md](../README.md) · **See also:** [VISUAL_RUNTIME_FLOWS.md](VISUAL_RUNTIME_FLOWS.md) · [DATA_AND_STATE_MODEL.md](../reference/DATA_AND_STATE_MODEL.md) · [KEY_DIAGRAMS.md](../KEY_DIAGRAMS.md)
 >
 > **Covers:** TranslationJob state machine, progress milestones, stall recovery transitions, circuit breaker states, acquisition decision tree, translation reuse decision tree, durable vs in-memory state.
 > **Does not cover:** how states are reached step-by-step (→ VISUAL_RUNTIME_FLOWS), full field-level data model (→ DATA_AND_STATE_MODEL).
