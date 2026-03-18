@@ -323,9 +323,10 @@ The concurrency limit is in-memory and per-process. Running multiple instances b
 ### How it works
 
 1. `dispatch(trigger)` reads the current concurrency metrics to determine how many slots are free.
-2. If slots are available, it queries `findNextQueuedJobs(slotsAvailable)` — returning the oldest `queued` jobs first (createdAt ASC for FIFO fairness).
-3. Each found job is handed to the runner via `schedule()`.
-4. If no slots are free or no queued jobs exist, it exits cleanly with a structured log.
+2. If slots are available, it fetches an overscanned candidate batch (`findQueuedJobsForDispatch`) pre-sorted by createdAt ASC.
+3. `pickDispatchCandidates` scores candidates by priority tier and selects the best `slotsAvailable` jobs.
+4. Each selected job is handed to the runner via `schedule()`.
+5. If no slots are free or no queued jobs exist, it exits cleanly with a structured log.
 
 ### Trigger points
 
@@ -344,6 +345,7 @@ On bootstrap, the lifecycle scheduler always runs stalled-job recovery first, th
 |---|---|---|
 | `TRANSLATION_JOB_DISPATCH_ON_STARTUP_ENABLED` | `true` | Whether to run a dispatch pass immediately on startup (after recovery). |
 | `TRANSLATION_JOB_DISPATCH_POLL_INTERVAL_MS` | `10000` | How often the periodic dispatch poll fires (ms). Set to `0` to disable polling. |
+| `TRANSLATION_JOB_DISPATCH_FAIRNESS_THRESHOLD_MS` | `300000` | Age after which recovered-from-stall jobs are promoted to their base tier (see scheduling policy). |
 
 ### Single-instance limitation
 
@@ -353,7 +355,38 @@ The dispatch coordinator reads concurrency state from the in-memory limiter. Mul
 
 - Recovery requeues stalled jobs (status `translating` → `queued`).
 - The dispatch coordinator picks them up on the next startup or poll cycle.
+- Recovered jobs are placed in the `RECOVERED` priority tier initially (see scheduling policy below).
 - No coordination is needed between the two: correctness is guaranteed by the DB state, not by in-memory hand-off.
+
+## Scheduling policy
+
+The dispatch coordinator uses a deterministic, two-level scheduling policy to decide which queued jobs to run next.
+
+### Priority tiers
+
+| Tier | Value | Applies to | Rationale |
+|---|---|---|---|
+| `CATALOG` | 10 (highest) | Fresh catalog jobs | May complete without AI translation (via target-language subtitle reuse or cached translation), making them the highest-value candidates. |
+| `UPLOAD` | 20 | Fresh upload jobs | Always require AI translation but skip catalog overhead (no subtitle download or quality eval). |
+| `RECOVERED` | 30 (lowest) | Recovered-from-stall jobs | Deprioritized to avoid consuming concurrency slots at the expense of fresh jobs. Promoted after the fairness threshold. |
+
+### FIFO tiebreaker
+
+Within the same priority tier, jobs are ordered by `createdAt` ascending. Older jobs in the same tier are always dispatched before newer ones.
+
+### Fairness / starvation protection
+
+A recovered-from-stall job that has been waiting longer than `TRANSLATION_JOB_DISPATCH_FAIRNESS_THRESHOLD_MS` (default 5 minutes, measured from `createdAt`) is promoted back to its base tier (`CATALOG` or `UPLOAD`). This guarantees that no job waits indefinitely regardless of how many fresh jobs are created behind it.
+
+### Overscan
+
+The repository fetches up to `slotsAvailable × 5` candidates (capped at 50) for each dispatch call. This ensures that higher-priority jobs later in the FIFO queue can be found and selected ahead of lower-priority jobs that arrived earlier.
+
+### Assumptions and limitations
+
+- Priority is computed at dispatch time from fields already on the job (`sourceType`, `jobMeta.recoveredFromStall`, `createdAt`). No extra DB round-trips are made during priority scoring.
+- The system does not predict at dispatch time whether a catalog job will use translation or subtitle reuse. It uses `sourceType` as a proxy signal: catalog jobs are prioritized on the assumption that they are more likely to short-circuit AI translation.
+- Single-instance only: priority scoring is in-process and per-dispatch call. Multi-instance deployments score independently per process (correctness is still guaranteed by atomic DB claims).
 
 ## Current limitations
 

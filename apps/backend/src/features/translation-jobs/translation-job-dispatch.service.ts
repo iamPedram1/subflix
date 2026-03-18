@@ -1,13 +1,15 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 import { StructuredLogger } from 'common/utils/structured-logger';
 import { TranslationJobExecutionLimiterService } from 'features/translation-jobs/translation-job-execution-limiter.service';
 import { TranslationJobRunnerService } from 'features/translation-jobs/translation-job-runner.service';
 import { TranslationJobsRepository } from 'features/translation-jobs/translation-jobs.repository';
+import { pickDispatchCandidates } from 'features/translation-jobs/utils/translation-job-priority.util';
 
 /**
- * Coordinates durable dispatch of queued translation jobs against the
- * current in-process concurrency budget.
+ * Coordinates durable, priority-aware dispatch of queued translation jobs
+ * against the current in-process concurrency budget.
  *
  * Uses the DB as the source of truth for which jobs are waiting — rather than
  * an in-memory queue — so queued jobs survive process restarts.
@@ -17,7 +19,15 @@ import { TranslationJobsRepository } from 'features/translation-jobs/translation
  *   - on application startup (after stalled-job recovery)
  *   - on a configurable polling interval as a safety net
  *
- * Dispatch order: oldest queued job first (createdAt ASC) for FIFO fairness.
+ * Dispatch order:
+ *   Jobs are selected by priority tier first, then by createdAt ascending
+ *   (FIFO) as a tiebreaker within the same tier. See DispatchPriority for
+ *   the full tier semantics.
+ *
+ * Fairness:
+ *   Recovered-from-stall jobs are placed in the RECOVERED tier initially.
+ *   Once their age (from createdAt) exceeds dispatchFairnessThresholdMs they
+ *   are promoted back to their base tier to prevent indefinite starvation.
  *
  * Single-instance assumption:
  *   The concurrency check reads from the in-memory limiter, which is per-process.
@@ -37,14 +47,20 @@ export class TranslationJobDispatchService {
     private readonly translationJobsRepository: TranslationJobsRepository,
     private readonly executionLimiter: TranslationJobExecutionLimiterService,
     private readonly runner: TranslationJobRunnerService,
+    private readonly configService: ConfigService,
   ) {}
 
   /**
-   * Fills available execution slots from the DB-backed queue of waiting jobs.
+   * Fills available execution slots from the DB-backed queue using priority
+   * scheduling.
    *
-   * Reads current concurrency metrics, fetches up to that many queued jobs
-   * (oldest first), and schedules each one for execution. Exits immediately if
-   * there is no capacity or no queued jobs.
+   * 1. Reads current concurrency metrics to determine how many slots are free.
+   * 2. Fetches an overscanned candidate batch from the repository so that
+   *    higher-priority jobs can be selected even when lower-priority jobs are
+   *    older.
+   * 3. Applies priority scoring and picks the best candidates up to
+   *    slotsAvailable.
+   * 4. Schedules each selected job for execution via the runner.
    */
   async dispatch(trigger: string): Promise<void> {
     this.log.info('translation.dispatch.triggered', { trigger });
@@ -60,22 +76,45 @@ export class TranslationJobDispatchService {
       return;
     }
 
-    const jobs =
-      await this.translationJobsRepository.findNextQueuedJobs(slotsAvailable);
+    const candidates =
+      await this.translationJobsRepository.findQueuedJobsForDispatch(
+        slotsAvailable,
+      );
 
-    if (jobs.length === 0) {
+    if (candidates.length === 0) {
       this.log.info('translation.dispatch.no_jobs', { slotsAvailable });
       return;
     }
 
-    for (const job of jobs) {
-      this.log.info('translation.dispatch.claimed', { jobId: job.id });
+    const fairnessThresholdMs = this.configService.get<number>(
+      'translationJobs.dispatchFairnessThresholdMs',
+    )!;
+
+    const selected = pickDispatchCandidates(
+      candidates,
+      slotsAvailable,
+      new Date(),
+      fairnessThresholdMs,
+    );
+
+    this.log.info('translation.dispatch.prioritized', {
+      candidates: candidates.length,
+      selected: selected.length,
+      slotsAvailable,
+    });
+
+    for (const job of selected) {
+      this.log.info('translation.dispatch.claimed', {
+        jobId: job.id,
+        priority: job.priority,
+        sourceType: job.sourceType,
+      });
       this.runner.schedule(job.id);
     }
 
     this.log.info('translation.dispatch.completed', {
       trigger,
-      dispatched: jobs.length,
+      dispatched: selected.length,
       slotsAvailable,
     });
   }

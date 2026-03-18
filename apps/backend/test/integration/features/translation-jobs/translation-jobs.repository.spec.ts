@@ -238,6 +238,157 @@ describeIfDatabase('TranslationJobsRepository integration', () => {
     });
   });
 
+  describe('findQueuedJobsForDispatch', () => {
+    it('returns queued jobs with sourceType, createdAt, and jobMeta fields', async () => {
+      const device = await prismaService.clientDevice.create({
+        data: { deviceId: 'priority-dispatch-repo-001' },
+      });
+
+      const job = await prismaService.translationJob.create({
+        data: {
+          clientDeviceId: device.id,
+          sourceType: 'catalog',
+          status: TranslationJobStatus.queued,
+          stageLabel: 'Queued',
+          title: 'Inception',
+          sourceName: 'SubDL EN',
+          sourceLanguage: AppLanguage.en,
+          targetLanguage: AppLanguage.fr,
+          format: SubtitleFormat.srt,
+          progress: 0.05,
+          lineCount: 1,
+          durationMs: 1_000,
+          jobMeta: { attemptCount: 1, recoveredFromStall: true },
+        },
+      });
+
+      const result = await repository.findQueuedJobsForDispatch(10);
+
+      expect(result).toHaveLength(1);
+      expect(result[0].id).toBe(job.id);
+      expect(result[0].sourceType).toBe('catalog');
+      expect(result[0].createdAt).toBeInstanceOf(Date);
+      expect((result[0].jobMeta as Record<string, unknown>).recoveredFromStall).toBe(true);
+    });
+
+    it('returns jobs pre-sorted by createdAt ascending', async () => {
+      const device = await prismaService.clientDevice.create({
+        data: { deviceId: 'priority-dispatch-repo-002' },
+      });
+
+      const older = await prismaService.translationJob.create({
+        data: {
+          clientDeviceId: device.id,
+          sourceType: 'upload',
+          status: TranslationJobStatus.queued,
+          stageLabel: 'Queued',
+          title: 'Job A',
+          sourceName: 'a.srt',
+          sourceLanguage: AppLanguage.en,
+          targetLanguage: AppLanguage.fr,
+          format: SubtitleFormat.srt,
+          progress: 0.05,
+          lineCount: 1,
+          durationMs: 1_000,
+          createdAt: new Date('2026-01-01T00:00:00.000Z'),
+        },
+      });
+
+      const newer = await prismaService.translationJob.create({
+        data: {
+          clientDeviceId: device.id,
+          sourceType: 'catalog',
+          status: TranslationJobStatus.queued,
+          stageLabel: 'Queued',
+          title: 'Job B',
+          sourceName: 'SubDL EN',
+          sourceLanguage: AppLanguage.en,
+          targetLanguage: AppLanguage.fr,
+          format: SubtitleFormat.srt,
+          progress: 0.05,
+          lineCount: 1,
+          durationMs: 1_000,
+          createdAt: new Date('2026-02-01T00:00:00.000Z'),
+        },
+      });
+
+      const result = await repository.findQueuedJobsForDispatch(10);
+
+      expect(result.map((j) => j.id)).toEqual([older.id, newer.id]);
+    });
+
+    it('does not return non-queued jobs', async () => {
+      const device = await prismaService.clientDevice.create({
+        data: { deviceId: 'priority-dispatch-repo-003' },
+      });
+
+      for (const status of [
+        TranslationJobStatus.translating,
+        TranslationJobStatus.completed,
+        TranslationJobStatus.failed,
+      ] as const) {
+        await prismaService.translationJob.create({
+          data: {
+            clientDeviceId: device.id,
+            sourceType: 'upload',
+            status,
+            stageLabel: 'Done',
+            title: 'Job',
+            sourceName: 'job.srt',
+            sourceLanguage: AppLanguage.en,
+            targetLanguage: AppLanguage.fr,
+            format: SubtitleFormat.srt,
+            progress: 1,
+            lineCount: 1,
+            durationMs: 1_000,
+          },
+        });
+      }
+
+      const result = await repository.findQueuedJobsForDispatch(10);
+
+      expect(result).toHaveLength(0);
+    });
+
+    it('returns an empty array when no queued jobs exist', async () => {
+      const result = await repository.findQueuedJobsForDispatch(5);
+      expect(result).toEqual([]);
+    });
+
+    it('applies overscan: returns more than limit when enough queued jobs exist', async () => {
+      const device = await prismaService.clientDevice.create({
+        data: { deviceId: 'priority-dispatch-repo-004' },
+      });
+
+      // Create 8 queued jobs
+      for (let i = 0; i < 8; i++) {
+        await prismaService.translationJob.create({
+          data: {
+            clientDeviceId: device.id,
+            sourceType: 'upload',
+            status: TranslationJobStatus.queued,
+            stageLabel: 'Queued',
+            title: `Job ${i}`,
+            sourceName: `job${i}.srt`,
+            sourceLanguage: AppLanguage.en,
+            targetLanguage: AppLanguage.fr,
+            format: SubtitleFormat.srt,
+            progress: 0.05,
+            lineCount: 1,
+            durationMs: 1_000,
+          },
+        });
+      }
+
+      // limit=1 with overscan factor=5 → returns up to 5 candidates
+      const result = await repository.findQueuedJobsForDispatch(1);
+
+      // Overscan returns more than the raw limit to allow priority sorting
+      expect(result.length).toBeGreaterThan(1);
+      expect(result.length).toBeLessThanOrEqual(8);
+    });
+  });
+
   it('does not return translations across device boundaries', async () => {
     const deviceA = await prismaService.clientDevice.create({
       data: { deviceId: 'translation-reuse-repo-002a' },

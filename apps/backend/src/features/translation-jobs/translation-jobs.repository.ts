@@ -524,6 +524,40 @@ export class TranslationJobsRepository {
   }
 
   /**
+   * Returns queued job candidates with the fields required for dispatch
+   * priority computation.
+   *
+   * Fetches up to `limit * DISPATCH_OVERSCAN_FACTOR` candidates (capped at
+   * DISPATCH_OVERSCAN_MAX) pre-sorted by createdAt ASC so the dispatch
+   * coordinator can apply priority sorting before selecting the final set
+   * of jobs to schedule. The overscan ensures that lower-priority jobs at
+   * the front of the FIFO queue do not block higher-priority jobs behind them.
+   */
+  async findQueuedJobsForDispatch(limit: number): Promise<
+    Array<{
+      id: string;
+      sourceType: TranslationSourceType;
+      createdAt: Date;
+      jobMeta: Prisma.JsonValue;
+    }>
+  > {
+    const overscan = Math.min(
+      limit * TranslationJobsRepository.DISPATCH_OVERSCAN_FACTOR,
+      TranslationJobsRepository.DISPATCH_OVERSCAN_MAX,
+    );
+
+    return this.prisma.translationJob.findMany({
+      where: { status: TranslationJobStatus.queued },
+      orderBy: { createdAt: 'asc' },
+      take: overscan,
+      select: { id: true, sourceType: true, createdAt: true, jobMeta: true },
+    });
+  }
+
+  private static readonly DISPATCH_OVERSCAN_FACTOR = 5;
+  private static readonly DISPATCH_OVERSCAN_MAX = 50;
+
+  /**
    * Atomically transitions a stalled translating job to failed when retry
    * attempts have been exhausted. Returns true when the update was applied.
    */

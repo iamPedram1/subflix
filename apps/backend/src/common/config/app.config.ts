@@ -155,6 +155,10 @@ export const translationJobsConfig = registerAs('translationJobs', () => ({
     process.env.TRANSLATION_JOB_DISPATCH_POLL_INTERVAL_MS,
     10_000, // 10 seconds
   ),
+  dispatchFairnessThresholdMs: parseNumber(
+    process.env.TRANSLATION_JOB_DISPATCH_FAIRNESS_THRESHOLD_MS,
+    5 * 60_000, // 5 minutes
+  ),
 }));
 
 export const firebaseConfig = registerAs('firebase', () => ({
