@@ -149,6 +149,12 @@ export const translationJobsConfig = registerAs('translationJobs', () => ({
     process.env.TRANSLATION_JOB_MAX_CONCURRENCY,
     3, // 3 concurrent jobs per process
   ),
+  dispatchOnStartupEnabled:
+    process.env.TRANSLATION_JOB_DISPATCH_ON_STARTUP_ENABLED !== 'false',
+  dispatchPollIntervalMs: parseNumber(
+    process.env.TRANSLATION_JOB_DISPATCH_POLL_INTERVAL_MS,
+    10_000, // 10 seconds
+  ),
 }));
 
 export const firebaseConfig = registerAs('firebase', () => ({

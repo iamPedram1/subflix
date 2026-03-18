@@ -510,6 +510,20 @@ export class TranslationJobsRepository {
   }
 
   /**
+   * Returns the IDs of the oldest queued jobs ordered by creation time
+   * (oldest first for FIFO fairness). Used by the dispatch coordinator to
+   * fill available execution slots from durable DB state.
+   */
+  async findNextQueuedJobs(limit: number): Promise<Array<{ id: string }>> {
+    return this.prisma.translationJob.findMany({
+      where: { status: TranslationJobStatus.queued },
+      orderBy: { createdAt: 'asc' },
+      take: limit,
+      select: { id: true },
+    });
+  }
+
+  /**
    * Atomically transitions a stalled translating job to failed when retry
    * attempts have been exhausted. Returns true when the update was applied.
    */

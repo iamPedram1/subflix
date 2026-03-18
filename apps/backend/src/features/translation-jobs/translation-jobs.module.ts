@@ -5,6 +5,7 @@ import { DevicesModule } from 'features/devices/devices.module';
 import { SubtitlesModule } from 'features/subtitles/subtitles.module';
 import { MockTranslationProvider } from 'features/translation-jobs/providers/mock-translation.provider';
 import { TRANSLATION_PROVIDER_PORT } from 'features/translation-jobs/ports/translation-provider.port';
+import { TranslationJobDispatchService } from 'features/translation-jobs/translation-job-dispatch.service';
 import { TranslationJobExecutionLimiterService } from 'features/translation-jobs/translation-job-execution-limiter.service';
 import { TranslationJobRecoverySchedulerService } from 'features/translation-jobs/translation-job-recovery-scheduler.service';
 import { TranslationJobRecoveryService } from 'features/translation-jobs/translation-job-recovery.service';
@@ -23,6 +24,7 @@ import { TranslationReuseService } from 'features/translation-jobs/translation-r
     TranslationJobsService,
     TranslationJobExecutionLimiterService,
     TranslationJobRunnerService,
+    TranslationJobDispatchService,
     TranslationJobRecoveryService,
     TranslationJobRecoverySchedulerService,
     SubtitleAcquisitionStrategyService,

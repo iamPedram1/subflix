@@ -559,7 +559,7 @@ describe('TranslationJobRunnerService', () => {
   });
 
   describe('execution concurrency control', () => {
-    it('defers a job when the concurrency limit is full', async () => {
+    it('does not claim a job from the DB when the concurrency limit is full', async () => {
       const jobsRepository = makeJobsRepository();
       const executionLimiter = makeExecutionLimiter({
         tryAcquireSlot: vi.fn().mockReturnValue(false),
@@ -630,52 +630,6 @@ describe('TranslationJobRunnerService', () => {
       await runPromise;
 
       expect(releaseMock).toHaveBeenCalledWith('job-1');
-    });
-
-    it('does not add the same job to the pending queue twice', async () => {
-      const jobsRepository = makeJobsRepository();
-      const executionLimiter = makeExecutionLimiter({
-        tryAcquireSlot: vi.fn().mockReturnValue(false),
-      });
-      const service = buildRunner({ jobsRepository, executionLimiter });
-
-      await service.run('job-1');
-      await service.run('job-1');
-
-      // claimQueuedJobForRunner should never be called — job stays deferred
-      expect(jobsRepository.claimQueuedJobForRunner).not.toHaveBeenCalled();
-    });
-
-    it('dispatches the next deferred job after the current job finishes', async () => {
-      vi.useFakeTimers();
-
-      let acquireCallCount = 0;
-      const executionLimiter = makeExecutionLimiter({
-        tryAcquireSlot: vi.fn().mockImplementation(() => {
-          acquireCallCount++;
-          // First call (job-1): capacity full — defer
-          // Second call (job-2): slot available — run
-          // Third call (job-1 re-dispatched): slot available
-          return acquireCallCount !== 1;
-        }),
-        releaseSlot: vi.fn(),
-      });
-
-      const jobsRepository = makeJobsRepository({
-        claimQueuedJobForRunner: vi.fn().mockResolvedValue(null),
-      });
-
-      const service = buildRunner({ jobsRepository, executionLimiter });
-      const scheduleSpy = vi.spyOn(service, 'schedule');
-
-      // job-1 is deferred (capacity full on first acquireSlot call)
-      await service.run('job-1');
-      expect(scheduleSpy).not.toHaveBeenCalled();
-
-      // job-2 runs (slot available), and in its finally it dispatches job-1
-      await service.run('job-2');
-
-      expect(scheduleSpy).toHaveBeenCalledWith('job-1');
     });
   });
 });

@@ -72,14 +72,6 @@ export class TranslationJobRunnerService {
   private readonly scheduledJobIds = new Set<string>();
   private readonly activeJobIds = new Set<string>();
 
-  /**
-   * Jobs that were deferred because the concurrency limit was full when they
-   * were dispatched. The runner pops from this FIFO queue each time a slot is
-   * released, so deferred jobs are picked up as soon as capacity opens.
-   */
-  private readonly pendingJobIds: string[] = [];
-  private readonly pendingSet = new Set<string>();
-
   constructor(
     private readonly translationJobsRepository: TranslationJobsRepository,
     private readonly subtitlesRepository: SubtitlesRepository,
@@ -113,14 +105,9 @@ export class TranslationJobRunnerService {
     }
 
     if (!this.executionLimiter.tryAcquireSlot(jobId)) {
-      if (!this.pendingSet.has(jobId)) {
-        this.pendingJobIds.push(jobId);
-        this.pendingSet.add(jobId);
-        this.log.info('translation.execution.deferred', {
-          jobId,
-          pendingCount: this.pendingJobIds.length,
-        });
-      }
+      // Capacity is full — job remains queued in the DB and will be
+      // dispatched by TranslationJobDispatchService on the next available
+      // trigger (startup, job creation, or poll interval).
       return;
     }
 
@@ -238,20 +225,6 @@ export class TranslationJobRunnerService {
     } finally {
       this.activeJobIds.delete(jobId);
       this.executionLimiter.releaseSlot(jobId);
-      this.dispatchNextPending();
-    }
-  }
-
-  /**
-   * Pops the oldest deferred job from the pending queue and schedules it now
-   * that a concurrency slot has opened. This ensures jobs deferred due to a
-   * full concurrency limit are picked up as soon as capacity is available.
-   */
-  private dispatchNextPending(): void {
-    const nextId = this.pendingJobIds.shift();
-    if (nextId !== undefined) {
-      this.pendingSet.delete(nextId);
-      this.schedule(nextId);
     }
   }
 

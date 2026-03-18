@@ -303,8 +303,7 @@ The runner enforces a per-process ceiling on how many translation jobs can execu
 ### How it works
 
 - Before a job is claimed from the database, the runner acquires an execution slot from `TranslationJobExecutionLimiterService`.
-- If the concurrency limit is already reached, the job is added to an in-memory FIFO pending queue and the current dispatch is skipped. The job remains in `queued` status in the database — nothing is lost.
-- When a running job completes or fails, its slot is released and the runner immediately dispatches the oldest job from the pending queue.
+- If the concurrency limit is already reached, the runner returns immediately — the job remains in `queued` status in the database and will be dispatched by `TranslationJobDispatchService` when capacity opens (see "DB-backed dispatch" below).
 - Slot release always happens in a `finally` block, so slots are never leaked even when execution throws.
 
 ### Concurrency config
@@ -315,13 +314,46 @@ The runner enforces a per-process ceiling on how many translation jobs can execu
 
 ### Single-instance limitation
 
-The concurrency limit is in-memory and per-process. Running multiple instances behind a load balancer means each process enforces its own budget independently — global concurrency across instances is not bounded by this mechanism. The pending queue is also in-process: if the process restarts with deferred jobs in the queue, those jobs remain `queued` in the database and will be dispatched on the next trigger.
+The concurrency limit is in-memory and per-process. Running multiple instances behind a load balancer means each process enforces its own budget independently — global concurrency across instances is not bounded by this mechanism.
+
+## DB-backed dispatch
+
+`TranslationJobDispatchService` is the durable dispatch coordinator. It uses the database as the source of truth for which jobs are waiting, so dispatch intent survives process restarts.
+
+### How it works
+
+1. `dispatch(trigger)` reads the current concurrency metrics to determine how many slots are free.
+2. If slots are available, it queries `findNextQueuedJobs(slotsAvailable)` — returning the oldest `queued` jobs first (createdAt ASC for FIFO fairness).
+3. Each found job is handed to the runner via `schedule()`.
+4. If no slots are free or no queued jobs exist, it exits cleanly with a structured log.
+
+### Trigger points
+
+| When | Trigger value |
+|---|---|
+| Application startup (after stalled-job recovery) | `startup` |
+| Periodic poll interval | `poll` |
+
+### Startup ordering
+
+On bootstrap, the lifecycle scheduler always runs stalled-job recovery first, then startup dispatch. This ensures that any jobs recovered from a stale `translating` state are requeued before the dispatch coordinator looks for work.
+
+### Dispatch config
+
+| Variable | Default | Description |
+|---|---|---|
+| `TRANSLATION_JOB_DISPATCH_ON_STARTUP_ENABLED` | `true` | Whether to run a dispatch pass immediately on startup (after recovery). |
+| `TRANSLATION_JOB_DISPATCH_POLL_INTERVAL_MS` | `10000` | How often the periodic dispatch poll fires (ms). Set to `0` to disable polling. |
+
+### Single-instance limitation
+
+The dispatch coordinator reads concurrency state from the in-memory limiter. Multiple process instances each dispatch independently against their own budgets. Concurrent `dispatch()` calls (e.g. startup and a poll firing simultaneously) may both read the same available slot count, but the runner's schedule dedup and the repository's atomic `claimQueuedJobForRunner` prevent duplicate execution.
 
 ### Interaction with stalled job recovery
 
-The concurrency limit and the stalled-job recovery system work together cleanly:
-- Recovery requeues stalled jobs (status `translating` → `queued`) and calls `schedule()` on them, which routes through the same concurrency-limited dispatch path.
-- If the process is at capacity when a recovered job is rescheduled, it is deferred to the pending queue like any other job.
+- Recovery requeues stalled jobs (status `translating` → `queued`).
+- The dispatch coordinator picks them up on the next startup or poll cycle.
+- No coordination is needed between the two: correctness is guaranteed by the DB state, not by in-memory hand-off.
 
 ## Current limitations
 
