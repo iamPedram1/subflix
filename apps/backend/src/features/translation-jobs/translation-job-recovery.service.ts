@@ -24,6 +24,12 @@ import {
  * Recovery policy:
  *   - attemptCount < maxAttempts  → requeue (status: queued, marked recoveredFromStall)
  *   - attemptCount >= maxAttempts → fail (status: failed, reason: stall_recovery_exhausted)
+ *
+ * Multi-instance safety:
+ *   Before running a recovery cycle this service acquires a PostgreSQL session-
+ *   level advisory lock. Only one instance at a time can hold the lock, so
+ *   concurrent recovery cycles across multiple workers are prevented. If the
+ *   lock is unavailable the cycle skips cleanly without modifying any job state.
  */
 @Injectable()
 export class TranslationJobRecoveryService {
@@ -42,6 +48,10 @@ export class TranslationJobRecoveryService {
    *
    * Accepts an optional `now` date so callers (especially tests) can control
    * the reference time without needing fake system timers.
+   *
+   * Acquires a PostgreSQL advisory lock before scanning so that at most one
+   * process instance runs a recovery cycle at a time. Returns zeros immediately
+   * if the lock is unavailable (another instance is already recovering).
    */
   async recoverStalledJobs(
     now?: Date,
@@ -54,6 +64,28 @@ export class TranslationJobRecoveryService {
       return { requeued: 0, failed: 0, scanned: 0 };
     }
 
+    const acquired =
+      await this.translationJobsRepository.tryAcquireRecoveryAdvisoryLock();
+
+    if (!acquired) {
+      this.log.info('translation.recovery.lock_skipped');
+      return { requeued: 0, failed: 0, scanned: 0 };
+    }
+
+    this.log.info('translation.recovery.lock_acquired');
+
+    try {
+      return await this.runRecovery(now);
+    } finally {
+      await this.translationJobsRepository.releaseRecoveryAdvisoryLock();
+      this.log.info('translation.recovery.lock_released');
+    }
+  }
+
+  /** Core recovery logic, called after the advisory lock has been acquired. */
+  private async runRecovery(
+    now?: Date,
+  ): Promise<{ requeued: number; failed: number; scanned: number }> {
     const staleAfterMs = this.configService.get<number>(
       'translationJobs.staleAfterMs',
     )!;
@@ -64,8 +96,9 @@ export class TranslationJobRecoveryService {
     const currentTime = now ?? new Date();
     const staleBeforeDate = new Date(currentTime.getTime() - staleAfterMs);
 
-    const stalledJobs =
-      await this.translationJobsRepository.findStalledJobs({ staleBeforeDate });
+    const stalledJobs = await this.translationJobsRepository.findStalledJobs({
+      staleBeforeDate,
+    });
 
     let requeued = 0;
     let failed = 0;

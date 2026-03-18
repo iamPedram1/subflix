@@ -292,9 +292,14 @@ Translation jobs that get stuck in the `translating` state (e.g. due to a proces
 | `TRANSLATION_JOB_STALE_AFTER_MS` | `300000` | How long a job must be inactive to be considered stalled (ms). |
 | `TRANSLATION_JOB_MAX_ATTEMPTS` | `3` | Maximum stall-recovery attempts before a job is permanently failed. |
 
-### Single-instance limitation
+### Multi-instance safety
 
-The recovery scheduler runs in-process using `setInterval`. It is safe for single-instance deployments. If you run multiple instances behind a load balancer, concurrent recovery cycles are possible. The repository's atomic `updateMany(status: translating)` pre-check prevents double-recovery of the same job (concurrent attempts just silently skip), but for true leader-election behavior you would need a database advisory lock or an external coordination mechanism.
+The recovery scheduler runs in-process using `setInterval`. Before each recovery cycle the service acquires a PostgreSQL session-level advisory lock via `pg_try_advisory_lock`. At most one process instance holds the lock at a time:
+
+- If the lock is acquired, the recovery cycle runs normally and the lock is released in a `finally` block.
+- If the lock is unavailable (another instance is already recovering), the cycle exits immediately with a `translation.recovery.lock_skipped` log — no job state is touched.
+
+This prevents duplicate recovery work and conflicting state transitions across multiple workers. Advisory locks are session-scoped and automatically released when the database connection closes, so a crashed process will not leave a dangling lock.
 
 ## Execution concurrency control
 
@@ -312,9 +317,9 @@ The runner enforces a per-process ceiling on how many translation jobs can execu
 |---|---|---|
 | `TRANSLATION_JOB_MAX_CONCURRENCY` | `3` | Maximum number of translation jobs that may execute simultaneously per process. |
 
-### Single-instance limitation
+### Concurrency model under multi-instance deployment
 
-The concurrency limit is in-memory and per-process. Running multiple instances behind a load balancer means each process enforces its own budget independently — global concurrency across instances is not bounded by this mechanism.
+The concurrency limit is in-memory and per-process. Running `N` instances each with `TRANSLATION_JOB_MAX_CONCURRENCY=3` allows up to `3 × N` jobs to execute concurrently across the fleet. There is no global concurrency cap across instances. This is intentional for V1: the per-process ceiling keeps each instance predictable and avoids the complexity of a distributed semaphore. Document and tune `TRANSLATION_JOB_MAX_CONCURRENCY` accordingly when scaling horizontally.
 
 ## DB-backed dispatch
 
@@ -347,9 +352,11 @@ On bootstrap, the lifecycle scheduler always runs stalled-job recovery first, th
 | `TRANSLATION_JOB_DISPATCH_POLL_INTERVAL_MS` | `10000` | How often the periodic dispatch poll fires (ms). Set to `0` to disable polling. |
 | `TRANSLATION_JOB_DISPATCH_FAIRNESS_THRESHOLD_MS` | `300000` | Age after which recovered-from-stall jobs are promoted to their base tier (see scheduling policy). |
 
-### Single-instance limitation
+### Multi-instance safety
 
-The dispatch coordinator reads concurrency state from the in-memory limiter. Multiple process instances each dispatch independently against their own budgets. Concurrent `dispatch()` calls (e.g. startup and a poll firing simultaneously) may both read the same available slot count, but the runner's schedule dedup and the repository's atomic `claimQueuedJobForRunner` prevent duplicate execution.
+Multiple process instances dispatch independently against their own per-process concurrency budgets. The dispatch coordinator reads candidates from the DB and passes their IDs to the runner. The runner's `claimQueuedJobForRunner` uses `SELECT ... FOR UPDATE SKIP LOCKED` inside a transaction: at most one worker can claim any given job regardless of how many dispatch instances run concurrently. Workers that lose the race receive `null` and move on cleanly — no blocking, no duplicate execution.
+
+Under high concurrent dispatch load across many instances, job ordering may become approximately FIFO rather than strictly FIFO, because different workers see slightly different snapshots of the queue. This is documented as an acceptable trade-off; correctness (no duplicates, no skipped jobs) is guaranteed by the DB-level SKIP LOCKED claim.
 
 ### Interaction with stalled job recovery
 
@@ -388,6 +395,39 @@ The repository fetches up to `slotsAvailable × 5` candidates (capped at 50) for
 - The system does not predict at dispatch time whether a catalog job will use translation or subtitle reuse. It uses `sourceType` as a proxy signal: catalog jobs are prioritized on the assumption that they are more likely to short-circuit AI translation.
 - Single-instance only: priority scoring is in-process and per-dispatch call. Multi-instance deployments score independently per process (correctness is still guaranteed by atomic DB claims).
 
+## Multi-instance coordination
+
+SubFlix Back is designed to run safely across multiple process instances (e.g. behind a load balancer or as Kubernetes replicas). The three coordination mechanisms below make this safe without requiring Redis, BullMQ, or an external lock server.
+
+### Job claiming — SELECT FOR UPDATE SKIP LOCKED
+
+Every job claim uses a PostgreSQL-native `SELECT ... FOR UPDATE SKIP LOCKED` pattern inside a transaction:
+
+1. Lock the target row if it is still `queued` — skip it non-blockingly if another transaction already holds the lock.
+2. If the row was locked, update status to `translating` in the same transaction.
+3. Return the claimed job (or `null` on skip).
+
+Result: at most one worker can execute any given job, even when multiple instances race to claim it. Workers that lose the race return `null` immediately — no blocking, no deadlocks.
+
+### Recovery coordination — PostgreSQL advisory lock
+
+Only one instance should run stalled-job recovery at a time to avoid conflicting state transitions. Before each recovery cycle the service calls `pg_try_advisory_lock(key)`:
+
+| Outcome | Behaviour |
+|---|---|
+| Lock acquired | Recovery runs normally; lock released in `finally` block |
+| Lock unavailable | `translation.recovery.lock_skipped` logged; cycle exits immediately |
+
+Advisory locks are session-scoped. A crashed process automatically releases the lock when its database connection closes, so there is no risk of a permanent dead-lock.
+
+### Concurrency — per-process, documented global budget
+
+The execution limiter (`TRANSLATION_JOB_MAX_CONCURRENCY`) is in-memory and per-process. With `N` instances each set to `M` concurrent jobs, the global concurrency budget is `N × M`. There is no cross-instance cap in V1. Tune `TRANSLATION_JOB_MAX_CONCURRENCY` to account for the expected replica count.
+
+### PostgreSQL assumptions
+
+All coordination relies on a single shared PostgreSQL database. Advisory locks are scoped to the database connection, not a schema or table. The default lock key (`7734812019`) is hardcoded and stable — do not change it between deployments.
+
 ## Current limitations
 
 - Device-scoped data is still owned by `x-device-id`; authenticated user ownership is not wired into those flows yet.
@@ -395,4 +435,4 @@ The repository fetches up to `slotsAvailable × 5` candidates (capped at 50) for
 - Translation execution is still mocked behind its provider boundary.
 - No Redis/BullMQ worker pipeline yet. Jobs are run in-process to keep V1 simple.
 - DB-backed tests require a reachable PostgreSQL database.
-- Stalled job recovery uses in-process scheduling, not distributed locks (see above).
+- Global concurrency across instances is the sum of per-process limits (see Multi-instance coordination above).

@@ -49,17 +49,41 @@ export class TranslationJobsRepository {
 
   constructor(private readonly prisma: PrismaService) {}
 
-  /** Atomically claims a queued job so only one runner can start processing it. */
+  /**
+   * Atomically claims a queued job so only one runner can start processing it.
+   *
+   * Uses SELECT ... FOR UPDATE SKIP LOCKED so that concurrent claim attempts
+   * from multiple process instances do not block each other. If another
+   * transaction already holds a row lock on this job (e.g. a concurrent claim
+   * from a second worker), SKIP LOCKED returns immediately with no row rather
+   * than waiting — the caller receives null and the job stays queued.
+   *
+   * This is safe for multi-instance deployments: at most one runner will
+   * successfully claim any given job, with no risk of deadlocks or long waits
+   * under claim contention.
+   */
   async claimQueuedJobForRunner(jobId: string): Promise<TranslationJob | null> {
     const startedAt = new Date();
 
     try {
       return await this.prisma.$transaction(async (tx) => {
-        const claimed = await tx.translationJob.updateMany({
-          where: {
-            id: jobId,
-            status: TranslationJobStatus.queued,
-          },
+        // Attempt a non-blocking row lock on the target job.
+        // SKIP LOCKED returns an empty result set immediately if the row is
+        // already locked by another transaction, so we never block on contention.
+        const locked = await tx.$queryRaw<Array<{ id: string }>>`
+          SELECT id
+          FROM "TranslationJob"
+          WHERE id = ${jobId}::uuid
+            AND status = 'queued'::"TranslationJobStatus"
+          FOR UPDATE SKIP LOCKED
+        `;
+
+        if (locked.length === 0) {
+          return null;
+        }
+
+        return tx.translationJob.update({
+          where: { id: jobId },
           data: {
             status: TranslationJobStatus.translating,
             stageLabel: 'Loading source subtitle cues',
@@ -67,14 +91,6 @@ export class TranslationJobsRepository {
             startedAt,
             errorMessage: null,
           },
-        });
-
-        if (claimed.count === 0) {
-          return null;
-        }
-
-        return tx.translationJob.findUnique({
-          where: { id: jobId },
         });
       });
     } catch (error) {
@@ -556,6 +572,41 @@ export class TranslationJobsRepository {
 
   private static readonly DISPATCH_OVERSCAN_FACTOR = 5;
   private static readonly DISPATCH_OVERSCAN_MAX = 50;
+
+  /**
+   * Stable PostgreSQL advisory lock key for the translation-job recovery
+   * coordinator. Chosen to be unique within this application and stable
+   * across deployments. Within bigint range; avoids the int4 boundary.
+   *
+   * Only one process instance should hold this lock at a time, making
+   * recovery cycles safe under concurrent multi-instance deployments.
+   */
+  private static readonly RECOVERY_ADVISORY_LOCK_KEY = 7_734_812_019;
+
+  /**
+   * Tries to acquire a PostgreSQL session-level advisory lock for the
+   * recovery coordinator. Returns true when the lock was acquired, false
+   * when another connection already holds it (non-blocking).
+   *
+   * Always pair with releaseRecoveryAdvisoryLock() in a finally block.
+   */
+  async tryAcquireRecoveryAdvisoryLock(): Promise<boolean> {
+    const rows = await this.prisma.$queryRawUnsafe<Array<{ acquired: boolean }>>(
+      `SELECT pg_try_advisory_lock(${TranslationJobsRepository.RECOVERY_ADVISORY_LOCK_KEY}) AS acquired`,
+    );
+    return rows[0]?.acquired === true;
+  }
+
+  /**
+   * Releases the session-level advisory lock previously acquired via
+   * tryAcquireRecoveryAdvisoryLock(). Safe to call even if the lock was
+   * not held — PostgreSQL silently ignores the unlock in that case.
+   */
+  async releaseRecoveryAdvisoryLock(): Promise<void> {
+    await this.prisma.$queryRawUnsafe(
+      `SELECT pg_advisory_unlock(${TranslationJobsRepository.RECOVERY_ADVISORY_LOCK_KEY})`,
+    );
+  }
 
   /**
    * Atomically transitions a stalled translating job to failed when retry

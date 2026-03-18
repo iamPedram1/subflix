@@ -39,12 +39,16 @@ const createRepository = (
     findStalledJobs: ReturnType<typeof vi.fn>;
     requeueStalledJob: ReturnType<typeof vi.fn>;
     failStalledJob: ReturnType<typeof vi.fn>;
+    tryAcquireRecoveryAdvisoryLock: ReturnType<typeof vi.fn>;
+    releaseRecoveryAdvisoryLock: ReturnType<typeof vi.fn>;
   }> = {},
 ): TranslationJobsRepository =>
   ({
     findStalledJobs: vi.fn().mockResolvedValue([]),
     requeueStalledJob: vi.fn().mockResolvedValue(true),
     failStalledJob: vi.fn().mockResolvedValue(true),
+    tryAcquireRecoveryAdvisoryLock: vi.fn().mockResolvedValue(true),
+    releaseRecoveryAdvisoryLock: vi.fn().mockResolvedValue(undefined),
     ...overrides,
   }) as unknown as TranslationJobsRepository;
 
@@ -189,6 +193,95 @@ describe('TranslationJobRecoveryService', () => {
 
       const result = await createService(repo).recoverStalledJobs(T0);
       expect(result.requeued).toBe(1);
+    });
+  });
+
+  describe('advisory lock coordination', () => {
+    it('acquires the advisory lock before scanning for stalled jobs', async () => {
+      const repo = createRepository();
+      const service = createService(repo);
+
+      await service.recoverStalledJobs(T0);
+
+      expect(repo.tryAcquireRecoveryAdvisoryLock).toHaveBeenCalledTimes(1);
+    });
+
+    it('scans the DB only after the advisory lock is acquired', async () => {
+      const repo = createRepository();
+      const service = createService(repo);
+
+      await service.recoverStalledJobs(T0);
+
+      const lockCallOrder = (
+        repo.tryAcquireRecoveryAdvisoryLock as ReturnType<typeof vi.fn>
+      ).mock.invocationCallOrder[0];
+      const scanCallOrder = (
+        repo.findStalledJobs as ReturnType<typeof vi.fn>
+      ).mock.invocationCallOrder[0];
+
+      expect(lockCallOrder).toBeLessThan(scanCallOrder);
+    });
+
+    it('returns zeros and does not scan when the advisory lock is unavailable', async () => {
+      const repo = createRepository({
+        tryAcquireRecoveryAdvisoryLock: vi.fn().mockResolvedValue(false),
+      });
+      const service = createService(repo);
+
+      const result = await service.recoverStalledJobs(T0);
+
+      expect(result).toEqual({ requeued: 0, failed: 0, scanned: 0 });
+      expect(repo.findStalledJobs).not.toHaveBeenCalled();
+    });
+
+    it('does not schedule any jobs when the advisory lock is unavailable', async () => {
+      const repo = createRepository({
+        tryAcquireRecoveryAdvisoryLock: vi.fn().mockResolvedValue(false),
+      });
+      const runner = createRunner();
+      const service = createService(repo, runner);
+
+      await service.recoverStalledJobs(T0);
+
+      expect(runner.schedule).not.toHaveBeenCalled();
+    });
+
+    it('releases the advisory lock after recovery completes', async () => {
+      const repo = createRepository();
+      const service = createService(repo);
+
+      await service.recoverStalledJobs(T0);
+
+      expect(repo.releaseRecoveryAdvisoryLock).toHaveBeenCalledTimes(1);
+    });
+
+    it('releases the advisory lock even when recovery throws', async () => {
+      const repo = createRepository({
+        findStalledJobs: vi
+          .fn()
+          .mockRejectedValue(new Error('DB connection lost')),
+      });
+      const service = createService(repo);
+
+      await expect(service.recoverStalledJobs(T0)).rejects.toThrow(
+        'DB connection lost',
+      );
+
+      expect(repo.releaseRecoveryAdvisoryLock).toHaveBeenCalledTimes(1);
+    });
+
+    it('does not attempt to release the lock when recovery is disabled', async () => {
+      const repo = createRepository();
+      const service = createService(
+        repo,
+        createRunner(),
+        createConfigService({ 'translationJobs.recoveryEnabled': false }),
+      );
+
+      await service.recoverStalledJobs(T0);
+
+      expect(repo.tryAcquireRecoveryAdvisoryLock).not.toHaveBeenCalled();
+      expect(repo.releaseRecoveryAdvisoryLock).not.toHaveBeenCalled();
     });
   });
 });
