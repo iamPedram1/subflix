@@ -1,13 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, UserPreference } from '@prisma/client';
 
-import { normalizeDatabaseError } from 'common/database/helpers/database-error.helper';
+import { BaseRepository } from 'common/database/base.repository';
 import { PrismaService } from 'common/database/prisma/prisma.service';
 
 @Injectable()
 /** Encapsulates persistence for device-scoped user preferences. */
-export class PreferencesRepository {
-  constructor(private readonly prisma: PrismaService) {}
+export class PreferencesRepository extends BaseRepository {
+  constructor(private readonly prisma: PrismaService) {
+    super();
+  }
 
   /** Returns the stored preference record for a device when it exists. */
   findByClientDeviceId(clientDeviceId: string): Promise<UserPreference | null> {
@@ -17,12 +19,12 @@ export class PreferencesRepository {
   }
 
   /** Creates or updates a device preference record using one shared write path. */
-  async upsertByClientDeviceId(
+  upsertByClientDeviceId(
     clientDeviceId: string,
     data: Prisma.UserPreferenceUncheckedCreateInput,
   ): Promise<UserPreference> {
-    try {
-      return await this.prisma.userPreference.upsert({
+    return this.dbCall(() =>
+      this.prisma.userPreference.upsert({
         where: { clientDeviceId },
         update: {
           hasSeenOnboarding: data.hasSeenOnboarding,
@@ -30,9 +32,7 @@ export class PreferencesRepository {
           themePreference: data.themePreference,
         },
         create: data,
-      });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+      }),
+    );
   }
 }

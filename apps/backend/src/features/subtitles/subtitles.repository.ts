@@ -7,7 +7,7 @@ import {
   SubtitleFormat,
 } from '@prisma/client';
 
-import { normalizeDatabaseError } from 'common/database/helpers/database-error.helper';
+import { BaseRepository } from 'common/database/base.repository';
 import { requireEntity } from 'common/database/helpers/entity.helper';
 import { PrismaService } from 'common/database/prisma/prisma.service';
 
@@ -15,8 +15,10 @@ import { SubtitleCue } from 'features/subtitles/models/subtitle-cue.model';
 
 @Injectable()
 /** Persists parsed subtitle uploads and their normalized cue rows. */
-export class SubtitlesRepository {
-  constructor(private readonly prisma: PrismaService) {}
+export class SubtitlesRepository extends BaseRepository {
+  constructor(private readonly prisma: PrismaService) {
+    super();
+  }
 
   private static readonly parsedFileSummarySelect =
     Prisma.validator<Prisma.ParsedSubtitleFileSelect>()({
@@ -28,7 +30,7 @@ export class SubtitlesRepository {
     });
 
   /** Stores a parsed subtitle file and its cues in one transaction. */
-  async createParsedFile(params: {
+  createParsedFile(params: {
     clientDeviceId: string;
     fileName: string;
     format: SubtitleFormat;
@@ -39,8 +41,8 @@ export class SubtitlesRepository {
     rawContent: string;
     cues: SubtitleCue[];
   }): Promise<ParsedSubtitleFile> {
-    try {
-      return await this.prisma.$transaction(async (tx) => {
+    return this.dbCall(() =>
+      this.prisma.$transaction(async (tx) => {
         const file = await tx.parsedSubtitleFile.create({
           data: {
             clientDeviceId: params.clientDeviceId,
@@ -65,10 +67,8 @@ export class SubtitlesRepository {
         });
 
         return file;
-      });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+      }),
+    );
   }
 
   /** Loads parsed subtitle metadata without eagerly hydrating the full cue set. */

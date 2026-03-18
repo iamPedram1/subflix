@@ -1,24 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import { ClientDevice } from '@prisma/client';
 
-import { normalizeDatabaseError } from 'common/database/helpers/database-error.helper';
+import { BaseRepository } from 'common/database/base.repository';
 import { PrismaService } from 'common/database/prisma/prisma.service';
 
 @Injectable()
 /** Encapsulates persistence for device ownership records. */
-export class DevicesRepository {
-  constructor(private readonly prisma: PrismaService) {}
+export class DevicesRepository extends BaseRepository {
+  constructor(private readonly prisma: PrismaService) {
+    super();
+  }
 
   /** Upserts a device row from the public header identifier. */
-  async upsertByDeviceId(deviceId: string): Promise<ClientDevice> {
-    try {
-      return await this.prisma.clientDevice.upsert({
+  upsertByDeviceId(deviceId: string): Promise<ClientDevice> {
+    return this.dbCall(() =>
+      this.prisma.clientDevice.upsert({
         where: { deviceId },
         update: {},
         create: { deviceId },
-      });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+      }),
+    );
   }
 }

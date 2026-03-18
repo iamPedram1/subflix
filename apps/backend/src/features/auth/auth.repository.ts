@@ -2,13 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import type { AuthProvider, RefreshToken } from '@prisma/client';
 
-import { normalizeDatabaseError } from 'common/database/helpers/database-error.helper';
+import { BaseRepository } from 'common/database/base.repository';
 import { PrismaService } from 'common/database/prisma/prisma.service';
 
 @Injectable()
 /** Encapsulates persistence for users, identities, and refresh tokens. */
-export class AuthRepository {
-  constructor(private readonly prisma: PrismaService) {}
+export class AuthRepository extends BaseRepository {
+  constructor(private readonly prisma: PrismaService) {
+    super();
+  }
 
   findUserByEmail(email: string) {
     return this.prisma.user.findUnique({ where: { email } });
@@ -18,20 +20,12 @@ export class AuthRepository {
     return this.prisma.user.findUnique({ where: { id } });
   }
 
-  async createUser(data: Prisma.UserCreateInput) {
-    try {
-      return await this.prisma.user.create({ data });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+  createUser(data: Prisma.UserCreateInput) {
+    return this.dbCall(() => this.prisma.user.create({ data }));
   }
 
-  async updateUser(id: string, data: Prisma.UserUpdateInput) {
-    try {
-      return await this.prisma.user.update({ where: { id }, data });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+  updateUser(id: string, data: Prisma.UserUpdateInput) {
+    return this.dbCall(() => this.prisma.user.update({ where: { id }, data }));
   }
 
   findIdentity(provider: AuthProvider, providerUserId: string) {
@@ -46,20 +40,12 @@ export class AuthRepository {
     });
   }
 
-  async createIdentity(data: Prisma.UserIdentityCreateInput) {
-    try {
-      return await this.prisma.userIdentity.create({ data });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+  createIdentity(data: Prisma.UserIdentityCreateInput) {
+    return this.dbCall(() => this.prisma.userIdentity.create({ data }));
   }
 
-  async createRefreshToken(data: Prisma.RefreshTokenUncheckedCreateInput) {
-    try {
-      return await this.prisma.refreshToken.create({ data });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+  createRefreshToken(data: Prisma.RefreshTokenUncheckedCreateInput) {
+    return this.dbCall(() => this.prisma.refreshToken.create({ data }));
   }
 
   findRefreshTokenByHash(tokenHash: string) {
@@ -69,60 +55,43 @@ export class AuthRepository {
     });
   }
 
-  async revokeRefreshToken(id: string, revokedAt: Date): Promise<RefreshToken> {
-    try {
-      return await this.prisma.refreshToken.update({
+  revokeRefreshToken(id: string, revokedAt: Date): Promise<RefreshToken> {
+    return this.dbCall(() =>
+      this.prisma.refreshToken.update({
         where: { id },
         data: { revokedAt, lastUsedAt: revokedAt },
-      });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+      }),
+    );
   }
 
-  async touchRefreshToken(id: string, lastUsedAt: Date): Promise<RefreshToken> {
-    try {
-      return await this.prisma.refreshToken.update({
+  touchRefreshToken(id: string, lastUsedAt: Date): Promise<RefreshToken> {
+    return this.dbCall(() =>
+      this.prisma.refreshToken.update({
         where: { id },
         data: { lastUsedAt },
-      });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+      }),
+    );
   }
 
-  async revokeAllRefreshTokensForUser(
-    userId: string,
-    revokedAt: Date,
-  ): Promise<void> {
-    try {
+  revokeAllRefreshTokensForUser(userId: string, revokedAt: Date): Promise<void> {
+    return this.dbCall(async () => {
       await this.prisma.refreshToken.updateMany({
         where: { userId, revokedAt: null },
         data: { revokedAt, lastUsedAt: revokedAt },
       });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+    });
   }
 
-  async clearEmailVerificationTokens(userId: string): Promise<void> {
-    try {
-      await this.prisma.emailVerificationToken.deleteMany({
-        where: { userId },
-      });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+  clearEmailVerificationTokens(userId: string): Promise<void> {
+    return this.dbCall(async () => {
+      await this.prisma.emailVerificationToken.deleteMany({ where: { userId } });
+    });
   }
 
-  async createEmailVerificationToken(
+  createEmailVerificationToken(
     data: Prisma.EmailVerificationTokenUncheckedCreateInput,
   ) {
-    try {
-      return await this.prisma.emailVerificationToken.create({ data });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+    return this.dbCall(() => this.prisma.emailVerificationToken.create({ data }));
   }
 
   findEmailVerificationTokenByHash(tokenHash: string) {
@@ -132,35 +101,25 @@ export class AuthRepository {
     });
   }
 
-  async consumeEmailVerificationToken(id: string, consumedAt: Date) {
-    try {
-      return await this.prisma.emailVerificationToken.update({
+  consumeEmailVerificationToken(id: string, consumedAt: Date) {
+    return this.dbCall(() =>
+      this.prisma.emailVerificationToken.update({
         where: { id },
         data: { consumedAt },
-      });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+      }),
+    );
   }
 
-  async clearPasswordResetTokens(userId: string): Promise<void> {
-    try {
-      await this.prisma.passwordResetToken.deleteMany({
-        where: { userId },
-      });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+  clearPasswordResetTokens(userId: string): Promise<void> {
+    return this.dbCall(async () => {
+      await this.prisma.passwordResetToken.deleteMany({ where: { userId } });
+    });
   }
 
-  async createPasswordResetToken(
+  createPasswordResetToken(
     data: Prisma.PasswordResetTokenUncheckedCreateInput,
   ) {
-    try {
-      return await this.prisma.passwordResetToken.create({ data });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+    return this.dbCall(() => this.prisma.passwordResetToken.create({ data }));
   }
 
   findPasswordResetTokenByHash(tokenHash: string) {
@@ -170,14 +129,12 @@ export class AuthRepository {
     });
   }
 
-  async consumePasswordResetToken(id: string, consumedAt: Date) {
-    try {
-      return await this.prisma.passwordResetToken.update({
+  consumePasswordResetToken(id: string, consumedAt: Date) {
+    return this.dbCall(() =>
+      this.prisma.passwordResetToken.update({
         where: { id },
         data: { consumedAt },
-      });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+      }),
+    );
   }
 }

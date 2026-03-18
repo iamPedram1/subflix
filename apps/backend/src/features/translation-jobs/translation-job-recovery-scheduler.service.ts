@@ -92,29 +92,31 @@ export class TranslationJobRecoverySchedulerService
 
   private async runStartupRecovery(): Promise<void> {
     this.log.info('translation.recovery.startup.started');
-    try {
-      const result = await this.recoveryService.recoverStalledJobs();
+    const result = await this.safeRun(
+      () => this.recoveryService.recoverStalledJobs(),
+      (error) =>
+        this.log.error('translation.recovery.startup.failed', {
+          error: error instanceof Error ? error.message : String(error),
+        }),
+    );
+    if (result) {
       this.log.info('translation.recovery.startup.completed', {
         requeuedCount: result.requeued,
         failedCount: result.failed,
         scannedCount: result.scanned,
-      });
-    } catch (error) {
-      this.log.error('translation.recovery.startup.failed', {
-        error: error instanceof Error ? error.message : String(error),
       });
     }
   }
 
   private async runStartupDispatch(): Promise<void> {
     this.log.info('translation.dispatch.startup');
-    try {
-      await this.dispatchService.dispatch('startup');
-    } catch (error) {
-      this.log.error('translation.dispatch.startup.failed', {
-        error: error instanceof Error ? error.message : String(error),
-      });
-    }
+    await this.safeRun(
+      () => this.dispatchService.dispatch('startup'),
+      (error) =>
+        this.log.error('translation.dispatch.startup.failed', {
+          error: error instanceof Error ? error.message : String(error),
+        }),
+    );
   }
 
   private startRecoveryInterval(): void {
@@ -143,34 +145,43 @@ export class TranslationJobRecoverySchedulerService
 
   private async runRecoveryCycle(): Promise<void> {
     const startedAt = Date.now();
-    try {
-      const result = await this.recoveryService.recoverStalledJobs();
-      const durationMs = Date.now() - startedAt;
-
-      if (result.requeued > 0 || result.failed > 0) {
-        this.log.info('translation.recovery.cycle.completed', {
-          requeuedCount: result.requeued,
-          failedCount: result.failed,
-          scannedCount: result.scanned,
-          durationMs,
-        });
-      }
-    } catch (error) {
-      const durationMs = Date.now() - startedAt;
-      this.log.error('translation.recovery.cycle.failed', {
-        error: error instanceof Error ? error.message : String(error),
-        durationMs,
+    const result = await this.safeRun(
+      () => this.recoveryService.recoverStalledJobs(),
+      (error) =>
+        this.log.error('translation.recovery.cycle.failed', {
+          error: error instanceof Error ? error.message : String(error),
+          durationMs: Date.now() - startedAt,
+        }),
+    );
+    if (result && (result.requeued > 0 || result.failed > 0)) {
+      this.log.info('translation.recovery.cycle.completed', {
+        requeuedCount: result.requeued,
+        failedCount: result.failed,
+        scannedCount: result.scanned,
+        durationMs: Date.now() - startedAt,
       });
     }
   }
 
   private async runDispatchCycle(): Promise<void> {
+    await this.safeRun(
+      () => this.dispatchService.dispatch('poll'),
+      (error) =>
+        this.log.error('translation.dispatch.cycle.failed', {
+          error: error instanceof Error ? error.message : String(error),
+        }),
+    );
+  }
+
+  private async safeRun<T>(
+    fn: () => Promise<T>,
+    onError: (error: unknown) => void,
+  ): Promise<T | undefined> {
     try {
-      await this.dispatchService.dispatch('poll');
+      return await fn();
     } catch (error) {
-      this.log.error('translation.dispatch.cycle.failed', {
-        error: error instanceof Error ? error.message : String(error),
-      });
+      onError(error);
+      return undefined;
     }
   }
 }

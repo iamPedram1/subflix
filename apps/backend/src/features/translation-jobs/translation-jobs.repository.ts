@@ -12,12 +12,12 @@ import {
   toPaginatedResult,
 } from 'common/database/helpers/pagination.helper';
 import { requireEntity } from 'common/database/helpers/entity.helper';
-import { normalizeDatabaseError } from 'common/database/helpers/database-error.helper';
+import { BaseRepository } from 'common/database/base.repository';
 import { PrismaService } from 'common/database/prisma/prisma.service';
 
 @Injectable()
 /** Encapsulates persistence for translation jobs, previews, and exports. */
-export class TranslationJobsRepository {
+export class TranslationJobsRepository extends BaseRepository {
   private static readonly translationJobSummarySelect =
     Prisma.validator<Prisma.TranslationJobSelect>()({
       id: true,
@@ -47,7 +47,9 @@ export class TranslationJobsRepository {
       translatedText: true,
     });
 
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {
+    super();
+  }
 
   /**
    * Atomically claims a queued job so only one runner can start processing it.
@@ -65,8 +67,8 @@ export class TranslationJobsRepository {
   async claimQueuedJobForRunner(jobId: string): Promise<TranslationJob | null> {
     const startedAt = new Date();
 
-    try {
-      return await this.prisma.$transaction(async (tx) => {
+    return this.dbCall(() =>
+      this.prisma.$transaction(async (tx) => {
         // Attempt a non-blocking row lock on the target job.
         // SKIP LOCKED returns an empty result set immediately if the row is
         // already locked by another transaction, so we never block on contention.
@@ -92,40 +94,29 @@ export class TranslationJobsRepository {
             errorMessage: null,
           },
         });
-      });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+      }),
+    );
   }
 
   /** Persists a newly created translation job. */
-  async createJob(
+  createJob(
     data: Prisma.TranslationJobUncheckedCreateInput,
   ): Promise<TranslationJob> {
-    try {
-      return await this.prisma.translationJob.create({ data });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+    return this.dbCall(() => this.prisma.translationJob.create({ data }));
   }
 
   /** Applies a partial update to a persisted translation job. */
-  async updateJob(
+  updateJob(
     jobId: string,
     data: Prisma.TranslationJobUncheckedUpdateInput,
   ): Promise<TranslationJob> {
-    try {
-      return await this.prisma.translationJob.update({
-        where: { id: jobId },
-        data,
-      });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+    return this.dbCall(() =>
+      this.prisma.translationJob.update({ where: { id: jobId }, data }),
+    );
   }
 
   /** Replaces all persisted preview/export cues for a translation job. */
-  async replaceJobCues(
+  replaceJobCues(
     jobId: string,
     cues: Array<{
       cueIndex: number;
@@ -135,11 +126,9 @@ export class TranslationJobsRepository {
       translatedText: string | null;
     }>,
   ): Promise<void> {
-    try {
+    return this.dbCall(async () => {
       await this.prisma.$transaction(async (tx) => {
-        await tx.translationJobCue.deleteMany({
-          where: { jobId },
-        });
+        await tx.translationJobCue.deleteMany({ where: { jobId } });
 
         await tx.translationJobCue.createMany({
           data: cues.map((cue) => ({
@@ -152,9 +141,7 @@ export class TranslationJobsRepository {
           })),
         });
       });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+    });
   }
 
   /** Returns a single device-owned job or throws when it is missing. */
@@ -431,8 +418,8 @@ export class TranslationJobsRepository {
   }
 
   /** Clears all persisted history and upload artifacts owned by one device. */
-  async clearOwnedHistory(clientDeviceId: string): Promise<void> {
-    try {
+  clearOwnedHistory(clientDeviceId: string): Promise<void> {
+    return this.dbCall(async () => {
       await this.prisma.$transaction(async (tx) => {
         await tx.translationJobCue.deleteMany({
           where: { job: { clientDeviceId } },
@@ -447,9 +434,7 @@ export class TranslationJobsRepository {
           where: { clientDeviceId },
         });
       });
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+    });
   }
 
   /** Counts failed jobs for the current device. */
@@ -504,12 +489,9 @@ export class TranslationJobsRepository {
     jobId: string,
     jobMeta: Prisma.InputJsonValue,
   ): Promise<boolean> {
-    try {
-      const result = await this.prisma.translationJob.updateMany({
-        where: {
-          id: jobId,
-          status: TranslationJobStatus.translating,
-        },
+    const result = await this.dbCall(() =>
+      this.prisma.translationJob.updateMany({
+        where: { id: jobId, status: TranslationJobStatus.translating },
         data: {
           status: TranslationJobStatus.queued,
           stageLabel: 'Queued for translation',
@@ -517,12 +499,10 @@ export class TranslationJobsRepository {
           errorMessage: null,
           jobMeta,
         },
-      });
+      }),
+    );
 
-      return result.count > 0;
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+    return result.count > 0;
   }
 
   /**
@@ -617,23 +597,18 @@ export class TranslationJobsRepository {
     jobMeta: Prisma.InputJsonValue,
     errorMessage: string,
   ): Promise<boolean> {
-    try {
-      const result = await this.prisma.translationJob.updateMany({
-        where: {
-          id: jobId,
-          status: TranslationJobStatus.translating,
-        },
+    const result = await this.dbCall(() =>
+      this.prisma.translationJob.updateMany({
+        where: { id: jobId, status: TranslationJobStatus.translating },
         data: {
           status: TranslationJobStatus.failed,
           stageLabel: 'Translation failed',
           errorMessage,
           jobMeta,
         },
-      });
+      }),
+    );
 
-      return result.count > 0;
-    } catch (error) {
-      return normalizeDatabaseError(error);
-    }
+    return result.count > 0;
   }
 }
