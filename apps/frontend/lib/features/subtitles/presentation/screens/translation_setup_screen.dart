@@ -36,7 +36,7 @@ class _TranslationSetupScreenState
     final selectedLanguage =
         _selectedLanguage ??
         preferences?.preferredTargetLanguage ??
-        AppLanguage.spanish;
+        AppLanguage.english;
 
     return Scaffold(
       body: AppBackground(

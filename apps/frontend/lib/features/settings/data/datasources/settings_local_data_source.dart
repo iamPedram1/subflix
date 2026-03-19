@@ -37,7 +37,7 @@ class SettingsLocalDataSource {
 
   UserPreference get _defaultPreference => const UserPreference(
     hasSeenOnboarding: false,
-    preferredTargetLanguage: AppLanguage.spanish,
+    preferredTargetLanguage: AppLanguage.english,
     themePreference: ThemePreference.system,
   );
 }

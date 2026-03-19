@@ -19,7 +19,7 @@ class App extends ConsumerWidget {
         ThemeMode.system;
     final preferredLanguage = settings.asData?.value.preferredTargetLanguage;
     final preferredLocale = preferredLanguage == null
-        ? null
+        ? const Locale('en')
         : AppLocalizations.supportedLocales.firstWhere(
             (locale) => locale.languageCode == preferredLanguage.code,
             orElse: () => const Locale('en'),

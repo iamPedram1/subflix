@@ -18,7 +18,7 @@ void main() {
       final preference = await dataSource.read();
 
       expect(preference.hasSeenOnboarding, isFalse);
-      expect(preference.preferredTargetLanguage, AppLanguage.spanish);
+      expect(preference.preferredTargetLanguage, AppLanguage.english);
       expect(preference.themePreference, ThemePreference.system);
       expect(sharedPreferences.getString('subflix.preferences'), isNull);
     },

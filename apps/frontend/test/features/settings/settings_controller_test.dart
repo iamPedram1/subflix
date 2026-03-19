@@ -12,15 +12,13 @@ void main() {
   test('loads backend-backed preferences and persists updates', () async {
     final repository = _FakeSettingsRepository();
     final container = ProviderContainer(
-      overrides: [
-        settingsRepositoryProvider.overrideWithValue(repository),
-      ],
+      overrides: [settingsRepositoryProvider.overrideWithValue(repository)],
     );
     addTearDown(container.dispose);
 
     final initial = await container.read(settingsControllerProvider.future);
     expect(initial.hasSeenOnboarding, isFalse);
-    expect(initial.preferredTargetLanguage, AppLanguage.spanish);
+    expect(initial.preferredTargetLanguage, AppLanguage.english);
     expect(initial.themePreference, ThemePreference.system);
 
     await container
@@ -43,7 +41,7 @@ void main() {
 class _FakeSettingsRepository implements SettingsRepository {
   UserPreference _preference = const UserPreference(
     hasSeenOnboarding: false,
-    preferredTargetLanguage: AppLanguage.spanish,
+    preferredTargetLanguage: AppLanguage.english,
     themePreference: ThemePreference.system,
   );
 

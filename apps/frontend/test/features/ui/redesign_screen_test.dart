@@ -190,7 +190,7 @@ class _FakeHistoryRepository implements HistoryRepository {
 class _FakeSettingsRepository implements SettingsRepository {
   UserPreference preference = const UserPreference(
     hasSeenOnboarding: true,
-    preferredTargetLanguage: AppLanguage.spanish,
+    preferredTargetLanguage: AppLanguage.english,
     themePreference: ThemePreference.dark,
   );
 
