@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:subflix/core/app/router/app_routes.dart';
+import 'package:subflix/core/extensions/date_time_extensions.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
@@ -14,6 +15,7 @@ import 'package:subflix/features/history/application/history_controller.dart';
 import 'package:subflix/features/home/application/home_providers.dart';
 import 'package:subflix/features/shared/domain/models/translation_job.dart';
 import 'package:subflix/features/shared/domain/models/translation_job_status.dart';
+import 'package:subflix/features/shared/domain/models/translation_source_type.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -29,17 +31,18 @@ class HomeScreen extends ConsumerWidget {
             child: ListView(
               padding: EdgeInsets.zero,
               children: <Widget>[
-                _HeroSection(),
+                const _HeroSection(),
                 Transform.translate(
-                  offset: const Offset(0, -72),
+                  offset: const Offset(0, -76),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        _QuickActions(),
-                        const SizedBox(height: 20),
+                        const _QuickActions(),
+                        const SizedBox(height: 24),
                         _SectionHeader(
-                          title: context.t.homeRecentJobsTitle,
+                          title: 'Recent Translations',
                           actionLabel: context.t.homeViewAll,
                           onTap: () => context.push(AppRoutes.history),
                         ),
@@ -60,7 +63,7 @@ class HomeScreen extends ConsumerWidget {
                                       padding: const EdgeInsets.only(
                                         bottom: 12,
                                       ),
-                                      child: _RecentJobCard(job: job),
+                                      child: _RecentTranslationCard(job: job),
                                     ),
                                   )
                                   .toList(growable: false),
@@ -80,14 +83,14 @@ class HomeScreen extends ConsumerWidget {
                           ),
                           loading: () => Column(
                             children: const <Widget>[
-                              LoadingSkeleton(height: 120),
+                              LoadingSkeleton(height: 118),
                               SizedBox(height: 12),
-                              LoadingSkeleton(height: 120),
+                              LoadingSkeleton(height: 118),
                             ],
                           ),
                         ),
-                        const SizedBox(height: 8),
-                        _SectionHeader(title: context.t.homeTrendingNow),
+                        const SizedBox(height: 16),
+                        const _TrendingHeader(),
                         const SizedBox(height: 12),
                         const _TrendingRow(),
                       ],
@@ -104,10 +107,12 @@ class HomeScreen extends ConsumerWidget {
 }
 
 class _HeroSection extends StatelessWidget {
+  const _HeroSection();
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(20, 18, 20, 112),
+      padding: const EdgeInsets.fromLTRB(24, 18, 24, 116),
       decoration: const BoxDecoration(
         gradient: AppColors.heroGradient,
         borderRadius: BorderRadius.vertical(bottom: Radius.circular(32)),
@@ -132,7 +137,7 @@ class _HeroSection extends StatelessWidget {
                     Text(
                       context.t.homeWelcomeSubtitle,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.white.withValues(alpha: 0.80),
+                        color: Colors.white.withValues(alpha: 0.82),
                       ),
                     ),
                   ],
@@ -140,24 +145,27 @@ class _HeroSection extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () => context.push(AppRoutes.settings),
-                style: IconButton.styleFrom(backgroundColor: Colors.white24),
+                style: IconButton.styleFrom(
+                  backgroundColor: Colors.white.withValues(alpha: 0.20),
+                  minimumSize: const Size(50, 50),
+                ),
                 icon: const Icon(Icons.settings_outlined, color: Colors.white),
               ),
             ],
           ),
           const SizedBox(height: 28),
           InkWell(
-            borderRadius: BorderRadius.circular(22),
+            borderRadius: BorderRadius.circular(18),
             onTap: () => context.push(AppRoutes.search),
             child: Ink(
-              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
               decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.94),
-                borderRadius: BorderRadius.circular(22),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(18),
                 boxShadow: <BoxShadow>[
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.10),
-                    blurRadius: 18,
+                    blurRadius: 24,
                     offset: const Offset(0, 10),
                   ),
                 ],
@@ -188,6 +196,8 @@ class _HeroSection extends StatelessWidget {
 }
 
 class _QuickActions extends StatelessWidget {
+  const _QuickActions();
+
   @override
   Widget build(BuildContext context) {
     final items = <_QuickActionModel>[
@@ -232,7 +242,7 @@ class _QuickActions extends StatelessWidget {
                         height: 52,
                         decoration: BoxDecoration(
                           gradient: item.gradient,
-                          borderRadius: BorderRadius.circular(18),
+                          borderRadius: BorderRadius.circular(14),
                         ),
                         child: Icon(item.icon, color: Colors.white),
                       ),
@@ -253,15 +263,20 @@ class _QuickActions extends StatelessWidget {
   }
 }
 
-class _RecentJobCard extends StatelessWidget {
-  const _RecentJobCard({required this.job});
+class _RecentTranslationCard extends StatelessWidget {
+  const _RecentTranslationCard({required this.job});
 
   final TranslationJob job;
 
   @override
   Widget build(BuildContext context) {
-    final isComplete = job.status == TranslationJobStatus.completed;
-    final isRunning = job.status == TranslationJobStatus.translating;
+    final mediaType = _inferMediaType(job);
+    final statusIcon = _statusIcon(job.status);
+    final statusColor = _statusColor(job.status);
+    final isCompleted = job.status == TranslationJobStatus.completed;
+    final confidence = (job.subtitleConfidenceScore ?? 96).clamp(0, 100);
+    final showsReuse =
+        job.translationReuse == true || job.reusedExistingSubtitle == true;
 
     return AppSurfaceCard(
       onTap: () {
@@ -269,9 +284,7 @@ class _RecentJobCard extends StatelessWidget {
           context.push(
             AppRoutes.translationResult.replaceFirst(':jobId', job.id),
           );
-          return;
-        }
-        if (job.status == TranslationJobStatus.translating) {
+        } else {
           context.push(
             AppRoutes.translationPreview.replaceFirst(':jobId', job.id),
           );
@@ -281,21 +294,22 @@ class _RecentJobCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            width: 48,
-            height: 48,
+            width: 42,
+            height: 42,
             decoration: BoxDecoration(
-              color: job.sourceType.name == 'upload'
-                  ? AppColors.tertiary.withValues(alpha: 0.12)
-                  : AppColors.primary.withValues(alpha: 0.12),
-              borderRadius: BorderRadius.circular(16),
+              color: mediaType == _RecentMediaType.movie
+                  ? AppColors.primary.withValues(alpha: 0.10)
+                  : AppColors.secondary.withValues(alpha: 0.10),
+              borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(
-              job.sourceType.name == 'upload'
-                  ? Icons.upload_file_rounded
-                  : Icons.movie_outlined,
-              color: job.sourceType.name == 'upload'
-                  ? AppColors.tertiary
-                  : AppColors.primary,
+              mediaType == _RecentMediaType.movie
+                  ? Icons.movie_outlined
+                  : Icons.tv_rounded,
+              color: mediaType == _RecentMediaType.movie
+                  ? AppColors.primary
+                  : AppColors.secondary,
+              size: 20,
             ),
           ),
           const SizedBox(width: 14),
@@ -304,61 +318,116 @@ class _RecentJobCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Expanded(
                       child: Text(
                         job.title,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.titleMedium,
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.w600),
                       ),
                     ),
                     const SizedBox(width: 8),
-                    Icon(
-                      isComplete
-                          ? Icons.check_circle_rounded
-                          : isRunning
-                          ? Icons.autorenew_rounded
-                          : Icons.error_outline_rounded,
-                      color: isComplete
-                          ? AppColors.emerald
-                          : isRunning
-                          ? AppColors.primary
-                          : AppColors.danger,
-                      size: 20,
-                    ),
+                    if (job.status == TranslationJobStatus.translating)
+                      SizedBox(
+                        width: 18,
+                        height: 18,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2.2,
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            statusColor,
+                          ),
+                        ),
+                      )
+                    else
+                      Icon(statusIcon, color: statusColor, size: 20),
                   ],
                 ),
                 const SizedBox(height: 6),
-                Text(
-                  '${job.sourceLanguage.label} -> ${job.targetLanguage.label}',
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.textSecondaryFor(context),
-                  ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.language_rounded,
+                      size: 16,
+                      color: AppColors.textSecondaryFor(context),
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      job.targetLanguage.label,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppColors.textSecondaryFor(context),
+                      ),
+                    ),
+                    if (showsReuse) ...<Widget>[
+                      const SizedBox(width: 8),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 3,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.emerald.withValues(alpha: 0.10),
+                          borderRadius: BorderRadius.circular(999),
+                        ),
+                        child: Text(
+                          'Reused',
+                          style: Theme.of(context).textTheme.labelSmall
+                              ?.copyWith(
+                                color: AppColors.emerald,
+                                fontWeight: FontWeight.w600,
+                              ),
+                        ),
+                      ),
+                    ],
+                  ],
                 ),
                 const SizedBox(height: 10),
                 Row(
                   children: <Widget>[
-                    Expanded(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(999),
-                        child: LinearProgressIndicator(
-                          value: isComplete ? 1 : job.progress,
-                          minHeight: 8,
-                          backgroundColor: AppColors.surfaceMutedFor(context),
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            isComplete ? AppColors.emerald : AppColors.primary,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
                     Text(
-                      '${((isComplete ? 1 : job.progress) * 100).round()}%',
-                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      job.updatedAt.toJobTimestamp(),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondaryFor(context),
                       ),
                     ),
+                    const Spacer(),
+                    if (isCompleted)
+                      Row(
+                        children: <Widget>[
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(999),
+                            child: Container(
+                              width: 80,
+                              height: 6,
+                              color: AppColors.surfaceMutedFor(context),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Container(
+                                  width: 80 * (confidence / 100),
+                                  decoration: const BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: <Color>[
+                                        AppColors.emerald,
+                                        Color(0xFF10B981),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            '$confidence%',
+                            style: Theme.of(context).textTheme.labelSmall
+                                ?.copyWith(
+                                  color: AppColors.textSecondaryFor(context),
+                                ),
+                          ),
+                        ],
+                      ),
                   ],
                 ),
               ],
@@ -366,6 +435,26 @@ class _RecentJobCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _TrendingHeader extends StatelessWidget {
+  const _TrendingHeader();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        const Icon(Icons.trending_up_rounded, color: AppColors.primary),
+        const SizedBox(width: 8),
+        Text(
+          context.t.homeTrendingNow,
+          style: Theme.of(
+            context,
+          ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
+        ),
+      ],
     );
   }
 }
@@ -378,87 +467,92 @@ class _TrendingRow extends StatelessWidget {
     const items = <_TrendingItem>[
       _TrendingItem(
         title: 'Oppenheimer',
-        subtitle: 'Movie',
-        icon: Icons.movie_filter_outlined,
-        gradient: LinearGradient(
-          colors: <Color>[Color(0xFF1D4ED8), Color(0xFF7C3AED)],
-        ),
+        subtitle: 'movie',
+        image:
+            'https://images.unsplash.com/photo-1756412955475-7e1ed16869af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3ZpZSUyMHBvc3RlciUyMGNvbGxlY3Rpb258ZW58MXx8fHwxNzczNjkwNzc1fDA&ixlib=rb-4.1.0&q=80&w=1080',
       ),
       _TrendingItem(
         title: 'The Last of Us',
-        subtitle: 'Series',
-        icon: Icons.tv_rounded,
-        gradient: LinearGradient(
-          colors: <Color>[Color(0xFF7C3AED), Color(0xFFEC4899)],
-        ),
+        subtitle: 'series',
+        image:
+            'https://images.unsplash.com/photo-1705123898140-11c516829f4c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0diUyMHNlcmllcyUyMHNjcmVlbnxlbnwxfHx8fDE3NzM2ODQyMDB8MA&ixlib=rb-4.1.0&q=80&w=1080',
       ),
       _TrendingItem(
         title: 'Dune: Part Two',
-        subtitle: 'Movie',
-        icon: Icons.local_movies_outlined,
-        gradient: LinearGradient(
-          colors: <Color>[Color(0xFFF59E0B), Color(0xFFEF4444)],
-        ),
+        subtitle: 'movie',
+        image:
+            'https://images.unsplash.com/photo-1659497379075-a807be116f74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaWxtJTIwcmVlbCUyMGNpbmVtYXxlbnwxfHx8fDE3NzM2OTA3NzV8MA&ixlib=rb-4.1.0&q=80&w=1080',
       ),
     ];
 
     return SizedBox(
-      height: 194,
+      height: 198,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: items.length,
-        separatorBuilder: (context, index) => const SizedBox(width: 12),
+        separatorBuilder: (context, index) => const SizedBox(width: 16),
         itemBuilder: (context, index) {
           final item = items[index];
           return InkWell(
             onTap: () => context.push(AppRoutes.search),
-            borderRadius: BorderRadius.circular(24),
-            child: Ink(
-              width: 140,
-              decoration: BoxDecoration(
-                gradient: item.gradient,
-                borderRadius: BorderRadius.circular(24),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    right: -14,
-                    top: 18,
-                    child: Icon(
-                      item.icon,
-                      size: 76,
-                      color: Colors.white.withValues(alpha: 0.18),
+            borderRadius: BorderRadius.circular(18),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(18),
+              child: SizedBox(
+                width: 128,
+                height: 192,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: <Widget>[
+                    Image.network(
+                      item.image,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) =>
+                          Container(color: AppColors.surfaceMutedFor(context)),
                     ),
-                  ),
-                  Positioned(
-                    left: 14,
-                    right: 14,
-                    bottom: 16,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          item.title,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.titleMedium
-                              ?.copyWith(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                              ),
+                    const DecoratedBox(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: <Color>[
+                            Colors.transparent,
+                            Color(0x26000000),
+                            Color(0xCC000000),
+                          ],
                         ),
-                        const SizedBox(height: 4),
-                        Text(
-                          item.subtitle,
-                          style: Theme.of(context).textTheme.bodySmall
-                              ?.copyWith(
-                                color: Colors.white.withValues(alpha: 0.72),
-                              ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                ],
+                    Positioned(
+                      left: 12,
+                      right: 12,
+                      bottom: 12,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            item.title,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.labelLarge
+                                ?.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            item.subtitle,
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(
+                                  color: Colors.white.withValues(alpha: 0.66),
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );
@@ -480,10 +574,24 @@ class _SectionHeader extends StatelessWidget {
     return Row(
       children: <Widget>[
         Expanded(
-          child: Text(title, style: Theme.of(context).textTheme.titleLarge),
+          child: Text(
+            title,
+            style: Theme.of(
+              context,
+            ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
+          ),
         ),
         if (actionLabel != null && onTap != null)
-          TextButton(onPressed: onTap, child: Text(actionLabel!)),
+          TextButton(
+            onPressed: onTap,
+            style: TextButton.styleFrom(
+              foregroundColor: Theme.of(context).colorScheme.primary,
+              padding: EdgeInsets.zero,
+              minimumSize: const Size(0, 0),
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            ),
+            child: Text(actionLabel!),
+          ),
       ],
     );
   }
@@ -507,12 +615,41 @@ class _TrendingItem {
   const _TrendingItem({
     required this.title,
     required this.subtitle,
-    required this.icon,
-    required this.gradient,
+    required this.image,
   });
 
   final String title;
   final String subtitle;
-  final IconData icon;
-  final LinearGradient gradient;
+  final String image;
+}
+
+enum _RecentMediaType { movie, series }
+
+_RecentMediaType _inferMediaType(TranslationJob job) {
+  final title = job.title.toLowerCase();
+  if (title.contains('episode') ||
+      title.contains('season') ||
+      title.contains('s0')) {
+    return _RecentMediaType.series;
+  }
+  if (job.sourceType == TranslationSourceType.upload) {
+    return _RecentMediaType.movie;
+  }
+  return _RecentMediaType.movie;
+}
+
+IconData _statusIcon(TranslationJobStatus status) {
+  return switch (status) {
+    TranslationJobStatus.completed => Icons.check_circle_rounded,
+    TranslationJobStatus.failed => Icons.error_outline_rounded,
+    _ => Icons.autorenew_rounded,
+  };
+}
+
+Color _statusColor(TranslationJobStatus status) {
+  return switch (status) {
+    TranslationJobStatus.completed => AppColors.emerald,
+    TranslationJobStatus.failed => AppColors.danger,
+    _ => AppColors.primary,
+  };
 }

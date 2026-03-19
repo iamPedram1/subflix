@@ -66,7 +66,7 @@ abstract final class AppTheme {
     final baseTextTheme =
         (useArabicFont
                 ? GoogleFonts.notoSansArabicTextTheme()
-                : GoogleFonts.plusJakartaSansTextTheme())
+                : GoogleFonts.interTextTheme())
             .apply(
               bodyColor: colorScheme.onSurface,
               displayColor: colorScheme.onSurface,
@@ -74,33 +74,36 @@ abstract final class AppTheme {
 
     final displayTextTheme = useArabicFont
         ? GoogleFonts.notoSansArabicTextTheme(baseTextTheme)
-        : GoogleFonts.spaceGroteskTextTheme(baseTextTheme);
+        : GoogleFonts.interTextTheme(baseTextTheme);
 
     final textTheme = baseTextTheme.copyWith(
       displayLarge: displayTextTheme.displayLarge?.copyWith(
         fontWeight: FontWeight.w700,
-        letterSpacing: -1.4,
+        letterSpacing: -0.9,
       ),
       displayMedium: displayTextTheme.displayMedium?.copyWith(
         fontWeight: FontWeight.w700,
-        letterSpacing: -1,
+        letterSpacing: -0.7,
       ),
       headlineLarge: displayTextTheme.headlineLarge?.copyWith(
         fontWeight: FontWeight.w700,
-        letterSpacing: -0.8,
+        letterSpacing: -0.4,
       ),
       headlineMedium: displayTextTheme.headlineMedium?.copyWith(
         fontWeight: FontWeight.w700,
-        letterSpacing: -0.6,
+        letterSpacing: -0.3,
       ),
       titleLarge: baseTextTheme.titleLarge?.copyWith(
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w600,
       ),
       titleMedium: baseTextTheme.titleMedium?.copyWith(
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w600,
       ),
-      bodyLarge: baseTextTheme.bodyLarge?.copyWith(height: 1.45),
-      bodyMedium: baseTextTheme.bodyMedium?.copyWith(height: 1.45),
+      titleSmall: baseTextTheme.titleSmall?.copyWith(
+        fontWeight: FontWeight.w600,
+      ),
+      bodyLarge: baseTextTheme.bodyLarge?.copyWith(height: 1.5),
+      bodyMedium: baseTextTheme.bodyMedium?.copyWith(height: 1.5),
       labelLarge: baseTextTheme.labelLarge?.copyWith(
         fontWeight: FontWeight.w600,
       ),
@@ -174,8 +177,10 @@ abstract final class AppTheme {
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: colorScheme.onSurface,
-          textStyle: textTheme.labelLarge,
+          foregroundColor: colorScheme.primary,
+          textStyle: textTheme.labelLarge?.copyWith(
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
@@ -212,7 +217,9 @@ abstract final class AppTheme {
         backgroundColor: colorScheme.brightness == Brightness.dark
             ? AppColors.surfaceDark
             : AppColors.surfaceLight,
-        contentTextStyle: textTheme.bodyMedium?.copyWith(color: Colors.white),
+        contentTextStyle: textTheme.bodyMedium?.copyWith(
+          color: colorScheme.onSurface,
+        ),
         behavior: SnackBarBehavior.floating,
       ),
     );

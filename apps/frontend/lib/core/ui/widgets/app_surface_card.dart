@@ -30,11 +30,12 @@ class AppSurfaceCard extends StatelessWidget {
         borderRadius: borderRadius,
         border: Border.all(color: AppColors.outlineSoftForScheme(scheme)),
         boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Colors.black.withValues(alpha: isDark ? 0.26 : 0.08),
-            blurRadius: isDark ? 24 : 18,
-            offset: const Offset(0, 12),
-          ),
+          if (!isDark)
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.06),
+              blurRadius: 18,
+              offset: const Offset(0, 8),
+            ),
         ],
       ),
       child: Padding(padding: padding, child: child),

@@ -160,13 +160,28 @@ class _SearchTopBar extends StatelessWidget {
               autofocus: true,
               decoration: InputDecoration(
                 hintText: context.t.searchHintText,
-                prefixIcon: const Icon(Icons.search_rounded),
+                fillColor: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : AppColors.surfaceMutedFor(context),
+                prefixIcon: const Icon(
+                  Icons.search_rounded,
+                  color: AppColors.textSecondaryLight,
+                ),
                 suffixIcon: query.isEmpty
                     ? null
                     : IconButton(
                         onPressed: onClear,
-                        icon: const Icon(Icons.close_rounded),
+                        icon: const Icon(
+                          Icons.close_rounded,
+                          color: AppColors.textSecondaryLight,
+                        ),
                       ),
+                hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: AppColors.textSecondaryLight,
+                ),
+              ),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: AppColors.textPrimaryLight,
               ),
             ),
           ),
