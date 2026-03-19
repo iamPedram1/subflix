@@ -81,9 +81,16 @@ void main() {
 
       expect(find.text('SubFlix User'), findsOneWidget);
       expect(find.text('Premium member'), findsOneWidget);
-      expect(find.text('Appearance'), findsWidgets);
+      expect(find.text('Theme'), findsOneWidget);
 
-      await tester.tap(find.text('French').last);
+      await tester.tap(find.text('App Language'));
+      await tester.pumpAndSettle();
+      await tester.dragUntilVisible(
+        find.text('French'),
+        find.byType(ListView).last,
+        const Offset(0, -200),
+      );
+      await tester.tap(find.text('French'));
       await tester.pumpAndSettle();
 
       expect(repository.preference.preferredTargetLanguage, AppLanguage.french);
