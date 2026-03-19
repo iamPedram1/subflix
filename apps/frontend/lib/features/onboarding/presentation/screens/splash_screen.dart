@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,36 +21,68 @@ class SplashScreen extends ConsumerStatefulWidget {
 class _SplashScreenState extends ConsumerState<SplashScreen> {
   late final ProviderSubscription<AsyncValue<UserPreference>>
   _settingsSubscription;
+  Timer? _navigationTimer;
+  Timer? _guardTimer;
+  bool _hasNavigated = false;
 
   @override
   void initState() {
     super.initState();
     _settingsSubscription = ref.listenManual<AsyncValue<UserPreference>>(
       settingsControllerProvider,
-      (_, next) => next.whenData(_routeFromPreference),
+      (_, next) {
+        next.whenOrNull(
+          data: _routeFromPreference,
+          error: (_, stackTrace) => _routeToFallback(),
+        );
+      },
     );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(settingsControllerProvider).whenData(_routeFromPreference);
+      ref
+          .read(settingsControllerProvider)
+          .whenOrNull(
+            data: _routeFromPreference,
+            error: (_, stackTrace) => _routeToFallback(),
+          );
     });
+
+    _guardTimer = Timer(const Duration(seconds: 6), _routeToFallback);
   }
 
   void _routeFromPreference(UserPreference preference) {
-    if (!mounted) {
+    _scheduleNavigation(
+      preference.hasSeenOnboarding ? AppRoutes.home : AppRoutes.onboarding,
+    );
+  }
+
+  void _routeToFallback() {
+    _scheduleNavigation(
+      AppRoutes.onboarding,
+      delay: const Duration(milliseconds: 250),
+    );
+  }
+
+  void _scheduleNavigation(String location, {Duration? delay}) {
+    if (!mounted || _hasNavigated) {
       return;
     }
-    Future<void>.delayed(const Duration(milliseconds: 2200), () {
-      if (!mounted) {
+
+    _guardTimer?.cancel();
+    _navigationTimer?.cancel();
+    _navigationTimer = Timer(delay ?? const Duration(milliseconds: 2200), () {
+      if (!mounted || _hasNavigated) {
         return;
       }
-      context.go(
-        preference.hasSeenOnboarding ? AppRoutes.home : AppRoutes.onboarding,
-      );
+      _hasNavigated = true;
+      context.go(location);
     });
   }
 
   @override
   void dispose() {
+    _guardTimer?.cancel();
+    _navigationTimer?.cancel();
     _settingsSubscription.close();
     super.dispose();
   }

@@ -16,14 +16,15 @@ class SettingsLocalDataSource {
   Future<UserPreference> read() async {
     final raw = _sharedPreferences.getString(_preferencesKey);
     if (raw == null) {
-      return const UserPreference(
-        hasSeenOnboarding: false,
-        preferredTargetLanguage: AppLanguage.spanish,
-        themePreference: ThemePreference.system,
-      );
+      return _defaultPreference;
     }
 
-    return UserPreference.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+    try {
+      return UserPreference.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+    } catch (_) {
+      await _sharedPreferences.remove(_preferencesKey);
+      return _defaultPreference;
+    }
   }
 
   Future<UserPreference> write(UserPreference preference) async {
@@ -33,4 +34,10 @@ class SettingsLocalDataSource {
     );
     return preference;
   }
+
+  UserPreference get _defaultPreference => const UserPreference(
+    hasSeenOnboarding: false,
+    preferredTargetLanguage: AppLanguage.spanish,
+    themePreference: ThemePreference.system,
+  );
 }
