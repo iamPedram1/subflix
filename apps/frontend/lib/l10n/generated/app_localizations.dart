@@ -120,6 +120,378 @@ abstract class AppLocalizations {
   /// **'SubFlix'**
   String get appTitle;
 
+  /// Localized text for the account section title in settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get authAccountSectionTitle;
+
+  /// Localized text for the already signed in title on the sign-in screen.
+  ///
+  /// In en, this message translates to:
+  /// **'You are already signed in'**
+  String get authAlreadySignedInTitle;
+
+  /// Localized text for the already signed in message on the sign-in screen. Uses placeholder: email.
+  ///
+  /// In en, this message translates to:
+  /// **'This device is already connected as {email}.'**
+  String authAlreadySignedInMessage(Object email);
+
+  /// Localized text for navigating back to the account view.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to account'**
+  String get authBackToAccount;
+
+  /// Localized text for navigating back to the sign-in screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to sign in'**
+  String get authBackToSignIn;
+
+  /// Localized text for the forgot password success title.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your inbox'**
+  String get authCheckInboxTitle;
+
+  /// Localized text for the confirm email primary action.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm email'**
+  String get authConfirmEmailAction;
+
+  /// Localized text for the confirm email helper message. Uses placeholder: email.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the verification token sent to {email}.'**
+  String authConfirmEmailHint(Object email);
+
+  /// Localized text for the confirm email screen subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Paste the verification token from your email to finish activating this account.'**
+  String get authConfirmEmailSubtitle;
+
+  /// Localized text for the confirm email success snackbar.
+  ///
+  /// In en, this message translates to:
+  /// **'Email confirmed. You can sign in now.'**
+  String get authConfirmEmailSuccess;
+
+  /// Localized text for the confirm email screen title.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify your email'**
+  String get authConfirmEmailTitle;
+
+  /// Localized text for the confirm password field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm password'**
+  String get authConfirmPasswordLabel;
+
+  /// Localized text for continuing from forgot password to reset password.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue to reset'**
+  String get authContinueToReset;
+
+  /// Localized text for the Google sign-in action.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get authContinueWithGoogle;
+
+  /// Localized text for the create account action.
+  ///
+  /// In en, this message translates to:
+  /// **'Create account'**
+  String get authCreateAccountAction;
+
+  /// Localized text for showing a debug reset token. Uses placeholder: token.
+  ///
+  /// In en, this message translates to:
+  /// **'Debug token: {token}'**
+  String authDebugTokenLabel(Object token);
+
+  /// Localized text for the display name form field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Display name'**
+  String get authDisplayNameLabel;
+
+  /// Localized text for the email field label in auth forms.
+  ///
+  /// In en, this message translates to:
+  /// **'Email address'**
+  String get authEmailLabel;
+
+  /// Localized text for the auth hero eyebrow label.
+  ///
+  /// In en, this message translates to:
+  /// **'Secure workspace'**
+  String get authEyebrow;
+
+  /// Localized validation text when an auth field is empty.
+  ///
+  /// In en, this message translates to:
+  /// **'This field is required.'**
+  String get authFieldRequired;
+
+  /// Localized text for the forgot password primary action.
+  ///
+  /// In en, this message translates to:
+  /// **'Send reset link'**
+  String get authForgotPasswordAction;
+
+  /// Localized text for the forgot password message when a debug reset token is available.
+  ///
+  /// In en, this message translates to:
+  /// **'A reset token was returned for this debug environment. You can continue directly into the reset form.'**
+  String get authForgotPasswordDebugMessage;
+
+  /// Localized text for the forgot password link on the sign-in screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password?'**
+  String get authForgotPasswordLink;
+
+  /// Localized text for the forgot password screen subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email and we will request a password reset from the backend for this account.'**
+  String get authForgotPasswordSubtitle;
+
+  /// Localized text for the forgot password success message.
+  ///
+  /// In en, this message translates to:
+  /// **'If the account exists, a password reset message has been sent.'**
+  String get authForgotPasswordSuccess;
+
+  /// Localized text for the forgot password screen title.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset your password'**
+  String get authForgotPasswordTitle;
+
+  /// Localized helper text beneath the Google sign-in button.
+  ///
+  /// In en, this message translates to:
+  /// **'Google sign-in uses Firebase OAuth and will work once this app is connected to a Firebase project.'**
+  String get authGoogleHelper;
+
+  /// Localized short label for the Google sign-in action.
+  ///
+  /// In en, this message translates to:
+  /// **'Google'**
+  String get authGoogleShortAction;
+
+  /// Localized text for the sign-in link on the sign-up screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? Sign in'**
+  String get authHaveAccountLink;
+
+  /// Localized validation text for an invalid email address.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email address.'**
+  String get authInvalidEmail;
+
+  /// Localized text for the new password field label.
+  ///
+  /// In en, this message translates to:
+  /// **'New password'**
+  String get authNewPasswordLabel;
+
+  /// Localized text for the sign-up link on the sign-in screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Need an account? Create one'**
+  String get authNoAccountLink;
+
+  /// Localized text for the auth divider label.
+  ///
+  /// In en, this message translates to:
+  /// **'or'**
+  String get authOrDivider;
+
+  /// Localized text for the password field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get authPasswordLabel;
+
+  /// Localized validation text for password confirmation mismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match.'**
+  String get authPasswordMismatch;
+
+  /// Localized validation text for short passwords.
+  ///
+  /// In en, this message translates to:
+  /// **'Use at least 8 characters.'**
+  String get authPasswordTooShort;
+
+  /// Localized text for the profile refresh success snackbar.
+  ///
+  /// In en, this message translates to:
+  /// **'Account details refreshed.'**
+  String get authProfileRefreshed;
+
+  /// Localized text for the refresh profile action.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh profile'**
+  String get authRefreshProfileAction;
+
+  /// Localized text for the refresh profile subtitle in settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Load the latest profile data from the backend.'**
+  String get authRefreshProfileSubtitle;
+
+  /// Localized text for the reset password primary action.
+  ///
+  /// In en, this message translates to:
+  /// **'Save new password'**
+  String get authResetPasswordAction;
+
+  /// Localized text for the reset password helper message. Uses placeholder: email.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset the password for {email} using the token from your email.'**
+  String authResetPasswordHint(Object email);
+
+  /// Localized text for the reset password screen subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the reset token and choose a new password for this account.'**
+  String get authResetPasswordSubtitle;
+
+  /// Localized text for the reset password success snackbar.
+  ///
+  /// In en, this message translates to:
+  /// **'Password updated. Please sign in again.'**
+  String get authResetPasswordSuccess;
+
+  /// Localized text for the reset password screen title.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a new password'**
+  String get authResetPasswordTitle;
+
+  /// Localized text for the sign-in primary action.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get authSignInAction;
+
+  /// Localized text for the sign-in screen subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect this app to your SubFlix account to sync profile data and unlock authenticated backend flows.'**
+  String get authSignInSubtitle;
+
+  /// Localized text for the sign-in success snackbar.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in successfully.'**
+  String get authSignInSuccess;
+
+  /// Localized text for the sign-in screen title.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back'**
+  String get authSignInTitle;
+
+  /// Localized text for the signed-in account card subtitle. Uses placeholder: email.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected as {email}'**
+  String authSignedInCardSubtitle(Object email);
+
+  /// Localized text for the signed-out account card subtitle in settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to manage your account, use Firebase OAuth, and keep authenticated features ready for future sync.'**
+  String get authSignedOutCardSubtitle;
+
+  /// Localized text for the signed-out account card title in settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to SubFlix'**
+  String get authSignedOutCardTitle;
+
+  /// Localized text for the sign-out action.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get authSignOutAction;
+
+  /// Localized text for the sign-out subtitle in settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Revoke the current session for this device and clear local tokens.'**
+  String get authSignOutSubtitle;
+
+  /// Localized text for the sign-out success snackbar.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed out on this device.'**
+  String get authSignOutSuccess;
+
+  /// Localized text for the sign-up primary action.
+  ///
+  /// In en, this message translates to:
+  /// **'Create my account'**
+  String get authSignUpAction;
+
+  /// Localized text for the sign-up screen subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create an account so this app can use the backend\'s authenticated profile and session flows.'**
+  String get authSignUpSubtitle;
+
+  /// Localized text for the sign-up success snackbar.
+  ///
+  /// In en, this message translates to:
+  /// **'Account created. Continue with email verification.'**
+  String get authSignUpSuccess;
+
+  /// Localized text for the sign-up screen title.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your account'**
+  String get authSignUpTitle;
+
+  /// Localized text for the email verification status label in settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Email verification'**
+  String get authVerificationStatusTitle;
+
+  /// Localized text for the verification token field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification token'**
+  String get authVerificationTokenLabel;
+
+  /// Localized text for a verified account status label.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified'**
+  String get authVerifiedStatus;
+
+  /// Localized text for an unverified account status label.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification pending'**
+  String get authUnverifiedStatus;
+
   /// Localized text for brand subtitle compact in the branding UI.
   ///
   /// In en, this message translates to:

@@ -9,6 +9,11 @@ part of 'app_routes_data.dart';
 List<RouteBase> get $appRoutes => [
   $splashRoute,
   $onboardingRoute,
+  $authSignInRoute,
+  $authSignUpRoute,
+  $authConfirmEmailRoute,
+  $authForgotPasswordRoute,
+  $authResetPasswordRoute,
   $homeRoute,
   $historyRoute,
   $settingsRoute,
@@ -58,6 +63,136 @@ mixin $OnboardingRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/onboarding');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $authSignInRoute => GoRouteData.$route(
+  path: '/auth/sign-in',
+  factory: $AuthSignInRoute._fromState,
+);
+
+mixin $AuthSignInRoute on GoRouteData {
+  static AuthSignInRoute _fromState(GoRouterState state) =>
+      const AuthSignInRoute();
+
+  @override
+  String get location => GoRouteData.$location('/auth/sign-in');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $authSignUpRoute => GoRouteData.$route(
+  path: '/auth/sign-up',
+  factory: $AuthSignUpRoute._fromState,
+);
+
+mixin $AuthSignUpRoute on GoRouteData {
+  static AuthSignUpRoute _fromState(GoRouterState state) =>
+      const AuthSignUpRoute();
+
+  @override
+  String get location => GoRouteData.$location('/auth/sign-up');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $authConfirmEmailRoute => GoRouteData.$route(
+  path: '/auth/confirm-email',
+  factory: $AuthConfirmEmailRoute._fromState,
+);
+
+mixin $AuthConfirmEmailRoute on GoRouteData {
+  static AuthConfirmEmailRoute _fromState(GoRouterState state) =>
+      const AuthConfirmEmailRoute();
+
+  @override
+  String get location => GoRouteData.$location('/auth/confirm-email');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $authForgotPasswordRoute => GoRouteData.$route(
+  path: '/auth/forgot-password',
+  factory: $AuthForgotPasswordRoute._fromState,
+);
+
+mixin $AuthForgotPasswordRoute on GoRouteData {
+  static AuthForgotPasswordRoute _fromState(GoRouterState state) =>
+      const AuthForgotPasswordRoute();
+
+  @override
+  String get location => GoRouteData.$location('/auth/forgot-password');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $authResetPasswordRoute => GoRouteData.$route(
+  path: '/auth/reset-password',
+  factory: $AuthResetPasswordRoute._fromState,
+);
+
+mixin $AuthResetPasswordRoute on GoRouteData {
+  static AuthResetPasswordRoute _fromState(GoRouterState state) =>
+      const AuthResetPasswordRoute();
+
+  @override
+  String get location => GoRouteData.$location('/auth/reset-password');
 
   @override
   void go(BuildContext context) => context.go(location);

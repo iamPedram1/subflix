@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,6 +16,7 @@ import 'package:subflix/core/utils/subtitle_parser.dart';
 import 'package:subflix/features/auth/data/apis/auth_api.dart';
 import 'package:subflix/features/auth/data/repositories/backend_auth_repository.dart';
 import 'package:subflix/features/auth/data/session/auth_session_store.dart';
+import 'package:subflix/features/auth/data/services/firebase_oauth_service.dart';
 import 'package:subflix/features/auth/domain/repositories/auth_repository.dart';
 import 'package:subflix/features/health/data/apis/health_api.dart';
 import 'package:subflix/features/history/data/datasources/history_local_data_source.dart';
@@ -98,6 +102,29 @@ String deviceId(Ref ref) {
 @Riverpod(keepAlive: true)
 AuthSessionStore authSessionStore(Ref ref) {
   return AuthSessionStore(ref.watch(sharedPreferencesProvider));
+}
+
+@Riverpod(keepAlive: true)
+FirebaseAuth firebaseAuth(Ref ref) {
+  return FirebaseAuth.instance;
+}
+
+@Riverpod(keepAlive: true)
+GoogleSignIn googleSignIn(Ref ref) {
+  return GoogleSignIn.instance;
+}
+
+@Riverpod(keepAlive: true)
+FirebaseOAuthService firebaseOAuthService(Ref ref) {
+  return FirebaseOAuthService(
+    firebaseAuth: ref.watch(firebaseAuthProvider),
+    googleSignIn: ref.watch(googleSignInProvider),
+    initializeFirebase: () async {
+      if (Firebase.apps.isEmpty) {
+        await Firebase.initializeApp();
+      }
+    },
+  );
 }
 
 @Riverpod(keepAlive: true)

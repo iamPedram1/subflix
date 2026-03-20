@@ -12,6 +12,215 @@ class AppLocalizationsPt extends AppLocalizations {
   String get appTitle => 'SubFlix';
 
   @override
+  String get authAccountSectionTitle => 'Account';
+
+  @override
+  String get authAlreadySignedInTitle => 'You are already signed in';
+
+  @override
+  String authAlreadySignedInMessage(Object email) {
+    return 'This device is already connected as $email.';
+  }
+
+  @override
+  String get authBackToAccount => 'Back to account';
+
+  @override
+  String get authBackToSignIn => 'Back to sign in';
+
+  @override
+  String get authCheckInboxTitle => 'Check your inbox';
+
+  @override
+  String get authConfirmEmailAction => 'Confirm email';
+
+  @override
+  String authConfirmEmailHint(Object email) {
+    return 'Use the verification token sent to $email.';
+  }
+
+  @override
+  String get authConfirmEmailSubtitle =>
+      'Paste the verification token from your email to finish activating this account.';
+
+  @override
+  String get authConfirmEmailSuccess => 'Email confirmed. You can sign in now.';
+
+  @override
+  String get authConfirmEmailTitle => 'Verify your email';
+
+  @override
+  String get authConfirmPasswordLabel => 'Confirm password';
+
+  @override
+  String get authContinueToReset => 'Continue to reset';
+
+  @override
+  String get authContinueWithGoogle => 'Continue with Google';
+
+  @override
+  String get authCreateAccountAction => 'Create account';
+
+  @override
+  String authDebugTokenLabel(Object token) {
+    return 'Debug token: $token';
+  }
+
+  @override
+  String get authDisplayNameLabel => 'Display name';
+
+  @override
+  String get authEmailLabel => 'Email address';
+
+  @override
+  String get authEyebrow => 'Secure workspace';
+
+  @override
+  String get authFieldRequired => 'This field is required.';
+
+  @override
+  String get authForgotPasswordAction => 'Send reset link';
+
+  @override
+  String get authForgotPasswordDebugMessage =>
+      'A reset token was returned for this debug environment. You can continue directly into the reset form.';
+
+  @override
+  String get authForgotPasswordLink => 'Forgot password?';
+
+  @override
+  String get authForgotPasswordSubtitle =>
+      'Enter your email and we will request a password reset from the backend for this account.';
+
+  @override
+  String get authForgotPasswordSuccess =>
+      'If the account exists, a password reset message has been sent.';
+
+  @override
+  String get authForgotPasswordTitle => 'Reset your password';
+
+  @override
+  String get authGoogleHelper =>
+      'Google sign-in uses Firebase OAuth and will work once this app is connected to a Firebase project.';
+
+  @override
+  String get authGoogleShortAction => 'Google';
+
+  @override
+  String get authHaveAccountLink => 'Already have an account? Sign in';
+
+  @override
+  String get authInvalidEmail => 'Enter a valid email address.';
+
+  @override
+  String get authNewPasswordLabel => 'New password';
+
+  @override
+  String get authNoAccountLink => 'Need an account? Create one';
+
+  @override
+  String get authOrDivider => 'or';
+
+  @override
+  String get authPasswordLabel => 'Password';
+
+  @override
+  String get authPasswordMismatch => 'Passwords do not match.';
+
+  @override
+  String get authPasswordTooShort => 'Use at least 8 characters.';
+
+  @override
+  String get authProfileRefreshed => 'Account details refreshed.';
+
+  @override
+  String get authRefreshProfileAction => 'Refresh profile';
+
+  @override
+  String get authRefreshProfileSubtitle =>
+      'Load the latest profile data from the backend.';
+
+  @override
+  String get authResetPasswordAction => 'Save new password';
+
+  @override
+  String authResetPasswordHint(Object email) {
+    return 'Reset the password for $email using the token from your email.';
+  }
+
+  @override
+  String get authResetPasswordSubtitle =>
+      'Enter the reset token and choose a new password for this account.';
+
+  @override
+  String get authResetPasswordSuccess =>
+      'Password updated. Please sign in again.';
+
+  @override
+  String get authResetPasswordTitle => 'Choose a new password';
+
+  @override
+  String get authSignInAction => 'Sign in';
+
+  @override
+  String get authSignInSubtitle =>
+      'Connect this app to your SubFlix account to sync profile data and unlock authenticated backend flows.';
+
+  @override
+  String get authSignInSuccess => 'Signed in successfully.';
+
+  @override
+  String get authSignInTitle => 'Welcome back';
+
+  @override
+  String authSignedInCardSubtitle(Object email) {
+    return 'Connected as $email';
+  }
+
+  @override
+  String get authSignedOutCardSubtitle =>
+      'Sign in to manage your account, use Firebase OAuth, and keep authenticated features ready for future sync.';
+
+  @override
+  String get authSignedOutCardTitle => 'Sign in to SubFlix';
+
+  @override
+  String get authSignOutAction => 'Sign out';
+
+  @override
+  String get authSignOutSubtitle =>
+      'Revoke the current session for this device and clear local tokens.';
+
+  @override
+  String get authSignOutSuccess => 'Signed out on this device.';
+
+  @override
+  String get authSignUpAction => 'Create my account';
+
+  @override
+  String get authSignUpSubtitle =>
+      'Create an account so this app can use the backend\'s authenticated profile and session flows.';
+
+  @override
+  String get authSignUpSuccess =>
+      'Account created. Continue with email verification.';
+
+  @override
+  String get authSignUpTitle => 'Create your account';
+
+  @override
+  String get authVerificationStatusTitle => 'Email verification';
+
+  @override
+  String get authVerificationTokenLabel => 'Verification token';
+
+  @override
+  String get authVerifiedStatus => 'Verified';
+
+  @override
+  String get authUnverifiedStatus => 'Verification pending';
+
+  @override
   String get brandSubtitleCompact => 'Inteligência de legendas';
 
   @override

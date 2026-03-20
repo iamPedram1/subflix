@@ -3,6 +3,13 @@ import 'package:go_router/go_router.dart';
 import 'package:subflix/core/app/router/app_routes.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/ui/widgets/route_state_missing_screen.dart';
+import 'package:subflix/features/auth/presentation/models/auth_confirm_email_args.dart';
+import 'package:subflix/features/auth/presentation/models/auth_reset_password_args.dart';
+import 'package:subflix/features/auth/presentation/screens/auth_confirm_email_screen.dart';
+import 'package:subflix/features/auth/presentation/screens/auth_forgot_password_screen.dart';
+import 'package:subflix/features/auth/presentation/screens/auth_reset_password_screen.dart';
+import 'package:subflix/features/auth/presentation/screens/auth_sign_in_screen.dart';
+import 'package:subflix/features/auth/presentation/screens/auth_sign_up_screen.dart';
 import 'package:subflix/features/history/presentation/screens/history_screen.dart';
 import 'package:subflix/features/home/presentation/screens/home_screen.dart';
 import 'package:subflix/features/onboarding/presentation/screens/onboarding_screen.dart';
@@ -42,6 +49,56 @@ class OnboardingRoute extends GoRouteData with $OnboardingRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const OnboardingScreen();
+}
+
+@TypedGoRoute<AuthSignInRoute>(path: AppRoutes.authSignIn)
+class AuthSignInRoute extends GoRouteData with $AuthSignInRoute {
+  const AuthSignInRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const AuthSignInScreen();
+}
+
+@TypedGoRoute<AuthSignUpRoute>(path: AppRoutes.authSignUp)
+class AuthSignUpRoute extends GoRouteData with $AuthSignUpRoute {
+  const AuthSignUpRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const AuthSignUpScreen();
+}
+
+@TypedGoRoute<AuthConfirmEmailRoute>(path: AppRoutes.authConfirmEmail)
+class AuthConfirmEmailRoute extends GoRouteData with $AuthConfirmEmailRoute {
+  const AuthConfirmEmailRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    final args = state.extra as AuthConfirmEmailArgs?;
+    return AuthConfirmEmailScreen(args: args);
+  }
+}
+
+@TypedGoRoute<AuthForgotPasswordRoute>(path: AppRoutes.authForgotPassword)
+class AuthForgotPasswordRoute extends GoRouteData
+    with $AuthForgotPasswordRoute {
+  const AuthForgotPasswordRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const AuthForgotPasswordScreen();
+}
+
+@TypedGoRoute<AuthResetPasswordRoute>(path: AppRoutes.authResetPassword)
+class AuthResetPasswordRoute extends GoRouteData with $AuthResetPasswordRoute {
+  const AuthResetPasswordRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    final args = state.extra as AuthResetPasswordArgs?;
+    return AuthResetPasswordScreen(args: args);
+  }
 }
 
 @TypedGoRoute<HomeRoute>(path: AppRoutes.home)

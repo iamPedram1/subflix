@@ -4,6 +4,269 @@
   "@appTitle": {
     "description": "Localized text for app title in the application UI."
   },
+  "authAccountSectionTitle": "Account",
+  "@authAccountSectionTitle": {
+    "description": "Localized text for the account section title in settings."
+  },
+  "authAlreadySignedInTitle": "You are already signed in",
+  "@authAlreadySignedInTitle": {
+    "description": "Localized text for the already signed in title on the sign-in screen."
+  },
+  "authAlreadySignedInMessage": "This device is already connected as {email}.",
+  "@authAlreadySignedInMessage": {
+    "description": "Localized text for the already signed in message on the sign-in screen. Uses placeholder: email.",
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "authBackToAccount": "Back to account",
+  "@authBackToAccount": {
+    "description": "Localized text for navigating back to the account view."
+  },
+  "authBackToSignIn": "Back to sign in",
+  "@authBackToSignIn": {
+    "description": "Localized text for navigating back to the sign-in screen."
+  },
+  "authCheckInboxTitle": "Check your inbox",
+  "@authCheckInboxTitle": {
+    "description": "Localized text for the forgot password success title."
+  },
+  "authConfirmEmailAction": "Confirm email",
+  "@authConfirmEmailAction": {
+    "description": "Localized text for the confirm email primary action."
+  },
+  "authConfirmEmailHint": "Use the verification token sent to {email}.",
+  "@authConfirmEmailHint": {
+    "description": "Localized text for the confirm email helper message. Uses placeholder: email.",
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "authConfirmEmailSubtitle": "Paste the verification token from your email to finish activating this account.",
+  "@authConfirmEmailSubtitle": {
+    "description": "Localized text for the confirm email screen subtitle."
+  },
+  "authConfirmEmailSuccess": "Email confirmed. You can sign in now.",
+  "@authConfirmEmailSuccess": {
+    "description": "Localized text for the confirm email success snackbar."
+  },
+  "authConfirmEmailTitle": "Verify your email",
+  "@authConfirmEmailTitle": {
+    "description": "Localized text for the confirm email screen title."
+  },
+  "authConfirmPasswordLabel": "Confirm password",
+  "@authConfirmPasswordLabel": {
+    "description": "Localized text for the confirm password field label."
+  },
+  "authContinueToReset": "Continue to reset",
+  "@authContinueToReset": {
+    "description": "Localized text for continuing from forgot password to reset password."
+  },
+  "authContinueWithGoogle": "Continue with Google",
+  "@authContinueWithGoogle": {
+    "description": "Localized text for the Google sign-in action."
+  },
+  "authCreateAccountAction": "Create account",
+  "@authCreateAccountAction": {
+    "description": "Localized text for the create account action."
+  },
+  "authDebugTokenLabel": "Debug token: {token}",
+  "@authDebugTokenLabel": {
+    "description": "Localized text for showing a debug reset token. Uses placeholder: token.",
+    "placeholders": {
+      "token": {}
+    }
+  },
+  "authDisplayNameLabel": "Display name",
+  "@authDisplayNameLabel": {
+    "description": "Localized text for the display name form field label."
+  },
+  "authEmailLabel": "Email address",
+  "@authEmailLabel": {
+    "description": "Localized text for the email field label in auth forms."
+  },
+  "authEyebrow": "Secure workspace",
+  "@authEyebrow": {
+    "description": "Localized text for the auth hero eyebrow label."
+  },
+  "authFieldRequired": "This field is required.",
+  "@authFieldRequired": {
+    "description": "Localized validation text when an auth field is empty."
+  },
+  "authForgotPasswordAction": "Send reset link",
+  "@authForgotPasswordAction": {
+    "description": "Localized text for the forgot password primary action."
+  },
+  "authForgotPasswordDebugMessage": "A reset token was returned for this debug environment. You can continue directly into the reset form.",
+  "@authForgotPasswordDebugMessage": {
+    "description": "Localized text for the forgot password message when a debug reset token is available."
+  },
+  "authForgotPasswordLink": "Forgot password?",
+  "@authForgotPasswordLink": {
+    "description": "Localized text for the forgot password link on the sign-in screen."
+  },
+  "authForgotPasswordSubtitle": "Enter your email and we will request a password reset from the backend for this account.",
+  "@authForgotPasswordSubtitle": {
+    "description": "Localized text for the forgot password screen subtitle."
+  },
+  "authForgotPasswordSuccess": "If the account exists, a password reset message has been sent.",
+  "@authForgotPasswordSuccess": {
+    "description": "Localized text for the forgot password success message."
+  },
+  "authForgotPasswordTitle": "Reset your password",
+  "@authForgotPasswordTitle": {
+    "description": "Localized text for the forgot password screen title."
+  },
+  "authGoogleHelper": "Google sign-in uses Firebase OAuth and will work once this app is connected to a Firebase project.",
+  "@authGoogleHelper": {
+    "description": "Localized helper text beneath the Google sign-in button."
+  },
+  "authGoogleShortAction": "Google",
+  "@authGoogleShortAction": {
+    "description": "Localized short label for the Google sign-in action."
+  },
+  "authHaveAccountLink": "Already have an account? Sign in",
+  "@authHaveAccountLink": {
+    "description": "Localized text for the sign-in link on the sign-up screen."
+  },
+  "authInvalidEmail": "Enter a valid email address.",
+  "@authInvalidEmail": {
+    "description": "Localized validation text for an invalid email address."
+  },
+  "authNewPasswordLabel": "New password",
+  "@authNewPasswordLabel": {
+    "description": "Localized text for the new password field label."
+  },
+  "authNoAccountLink": "Need an account? Create one",
+  "@authNoAccountLink": {
+    "description": "Localized text for the sign-up link on the sign-in screen."
+  },
+  "authOrDivider": "or",
+  "@authOrDivider": {
+    "description": "Localized text for the auth divider label."
+  },
+  "authPasswordLabel": "Password",
+  "@authPasswordLabel": {
+    "description": "Localized text for the password field label."
+  },
+  "authPasswordMismatch": "Passwords do not match.",
+  "@authPasswordMismatch": {
+    "description": "Localized validation text for password confirmation mismatch."
+  },
+  "authPasswordTooShort": "Use at least 8 characters.",
+  "@authPasswordTooShort": {
+    "description": "Localized validation text for short passwords."
+  },
+  "authProfileRefreshed": "Account details refreshed.",
+  "@authProfileRefreshed": {
+    "description": "Localized text for the profile refresh success snackbar."
+  },
+  "authRefreshProfileAction": "Refresh profile",
+  "@authRefreshProfileAction": {
+    "description": "Localized text for the refresh profile action."
+  },
+  "authRefreshProfileSubtitle": "Load the latest profile data from the backend.",
+  "@authRefreshProfileSubtitle": {
+    "description": "Localized text for the refresh profile subtitle in settings."
+  },
+  "authResetPasswordAction": "Save new password",
+  "@authResetPasswordAction": {
+    "description": "Localized text for the reset password primary action."
+  },
+  "authResetPasswordHint": "Reset the password for {email} using the token from your email.",
+  "@authResetPasswordHint": {
+    "description": "Localized text for the reset password helper message. Uses placeholder: email.",
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "authResetPasswordSubtitle": "Enter the reset token and choose a new password for this account.",
+  "@authResetPasswordSubtitle": {
+    "description": "Localized text for the reset password screen subtitle."
+  },
+  "authResetPasswordSuccess": "Password updated. Please sign in again.",
+  "@authResetPasswordSuccess": {
+    "description": "Localized text for the reset password success snackbar."
+  },
+  "authResetPasswordTitle": "Choose a new password",
+  "@authResetPasswordTitle": {
+    "description": "Localized text for the reset password screen title."
+  },
+  "authSignInAction": "Sign in",
+  "@authSignInAction": {
+    "description": "Localized text for the sign-in primary action."
+  },
+  "authSignInSubtitle": "Connect this app to your SubFlix account to sync profile data and unlock authenticated backend flows.",
+  "@authSignInSubtitle": {
+    "description": "Localized text for the sign-in screen subtitle."
+  },
+  "authSignInSuccess": "Signed in successfully.",
+  "@authSignInSuccess": {
+    "description": "Localized text for the sign-in success snackbar."
+  },
+  "authSignInTitle": "Welcome back",
+  "@authSignInTitle": {
+    "description": "Localized text for the sign-in screen title."
+  },
+  "authSignedInCardSubtitle": "Connected as {email}",
+  "@authSignedInCardSubtitle": {
+    "description": "Localized text for the signed-in account card subtitle. Uses placeholder: email.",
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "authSignedOutCardSubtitle": "Sign in to manage your account, use Firebase OAuth, and keep authenticated features ready for future sync.",
+  "@authSignedOutCardSubtitle": {
+    "description": "Localized text for the signed-out account card subtitle in settings."
+  },
+  "authSignedOutCardTitle": "Sign in to SubFlix",
+  "@authSignedOutCardTitle": {
+    "description": "Localized text for the signed-out account card title in settings."
+  },
+  "authSignOutAction": "Sign out",
+  "@authSignOutAction": {
+    "description": "Localized text for the sign-out action."
+  },
+  "authSignOutSubtitle": "Revoke the current session for this device and clear local tokens.",
+  "@authSignOutSubtitle": {
+    "description": "Localized text for the sign-out subtitle in settings."
+  },
+  "authSignOutSuccess": "Signed out on this device.",
+  "@authSignOutSuccess": {
+    "description": "Localized text for the sign-out success snackbar."
+  },
+  "authSignUpAction": "Create my account",
+  "@authSignUpAction": {
+    "description": "Localized text for the sign-up primary action."
+  },
+  "authSignUpSubtitle": "Create an account so this app can use the backend's authenticated profile and session flows.",
+  "@authSignUpSubtitle": {
+    "description": "Localized text for the sign-up screen subtitle."
+  },
+  "authSignUpSuccess": "Account created. Continue with email verification.",
+  "@authSignUpSuccess": {
+    "description": "Localized text for the sign-up success snackbar."
+  },
+  "authSignUpTitle": "Create your account",
+  "@authSignUpTitle": {
+    "description": "Localized text for the sign-up screen title."
+  },
+  "authVerificationStatusTitle": "Email verification",
+  "@authVerificationStatusTitle": {
+    "description": "Localized text for the email verification status label in settings."
+  },
+  "authVerificationTokenLabel": "Verification token",
+  "@authVerificationTokenLabel": {
+    "description": "Localized text for the verification token field label."
+  },
+  "authVerifiedStatus": "Verified",
+  "@authVerifiedStatus": {
+    "description": "Localized text for a verified account status label."
+  },
+  "authUnverifiedStatus": "Verification pending",
+  "@authUnverifiedStatus": {
+    "description": "Localized text for an unverified account status label."
+  },
   "brandSubtitleCompact": "Subtitle intelligence",
   "@brandSubtitleCompact": {
     "description": "Localized text for brand subtitle compact in the branding UI."

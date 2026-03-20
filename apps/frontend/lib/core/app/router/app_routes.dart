@@ -1,6 +1,11 @@
 abstract final class AppRoutes {
   static const String splash = '/splash';
   static const String onboarding = '/onboarding';
+  static const String authSignIn = '/auth/sign-in';
+  static const String authSignUp = '/auth/sign-up';
+  static const String authConfirmEmail = '/auth/confirm-email';
+  static const String authForgotPassword = '/auth/forgot-password';
+  static const String authResetPassword = '/auth/reset-password';
   static const String home = '/home';
   static const String history = '/history';
   static const String settings = '/settings';

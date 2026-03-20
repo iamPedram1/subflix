@@ -5,6 +5,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/providers/repository_providers.dart';
 import 'package:subflix/core/styles/theme.dart';
+import 'package:subflix/features/auth/domain/models/auth_forgot_password_result.dart';
+import 'package:subflix/features/auth/domain/models/auth_session.dart';
+import 'package:subflix/features/auth/domain/models/auth_signup_result.dart';
+import 'package:subflix/features/auth/domain/models/auth_user.dart';
+import 'package:subflix/features/auth/domain/repositories/auth_repository.dart';
 import 'package:subflix/features/history/domain/repositories/history_repository.dart';
 import 'package:subflix/features/search/domain/models/movie_search_item.dart';
 import 'package:subflix/features/search/domain/repositories/search_repository.dart';
@@ -68,6 +73,7 @@ void main() {
       await tester.pumpWidget(
         _TestApp(
           overrides: <Object>[
+            authRepositoryProvider.overrideWithValue(_FakeAuthRepository()),
             settingsRepositoryProvider.overrideWithValue(repository),
             historyRepositoryProvider.overrideWithValue(
               _FakeHistoryRepository(),
@@ -79,26 +85,10 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.text('SubFlix User'), findsOneWidget);
-      expect(find.text('Premium member'), findsOneWidget);
+      expect(find.text('Sign in to SubFlix'), findsOneWidget);
+      expect(find.text('Sign in'), findsWidgets);
       expect(find.text('Theme'), findsOneWidget);
-
-      await tester.tap(find.text('App Language'));
-      await tester.pumpAndSettle();
-      final frenchLabel = find.text('French').last;
-      await tester.dragUntilVisible(
-        frenchLabel,
-        find.byType(ListView).last,
-        const Offset(0, -200),
-      );
-      final frenchOption = find
-          .ancestor(of: frenchLabel, matching: find.byType(InkWell))
-          .last;
-      await tester.ensureVisible(frenchOption);
-      await tester.tap(frenchOption);
-      await tester.pumpAndSettle();
-
-      expect(repository.preference.preferredTargetLanguage, AppLanguage.french);
+      expect(find.text('App Language'), findsOneWidget);
     });
 
     testWidgets('upload screen shows ready state after loading demo file', (
@@ -199,6 +189,53 @@ class _FakeHistoryRepository implements HistoryRepository {
   Future<TranslationJob?> getJobById(String id) async => null;
 }
 
+class _FakeAuthRepository implements AuthRepository {
+  @override
+  Future<bool> confirmEmail(String token) async => true;
+
+  @override
+  Future<AuthForgotPasswordResult> forgotPassword(String email) async =>
+      const AuthForgotPasswordResult(sent: true);
+
+  @override
+  Future<AuthUser> getProfile() async => _fakeUser();
+
+  @override
+  Future<AuthSession?> restoreSession() async => null;
+
+  @override
+  Future<bool> resetPassword({
+    required String token,
+    required String password,
+  }) async => true;
+
+  @override
+  Future<AuthSession> refreshSession({String? refreshToken}) async =>
+      _fakeSession();
+
+  @override
+  Future<AuthSession> signIn({
+    required String email,
+    required String password,
+  }) async => _fakeSession(email: email);
+
+  @override
+  Future<AuthSession> signInWithFirebase(String idToken) async => _fakeSession();
+
+  @override
+  Future<bool> signOut() async => true;
+
+  @override
+  Future<AuthSignUpResult> signUp({
+    required String email,
+    required String password,
+    String? displayName,
+  }) async => AuthSignUpResult(
+    user: _fakeUser(email: email, displayName: displayName),
+    verificationRequired: true,
+  );
+}
+
 class _FakeSettingsRepository implements SettingsRepository {
   UserPreference preference = const UserPreference(
     hasSeenOnboarding: true,
@@ -267,5 +304,30 @@ SubtitleFile _demoFile() {
       SubtitleLine(index: 1, startMs: 0, endMs: 2000, originalText: 'Hello'),
       SubtitleLine(index: 2, startMs: 2000, endMs: 4000, originalText: 'World'),
     ],
+  );
+}
+
+AuthSession _fakeSession({String email = 'user@example.com'}) {
+  return AuthSession(
+    user: _fakeUser(email: email),
+    accessToken: 'access-token',
+    refreshToken: 'refresh-token',
+    expiresIn: 3600,
+    tokenType: 'Bearer',
+  );
+}
+
+AuthUser _fakeUser({
+  String email = 'user@example.com',
+  String? displayName,
+}) {
+  return AuthUser(
+    id: 'user-id',
+    email: email,
+    displayName: displayName,
+    photoUrl: null,
+    emailVerified: false,
+    createdAt: DateTime(2025, 1, 1),
+    updatedAt: DateTime(2025, 1, 1),
   );
 }

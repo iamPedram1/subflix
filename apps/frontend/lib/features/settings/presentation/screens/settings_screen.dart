@@ -4,13 +4,20 @@ import 'package:go_router/go_router.dart';
 
 import 'package:subflix/core/app/router/app_routes.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
+import 'package:subflix/core/providers/repository_providers.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
+import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
+import 'package:subflix/features/auth/application/auth_controller.dart';
+import 'package:subflix/features/auth/data/services/firebase_oauth_service.dart';
+import 'package:subflix/features/auth/domain/models/auth_session.dart';
+import 'package:subflix/features/auth/presentation/models/auth_confirm_email_args.dart';
+import 'package:subflix/features/auth/presentation/widgets/auth_flow_scaffold.dart';
 import 'package:subflix/features/history/application/history_controller.dart';
 import 'package:subflix/features/settings/application/settings_controller.dart';
 import 'package:subflix/features/settings/domain/models/user_preference.dart';
@@ -20,9 +27,72 @@ import 'package:subflix/features/shared/domain/models/theme_preference.dart';
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
+  Future<void> _handleGoogleSignIn(BuildContext context, WidgetRef ref) async {
+    try {
+      final idToken = await ref
+          .read(firebaseOAuthServiceProvider)
+          .signInWithGoogleIdToken();
+      await ref.read(authControllerProvider.notifier).signInWithFirebase(idToken);
+      if (!context.mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(context.t.authSignInSuccess)));
+    } on FirebaseOAuthCancelledException {
+      return;
+    } catch (error) {
+      if (!context.mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(describeAuthError(error))),
+      );
+    }
+  }
+
+  Future<void> _handleRefreshProfile(BuildContext context, WidgetRef ref) async {
+    try {
+      await ref.read(authControllerProvider.notifier).refreshProfile();
+      if (!context.mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(context.t.authProfileRefreshed)));
+    } catch (error) {
+      if (!context.mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(describeAuthError(error))),
+      );
+    }
+  }
+
+  Future<void> _handleSignOut(BuildContext context, WidgetRef ref) async {
+    try {
+      await ref.read(authControllerProvider.notifier).signOut();
+      if (!context.mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(context.t.authSignOutSuccess)));
+    } catch (error) {
+      if (!context.mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(describeAuthError(error))),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsControllerProvider);
+    final authState = ref.watch(authControllerProvider);
 
     return Scaffold(
       body: AppBackground(
@@ -66,7 +136,67 @@ class SettingsScreen extends ConsumerWidget {
                     padding: const EdgeInsets.fromLTRB(16, 16, 16, 28),
                     sliver: SliverList.list(
                       children: <Widget>[
-                        _ProfileCard(preference: preference),
+                        _ProfileCard(
+                          preference: preference,
+                          authState: authState,
+                          onSignIn: () => context.push(AppRoutes.authSignIn),
+                          onSignUp: () => context.push(AppRoutes.authSignUp),
+                          onGoogleSignIn: () => _handleGoogleSignIn(context, ref),
+                          onSignOut: () => _handleSignOut(context, ref),
+                        ),
+                        if (authState.asData?.value case final session?) ...<Widget>[
+                          const SizedBox(height: 24),
+                          _SectionTitle(title: context.t.authAccountSectionTitle),
+                          const SizedBox(height: 12),
+                          AppSurfaceCard(
+                            padding: EdgeInsets.zero,
+                            child: Column(
+                              children: <Widget>[
+                                _SettingsActionRow(
+                                  icon: Icons.alternate_email_rounded,
+                                  title: context.t.authEmailLabel,
+                                  value: session.user.email,
+                                ),
+                                _DividerLine(),
+                                _SettingsActionRow(
+                                  icon: session.user.emailVerified
+                                      ? Icons.verified_rounded
+                                      : Icons.mark_email_unread_outlined,
+                                  title: context.t.authVerificationStatusTitle,
+                                  value: session.user.emailVerified
+                                      ? context.t.authVerifiedStatus
+                                      : context.t.authUnverifiedStatus,
+                                  onTap: session.user.emailVerified
+                                      ? null
+                                      : () => context.push(
+                                          AppRoutes.authConfirmEmail,
+                                          extra: AuthConfirmEmailArgs(
+                                            email: session.user.email,
+                                          ),
+                                        ),
+                                ),
+                                _DividerLine(),
+                                _SettingsActionRow(
+                                  icon: Icons.refresh_rounded,
+                                  title: context.t.authRefreshProfileAction,
+                                  subtitle:
+                                      context.t.authRefreshProfileSubtitle,
+                                  onTap: () => _handleRefreshProfile(
+                                    context,
+                                    ref,
+                                  ),
+                                ),
+                                _DividerLine(),
+                                _SettingsActionRow(
+                                  icon: Icons.logout_rounded,
+                                  title: context.t.authSignOutAction,
+                                  subtitle: context.t.authSignOutSubtitle,
+                                  onTap: () => _handleSignOut(context, ref),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                         const SizedBox(height: 24),
                         _SectionTitle(title: context.t.settingsThemeLabel),
                         const SizedBox(height: 12),
@@ -380,12 +510,39 @@ class SettingsScreen extends ConsumerWidget {
 }
 
 class _ProfileCard extends StatelessWidget {
-  const _ProfileCard({required this.preference});
+  const _ProfileCard({
+    required this.preference,
+    required this.authState,
+    required this.onSignIn,
+    required this.onSignUp,
+    required this.onGoogleSignIn,
+    required this.onSignOut,
+  });
 
   final UserPreference preference;
+  final AsyncValue<AuthSession?> authState;
+  final VoidCallback onSignIn;
+  final VoidCallback onSignUp;
+  final Future<void> Function() onGoogleSignIn;
+  final Future<void> Function() onSignOut;
 
   @override
   Widget build(BuildContext context) {
+    final session = authState.asData?.value;
+    final isSignedIn = session != null;
+    final displayName =
+        session?.user.displayName?.trim().isNotEmpty == true
+            ? session!.user.displayName!.trim()
+            : session?.user.email;
+    final subtitle = isSignedIn
+        ? context.t.authSignedInCardSubtitle(session.user.email)
+        : context.t.authSignedOutCardSubtitle;
+    final badgeLabel = isSignedIn
+        ? (session.user.emailVerified
+              ? context.t.authVerifiedStatus
+              : context.t.authUnverifiedStatus)
+        : preference.preferredTargetLanguage.label;
+
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -412,6 +569,7 @@ class _ProfileCard extends StatelessWidget {
             ),
           ),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
                 width: 64,
@@ -429,7 +587,9 @@ class _ProfileCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      context.t.settingsProfileName,
+                      isSignedIn
+                          ? (displayName ?? context.t.settingsProfileName)
+                          : context.t.authSignedOutCardTitle,
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
@@ -437,7 +597,7 @@ class _ProfileCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      context.t.settingsProfileTier,
+                      subtitle,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.white.withValues(alpha: 0.82),
                       ),
@@ -453,7 +613,7 @@ class _ProfileCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(999),
                       ),
                       child: Text(
-                        preference.preferredTargetLanguage.label,
+                        badgeLabel,
                         style: Theme.of(context).textTheme.labelMedium
                             ?.copyWith(
                               color: Colors.white,
@@ -461,6 +621,69 @@ class _ProfileCard extends StatelessWidget {
                             ),
                       ),
                     ),
+                    const SizedBox(height: 16),
+                    if (authState.isLoading)
+                      const LoadingSkeleton(height: 54)
+                    else if (isSignedIn) ...<Widget>[
+                      SizedBox(
+                        width: double.infinity,
+                        child: OutlinedButton.icon(
+                          onPressed: () => onSignOut(),
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            side: BorderSide(
+                              color: Colors.white.withValues(alpha: 0.24),
+                            ),
+                          ),
+                          icon: const Icon(Icons.logout_rounded),
+                          label: Text(context.t.authSignOutAction),
+                        ),
+                      ),
+                    ] else ...<Widget>[
+                      AppGradientButton(
+                        label: context.t.authSignInAction,
+                        icon: Icons.login_rounded,
+                        onPressed: onSignIn,
+                        fullWidth: true,
+                        gradient: const LinearGradient(
+                          colors: <Color>[Colors.white, Colors.white],
+                        ),
+                        iconColor: AppColors.primary,
+                        labelStyle: Theme.of(context).textTheme.labelLarge
+                            ?.copyWith(color: AppColors.primary),
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: OutlinedButton(
+                              onPressed: onSignUp,
+                              style: OutlinedButton.styleFrom(
+                                foregroundColor: Colors.white,
+                                side: BorderSide(
+                                  color: Colors.white.withValues(alpha: 0.24),
+                                ),
+                              ),
+                              child: Text(context.t.authCreateAccountAction),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: OutlinedButton.icon(
+                              onPressed: () => onGoogleSignIn(),
+                              style: OutlinedButton.styleFrom(
+                                foregroundColor: Colors.white,
+                                side: BorderSide(
+                                  color: Colors.white.withValues(alpha: 0.24),
+                                ),
+                              ),
+                              icon: const Icon(Icons.g_mobiledata_rounded),
+                              label: Text(context.t.authGoogleShortAction),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ],
                 ),
               ),
