@@ -1,0 +1,375 @@
+{
+  "@@locale": "fa",
+  "appTitle": "SubFlix",
+  "brandSubtitleCompact": "هوش زیرنویس",
+  "brandSubtitleFull": "استودیوی ترجمه زیرنویس با هوش مصنوعی",
+  "comingSoonMessage": "هنوز در حال آماده کردن این صفحه هستیم.",
+  "comingSoonTitle": "به‌زودی",
+  "exportFailedSnack": "خروجی ناموفق بود: {error}",
+  "@exportFailedSnack": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "exportSubtitleLabel": "خروجی گرفتن از زیرنویس ترجمه‌شده",
+  "exportedSnack": "{fileName} در {path} ذخیره شد",
+  "@exportedSnack": {
+    "placeholders": {
+      "fileName": {},
+      "path": {}
+    }
+  },
+  "exportingLabel": "در حال خروجی گرفتن...",
+  "heroBadge": "جریان حرفه‌ای زیرنویس",
+  "heroBody": "بین کاتالوگ قابل جستجو یا آپلود مستقیم فایل یکی را انتخاب کن، سپس در چند دقیقه پیش‌نمایش بگیر و زیرنویس نهایی را خروجی بگیر.",
+  "heroHeadline": "زیرنویس فیلم و سریال را با یک جریان در حد استودیو ترجمه کن.",
+  "heroSearchCta": "جستجوی فیلم / سریال",
+  "heroStatLanguagesTitle": "۱۰ زبان",
+  "heroStatLanguagesValue": "آماده پیش‌نمایش",
+  "heroStatMockTitle": "APIهای ماک",
+  "heroStatMockValue": "آماده اتصال به بک‌اند",
+  "heroStatPathsTitle": "۲ مسیر",
+  "heroStatPathsValue": "جستجو یا آپلود",
+  "heroSubtitle": "در کاتالوگ فیلم و سریال جستجو کن، منبع انتخاب کن و در چند دقیقه خروجی تمیز بگیر.",
+  "heroTitle": "زیرنویس‌ها را سریع‌تر ترجمه کن",
+  "heroUploadCta": "آپلود زیرنویس",
+  "historyCountLabel": "{count} ترجمه",
+  "@historyCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "historyEmptyMessage": "بعد از کامل کردن فرایند جستجو یا آپلود، ترجمه‌های انجام‌شده اینجا ظاهر می‌شوند.",
+  "historyEmptyTitle": "تاریخچه خالی است",
+  "historyFailedItemMessage": "ترجمه ناموفق بود. برای شروع دوباره لمس کن.",
+  "historyFailedTitle": "بارگذاری تاریخچه ممکن نشد",
+  "historyFilterAiTranslated": "ترجمه‌شده با هوش مصنوعی",
+  "historyFilterAll": "همه",
+  "historyFilterCompleted": "تکمیل‌شده",
+  "historyFilterFailed": "ناموفق",
+  "historyFilterMovies": "فیلم‌ها",
+  "historyFilterReused": "استفاده‌شده دوباره",
+  "historyFilterSeries": "سریال‌ها",
+  "historySubtitle": "کارهای قبلی را دوباره باز کن، پیش‌نمایش را دوباره ببین یا بعداً خروجی بگیر.",
+  "historyTitle": "تاریخچه ترجمه‌ها",
+  "homeFailedRecentTitle": "بارگذاری کارهای اخیر ممکن نشد",
+  "homeFutureSubtitle": "ریپازیتوری‌های ماک قابل تعویض باعث می‌شوند کد UI از تغییرات بک‌اند در امان بماند.",
+  "homeFutureTitle": "ریپازیتوری‌های آماده آینده",
+  "homeNoRecentMessage": "با جستجوی فیلم یا آپلود فایل زیرنویس شروع کن تا ترجمه‌های اخیرت اینجا دیده شوند.",
+  "homeNoRecentTitle": "هنوز کاری در بخش اخیرها نیست",
+  "homePreviewSubtitle": "قبل از خروجی گرفتن، نتیجه را در حالت اصلی، ترجمه‌شده یا دوزبانه بررسی کن.",
+  "homePreviewTitle": "جریان ترجمه با محوریت پیش‌نمایش",
+  "homeQuickHistory": "تاریخچه",
+  "homeQuickSearch": "جستجو",
+  "homeQuickUpload": "آپلود",
+  "homeRecentJobsSubtitle": "آخرین جلسه‌های ترجمه‌ات را بدون شروع از صفر دوباره باز کن.",
+  "homeRecentJobsTitle": "کارهای اخیر",
+  "homeSearchPlaceholder": "جستجوی فیلم یا سریال...",
+  "homeStatesSubtitle": "لودینگ، حالت خالی، تلاش دوباره، اعتبارسنجی و سناریوهای آفلاین آزمایشی از همان روز اول جزئی از UX هستند.",
+  "homeStatesTitle": "همه وضعیت‌های لازم در نظر گرفته شده",
+  "homeTrendingNow": "ترندهای فعلی",
+  "homeTrustSubtitle": "فعلاً آزمایشی است، اما ساختارش مثل یک محصول واقعی و قابل انتشار طراحی شده.",
+  "homeTrustTitle": "چرا تیم‌ها به آن اعتماد می‌کنند",
+  "homeViewAll": "مشاهده همه",
+  "homeWelcomeSubtitle": "زیرنویس پیدا کن و ترجمه کن",
+  "homeWelcomeTitle": "خوش برگشتی",
+  "jobConfidence": "اطمینان: {level}",
+  "@jobConfidence": {
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "jobOpenPreview": "باز کردن پیش‌نمایش",
+  "jobReuseSubtitle": "استفاده دوباره از زیرنویس",
+  "jobReuseTranslation": "استفاده دوباره از ترجمه",
+  "legalBodyAbout": "SubFlix یک کلاینت Flutter با حس‌وحال پریمیوم برای ترجمه زیرنویس با هوش مصنوعی است. این بیلد از ریپازیتوری‌های ماک، تأخیر مصنوعی و ذخیره‌سازی محلی استفاده می‌کند تا قبل از اتصال بک‌اند واقعی، UI و معماری به بلوغ برسند.",
+  "legalBodyPrivacy": "SubFlix فعلاً فقط ترجیحات آزمایشی و تاریخچه ترجمه را با ذخیره‌سازی محلی روی دستگاه نگه می‌دارد. در آینده می‌توان این بخش را با یک بک‌اند واقعی به ذخیره‌سازی احراز هویت‌شده، مسیرهای ممیزی و سیاست‌های نگه‌داری سمت سرور ارتقا داد.",
+  "legalBodySupport": "بخش پشتیبانی فعلاً فقط جای‌نگهدار است. در نسخه واقعی، این قسمت می‌تواند بدون تغییر در ساختار اپ به ایمیل، گزارش مشکل و پشتیبانی حساب‌های پریمیوم متصل شود.",
+  "legalBodyTerms": "این نسخه آزمایشی برای سنجش جریان‌های محصول، وضعیت‌های رابط کاربری و مرزهای معماری ساخته شده است. وقتی بعداً یک بک‌اند واقعی مبتنی بر NestJS و Postgres متصل شود، بخش حقوقی هم می‌تواند با شرایط واقعی سرویس و متن‌های مربوط به پردازش داده گسترش پیدا کند.",
+  "legalPlaceholderBody": "این صفحه در نسخه دمو فقط یک جای‌نگهدار است. آن را به محتوای حقوقی واقعی محصولت وصل کن.",
+  "legalTitleAbout": "درباره SubFlix",
+  "legalTitlePrivacy": "حریم خصوصی",
+  "legalTitleSupport": "پشتیبانی",
+  "legalTitleTerms": "شرایط استفاده",
+  "mediaTypeMovie": "فیلم",
+  "mediaTypeSeries": "سریال",
+  "metadataEstimatedDuration": "مدت زمان تقریبی",
+  "metadataFormat": "فرمت",
+  "metadataLanguages": "زبان‌ها",
+  "metadataLines": "خطوط",
+  "navHistory": "تاریخچه",
+  "navHome": "خانه",
+  "navSettings": "تنظیمات",
+  "noTitlesMatchedMessage": "نتوانستیم این عنوان را در کاتالوگ آزمایشی پیدا کنیم. یک جستجوی کلی‌تر یا یکی از عنوان‌های پیشنهادی را امتحان کن.",
+  "noTitlesMatchedTitle": "نتیجه‌ای پیدا نشد",
+  "onboardingContinue": "ادامه",
+  "onboardingEnterApp": "ورود به SubFlix",
+  "onboardingNext": "بعدی",
+  "onboardingPage1Description": "یک عنوان جستجو کن، منابع زیرنویس انگلیسی موجود را ببین و جریان ترجمه‌ای را شروع کن که سریع و روان احساس می‌شود.",
+  "onboardingPage1Eyebrow": "جستجو و دریافت",
+  "onboardingPage1Highlight1": "کاتالوگ ماک قطعی برای توسعه مطمئن",
+  "onboardingPage1Highlight2": "برچسب کیفیت منبع و نشان فرمت زیرنویس",
+  "onboardingPage1Highlight3": "طوری ساخته شده که بعداً به بک‌اند واقعی وصل شود",
+  "onboardingPage1Title": "فیلم یا سریال پیدا کن و زیرنویس آماده ترجمه را بگیر.",
+  "onboardingPage2Description": "فایل زیرنویس را وارد کن، فرمت را اعتبارسنجی کن و بدون خروج از اپ همان مسیر ترجمه حرفه‌ای را اجرا کن.",
+  "onboardingPage2Eyebrow": "فایل خودت را بیاور",
+  "onboardingPage2Highlight1": "اعتبارسنجی محلی فایل و حالت‌های تلاش دوباره روان",
+  "onboardingPage2Highlight2": "تنظیمات ترجمه یکدست برای آپلود و جستجو",
+  "onboardingPage2Highlight3": "قبل از خروجی گرفتن پیش‌نمایش ببین تا چیزی مبهم نماند",
+  "onboardingPage2Title": "وقتی فایل را داری، `.srt` یا `.vtt` آپلود کن.",
+  "onboardingPage3Description": "بین نمایش اصلی، ترجمه‌شده و دوزبانه جابه‌جا شو، به تاریخچه سر بزن و وقتی نتیجه درست بود فایل تمیز زیرنویس را خروجی بگیر.",
+  "onboardingPage3Eyebrow": "ترجمه و خروجی",
+  "onboardingPage3Highlight1": "کنترل‌های سریع پیش‌نمایش همراه با متادیتا و جستجو",
+  "onboardingPage3Highlight2": "تاریخچه، کارهای قبلی را فقط با یک لمس در دسترس نگه می‌دارد",
+  "onboardingPage3Highlight3": "طراحی‌شده مثل یک ابزار رسانه‌ای پریمیوم، نه یک دمو",
+  "onboardingPage3Title": "زبان مقصد را انتخاب کن، پیش‌نمایش ببین و فوری خروجی بگیر.",
+  "onboardingSkip": "رد کردن",
+  "onboardingStart": "شروع ترجمه",
+  "previewFailedTitle": "بارگذاری پیش‌نمایش ناموفق بود",
+  "previewModeBilingual": "دوزبانه",
+  "previewModeOriginal": "اصل",
+  "previewModeTranslated": "ترجمه‌شده",
+  "previewNoMatchesMessage": "یک عبارت دیگر را جستجو کن یا فیلتر را پاک کن تا کل ترجمه را ببینی.",
+  "previewNoMatchesTitle": "هیچ خطی پیدا نشد",
+  "previewNotReadyMessage": "ترجمه تمام شده، اما بک‌اند هنوز cueهای پیش‌نمایش را برنگردانده است. کمی بعد دوباره این صفحه را بارگذاری کن.",
+  "previewNotReadyTitle": "cueهای پیش‌نمایش هنوز آماده نیستند",
+  "retry": "تلاش دوباره",
+  "retryTranslation": "ترجمه دوباره",
+  "routeMissingSeasonEpisodesMessage": "نتوانستیم تشخیص دهیم کدام فصل باید بارگذاری شود. دوباره از جستجو شروع کن.",
+  "routeMissingSeasonEpisodesTitle": "قسمت‌های فصل",
+  "routeMissingSeriesSeasonsMessage": "نتوانستیم تشخیص دهیم کدام سریال باید بارگذاری شود. دوباره از جستجو شروع کن.",
+  "routeMissingSeriesSeasonsTitle": "فصل‌های سریال",
+  "routeMissingSubtitleSourcesMessage": "نتوانستیم تشخیص دهیم منابع زیرنویس برای کدام عنوان باید بارگذاری شوند. دوباره از جستجو شروع کن.",
+  "routeMissingSubtitleSourcesTitle": "منابع زیرنویس",
+  "routeMissingTranslationProgressMessage": "هیچ درخواست ترجمه‌ای ارسال نشده است. یک ترجمه جدید را از مسیر جستجو یا آپلود شروع کن.",
+  "routeMissingTranslationProgressTitle": "روند ترجمه",
+  "routeMissingTranslationSetupMessage": "قبل از باز شدن صفحه تنظیمات ترجمه، وجود یک منبع زیرنویس ضروری است.",
+  "routeMissingTranslationSetupTitle": "تنظیمات ترجمه",
+  "searchFailedTitle": "جستجو ناموفق بود",
+  "searchFoundResults": "{count} نتیجه برای \"{query}\" پیدا شد",
+  "@searchFoundResults": {
+    "placeholders": {
+      "count": {},
+      "query": {}
+    }
+  },
+  "searchHintText": "مثلاً Dune یا Breaking Bad یا Severance را جستجو کن...",
+  "searchLoadingLabel": "در حال جستجو...",
+  "searchMockMessage": "برای دیدن جریان انتخاب منبع زیرنویس، عنوان‌هایی مثل Inception، Dune، Breaking Bad، Severance یا The Last of Us را امتحان کن.",
+  "searchMockTitle": "هر چیزی را در کاتالوگ آزمایشی جستجو کن",
+  "searchMovieOrSeriesSubtitle": "یک عنوان پیدا کن، منابع زیرنویس را بررسی کن و فقط با چند لمس ترجمه را شروع کن.",
+  "searchMovieOrSeriesTitle": "جستجوی فیلم یا سریال",
+  "searchNoResultsFor": "نتیجه‌ای برای \"{query}\" پیدا نشد",
+  "@searchNoResultsFor": {
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "searchResultPopularity": "محبوبیت {score}",
+  "@searchResultPopularity": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "searchTitles": "جستجوی عنوان‌ها",
+  "searchTrendingTitle": "جستجوهای پرطرفدار",
+  "searchTryDifferentKeywords": "با کلمات کلیدی دیگری جستجو کن.",
+  "seriesEpisodeLabel": "قسمت {episodeNumber}",
+  "@seriesEpisodeLabel": {
+    "placeholders": {
+      "episodeNumber": {}
+    }
+  },
+  "seriesEpisodeMeta": "حدود {runtime} دقیقه",
+  "@seriesEpisodeMeta": {
+    "placeholders": {
+      "runtime": {}
+    }
+  },
+  "seriesEpisodesSubtitle": "{episodeCount} قسمت{year}",
+  "@seriesEpisodesSubtitle": {
+    "placeholders": {
+      "episodeCount": {},
+      "year": {}
+    }
+  },
+  "seriesEpisodesTitle": "فصل {seasonNumber}",
+  "@seriesEpisodesTitle": {
+    "placeholders": {
+      "seasonNumber": {}
+    }
+  },
+  "seriesSeasonLabel": "فصل {seasonNumber}",
+  "@seriesSeasonLabel": {
+    "placeholders": {
+      "seasonNumber": {}
+    }
+  },
+  "seriesSeasonMeta": "{episodeCount} قسمت{year}",
+  "@seriesSeasonMeta": {
+    "placeholders": {
+      "episodeCount": {},
+      "year": {}
+    }
+  },
+  "seriesSeasonsSubtitle": "یک فصل از {title} را انتخاب کن تا قسمت‌های موجود را ببینی.",
+  "@seriesSeasonsSubtitle": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "seriesSeasonsTitle": "یک فصل انتخاب کن",
+  "settingsAboutTitle": "درباره SubFlix",
+  "settingsCacheCleared": "کش پاک شد",
+  "settingsClearCache": "پاک کردن کش",
+  "settingsContactTitle": "تماس با ما",
+  "settingsFailedTitle": "بارگذاری تنظیمات ناموفق بود",
+  "settingsHelpCenterTitle": "مرکز راهنما",
+  "settingsHistoryClearedSnack": "تاریخچه ترجمه برای این دستگاه پاک شد",
+  "settingsLanguageLabel": "زبان مقصد ترجیحی",
+  "settingsMaintenanceSubtitle": "کارهای ترجمه وابسته به بک‌اند را برای این دستگاه پاک کن و با یک تاریخچه خالی شروع کن.",
+  "settingsMaintenanceTitle": "نگه‌داری",
+  "settingsNotificationsSubtitle": "تنظیمات اعلان‌ها را مدیریت کن",
+  "settingsNotificationsTitle": "اعلان‌ها",
+  "settingsPremiumSubtitle": "بعداً می‌توانیم اشتراک‌ها، پرداخت و همگام‌سازی پروژه ابری را اینجا وصل کنیم.",
+  "settingsPremiumTitle": "بخش پریمیوم آزمایشی",
+  "settingsPrivacySubtitle": "محتوای آزمایشی حریم خصوصی",
+  "settingsPrivacyTitle": "حریم خصوصی",
+  "settingsProfileName": "کاربر SubFlix",
+  "settingsProfileTier": "عضو پریمیوم",
+  "settingsSubtitle": "ترجیحاتت را مدیریت کن",
+  "settingsSupportSubtitle": "صفحه نمونه برای راهنما و تماس",
+  "settingsSupportTitle": "بخش پشتیبانی آزمایشی",
+  "settingsTermsSubtitle": "محتوای آزمایشی شرایط استفاده",
+  "settingsTermsTitle": "شرایط استفاده",
+  "settingsThemeLabel": "ظاهر",
+  "settingsTitle": "تنظیمات",
+  "settingsVersion": "نسخه {version}",
+  "@settingsVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "splashHeadline": "SubFlix",
+  "splashPreparing": "در حال آماده‌سازی استودیوی زیرنویس تو",
+  "splashSubtitle": "ترجمه زیرنویس با هوش مصنوعی",
+  "startTranslation": "شروع ترجمه",
+  "subtitleSourceDownloads": "{downloads} دانلود",
+  "@subtitleSourceDownloads": {
+    "placeholders": {
+      "downloads": {}
+    }
+  },
+  "subtitleSourceFormatLabel": "منبع زیرنویس {format}",
+  "@subtitleSourceFormatLabel": {
+    "placeholders": {
+      "format": {}
+    }
+  },
+  "subtitleSourceHiLabel": "HI / SDH",
+  "subtitleSourceLines": "{lineCount} خط",
+  "@subtitleSourceLines": {
+    "placeholders": {
+      "lineCount": {}
+    }
+  },
+  "subtitleSourceRating": "امتیاز {rating}",
+  "@subtitleSourceRating": {
+    "placeholders": {
+      "rating": {}
+    }
+  },
+  "subtitleSourcesBannerMessage": "یک منبع زیرنویس انتخاب کن و وارد تنظیمات ترجمه‌ای شو که برای زمان‌بندی زیرنویس بهینه شده است.",
+  "subtitleSourcesBannerTitle": "ترجمه با هوش مصنوعی در دسترس است",
+  "subtitleSourcesFailedTitle": "بارگذاری منابع زیرنویس ممکن نشد",
+  "subtitleSourcesSubtitle": "برای {title}{target} یک منبع زیرنویس انتخاب کن و در مرحله بعد زبان مقصد را مشخص کن.",
+  "@subtitleSourcesSubtitle": {
+    "placeholders": {
+      "title": {},
+      "target": {}
+    }
+  },
+  "subtitleSourcesTitle": "منابع زیرنویس انگلیسی",
+  "targetLanguage": "زبان مقصد",
+  "themeDark": "تیره",
+  "themeLight": "روشن",
+  "themeSystem": "سیستم",
+  "translateSetupAutoDetect": "تشخیص خودکار فرمت",
+  "translateSetupAutoDetectBody": "ساختار مناسب خروجی زیرنویس را به‌صورت خودکار انتخاب می‌کند.",
+  "translateSetupLanguageTitle": "ترجمه به",
+  "translateSetupOptionsTitle": "گزینه‌ها",
+  "translateSetupPreserveTiming": "حفظ زمان‌بندی",
+  "translateSetupPreserveTimingBody": "زمان‌بندی اصلی زیرنویس را با فایل مبدأ هماهنگ نگه می‌دارد.",
+  "translateSetupReadyBody": "جریان ترجمه ما این زیرنویس را با حفظ زمان‌بندی و ساختار تمیز cueها به {language} تبدیل می‌کند.",
+  "@translateSetupReadyBody": {
+    "placeholders": {
+      "language": {}
+    }
+  },
+  "translateSetupReadyTitle": "ترجمه با هوش مصنوعی آماده است",
+  "translateSetupSelectLanguage": "انتخاب زبان",
+  "translateSetupSourceTitle": "زیرنویس مبدأ",
+  "translateSetupSubtitle": "زبان مقصد را انتخاب کن، منبع زیرنویس را بررسی کن و بعد کار ترجمه را در بک‌اند شروع کن.",
+  "translateSetupTitle": "تنظیمات ترجمه",
+  "translationFailedMessage": "مشکلی پیش آمد.",
+  "translationFailedTitle": "ترجمه کامل نشد",
+  "translationPreviewHeader": "زیرنویس‌های ترجمه‌شده را بررسی کن",
+  "translationPreviewSearchHint": "جستجو در خطوط زیرنویس",
+  "translationPreviewSubtitle": "در cueها جستجو کن، حالت نمایش را عوض کن و وقتی نتیجه درست بود خروجی بگیر.",
+  "translationPreviewTitle": "پیش‌نمایش ترجمه",
+  "translationProgressHeadline": "ترجمه زیرنویس با هوش مصنوعی در حال انجام است",
+  "translationProgressTitle": "روند ترجمه",
+  "translationResultCompleteSubtitle": "زیرنویس تو برای پیش‌نمایش یا دانلود آماده است.",
+  "translationResultCompleteTitle": "ترجمه کامل شد",
+  "translationResultConfidenceLabel": "میزان اطمینان ترجمه",
+  "translationResultDetailsTitle": "جزئیات ترجمه",
+  "translationResultDownloadCta": "دانلود زیرنویس",
+  "translationResultHomeCta": "بازگشت به خانه",
+  "translationResultMediaLabel": "عنوان اثر",
+  "translationResultMethodAi": "ترجمه‌شده با هوش مصنوعی",
+  "translationResultMetricsTitle": "شاخص‌های کیفیت",
+  "translationResultPreviewCta": "پیش‌نمایش زیرنویس",
+  "translationResultProcessedIn": "در {duration} پردازش شد",
+  "@translationResultProcessedIn": {
+    "placeholders": {
+      "duration": {}
+    }
+  },
+  "translationResultSourceLabel": "زبان مبدأ",
+  "translationResultTargetLabel": "زبان مقصد",
+  "translationResultTimingLabel": "دقت زمان‌بندی",
+  "translationResultTimingPreserved": "زمان‌بندی حفظ شده",
+  "translationResultWarning": "بعضی اصطلاحات تخصصی شاید هنوز برای درک بهتر بافت جمله به یک بازبینی انسانی سریع نیاز داشته باشند.",
+  "translationStageAligning": "در حال هماهنگ‌سازی زمان‌ها و فضای صحنه",
+  "translationStageGenerating": "در حال تولید ترجمه زیرنویس",
+  "translationStageIdle": "در انتظار درخواست ترجمه",
+  "translationStagePreparing": "در حال آماده‌سازی بسته زیرنویس",
+  "translationStageQueued": "در صف ترجمه",
+  "translationStageReadability": "در حال اعمال بازبینی خوانایی",
+  "translationStageReady": "ترجمه آماده است",
+  "tryAgain": "دوباره امتحان کن",
+  "uploadChooseFile": "انتخاب فایل زیرنویس",
+  "uploadChooseFileShort": "انتخاب فایل",
+  "uploadContinueSetup": "ادامه به تنظیمات ترجمه",
+  "uploadEnglishSource": "منبع انگلیسی",
+  "uploadFailedFallback": "لطفاً یک فایل زیرنویس دیگر را امتحان کن.",
+  "uploadFailedMessage": "نتوانستیم این فایل زیرنویس را بخوانیم. یک فایل دیگر یا خروجی سبک‌تر را امتحان کن.",
+  "uploadFailedTitle": "وارد کردن فایل ناموفق بود",
+  "uploadIntroSubtitle": "یک فایل انگلیسی `.srt` یا `.vtt` وارد کن، بگذار بک‌اند آن را بررسی و پردازش کند، سپس وارد مرحله تنظیم ترجمه شو.",
+  "uploadIntroTitle": "فایل زیرنویس خودت را بیاور",
+  "uploadLineCount": "{lineCount} خط",
+  "@uploadLineCount": {
+    "placeholders": {
+      "lineCount": {}
+    }
+  },
+  "uploadMetadataTitle": "جزئیات زیرنویس",
+  "uploadOpeningPicker": "در حال باز کردن انتخاب‌گر فایل...",
+  "uploadPickSubtitle": "فایل زیرنویس را انتخاب کن",
+  "uploadPickedFile": "فایل زیرنویس انتخاب شد",
+  "uploadReadyTitle": "آماده ترجمه",
+  "uploadSubtitleTitle": "آپلود زیرنویس",
+  "uploadSupportedFormatsSubtitle": "فایل‌های زیرنویس انگلیسی `.srt` و `.vtt`",
+  "uploadSupportedFormatsTitle": "فرمت‌های پشتیبانی‌شده",
+  "uploadUseDemoFile": "استفاده از فایل نمونه"
+}

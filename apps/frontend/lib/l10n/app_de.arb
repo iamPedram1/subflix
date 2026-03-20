@@ -1,0 +1,375 @@
+{
+  "@@locale": "de",
+  "appTitle": "SubFlix",
+  "brandSubtitleCompact": "Untertitel-Intelligenz",
+  "brandSubtitleFull": "KI-Untertitelübersetzungsstudio",
+  "comingSoonMessage": "Dieser Bildschirm wird noch vorbereitet.",
+  "comingSoonTitle": "Demnächst",
+  "exportFailedSnack": "Export fehlgeschlagen: {error}",
+  "@exportFailedSnack": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "exportSubtitleLabel": "Übersetzten Untertitel exportieren",
+  "exportedSnack": "{fileName} nach {path} exportiert",
+  "@exportedSnack": {
+    "placeholders": {
+      "fileName": {},
+      "path": {}
+    }
+  },
+  "exportingLabel": "Exportiere...",
+  "heroBadge": "Premium-Untertitel-Workflow",
+  "heroBody": "Wähle zwischen einem durchsuchbaren Titelkatalog oder direktem Dateiupload und sieh dir ausgearbeitete Untertitel in wenigen Minuten an oder exportiere sie.",
+  "heroHeadline": "Übersetze Film- und Serienuntertitel mit einem Workflow auf Studio-Niveau.",
+  "heroSearchCta": "Film / Serie suchen",
+  "heroStatLanguagesTitle": "10 Sprachen",
+  "heroStatLanguagesValue": "Bereit zur Vorschau",
+  "heroStatMockTitle": "Mock-APIs",
+  "heroStatMockValue": "Backend-fähige Schnittstelle",
+  "heroStatPathsTitle": "2 Wege",
+  "heroStatPathsValue": "Suchen oder hochladen",
+  "heroSubtitle": "Durchsuche Film- und Serienkataloge, wähle Quellen und exportiere in Minuten sauber ausgearbeitete Übersetzungen.",
+  "heroTitle": "Untertitel schneller übersetzen",
+  "heroUploadCta": "Untertitel hochladen",
+  "historyCountLabel": "{count} Übersetzungen",
+  "@historyCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "historyEmptyMessage": "Deine übersetzten Untertitelaufträge erscheinen hier, sobald du einen Such- oder Upload-Ablauf abgeschlossen hast.",
+  "historyEmptyTitle": "Der Verlauf ist leer",
+  "historyFailedItemMessage": "Übersetzung fehlgeschlagen. Tippe, um neu zu starten.",
+  "historyFailedTitle": "Verlauf konnte nicht geladen werden",
+  "historyFilterAiTranslated": "Mit KI übersetzt",
+  "historyFilterAll": "Alle",
+  "historyFilterCompleted": "Abgeschlossen",
+  "historyFilterFailed": "Fehlgeschlagen",
+  "historyFilterMovies": "Filme",
+  "historyFilterReused": "Wiederverwendet",
+  "historyFilterSeries": "Serien",
+  "historySubtitle": "Öffne frühere Untertitelaufträge erneut, prüfe die Vorschau noch einmal oder exportiere sie später.",
+  "historyTitle": "Übersetzungsverlauf",
+  "homeFailedRecentTitle": "Letzte Aufträge konnten nicht geladen werden",
+  "homeFutureSubtitle": "Austauschbare Mock-Repositories schützen den UI-Code vor Änderungen im Backend.",
+  "homeFutureTitle": "Zukunftssichere Repositories",
+  "homeNoRecentMessage": "Starte mit einer Filmsuche oder lade eine Untertiteldatei hoch, dann erscheinen deine letzten Übersetzungen hier.",
+  "homeNoRecentTitle": "Noch keine letzten Aufträge",
+  "homePreviewSubtitle": "Prüfe Ergebnisse vor dem Export in der Original-, übersetzten oder zweisprachigen Ansicht.",
+  "homePreviewTitle": "Vorschau-orientierter Übersetzungsablauf",
+  "homeQuickHistory": "Verlauf",
+  "homeQuickSearch": "Suchen",
+  "homeQuickUpload": "Hochladen",
+  "homeRecentJobsSubtitle": "Öffne deine neuesten Untertitel-Sitzungen erneut, ohne von vorn zu beginnen.",
+  "homeRecentJobsTitle": "Letzte Aufträge",
+  "homeSearchPlaceholder": "Filme oder Serien suchen...",
+  "homeStatesSubtitle": "Lade-, Leer-, Retry-, Validierungs- und Mock-Offline-Szenarien gehören von Anfang an zur UX.",
+  "homeStatesTitle": "Saubere Zustände inklusive",
+  "homeTrendingNow": "Gerade im Trend",
+  "homeTrustSubtitle": "Heute noch simuliert, aber schon wie ein echtes Produkt strukturiert.",
+  "homeTrustTitle": "Warum Teams darauf vertrauen",
+  "homeViewAll": "Alle anzeigen",
+  "homeWelcomeSubtitle": "Untertitel finden und übersetzen",
+  "homeWelcomeTitle": "Willkommen zurück",
+  "jobConfidence": "Sicherheit: {level}",
+  "@jobConfidence": {
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "jobOpenPreview": "Vorschau öffnen",
+  "jobReuseSubtitle": "Untertitel wiederverwenden",
+  "jobReuseTranslation": "Übersetzung wiederverwenden",
+  "legalBodyAbout": "SubFlix ist ein Flutter-Client im Premium-Stil für KI-Untertitelübersetzung. Dieser Build verwendet Mock-Repositories, künstliche Latenz und lokale Speicherung, damit UI und Architektur reifen können, bevor ein echtes Backend angeschlossen wird.",
+  "legalBodyPrivacy": "SubFlix speichert derzeit nur Demo-Einstellungen und Übersetzungsverlauf lokal auf dem Gerät. Eine spätere Backend-Integration kann das durch authentifizierten Speicher, Audit-Trails und serverseitig verwaltete Aufbewahrungsrichtlinien ersetzen.",
+  "legalBodySupport": "Der Support ist derzeit nur ein Platzhalter. In einer Produktionsversion kann dieser Bereich E-Mail, Problemberichte und Hilfe für Premium-Konten anbinden, ohne die App-Struktur zu verändern.",
+  "legalBodyTerms": "Dieser Demo-Build dient dazu, Produktabläufe, UI-Zustände und Architekturgrenzen zu erproben. Wenn später ein produktives NestJS- und Postgres-Backend angebunden wird, kann die rechtliche Basis um echte Nutzungsbedingungen und Formulierungen zur Datenverarbeitung erweitert werden.",
+  "legalPlaceholderBody": "Diese Seite ist in der Demo-App nur ein Platzhalter. Verbinde sie mit deinen rechtlichen Inhalten für die Produktion.",
+  "legalTitleAbout": "Über SubFlix",
+  "legalTitlePrivacy": "Datenschutzrichtlinie",
+  "legalTitleSupport": "Support",
+  "legalTitleTerms": "Nutzungsbedingungen",
+  "mediaTypeMovie": "Film",
+  "mediaTypeSeries": "Serie",
+  "metadataEstimatedDuration": "Geschätzte Dauer",
+  "metadataFormat": "Format",
+  "metadataLanguages": "Sprachen",
+  "metadataLines": "Zeilen",
+  "navHistory": "Verlauf",
+  "navHome": "Start",
+  "navSettings": "Einstellungen",
+  "noTitlesMatchedMessage": "Wir konnten diesen Titel im Demo-Katalog nicht finden. Versuche eine allgemeinere Suche oder einen der vorgeschlagenen Titel.",
+  "noTitlesMatchedTitle": "Keine Treffer",
+  "onboardingContinue": "Fortfahren",
+  "onboardingEnterApp": "SubFlix öffnen",
+  "onboardingNext": "Weiter",
+  "onboardingPage1Description": "Suche einen Titel, prüfe die verfügbaren englischen Untertitelquellen und starte einen Übersetzungsablauf, der sich sofort anfühlt.",
+  "onboardingPage1Eyebrow": "Suchen und laden",
+  "onboardingPage1Highlight1": "Deterministischer Demo-Katalog für verlässliche Entwicklung",
+  "onboardingPage1Highlight2": "Qualitätslabels und Format-Badges für Untertitelquellen",
+  "onboardingPage1Highlight3": "So gebaut, dass später ein echtes Backend angeschlossen werden kann",
+  "onboardingPage1Title": "Finde Filme oder Serien und hole sofort übersetzbare Untertitel.",
+  "onboardingPage2Description": "Importiere deine Untertiteldatei, prüfe das Format und nutze dieselbe ausgereifte Übersetzungspipeline, ohne die App zu verlassen.",
+  "onboardingPage2Eyebrow": "Eigene Datei verwenden",
+  "onboardingPage2Highlight1": "Lokale Dateiprüfung und saubere Retry-Zustände",
+  "onboardingPage2Highlight2": "Konsistente Übersetzungseinrichtung für Upload und Suche",
+  "onboardingPage2Highlight3": "Vor dem Export ansehen, damit nichts undurchsichtig wirkt",
+  "onboardingPage2Title": "Lade `.srt`- oder `.vtt`-Dateien hoch, wenn du das Skript schon hast.",
+  "onboardingPage3Description": "Wechsle zwischen Original-, Übersetzungs- und zweisprachiger Ansicht, gehe in den Verlauf zurück und exportiere saubere Untertiteldateien, sobald das Ergebnis passt.",
+  "onboardingPage3Eyebrow": "Übersetzen und exportieren",
+  "onboardingPage3Highlight1": "Schnelle Vorschau-Steuerung mit Metadaten und Suche",
+  "onboardingPage3Highlight2": "Der Verlauf hält frühere Aufträge nur einen Tipp entfernt",
+  "onboardingPage3Highlight3": "Gestaltet wie ein Premium-Medienwerkzeug, nicht wie eine Demo",
+  "onboardingPage3Title": "Wähle Zielsprachen, prüfe Untertitel und exportiere sofort.",
+  "onboardingSkip": "Überspringen",
+  "onboardingStart": "Übersetzung starten",
+  "previewFailedTitle": "Vorschau konnte nicht geladen werden",
+  "previewModeBilingual": "Zweisprachig",
+  "previewModeOriginal": "Original",
+  "previewModeTranslated": "Übersetzt",
+  "previewNoMatchesMessage": "Versuche einen anderen Suchbegriff oder entferne den Filter, um die komplette Übersetzung zu prüfen.",
+  "previewNoMatchesTitle": "Keine Untertitelzeilen gefunden",
+  "previewNotReadyMessage": "Die Übersetzung ist fertig, aber das Backend hat noch keine Vorschau-Cues zurückgegeben. Lade diesen Bildschirm in einem Moment erneut.",
+  "previewNotReadyTitle": "Vorschau-Cues sind noch nicht verfügbar",
+  "retry": "Erneut versuchen",
+  "retryTranslation": "Übersetzung erneut starten",
+  "routeMissingSeasonEpisodesMessage": "Es konnte nicht bestimmt werden, welche Staffel geladen werden soll. Starte die Suche erneut.",
+  "routeMissingSeasonEpisodesTitle": "Staffelfolgen",
+  "routeMissingSeriesSeasonsMessage": "Es konnte nicht bestimmt werden, welche Serie geladen werden soll. Starte die Suche erneut.",
+  "routeMissingSeriesSeasonsTitle": "Serienstaffeln",
+  "routeMissingSubtitleSourcesMessage": "Es konnte nicht bestimmt werden, für welchen Titel Untertitelquellen geladen werden sollen. Starte die Suche erneut.",
+  "routeMissingSubtitleSourcesTitle": "Untertitelquellen",
+  "routeMissingTranslationProgressMessage": "Es wurde keine Übersetzungsanfrage übergeben. Starte eine neue Übersetzung aus Suche oder Upload.",
+  "routeMissingTranslationProgressTitle": "Übersetzungsfortschritt",
+  "routeMissingTranslationSetupMessage": "Bevor der Bildschirm für die Übersetzungseinrichtung geöffnet werden kann, ist eine Untertitelquelle erforderlich.",
+  "routeMissingTranslationSetupTitle": "Übersetzungseinrichtung",
+  "searchFailedTitle": "Suche fehlgeschlagen",
+  "searchFoundResults": "{count} Ergebnisse für ''{query}'' gefunden",
+  "@searchFoundResults": {
+    "placeholders": {
+      "count": {},
+      "query": {}
+    }
+  },
+  "searchHintText": "Suche nach Dune, Breaking Bad, Severance...",
+  "searchLoadingLabel": "Suche läuft...",
+  "searchMockMessage": "Probiere Titel wie Inception, Dune, Breaking Bad, Severance oder The Last of Us aus, um den Ablauf der Untertitelquellen zu erkunden.",
+  "searchMockTitle": "Suche im Demo-Katalog nach beliebigen Titeln",
+  "searchMovieOrSeriesSubtitle": "Finde einen Titel, prüfe Untertitelquellen und starte mit wenigen Tippvorgängen einen Übersetzungsauftrag.",
+  "searchMovieOrSeriesTitle": "Film oder Serie suchen",
+  "searchNoResultsFor": "Keine Ergebnisse für ''{query}'' gefunden",
+  "@searchNoResultsFor": {
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "searchResultPopularity": "Beliebtheit {score}",
+  "@searchResultPopularity": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "searchTitles": "Titel suchen",
+  "searchTrendingTitle": "Beliebte Suchen",
+  "searchTryDifferentKeywords": "Versuche es mit anderen Suchbegriffen.",
+  "seriesEpisodeLabel": "Folge {episodeNumber}",
+  "@seriesEpisodeLabel": {
+    "placeholders": {
+      "episodeNumber": {}
+    }
+  },
+  "seriesEpisodeMeta": "Ca. {runtime} Min.",
+  "@seriesEpisodeMeta": {
+    "placeholders": {
+      "runtime": {}
+    }
+  },
+  "seriesEpisodesSubtitle": "{episodeCount} Folgen{year}",
+  "@seriesEpisodesSubtitle": {
+    "placeholders": {
+      "episodeCount": {},
+      "year": {}
+    }
+  },
+  "seriesEpisodesTitle": "Staffel {seasonNumber}",
+  "@seriesEpisodesTitle": {
+    "placeholders": {
+      "seasonNumber": {}
+    }
+  },
+  "seriesSeasonLabel": "Staffel {seasonNumber}",
+  "@seriesSeasonLabel": {
+    "placeholders": {
+      "seasonNumber": {}
+    }
+  },
+  "seriesSeasonMeta": "{episodeCount} Folgen{year}",
+  "@seriesSeasonMeta": {
+    "placeholders": {
+      "episodeCount": {},
+      "year": {}
+    }
+  },
+  "seriesSeasonsSubtitle": "Wähle eine Staffel von {title}, um verfügbare Folgen zu sehen.",
+  "@seriesSeasonsSubtitle": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "seriesSeasonsTitle": "Staffel auswählen",
+  "settingsAboutTitle": "Über SubFlix",
+  "settingsCacheCleared": "Cache geleert",
+  "settingsClearCache": "Cache leeren",
+  "settingsContactTitle": "Kontakt",
+  "settingsFailedTitle": "Einstellungen konnten nicht geladen werden",
+  "settingsHelpCenterTitle": "Hilfecenter",
+  "settingsHistoryClearedSnack": "Übersetzungsverlauf für dieses Gerät gelöscht",
+  "settingsLanguageLabel": "Bevorzugte Zielsprache",
+  "settingsMaintenanceSubtitle": "Lösche backendverwaltete Übersetzungsaufträge für dieses Gerät und starte mit leerem Verlauf.",
+  "settingsMaintenanceTitle": "Wartung",
+  "settingsNotificationsSubtitle": "Benachrichtigungseinstellungen verwalten",
+  "settingsNotificationsTitle": "Benachrichtigungen",
+  "settingsPremiumSubtitle": "Später können wir hier Abos, Abrechnung und Cloud-Projektsynchronisierung anbinden.",
+  "settingsPremiumTitle": "Premium-Platzhalter",
+  "settingsPrivacySubtitle": "Demo-Inhalt zum Datenschutz",
+  "settingsPrivacyTitle": "Datenschutzrichtlinie",
+  "settingsProfileName": "SubFlix-Nutzer",
+  "settingsProfileTier": "Premium-Mitglied",
+  "settingsSubtitle": "Verwalte deine Einstellungen",
+  "settingsSupportSubtitle": "Demo-Seite für Hilfe und Kontakt",
+  "settingsSupportTitle": "Support-Platzhalter",
+  "settingsTermsSubtitle": "Demo-Inhalt zu den Bedingungen",
+  "settingsTermsTitle": "Nutzungsbedingungen",
+  "settingsThemeLabel": "Darstellung",
+  "settingsTitle": "Einstellungen",
+  "settingsVersion": "Version {version}",
+  "@settingsVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "splashHeadline": "SubFlix",
+  "splashPreparing": "Dein Untertitelstudio wird vorbereitet",
+  "splashSubtitle": "KI-gestützte Untertitelübersetzung",
+  "startTranslation": "Übersetzung starten",
+  "subtitleSourceDownloads": "{downloads} Downloads",
+  "@subtitleSourceDownloads": {
+    "placeholders": {
+      "downloads": {}
+    }
+  },
+  "subtitleSourceFormatLabel": "{format}-Untertitelquelle",
+  "@subtitleSourceFormatLabel": {
+    "placeholders": {
+      "format": {}
+    }
+  },
+  "subtitleSourceHiLabel": "HI / SDH",
+  "subtitleSourceLines": "{lineCount} Zeilen",
+  "@subtitleSourceLines": {
+    "placeholders": {
+      "lineCount": {}
+    }
+  },
+  "subtitleSourceRating": "Bewertung {rating}",
+  "@subtitleSourceRating": {
+    "placeholders": {
+      "rating": {}
+    }
+  },
+  "subtitleSourcesBannerMessage": "Wähle eine Untertitelquelle und fahre mit einer ausgereiften Übersetzungseinrichtung fort, die auf Untertitel-Timing abgestimmt ist.",
+  "subtitleSourcesBannerTitle": "KI-Übersetzung verfügbar",
+  "subtitleSourcesFailedTitle": "Untertitelquellen konnten nicht geladen werden",
+  "subtitleSourcesSubtitle": "Wähle eine Untertitelquelle für {title}{target} und danach im nächsten Schritt die Zielsprache.",
+  "@subtitleSourcesSubtitle": {
+    "placeholders": {
+      "title": {},
+      "target": {}
+    }
+  },
+  "subtitleSourcesTitle": "Englische Untertitelquellen",
+  "targetLanguage": "Zielsprache",
+  "themeDark": "Dunkel",
+  "themeLight": "Hell",
+  "themeSystem": "System",
+  "translateSetupAutoDetect": "Format automatisch erkennen",
+  "translateSetupAutoDetectBody": "Wählt automatisch die passende Ausgabestruktur für Untertitel.",
+  "translateSetupLanguageTitle": "Übersetzen nach",
+  "translateSetupOptionsTitle": "Optionen",
+  "translateSetupPreserveTiming": "Timing beibehalten",
+  "translateSetupPreserveTimingBody": "Behält die ursprünglichen Untertitelzeiten in Übereinstimmung mit der Quelldatei bei.",
+  "translateSetupReadyBody": "Unser Übersetzungsablauf überträgt diesen Untertitel in {language}, mit erhaltenem Timing und sauberer Cue-Struktur.",
+  "@translateSetupReadyBody": {
+    "placeholders": {
+      "language": {}
+    }
+  },
+  "translateSetupReadyTitle": "KI-Übersetzung bereit",
+  "translateSetupSelectLanguage": "Sprache auswählen",
+  "translateSetupSourceTitle": "Quelluntertitel",
+  "translateSetupSubtitle": "Wähle die Zielsprache, prüfe die Untertitelquelle und starte dann den Übersetzungsauftrag im Backend.",
+  "translateSetupTitle": "Übersetzung einrichten",
+  "translationFailedMessage": "Etwas ist schiefgelaufen.",
+  "translationFailedTitle": "Übersetzung konnte nicht abgeschlossen werden",
+  "translationPreviewHeader": "Übersetzte Untertitel prüfen",
+  "translationPreviewSearchHint": "Untertitelzeilen durchsuchen",
+  "translationPreviewSubtitle": "Suche innerhalb der Cues, wechsle den Vorschaumodus und exportiere erst, wenn die Übersetzung stimmt.",
+  "translationPreviewTitle": "Übersetzungsvorschau",
+  "translationProgressHeadline": "KI-Untertitelübersetzung läuft",
+  "translationProgressTitle": "Übersetzungsfortschritt",
+  "translationResultCompleteSubtitle": "Dein Untertitel ist zur Vorschau oder zum Download bereit.",
+  "translationResultCompleteTitle": "Übersetzung abgeschlossen",
+  "translationResultConfidenceLabel": "Übersetzungssicherheit",
+  "translationResultDetailsTitle": "Übersetzungsdetails",
+  "translationResultDownloadCta": "Untertitel herunterladen",
+  "translationResultHomeCta": "Zurück zur Startseite",
+  "translationResultMediaLabel": "Medientitel",
+  "translationResultMethodAi": "Mit KI übersetzt",
+  "translationResultMetricsTitle": "Qualitätsmetriken",
+  "translationResultPreviewCta": "Untertitel ansehen",
+  "translationResultProcessedIn": "Verarbeitet in {duration}",
+  "@translationResultProcessedIn": {
+    "placeholders": {
+      "duration": {}
+    }
+  },
+  "translationResultSourceLabel": "Ausgangssprache",
+  "translationResultTargetLabel": "Zielsprache",
+  "translationResultTimingLabel": "Timing-Genauigkeit",
+  "translationResultTimingPreserved": "Timing beibehalten",
+  "translationResultWarning": "Einige Fachbegriffe profitieren womöglich noch von einer kurzen menschlichen Kontextprüfung.",
+  "translationStageAligning": "Zeitstempel und Szenenkontext werden abgeglichen",
+  "translationStageGenerating": "Untertitelübersetzung wird erstellt",
+  "translationStageIdle": "Warten auf eine Übersetzungsanfrage",
+  "translationStagePreparing": "Untertitelpaket wird vorbereitet",
+  "translationStageQueued": "Zur Übersetzung eingereiht",
+  "translationStageReadability": "Lesbarkeitsprüfung wird angewendet",
+  "translationStageReady": "Übersetzung bereit",
+  "tryAgain": "Noch einmal versuchen",
+  "uploadChooseFile": "Untertiteldatei auswählen",
+  "uploadChooseFileShort": "Datei wählen",
+  "uploadContinueSetup": "Weiter zur Übersetzungseinrichtung",
+  "uploadEnglishSource": "Englische Quelle",
+  "uploadFailedFallback": "Bitte versuche eine andere Untertiteldatei.",
+  "uploadFailedMessage": "Diese Untertiteldatei konnte nicht gelesen werden. Versuche eine andere Datei oder einen kleineren Export.",
+  "uploadFailedTitle": "Dateiimport fehlgeschlagen",
+  "uploadIntroSubtitle": "Importiere eine englische `.srt`- oder `.vtt`-Datei, lasse sie vom Backend prüfen und parsen und fahre dann mit der Übersetzungseinrichtung fort.",
+  "uploadIntroTitle": "Eigene Untertiteldatei verwenden",
+  "uploadLineCount": "{lineCount} Zeilen",
+  "@uploadLineCount": {
+    "placeholders": {
+      "lineCount": {}
+    }
+  },
+  "uploadMetadataTitle": "Untertiteldetails",
+  "uploadOpeningPicker": "Dateiauswahl wird geöffnet...",
+  "uploadPickSubtitle": "Untertiteldatei wählen",
+  "uploadPickedFile": "Untertiteldatei ausgewählt",
+  "uploadReadyTitle": "Bereit zur Übersetzung",
+  "uploadSubtitleTitle": "Untertitel hochladen",
+  "uploadSupportedFormatsSubtitle": "Englische Untertiteldateien im Format `.srt` und `.vtt`",
+  "uploadSupportedFormatsTitle": "Unterstützte Formate",
+  "uploadUseDemoFile": "Demo-Datei verwenden"
+}

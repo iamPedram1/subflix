@@ -158,7 +158,7 @@ class _TestApp extends StatelessWidget {
       child: MaterialApp(
         theme: AppTheme.light(),
         darkTheme: AppTheme.dark(),
-        localizationsDelegates: AppLocalizations.globalDelegates,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         home: child,
       ),

@@ -1,0 +1,375 @@
+{
+  "@@locale": "ja",
+  "appTitle": "SubFlix",
+  "brandSubtitleCompact": "字幕インテリジェンス",
+  "brandSubtitleFull": "AI字幕翻訳スタジオ",
+  "comingSoonMessage": "この画面はまだ準備中です。",
+  "comingSoonTitle": "近日公開",
+  "exportFailedSnack": "書き出しに失敗しました: {error}",
+  "@exportFailedSnack": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "exportSubtitleLabel": "翻訳済み字幕を書き出す",
+  "exportedSnack": "{fileName} を {path} に書き出しました",
+  "@exportedSnack": {
+    "placeholders": {
+      "fileName": {},
+      "path": {}
+    }
+  },
+  "exportingLabel": "書き出し中...",
+  "heroBadge": "プレミアム字幕ワークフロー",
+  "heroBody": "検索可能なタイトルカタログか直接ファイルアップロードを選び、数分で洗練された字幕をプレビュー・書き出しできます。",
+  "heroHeadline": "スタジオ品質のフローで映画・シリーズ字幕を翻訳。",
+  "heroSearchCta": "映画 / シリーズを検索",
+  "heroStatLanguagesTitle": "10言語",
+  "heroStatLanguagesValue": "プレビュー可能",
+  "heroStatMockTitle": "モックAPI",
+  "heroStatMockValue": "バックエンド接続準備済み",
+  "heroStatPathsTitle": "2つの経路",
+  "heroStatPathsValue": "検索またはアップロード",
+  "heroSubtitle": "映画・シリーズのカタログを検索し、ソースを選び、数分で洗練された翻訳を出力できます。",
+  "heroTitle": "字幕をもっと速く翻訳",
+  "heroUploadCta": "字幕をアップロード",
+  "historyCountLabel": "{count} 件の翻訳",
+  "@historyCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "historyEmptyMessage": "検索またはアップロードの流れを完了すると、翻訳済み字幕ジョブがここに表示されます。",
+  "historyEmptyTitle": "履歴は空です",
+  "historyFailedItemMessage": "翻訳に失敗しました。タップしてやり直してください。",
+  "historyFailedTitle": "履歴を読み込めませんでした",
+  "historyFilterAiTranslated": "AI翻訳",
+  "historyFilterAll": "すべて",
+  "historyFilterCompleted": "完了",
+  "historyFilterFailed": "失敗",
+  "historyFilterMovies": "映画",
+  "historyFilterReused": "再利用",
+  "historyFilterSeries": "シリーズ",
+  "historySubtitle": "以前の字幕ジョブを開き直し、再度プレビューしたり、あとで書き出したりできます。",
+  "historyTitle": "翻訳履歴",
+  "homeFailedRecentTitle": "最近のジョブを読み込めませんでした",
+  "homeFutureSubtitle": "差し替え可能なモックリポジトリにより、UIコードはバックエンド変更の影響を受けにくくなります。",
+  "homeFutureTitle": "将来対応のリポジトリ",
+  "homeNoRecentMessage": "映画検索を始めるか字幕ファイルをアップロードすると、最近の翻訳がここに表示されます。",
+  "homeNoRecentTitle": "最近のジョブはまだありません",
+  "homePreviewSubtitle": "書き出し前に、原文・翻訳・バイリンガル表示で結果を確認できます。",
+  "homePreviewTitle": "プレビュー重視の翻訳フロー",
+  "homeQuickHistory": "履歴",
+  "homeQuickSearch": "検索",
+  "homeQuickUpload": "アップロード",
+  "homeRecentJobsSubtitle": "最初からやり直さずに、最新の字幕セッションを開き直せます。",
+  "homeRecentJobsTitle": "最近のジョブ",
+  "homeSearchPlaceholder": "映画やシリーズを検索...",
+  "homeStatesSubtitle": "読み込み、空状態、再試行、検証、モックのオフライン状態まで初日からUXに含まれています。",
+  "homeStatesTitle": "丁寧な状態設計込み",
+  "homeTrendingNow": "今のトレンド",
+  "homeTrustSubtitle": "今はモックでも、実運用できる製品のように設計されています。",
+  "homeTrustTitle": "チームに信頼される理由",
+  "homeViewAll": "すべて見る",
+  "homeWelcomeSubtitle": "字幕を見つけて翻訳",
+  "homeWelcomeTitle": "おかえりなさい",
+  "jobConfidence": "信頼度: {level}",
+  "@jobConfidence": {
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "jobOpenPreview": "プレビューを開く",
+  "jobReuseSubtitle": "字幕を再利用",
+  "jobReuseTranslation": "翻訳を再利用",
+  "legalBodyAbout": "SubFlix は AI 字幕翻訳向けのプレミアム志向 Flutter クライアントです。このビルドでは、実際のバックエンド接続前に UI とアーキテクチャを育てるため、モックリポジトリ、人工的な遅延、ローカル保存を使っています。",
+  "legalBodyPrivacy": "SubFlix は現在、モックの設定と翻訳履歴のみをローカル保存しています。将来的なバックエンド連携により、認証付き保存、監査ログ、サーバー管理の保持ポリシーへ置き換えられます。",
+  "legalBodySupport": "サポートは現在プレースホルダーです。本番では、アプリ構造を変えずにメール、問題報告、プレミアム会員向け支援へ接続できます。",
+  "legalBodyTerms": "このモックビルドは、製品フロー、UI状態、アーキテクチャ境界を検証するためのものです。将来 NestJS と Postgres の本番バックエンドが接続されれば、実際の利用規約やデータ処理文言を追加できます。",
+  "legalPlaceholderBody": "このページはデモアプリ内のプレースホルダーです。本番用の法的コンテンツに差し替えてください。",
+  "legalTitleAbout": "SubFlix について",
+  "legalTitlePrivacy": "プライバシーポリシー",
+  "legalTitleSupport": "サポート",
+  "legalTitleTerms": "利用規約",
+  "mediaTypeMovie": "映画",
+  "mediaTypeSeries": "シリーズ",
+  "metadataEstimatedDuration": "推定時間",
+  "metadataFormat": "形式",
+  "metadataLanguages": "言語",
+  "metadataLines": "行数",
+  "navHistory": "履歴",
+  "navHome": "ホーム",
+  "navSettings": "設定",
+  "noTitlesMatchedMessage": "このタイトルはモックカタログで見つかりませんでした。より広い条件で検索するか、候補のタイトルを試してください。",
+  "noTitlesMatchedTitle": "一致する結果がありません",
+  "onboardingContinue": "続ける",
+  "onboardingEnterApp": "SubFlix に入る",
+  "onboardingNext": "次へ",
+  "onboardingPage1Description": "タイトルを検索し、利用可能な英語字幕ソースを確認して、すぐに使える翻訳フローを開始できます。",
+  "onboardingPage1Eyebrow": "検索して取得",
+  "onboardingPage1Highlight1": "開発しやすい決定論的モックカタログ",
+  "onboardingPage1Highlight2": "字幕ソースの品質ラベルと形式バッジ",
+  "onboardingPage1Highlight3": "後から実バックエンドへ差し替え可能",
+  "onboardingPage1Title": "映画やシリーズを探して、すぐ翻訳できる字幕を取得。",
+  "onboardingPage2Description": "字幕ファイルを取り込み、形式を検証し、同じ洗練された翻訳パイプラインをアプリ内で実行できます。",
+  "onboardingPage2Eyebrow": "自分のファイルを使う",
+  "onboardingPage2Highlight1": "ローカル検証と丁寧な再試行状態",
+  "onboardingPage2Highlight2": "検索とアップロードで一貫した設定",
+  "onboardingPage2Highlight3": "不透明さをなくすため、書き出し前に確認",
+  "onboardingPage2Title": "すでに台本があるなら `.srt` / `.vtt` をアップロード。",
+  "onboardingPage3Description": "原文・翻訳・バイリンガル表示を切り替え、履歴を見返し、仕上がりに納得したらきれいな字幕ファイルを書き出せます。",
+  "onboardingPage3Eyebrow": "翻訳して書き出す",
+  "onboardingPage3Highlight1": "メタデータと検索付きの高速プレビュー操作",
+  "onboardingPage3Highlight2": "履歴から以前のジョブにすぐ戻れる",
+  "onboardingPage3Highlight3": "デモではなく、プレミアムなメディアツールのような設計",
+  "onboardingPage3Title": "対象言語を選び、字幕を確認して、すぐ書き出し。",
+  "onboardingSkip": "スキップ",
+  "onboardingStart": "翻訳を始める",
+  "previewFailedTitle": "プレビューの読み込みに失敗しました",
+  "previewModeBilingual": "バイリンガル",
+  "previewModeOriginal": "原文",
+  "previewModeTranslated": "翻訳文",
+  "previewNoMatchesMessage": "別の検索語を試すか、フィルターを解除して全文を確認してください。",
+  "previewNoMatchesTitle": "一致する字幕行がありません",
+  "previewNotReadyMessage": "翻訳は完了しましたが、バックエンドからプレビュー cue がまだ返ってきていません。少し待って再読み込みしてください。",
+  "previewNotReadyTitle": "プレビュー用 cue はまだ利用できません",
+  "retry": "再試行",
+  "retryTranslation": "翻訳を再試行",
+  "routeMissingSeasonEpisodesMessage": "どのシーズンを読み込むべきか判断できませんでした。検索からやり直してください。",
+  "routeMissingSeasonEpisodesTitle": "シーズンのエピソード",
+  "routeMissingSeriesSeasonsMessage": "どのシリーズを読み込むべきか判断できませんでした。検索からやり直してください。",
+  "routeMissingSeriesSeasonsTitle": "シリーズのシーズン",
+  "routeMissingSubtitleSourcesMessage": "どのタイトルの字幕ソースを読み込むべきか判断できませんでした。検索からやり直してください。",
+  "routeMissingSubtitleSourcesTitle": "字幕ソース",
+  "routeMissingTranslationProgressMessage": "翻訳リクエストがありません。検索またはアップロードから新しい翻訳を始めてください。",
+  "routeMissingTranslationProgressTitle": "翻訳の進行状況",
+  "routeMissingTranslationSetupMessage": "翻訳設定画面を開く前に字幕ソースが必要です。",
+  "routeMissingTranslationSetupTitle": "翻訳設定",
+  "searchFailedTitle": "検索に失敗しました",
+  "searchFoundResults": "\"{query}\" の結果が {count} 件見つかりました",
+  "@searchFoundResults": {
+    "placeholders": {
+      "query": {},
+      "count": {}
+    }
+  },
+  "searchHintText": "Dune、Breaking Bad、Severance などを検索...",
+  "searchLoadingLabel": "検索中...",
+  "searchMockMessage": "Inception、Dune、Breaking Bad、Severance、The Last of Us などを試して、字幕ソースの流れを確認してください。",
+  "searchMockTitle": "モックカタログ内を検索",
+  "searchMovieOrSeriesSubtitle": "タイトルを見つけて字幕ソースを確認し、数回のタップで翻訳ジョブを開始できます。",
+  "searchMovieOrSeriesTitle": "映画・シリーズを検索",
+  "searchNoResultsFor": "\"{query}\" の結果は見つかりませんでした",
+  "@searchNoResultsFor": {
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "searchResultPopularity": "人気度 {score}",
+  "@searchResultPopularity": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "searchTitles": "タイトルを検索",
+  "searchTrendingTitle": "人気の検索",
+  "searchTryDifferentKeywords": "別のキーワードで検索してみてください。",
+  "seriesEpisodeLabel": "エピソード {episodeNumber}",
+  "@seriesEpisodeLabel": {
+    "placeholders": {
+      "episodeNumber": {}
+    }
+  },
+  "seriesEpisodeMeta": "約 {runtime} 分",
+  "@seriesEpisodeMeta": {
+    "placeholders": {
+      "runtime": {}
+    }
+  },
+  "seriesEpisodesSubtitle": "{episodeCount} 話{year}",
+  "@seriesEpisodesSubtitle": {
+    "placeholders": {
+      "episodeCount": {},
+      "year": {}
+    }
+  },
+  "seriesEpisodesTitle": "シーズン {seasonNumber}",
+  "@seriesEpisodesTitle": {
+    "placeholders": {
+      "seasonNumber": {}
+    }
+  },
+  "seriesSeasonLabel": "シーズン {seasonNumber}",
+  "@seriesSeasonLabel": {
+    "placeholders": {
+      "seasonNumber": {}
+    }
+  },
+  "seriesSeasonMeta": "{episodeCount} 話{year}",
+  "@seriesSeasonMeta": {
+    "placeholders": {
+      "episodeCount": {},
+      "year": {}
+    }
+  },
+  "seriesSeasonsSubtitle": "{title} のシーズンを選んで、利用可能なエピソードを確認してください。",
+  "@seriesSeasonsSubtitle": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "seriesSeasonsTitle": "シーズンを選択",
+  "settingsAboutTitle": "SubFlix について",
+  "settingsCacheCleared": "キャッシュを消去しました",
+  "settingsClearCache": "キャッシュを消去",
+  "settingsContactTitle": "お問い合わせ",
+  "settingsFailedTitle": "設定を読み込めませんでした",
+  "settingsHelpCenterTitle": "ヘルプセンター",
+  "settingsHistoryClearedSnack": "この端末の翻訳履歴を消去しました",
+  "settingsLanguageLabel": "優先する翻訳先言語",
+  "settingsMaintenanceSubtitle": "この端末のバックエンド管理翻訳ジョブを消去し、履歴を空の状態から始めます。",
+  "settingsMaintenanceTitle": "メンテナンス",
+  "settingsNotificationsSubtitle": "通知設定を管理",
+  "settingsNotificationsTitle": "通知",
+  "settingsPremiumSubtitle": "今後、購読・請求・クラウドプロジェクト同期をここに接続できます。",
+  "settingsPremiumTitle": "プレミアム用プレースホルダー",
+  "settingsPrivacySubtitle": "モックのプライバシー内容",
+  "settingsPrivacyTitle": "プライバシーポリシー",
+  "settingsProfileName": "SubFlix ユーザー",
+  "settingsProfileTier": "プレミアム会員",
+  "settingsSubtitle": "好みを管理",
+  "settingsSupportSubtitle": "モックのヘルプ・問い合わせページ",
+  "settingsSupportTitle": "サポート用プレースホルダー",
+  "settingsTermsSubtitle": "モックの規約内容",
+  "settingsTermsTitle": "利用規約",
+  "settingsThemeLabel": "外観",
+  "settingsTitle": "設定",
+  "settingsVersion": "バージョン {version}",
+  "@settingsVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "splashHeadline": "SubFlix",
+  "splashPreparing": "あなたの字幕スタジオを準備中",
+  "splashSubtitle": "AIによる字幕翻訳",
+  "startTranslation": "翻訳を開始",
+  "subtitleSourceDownloads": "{downloads} ダウンロード",
+  "@subtitleSourceDownloads": {
+    "placeholders": {
+      "downloads": {}
+    }
+  },
+  "subtitleSourceFormatLabel": "{format} 字幕ソース",
+  "@subtitleSourceFormatLabel": {
+    "placeholders": {
+      "format": {}
+    }
+  },
+  "subtitleSourceHiLabel": "HI / SDH",
+  "subtitleSourceLines": "{lineCount} 行",
+  "@subtitleSourceLines": {
+    "placeholders": {
+      "lineCount": {}
+    }
+  },
+  "subtitleSourceRating": "評価 {rating}",
+  "@subtitleSourceRating": {
+    "placeholders": {
+      "rating": {}
+    }
+  },
+  "subtitleSourcesBannerMessage": "字幕ソースを選択すると、字幕タイミングに最適化された翻訳設定へ進みます。",
+  "subtitleSourcesBannerTitle": "AI翻訳が利用できます",
+  "subtitleSourcesFailedTitle": "字幕ソースを読み込めませんでした",
+  "subtitleSourcesSubtitle": "{title}{target} の字幕ソースを選び、次のステップで対象言語を選択してください。",
+  "@subtitleSourcesSubtitle": {
+    "placeholders": {
+      "title": {},
+      "target": {}
+    }
+  },
+  "subtitleSourcesTitle": "英語字幕ソース",
+  "targetLanguage": "対象言語",
+  "themeDark": "ダーク",
+  "themeLight": "ライト",
+  "themeSystem": "システム",
+  "translateSetupAutoDetect": "形式を自動検出",
+  "translateSetupAutoDetectBody": "字幕の出力構造を自動で最適化します。",
+  "translateSetupLanguageTitle": "翻訳先",
+  "translateSetupOptionsTitle": "オプション",
+  "translateSetupPreserveTiming": "タイミングを保持",
+  "translateSetupPreserveTimingBody": "元ファイルに合わせて字幕のタイミングを維持します。",
+  "translateSetupReadyBody": "この字幕は、タイミングと cue 構造を保ったまま {language} に変換されます。",
+  "@translateSetupReadyBody": {
+    "placeholders": {
+      "language": {}
+    }
+  },
+  "translateSetupReadyTitle": "AI翻訳の準備完了",
+  "translateSetupSelectLanguage": "言語を選択",
+  "translateSetupSourceTitle": "元の字幕",
+  "translateSetupSubtitle": "対象言語を選び、字幕ソースを確認してから、バックエンド翻訳ジョブを開始します。",
+  "translateSetupTitle": "翻訳設定",
+  "translationFailedMessage": "問題が発生しました。",
+  "translationFailedTitle": "翻訳を完了できませんでした",
+  "translationPreviewHeader": "翻訳された字幕を確認",
+  "translationPreviewSearchHint": "字幕行を検索",
+  "translationPreviewSubtitle": "cue 内を検索し、表示モードを切り替え、納得できたら書き出してください。",
+  "translationPreviewTitle": "翻訳プレビュー",
+  "translationProgressHeadline": "AI字幕翻訳を実行中です",
+  "translationProgressTitle": "翻訳の進行状況",
+  "translationResultCompleteSubtitle": "字幕はプレビューまたはダウンロードの準備ができています。",
+  "translationResultCompleteTitle": "翻訳が完了しました",
+  "translationResultConfidenceLabel": "翻訳の信頼度",
+  "translationResultDetailsTitle": "翻訳の詳細",
+  "translationResultDownloadCta": "字幕をダウンロード",
+  "translationResultHomeCta": "ホームに戻る",
+  "translationResultMediaLabel": "作品タイトル",
+  "translationResultMethodAi": "AIで翻訳済み",
+  "translationResultMetricsTitle": "品質指標",
+  "translationResultPreviewCta": "字幕をプレビュー",
+  "translationResultProcessedIn": "{duration} で処理完了",
+  "@translationResultProcessedIn": {
+    "placeholders": {
+      "duration": {}
+    }
+  },
+  "translationResultSourceLabel": "元の言語",
+  "translationResultTargetLabel": "翻訳先の言語",
+  "translationResultTimingLabel": "タイミング精度",
+  "translationResultTimingPreserved": "タイミング保持",
+  "translationResultWarning": "一部の専門用語は、文脈確認のために人の軽い見直しがあるとより安心です。",
+  "translationStageAligning": "タイムスタンプとシーン文脈を調整中",
+  "translationStageGenerating": "字幕翻訳を生成中",
+  "translationStageIdle": "翻訳リクエストを待機中",
+  "translationStagePreparing": "字幕パッケージを準備中",
+  "translationStageQueued": "翻訳待ちキューに入りました",
+  "translationStageReadability": "読みやすさ調整を適用中",
+  "translationStageReady": "翻訳の準備完了",
+  "tryAgain": "もう一度試す",
+  "uploadChooseFile": "字幕ファイルを選択",
+  "uploadChooseFileShort": "ファイルを選択",
+  "uploadContinueSetup": "翻訳設定へ進む",
+  "uploadEnglishSource": "英語ソース",
+  "uploadFailedFallback": "別の字幕ファイルをお試しください。",
+  "uploadFailedMessage": "この字幕ファイルは読み込めませんでした。別のファイルか、より小さい書き出しを試してください。",
+  "uploadFailedTitle": "ファイルの取り込みに失敗しました",
+  "uploadIntroSubtitle": "英語の `.srt` または `.vtt` ファイルを取り込み、バックエンドで検証・解析したあと、翻訳設定へ進みます。",
+  "uploadIntroTitle": "自分の字幕ファイルを使う",
+  "uploadLineCount": "{lineCount} 行",
+  "@uploadLineCount": {
+    "placeholders": {
+      "lineCount": {}
+    }
+  },
+  "uploadMetadataTitle": "字幕の詳細",
+  "uploadOpeningPicker": "ピッカーを開いています...",
+  "uploadPickSubtitle": "字幕ファイルを選ぶ",
+  "uploadPickedFile": "字幕ファイルを選択しました",
+  "uploadReadyTitle": "翻訳の準備ができました",
+  "uploadSubtitleTitle": "字幕をアップロード",
+  "uploadSupportedFormatsSubtitle": "英語の `.srt` / `.vtt` 字幕ファイル",
+  "uploadSupportedFormatsTitle": "対応形式",
+  "uploadUseDemoFile": "デモファイルを使う"
+}

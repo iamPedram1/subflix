@@ -33,7 +33,7 @@ class App extends ConsumerWidget {
       themeMode: themeMode,
       locale: preferredLocale,
       routerConfig: router,
-      localizationsDelegates: AppLocalizations.globalDelegates,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       localeResolutionCallback: (locale, supportedLocales) {
         if (locale == null) return const Locale('en');

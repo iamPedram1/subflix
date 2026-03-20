@@ -1,0 +1,375 @@
+{
+  "@@locale": "pt",
+  "appTitle": "SubFlix",
+  "brandSubtitleCompact": "Inteligência de legendas",
+  "brandSubtitleFull": "Estúdio de tradução de legendas por IA",
+  "comingSoonMessage": "Ainda estamos preparando esta tela.",
+  "comingSoonTitle": "Em breve",
+  "exportFailedSnack": "Falha na exportação: {error}",
+  "@exportFailedSnack": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "exportSubtitleLabel": "Exportar legenda traduzida",
+  "exportedSnack": "{fileName} exportado para {path}",
+  "@exportedSnack": {
+    "placeholders": {
+      "fileName": {},
+      "path": {}
+    }
+  },
+  "exportingLabel": "Exportando...",
+  "heroBadge": "Fluxo premium de legendas",
+  "heroBody": "Escolha entre um catálogo pesquisável ou o envio direto de arquivo, depois visualize e exporte legendas refinadas em poucos minutos.",
+  "heroHeadline": "Traduza legendas de filmes e séries com um fluxo de nível profissional.",
+  "heroSearchCta": "Buscar filme / série",
+  "heroStatLanguagesTitle": "10 idiomas",
+  "heroStatLanguagesValue": "Prontos para prévia",
+  "heroStatMockTitle": "APIs mock",
+  "heroStatMockValue": "Camada pronta para backend",
+  "heroStatPathsTitle": "2 caminhos",
+  "heroStatPathsValue": "Buscar ou enviar",
+  "heroSubtitle": "Pesquise catálogos de filmes e séries, escolha fontes e exporte traduções refinadas em minutos.",
+  "heroTitle": "Traduza legendas mais rápido",
+  "heroUploadCta": "Enviar legenda",
+  "historyCountLabel": "{count} traduções",
+  "@historyCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "historyEmptyMessage": "Seus trabalhos de legenda traduzida aparecerão aqui depois que você concluir um fluxo de busca ou envio.",
+  "historyEmptyTitle": "O histórico está vazio",
+  "historyFailedItemMessage": "A tradução falhou. Toque para começar de novo.",
+  "historyFailedTitle": "Não foi possível carregar o histórico",
+  "historyFilterAiTranslated": "Traduzido por IA",
+  "historyFilterAll": "Todos",
+  "historyFilterCompleted": "Concluídos",
+  "historyFilterFailed": "Falhou",
+  "historyFilterMovies": "Filmes",
+  "historyFilterReused": "Reutilizado",
+  "historyFilterSeries": "Séries",
+  "historySubtitle": "Reabra trabalhos anteriores, revise a prévia novamente ou exporte depois.",
+  "historyTitle": "Histórico de traduções",
+  "homeFailedRecentTitle": "Não foi possível carregar os trabalhos recentes",
+  "homeFutureSubtitle": "Repositórios mock intercambiáveis mantêm o código de UI protegido contra mudanças no backend.",
+  "homeFutureTitle": "Repositórios prontos para o futuro",
+  "homeNoRecentMessage": "Comece com uma busca por filme ou envie um arquivo de legenda e suas traduções recentes aparecerão aqui.",
+  "homeNoRecentTitle": "Ainda não há trabalhos recentes",
+  "homePreviewSubtitle": "Analise os resultados antes de exportar nas visualizações original, traduzida ou bilíngue.",
+  "homePreviewTitle": "Fluxo de tradução guiado por prévia",
+  "homeQuickHistory": "Histórico",
+  "homeQuickSearch": "Buscar",
+  "homeQuickUpload": "Enviar",
+  "homeRecentJobsSubtitle": "Reabra suas sessões mais recentes sem começar do zero.",
+  "homeRecentJobsTitle": "Trabalhos recentes",
+  "homeSearchPlaceholder": "Buscar filmes ou séries...",
+  "homeStatesSubtitle": "Carregamento, vazio, retry, validação e cenários mock offline fazem parte da UX desde o primeiro dia.",
+  "homeStatesTitle": "Estados bem resolvidos inclusos",
+  "homeTrendingNow": "Em alta agora",
+  "homeTrustSubtitle": "Hoje ainda é mockado, mas já foi estruturado como um produto real.",
+  "homeTrustTitle": "Por que as equipes confiam nisso",
+  "homeViewAll": "Ver tudo",
+  "homeWelcomeSubtitle": "Encontre e traduza legendas",
+  "homeWelcomeTitle": "Bem-vindo de volta",
+  "jobConfidence": "Confiabilidade: {level}",
+  "@jobConfidence": {
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "jobOpenPreview": "Abrir prévia",
+  "jobReuseSubtitle": "Reutilizar legenda",
+  "jobReuseTranslation": "Reutilizar tradução",
+  "legalBodyAbout": "O SubFlix é um cliente Flutter com proposta premium para tradução de legendas por IA. Este build usa repositórios mock, latência artificial e persistência local para que a UI e a arquitetura evoluam antes da conexão com um backend real.",
+  "legalBodyPrivacy": "Atualmente, o SubFlix armazena apenas preferências mock e histórico de tradução no dispositivo por meio de persistência local. No futuro, uma integração com backend pode substituir isso por armazenamento autenticado, trilhas de auditoria e políticas de retenção gerenciadas pelo servidor.",
+  "legalBodySupport": "Por enquanto, o suporte é apenas um placeholder. Em uma versão de produção, esta seção poderá se conectar a e-mail, relato de problemas e ajuda para contas premium sem alterar a estrutura do app.",
+  "legalBodyTerms": "Este build mock foi criado para exercitar fluxos de produto, estados de UI e limites de arquitetura. Quando um backend de produção com NestJS e Postgres for conectado mais tarde, a camada jurídica poderá ser expandida com termos reais de serviço e linguagem de processamento de dados.",
+  "legalPlaceholderBody": "Esta página é apenas um placeholder no app de demonstração. Conecte-a ao seu conteúdo jurídico de produção.",
+  "legalTitleAbout": "Sobre o SubFlix",
+  "legalTitlePrivacy": "Política de privacidade",
+  "legalTitleSupport": "Suporte",
+  "legalTitleTerms": "Termos de serviço",
+  "mediaTypeMovie": "Filme",
+  "mediaTypeSeries": "Série",
+  "metadataEstimatedDuration": "Duração estimada",
+  "metadataFormat": "Formato",
+  "metadataLanguages": "Idiomas",
+  "metadataLines": "Linhas",
+  "navHistory": "Histórico",
+  "navHome": "Home",
+  "navSettings": "Configurações",
+  "noTitlesMatchedMessage": "Não encontramos esse título no catálogo de teste. Tente uma busca mais ampla ou um dos títulos sugeridos.",
+  "noTitlesMatchedTitle": "Nenhum resultado encontrado",
+  "onboardingContinue": "Continuar",
+  "onboardingEnterApp": "Entrar no SubFlix",
+  "onboardingNext": "Próximo",
+  "onboardingPage1Description": "Pesquise um título, confira as fontes de legenda em inglês disponíveis e inicie um fluxo de tradução que parece imediato.",
+  "onboardingPage1Eyebrow": "Buscar e obter",
+  "onboardingPage1Highlight1": "Catálogo mock determinístico para desenvolvimento confiável",
+  "onboardingPage1Highlight2": "Rótulos de qualidade e badges de formato",
+  "onboardingPage1Highlight3": "Feito para trocar por um backend real depois",
+  "onboardingPage1Title": "Encontre filmes ou séries e puxe legendas prontas para traduzir.",
+  "onboardingPage2Description": "Importe seu arquivo de legenda, valide o formato e rode o mesmo pipeline refinado sem sair do app.",
+  "onboardingPage2Eyebrow": "Use o seu próprio arquivo",
+  "onboardingPage2Highlight1": "Validação local de arquivo e estados de retry bem resolvidos",
+  "onboardingPage2Highlight2": "Configuração consistente para envio e busca",
+  "onboardingPage2Highlight3": "Prévia antes de exportar para que nada fique opaco",
+  "onboardingPage2Title": "Envie arquivos `.srt` ou `.vtt` quando você já tiver o script.",
+  "onboardingPage3Description": "Alterne entre as visões original, traduzida e bilíngue, revisite o histórico e exporte arquivos limpos quando o resultado estiver do jeito certo.",
+  "onboardingPage3Eyebrow": "Traduzir e exportar",
+  "onboardingPage3Highlight1": "Controles rápidos de prévia com metadados e busca",
+  "onboardingPage3Highlight2": "O histórico mantém trabalhos anteriores a um toque de distância",
+  "onboardingPage3Highlight3": "Desenhado como uma ferramenta premium de mídia, não como demo",
+  "onboardingPage3Title": "Escolha os idiomas de destino, visualize as legendas e exporte na hora.",
+  "onboardingSkip": "Pular",
+  "onboardingStart": "Iniciar tradução",
+  "previewFailedTitle": "Falha ao carregar a prévia",
+  "previewModeBilingual": "Bilíngue",
+  "previewModeOriginal": "Original",
+  "previewModeTranslated": "Traduzido",
+  "previewNoMatchesMessage": "Tente outro termo de busca ou limpe o filtro para analisar a tradução completa.",
+  "previewNoMatchesTitle": "Nenhuma linha da legenda correspondeu",
+  "previewNotReadyMessage": "A tradução foi concluída, mas o backend ainda não retornou os cues de prévia. Tente recarregar esta tela em instantes.",
+  "previewNotReadyTitle": "Os cues de prévia ainda não estão disponíveis",
+  "retry": "Tentar novamente",
+  "retryTranslation": "Refazer tradução",
+  "routeMissingSeasonEpisodesMessage": "Não conseguimos determinar qual temporada deve ser carregada. Recomece pela busca.",
+  "routeMissingSeasonEpisodesTitle": "Episódios da temporada",
+  "routeMissingSeriesSeasonsMessage": "Não conseguimos determinar qual série deve ser carregada. Recomece pela busca.",
+  "routeMissingSeriesSeasonsTitle": "Temporadas da série",
+  "routeMissingSubtitleSourcesMessage": "Não conseguimos determinar para qual título as fontes de legenda devem ser carregadas. Recomece pela busca.",
+  "routeMissingSubtitleSourcesTitle": "Fontes de legenda",
+  "routeMissingTranslationProgressMessage": "Nenhum pedido de tradução foi fornecido. Inicie uma nova tradução pela busca ou pelo envio.",
+  "routeMissingTranslationProgressTitle": "Progresso da tradução",
+  "routeMissingTranslationSetupMessage": "É necessário ter uma fonte de legenda antes de abrir a tela de configuração da tradução.",
+  "routeMissingTranslationSetupTitle": "Configuração da tradução",
+  "searchFailedTitle": "A busca falhou",
+  "searchFoundResults": "{count} resultados encontrados para ''{query}''",
+  "@searchFoundResults": {
+    "placeholders": {
+      "count": {},
+      "query": {}
+    }
+  },
+  "searchHintText": "Busque por Dune, Breaking Bad, Severance...",
+  "searchLoadingLabel": "Buscando...",
+  "searchMockMessage": "Experimente títulos como Inception, Dune, Breaking Bad, Severance ou The Last of Us para explorar o fluxo de fontes de legenda.",
+  "searchMockTitle": "Pesquise qualquer coisa no catálogo de teste",
+  "searchMovieOrSeriesSubtitle": "Encontre um título, confira as fontes de legenda e inicie uma tradução com poucos toques.",
+  "searchMovieOrSeriesTitle": "Buscar filme ou série",
+  "searchNoResultsFor": "Nenhum resultado encontrado para ''{query}''",
+  "@searchNoResultsFor": {
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "searchResultPopularity": "Popularidade {score}",
+  "@searchResultPopularity": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "searchTitles": "Buscar títulos",
+  "searchTrendingTitle": "Buscas em alta",
+  "searchTryDifferentKeywords": "Tente buscar com outras palavras-chave.",
+  "seriesEpisodeLabel": "Episódio {episodeNumber}",
+  "@seriesEpisodeLabel": {
+    "placeholders": {
+      "episodeNumber": {}
+    }
+  },
+  "seriesEpisodeMeta": "Aprox. {runtime} min",
+  "@seriesEpisodeMeta": {
+    "placeholders": {
+      "runtime": {}
+    }
+  },
+  "seriesEpisodesSubtitle": "{episodeCount} episódios{year}",
+  "@seriesEpisodesSubtitle": {
+    "placeholders": {
+      "episodeCount": {},
+      "year": {}
+    }
+  },
+  "seriesEpisodesTitle": "Temporada {seasonNumber}",
+  "@seriesEpisodesTitle": {
+    "placeholders": {
+      "seasonNumber": {}
+    }
+  },
+  "seriesSeasonLabel": "Temporada {seasonNumber}",
+  "@seriesSeasonLabel": {
+    "placeholders": {
+      "seasonNumber": {}
+    }
+  },
+  "seriesSeasonMeta": "{episodeCount} episódios{year}",
+  "@seriesSeasonMeta": {
+    "placeholders": {
+      "episodeCount": {},
+      "year": {}
+    }
+  },
+  "seriesSeasonsSubtitle": "Escolha uma temporada de {title} para ver os episódios disponíveis.",
+  "@seriesSeasonsSubtitle": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "seriesSeasonsTitle": "Escolha uma temporada",
+  "settingsAboutTitle": "Sobre o SubFlix",
+  "settingsCacheCleared": "Cache limpo",
+  "settingsClearCache": "Limpar cache",
+  "settingsContactTitle": "Fale conosco",
+  "settingsFailedTitle": "Falha ao carregar as configurações",
+  "settingsHelpCenterTitle": "Central de ajuda",
+  "settingsHistoryClearedSnack": "Histórico de traduções apagado neste dispositivo",
+  "settingsLanguageLabel": "Idioma de destino preferido",
+  "settingsMaintenanceSubtitle": "Limpe os trabalhos de tradução controlados pelo backend neste dispositivo e recomece com o histórico vazio.",
+  "settingsMaintenanceTitle": "Manutenção",
+  "settingsNotificationsSubtitle": "Gerencie as preferências de notificação",
+  "settingsNotificationsTitle": "Notificações",
+  "settingsPremiumSubtitle": "Depois poderemos conectar aqui assinaturas, cobrança e sincronização de projetos na nuvem.",
+  "settingsPremiumTitle": "Espaço premium",
+  "settingsPrivacySubtitle": "Conteúdo mock de privacidade",
+  "settingsPrivacyTitle": "Política de privacidade",
+  "settingsProfileName": "Usuário SubFlix",
+  "settingsProfileTier": "Membro premium",
+  "settingsSubtitle": "Gerencie suas preferências",
+  "settingsSupportSubtitle": "Página mock de ajuda e contato",
+  "settingsSupportTitle": "Espaço de suporte",
+  "settingsTermsSubtitle": "Conteúdo mock de termos",
+  "settingsTermsTitle": "Termos de serviço",
+  "settingsThemeLabel": "Aparência",
+  "settingsTitle": "Configurações",
+  "settingsVersion": "Versão {version}",
+  "@settingsVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "splashHeadline": "SubFlix",
+  "splashPreparing": "Preparando seu estúdio de legendas",
+  "splashSubtitle": "Tradução de legendas com IA",
+  "startTranslation": "Iniciar tradução",
+  "subtitleSourceDownloads": "{downloads} downloads",
+  "@subtitleSourceDownloads": {
+    "placeholders": {
+      "downloads": {}
+    }
+  },
+  "subtitleSourceFormatLabel": "Fonte de legenda {format}",
+  "@subtitleSourceFormatLabel": {
+    "placeholders": {
+      "format": {}
+    }
+  },
+  "subtitleSourceHiLabel": "HI / SDH",
+  "subtitleSourceLines": "{lineCount} linhas",
+  "@subtitleSourceLines": {
+    "placeholders": {
+      "lineCount": {}
+    }
+  },
+  "subtitleSourceRating": "Avaliação {rating}",
+  "@subtitleSourceRating": {
+    "placeholders": {
+      "rating": {}
+    }
+  },
+  "subtitleSourcesBannerMessage": "Selecione uma fonte de legenda e siga para uma configuração refinada, ajustada ao timing da legenda.",
+  "subtitleSourcesBannerTitle": "Tradução por IA disponível",
+  "subtitleSourcesFailedTitle": "Não foi possível carregar as fontes de legenda",
+  "subtitleSourcesSubtitle": "Escolha uma fonte de legenda para {title}{target} e depois selecione o idioma de destino na próxima etapa.",
+  "@subtitleSourcesSubtitle": {
+    "placeholders": {
+      "title": {},
+      "target": {}
+    }
+  },
+  "subtitleSourcesTitle": "Fontes de legenda em inglês",
+  "targetLanguage": "Idioma de destino",
+  "themeDark": "Escuro",
+  "themeLight": "Claro",
+  "themeSystem": "Sistema",
+  "translateSetupAutoDetect": "Detectar formato automaticamente",
+  "translateSetupAutoDetectBody": "Escolhe automaticamente a estrutura certa de saída da legenda.",
+  "translateSetupLanguageTitle": "Traduzir para",
+  "translateSetupOptionsTitle": "Opções",
+  "translateSetupPreserveTiming": "Preservar tempo",
+  "translateSetupPreserveTimingBody": "Mantém os tempos originais da legenda alinhados com o arquivo de origem.",
+  "translateSetupReadyBody": "Nosso fluxo vai adaptar esta legenda para {language}, preservando o tempo e uma estrutura de cues limpa.",
+  "@translateSetupReadyBody": {
+    "placeholders": {
+      "language": {}
+    }
+  },
+  "translateSetupReadyTitle": "Tradução por IA pronta",
+  "translateSetupSelectLanguage": "Selecionar idioma",
+  "translateSetupSourceTitle": "Legenda de origem",
+  "translateSetupSubtitle": "Escolha o idioma de destino, revise a fonte da legenda e inicie a tradução no backend.",
+  "translateSetupTitle": "Configuração da tradução",
+  "translationFailedMessage": "Algo deu errado.",
+  "translationFailedTitle": "Não foi possível concluir a tradução",
+  "translationPreviewHeader": "Revise as legendas traduzidas",
+  "translationPreviewSearchHint": "Buscar linhas da legenda",
+  "translationPreviewSubtitle": "Pesquise dentro dos cues, alterne o modo de visualização e exporte quando o resultado estiver certo.",
+  "translationPreviewTitle": "Prévia da tradução",
+  "translationProgressHeadline": "Tradução de legendas por IA em andamento",
+  "translationProgressTitle": "Progresso da tradução",
+  "translationResultCompleteSubtitle": "Sua legenda está pronta para visualizar ou baixar.",
+  "translationResultCompleteTitle": "Tradução concluída",
+  "translationResultConfidenceLabel": "Confiabilidade da tradução",
+  "translationResultDetailsTitle": "Detalhes da tradução",
+  "translationResultDownloadCta": "Baixar legenda",
+  "translationResultHomeCta": "Voltar para a home",
+  "translationResultMediaLabel": "Título da mídia",
+  "translationResultMethodAi": "Traduzido por IA",
+  "translationResultMetricsTitle": "Métricas de qualidade",
+  "translationResultPreviewCta": "Visualizar legenda",
+  "translationResultProcessedIn": "Processado em {duration}",
+  "@translationResultProcessedIn": {
+    "placeholders": {
+      "duration": {}
+    }
+  },
+  "translationResultSourceLabel": "Idioma de origem",
+  "translationResultTargetLabel": "Idioma de destino",
+  "translationResultTimingLabel": "Precisão do tempo",
+  "translationResultTimingPreserved": "Tempo preservado",
+  "translationResultWarning": "Alguns termos técnicos ainda podem se beneficiar de uma revisão humana rápida para garantir o contexto.",
+  "translationStageAligning": "Alinhando timestamps e contexto da cena",
+  "translationStageGenerating": "Gerando a tradução da legenda",
+  "translationStageIdle": "Aguardando um pedido de tradução",
+  "translationStagePreparing": "Preparando pacote de legendas",
+  "translationStageQueued": "Na fila para tradução",
+  "translationStageReadability": "Aplicando revisão de legibilidade",
+  "translationStageReady": "Tradução pronta",
+  "tryAgain": "Tente novamente",
+  "uploadChooseFile": "Escolher arquivo de legenda",
+  "uploadChooseFileShort": "Escolher arquivo",
+  "uploadContinueSetup": "Continuar para a configuração da tradução",
+  "uploadEnglishSource": "Fonte em inglês",
+  "uploadFailedFallback": "Tente outro arquivo de legenda.",
+  "uploadFailedMessage": "Não foi possível ler este arquivo de legenda. Tente outro arquivo ou uma exportação menor.",
+  "uploadFailedTitle": "Falha ao importar o arquivo",
+  "uploadIntroSubtitle": "Importe um arquivo em inglês `.srt` ou `.vtt`, deixe o backend validar e interpretar o conteúdo e depois siga para a configuração da tradução.",
+  "uploadIntroTitle": "Use o seu próprio arquivo de legenda",
+  "uploadLineCount": "{lineCount} linhas",
+  "@uploadLineCount": {
+    "placeholders": {
+      "lineCount": {}
+    }
+  },
+  "uploadMetadataTitle": "Detalhes da legenda",
+  "uploadOpeningPicker": "Abrindo seletor...",
+  "uploadPickSubtitle": "Selecionar arquivo de legenda",
+  "uploadPickedFile": "Arquivo de legenda selecionado",
+  "uploadReadyTitle": "Pronto para traduzir",
+  "uploadSubtitleTitle": "Enviar legenda",
+  "uploadSupportedFormatsSubtitle": "Arquivos de legenda em inglês `.srt` e `.vtt`",
+  "uploadSupportedFormatsTitle": "Formatos compatíveis",
+  "uploadUseDemoFile": "Usar arquivo de demonstração"
+}

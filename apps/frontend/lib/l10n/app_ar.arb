@@ -1,0 +1,375 @@
+{
+  "@@locale": "ar",
+  "appTitle": "SubFlix",
+  "brandSubtitleCompact": "ذكاء الترجمة",
+  "brandSubtitleFull": "استوديو ترجمة الترجمة بالذكاء الاصطناعي",
+  "comingSoonMessage": "ما زلنا نجهّز هذه الشاشة.",
+  "comingSoonTitle": "قريبًا",
+  "exportFailedSnack": "فشل التصدير: {error}",
+  "@exportFailedSnack": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "exportSubtitleLabel": "تصدير الترجمة المترجمة",
+  "exportedSnack": "تم تصدير {fileName} إلى {path}",
+  "@exportedSnack": {
+    "placeholders": {
+      "fileName": {},
+      "path": {}
+    }
+  },
+  "exportingLabel": "جارٍ التصدير...",
+  "heroBadge": "مسار ترجمة احترافي",
+  "heroBody": "اختر بين فهرس عناوين قابل للبحث أو رفع ملف مباشر، ثم عاين وصدّر ترجمات مصقولة خلال دقائق.",
+  "heroHeadline": "ترجم ترجمات الأفلام والمسلسلات بمسار عمل بمستوى الاستوديو.",
+  "heroSearchCta": "ابحث عن فيلم / مسلسل",
+  "heroStatLanguagesTitle": "10 لغات",
+  "heroStatLanguagesValue": "جاهزة للمعاينة",
+  "heroStatMockTitle": "واجهات وهمية",
+  "heroStatMockValue": "نقطة جاهزة للخادم",
+  "heroStatPathsTitle": "مساران",
+  "heroStatPathsValue": "بحث أو رفع",
+  "heroSubtitle": "ابحث في فهارس الأفلام والمسلسلات، واختر المصادر، وصدّر ترجمات مصقولة خلال دقائق.",
+  "heroTitle": "ترجم الترجمات بسرعة أكبر",
+  "heroUploadCta": "رفع الترجمة",
+  "historyCountLabel": "{count} ترجمة",
+  "@historyCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "historyEmptyMessage": "ستظهر مهام الترجمة المنجزة هنا بعد إكمال مسار البحث أو الرفع.",
+  "historyEmptyTitle": "السجل فارغ",
+  "historyFailedItemMessage": "فشلت الترجمة. اضغط للبدء من جديد.",
+  "historyFailedTitle": "تعذّر تحميل السجل",
+  "historyFilterAiTranslated": "مترجمة بالذكاء الاصطناعي",
+  "historyFilterAll": "الكل",
+  "historyFilterCompleted": "مكتملة",
+  "historyFilterFailed": "فاشلة",
+  "historyFilterMovies": "الأفلام",
+  "historyFilterReused": "معاد استخدامها",
+  "historyFilterSeries": "المسلسلات",
+  "historySubtitle": "أعد فتح مهام الترجمة السابقة، وراجع المعاينة مجددًا، أو صدّرها لاحقًا.",
+  "historyTitle": "سجل الترجمات",
+  "homeFailedRecentTitle": "تعذّر تحميل المهام الأخيرة",
+  "homeFutureSubtitle": "تُبقي المستودعات التجريبية القابلة للاستبدال واجهة المستخدم معزولة عن تغييرات الخادم.",
+  "homeFutureTitle": "مستودعات جاهزة للمستقبل",
+  "homeNoRecentMessage": "ابدأ بالبحث عن فيلم أو ارفع ملف ترجمة، وستظهر ترجماتك الأخيرة هنا.",
+  "homeNoRecentTitle": "لا توجد مهام حديثة بعد",
+  "homePreviewSubtitle": "راجع النتائج قبل التصدير عبر العرض الأصلي أو المترجم أو الثنائي اللغة.",
+  "homePreviewTitle": "مسار ترجمة قائم على المعاينة أولًا",
+  "homeQuickHistory": "السجل",
+  "homeQuickSearch": "بحث",
+  "homeQuickUpload": "رفع",
+  "homeRecentJobsSubtitle": "أعد فتح أحدث جلسات الترجمة لديك دون البدء من الصفر.",
+  "homeRecentJobsTitle": "المهام الأخيرة",
+  "homeSearchPlaceholder": "ابحث عن أفلام أو مسلسلات...",
+  "homeStatesSubtitle": "التحميل، والفراغ، وإعادة المحاولة، والتحقق، وسيناريوهات عدم الاتصال التجريبية جزء من تجربة الاستخدام منذ اليوم الأول.",
+  "homeStatesTitle": "حالات استخدام سلسة مضمّنة",
+  "homeTrendingNow": "الرائج الآن",
+  "homeTrustSubtitle": "مُحاكى اليوم، لكنه مبني كمنتج قابل للإطلاق فعليًا.",
+  "homeTrustTitle": "لماذا تثق به الفرق",
+  "homeViewAll": "عرض الكل",
+  "homeWelcomeSubtitle": "اعثر على الترجمات وترجمها",
+  "homeWelcomeTitle": "مرحبًا بعودتك",
+  "jobConfidence": "الثقة: {level}",
+  "@jobConfidence": {
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "jobOpenPreview": "فتح المعاينة",
+  "jobReuseSubtitle": "إعادة استخدام ملف الترجمة",
+  "jobReuseTranslation": "إعادة استخدام الترجمة",
+  "legalBodyAbout": "SubFlix عميل Flutter بطابع احترافي لترجمة الترجمة بالذكاء الاصطناعي. تستخدم هذه النسخة مستودعات وهمية، وتأخيرًا اصطناعيًا، وتخزينًا محليًا حتى تتطور الواجهة والبنية قبل ربط خادم حقيقي.",
+  "legalBodyPrivacy": "يخزن SubFlix حاليًا التفضيلات التجريبية وسجل الترجمة فقط على الجهاز عبر التخزين المحلي. يمكن أن يستبدل تكامل خادم مستقبلي ذلك بتخزين موثّق، ومسارات تدقيق، وسياسات احتفاظ تُدار من الخادم.",
+  "legalBodySupport": "الدعم مجرد عنصر نائب حاليًا. في إصدار الإنتاج يمكن لهذا القسم أن يتصل بالبريد الإلكتروني، وتقارير المشكلات، ومساعدة الحسابات المميزة مع بقاء هيكل التطبيق كما هو.",
+  "legalBodyTerms": "تهدف هذه النسخة التجريبية إلى اختبار تدفقات المنتج، وحالات الواجهة، وحدود البنية. وعندما يتم ربط خادم إنتاجي يعتمد على NestJS وPostgres لاحقًا، يمكن توسيع السطح القانوني بشروط خدمة حقيقية وصياغات لمعالجة البيانات.",
+  "legalPlaceholderBody": "هذه الصفحة مجرد عنصر نائب في التطبيق التجريبي. اربطها بمحتواك القانوني الحقيقي في نسخة الإنتاج.",
+  "legalTitleAbout": "حول SubFlix",
+  "legalTitlePrivacy": "سياسة الخصوصية",
+  "legalTitleSupport": "الدعم",
+  "legalTitleTerms": "شروط الخدمة",
+  "mediaTypeMovie": "فيلم",
+  "mediaTypeSeries": "مسلسل",
+  "metadataEstimatedDuration": "المدة التقديرية",
+  "metadataFormat": "الصيغة",
+  "metadataLanguages": "اللغات",
+  "metadataLines": "الأسطر",
+  "navHistory": "السجل",
+  "navHome": "الرئيسية",
+  "navSettings": "الإعدادات",
+  "noTitlesMatchedMessage": "لم نتمكن من العثور على هذا العنوان في الفهرس التجريبي. جرّب بحثًا أوسع أو أحد العناوين المقترحة.",
+  "noTitlesMatchedTitle": "لا توجد نتائج مطابقة",
+  "onboardingContinue": "متابعة",
+  "onboardingEnterApp": "ادخل إلى SubFlix",
+  "onboardingNext": "التالي",
+  "onboardingPage1Description": "ابحث عن عنوان، وراجع مصادر الترجمة الإنجليزية المتاحة، وابدأ مسار ترجمة يبدو فوريًا.",
+  "onboardingPage1Eyebrow": "ابحث واجلب",
+  "onboardingPage1Highlight1": "فهرس تجريبي حتمي لتطوير موثوق",
+  "onboardingPage1Highlight2": "بطاقات جودة المصدر وشارات الصيغة",
+  "onboardingPage1Highlight3": "مصمم ليستبدل بخادم حقيقي لاحقًا",
+  "onboardingPage1Title": "اعثر على أفلام أو مسلسلات واسحب ترجمات جاهزة للترجمة.",
+  "onboardingPage2Description": "استورد ملف الترجمة، وتحقق من الصيغة، وشغّل مسار الترجمة المصقول نفسه دون مغادرة التطبيق.",
+  "onboardingPage2Eyebrow": "استخدم ملفك الخاص",
+  "onboardingPage2Highlight1": "تحقق محلي من الملفات مع حالات إعادة محاولة سلسة",
+  "onboardingPage2Highlight2": "إعداد ترجمة متسق بين الرفع والبحث",
+  "onboardingPage2Highlight3": "عاين قبل التصدير حتى لا يبدو شيء غامضًا",
+  "onboardingPage2Title": "ارفع ملفات `.srt` أو `.vtt` عندما تكون الترجمة لديك بالفعل.",
+  "onboardingPage3Description": "بدّل بين العرض الأصلي والمترجم والثنائي اللغة، وارجع إلى السجل، وصدّر ملفات ترجمة نظيفة عندما تبدو النتيجة صحيحة.",
+  "onboardingPage3Eyebrow": "ترجم وصدّر",
+  "onboardingPage3Highlight1": "عناصر معاينة سريعة مع البيانات الوصفية والبحث",
+  "onboardingPage3Highlight2": "يبقي السجل المهام السابقة على بُعد لمسة",
+  "onboardingPage3Highlight3": "مصمم كأداة وسائط احترافية لا كعرض تجريبي",
+  "onboardingPage3Title": "اختر اللغات المستهدفة، وعاين الترجمة، وصدّر فورًا.",
+  "onboardingSkip": "تخطَّ",
+  "onboardingStart": "ابدأ الترجمة",
+  "previewFailedTitle": "فشل تحميل المعاينة",
+  "previewModeBilingual": "ثنائي اللغة",
+  "previewModeOriginal": "الأصل",
+  "previewModeTranslated": "المترجم",
+  "previewNoMatchesMessage": "جرّب كلمة بحث مختلفة أو أزل التصفية لمراجعة الترجمة كاملة.",
+  "previewNoMatchesTitle": "لم تتم مطابقة أي أسطر",
+  "previewNotReadyMessage": "اكتملت الترجمة، لكن الخادم لم يُرجع أسطر المعاينة بعد. جرّب إعادة تحميل هذه الشاشة بعد لحظة.",
+  "previewNotReadyTitle": "أسطر المعاينة غير متاحة بعد",
+  "retry": "إعادة المحاولة",
+  "retryTranslation": "إعادة الترجمة",
+  "routeMissingSeasonEpisodesMessage": "لم نتمكن من تحديد الموسم المطلوب تحميله. ابدأ مجددًا من البحث.",
+  "routeMissingSeasonEpisodesTitle": "حلقات الموسم",
+  "routeMissingSeriesSeasonsMessage": "لم نتمكن من تحديد المسلسل المطلوب تحميله. ابدأ مجددًا من البحث.",
+  "routeMissingSeriesSeasonsTitle": "مواسم المسلسل",
+  "routeMissingSubtitleSourcesMessage": "لم نتمكن من تحديد العنوان الذي يجب تحميل مصادر الترجمة له. ابدأ مجددًا من البحث.",
+  "routeMissingSubtitleSourcesTitle": "مصادر الترجمة",
+  "routeMissingTranslationProgressMessage": "لم يتم توفير طلب ترجمة. ابدأ ترجمة جديدة من البحث أو الرفع.",
+  "routeMissingTranslationProgressTitle": "تقدّم الترجمة",
+  "routeMissingTranslationSetupMessage": "مصدر الترجمة مطلوب قبل فتح شاشة إعداد الترجمة.",
+  "routeMissingTranslationSetupTitle": "إعداد الترجمة",
+  "searchFailedTitle": "فشل البحث",
+  "searchFoundResults": "تم العثور على {count} نتيجة لعبارة ''{query}''",
+  "@searchFoundResults": {
+    "placeholders": {
+      "count": {},
+      "query": {}
+    }
+  },
+  "searchHintText": "ابحث عن Dune أو Breaking Bad أو Severance...",
+  "searchLoadingLabel": "جارٍ البحث...",
+  "searchMockMessage": "جرّب عناوين مثل Inception أو Dune أو Breaking Bad أو Severance أو The Last of Us لاستكشاف مسار مصادر الترجمة.",
+  "searchMockTitle": "ابحث عن أي شيء في الفهرس التجريبي",
+  "searchMovieOrSeriesSubtitle": "اعثر على عنوان، وتفقّد مصادر الترجمة، وابدأ مهمة الترجمة ببضع لمسات.",
+  "searchMovieOrSeriesTitle": "ابحث عن فيلم أو مسلسل",
+  "searchNoResultsFor": "لم يتم العثور على نتائج لعبارة ''{query}''",
+  "@searchNoResultsFor": {
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "searchResultPopularity": "الشعبية {score}",
+  "@searchResultPopularity": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "searchTitles": "البحث عن العناوين",
+  "searchTrendingTitle": "عمليات البحث الرائجة",
+  "searchTryDifferentKeywords": "جرّب البحث بكلمات مختلفة.",
+  "seriesEpisodeLabel": "الحلقة {episodeNumber}",
+  "@seriesEpisodeLabel": {
+    "placeholders": {
+      "episodeNumber": {}
+    }
+  },
+  "seriesEpisodeMeta": "حوالي {runtime} دقيقة",
+  "@seriesEpisodeMeta": {
+    "placeholders": {
+      "runtime": {}
+    }
+  },
+  "seriesEpisodesSubtitle": "{episodeCount} حلقة{year}",
+  "@seriesEpisodesSubtitle": {
+    "placeholders": {
+      "episodeCount": {},
+      "year": {}
+    }
+  },
+  "seriesEpisodesTitle": "الموسم {seasonNumber}",
+  "@seriesEpisodesTitle": {
+    "placeholders": {
+      "seasonNumber": {}
+    }
+  },
+  "seriesSeasonLabel": "الموسم {seasonNumber}",
+  "@seriesSeasonLabel": {
+    "placeholders": {
+      "seasonNumber": {}
+    }
+  },
+  "seriesSeasonMeta": "{episodeCount} حلقة{year}",
+  "@seriesSeasonMeta": {
+    "placeholders": {
+      "episodeCount": {},
+      "year": {}
+    }
+  },
+  "seriesSeasonsSubtitle": "اختر موسمًا من {title} لتصفّح الحلقات المتاحة.",
+  "@seriesSeasonsSubtitle": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "seriesSeasonsTitle": "اختر موسمًا",
+  "settingsAboutTitle": "حول SubFlix",
+  "settingsCacheCleared": "تم مسح الذاكرة المؤقتة",
+  "settingsClearCache": "مسح الذاكرة المؤقتة",
+  "settingsContactTitle": "تواصل معنا",
+  "settingsFailedTitle": "فشل تحميل الإعدادات",
+  "settingsHelpCenterTitle": "مركز المساعدة",
+  "settingsHistoryClearedSnack": "تم مسح سجل الترجمة لهذا الجهاز",
+  "settingsLanguageLabel": "اللغة المستهدفة المفضلة",
+  "settingsMaintenanceSubtitle": "امسح مهام الترجمة التابعة للخادم لهذا الجهاز وابدأ بسجل فارغ.",
+  "settingsMaintenanceTitle": "الصيانة",
+  "settingsNotificationsSubtitle": "أدر تفضيلات الإشعارات",
+  "settingsNotificationsTitle": "الإشعارات",
+  "settingsPremiumSubtitle": "لاحقًا يمكننا ربط الاشتراكات والفوترة ومزامنة المشاريع السحابية هنا.",
+  "settingsPremiumTitle": "عنصر مميز تجريبي",
+  "settingsPrivacySubtitle": "محتوى خصوصية تجريبي",
+  "settingsPrivacyTitle": "سياسة الخصوصية",
+  "settingsProfileName": "مستخدم SubFlix",
+  "settingsProfileTier": "عضو مميز",
+  "settingsSubtitle": "أدر تفضيلاتك",
+  "settingsSupportSubtitle": "صفحة مساعدة واتصال تجريبية",
+  "settingsSupportTitle": "قسم دعم تجريبي",
+  "settingsTermsSubtitle": "محتوى شروط تجريبي",
+  "settingsTermsTitle": "شروط الخدمة",
+  "settingsThemeLabel": "المظهر",
+  "settingsTitle": "الإعدادات",
+  "settingsVersion": "الإصدار {version}",
+  "@settingsVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "splashHeadline": "SubFlix",
+  "splashPreparing": "جارٍ تجهيز استوديو الترجمة الخاص بك",
+  "splashSubtitle": "ترجمة ترجمة مدعومة بالذكاء الاصطناعي",
+  "startTranslation": "بدء الترجمة",
+  "subtitleSourceDownloads": "{downloads} تنزيلًا",
+  "@subtitleSourceDownloads": {
+    "placeholders": {
+      "downloads": {}
+    }
+  },
+  "subtitleSourceFormatLabel": "مصدر ترجمة {format}",
+  "@subtitleSourceFormatLabel": {
+    "placeholders": {
+      "format": {}
+    }
+  },
+  "subtitleSourceHiLabel": "HI / SDH",
+  "subtitleSourceLines": "{lineCount} سطرًا",
+  "@subtitleSourceLines": {
+    "placeholders": {
+      "lineCount": {}
+    }
+  },
+  "subtitleSourceRating": "التقييم {rating}",
+  "@subtitleSourceRating": {
+    "placeholders": {
+      "rating": {}
+    }
+  },
+  "subtitleSourcesBannerMessage": "اختر مصدر ترجمة وتابع إلى إعداد ترجمة مصقول ومهيأ لتوقيت الترجمة.",
+  "subtitleSourcesBannerTitle": "الترجمة بالذكاء الاصطناعي متاحة",
+  "subtitleSourcesFailedTitle": "تعذّر تحميل مصادر الترجمة",
+  "subtitleSourcesSubtitle": "اختر مصدر ترجمة لـ {title}{target}، ثم اختر اللغة المستهدفة في الخطوة التالية.",
+  "@subtitleSourcesSubtitle": {
+    "placeholders": {
+      "title": {},
+      "target": {}
+    }
+  },
+  "subtitleSourcesTitle": "مصادر الترجمة الإنجليزية",
+  "targetLanguage": "اللغة المستهدفة",
+  "themeDark": "داكن",
+  "themeLight": "فاتح",
+  "themeSystem": "النظام",
+  "translateSetupAutoDetect": "اكتشاف الصيغة تلقائيًا",
+  "translateSetupAutoDetectBody": "اختر بنية إخراج الترجمة المناسبة تلقائيًا.",
+  "translateSetupLanguageTitle": "الترجمة إلى",
+  "translateSetupOptionsTitle": "الخيارات",
+  "translateSetupPreserveTiming": "الحفاظ على التوقيت",
+  "translateSetupPreserveTimingBody": "أبقِ توقيتات الترجمة الأصلية متطابقة مع الملف المصدر.",
+  "translateSetupReadyBody": "سيحوّل مسار الترجمة لدينا هذه الترجمة إلى {language} مع الحفاظ على التوقيت وبنية الأسطر بشكل نظيف.",
+  "@translateSetupReadyBody": {
+    "placeholders": {
+      "language": {}
+    }
+  },
+  "translateSetupReadyTitle": "الترجمة بالذكاء الاصطناعي جاهزة",
+  "translateSetupSelectLanguage": "اختر اللغة",
+  "translateSetupSourceTitle": "الترجمة المصدر",
+  "translateSetupSubtitle": "اختر اللغة المستهدفة، وراجع مصدر الترجمة، ثم ابدأ مهمة الترجمة في الخادم.",
+  "translateSetupTitle": "إعداد الترجمة",
+  "translationFailedMessage": "حدث خطأ ما.",
+  "translationFailedTitle": "تعذّر إكمال الترجمة",
+  "translationPreviewHeader": "راجع الترجمات المترجمة",
+  "translationPreviewSearchHint": "ابحث في أسطر الترجمة",
+  "translationPreviewSubtitle": "ابحث داخل الأسطر، وبدّل أوضاع المعاينة، ثم صدّر الملف عندما تبدو الترجمة مناسبة.",
+  "translationPreviewTitle": "معاينة الترجمة",
+  "translationProgressHeadline": "ترجمة الترجمة بالذكاء الاصطناعي قيد التنفيذ",
+  "translationProgressTitle": "تقدّم الترجمة",
+  "translationResultCompleteSubtitle": "أصبحت الترجمة جاهزة للمعاينة أو التنزيل.",
+  "translationResultCompleteTitle": "اكتملت الترجمة",
+  "translationResultConfidenceLabel": "ثقة الترجمة",
+  "translationResultDetailsTitle": "تفاصيل الترجمة",
+  "translationResultDownloadCta": "تنزيل الترجمة",
+  "translationResultHomeCta": "العودة إلى الرئيسية",
+  "translationResultMediaLabel": "عنوان العمل",
+  "translationResultMethodAi": "مترجمة بالذكاء الاصطناعي",
+  "translationResultMetricsTitle": "مقاييس الجودة",
+  "translationResultPreviewCta": "معاينة الترجمة",
+  "translationResultProcessedIn": "تمت المعالجة خلال {duration}",
+  "@translationResultProcessedIn": {
+    "placeholders": {
+      "duration": {}
+    }
+  },
+  "translationResultSourceLabel": "لغة المصدر",
+  "translationResultTargetLabel": "اللغة المستهدفة",
+  "translationResultTimingLabel": "دقة التوقيت",
+  "translationResultTimingPreserved": "تم الحفاظ على التوقيت",
+  "translationResultWarning": "قد تستفيد بعض المصطلحات التقنية من مراجعة بشرية سريعة لفهم السياق.",
+  "translationStageAligning": "جارٍ مواءمة الطوابع الزمنية وسياق المشهد",
+  "translationStageGenerating": "جارٍ إنشاء الترجمة",
+  "translationStageIdle": "بانتظار طلب ترجمة",
+  "translationStagePreparing": "جارٍ تجهيز حزمة الترجمة",
+  "translationStageQueued": "في انتظار الدور للترجمة",
+  "translationStageReadability": "جارٍ تحسين قابلية القراءة",
+  "translationStageReady": "الترجمة جاهزة",
+  "tryAgain": "جرّب مرة أخرى",
+  "uploadChooseFile": "اختر ملف ترجمة",
+  "uploadChooseFileShort": "اختر ملفًا",
+  "uploadContinueSetup": "متابعة إلى إعداد الترجمة",
+  "uploadEnglishSource": "المصدر الإنجليزي",
+  "uploadFailedFallback": "يرجى تجربة ملف ترجمة آخر.",
+  "uploadFailedMessage": "تعذّرت قراءة ملف الترجمة هذا. جرّب ملفًا آخر أو ملف تصدير أصغر.",
+  "uploadFailedTitle": "فشل استيراد الملف",
+  "uploadIntroSubtitle": "استورد ملف `.srt` أو `.vtt` باللغة الإنجليزية، ودع الخادم يتحقق منه ويحلّله، ثم تابع إلى إعداد الترجمة.",
+  "uploadIntroTitle": "استخدم ملف الترجمة الخاص بك",
+  "uploadLineCount": "{lineCount} سطرًا",
+  "@uploadLineCount": {
+    "placeholders": {
+      "lineCount": {}
+    }
+  },
+  "uploadMetadataTitle": "تفاصيل الترجمة",
+  "uploadOpeningPicker": "جارٍ فتح أداة الاختيار...",
+  "uploadPickSubtitle": "اختر ملف الترجمة",
+  "uploadPickedFile": "تم اختيار ملف الترجمة",
+  "uploadReadyTitle": "جاهز للترجمة",
+  "uploadSubtitleTitle": "رفع الترجمة",
+  "uploadSupportedFormatsSubtitle": "ملفات ترجمة إنجليزية بصيغة `.srt` و `.vtt`",
+  "uploadSupportedFormatsTitle": "الصيغ المدعومة",
+  "uploadUseDemoFile": "استخدام ملف تجريبي"
+}

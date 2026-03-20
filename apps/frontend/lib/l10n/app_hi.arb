@@ -1,0 +1,375 @@
+{
+  "@@locale": "hi",
+  "appTitle": "SubFlix",
+  "brandSubtitleCompact": "सबटाइटल इंटेलिजेंस",
+  "brandSubtitleFull": "AI सबटाइटल अनुवाद स्टूडियो",
+  "comingSoonMessage": "हम अभी यह स्क्रीन तैयार कर रहे हैं।",
+  "comingSoonTitle": "जल्द आ रहा है",
+  "exportFailedSnack": "एक्सपोर्ट असफल रहा: {error}",
+  "@exportFailedSnack": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "exportSubtitleLabel": "अनुवादित सबटाइटल एक्सपोर्ट करें",
+  "exportedSnack": "{fileName} को {path} पर एक्सपोर्ट किया गया",
+  "@exportedSnack": {
+    "placeholders": {
+      "fileName": {},
+      "path": {}
+    }
+  },
+  "exportingLabel": "एक्सपोर्ट किया जा रहा है...",
+  "heroBadge": "प्रीमियम सबटाइटल वर्कफ़्लो",
+  "heroBody": "खोजने योग्य शीर्षक कैटलॉग या सीधी फ़ाइल अपलोड में से चुनें, फिर कुछ मिनटों में प्रीव्यू देखें और polished सबटाइटल एक्सपोर्ट करें।",
+  "heroHeadline": "स्टूडियो-ग्रेड फ़्लो के साथ फ़िल्म और सीरीज़ सबटाइटल का अनुवाद करें।",
+  "heroSearchCta": "फ़िल्म / सीरीज़ खोजें",
+  "heroStatLanguagesTitle": "10 भाषाएँ",
+  "heroStatLanguagesValue": "प्रीव्यू के लिए तैयार",
+  "heroStatMockTitle": "Mock APIs",
+  "heroStatMockValue": "बैकएंड-रेडी लेयर",
+  "heroStatPathsTitle": "2 रास्ते",
+  "heroStatPathsValue": "खोज या अपलोड",
+  "heroSubtitle": "फ़िल्म और सीरीज़ कैटलॉग खोजें, स्रोत चुनें और कुछ ही मिनटों में polished अनुवाद एक्सपोर्ट करें।",
+  "heroTitle": "सबटाइटल तेजी से अनुवाद करें",
+  "heroUploadCta": "सबटाइटल अपलोड करें",
+  "historyCountLabel": "{count} अनुवाद",
+  "@historyCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "historyEmptyMessage": "जैसे ही आप खोज या अपलोड फ़्लो पूरा करेंगे, आपके अनुवादित सबटाइटल जॉब यहाँ दिखेंगे।",
+  "historyEmptyTitle": "इतिहास खाली है",
+  "historyFailedItemMessage": "अनुवाद असफल रहा। फिर से शुरू करने के लिए टैप करें।",
+  "historyFailedTitle": "इतिहास लोड नहीं हो सका",
+  "historyFilterAiTranslated": "AI से अनुवादित",
+  "historyFilterAll": "सभी",
+  "historyFilterCompleted": "पूर्ण",
+  "historyFilterFailed": "असफल",
+  "historyFilterMovies": "फ़िल्में",
+  "historyFilterReused": "दोबारा इस्तेमाल",
+  "historyFilterSeries": "सीरीज़",
+  "historySubtitle": "पुराने सबटाइटल जॉब फिर से खोलें, प्रीव्यू दोबारा देखें या बाद में एक्सपोर्ट करें।",
+  "historyTitle": "अनुवाद इतिहास",
+  "homeFailedRecentTitle": "हाल के जॉब लोड नहीं हो सके",
+  "homeFutureSubtitle": "बदले जा सकने वाले mock repositories UI कोड को बैकएंड बदलावों से सुरक्षित रखते हैं।",
+  "homeFutureTitle": "भविष्य के लिए तैयार repositories",
+  "homeNoRecentMessage": "किसी फ़िल्म की खोज से शुरू करें या सबटाइटल फ़ाइल अपलोड करें, आपके हाल के अनुवाद यहाँ दिखेंगे।",
+  "homeNoRecentTitle": "अभी कोई हालिया जॉब नहीं",
+  "homePreviewSubtitle": "एक्सपोर्ट से पहले परिणामों को मूल, अनुवादित या द्विभाषी रूप में देखें।",
+  "homePreviewTitle": "प्रीव्यू-केंद्रित अनुवाद फ़्लो",
+  "homeQuickHistory": "इतिहास",
+  "homeQuickSearch": "खोज",
+  "homeQuickUpload": "अपलोड",
+  "homeRecentJobsSubtitle": "शुरू से शुरू किए बिना अपनी ताज़ा सबटाइटल सेशन फिर खोलें।",
+  "homeRecentJobsTitle": "हाल के जॉब",
+  "homeSearchPlaceholder": "फ़िल्में या सीरीज़ खोजें...",
+  "homeStatesSubtitle": "लोडिंग, खाली स्थिति, retry, validation और mock offline scenarios शुरू से ही UX का हिस्सा हैं।",
+  "homeStatesTitle": "सभी ज़रूरी states शामिल",
+  "homeTrendingNow": "अभी ट्रेंड में",
+  "homeTrustSubtitle": "आज भले मॉक हो, लेकिन इसे असली प्रोडक्ट की तरह संरचित किया गया है।",
+  "homeTrustTitle": "टीमें इस पर भरोसा क्यों करती हैं",
+  "homeViewAll": "सब देखें",
+  "homeWelcomeSubtitle": "सबटाइटल खोजें और अनुवाद करें",
+  "homeWelcomeTitle": "फिर से स्वागत है",
+  "jobConfidence": "विश्वास स्तर: {level}",
+  "@jobConfidence": {
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "jobOpenPreview": "प्रीव्यू खोलें",
+  "jobReuseSubtitle": "सबटाइटल दोबारा इस्तेमाल करें",
+  "jobReuseTranslation": "अनुवाद दोबारा इस्तेमाल करें",
+  "legalBodyAbout": "SubFlix AI सबटाइटल अनुवाद के लिए एक premium-style Flutter client है। यह build mock repositories, artificial latency और local persistence का इस्तेमाल करती है ताकि असली backend जुड़ने से पहले UI और architecture विकसित हो सकें।",
+  "legalBodyPrivacy": "SubFlix फिलहाल केवल mock preferences और translation history को local persistence के जरिए डिवाइस पर रखता है। भविष्य में backend integration इसे authenticated storage, audit trails और server-managed retention policies से बदल सकती है।",
+  "legalBodySupport": "अभी के लिए support केवल एक placeholder है। प्रोडक्शन रिलीज़ में यह सेक्शन ईमेल, issue reporting और premium account help से जुड़ सकता है, बिना app shell बदले।",
+  "legalBodyTerms": "यह mock build प्रोडक्ट फ्लो, UI states और architecture boundaries को परखने के लिए बनाई गई है। जब बाद में production NestJS और Postgres backend जुड़ जाएगा, तब कानूनी हिस्से को वास्तविक सेवा शर्तों और data processing language के साथ बढ़ाया जा सकता है।",
+  "legalPlaceholderBody": "यह पेज डेमो ऐप में एक प्लेसहोल्डर है। इसे अपने प्रोडक्शन कानूनी कंटेंट से जोड़ें।",
+  "legalTitleAbout": "SubFlix के बारे में",
+  "legalTitlePrivacy": "गोपनीयता नीति",
+  "legalTitleSupport": "सपोर्ट",
+  "legalTitleTerms": "सेवा की शर्तें",
+  "mediaTypeMovie": "फ़िल्म",
+  "mediaTypeSeries": "सीरीज़",
+  "metadataEstimatedDuration": "अनुमानित अवधि",
+  "metadataFormat": "फ़ॉर्मैट",
+  "metadataLanguages": "भाषाएँ",
+  "metadataLines": "पंक्तियाँ",
+  "navHistory": "इतिहास",
+  "navHome": "होम",
+  "navSettings": "सेटिंग्स",
+  "noTitlesMatchedMessage": "हमें यह शीर्षक मॉक कैटलॉग में नहीं मिला। थोड़ा व्यापक खोजें या सुझाए गए शीर्षकों में से कोई चुनें।",
+  "noTitlesMatchedTitle": "कोई मिलान नहीं मिला",
+  "onboardingContinue": "जारी रखें",
+  "onboardingEnterApp": "SubFlix में प्रवेश करें",
+  "onboardingNext": "अगला",
+  "onboardingPage1Description": "कोई शीर्षक खोजें, उपलब्ध अंग्रेज़ी सबटाइटल स्रोत देखें और ऐसा अनुवाद फ़्लो शुरू करें जो तुरंत महसूस हो।",
+  "onboardingPage1Eyebrow": "खोजें और लाएँ",
+  "onboardingPage1Highlight1": "विश्वसनीय विकास के लिए deterministic mock catalog",
+  "onboardingPage1Highlight2": "सबटाइटल स्रोत quality labels और format badges",
+  "onboardingPage1Highlight3": "बाद में असली backend से जोड़ने के लिए तैयार",
+  "onboardingPage1Title": "फ़िल्में या सीरीज़ ढूँढें और अनुवाद के लिए तैयार सबटाइटल पाएँ।",
+  "onboardingPage2Description": "अपनी सबटाइटल फ़ाइल इम्पोर्ट करें, फ़ॉर्मैट वैलिडेट करें और ऐप छोड़े बिना वही polished translation pipeline चलाएँ।",
+  "onboardingPage2Eyebrow": "अपनी फ़ाइल लाएँ",
+  "onboardingPage2Highlight1": "लोकल फ़ाइल वैलिडेशन और सहज retry states",
+  "onboardingPage2Highlight2": "अपलोड और खोज के लिए एकसमान translation setup",
+  "onboardingPage2Highlight3": "एक्सपोर्ट से पहले प्रीव्यू, ताकि कुछ भी धुंधला न लगे",
+  "onboardingPage2Title": "जब स्क्रिप्ट आपके पास हो, तब `.srt` या `.vtt` फ़ाइलें अपलोड करें।",
+  "onboardingPage3Description": "मूल, अनुवादित और द्विभाषी दृश्य में बदलें, इतिहास फिर देखें और जब परिणाम सही लगे तब साफ़-सुथरी सबटाइटल फ़ाइलें एक्सपोर्ट करें।",
+  "onboardingPage3Eyebrow": "अनुवाद और एक्सपोर्ट",
+  "onboardingPage3Highlight1": "मेटाडेटा और खोज के साथ तेज़ प्रीव्यू नियंत्रण",
+  "onboardingPage3Highlight2": "इतिहास पुराने जॉब को बस एक टैप दूर रखता है",
+  "onboardingPage3Highlight3": "डेमो नहीं, एक प्रीमियम मीडिया टूल जैसा डिज़ाइन",
+  "onboardingPage3Title": "लक्षित भाषाएँ चुनें, सबटाइटल प्रीव्यू देखें और तुरंत एक्सपोर्ट करें।",
+  "onboardingSkip": "छोड़ें",
+  "onboardingStart": "अनुवाद शुरू करें",
+  "previewFailedTitle": "प्रीव्यू लोड नहीं हो सका",
+  "previewModeBilingual": "द्विभाषी",
+  "previewModeOriginal": "मूल",
+  "previewModeTranslated": "अनुवादित",
+  "previewNoMatchesMessage": "कोई दूसरा खोज शब्द आज़माएँ या पूरा अनुवाद देखने के लिए फ़िल्टर हटाएँ।",
+  "previewNoMatchesTitle": "कोई सबटाइटल पंक्ति मेल नहीं खाई",
+  "previewNotReadyMessage": "अनुवाद पूरा हो गया, लेकिन बैकएंड ने अभी तक प्रीव्यू cues नहीं भेजे। एक क्षण बाद यह स्क्रीन फिर से लोड करें।",
+  "previewNotReadyTitle": "प्रीव्यू cues अभी उपलब्ध नहीं हैं",
+  "retry": "फिर से प्रयास करें",
+  "retryTranslation": "अनुवाद फिर से करें",
+  "routeMissingSeasonEpisodesMessage": "हम तय नहीं कर सके कि कौन-सा सीज़न लोड करना है। खोज से फिर शुरू करें।",
+  "routeMissingSeasonEpisodesTitle": "सीज़न एपिसोड",
+  "routeMissingSeriesSeasonsMessage": "हम तय नहीं कर सके कि कौन-सी सीरीज़ लोड करनी है। खोज से फिर शुरू करें।",
+  "routeMissingSeriesSeasonsTitle": "सीरीज़ सीज़न",
+  "routeMissingSubtitleSourcesMessage": "हम तय नहीं कर सके कि किस शीर्षक के लिए सबटाइटल स्रोत लोड करने हैं। खोज से फिर शुरू करें।",
+  "routeMissingSubtitleSourcesTitle": "सबटाइटल स्रोत",
+  "routeMissingTranslationProgressMessage": "कोई अनुवाद अनुरोध नहीं दिया गया। खोज या अपलोड से नया अनुवाद शुरू करें।",
+  "routeMissingTranslationProgressTitle": "अनुवाद प्रगति",
+  "routeMissingTranslationSetupMessage": "अनुवाद सेटअप स्क्रीन खोलने से पहले एक सबटाइटल स्रोत ज़रूरी है।",
+  "routeMissingTranslationSetupTitle": "अनुवाद सेटअप",
+  "searchFailedTitle": "खोज असफल रही",
+  "searchFoundResults": "\"{query}\" के लिए {count} परिणाम मिले",
+  "@searchFoundResults": {
+    "placeholders": {
+      "query": {},
+      "count": {}
+    }
+  },
+  "searchHintText": "Dune, Breaking Bad, Severance खोजें...",
+  "searchLoadingLabel": "खोज जारी है...",
+  "searchMockMessage": "सबटाइटल स्रोतों का फ़्लो देखने के लिए Inception, Dune, Breaking Bad, Severance या The Last of Us जैसे शीर्षक आज़माएँ।",
+  "searchMockTitle": "मॉक कैटलॉग में कुछ भी खोजें",
+  "searchMovieOrSeriesSubtitle": "कोई शीर्षक ढूँढें, सबटाइटल स्रोत देखें और कुछ टैप में अनुवाद शुरू करें।",
+  "searchMovieOrSeriesTitle": "फ़िल्म या सीरीज़ खोजें",
+  "searchNoResultsFor": "\"{query}\" के लिए कोई परिणाम नहीं मिला",
+  "@searchNoResultsFor": {
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "searchResultPopularity": "लोकप्रियता {score}",
+  "@searchResultPopularity": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "searchTitles": "शीर्षक खोजें",
+  "searchTrendingTitle": "ट्रेंडिंग खोजें",
+  "searchTryDifferentKeywords": "कुछ अलग कीवर्ड्स आज़माएँ।",
+  "seriesEpisodeLabel": "एपिसोड {episodeNumber}",
+  "@seriesEpisodeLabel": {
+    "placeholders": {
+      "episodeNumber": {}
+    }
+  },
+  "seriesEpisodeMeta": "लगभग {runtime} मिनट",
+  "@seriesEpisodeMeta": {
+    "placeholders": {
+      "runtime": {}
+    }
+  },
+  "seriesEpisodesSubtitle": "{episodeCount} एपिसोड{year}",
+  "@seriesEpisodesSubtitle": {
+    "placeholders": {
+      "episodeCount": {},
+      "year": {}
+    }
+  },
+  "seriesEpisodesTitle": "सीज़न {seasonNumber}",
+  "@seriesEpisodesTitle": {
+    "placeholders": {
+      "seasonNumber": {}
+    }
+  },
+  "seriesSeasonLabel": "सीज़न {seasonNumber}",
+  "@seriesSeasonLabel": {
+    "placeholders": {
+      "seasonNumber": {}
+    }
+  },
+  "seriesSeasonMeta": "{episodeCount} एपिसोड{year}",
+  "@seriesSeasonMeta": {
+    "placeholders": {
+      "episodeCount": {},
+      "year": {}
+    }
+  },
+  "seriesSeasonsSubtitle": "उपलब्ध एपिसोड देखने के लिए {title} का एक सीज़न चुनें।",
+  "@seriesSeasonsSubtitle": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "seriesSeasonsTitle": "एक सीज़न चुनें",
+  "settingsAboutTitle": "SubFlix के बारे में",
+  "settingsCacheCleared": "कैश साफ़ हो गया",
+  "settingsClearCache": "कैश साफ़ करें",
+  "settingsContactTitle": "हमसे संपर्क करें",
+  "settingsFailedTitle": "सेटिंग्स लोड नहीं हो सकीं",
+  "settingsHelpCenterTitle": "सहायता केंद्र",
+  "settingsHistoryClearedSnack": "इस डिवाइस का अनुवाद इतिहास साफ़ कर दिया गया",
+  "settingsLanguageLabel": "पसंदीदा लक्षित भाषा",
+  "settingsMaintenanceSubtitle": "इस डिवाइस के लिए बैकएंड-स्वामित्व वाले अनुवाद जॉब साफ़ करें और खाली इतिहास से शुरू करें।",
+  "settingsMaintenanceTitle": "रखरखाव",
+  "settingsNotificationsSubtitle": "सूचना प्राथमिकताएँ प्रबंधित करें",
+  "settingsNotificationsTitle": "सूचनाएँ",
+  "settingsPremiumSubtitle": "आगे चलकर हम यहाँ सब्सक्रिप्शन, बिलिंग और क्लाउड प्रोजेक्ट सिंक जोड़ सकते हैं।",
+  "settingsPremiumTitle": "प्रीमियम प्लेसहोल्डर",
+  "settingsPrivacySubtitle": "मॉक गोपनीयता सामग्री",
+  "settingsPrivacyTitle": "गोपनीयता नीति",
+  "settingsProfileName": "SubFlix उपयोगकर्ता",
+  "settingsProfileTier": "प्रीमियम सदस्य",
+  "settingsSubtitle": "अपनी पसंद प्रबंधित करें",
+  "settingsSupportSubtitle": "मॉक सहायता और संपर्क पेज",
+  "settingsSupportTitle": "सपोर्ट प्लेसहोल्डर",
+  "settingsTermsSubtitle": "मॉक शर्तें सामग्री",
+  "settingsTermsTitle": "सेवा की शर्तें",
+  "settingsThemeLabel": "दिखावट",
+  "settingsTitle": "सेटिंग्स",
+  "settingsVersion": "संस्करण {version}",
+  "@settingsVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "splashHeadline": "SubFlix",
+  "splashPreparing": "आपका सबटाइटल स्टूडियो तैयार किया जा रहा है",
+  "splashSubtitle": "AI-संचालित सबटाइटल अनुवाद",
+  "startTranslation": "अनुवाद शुरू करें",
+  "subtitleSourceDownloads": "{downloads} डाउनलोड",
+  "@subtitleSourceDownloads": {
+    "placeholders": {
+      "downloads": {}
+    }
+  },
+  "subtitleSourceFormatLabel": "{format} सबटाइटल स्रोत",
+  "@subtitleSourceFormatLabel": {
+    "placeholders": {
+      "format": {}
+    }
+  },
+  "subtitleSourceHiLabel": "HI / SDH",
+  "subtitleSourceLines": "{lineCount} पंक्तियाँ",
+  "@subtitleSourceLines": {
+    "placeholders": {
+      "lineCount": {}
+    }
+  },
+  "subtitleSourceRating": "रेटिंग {rating}",
+  "@subtitleSourceRating": {
+    "placeholders": {
+      "rating": {}
+    }
+  },
+  "subtitleSourcesBannerMessage": "एक सबटाइटल स्रोत चुनें और सबटाइटल टाइमिंग के लिए अनुकूलित, polished अनुवाद सेटअप पर आगे बढ़ें।",
+  "subtitleSourcesBannerTitle": "AI अनुवाद उपलब्ध है",
+  "subtitleSourcesFailedTitle": "सबटाइटल स्रोत लोड नहीं हो सके",
+  "subtitleSourcesSubtitle": "{title}{target} के लिए एक सबटाइटल स्रोत चुनें, फिर अगले चरण में लक्षित भाषा चुनें।",
+  "@subtitleSourcesSubtitle": {
+    "placeholders": {
+      "title": {},
+      "target": {}
+    }
+  },
+  "subtitleSourcesTitle": "अंग्रेज़ी सबटाइटल स्रोत",
+  "targetLanguage": "लक्षित भाषा",
+  "themeDark": "डार्क",
+  "themeLight": "लाइट",
+  "themeSystem": "सिस्टम",
+  "translateSetupAutoDetect": "फ़ॉर्मैट स्वतः पहचानें",
+  "translateSetupAutoDetectBody": "सही सबटाइटल आउटपुट संरचना अपने आप चुनें।",
+  "translateSetupLanguageTitle": "किस भाषा में",
+  "translateSetupOptionsTitle": "विकल्प",
+  "translateSetupPreserveTiming": "टाइमिंग सुरक्षित रखें",
+  "translateSetupPreserveTimingBody": "मूल सबटाइटल टाइमिंग को स्रोत फ़ाइल के साथ मिलाकर रखें।",
+  "translateSetupReadyBody": "हमारा अनुवाद फ़्लो इस सबटाइटल को {language} में बदलेगा, साथ ही टाइमिंग और cue संरचना को साफ़-सुथरा बनाए रखेगा।",
+  "@translateSetupReadyBody": {
+    "placeholders": {
+      "language": {}
+    }
+  },
+  "translateSetupReadyTitle": "AI अनुवाद तैयार है",
+  "translateSetupSelectLanguage": "भाषा चुनें",
+  "translateSetupSourceTitle": "स्रोत सबटाइटल",
+  "translateSetupSubtitle": "लक्षित भाषा चुनें, सबटाइटल स्रोत देखें और बैकएंड अनुवाद जॉब शुरू करें।",
+  "translateSetupTitle": "अनुवाद सेटअप",
+  "translationFailedMessage": "कुछ गड़बड़ हो गई।",
+  "translationFailedTitle": "अनुवाद पूरा नहीं हो सका",
+  "translationPreviewHeader": "अनुवादित सबटाइटल देखें",
+  "translationPreviewSearchHint": "सबटाइटल पंक्तियाँ खोजें",
+  "translationPreviewSubtitle": "cues के अंदर खोजें, प्रीव्यू मोड बदलें और जब परिणाम सही लगे तब एक्सपोर्ट करें।",
+  "translationPreviewTitle": "अनुवाद प्रीव्यू",
+  "translationProgressHeadline": "AI सबटाइटल अनुवाद जारी है",
+  "translationProgressTitle": "अनुवाद प्रगति",
+  "translationResultCompleteSubtitle": "आपका सबटाइटल अब प्रीव्यू या डाउनलोड के लिए तैयार है।",
+  "translationResultCompleteTitle": "अनुवाद पूरा हुआ",
+  "translationResultConfidenceLabel": "अनुवाद विश्वसनीयता",
+  "translationResultDetailsTitle": "अनुवाद विवरण",
+  "translationResultDownloadCta": "सबटाइटल डाउनलोड करें",
+  "translationResultHomeCta": "होम पर वापस जाएँ",
+  "translationResultMediaLabel": "मीडिया शीर्षक",
+  "translationResultMethodAi": "AI से अनुवादित",
+  "translationResultMetricsTitle": "गुणवत्ता मेट्रिक्स",
+  "translationResultPreviewCta": "सबटाइटल प्रीव्यू",
+  "translationResultProcessedIn": "{duration} में प्रोसेस हुआ",
+  "@translationResultProcessedIn": {
+    "placeholders": {
+      "duration": {}
+    }
+  },
+  "translationResultSourceLabel": "स्रोत भाषा",
+  "translationResultTargetLabel": "लक्षित भाषा",
+  "translationResultTimingLabel": "टाइमिंग सटीकता",
+  "translationResultTimingPreserved": "टाइमिंग सुरक्षित रखी गई",
+  "translationResultWarning": "कुछ तकनीकी शब्दों के लिए संदर्भ के हिसाब से तेज़ मानवीय समीक्षा अभी भी काम आ सकती है।",
+  "translationStageAligning": "टाइमस्टैम्प और सीन संदर्भ मिलाए जा रहे हैं",
+  "translationStageGenerating": "सबटाइटल अनुवाद बनाया जा रहा है",
+  "translationStageIdle": "अनुवाद अनुरोध की प्रतीक्षा में",
+  "translationStagePreparing": "सबटाइटल पैकेज तैयार किया जा रहा है",
+  "translationStageQueued": "अनुवाद कतार में है",
+  "translationStageReadability": "पढ़ने-लायक बनाने की जाँच लागू की जा रही है",
+  "translationStageReady": "अनुवाद तैयार है",
+  "tryAgain": "फिर से कोशिश करें",
+  "uploadChooseFile": "सबटाइटल फ़ाइल चुनें",
+  "uploadChooseFileShort": "फ़ाइल चुनें",
+  "uploadContinueSetup": "अनुवाद सेटअप पर आगे बढ़ें",
+  "uploadEnglishSource": "अंग्रेज़ी स्रोत",
+  "uploadFailedFallback": "कृपया कोई दूसरी सबटाइटल फ़ाइल आज़माएँ।",
+  "uploadFailedMessage": "हम इस सबटाइटल फ़ाइल को पढ़ नहीं सके। कोई दूसरी फ़ाइल या छोटा एक्सपोर्ट आज़माएँ।",
+  "uploadFailedTitle": "फ़ाइल इम्पोर्ट असफल रहा",
+  "uploadIntroSubtitle": "एक अंग्रेज़ी `.srt` या `.vtt` फ़ाइल इम्पोर्ट करें, बैकएंड से उसे वैलिडेट और पार्स करवाएँ, फिर अनुवाद सेटअप पर आगे बढ़ें।",
+  "uploadIntroTitle": "अपनी सबटाइटल फ़ाइल इस्तेमाल करें",
+  "uploadLineCount": "{lineCount} पंक्तियाँ",
+  "@uploadLineCount": {
+    "placeholders": {
+      "lineCount": {}
+    }
+  },
+  "uploadMetadataTitle": "सबटाइटल विवरण",
+  "uploadOpeningPicker": "फ़ाइल पिकर खुल रहा है...",
+  "uploadPickSubtitle": "सबटाइटल फ़ाइल चुनें",
+  "uploadPickedFile": "सबटाइटल फ़ाइल चुनी गई",
+  "uploadReadyTitle": "अनुवाद के लिए तैयार",
+  "uploadSubtitleTitle": "सबटाइटल अपलोड करें",
+  "uploadSupportedFormatsSubtitle": "अंग्रेज़ी `.srt` और `.vtt` सबटाइटल फ़ाइलें",
+  "uploadSupportedFormatsTitle": "समर्थित फ़ॉर्मैट",
+  "uploadUseDemoFile": "डेमो फ़ाइल इस्तेमाल करें"
+}

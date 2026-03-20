@@ -1,0 +1,375 @@
+{
+  "@@locale": "zh",
+  "appTitle": "SubFlix",
+  "brandSubtitleCompact": "字幕智能",
+  "brandSubtitleFull": "AI 字幕翻译工作室",
+  "comingSoonMessage": "这个页面还在准备中。",
+  "comingSoonTitle": "即将推出",
+  "exportFailedSnack": "导出失败：{error}",
+  "@exportFailedSnack": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "exportSubtitleLabel": "导出翻译后的字幕",
+  "exportedSnack": "已将 {fileName} 导出到 {path}",
+  "@exportedSnack": {
+    "placeholders": {
+      "fileName": {},
+      "path": {}
+    }
+  },
+  "exportingLabel": "正在导出...",
+  "heroBadge": "高级字幕工作流",
+  "heroBody": "你可以选择可搜索的片名目录，或直接上传文件，然后在几分钟内完成预览并导出打磨过的字幕。",
+  "heroHeadline": "用接近工作室级别的流程翻译电影和剧集字幕。",
+  "heroSearchCta": "搜索电影 / 剧集",
+  "heroStatLanguagesTitle": "10 种语言",
+  "heroStatLanguagesValue": "可直接预览",
+  "heroStatMockTitle": "Mock API",
+  "heroStatMockValue": "已为后端接入做好准备",
+  "heroStatPathsTitle": "2 条路径",
+  "heroStatPathsValue": "搜索或上传",
+  "heroSubtitle": "搜索电影和剧集目录、选择来源，并在几分钟内导出打磨过的翻译结果。",
+  "heroTitle": "更快翻译字幕",
+  "heroUploadCta": "上传字幕",
+  "historyCountLabel": "{count} 条翻译",
+  "@historyCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "historyEmptyMessage": "完成搜索或上传流程后，已翻译的字幕任务会显示在这里。",
+  "historyEmptyTitle": "历史为空",
+  "historyFailedItemMessage": "翻译失败。点击重新开始。",
+  "historyFailedTitle": "无法加载历史记录",
+  "historyFilterAiTranslated": "AI 翻译",
+  "historyFilterAll": "全部",
+  "historyFilterCompleted": "已完成",
+  "historyFilterFailed": "失败",
+  "historyFilterMovies": "电影",
+  "historyFilterReused": "复用",
+  "historyFilterSeries": "剧集",
+  "historySubtitle": "重新打开以前的字幕任务，再次查看预览，或稍后导出。",
+  "historyTitle": "翻译历史",
+  "homeFailedRecentTitle": "无法加载最近任务",
+  "homeFutureSubtitle": "可替换的 mock 仓库让 UI 代码不受后端变化影响。",
+  "homeFutureTitle": "面向未来的仓库设计",
+  "homeNoRecentMessage": "先搜索电影或上传字幕文件，你最近的翻译会显示在这里。",
+  "homeNoRecentTitle": "还没有最近任务",
+  "homePreviewSubtitle": "可在导出前通过原文、译文或双语视图检查结果。",
+  "homePreviewTitle": "以预览为先的翻译流程",
+  "homeQuickHistory": "历史",
+  "homeQuickSearch": "搜索",
+  "homeQuickUpload": "上传",
+  "homeRecentJobsSubtitle": "无需从头开始，直接重新打开你最近的字幕会话。",
+  "homeRecentJobsTitle": "最近任务",
+  "homeSearchPlaceholder": "搜索电影或剧集...",
+  "homeStatesSubtitle": "加载、空状态、重试、校验以及模拟离线场景，从第一天起就是 UX 的一部分。",
+  "homeStatesTitle": "完善的状态体验",
+  "homeTrendingNow": "当前热门",
+  "homeTrustSubtitle": "今天仍是模拟版，但结构已经按真正可上线的产品来设计。",
+  "homeTrustTitle": "为什么团队会信任它",
+  "homeViewAll": "查看全部",
+  "homeWelcomeSubtitle": "查找并翻译字幕",
+  "homeWelcomeTitle": "欢迎回来",
+  "jobConfidence": "可信度：{level}",
+  "@jobConfidence": {
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "jobOpenPreview": "打开预览",
+  "jobReuseSubtitle": "复用字幕",
+  "jobReuseTranslation": "复用翻译",
+  "legalBodyAbout": "SubFlix 是一款偏高级体验的 Flutter 客户端，专注于 AI 字幕翻译。此版本使用 mock 仓库、人工延迟和本地持久化，以便在接入真实后端前先完善 UI 与架构。",
+  "legalBodyPrivacy": "SubFlix 当前仅通过本地持久化在设备上保存模拟偏好和翻译历史。未来接入后端后，可替换为带身份验证的存储、审计记录以及服务器管理的保留策略。",
+  "legalBodySupport": "目前支持页只是占位内容。正式版本中，这一部分可以接入邮件、问题反馈以及高级账户支持，同时保持应用框架不变。",
+  "legalBodyTerms": "这个模拟版本旨在验证产品流程、UI 状态和架构边界。等后续接入正式的 NestJS 与 Postgres 后端后，法律层面可以扩展为真实的服务条款与数据处理说明。",
+  "legalPlaceholderBody": "此页面在演示应用中只是占位内容。请替换为你正式环境中的法律文本。",
+  "legalTitleAbout": "关于 SubFlix",
+  "legalTitlePrivacy": "隐私政策",
+  "legalTitleSupport": "支持",
+  "legalTitleTerms": "服务条款",
+  "mediaTypeMovie": "电影",
+  "mediaTypeSeries": "剧集",
+  "metadataEstimatedDuration": "预计时长",
+  "metadataFormat": "格式",
+  "metadataLanguages": "语言",
+  "metadataLines": "行数",
+  "navHistory": "历史",
+  "navHome": "首页",
+  "navSettings": "设置",
+  "noTitlesMatchedMessage": "我们在模拟目录中找不到这个标题。请尝试更宽泛的搜索，或使用建议标题。",
+  "noTitlesMatchedTitle": "没有匹配结果",
+  "onboardingContinue": "继续",
+  "onboardingEnterApp": "进入 SubFlix",
+  "onboardingNext": "下一步",
+  "onboardingPage1Description": "搜索标题、查看可用的英文字幕来源，然后启动一个几乎即时的翻译流程。",
+  "onboardingPage1Eyebrow": "搜索并获取",
+  "onboardingPage1Highlight1": "可预测的模拟目录，方便稳定开发",
+  "onboardingPage1Highlight2": "字幕来源质量标签与格式标识",
+  "onboardingPage1Highlight3": "后续可无缝切换到真实后端",
+  "onboardingPage1Title": "找到电影或剧集，并拉取可直接翻译的字幕。",
+  "onboardingPage2Description": "导入字幕文件、校验格式，并在不离开应用的情况下走完整套精致翻译流程。",
+  "onboardingPage2Eyebrow": "使用自己的文件",
+  "onboardingPage2Highlight1": "本地文件校验与优雅的重试状态",
+  "onboardingPage2Highlight2": "上传与搜索保持一致的翻译设置",
+  "onboardingPage2Highlight3": "导出前先预览，让结果更透明",
+  "onboardingPage2Title": "如果你已经有脚本，可直接上传 `.srt` 或 `.vtt` 文件。",
+  "onboardingPage3Description": "在原文、译文和双语视图之间切换，回看历史记录，并在结果满意后导出干净的字幕文件。",
+  "onboardingPage3Eyebrow": "翻译并导出",
+  "onboardingPage3Highlight1": "带元数据与搜索的快速预览控制",
+  "onboardingPage3Highlight2": "历史记录让旧任务始终只差一次点击",
+  "onboardingPage3Highlight3": "设计得像高级媒体工具，而不是演示页",
+  "onboardingPage3Title": "选择目标语言、预览字幕，并立即导出。",
+  "onboardingSkip": "跳过",
+  "onboardingStart": "开始翻译",
+  "previewFailedTitle": "预览加载失败",
+  "previewModeBilingual": "双语",
+  "previewModeOriginal": "原文",
+  "previewModeTranslated": "译文",
+  "previewNoMatchesMessage": "请尝试其他搜索词，或清除筛选以查看完整翻译。",
+  "previewNoMatchesTitle": "没有匹配的字幕行",
+  "previewNotReadyMessage": "翻译已完成，但后端尚未返回预览 cue。请稍后重新加载此页面。",
+  "previewNotReadyTitle": "预览 cue 暂时不可用",
+  "retry": "重试",
+  "retryTranslation": "重新翻译",
+  "routeMissingSeasonEpisodesMessage": "我们无法判断应加载哪一季。请从搜索重新开始。",
+  "routeMissingSeasonEpisodesTitle": "本季剧集",
+  "routeMissingSeriesSeasonsMessage": "我们无法判断应加载哪部剧集。请从搜索重新开始。",
+  "routeMissingSeriesSeasonsTitle": "剧集季列表",
+  "routeMissingSubtitleSourcesMessage": "我们无法判断应为哪个标题加载字幕来源。请从搜索重新开始。",
+  "routeMissingSubtitleSourcesTitle": "字幕来源",
+  "routeMissingTranslationProgressMessage": "没有提供翻译请求。请从搜索或上传开始新的翻译。",
+  "routeMissingTranslationProgressTitle": "翻译进度",
+  "routeMissingTranslationSetupMessage": "打开翻译设置页面前，必须先有一个字幕来源。",
+  "routeMissingTranslationSetupTitle": "翻译设置",
+  "searchFailedTitle": "搜索失败",
+  "searchFoundResults": "找到 {count} 条与“{query}”相关的结果",
+  "@searchFoundResults": {
+    "placeholders": {
+      "count": {},
+      "query": {}
+    }
+  },
+  "searchHintText": "搜索 Dune、Breaking Bad、Severance...",
+  "searchLoadingLabel": "正在搜索...",
+  "searchMockMessage": "试试 Inception、Dune、Breaking Bad、Severance 或 The Last of Us，体验字幕来源流程。",
+  "searchMockTitle": "在模拟目录中搜索任何内容",
+  "searchMovieOrSeriesSubtitle": "找到片名、查看字幕来源，并通过几次点击启动翻译任务。",
+  "searchMovieOrSeriesTitle": "搜索电影或剧集",
+  "searchNoResultsFor": "没有找到“{query}”的结果",
+  "@searchNoResultsFor": {
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "searchResultPopularity": "热度 {score}",
+  "@searchResultPopularity": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "searchTitles": "搜索片名",
+  "searchTrendingTitle": "热门搜索",
+  "searchTryDifferentKeywords": "试试其他关键词。",
+  "seriesEpisodeLabel": "第 {episodeNumber} 集",
+  "@seriesEpisodeLabel": {
+    "placeholders": {
+      "episodeNumber": {}
+    }
+  },
+  "seriesEpisodeMeta": "约 {runtime} 分钟",
+  "@seriesEpisodeMeta": {
+    "placeholders": {
+      "runtime": {}
+    }
+  },
+  "seriesEpisodesSubtitle": "{episodeCount} 集{year}",
+  "@seriesEpisodesSubtitle": {
+    "placeholders": {
+      "episodeCount": {},
+      "year": {}
+    }
+  },
+  "seriesEpisodesTitle": "第 {seasonNumber} 季",
+  "@seriesEpisodesTitle": {
+    "placeholders": {
+      "seasonNumber": {}
+    }
+  },
+  "seriesSeasonLabel": "第 {seasonNumber} 季",
+  "@seriesSeasonLabel": {
+    "placeholders": {
+      "seasonNumber": {}
+    }
+  },
+  "seriesSeasonMeta": "{episodeCount} 集{year}",
+  "@seriesSeasonMeta": {
+    "placeholders": {
+      "episodeCount": {},
+      "year": {}
+    }
+  },
+  "seriesSeasonsSubtitle": "选择 {title} 的某一季以浏览可用剧集。",
+  "@seriesSeasonsSubtitle": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "seriesSeasonsTitle": "选择季",
+  "settingsAboutTitle": "关于 SubFlix",
+  "settingsCacheCleared": "缓存已清除",
+  "settingsClearCache": "清除缓存",
+  "settingsContactTitle": "联系我们",
+  "settingsFailedTitle": "设置加载失败",
+  "settingsHelpCenterTitle": "帮助中心",
+  "settingsHistoryClearedSnack": "已清除此设备的翻译历史",
+  "settingsLanguageLabel": "首选目标语言",
+  "settingsMaintenanceSubtitle": "清除此设备上由后端管理的翻译任务，并从空历史状态重新开始。",
+  "settingsMaintenanceTitle": "维护",
+  "settingsNotificationsSubtitle": "管理通知偏好",
+  "settingsNotificationsTitle": "通知",
+  "settingsPremiumSubtitle": "后续我们可以在这里接入订阅、计费和云项目同步。",
+  "settingsPremiumTitle": "高级功能占位",
+  "settingsPrivacySubtitle": "模拟隐私内容",
+  "settingsPrivacyTitle": "隐私政策",
+  "settingsProfileName": "SubFlix 用户",
+  "settingsProfileTier": "高级会员",
+  "settingsSubtitle": "管理你的偏好",
+  "settingsSupportSubtitle": "模拟帮助与联系页面",
+  "settingsSupportTitle": "支持占位",
+  "settingsTermsSubtitle": "模拟条款内容",
+  "settingsTermsTitle": "服务条款",
+  "settingsThemeLabel": "外观",
+  "settingsTitle": "设置",
+  "settingsVersion": "版本 {version}",
+  "@settingsVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "splashHeadline": "SubFlix",
+  "splashPreparing": "正在准备你的字幕工作室",
+  "splashSubtitle": "AI 驱动的字幕翻译",
+  "startTranslation": "开始翻译",
+  "subtitleSourceDownloads": "{downloads} 次下载",
+  "@subtitleSourceDownloads": {
+    "placeholders": {
+      "downloads": {}
+    }
+  },
+  "subtitleSourceFormatLabel": "{format} 字幕来源",
+  "@subtitleSourceFormatLabel": {
+    "placeholders": {
+      "format": {}
+    }
+  },
+  "subtitleSourceHiLabel": "HI / SDH",
+  "subtitleSourceLines": "{lineCount} 行",
+  "@subtitleSourceLines": {
+    "placeholders": {
+      "lineCount": {}
+    }
+  },
+  "subtitleSourceRating": "评分 {rating}",
+  "@subtitleSourceRating": {
+    "placeholders": {
+      "rating": {}
+    }
+  },
+  "subtitleSourcesBannerMessage": "选择字幕来源后，即可进入针对字幕时间轴优化过的精致翻译设置。",
+  "subtitleSourcesBannerTitle": "可使用 AI 翻译",
+  "subtitleSourcesFailedTitle": "无法加载字幕来源",
+  "subtitleSourcesSubtitle": "为 {title}{target} 选择一个字幕来源，然后在下一步选择目标语言。",
+  "@subtitleSourcesSubtitle": {
+    "placeholders": {
+      "title": {},
+      "target": {}
+    }
+  },
+  "subtitleSourcesTitle": "英文字幕来源",
+  "targetLanguage": "目标语言",
+  "themeDark": "深色",
+  "themeLight": "浅色",
+  "themeSystem": "跟随系统",
+  "translateSetupAutoDetect": "自动识别格式",
+  "translateSetupAutoDetectBody": "自动选择合适的字幕输出结构。",
+  "translateSetupLanguageTitle": "翻译为",
+  "translateSetupOptionsTitle": "选项",
+  "translateSetupPreserveTiming": "保留时间轴",
+  "translateSetupPreserveTimingBody": "让原始字幕时间与源文件保持一致。",
+  "translateSetupReadyBody": "我们的翻译流程会将这份字幕转换为 {language}，同时保留时间轴并保持清晰的 cue 结构。",
+  "@translateSetupReadyBody": {
+    "placeholders": {
+      "language": {}
+    }
+  },
+  "translateSetupReadyTitle": "AI 翻译已就绪",
+  "translateSetupSelectLanguage": "选择语言",
+  "translateSetupSourceTitle": "源字幕",
+  "translateSetupSubtitle": "选择目标语言，查看字幕来源，然后启动后端翻译任务。",
+  "translateSetupTitle": "翻译设置",
+  "translationFailedMessage": "出了点问题。",
+  "translationFailedTitle": "翻译未能完成",
+  "translationPreviewHeader": "查看翻译后的字幕",
+  "translationPreviewSearchHint": "搜索字幕行",
+  "translationPreviewSubtitle": "在 cue 中搜索、切换预览模式，并在确认结果无误后导出。",
+  "translationPreviewTitle": "翻译预览",
+  "translationProgressHeadline": "AI 字幕翻译进行中",
+  "translationProgressTitle": "翻译进度",
+  "translationResultCompleteSubtitle": "你的字幕已经可以预览或下载。",
+  "translationResultCompleteTitle": "翻译完成",
+  "translationResultConfidenceLabel": "翻译可信度",
+  "translationResultDetailsTitle": "翻译详情",
+  "translationResultDownloadCta": "下载字幕",
+  "translationResultHomeCta": "返回首页",
+  "translationResultMediaLabel": "作品标题",
+  "translationResultMethodAi": "AI 翻译",
+  "translationResultMetricsTitle": "质量指标",
+  "translationResultPreviewCta": "预览字幕",
+  "translationResultProcessedIn": "处理耗时 {duration}",
+  "@translationResultProcessedIn": {
+    "placeholders": {
+      "duration": {}
+    }
+  },
+  "translationResultSourceLabel": "源语言",
+  "translationResultTargetLabel": "目标语言",
+  "translationResultTimingLabel": "时间精度",
+  "translationResultTimingPreserved": "时间已保留",
+  "translationResultWarning": "某些专业术语仍可能需要人工快速复核，以确保语境准确。",
+  "translationStageAligning": "正在对齐时间戳和场景上下文",
+  "translationStageGenerating": "正在生成字幕翻译",
+  "translationStageIdle": "等待翻译请求",
+  "translationStagePreparing": "正在准备字幕包",
+  "translationStageQueued": "已加入翻译队列",
+  "translationStageReadability": "正在进行可读性优化",
+  "translationStageReady": "翻译已完成",
+  "tryAgain": "再试一次",
+  "uploadChooseFile": "选择字幕文件",
+  "uploadChooseFileShort": "选择文件",
+  "uploadContinueSetup": "继续进行翻译设置",
+  "uploadEnglishSource": "英文来源",
+  "uploadFailedFallback": "请尝试其他字幕文件。",
+  "uploadFailedMessage": "我们无法读取这个字幕文件。请尝试其他文件，或使用更小的导出文件。",
+  "uploadFailedTitle": "文件导入失败",
+  "uploadIntroSubtitle": "导入英文 `.srt` 或 `.vtt` 文件，交给后端校验并解析，然后继续进入翻译设置。",
+  "uploadIntroTitle": "使用你自己的字幕文件",
+  "uploadLineCount": "{lineCount} 行",
+  "@uploadLineCount": {
+    "placeholders": {
+      "lineCount": {}
+    }
+  },
+  "uploadMetadataTitle": "字幕详情",
+  "uploadOpeningPicker": "正在打开选择器...",
+  "uploadPickSubtitle": "选择字幕文件",
+  "uploadPickedFile": "已选择字幕文件",
+  "uploadReadyTitle": "可以开始翻译",
+  "uploadSubtitleTitle": "上传字幕",
+  "uploadSupportedFormatsSubtitle": "英文 `.srt` 和 `.vtt` 字幕文件",
+  "uploadSupportedFormatsTitle": "支持的格式",
+  "uploadUseDemoFile": "使用演示文件"
+}
