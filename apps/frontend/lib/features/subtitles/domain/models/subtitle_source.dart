@@ -10,6 +10,8 @@ abstract class SubtitleSource with _$SubtitleSource {
   const factory SubtitleSource({
     required String id,
     required String label,
+    String? languageCode,
+    String? languageName,
     required String releaseGroup,
     required SubtitleFormat format,
     required bool hearingImpaired,

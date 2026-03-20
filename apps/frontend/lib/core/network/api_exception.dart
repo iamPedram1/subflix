@@ -8,6 +8,9 @@ class ApiException implements Exception {
     required this.message,
     this.code,
     this.statusCode,
+    this.details,
+    this.requestId,
+    this.timestamp,
   });
 
   factory ApiException.fromDioException(DioException error) {
@@ -21,6 +24,9 @@ class ApiException implements Exception {
         message: _stringifyMessage(message),
         code: data['code'] as String?,
         statusCode: statusCode,
+        details: data['details'],
+        requestId: data['requestId'] as String?,
+        timestamp: _parseTimestamp(data['timestamp']),
       );
     }
 
@@ -58,6 +64,11 @@ class ApiException implements Exception {
   final String message;
   final String? code;
   final int? statusCode;
+  final Object? details;
+  final String? requestId;
+  final DateTime? timestamp;
+
+  bool get isUnauthorized => statusCode == 401;
 
   static String _stringifyMessage(Object? rawMessage) {
     if (rawMessage is List) {
@@ -67,6 +78,13 @@ class ApiException implements Exception {
       return rawMessage;
     }
     return 'The request could not be completed.';
+  }
+
+  static DateTime? _parseTimestamp(Object? rawTimestamp) {
+    if (rawTimestamp is! String || rawTimestamp.trim().isEmpty) {
+      return null;
+    }
+    return DateTime.tryParse(rawTimestamp);
   }
 
   @override

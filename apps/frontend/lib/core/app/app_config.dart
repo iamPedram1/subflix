@@ -23,13 +23,9 @@ abstract final class AppConfig {
       return _apiBaseUrlOverride.trim();
     }
 
-    if (kIsWeb) {
-      return 'http://localhost:3000';
-    }
-
     return switch (defaultTargetPlatform) {
-      TargetPlatform.android => 'http://192.168.100.46:300',
-      _ => 'http://192.168.100.46:300',
+      TargetPlatform.android => 'http://10.0.2.2:3000',
+      _ => 'http://localhost:3000',
     };
   }
 }

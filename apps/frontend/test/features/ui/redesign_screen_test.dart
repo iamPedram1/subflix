@@ -85,12 +85,17 @@ void main() {
 
       await tester.tap(find.text('App Language'));
       await tester.pumpAndSettle();
+      final frenchLabel = find.text('French').last;
       await tester.dragUntilVisible(
-        find.text('French'),
+        frenchLabel,
         find.byType(ListView).last,
         const Offset(0, -200),
       );
-      await tester.tap(find.text('French'));
+      final frenchOption = find
+          .ancestor(of: frenchLabel, matching: find.byType(InkWell))
+          .last;
+      await tester.ensureVisible(frenchOption);
+      await tester.tap(frenchOption);
       await tester.pumpAndSettle();
 
       expect(repository.preference.preferredTargetLanguage, AppLanguage.french);

@@ -12,6 +12,8 @@ import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
+import 'package:subflix/features/health/application/backend_health_provider.dart';
+import 'package:subflix/features/health/domain/models/backend_health.dart';
 import 'package:subflix/features/history/application/history_controller.dart';
 import 'package:subflix/features/home/application/home_providers.dart';
 import 'package:subflix/features/shared/domain/models/translation_job.dart';
@@ -24,6 +26,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final recentJobs = ref.watch(recentJobsProvider);
+    final backendHealth = ref.watch(backendHealthProvider);
 
     return Scaffold(
       body: AppBackground(
@@ -32,7 +35,7 @@ class HomeScreen extends ConsumerWidget {
             child: ListView(
               padding: EdgeInsets.zero,
               children: <Widget>[
-                const _HeroHeaderBlock(),
+                _HeroHeaderBlock(backendHealth: backendHealth),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16, 24, 16, 0),
                   child: Column(
@@ -101,9 +104,11 @@ class HomeScreen extends ConsumerWidget {
 }
 
 class _HeroHeaderBlock extends StatelessWidget {
-  const _HeroHeaderBlock();
+  const _HeroHeaderBlock({required this.backendHealth});
 
   static const double _quickActionsOverlap = 76;
+
+  final AsyncValue<BackendHealth> backendHealth;
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +117,7 @@ class _HeroHeaderBlock extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(bottom: _quickActionsOverlap),
-          child: const _HeroSection(),
+          child: _HeroSection(backendHealth: backendHealth),
         ),
         const Positioned(
           left: 16,
@@ -126,7 +131,9 @@ class _HeroHeaderBlock extends StatelessWidget {
 }
 
 class _HeroSection extends StatelessWidget {
-  const _HeroSection();
+  const _HeroSection({required this.backendHealth});
+
+  final AsyncValue<BackendHealth> backendHealth;
 
   @override
   Widget build(BuildContext context) {
@@ -161,6 +168,8 @@ class _HeroSection extends StatelessWidget {
                         color: Colors.white.withValues(alpha: 0.82),
                       ),
                     ),
+                    const SizedBox(height: 12),
+                    _BackendStatusPill(backendHealth: backendHealth),
                   ],
                 ),
               ),
@@ -235,6 +244,59 @@ class _HeroSection extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _BackendStatusPill extends StatelessWidget {
+  const _BackendStatusPill({required this.backendHealth});
+
+  final AsyncValue<BackendHealth> backendHealth;
+
+  @override
+  Widget build(BuildContext context) {
+    final (icon, label, color) = backendHealth.when(
+      data: (_) => (
+        Icons.cloud_done_rounded,
+        'Backend online',
+        const Color(0xFF22C55E),
+      ),
+      error: (_, _) => (
+        Icons.cloud_off_rounded,
+        'Backend unavailable',
+        const Color(0xFFF97316),
+      ),
+      loading: () => (
+        Icons.sync_rounded,
+        'Checking backend',
+        const Color(0xFFEAB308),
+      ),
+    );
+
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: BoxDecoration(
+          color: Colors.white.withValues(alpha: 0.16),
+          borderRadius: BorderRadius.circular(999),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.12)),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Icon(icon, size: 14, color: color),
+            const SizedBox(width: 6),
+            Text(
+              label,
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

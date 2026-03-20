@@ -46,28 +46,39 @@ class SubtitleSourcesScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 16),
                 sources.when(
-                  data: (items) => Column(
-                    children: items
-                        .map(
-                          (source) => Padding(
-                            padding: const EdgeInsets.only(bottom: 12),
-                            child: _SourceCard(
-                              source: source,
-                              onTap: () => context.push(
-                                AppRoutes.translateSetup,
-                                extra: TranslationSetupArgs.catalog(
-                                  item: args.item,
-                                  source: source,
-                                  seasonNumber: args.seasonNumber,
-                                  episodeNumber: args.episodeNumber,
-                                  releaseHint: args.releaseHint,
+                  data: (items) {
+                    if (items.isEmpty) {
+                      return StatePanel(
+                        icon: Icons.subtitles_off_rounded,
+                        title: 'No subtitle sources found',
+                        message:
+                            'Try another title, adjust the episode details, or update the release hint.',
+                      );
+                    }
+
+                    return Column(
+                      children: items
+                          .map(
+                            (source) => Padding(
+                              padding: const EdgeInsets.only(bottom: 12),
+                              child: _SourceCard(
+                                source: source,
+                                onTap: () => context.push(
+                                  AppRoutes.translateSetup,
+                                  extra: TranslationSetupArgs.catalog(
+                                    item: args.item,
+                                    source: source,
+                                    seasonNumber: args.seasonNumber,
+                                    episodeNumber: args.episodeNumber,
+                                    releaseHint: args.releaseHint,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        )
-                        .toList(growable: false),
-                  ),
+                          )
+                          .toList(growable: false),
+                    );
+                  },
                   error: (error, stackTrace) => StatePanel(
                     icon: Icons.error_outline_rounded,
                     title: context.t.subtitleSourcesFailedTitle,
@@ -230,7 +241,7 @@ class _SourceCard extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'EN',
+                    _languageBadge(source),
                     style: Theme.of(
                       context,
                     ).textTheme.labelLarge?.copyWith(color: Colors.white),
@@ -290,6 +301,20 @@ class _SourceCard extends StatelessWidget {
       ),
     );
   }
+}
+
+String _languageBadge(SubtitleSource source) {
+  final code = source.languageCode?.trim().toUpperCase();
+  if (code != null && code.isNotEmpty) {
+    return code;
+  }
+
+  final name = source.languageName?.trim();
+  if (name != null && name.length >= 2) {
+    return name.substring(0, 2).toUpperCase();
+  }
+
+  return 'EN';
 }
 
 class _MiniPill extends StatelessWidget {

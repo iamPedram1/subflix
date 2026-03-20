@@ -281,80 +281,93 @@ class SettingsScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 20),
                 Flexible(
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    itemCount: languages.length,
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(height: 8),
-                    itemBuilder: (sheetContext, index) {
-                      final language = languages[index];
-                      final selected =
-                          language == preference.preferredTargetLanguage;
-                      return Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(20),
-                          onTap: () async {
-                            await ref
-                                .read(settingsControllerProvider.notifier)
-                                .setPreferredTargetLanguage(language);
-                            if (sheetContext.mounted) {
-                              Navigator.of(sheetContext).pop();
-                            }
-                          },
-                          child: Ink(
-                            padding: AppInsets.card,
-                            decoration: BoxDecoration(
-                              color: selected
-                                  ? AppColors.primary.withValues(alpha: 0.10)
-                                  : AppColors.surfaceMutedFor(sheetContext),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: List<Widget>.generate(languages.length, (
+                        index,
+                      ) {
+                        final language = languages[index];
+                        final selected =
+                            language == preference.preferredTargetLanguage;
+                        return Padding(
+                          padding: EdgeInsets.only(
+                            bottom: index == languages.length - 1 ? 0 : 8,
+                          ),
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
                               borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                color: selected
-                                    ? AppColors.primary
-                                    : Theme.of(sheetContext).colorScheme.outline
-                                          .withValues(alpha: 0.4),
-                              ),
-                            ),
-                            child: Row(
-                              children: <Widget>[
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text(
-                                        language.label,
-                                        style: Theme.of(
+                              onTap: () async {
+                                await ref
+                                    .read(settingsControllerProvider.notifier)
+                                    .setPreferredTargetLanguage(language);
+                                if (sheetContext.mounted) {
+                                  Navigator.of(sheetContext).pop();
+                                }
+                              },
+                              child: Ink(
+                                padding: AppInsets.card,
+                                decoration: BoxDecoration(
+                                  color: selected
+                                      ? AppColors.primary.withValues(
+                                          alpha: 0.10,
+                                        )
+                                      : AppColors.surfaceMutedFor(
                                           sheetContext,
-                                        ).textTheme.titleMedium,
-                                      ),
-                                      const SizedBox(height: 2),
-                                      Text(
-                                        language.nativeLabel,
-                                        style: Theme.of(sheetContext)
-                                            .textTheme
-                                            .bodySmall
-                                            ?.copyWith(
-                                              color: AppColors.textSecondaryFor(
-                                                sheetContext,
-                                              ),
-                                            ),
-                                      ),
-                                    ],
+                                        ),
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                    color: selected
+                                        ? AppColors.primary
+                                        : Theme.of(
+                                            sheetContext,
+                                          ).colorScheme.outline.withValues(
+                                            alpha: 0.4,
+                                          ),
                                   ),
                                 ),
-                                if (selected)
-                                  const Icon(
-                                    Icons.check_circle_rounded,
-                                    color: AppColors.primary,
-                                  ),
-                              ],
+                                child: Row(
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text(
+                                            language.label,
+                                            style: Theme.of(
+                                              sheetContext,
+                                            ).textTheme.titleMedium,
+                                          ),
+                                          const SizedBox(height: 2),
+                                          Text(
+                                            language.nativeLabel,
+                                            style: Theme.of(sheetContext)
+                                                .textTheme
+                                                .bodySmall
+                                                ?.copyWith(
+                                                  color:
+                                                      AppColors.textSecondaryFor(
+                                                        sheetContext,
+                                                      ),
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    if (selected)
+                                      const Icon(
+                                        Icons.check_circle_rounded,
+                                        color: AppColors.primary,
+                                      ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      }),
+                    ),
                   ),
                 ),
               ],

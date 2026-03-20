@@ -10,6 +10,8 @@ _SubtitleSource _$SubtitleSourceFromJson(Map<String, dynamic> json) =>
     _SubtitleSource(
       id: json['id'] as String,
       label: json['label'] as String,
+      languageCode: json['languageCode'] as String?,
+      languageName: json['languageName'] as String?,
       releaseGroup: json['releaseGroup'] as String,
       format: $enumDecode(_$SubtitleFormatEnumMap, json['format']),
       hearingImpaired: json['hearingImpaired'] as bool,
@@ -22,6 +24,8 @@ Map<String, dynamic> _$SubtitleSourceToJson(_SubtitleSource instance) =>
     <String, dynamic>{
       'id': instance.id,
       'label': instance.label,
+      'languageCode': instance.languageCode,
+      'languageName': instance.languageName,
       'releaseGroup': instance.releaseGroup,
       'format': _$SubtitleFormatEnumMap[instance.format]!,
       'hearingImpaired': instance.hearingImpaired,

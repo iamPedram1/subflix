@@ -4,10 +4,12 @@ const Set<String> _supportedBackendLanguages = <String>{
   'en',
   'es',
   'ar',
+  'fa',
   'fr',
   'de',
   'pt',
   'ja',
+  'zh',
   'ko',
   'hi',
   'tr',
@@ -26,4 +28,3 @@ String resolveAcceptLanguageHeader({Locale? locale}) {
   }
   return 'en';
 }
-

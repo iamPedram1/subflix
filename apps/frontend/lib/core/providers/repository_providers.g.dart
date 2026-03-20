@@ -137,6 +137,92 @@ final class DeviceIdProvider extends $FunctionalProvider<String, String, String>
 
 String _$deviceIdHash() => r'37f380c00b58448ff9e137737191a5b664f82425';
 
+@ProviderFor(authSessionStore)
+const authSessionStoreProvider = AuthSessionStoreProvider._();
+
+final class AuthSessionStoreProvider
+    extends
+        $FunctionalProvider<
+          AuthSessionStore,
+          AuthSessionStore,
+          AuthSessionStore
+        >
+    with $Provider<AuthSessionStore> {
+  const AuthSessionStoreProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'authSessionStoreProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$authSessionStoreHash();
+
+  @$internal
+  @override
+  $ProviderElement<AuthSessionStore> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  AuthSessionStore create(Ref ref) {
+    return authSessionStore(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AuthSessionStore value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AuthSessionStore>(value),
+    );
+  }
+}
+
+String _$authSessionStoreHash() => r'790004618f0e588cf697be539ff5b8f7022c7b67';
+
+@ProviderFor(refreshDio)
+const refreshDioProvider = RefreshDioProvider._();
+
+final class RefreshDioProvider extends $FunctionalProvider<Dio, Dio, Dio>
+    with $Provider<Dio> {
+  const RefreshDioProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'refreshDioProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$refreshDioHash();
+
+  @$internal
+  @override
+  $ProviderElement<Dio> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  Dio create(Ref ref) {
+    return refreshDio(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Dio value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Dio>(value),
+    );
+  }
+}
+
+String _$refreshDioHash() => r'8dea8d6cecb2ffdf03f01c2f3cc8483079480ad7';
+
 @ProviderFor(dio)
 const dioProvider = DioProvider._();
 
@@ -175,7 +261,7 @@ final class DioProvider extends $FunctionalProvider<Dio, Dio, Dio>
   }
 }
 
-String _$dioHash() => r'84495a2fd65edc4c3eaee99c4665f697f5a999c4';
+String _$dioHash() => r'658cc26b3ae03580f4799d10c6a533b5798e48a8';
 
 @ProviderFor(subtitleParser)
 const subtitleParserProvider = SubtitleParserProvider._();
@@ -539,6 +625,88 @@ final class CatalogApiProvider
 
 String _$catalogApiHash() => r'7b68cbb33e48cf33d23634df8b66168cf8f08e04';
 
+@ProviderFor(healthApi)
+const healthApiProvider = HealthApiProvider._();
+
+final class HealthApiProvider
+    extends $FunctionalProvider<HealthApi, HealthApi, HealthApi>
+    with $Provider<HealthApi> {
+  const HealthApiProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'healthApiProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$healthApiHash();
+
+  @$internal
+  @override
+  $ProviderElement<HealthApi> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  HealthApi create(Ref ref) {
+    return healthApi(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(HealthApi value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<HealthApi>(value),
+    );
+  }
+}
+
+String _$healthApiHash() => r'23527110734321710936b4e54be70a6e6cafd10e';
+
+@ProviderFor(authApi)
+const authApiProvider = AuthApiProvider._();
+
+final class AuthApiProvider
+    extends $FunctionalProvider<AuthApi, AuthApi, AuthApi>
+    with $Provider<AuthApi> {
+  const AuthApiProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'authApiProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$authApiHash();
+
+  @$internal
+  @override
+  $ProviderElement<AuthApi> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  AuthApi create(Ref ref) {
+    return authApi(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AuthApi value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AuthApi>(value),
+    );
+  }
+}
+
+String _$authApiHash() => r'fe97432bc17461ebde4a232f1f399cd20c5aa5e4';
+
 @ProviderFor(preferencesApi)
 const preferencesApiProvider = PreferencesApiProvider._();
 
@@ -669,6 +837,47 @@ final class SubtitlesApiProvider
 
 String _$subtitlesApiHash() => r'2a3d29b137048e276cc8a83fc992e53fe12a32e5';
 
+@ProviderFor(authRepository)
+const authRepositoryProvider = AuthRepositoryProvider._();
+
+final class AuthRepositoryProvider
+    extends $FunctionalProvider<AuthRepository, AuthRepository, AuthRepository>
+    with $Provider<AuthRepository> {
+  const AuthRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'authRepositoryProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$authRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<AuthRepository> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  AuthRepository create(Ref ref) {
+    return authRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AuthRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AuthRepository>(value),
+    );
+  }
+}
+
+String _$authRepositoryHash() => r'f461b4d0b41b3def60db7ca440591b32b99d507c';
+
 @ProviderFor(settingsRepository)
 const settingsRepositoryProvider = SettingsRepositoryProvider._();
 
@@ -715,7 +924,7 @@ final class SettingsRepositoryProvider
 }
 
 String _$settingsRepositoryHash() =>
-    r'9f20952f79fcfdde6742cc4169af4686a80283e0';
+    r'3f5a4c4a2c486e282d43df456c1e65a12027bdc4';
 
 @ProviderFor(historyRepository)
 const historyRepositoryProvider = HistoryRepositoryProvider._();
@@ -762,7 +971,7 @@ final class HistoryRepositoryProvider
   }
 }
 
-String _$historyRepositoryHash() => r'1710ede66898e472d1dc21b4d0cffbd97a6d780e';
+String _$historyRepositoryHash() => r'afcddab0cc358a6ce1631e7fbf2e2af9f289efcf';
 
 @ProviderFor(searchRepository)
 const searchRepositoryProvider = SearchRepositoryProvider._();
@@ -808,7 +1017,7 @@ final class SearchRepositoryProvider
   }
 }
 
-String _$searchRepositoryHash() => r'4a606f5973b80427dc5c30ac98c45eb87bd406e9';
+String _$searchRepositoryHash() => r'5296f6e43d98392c654c832f0fa8ec15f8f7bdd7';
 
 @ProviderFor(subtitleImportRepository)
 const subtitleImportRepositoryProvider = SubtitleImportRepositoryProvider._();
@@ -856,7 +1065,7 @@ final class SubtitleImportRepositoryProvider
 }
 
 String _$subtitleImportRepositoryHash() =>
-    r'148a4028cb1bc2efc18e33f9ac22f4cb12f628f1';
+    r'ed6b2fd5fc42a1cec3589f881053dec0489182a9';
 
 @ProviderFor(subtitleExportRepository)
 const subtitleExportRepositoryProvider = SubtitleExportRepositoryProvider._();
@@ -904,7 +1113,7 @@ final class SubtitleExportRepositoryProvider
 }
 
 String _$subtitleExportRepositoryHash() =>
-    r'5844ecbaad9a4976979ade695e658c68cd06e992';
+    r'756eb4c79e4efb157788ee618d78877fed8a3e1f';
 
 @ProviderFor(translationRepository)
 const translationRepositoryProvider = TranslationRepositoryProvider._();
@@ -952,4 +1161,4 @@ final class TranslationRepositoryProvider
 }
 
 String _$translationRepositoryHash() =>
-    r'e9e659bba93e1e79ecbefefba6968157db736f6e';
+    r'39ff15a93f3ff16f126c14ac4753f120f4f85402';

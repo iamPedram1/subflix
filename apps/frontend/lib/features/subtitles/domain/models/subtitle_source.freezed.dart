@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SubtitleSource {
 
- String get id; String get label; String get releaseGroup; SubtitleFormat get format; bool get hearingImpaired; int get lineCount; int get downloads; double get rating;
+ String get id; String get label; String? get languageCode; String? get languageName; String get releaseGroup; SubtitleFormat get format; bool get hearingImpaired; int get lineCount; int get downloads; double get rating;
 /// Create a copy of SubtitleSource
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $SubtitleSourceCopyWith<SubtitleSource> get copyWith => _$SubtitleSourceCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SubtitleSource&&(identical(other.id, id) || other.id == id)&&(identical(other.label, label) || other.label == label)&&(identical(other.releaseGroup, releaseGroup) || other.releaseGroup == releaseGroup)&&(identical(other.format, format) || other.format == format)&&(identical(other.hearingImpaired, hearingImpaired) || other.hearingImpaired == hearingImpaired)&&(identical(other.lineCount, lineCount) || other.lineCount == lineCount)&&(identical(other.downloads, downloads) || other.downloads == downloads)&&(identical(other.rating, rating) || other.rating == rating));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SubtitleSource&&(identical(other.id, id) || other.id == id)&&(identical(other.label, label) || other.label == label)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.languageName, languageName) || other.languageName == languageName)&&(identical(other.releaseGroup, releaseGroup) || other.releaseGroup == releaseGroup)&&(identical(other.format, format) || other.format == format)&&(identical(other.hearingImpaired, hearingImpaired) || other.hearingImpaired == hearingImpaired)&&(identical(other.lineCount, lineCount) || other.lineCount == lineCount)&&(identical(other.downloads, downloads) || other.downloads == downloads)&&(identical(other.rating, rating) || other.rating == rating));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,label,releaseGroup,format,hearingImpaired,lineCount,downloads,rating);
+int get hashCode => Object.hash(runtimeType,id,label,languageCode,languageName,releaseGroup,format,hearingImpaired,lineCount,downloads,rating);
 
 @override
 String toString() {
-  return 'SubtitleSource(id: $id, label: $label, releaseGroup: $releaseGroup, format: $format, hearingImpaired: $hearingImpaired, lineCount: $lineCount, downloads: $downloads, rating: $rating)';
+  return 'SubtitleSource(id: $id, label: $label, languageCode: $languageCode, languageName: $languageName, releaseGroup: $releaseGroup, format: $format, hearingImpaired: $hearingImpaired, lineCount: $lineCount, downloads: $downloads, rating: $rating)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $SubtitleSourceCopyWith<$Res>  {
   factory $SubtitleSourceCopyWith(SubtitleSource value, $Res Function(SubtitleSource) _then) = _$SubtitleSourceCopyWithImpl;
 @useResult
 $Res call({
- String id, String label, String releaseGroup, SubtitleFormat format, bool hearingImpaired, int lineCount, int downloads, double rating
+ String id, String label, String? languageCode, String? languageName, String releaseGroup, SubtitleFormat format, bool hearingImpaired, int lineCount, int downloads, double rating
 });
 
 
@@ -65,11 +65,13 @@ class _$SubtitleSourceCopyWithImpl<$Res>
 
 /// Create a copy of SubtitleSource
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? label = null,Object? releaseGroup = null,Object? format = null,Object? hearingImpaired = null,Object? lineCount = null,Object? downloads = null,Object? rating = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? label = null,Object? languageCode = freezed,Object? languageName = freezed,Object? releaseGroup = null,Object? format = null,Object? hearingImpaired = null,Object? lineCount = null,Object? downloads = null,Object? rating = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,label: null == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
-as String,releaseGroup: null == releaseGroup ? _self.releaseGroup : releaseGroup // ignore: cast_nullable_to_non_nullable
+as String,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
+as String?,languageName: freezed == languageName ? _self.languageName : languageName // ignore: cast_nullable_to_non_nullable
+as String?,releaseGroup: null == releaseGroup ? _self.releaseGroup : releaseGroup // ignore: cast_nullable_to_non_nullable
 as String,format: null == format ? _self.format : format // ignore: cast_nullable_to_non_nullable
 as SubtitleFormat,hearingImpaired: null == hearingImpaired ? _self.hearingImpaired : hearingImpaired // ignore: cast_nullable_to_non_nullable
 as bool,lineCount: null == lineCount ? _self.lineCount : lineCount // ignore: cast_nullable_to_non_nullable
@@ -160,10 +162,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String label,  String releaseGroup,  SubtitleFormat format,  bool hearingImpaired,  int lineCount,  int downloads,  double rating)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String label,  String? languageCode,  String? languageName,  String releaseGroup,  SubtitleFormat format,  bool hearingImpaired,  int lineCount,  int downloads,  double rating)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SubtitleSource() when $default != null:
-return $default(_that.id,_that.label,_that.releaseGroup,_that.format,_that.hearingImpaired,_that.lineCount,_that.downloads,_that.rating);case _:
+return $default(_that.id,_that.label,_that.languageCode,_that.languageName,_that.releaseGroup,_that.format,_that.hearingImpaired,_that.lineCount,_that.downloads,_that.rating);case _:
   return orElse();
 
 }
@@ -181,10 +183,10 @@ return $default(_that.id,_that.label,_that.releaseGroup,_that.format,_that.heari
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String label,  String releaseGroup,  SubtitleFormat format,  bool hearingImpaired,  int lineCount,  int downloads,  double rating)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String label,  String? languageCode,  String? languageName,  String releaseGroup,  SubtitleFormat format,  bool hearingImpaired,  int lineCount,  int downloads,  double rating)  $default,) {final _that = this;
 switch (_that) {
 case _SubtitleSource():
-return $default(_that.id,_that.label,_that.releaseGroup,_that.format,_that.hearingImpaired,_that.lineCount,_that.downloads,_that.rating);case _:
+return $default(_that.id,_that.label,_that.languageCode,_that.languageName,_that.releaseGroup,_that.format,_that.hearingImpaired,_that.lineCount,_that.downloads,_that.rating);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -201,10 +203,10 @@ return $default(_that.id,_that.label,_that.releaseGroup,_that.format,_that.heari
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String label,  String releaseGroup,  SubtitleFormat format,  bool hearingImpaired,  int lineCount,  int downloads,  double rating)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String label,  String? languageCode,  String? languageName,  String releaseGroup,  SubtitleFormat format,  bool hearingImpaired,  int lineCount,  int downloads,  double rating)?  $default,) {final _that = this;
 switch (_that) {
 case _SubtitleSource() when $default != null:
-return $default(_that.id,_that.label,_that.releaseGroup,_that.format,_that.hearingImpaired,_that.lineCount,_that.downloads,_that.rating);case _:
+return $default(_that.id,_that.label,_that.languageCode,_that.languageName,_that.releaseGroup,_that.format,_that.hearingImpaired,_that.lineCount,_that.downloads,_that.rating);case _:
   return null;
 
 }
@@ -216,11 +218,13 @@ return $default(_that.id,_that.label,_that.releaseGroup,_that.format,_that.heari
 @JsonSerializable()
 
 class _SubtitleSource implements SubtitleSource {
-  const _SubtitleSource({required this.id, required this.label, required this.releaseGroup, required this.format, required this.hearingImpaired, required this.lineCount, required this.downloads, required this.rating});
+  const _SubtitleSource({required this.id, required this.label, this.languageCode, this.languageName, required this.releaseGroup, required this.format, required this.hearingImpaired, required this.lineCount, required this.downloads, required this.rating});
   factory _SubtitleSource.fromJson(Map<String, dynamic> json) => _$SubtitleSourceFromJson(json);
 
 @override final  String id;
 @override final  String label;
+@override final  String? languageCode;
+@override final  String? languageName;
 @override final  String releaseGroup;
 @override final  SubtitleFormat format;
 @override final  bool hearingImpaired;
@@ -241,16 +245,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SubtitleSource&&(identical(other.id, id) || other.id == id)&&(identical(other.label, label) || other.label == label)&&(identical(other.releaseGroup, releaseGroup) || other.releaseGroup == releaseGroup)&&(identical(other.format, format) || other.format == format)&&(identical(other.hearingImpaired, hearingImpaired) || other.hearingImpaired == hearingImpaired)&&(identical(other.lineCount, lineCount) || other.lineCount == lineCount)&&(identical(other.downloads, downloads) || other.downloads == downloads)&&(identical(other.rating, rating) || other.rating == rating));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SubtitleSource&&(identical(other.id, id) || other.id == id)&&(identical(other.label, label) || other.label == label)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.languageName, languageName) || other.languageName == languageName)&&(identical(other.releaseGroup, releaseGroup) || other.releaseGroup == releaseGroup)&&(identical(other.format, format) || other.format == format)&&(identical(other.hearingImpaired, hearingImpaired) || other.hearingImpaired == hearingImpaired)&&(identical(other.lineCount, lineCount) || other.lineCount == lineCount)&&(identical(other.downloads, downloads) || other.downloads == downloads)&&(identical(other.rating, rating) || other.rating == rating));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,label,releaseGroup,format,hearingImpaired,lineCount,downloads,rating);
+int get hashCode => Object.hash(runtimeType,id,label,languageCode,languageName,releaseGroup,format,hearingImpaired,lineCount,downloads,rating);
 
 @override
 String toString() {
-  return 'SubtitleSource(id: $id, label: $label, releaseGroup: $releaseGroup, format: $format, hearingImpaired: $hearingImpaired, lineCount: $lineCount, downloads: $downloads, rating: $rating)';
+  return 'SubtitleSource(id: $id, label: $label, languageCode: $languageCode, languageName: $languageName, releaseGroup: $releaseGroup, format: $format, hearingImpaired: $hearingImpaired, lineCount: $lineCount, downloads: $downloads, rating: $rating)';
 }
 
 
@@ -261,7 +265,7 @@ abstract mixin class _$SubtitleSourceCopyWith<$Res> implements $SubtitleSourceCo
   factory _$SubtitleSourceCopyWith(_SubtitleSource value, $Res Function(_SubtitleSource) _then) = __$SubtitleSourceCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String label, String releaseGroup, SubtitleFormat format, bool hearingImpaired, int lineCount, int downloads, double rating
+ String id, String label, String? languageCode, String? languageName, String releaseGroup, SubtitleFormat format, bool hearingImpaired, int lineCount, int downloads, double rating
 });
 
 
@@ -278,11 +282,13 @@ class __$SubtitleSourceCopyWithImpl<$Res>
 
 /// Create a copy of SubtitleSource
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? label = null,Object? releaseGroup = null,Object? format = null,Object? hearingImpaired = null,Object? lineCount = null,Object? downloads = null,Object? rating = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? label = null,Object? languageCode = freezed,Object? languageName = freezed,Object? releaseGroup = null,Object? format = null,Object? hearingImpaired = null,Object? lineCount = null,Object? downloads = null,Object? rating = null,}) {
   return _then(_SubtitleSource(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,label: null == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
-as String,releaseGroup: null == releaseGroup ? _self.releaseGroup : releaseGroup // ignore: cast_nullable_to_non_nullable
+as String,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
+as String?,languageName: freezed == languageName ? _self.languageName : languageName // ignore: cast_nullable_to_non_nullable
+as String?,releaseGroup: null == releaseGroup ? _self.releaseGroup : releaseGroup // ignore: cast_nullable_to_non_nullable
 as String,format: null == format ? _self.format : format // ignore: cast_nullable_to_non_nullable
 as SubtitleFormat,hearingImpaired: null == hearingImpaired ? _self.hearingImpaired : hearingImpaired // ignore: cast_nullable_to_non_nullable
 as bool,lineCount: null == lineCount ? _self.lineCount : lineCount // ignore: cast_nullable_to_non_nullable
