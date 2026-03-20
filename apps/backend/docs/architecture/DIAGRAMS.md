@@ -273,23 +273,23 @@ sequenceDiagram
     Client->>Auth: POST /v1/auth/signup { email, password }
     Auth->>DB: INSERT User + UserIdentity
     Auth->>DB: INSERT EmailVerificationToken (hash)
-    Auth-->>Client: 201 { user, verificationToken }
+    Auth-->>Client: 201 { user, verificationRequired, verificationToken? }
 
     Client->>Auth: POST /v1/auth/confirm-email { token }
     Auth->>DB: SELECT + validate token (not expired, not consumed)
     Auth->>DB: UPDATE emailVerified=true + consumedAt
-    Auth-->>Client: 200 ok
+    Auth-->>Client: 200 { verified: true }
 
     Client->>Auth: POST /v1/auth/signin { email, password }
     Auth->>DB: SELECT User by email
     Auth->>Auth: bcrypt.compare(password, hash)
     Auth->>DB: INSERT RefreshToken (hash + expiresAt)
-    Auth-->>Client: 200 { accessToken (15min JWT), refreshToken (30d) }
+    Auth-->>Client: 201 { user, accessToken, refreshToken, expiresIn, tokenType }
 
     Client->>Auth: POST /v1/auth/refresh { refreshToken }
     Auth->>DB: SELECT RefreshToken by hash
     Auth->>Auth: validate not expired, not revoked
-    Auth-->>Client: 200 { accessToken (new 15min JWT) }
+    Auth-->>Client: 201 { user, accessToken, refreshToken, expiresIn, tokenType }
 ```
 
 ---

@@ -167,6 +167,31 @@ describeIfDatabase('Auth endpoints', () => {
     });
   });
 
+  it('invalidates the active access token after sign out', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+      const { payload } = await signUpAndConfirm(api);
+
+      const signInResponse = await api
+        .post('/v1/auth/signin')
+        .send({ email: payload.email, password: payload.password })
+        .expect(201);
+
+      const refreshToken = signInResponse.body.refreshToken;
+      const accessToken = signInResponse.body.accessToken;
+
+      await api.post('/v1/auth/signout').send({ refreshToken }).expect(200);
+
+      await api
+        .get('/v1/auth/me')
+        .set('authorization', `Bearer ${accessToken}`)
+        .expect(401)
+        .expect(({ body }) => {
+          expect(body.code).toBe('http_error');
+        });
+    });
+  });
+
   it('resets passwords with a valid reset token', async () => {
     await withE2eApp(async (app) => {
       const api = createApiRequest(app);
@@ -203,6 +228,42 @@ describeIfDatabase('Auth endpoints', () => {
         .expect(201)
         .expect(({ body }) => {
           expect(body.accessToken).toBeTruthy();
+        });
+    });
+  });
+
+  it('invalidates the active access token after password reset', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+      const { payload } = await signUpAndConfirm(api);
+
+      const signInResponse = await api
+        .post('/v1/auth/signin')
+        .send({ email: payload.email, password: payload.password })
+        .expect(201);
+
+      const accessToken = signInResponse.body.accessToken;
+      const forgotResponse = await api
+        .post('/v1/auth/forgot-password')
+        .send({ email: payload.email })
+        .expect(200);
+
+      const resetToken = forgotResponse.body.resetToken as string | undefined;
+      if (!resetToken) {
+        throw new Error('Expected resetToken in test environment.');
+      }
+
+      await api
+        .post('/v1/auth/reset-password')
+        .send({ token: resetToken, password: 'ChangeMe789!' })
+        .expect(200);
+
+      await api
+        .get('/v1/auth/me')
+        .set('authorization', `Bearer ${accessToken}`)
+        .expect(401)
+        .expect(({ body }) => {
+          expect(body.code).toBe('http_error');
         });
     });
   });

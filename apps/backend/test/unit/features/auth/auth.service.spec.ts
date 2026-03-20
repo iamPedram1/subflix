@@ -41,28 +41,6 @@ const makeRefreshRecord = (overrides: Record<string, unknown> = {}) => ({
   ...overrides,
 });
 
-const makeVerificationTokenRecord = (overrides: Record<string, unknown> = {}) => ({
-  id: 'vtoken-1',
-  userId: 'user-1',
-  tokenHash: 'hash-vtoken',
-  expiresAt: new Date(Date.now() + 24 * 60 * 60_000),
-  consumedAt: null,
-  createdAt: new Date(),
-  user: makeUser({ emailVerified: false }),
-  ...overrides,
-});
-
-const makePasswordResetRecord = (overrides: Record<string, unknown> = {}) => ({
-  id: 'prtoken-1',
-  userId: 'user-1',
-  tokenHash: 'hash-prtoken',
-  expiresAt: new Date(Date.now() + 2 * 60 * 60_000),
-  consumedAt: null,
-  createdAt: new Date(),
-  user: makeUser({ emailVerified: true }),
-  ...overrides,
-});
-
 // ---------------------------------------------------------------------------
 // Service builder helpers
 // ---------------------------------------------------------------------------
@@ -75,30 +53,40 @@ const makeAuthRepository = (overrides: Partial<AuthRepositoryMock> = {}): AuthRe
   const base: AuthRepositoryMock = {
     findUserByEmail: vi.fn().mockResolvedValue(null),
     findUserById: vi.fn().mockResolvedValue(null),
+    findSessionById: vi.fn().mockResolvedValue(null),
     createUser: vi.fn().mockResolvedValue(makeUser()),
     updateUser: vi.fn().mockResolvedValue(makeUser()),
     findIdentity: vi.fn().mockResolvedValue(null),
     createIdentity: vi.fn().mockResolvedValue({}),
     createRefreshToken: vi.fn().mockResolvedValue(makeRefreshRecord()),
     findRefreshTokenByHash: vi.fn().mockResolvedValue(null),
+    rotateRefreshToken: vi
+      .fn()
+      .mockResolvedValue({ user: makeUser(), refreshRecord: makeRefreshRecord() }),
     revokeRefreshToken: vi.fn().mockResolvedValue({}),
     touchRefreshToken: vi.fn().mockResolvedValue({}),
     revokeAllRefreshTokensForUser: vi.fn().mockResolvedValue(undefined),
     clearEmailVerificationTokens: vi.fn().mockResolvedValue(undefined),
     createEmailVerificationToken: vi.fn().mockResolvedValue({}),
     findEmailVerificationTokenByHash: vi.fn().mockResolvedValue(null),
+    confirmEmailByTokenHash: vi.fn().mockResolvedValue('invalid'),
     consumeEmailVerificationToken: vi.fn().mockResolvedValue({}),
     clearPasswordResetTokens: vi.fn().mockResolvedValue(undefined),
     createPasswordResetToken: vi.fn().mockResolvedValue({}),
     findPasswordResetTokenByHash: vi.fn().mockResolvedValue(null),
+    resetPasswordByTokenHash: vi.fn().mockResolvedValue('invalid'),
     consumePasswordResetToken: vi.fn().mockResolvedValue({}),
   };
   return { ...base, ...overrides } as unknown as AuthRepository;
 };
 
-const makeConfigService = (nodeEnv = 'test'): ConfigService => {
+const makeConfigService = (
+  nodeEnv = 'test',
+  debugTokenEchoEnabled = nodeEnv === 'test',
+): ConfigService => {
   const config: Record<string, unknown> = {
     'app.nodeEnv': nodeEnv,
+    'auth.debugTokenEchoEnabled': debugTokenEchoEnabled,
     'auth.accessTokenTtlSeconds': 900,
     'auth.refreshTokenTtlDays': 30,
     'auth.emailVerificationTokenTtlHours': 24,
@@ -145,7 +133,7 @@ describe('AuthService', () => {
       });
 
       const service = buildService({ authRepository });
-      await service.signUp({ email: '  Alice@EXAMPLE.COM  ', password: 'Password1!' }, meta);
+      await service.signUp({ email: '  Alice@EXAMPLE.COM  ', password: 'Password1!' });
 
       expect(authRepository.findUserByEmail).toHaveBeenCalledWith('alice@example.com');
       expect(authRepository.createUser).toHaveBeenCalledWith(
@@ -160,7 +148,7 @@ describe('AuthService', () => {
 
       const service = buildService({ authRepository });
       await expect(
-        service.signUp({ email: 'alice@example.com', password: 'Password1!' }, meta),
+        service.signUp({ email: 'alice@example.com', password: 'Password1!' }),
       ).rejects.toBeInstanceOf(ConflictDomainError);
     });
 
@@ -172,7 +160,7 @@ describe('AuthService', () => {
       });
 
       const service = buildService({ authRepository });
-      const result = await service.signUp({ email: 'alice@example.com', password: 'Pass1234!' }, meta);
+      const result = await service.signUp({ email: 'alice@example.com', password: 'Pass1234!' });
 
       expect(authRepository.createIdentity).toHaveBeenCalledWith(
         expect.objectContaining({ provider: AuthProvider.email }),
@@ -188,7 +176,7 @@ describe('AuthService', () => {
       });
 
       const service = buildService({ authRepository, configService: makeConfigService('test') });
-      const result = await service.signUp({ email: 'alice@example.com', password: 'Pass1234!' }, meta);
+      const result = await service.signUp({ email: 'alice@example.com', password: 'Pass1234!' });
 
       expect(typeof result.verificationToken).toBe('string');
       expect(result.verificationToken!.length).toBeGreaterThan(10);
@@ -202,9 +190,24 @@ describe('AuthService', () => {
 
       const service = buildService({
         authRepository,
-        configService: makeConfigService('production'),
+        configService: makeConfigService('production', false),
       });
-      const result = await service.signUp({ email: 'alice@example.com', password: 'Pass1234!' }, meta);
+      const result = await service.signUp({ email: 'alice@example.com', password: 'Pass1234!' });
+
+      expect(result.verificationToken).toBeUndefined();
+    });
+
+    it('omits verificationToken when debug token echo is disabled outside test mode', async () => {
+      const authRepository = makeAuthRepository({
+        findUserByEmail: vi.fn().mockResolvedValue(null),
+        createUser: vi.fn().mockResolvedValue(makeUser({ emailVerified: false })),
+      });
+
+      const service = buildService({
+        authRepository,
+        configService: makeConfigService('development', false),
+      });
+      const result = await service.signUp({ email: 'alice@example.com', password: 'Pass1234!' });
 
       expect(result.verificationToken).toBeUndefined();
     });
@@ -216,7 +219,7 @@ describe('AuthService', () => {
       });
 
       const service = buildService({ authRepository });
-      await service.signUp({ email: 'alice@example.com', password: 'PlainText!' }, meta);
+      await service.signUp({ email: 'alice@example.com', password: 'PlainText!' });
 
       const createUserCall = (authRepository.createUser as ReturnType<typeof vi.fn>).mock.calls[0][0];
       expect(createUserCall.passwordHash).toBeDefined();
@@ -230,10 +233,11 @@ describe('AuthService', () => {
       });
 
       const service = buildService({ authRepository });
-      await service.signUp(
-        { email: 'alice@example.com', password: 'Pass1234!', displayName: '  Alice  ' },
-        meta,
-      );
+      await service.signUp({
+        email: 'alice@example.com',
+        password: 'Pass1234!',
+        displayName: '  Alice  ',
+      });
 
       expect(authRepository.createUser).toHaveBeenCalledWith(
         expect.objectContaining({ displayName: 'Alice' }),
@@ -443,7 +447,7 @@ describe('AuthService', () => {
   describe('confirmEmail', () => {
     it('throws ForbiddenDomainError when token record is not found', async () => {
       const authRepository = makeAuthRepository({
-        findEmailVerificationTokenByHash: vi.fn().mockResolvedValue(null),
+        confirmEmailByTokenHash: vi.fn().mockResolvedValue('invalid'),
       });
 
       const service = buildService({ authRepository });
@@ -454,9 +458,7 @@ describe('AuthService', () => {
 
     it('throws ForbiddenDomainError when token has already been consumed', async () => {
       const authRepository = makeAuthRepository({
-        findEmailVerificationTokenByHash: vi.fn().mockResolvedValue(
-          makeVerificationTokenRecord({ consumedAt: new Date() }),
-        ),
+        confirmEmailByTokenHash: vi.fn().mockResolvedValue('invalid'),
       });
 
       const service = buildService({ authRepository });
@@ -467,9 +469,7 @@ describe('AuthService', () => {
 
     it('throws ForbiddenDomainError when token has expired', async () => {
       const authRepository = makeAuthRepository({
-        findEmailVerificationTokenByHash: vi.fn().mockResolvedValue(
-          makeVerificationTokenRecord({ expiresAt: new Date(Date.now() - 1) }),
-        ),
+        confirmEmailByTokenHash: vi.fn().mockResolvedValue('expired'),
       });
 
       const service = buildService({ authRepository });
@@ -478,40 +478,18 @@ describe('AuthService', () => {
       );
     });
 
-    it('marks the user as verified and consumes the token', async () => {
-      const unverifiedUser = makeUser({ emailVerified: false });
+    it('confirms the token through the repository transaction path', async () => {
       const authRepository = makeAuthRepository({
-        findEmailVerificationTokenByHash: vi.fn().mockResolvedValue(
-          makeVerificationTokenRecord({ user: unverifiedUser }),
-        ),
+        confirmEmailByTokenHash: vi.fn().mockResolvedValue('confirmed'),
       });
 
       const service = buildService({ authRepository });
       const result = await service.confirmEmail({ token: 'valid-token' });
 
-      expect(authRepository.updateUser).toHaveBeenCalledWith(
-        unverifiedUser.id,
-        { emailVerified: true },
-      );
-      expect(authRepository.consumeEmailVerificationToken).toHaveBeenCalledWith(
-        'vtoken-1',
+      expect(authRepository.confirmEmailByTokenHash).toHaveBeenCalledWith(
+        expect.any(String),
         expect.any(Date),
       );
-      expect(result.verified).toBe(true);
-    });
-
-    it('skips the updateUser call when user is already verified', async () => {
-      const alreadyVerifiedUser = makeUser({ emailVerified: true });
-      const authRepository = makeAuthRepository({
-        findEmailVerificationTokenByHash: vi.fn().mockResolvedValue(
-          makeVerificationTokenRecord({ user: alreadyVerifiedUser }),
-        ),
-      });
-
-      const service = buildService({ authRepository });
-      const result = await service.confirmEmail({ token: 'valid-token' });
-
-      expect(authRepository.updateUser).not.toHaveBeenCalled();
       expect(result.verified).toBe(true);
     });
   });
@@ -553,7 +531,22 @@ describe('AuthService', () => {
 
       const service = buildService({
         authRepository,
-        configService: makeConfigService('production'),
+        configService: makeConfigService('production', false),
+      });
+      const result = await service.forgotPassword({ email: 'alice@example.com' });
+
+      expect(result.sent).toBe(true);
+      expect(result.resetToken).toBeUndefined();
+    });
+
+    it('omits the reset token when debug token echo is disabled outside test mode', async () => {
+      const authRepository = makeAuthRepository({
+        findUserByEmail: vi.fn().mockResolvedValue(makeUser()),
+      });
+
+      const service = buildService({
+        authRepository,
+        configService: makeConfigService('development', false),
       });
       const result = await service.forgotPassword({ email: 'alice@example.com' });
 
@@ -568,7 +561,7 @@ describe('AuthService', () => {
   describe('resetPassword', () => {
     it('throws ForbiddenDomainError when token record is not found', async () => {
       const authRepository = makeAuthRepository({
-        findPasswordResetTokenByHash: vi.fn().mockResolvedValue(null),
+        resetPasswordByTokenHash: vi.fn().mockResolvedValue('invalid'),
       });
 
       const service = buildService({ authRepository });
@@ -579,9 +572,7 @@ describe('AuthService', () => {
 
     it('throws ForbiddenDomainError when token has already been consumed', async () => {
       const authRepository = makeAuthRepository({
-        findPasswordResetTokenByHash: vi.fn().mockResolvedValue(
-          makePasswordResetRecord({ consumedAt: new Date() }),
-        ),
+        resetPasswordByTokenHash: vi.fn().mockResolvedValue('invalid'),
       });
 
       const service = buildService({ authRepository });
@@ -592,9 +583,7 @@ describe('AuthService', () => {
 
     it('throws ForbiddenDomainError when token has expired', async () => {
       const authRepository = makeAuthRepository({
-        findPasswordResetTokenByHash: vi.fn().mockResolvedValue(
-          makePasswordResetRecord({ expiresAt: new Date(Date.now() - 1) }),
-        ),
+        resetPasswordByTokenHash: vi.fn().mockResolvedValue('expired'),
       });
 
       const service = buildService({ authRepository });
@@ -603,28 +592,20 @@ describe('AuthService', () => {
       ).rejects.toBeInstanceOf(ForbiddenDomainError);
     });
 
-    it('updates the password hash and revokes all existing refresh tokens', async () => {
-      const user = makeUser();
+    it('resets the password through the repository transaction path', async () => {
       const authRepository = makeAuthRepository({
-        findPasswordResetTokenByHash: vi.fn().mockResolvedValue(
-          makePasswordResetRecord({ user }),
-        ),
+        resetPasswordByTokenHash: vi.fn().mockResolvedValue('reset'),
       });
 
       const service = buildService({ authRepository });
       const result = await service.resetPassword({ token: 'valid-token', password: 'NewPass1!' });
 
-      expect(authRepository.updateUser).toHaveBeenCalledWith(
-        user.id,
-        expect.objectContaining({ passwordHash: expect.stringMatching(/^\$2/) }),
-      );
-      expect(authRepository.revokeAllRefreshTokensForUser).toHaveBeenCalledWith(
-        user.id,
-        expect.any(Date),
-      );
-      expect(authRepository.consumePasswordResetToken).toHaveBeenCalledWith(
-        'prtoken-1',
-        expect.any(Date),
+      expect(authRepository.resetPasswordByTokenHash).toHaveBeenCalledWith(
+        expect.objectContaining({
+          tokenHash: expect.any(String),
+          passwordHash: expect.stringMatching(/^\$2/),
+          now: expect.any(Date),
+        }),
       );
       expect(result.reset).toBe(true);
     });
@@ -636,7 +617,7 @@ describe('AuthService', () => {
   describe('refresh', () => {
     it('throws ForbiddenDomainError when the token record is not found', async () => {
       const authRepository = makeAuthRepository({
-        findRefreshTokenByHash: vi.fn().mockResolvedValue(null),
+        rotateRefreshToken: vi.fn().mockResolvedValue(null),
       });
 
       const service = buildService({ authRepository });
@@ -647,10 +628,7 @@ describe('AuthService', () => {
 
     it('throws ForbiddenDomainError when the refresh token has already been revoked', async () => {
       const authRepository = makeAuthRepository({
-        findRefreshTokenByHash: vi.fn().mockResolvedValue({
-          ...makeRefreshRecord({ revokedAt: new Date() }),
-          user: makeUser(),
-        }),
+        rotateRefreshToken: vi.fn().mockResolvedValue(null),
       });
 
       const service = buildService({ authRepository });
@@ -661,10 +639,7 @@ describe('AuthService', () => {
 
     it('throws ForbiddenDomainError when the refresh token has expired', async () => {
       const authRepository = makeAuthRepository({
-        findRefreshTokenByHash: vi.fn().mockResolvedValue({
-          ...makeRefreshRecord({ expiresAt: new Date(Date.now() - 1) }),
-          user: makeUser(),
-        }),
+        rotateRefreshToken: vi.fn().mockResolvedValue(null),
       });
 
       const service = buildService({ authRepository });
@@ -673,22 +648,30 @@ describe('AuthService', () => {
       ).rejects.toBeInstanceOf(ForbiddenDomainError);
     });
 
-    it('issues new tokens and revokes the old refresh token', async () => {
+    it('issues new tokens through the repository rotation path', async () => {
       const user = makeUser();
-      const oldRecord = { ...makeRefreshRecord(), user };
       const newRecord = { ...makeRefreshRecord({ id: 'refresh-rec-2' }) };
 
       const authRepository = makeAuthRepository({
-        findRefreshTokenByHash: vi.fn().mockResolvedValue(oldRecord),
-        createRefreshToken: vi.fn().mockResolvedValue(newRecord),
+        rotateRefreshToken: vi
+          .fn()
+          .mockResolvedValue({ user, refreshRecord: newRecord }),
       });
 
       const service = buildService({ authRepository });
       const result = await service.refresh({ refreshToken: 'valid-token' }, meta);
 
-      expect(authRepository.revokeRefreshToken).toHaveBeenCalledWith(
-        oldRecord.id,
-        expect.any(Date),
+      expect(authRepository.rotateRefreshToken).toHaveBeenCalledWith(
+        expect.objectContaining({
+          tokenHash: expect.any(String),
+          now: expect.any(Date),
+          nextRefreshToken: expect.objectContaining({
+            tokenHash: expect.any(String),
+            expiresAt: expect.any(Date),
+            ipAddress: meta.ipAddress,
+            userAgent: meta.userAgent,
+          }),
+        }),
       );
       expect(result.accessToken).toBeTruthy();
       expect(result.refreshToken).toBeTruthy();

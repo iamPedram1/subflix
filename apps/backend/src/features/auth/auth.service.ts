@@ -44,7 +44,7 @@ export class AuthService {
   private readonly bcryptSaltRounds: number;
   private readonly emailVerificationTokenTtlHours: number;
   private readonly passwordResetTokenTtlHours: number;
-  private readonly nodeEnv: string;
+  private readonly debugTokenEchoEnabled: boolean;
 
   constructor(
     private readonly authRepository: AuthRepository,
@@ -63,14 +63,12 @@ export class AuthService {
       this.configService.get<number>('auth.passwordResetTokenTtlHours') ?? 2;
     this.bcryptSaltRounds =
       this.configService.get<number>('auth.bcryptSaltRounds') ?? 12;
-    this.nodeEnv = this.configService.get<string>('app.nodeEnv') ?? 'development';
+    this.debugTokenEchoEnabled =
+      this.configService.get<boolean>('auth.debugTokenEchoEnabled') ?? false;
   }
 
   /** Registers a new user with email and password. */
-  async signUp(
-    input: AuthSignUpDto,
-    _meta: RequestMeta,
-  ): Promise<AuthSignUpResponse> {
+  async signUp(input: AuthSignUpDto): Promise<AuthSignUpResponse> {
     const email = this.normalizeEmail(input.email);
     const existing = await this.authRepository.findUserByEmail(email);
     if (existing) {
@@ -186,27 +184,19 @@ export class AuthService {
   /** Confirms a user's email using a verification token. */
   async confirmEmail(input: AuthConfirmEmailDto): Promise<{ verified: boolean }> {
     const tokenHash = this.hashToken(input.token);
-    const record =
-      await this.authRepository.findEmailVerificationTokenByHash(tokenHash);
+    const now = new Date();
+    const status = await this.authRepository.confirmEmailByTokenHash(
+      tokenHash,
+      now,
+    );
 
-    if (!record || record.consumedAt) {
+    if (status === 'invalid') {
       throw new ForbiddenDomainError('Invalid verification token.');
     }
 
-    const now = new Date();
-    if (record.expiresAt <= now) {
+    if (status === 'expired') {
       throw new ForbiddenDomainError('Verification token has expired.');
     }
-
-    const user = record.user;
-    if (!user) {
-      throw new ForbiddenDomainError('Invalid verification token.');
-    }
-
-    if (!user.emailVerified) {
-      await this.authRepository.updateUser(user.id, { emailVerified: true });
-    }
-    await this.authRepository.consumeEmailVerificationToken(record.id, now);
 
     return { verified: true };
   }
@@ -232,27 +222,21 @@ export class AuthService {
   /** Resets a user's password using a reset token. */
   async resetPassword(input: AuthResetPasswordDto): Promise<{ reset: boolean }> {
     const tokenHash = this.hashToken(input.token);
-    const record =
-      await this.authRepository.findPasswordResetTokenByHash(tokenHash);
+    const now = new Date();
+    const passwordHash = await hash(input.password, this.bcryptSaltRounds);
+    const status = await this.authRepository.resetPasswordByTokenHash({
+      tokenHash,
+      passwordHash,
+      now,
+    });
 
-    if (!record || record.consumedAt) {
+    if (status === 'invalid') {
       throw new ForbiddenDomainError('Invalid reset token.');
     }
 
-    const now = new Date();
-    if (record.expiresAt <= now) {
+    if (status === 'expired') {
       throw new ForbiddenDomainError('Reset token has expired.');
     }
-
-    const user = record.user;
-    if (!user) {
-      throw new ForbiddenDomainError('Invalid reset token.');
-    }
-
-    const passwordHash = await hash(input.password, this.bcryptSaltRounds);
-    await this.authRepository.updateUser(user.id, { passwordHash });
-    await this.authRepository.consumePasswordResetToken(record.id, now);
-    await this.authRepository.revokeAllRefreshTokensForUser(user.id, now);
 
     return { reset: true };
   }
@@ -260,28 +244,28 @@ export class AuthService {
   /** Refreshes the access token using a valid refresh token. */
   async refresh(input: AuthRefreshDto, meta: RequestMeta): Promise<AuthResponse> {
     const tokenHash = this.hashToken(input.refreshToken);
-    const record = await this.authRepository.findRefreshTokenByHash(tokenHash);
-
-    if (!record || record.revokedAt) {
-      throw new ForbiddenDomainError('Invalid refresh token.');
-    }
-
     const now = new Date();
-    if (record.expiresAt <= now) {
-      throw new ForbiddenDomainError('Refresh token has expired.');
-    }
+    const refreshToken = randomBytes(64).toString('base64url');
+    const nextTokenHash = this.hashToken(refreshToken);
+    const expiresAt = new Date(
+      Date.now() + this.refreshTokenTtlDays * 24 * 60 * 60_000,
+    );
+    const rotation = await this.authRepository.rotateRefreshToken({
+      tokenHash,
+      now,
+      nextRefreshToken: {
+        tokenHash: nextTokenHash,
+        expiresAt,
+        ...(meta.ipAddress ? { ipAddress: meta.ipAddress } : {}),
+        ...(meta.userAgent ? { userAgent: meta.userAgent } : {}),
+      },
+    });
 
-    const user = record.user;
-    if (!user) {
+    if (!rotation) {
       throw new ForbiddenDomainError('Invalid refresh token.');
     }
-
-    const { refreshToken, refreshRecord } = await this.createRefreshToken(
-      user,
-      meta,
-    );
-    await this.authRepository.revokeRefreshToken(record.id, now);
-
+    const refreshRecord = rotation.refreshRecord;
+    const user = rotation.user;
     const accessToken = this.createAccessToken(user, refreshRecord.id);
 
     return {
@@ -366,10 +350,6 @@ export class AuthService {
     return createHash('sha256').update(value).digest('hex');
   }
 
-  private isProduction(): boolean {
-    return this.nodeEnv === 'production';
-  }
-
   private async issueEmailVerification(user: User): Promise<string | undefined> {
     await this.authRepository.clearEmailVerificationTokens(user.id);
 
@@ -385,7 +365,7 @@ export class AuthService {
       expiresAt,
     });
 
-    return this.isProduction() ? undefined : token;
+    return this.debugTokenEchoEnabled ? token : undefined;
   }
 
   private async issuePasswordReset(user: User): Promise<string | undefined> {
@@ -403,6 +383,6 @@ export class AuthService {
       expiresAt,
     });
 
-    return this.isProduction() ? undefined : token;
+    return this.debugTokenEchoEnabled ? token : undefined;
   }
 }

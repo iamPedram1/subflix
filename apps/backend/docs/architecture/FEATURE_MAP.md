@@ -34,7 +34,7 @@ This document describes each feature module in the codebase: what problem it sol
 **Problem it solves:** Issues JWT access/refresh tokens for email/password accounts and Firebase OAuth identities. Manages email verification and password reset.
 
 **Key files:**
-- [src/features/auth/auth.controller.ts](../src/features/auth/auth.controller.ts) — 8 routes
+- [src/features/auth/auth.controller.ts](../src/features/auth/auth.controller.ts) — 9 routes
 - [src/features/auth/auth.service.ts](../src/features/auth/auth.service.ts) — sign-up, sign-in, refresh, forgot/reset password, sign-out, me
 - [src/features/auth/auth.repository.ts](../src/features/auth/auth.repository.ts) — User, UserIdentity, token persistence
 - [src/features/auth/firebase-auth.service.ts](../src/features/auth/firebase-auth.service.ts) — Firebase Admin SDK wrapper

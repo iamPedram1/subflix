@@ -96,6 +96,7 @@ export class TranslationJobsService {
   /** Recreates a translation job using the original source context and target language. */
   async retryJob(device: ClientDevice, jobId: string) {
     const job = await this.getOwnedJob(device.id, jobId);
+    this.ensureJobIsRetryable(job);
     return this.createJob(device, this.toRetryRequest(job));
   }
 
@@ -251,6 +252,18 @@ export class TranslationJobsService {
         {
           key: 'errors.translation.export_requires_completion',
         },
+      );
+    }
+  }
+
+  /** Guards retry so active jobs cannot be duplicated into extra work. */
+  private ensureJobIsRetryable(job: OwnedJob): void {
+    if (
+      job.status === PrismaTranslationJobStatus.queued ||
+      job.status === PrismaTranslationJobStatus.translating
+    ) {
+      throw new ValidationDomainError(
+        'Only completed or failed translation jobs can be retried.',
       );
     }
   }

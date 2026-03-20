@@ -9,13 +9,26 @@ import { AuthService } from 'features/auth/auth.service';
 import { FirebaseAuthService } from 'features/auth/firebase-auth.service';
 import { AccessTokenGuard } from 'features/auth/guards/access-token.guard';
 
+const MINIMUM_JWT_SECRET_LENGTH = 32;
+
 @Module({
   imports: [
     PrismaModule,
     JwtModule.registerAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
-        secret: configService.get<string>('auth.jwtSecret') ?? '',
+        secret: (() => {
+          const secret = configService.get<string>('auth.jwtSecret') ?? '';
+          const nodeEnv = configService.get<string>('app.nodeEnv') ?? 'development';
+
+          if (nodeEnv !== 'test' && secret.trim().length < MINIMUM_JWT_SECRET_LENGTH) {
+            throw new Error(
+              `AUTH_JWT_SECRET must be at least ${MINIMUM_JWT_SECRET_LENGTH} characters outside test mode.`,
+            );
+          }
+
+          return secret;
+        })(),
       }),
     }),
   ],

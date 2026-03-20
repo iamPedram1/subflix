@@ -7,7 +7,11 @@ import { SubtitleFormat } from 'common/domain/enums/subtitle-format.enum';
 import { SubtitleSourceCandidate } from 'features/catalog/models/subtitle-source-candidate.model';
 import { SubtitleSourceSearchInput } from 'features/catalog/models/subtitle-source-search-input.model';
 import { SubtitleSourceProvider } from 'features/catalog/ports/subtitle-source-provider.port';
-import { fetchWithTimeout } from 'features/catalog/utils/provider-fetch.util';
+import {
+  fetchWithTimeout,
+  readResponseText,
+} from 'features/catalog/utils/provider-fetch.util';
+import { assertAllowedDownloadUrl } from 'features/catalog/utils/subtitle-download.util';
 
 type TvShowMatch = {
   href: string;
@@ -54,6 +58,11 @@ export class TvSubsSubtitleSourceProvider implements SubtitleSourceProvider {
         timeoutMs:
           this.configService.get<number>('subtitleSources.tvsubs.timeoutMs') ??
           10_000,
+        maxRedirects:
+          this.configService.get<number>('subtitleSources.maxRedirects') ?? 3,
+        validateRedirectUrl: ({ redirectUrl }) => {
+          assertAllowedDownloadUrl(redirectUrl, new URL(baseUrl));
+        },
       },
     );
 
@@ -63,7 +72,12 @@ export class TvSubsSubtitleSourceProvider implements SubtitleSourceProvider {
       );
     }
 
-    const searchHtml = await searchResponse.text();
+    const searchHtml = await readResponseText(searchResponse, {
+      maxBytes:
+        this.configService.get<number>('subtitleSources.pageMaxBytes') ??
+        512 * 1024,
+      tooLargeMessage: 'Subtitle provider page exceeds the maximum allowed size.',
+    });
     const show = this.selectBestShow(searchHtml, input);
     if (!show) {
       return [];
@@ -81,6 +95,11 @@ export class TvSubsSubtitleSourceProvider implements SubtitleSourceProvider {
         timeoutMs:
           this.configService.get<number>('subtitleSources.tvsubs.timeoutMs') ??
           10_000,
+        maxRedirects:
+          this.configService.get<number>('subtitleSources.maxRedirects') ?? 3,
+        validateRedirectUrl: ({ redirectUrl }) => {
+          assertAllowedDownloadUrl(redirectUrl, new URL(baseUrl));
+        },
       },
     );
 
@@ -91,7 +110,13 @@ export class TvSubsSubtitleSourceProvider implements SubtitleSourceProvider {
     }
 
     return this.parseSeasonPage(
-      await seasonResponse.text(),
+      await readResponseText(seasonResponse, {
+        maxBytes:
+          this.configService.get<number>('subtitleSources.pageMaxBytes') ??
+          512 * 1024,
+        tooLargeMessage:
+          'Subtitle provider page exceeds the maximum allowed size.',
+      }),
       input,
       baseUrl,
       show,

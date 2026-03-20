@@ -45,12 +45,18 @@ export class AccessTokenGuard implements CanActivate {
       throw new UnauthorizedException('Invalid access token.');
     }
 
-    const user = await this.authRepository.findUserById(payload.sub);
-    if (!user) {
+    const session = await this.authRepository.findSessionById(payload.sessionId);
+    if (
+      !session ||
+      session.userId !== payload.sub ||
+      session.revokedAt !== null ||
+      session.expiresAt <= new Date() ||
+      !session.user
+    ) {
       throw new UnauthorizedException('Invalid access token.');
     }
 
-    request.user = user;
+    request.user = session.user;
     return true;
   }
 }

@@ -7,7 +7,11 @@ import { SubtitleFormat } from 'common/domain/enums/subtitle-format.enum';
 import { SubtitleSourceCandidate } from 'features/catalog/models/subtitle-source-candidate.model';
 import { SubtitleSourceSearchInput } from 'features/catalog/models/subtitle-source-search-input.model';
 import { SubtitleSourceProvider } from 'features/catalog/ports/subtitle-source-provider.port';
-import { fetchWithTimeout } from 'features/catalog/utils/provider-fetch.util';
+import {
+  fetchWithTimeout,
+  readResponseText,
+} from 'features/catalog/utils/provider-fetch.util';
+import { assertAllowedDownloadUrl } from 'features/catalog/utils/subtitle-download.util';
 
 const normalizeLanguageCode = (value: string): string => {
   return value.trim().toLowerCase().replace(/_/g, '-');
@@ -49,6 +53,11 @@ export class PodnapisiSubtitleSourceProvider implements SubtitleSourceProvider {
       timeoutMs:
         this.configService.get<number>('subtitleSources.podnapisi.timeoutMs') ??
         10_000,
+      maxRedirects:
+        this.configService.get<number>('subtitleSources.maxRedirects') ?? 3,
+      validateRedirectUrl: ({ redirectUrl }) => {
+        assertAllowedDownloadUrl(redirectUrl, new URL(baseUrl));
+      },
     });
 
     if (!response.ok) {
@@ -57,7 +66,12 @@ export class PodnapisiSubtitleSourceProvider implements SubtitleSourceProvider {
       );
     }
 
-    const html = await response.text();
+    const html = await readResponseText(response, {
+      maxBytes:
+        this.configService.get<number>('subtitleSources.pageMaxBytes') ??
+        512 * 1024,
+      tooLargeMessage: 'Subtitle provider page exceeds the maximum allowed size.',
+    });
     const $ = load(html);
     const rows = $('tr.subtitle-entry');
     if (!rows.length) {

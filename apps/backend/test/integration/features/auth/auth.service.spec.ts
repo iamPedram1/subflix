@@ -52,7 +52,6 @@ describeIfDatabase('AuthService integration', () => {
   it('registers a new user, requires email verification, and returns a token in non-production', async () => {
     const result = await service.signUp(
       { email: 'alice@example.com', password: 'Password1!', displayName: 'Alice' },
-      meta,
     );
 
     expect(result.verificationRequired).toBe(true);
@@ -63,17 +62,17 @@ describeIfDatabase('AuthService integration', () => {
   });
 
   it('normalizes the email to lowercase before persisting', async () => {
-    await service.signUp({ email: '  ALICE@EXAMPLE.COM  ', password: 'Password1!' }, meta);
+    await service.signUp({ email: '  ALICE@EXAMPLE.COM  ', password: 'Password1!' });
 
     const user = await prisma.user.findUnique({ where: { email: 'alice@example.com' } });
     expect(user).not.toBeNull();
   });
 
   it('throws ConflictDomainError when the email is already registered', async () => {
-    await service.signUp({ email: 'bob@example.com', password: 'Password1!' }, meta);
+    await service.signUp({ email: 'bob@example.com', password: 'Password1!' });
 
     await expect(
-      service.signUp({ email: 'bob@example.com', password: 'Password1!' }, meta),
+      service.signUp({ email: 'bob@example.com', password: 'Password1!' }),
     ).rejects.toBeInstanceOf(ConflictDomainError);
   });
 
@@ -84,7 +83,6 @@ describeIfDatabase('AuthService integration', () => {
   it('marks the user as verified after confirming the email token', async () => {
     const signUpResult = await service.signUp(
       { email: 'carol@example.com', password: 'Password1!' },
-      meta,
     );
     const token = signUpResult.verificationToken!;
 
@@ -99,7 +97,6 @@ describeIfDatabase('AuthService integration', () => {
   it('rejects a verification token that has already been consumed', async () => {
     const signUpResult = await service.signUp(
       { email: 'dave@example.com', password: 'Password1!' },
-      meta,
     );
     const token = signUpResult.verificationToken!;
 
@@ -108,12 +105,27 @@ describeIfDatabase('AuthService integration', () => {
     await expect(service.confirmEmail({ token })).rejects.toBeInstanceOf(ForbiddenDomainError);
   });
 
+  it('allows only one concurrent email confirmation for the same token', async () => {
+    const signUpResult = await service.signUp(
+      { email: 'dave-race@example.com', password: 'Password1!' },
+    );
+    const token = signUpResult.verificationToken!;
+
+    const results = await Promise.allSettled([
+      service.confirmEmail({ token }),
+      service.confirmEmail({ token }),
+    ]);
+
+    expect(results.filter((result) => result.status === 'fulfilled')).toHaveLength(1);
+    expect(results.filter((result) => result.status === 'rejected')).toHaveLength(1);
+  });
+
   // -------------------------------------------------------------------------
   // signIn
   // -------------------------------------------------------------------------
 
   it('throws ForbiddenDomainError when signing in before email verification', async () => {
-    await service.signUp({ email: 'eve@example.com', password: 'Password1!' }, meta);
+    await service.signUp({ email: 'eve@example.com', password: 'Password1!' });
 
     await expect(
       service.signIn({ email: 'eve@example.com', password: 'Password1!' }, meta),
@@ -123,7 +135,6 @@ describeIfDatabase('AuthService integration', () => {
   it('issues access and refresh tokens after email verification', async () => {
     const signUpResult = await service.signUp(
       { email: 'frank@example.com', password: 'Password1!' },
-      meta,
     );
     await service.confirmEmail({ token: signUpResult.verificationToken! });
 
@@ -141,7 +152,6 @@ describeIfDatabase('AuthService integration', () => {
   it('throws ForbiddenDomainError for an incorrect password', async () => {
     const signUpResult = await service.signUp(
       { email: 'grace@example.com', password: 'Password1!' },
-      meta,
     );
     await service.confirmEmail({ token: signUpResult.verificationToken! });
 
@@ -157,7 +167,6 @@ describeIfDatabase('AuthService integration', () => {
   it('rotates the refresh token on use and rejects the old one', async () => {
     const { verificationToken } = await service.signUp(
       { email: 'henry@example.com', password: 'Password1!' },
-      meta,
     );
     await service.confirmEmail({ token: verificationToken! });
     const { refreshToken: originalToken } = await service.signIn(
@@ -175,6 +184,25 @@ describeIfDatabase('AuthService integration', () => {
     ).rejects.toBeInstanceOf(ForbiddenDomainError);
   });
 
+  it('allows only one concurrent refresh for the same refresh token', async () => {
+    const { verificationToken } = await service.signUp(
+      { email: 'henry-race@example.com', password: 'Password1!' },
+    );
+    await service.confirmEmail({ token: verificationToken! });
+    const { refreshToken } = await service.signIn(
+      { email: 'henry-race@example.com', password: 'Password1!' },
+      meta,
+    );
+
+    const results = await Promise.allSettled([
+      service.refresh({ refreshToken }, meta),
+      service.refresh({ refreshToken }, meta),
+    ]);
+
+    expect(results.filter((result) => result.status === 'fulfilled')).toHaveLength(1);
+    expect(results.filter((result) => result.status === 'rejected')).toHaveLength(1);
+  });
+
   // -------------------------------------------------------------------------
   // signOut
   // -------------------------------------------------------------------------
@@ -182,7 +210,6 @@ describeIfDatabase('AuthService integration', () => {
   it('revokes the refresh token on sign-out so it cannot be reused', async () => {
     const { verificationToken } = await service.signUp(
       { email: 'iris@example.com', password: 'Password1!' },
-      meta,
     );
     await service.confirmEmail({ token: verificationToken! });
     const { refreshToken } = await service.signIn(
@@ -216,7 +243,6 @@ describeIfDatabase('AuthService integration', () => {
   it('allows signing in with a new password after a successful reset', async () => {
     const { verificationToken } = await service.signUp(
       { email: 'jake@example.com', password: 'OldPass1!' },
-      meta,
     );
     await service.confirmEmail({ token: verificationToken! });
 
@@ -238,10 +264,29 @@ describeIfDatabase('AuthService integration', () => {
     expect(signInResult.accessToken).toBeTruthy();
   });
 
+  it('allows only one concurrent password reset for the same token', async () => {
+    const { verificationToken } = await service.signUp(
+      { email: 'jake-race@example.com', password: 'OldPass1!' },
+    );
+    await service.confirmEmail({ token: verificationToken! });
+
+    const { resetToken } = await service.forgotPassword({
+      email: 'jake-race@example.com',
+    });
+    expect(resetToken).toBeTruthy();
+
+    const results = await Promise.allSettled([
+      service.resetPassword({ token: resetToken!, password: 'NewPass2!' }),
+      service.resetPassword({ token: resetToken!, password: 'OtherPass3!' }),
+    ]);
+
+    expect(results.filter((result) => result.status === 'fulfilled')).toHaveLength(1);
+    expect(results.filter((result) => result.status === 'rejected')).toHaveLength(1);
+  });
+
   it('revokes all active sessions when the password is reset', async () => {
     const { verificationToken } = await service.signUp(
       { email: 'karen@example.com', password: 'OldPass1!' },
-      meta,
     );
     await service.confirmEmail({ token: verificationToken! });
 
@@ -262,7 +307,6 @@ describeIfDatabase('AuthService integration', () => {
   it('rejects a password reset token that has already been consumed', async () => {
     const { verificationToken } = await service.signUp(
       { email: 'lena@example.com', password: 'OldPass1!' },
-      meta,
     );
     await service.confirmEmail({ token: verificationToken! });
 

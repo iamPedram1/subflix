@@ -12,6 +12,7 @@ export const buildSubtitleSourceCacheKey = (
   const season = input.seasonNumber ?? 'none';
   const episode = input.episodeNumber ?? 'none';
   const language = encodeURIComponent(input.preferredLanguage);
+  const releaseHint = normalizeTextPart(input.releaseHints?.[0]);
 
   if (input.tmdbId || input.imdbId) {
     return [
@@ -22,6 +23,7 @@ export const buildSubtitleSourceCacheKey = (
       `s:${season}`,
       `e:${episode}`,
       `lang:${language}`,
+      `hint:${releaseHint}`,
     ].join(':');
   }
 
@@ -34,5 +36,6 @@ export const buildSubtitleSourceCacheKey = (
     `s:${season}`,
     `e:${episode}`,
     `lang:${language}`,
+    `hint:${releaseHint}`,
   ].join(':');
 };

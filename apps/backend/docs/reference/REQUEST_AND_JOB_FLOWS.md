@@ -22,10 +22,11 @@ AuthService.signUp()
   │ 2. Check if email already exists → ConflictDomainError if so
   │ 3. bcrypt.hash(password, saltRounds)
   │ 4. Create User + UserIdentity (provider=email) in DB
-  │ 5. Generate email verification token (UUID), store hash in EmailVerificationToken
-  │ 6. Return { user, verificationToken } (token returned in response for dev; needs email in prod)
+  │ 5. Generate email verification token (opaque token), store hash in EmailVerificationToken
+  │ 6. Return { user, verificationRequired, verificationToken? }
   ▼
-Client receives 201 with user object + verificationToken
+Client receives 201 with user object + verificationRequired
+  (verificationToken is echoed only when debug token echo is enabled)
 ```
 
 ### Sign-In
@@ -41,8 +42,8 @@ AuthService.signIn()
   │ 2. Reject if emailVerified = false
   │ 3. bcrypt.compare(password, user.passwordHash)
   │ 4. Generate JWT access token (15min TTL)
-  │ 5. Generate refresh token (UUID), store hash + expiresAt in RefreshToken
-  │ 6. Return { accessToken, refreshToken, user }
+  │ 5. Generate refresh token (opaque token), store hash + expiresAt in RefreshToken
+  │ 6. Return { user, accessToken, refreshToken, expiresIn, tokenType }
   ▼
 Client stores tokens; uses accessToken in Authorization header
 ```

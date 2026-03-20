@@ -67,13 +67,31 @@ export const readResponseBuffer = async (
     throw new Error('Subtitle download exceeds the maximum allowed size.');
   }
 
-  const arrayBuffer = await response.arrayBuffer();
-  const buffer = Buffer.from(arrayBuffer);
-  if (buffer.length > maxBytes) {
-    throw new Error('Subtitle download exceeds the maximum allowed size.');
+  if (!response.body) {
+    return Buffer.alloc(0);
   }
 
-  return buffer;
+  const reader = response.body.getReader();
+  const chunks: Buffer[] = [];
+  let totalBytes = 0;
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) {
+      break;
+    }
+
+    const chunk = Buffer.from(value);
+    totalBytes += chunk.length;
+    if (totalBytes > maxBytes) {
+      await reader.cancel('Subtitle download exceeds the maximum allowed size.');
+      throw new Error('Subtitle download exceeds the maximum allowed size.');
+    }
+
+    chunks.push(chunk);
+  }
+
+  return Buffer.concat(chunks, totalBytes);
 };
 
 export const assertNotHtmlPayload = (bytes: Buffer): void => {

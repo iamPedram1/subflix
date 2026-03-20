@@ -23,12 +23,12 @@ sequenceDiagram
     S->>S: bcrypt.hash(password, 12 rounds)
     S->>DB: INSERT User + UserIdentity (provider=email)
     S->>DB: INSERT EmailVerificationToken (hash only)
-    S-->>C: 201 { user, verificationToken }
+    S-->>C: 201 { user, verificationRequired, verificationToken? }
 
     C->>S: POST /v1/auth/confirm-email { token }
     S->>DB: SELECT token WHERE not consumed + not expired
     S->>DB: UPDATE emailVerified=true, consumedAt=now
-    S-->>C: 200 ok
+    S-->>C: 200 { verified: true }
 
     Note over C,S: User can now sign in
 ```
@@ -47,13 +47,13 @@ sequenceDiagram
     S->>DB: SELECT User by email (emailVerified=true required)
     S->>S: bcrypt.compare(password, hash)
     S->>DB: INSERT RefreshToken (hash, expiresAt=+30d)
-    S-->>C: 200 { accessToken (15min JWT), refreshToken (30d UUID) }
+    S-->>C: 201 { user, accessToken, refreshToken, expiresIn, tokenType }
 
     Note over C: accessToken expires
     C->>S: POST /v1/auth/refresh { refreshToken }
     S->>DB: SELECT RefreshToken by hash
     S->>S: validate: not expired, not revoked
-    S-->>C: 200 { accessToken (new 15min JWT) }
+    S-->>C: 201 { user, accessToken, refreshToken, expiresIn, tokenType }
 ```
 
 ---

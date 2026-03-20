@@ -11,7 +11,7 @@ Production-oriented NestJS backend for the SubFlix subtitle translation app.
 - Parses subtitle files on the backend and stores normalized cues
 - Creates async translation jobs with persisted progress and stage labels
 - Exposes history, job status polling, preview, export, retry, and preferences APIs
-- Scopes user-owned data with the `x-device-id` header until real auth is added
+- Scopes device-owned data with the `x-device-id` header; authenticated user ownership is not wired into those flows yet
 
 ## Stack
 
@@ -65,11 +65,15 @@ MAX_UPLOAD_BYTES=2097152
 TMDB_API_READ_TOKEN=your_tmdb_read_token
 SUBDL_API_KEY=your_subdl_api_key
 AUTH_JWT_SECRET=replace_with_secure_secret
+AUTH_DEBUG_TOKEN_ECHO=false
 AUTH_ACCESS_TOKEN_TTL_SECONDS=900
 AUTH_REFRESH_TOKEN_TTL_DAYS=30
 AUTH_EMAIL_VERIFICATION_TTL_HOURS=24
 AUTH_PASSWORD_RESET_TTL_HOURS=2
 AUTH_BCRYPT_SALT_ROUNDS=12
+SUBTITLE_PROVIDER_PAGE_MAX_BYTES=524288
+SUBTITLE_PROVIDER_API_RESPONSE_MAX_BYTES=524288
+SUBTITLE_PROVIDER_MAX_REDIRECTS=3
 FIREBASE_PROJECT_ID=your_firebase_project_id
 FIREBASE_CLIENT_EMAIL=your_firebase_client_email
 FIREBASE_PRIVATE_KEY=your_firebase_private_key

@@ -7,7 +7,10 @@ import {
   DownloadSubtitleFileInput,
   DownloadedSubtitlePayload,
 } from 'features/catalog/ports/catalog-subtitle-file-provider.port';
-import { fetchWithTimeout } from 'features/catalog/utils/provider-fetch.util';
+import {
+  fetchWithTimeout,
+  readResponseText,
+} from 'features/catalog/utils/provider-fetch.util';
 import {
   assertLooksLikeBinarySubtitleResponse,
   assertAllowedDownloadUrl,
@@ -83,6 +86,13 @@ export class SubdlSubtitleFileProvider implements CatalogSubtitleFileProvider {
 
     const pageResponse = await fetchWithTimeout(pageUrl.toString(), {
       timeoutMs,
+      maxRedirects:
+        this.configService.get<number>('subtitleSources.maxRedirects') ?? 3,
+      validateRedirectUrl: ({ redirectUrl }) => {
+        if (!isAllowedSubdlUrl(redirectUrl)) {
+          throw new Error('SubDL subtitle source URL is not allowed.');
+        }
+      },
       headers: {
         Accept:
           'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -95,7 +105,12 @@ export class SubdlSubtitleFileProvider implements CatalogSubtitleFileProvider {
       );
     }
 
-    const html = await pageResponse.text();
+    const html = await readResponseText(pageResponse, {
+      maxBytes:
+        this.configService.get<number>('subtitleSources.pageMaxBytes') ??
+        512 * 1024,
+      tooLargeMessage: 'Subtitle provider page exceeds the maximum allowed size.',
+    });
     const downloadUrl = resolveDownloadUrlFromPage(html, pageUrl);
     if (!downloadUrl) {
       throw new Error('SubDL download link was not found.');
@@ -104,6 +119,11 @@ export class SubdlSubtitleFileProvider implements CatalogSubtitleFileProvider {
 
     const downloadResponse = await fetchWithTimeout(downloadUrl.toString(), {
       timeoutMs,
+      maxRedirects:
+        this.configService.get<number>('subtitleSources.maxRedirects') ?? 3,
+      validateRedirectUrl: ({ redirectUrl }) => {
+        assertAllowedDownloadUrl(redirectUrl, pageUrl);
+      },
       headers: {
         Accept: '*/*',
       },

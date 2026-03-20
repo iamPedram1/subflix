@@ -5,6 +5,25 @@ const parseNumber = (value: string | undefined, fallback: number): number => {
   return Number.isFinite(parsed) ? parsed : fallback;
 };
 
+const parseBoolean = (
+  value: string | undefined,
+  fallback: boolean,
+): boolean => {
+  if (value === undefined) {
+    return fallback;
+  }
+
+  const normalized = value.trim().toLowerCase();
+  if (['true', '1', 'yes', 'on'].includes(normalized)) {
+    return true;
+  }
+  if (['false', '0', 'no', 'off'].includes(normalized)) {
+    return false;
+  }
+
+  return fallback;
+};
+
 export const appConfig = registerAs('app', () => ({
   nodeEnv: process.env.NODE_ENV ?? 'development',
   port: parseNumber(process.env.PORT, 3000),
@@ -65,10 +84,19 @@ export const subtitleSourcesConfig = registerAs('subtitleSources', () => ({
     process.env.SUBTITLE_DOWNLOAD_MAX_BYTES,
     5 * 1024 * 1024,
   ),
+  pageMaxBytes: parseNumber(
+    process.env.SUBTITLE_PROVIDER_PAGE_MAX_BYTES,
+    512 * 1024,
+  ),
+  apiResponseMaxBytes: parseNumber(
+    process.env.SUBTITLE_PROVIDER_API_RESPONSE_MAX_BYTES,
+    512 * 1024,
+  ),
   zipMaxExtractedBytes: parseNumber(
     process.env.SUBTITLE_ZIP_MAX_EXTRACTED_BYTES,
     10 * 1024 * 1024,
   ),
+  maxRedirects: parseNumber(process.env.SUBTITLE_PROVIDER_MAX_REDIRECTS, 3),
   providerFailureThreshold: parseNumber(
     process.env.SUBTITLE_PROVIDER_FAILURE_THRESHOLD,
     3,
@@ -113,6 +141,10 @@ export const subtitleAlignmentConfig = registerAs('subtitleAlignment', () => ({
 
 export const authConfig = registerAs('auth', () => ({
   jwtSecret: process.env.AUTH_JWT_SECRET ?? '',
+  debugTokenEchoEnabled: parseBoolean(
+    process.env.AUTH_DEBUG_TOKEN_ECHO,
+    (process.env.NODE_ENV ?? 'development') === 'test',
+  ),
   accessTokenTtlSeconds: parseNumber(
     process.env.AUTH_ACCESS_TOKEN_TTL_SECONDS,
     15 * 60,

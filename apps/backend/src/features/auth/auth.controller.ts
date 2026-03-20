@@ -33,8 +33,8 @@ export class AuthController {
   /** Registers a new user with email and password. */
   @Post('signup')
   @RateLimit({ limit: 10, windowMs: 15 * 60_000, key: 'auth-signup' })
-  signUp(@Body() body: AuthSignUpDto, @Req() request: Request) {
-    return this.authService.signUp(body, this.getRequestMeta(request));
+  signUp(@Body() body: AuthSignUpDto) {
+    return this.authService.signUp(body);
   }
 
   /** Confirms a user's email with a verification token. */

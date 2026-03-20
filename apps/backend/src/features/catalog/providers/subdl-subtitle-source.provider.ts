@@ -6,7 +6,10 @@ import { SubtitleFormat } from 'common/domain/enums/subtitle-format.enum';
 import { SubtitleSourceCandidate } from 'features/catalog/models/subtitle-source-candidate.model';
 import { SubtitleSourceSearchInput } from 'features/catalog/models/subtitle-source-search-input.model';
 import { SubtitleSourceProvider } from 'features/catalog/ports/subtitle-source-provider.port';
-import { fetchWithTimeout } from 'features/catalog/utils/provider-fetch.util';
+import {
+  fetchWithTimeout,
+  readResponseJson,
+} from 'features/catalog/utils/provider-fetch.util';
 
 type SubdlResponse = {
   status?: boolean;
@@ -164,6 +167,8 @@ export class SubdlSubtitleSourceProvider implements SubtitleSourceProvider {
       timeoutMs:
         this.configService.get<number>('subtitleSources.subdl.timeoutMs') ??
         7_000,
+      maxRedirects:
+        this.configService.get<number>('subtitleSources.maxRedirects') ?? 3,
       headers: {
         Accept: 'application/json',
       },
@@ -173,7 +178,13 @@ export class SubdlSubtitleSourceProvider implements SubtitleSourceProvider {
       throw new Error(`SubDL request failed with status ${response.status}.`);
     }
 
-    const payload = (await response.json()) as SubdlResponse;
+    const payload = await readResponseJson<SubdlResponse>(response, {
+      maxBytes:
+        this.configService.get<number>('subtitleSources.apiResponseMaxBytes') ??
+        512 * 1024,
+      tooLargeMessage: 'Subtitle provider response exceeds the maximum allowed size.',
+      invalidJsonMessage: 'Subtitle provider returned invalid JSON.',
+    });
     if (payload.status === false || (payload.statusCode ?? 200) >= 400) {
       throw new Error(
         payload.message ?? 'SubDL returned a non-success response.',

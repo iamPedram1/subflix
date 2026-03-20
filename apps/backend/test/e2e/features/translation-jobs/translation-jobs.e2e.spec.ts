@@ -41,6 +41,21 @@ describeIfDatabase('Translation jobs endpoints', () => {
     });
   });
 
+  it('returns 400 when jobId is not a valid UUID', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+      const headers = createDeviceHeaders('translation-validation-jobid-001');
+
+      await api
+        .get('/v1/translation-jobs/not-a-uuid')
+        .set(headers)
+        .expect(400)
+        .expect(({ body }) => {
+          expect(body.code).toBe('http_error');
+        });
+    });
+  });
+
   // -------------------------------------------------------------------------
   // DTO validation
   // -------------------------------------------------------------------------
@@ -325,6 +340,43 @@ describeIfDatabase('Translation jobs endpoints', () => {
         .expect(201);
 
       expect(completedJob.status).toBe('completed');
+    });
+  });
+
+  it('sanitizes failed job error messages before returning them to clients', async () => {
+    await withE2eApp(async (app) => {
+      const api = createApiRequest(app);
+      const headers = createDeviceHeaders('translation-failure-sanitization-001');
+
+      const parsedResponse = await api
+        .post('/v1/subtitles/parse')
+        .set(headers)
+        .attach('file', Buffer.from(sampleSrt, 'utf8'), 'error.srt')
+        .expect(201);
+
+      const createResponse = await api
+        .post('/v1/translation-jobs')
+        .set(headers)
+        .send({
+          sourceType: 'upload',
+          parsedFileId: parsedResponse.body.id,
+          targetLanguage: 'fr',
+        })
+        .expect(201);
+
+      const failedJob = await pollUntil({
+        label: `Translation job ${createResponse.body.id} failure`,
+        poll: async () =>
+          (
+            await api
+              .get(`/v1/translation-jobs/${createResponse.body.id}`)
+              .set(headers)
+          ).body,
+        isDone: (candidate) => candidate.status === 'failed',
+      });
+
+      expect(failedJob.errorMessage).toBe('Translation failed. Please try again.');
+      expect(failedJob.errorMessage).not.toContain('Mock translation provider failed.');
     });
   });
 });

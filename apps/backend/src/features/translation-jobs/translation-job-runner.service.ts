@@ -10,6 +10,7 @@ import { delay } from 'common/utils/delay.util';
 import { StructuredLogger } from 'common/utils/structured-logger';
 import { timed } from 'common/utils/timed.util';
 import { SearchMediaType } from 'common/domain/enums/search-media-type.enum';
+import { DomainError } from 'common/domain/errors/domain.error';
 import { CatalogService } from 'features/catalog/catalog.service';
 import { CatalogMediaDetails } from 'features/catalog/models/catalog-media-details.model';
 import { SubtitleQualityEvaluationService } from 'features/catalog/subtitle-quality-evaluation.service';
@@ -798,10 +799,25 @@ export class TranslationJobRunnerService {
     return this.translationJobsRepository.updateJob(jobId, {
       status: TranslationJobStatus.failed,
       stageLabel: 'Translation failed',
-      errorMessage:
-        error instanceof Error ? error.message : 'Translation failed.',
+      errorMessage: this.toPublicFailureMessage(error),
       ...(meta ? { jobMeta: meta as unknown as Prisma.InputJsonValue } : {}),
     });
+  }
+
+  private toPublicFailureMessage(error: unknown): string {
+    if (error instanceof DomainError) {
+      return error.message;
+    }
+
+    if (
+      error instanceof Error &&
+      error.message ===
+        'The selected subtitle file appears invalid or unusable. Please choose a different subtitle source.'
+    ) {
+      return error.message;
+    }
+
+    return 'Translation failed. Please try again.';
   }
 
   private buildReusedTranslationJobCues(

@@ -47,6 +47,7 @@ const createJobEntity = (overrides: Partial<TranslationJob> = {}): TranslationJo
   durationMs: 6250,
   errorMessage: null,
   parsedFileId: 'parsed-file-1',
+  jobMeta: null,
   mediaRef: null,
   subtitleSourceRef: null,
   createdAt: new Date(),
@@ -239,6 +240,19 @@ describe('TranslationJobsService', () => {
     );
   });
 
+  it('blocks retry while a job is still active', async () => {
+    const jobsRepository = makeJobsRepository({
+      findOwnedJob: vi.fn().mockResolvedValue(
+        createJobEntity({ status: TranslationJobStatus.translating }),
+      ),
+    });
+    const service = buildService({ jobsRepository });
+
+    await expect(service.retryJob(device, 'job-1')).rejects.toBeInstanceOf(
+      ValidationDomainError,
+    );
+  });
+
   // -------------------------------------------------------------------------
   // createJob – upload error paths
   // -------------------------------------------------------------------------
@@ -372,6 +386,7 @@ describe('TranslationJobsService', () => {
   it('creates a new job with the same parameters as the original', async () => {
     const originalJob = createJobEntity({
       sourceType: TranslationSourceType.upload,
+      status: TranslationJobStatus.completed,
       parsedFileId: 'parsed-file-1',
       targetLanguage: PrismaAppLanguage.es,
     });

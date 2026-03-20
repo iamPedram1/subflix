@@ -293,7 +293,7 @@ describe('TranslationJobRunnerService', () => {
       expect.objectContaining({
         status: TranslationJobStatus.failed,
         stageLabel: 'Translation failed',
-        errorMessage: 'Provider exploded.',
+        errorMessage: 'Translation failed. Please try again.',
       }),
     );
     expect(jobsRepository.replaceJobCues).not.toHaveBeenCalled();

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import type { AuthProvider, RefreshToken } from '@prisma/client';
+import type { AuthProvider, RefreshToken, User } from '@prisma/client';
 
 import { BaseRepository } from 'common/database/base.repository';
 import { PrismaService } from 'common/database/prisma/prisma.service';
@@ -51,6 +51,13 @@ export class AuthRepository extends BaseRepository {
   findRefreshTokenByHash(tokenHash: string) {
     return this.prisma.refreshToken.findUnique({
       where: { tokenHash },
+      include: { user: true },
+    });
+  }
+
+  findSessionById(id: string) {
+    return this.prisma.refreshToken.findUnique({
+      where: { id },
       include: { user: true },
     });
   }
@@ -134,6 +141,153 @@ export class AuthRepository extends BaseRepository {
       this.prisma.passwordResetToken.update({
         where: { id },
         data: { consumedAt },
+      }),
+    );
+  }
+
+  async rotateRefreshToken(params: {
+    tokenHash: string;
+    now: Date;
+    nextRefreshToken: Omit<
+      Prisma.RefreshTokenUncheckedCreateInput,
+      'userId'
+    >;
+  }): Promise<{ user: User; refreshRecord: RefreshToken } | null> {
+    return this.dbCall(() =>
+      this.prisma.$transaction(async (tx) => {
+        const record = await tx.refreshToken.findUnique({
+          where: { tokenHash: params.tokenHash },
+          include: { user: true },
+        });
+
+        if (
+          !record ||
+          record.revokedAt !== null ||
+          record.expiresAt <= params.now ||
+          !record.user
+        ) {
+          return null;
+        }
+
+        const revoked = await tx.refreshToken.updateMany({
+          where: {
+            id: record.id,
+            revokedAt: null,
+            expiresAt: { gt: params.now },
+          },
+          data: {
+            revokedAt: params.now,
+            lastUsedAt: params.now,
+          },
+        });
+
+        if (revoked.count !== 1) {
+          return null;
+        }
+
+        const refreshRecord = await tx.refreshToken.create({
+          data: {
+            userId: record.user.id,
+            ...params.nextRefreshToken,
+          },
+        });
+
+        return {
+          user: record.user,
+          refreshRecord,
+        };
+      }),
+    );
+  }
+
+  async confirmEmailByTokenHash(
+    tokenHash: string,
+    now: Date,
+  ): Promise<'confirmed' | 'invalid' | 'expired'> {
+    return this.dbCall(() =>
+      this.prisma.$transaction(async (tx) => {
+        const record = await tx.emailVerificationToken.findUnique({
+          where: { tokenHash },
+          include: { user: true },
+        });
+
+        if (!record || record.consumedAt || !record.user) {
+          return 'invalid';
+        }
+
+        if (record.expiresAt <= now) {
+          return 'expired';
+        }
+
+        const consumed = await tx.emailVerificationToken.updateMany({
+          where: {
+            id: record.id,
+            consumedAt: null,
+            expiresAt: { gt: now },
+          },
+          data: { consumedAt: now },
+        });
+
+        if (consumed.count !== 1) {
+          return 'invalid';
+        }
+
+        if (!record.user.emailVerified) {
+          await tx.user.update({
+            where: { id: record.user.id },
+            data: { emailVerified: true },
+          });
+        }
+
+        return 'confirmed';
+      }),
+    );
+  }
+
+  async resetPasswordByTokenHash(params: {
+    tokenHash: string;
+    passwordHash: string;
+    now: Date;
+  }): Promise<'reset' | 'invalid' | 'expired'> {
+    return this.dbCall(() =>
+      this.prisma.$transaction(async (tx) => {
+        const record = await tx.passwordResetToken.findUnique({
+          where: { tokenHash: params.tokenHash },
+          include: { user: true },
+        });
+
+        if (!record || record.consumedAt || !record.user) {
+          return 'invalid';
+        }
+
+        if (record.expiresAt <= params.now) {
+          return 'expired';
+        }
+
+        const consumed = await tx.passwordResetToken.updateMany({
+          where: {
+            id: record.id,
+            consumedAt: null,
+            expiresAt: { gt: params.now },
+          },
+          data: { consumedAt: params.now },
+        });
+
+        if (consumed.count !== 1) {
+          return 'invalid';
+        }
+
+        await tx.user.update({
+          where: { id: record.user.id },
+          data: { passwordHash: params.passwordHash },
+        });
+
+        await tx.refreshToken.updateMany({
+          where: { userId: record.user.id, revokedAt: null },
+          data: { revokedAt: params.now, lastUsedAt: params.now },
+        });
+
+        return 'reset';
       }),
     );
   }
