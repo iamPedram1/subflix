@@ -1,375 +1,493 @@
 {
-  "@@locale": "zh",
-  "appTitle": "SubFlix",
-  "brandSubtitleCompact": "字幕智能",
-  "brandSubtitleFull": "AI 字幕翻译工作室",
-  "comingSoonMessage": "这个页面还在准备中。",
-  "comingSoonTitle": "即将推出",
-  "exportFailedSnack": "导出失败：{error}",
-  "@exportFailedSnack": {
-    "placeholders": {
-      "error": {}
-    }
-  },
-  "exportSubtitleLabel": "导出翻译后的字幕",
-  "exportedSnack": "已将 {fileName} 导出到 {path}",
-  "@exportedSnack": {
-    "placeholders": {
-      "fileName": {},
-      "path": {}
-    }
-  },
-  "exportingLabel": "正在导出...",
-  "heroBadge": "高级字幕工作流",
-  "heroBody": "你可以选择可搜索的片名目录，或直接上传文件，然后在几分钟内完成预览并导出打磨过的字幕。",
-  "heroHeadline": "用接近工作室级别的流程翻译电影和剧集字幕。",
-  "heroSearchCta": "搜索电影 / 剧集",
-  "heroStatLanguagesTitle": "10 种语言",
-  "heroStatLanguagesValue": "可直接预览",
-  "heroStatMockTitle": "Mock API",
-  "heroStatMockValue": "已为后端接入做好准备",
-  "heroStatPathsTitle": "2 条路径",
-  "heroStatPathsValue": "搜索或上传",
-  "heroSubtitle": "搜索电影和剧集目录、选择来源，并在几分钟内导出打磨过的翻译结果。",
-  "heroTitle": "更快翻译字幕",
-  "heroUploadCta": "上传字幕",
-  "historyCountLabel": "{count} 条翻译",
-  "@historyCountLabel": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "historyEmptyMessage": "完成搜索或上传流程后，已翻译的字幕任务会显示在这里。",
-  "historyEmptyTitle": "历史为空",
-  "historyFailedItemMessage": "翻译失败。点击重新开始。",
-  "historyFailedTitle": "无法加载历史记录",
-  "historyFilterAiTranslated": "AI 翻译",
-  "historyFilterAll": "全部",
-  "historyFilterCompleted": "已完成",
-  "historyFilterFailed": "失败",
-  "historyFilterMovies": "电影",
-  "historyFilterReused": "复用",
-  "historyFilterSeries": "剧集",
-  "historySubtitle": "重新打开以前的字幕任务，再次查看预览，或稍后导出。",
-  "historyTitle": "翻译历史",
-  "homeFailedRecentTitle": "无法加载最近任务",
-  "homeFutureSubtitle": "可替换的 mock 仓库让 UI 代码不受后端变化影响。",
-  "homeFutureTitle": "面向未来的仓库设计",
-  "homeNoRecentMessage": "先搜索电影或上传字幕文件，你最近的翻译会显示在这里。",
-  "homeNoRecentTitle": "还没有最近任务",
-  "homePreviewSubtitle": "可在导出前通过原文、译文或双语视图检查结果。",
-  "homePreviewTitle": "以预览为先的翻译流程",
-  "homeQuickHistory": "历史",
-  "homeQuickSearch": "搜索",
-  "homeQuickUpload": "上传",
-  "homeRecentJobsSubtitle": "无需从头开始，直接重新打开你最近的字幕会话。",
-  "homeRecentJobsTitle": "最近任务",
-  "homeSearchPlaceholder": "搜索电影或剧集...",
-  "homeStatesSubtitle": "加载、空状态、重试、校验以及模拟离线场景，从第一天起就是 UX 的一部分。",
-  "homeStatesTitle": "完善的状态体验",
-  "homeTrendingNow": "当前热门",
-  "homeTrustSubtitle": "今天仍是模拟版，但结构已经按真正可上线的产品来设计。",
-  "homeTrustTitle": "为什么团队会信任它",
-  "homeViewAll": "查看全部",
-  "homeWelcomeSubtitle": "查找并翻译字幕",
-  "homeWelcomeTitle": "欢迎回来",
-  "jobConfidence": "可信度：{level}",
-  "@jobConfidence": {
-    "placeholders": {
-      "level": {}
-    }
-  },
-  "jobOpenPreview": "打开预览",
-  "jobReuseSubtitle": "复用字幕",
-  "jobReuseTranslation": "复用翻译",
-  "legalBodyAbout": "SubFlix 是一款偏高级体验的 Flutter 客户端，专注于 AI 字幕翻译。此版本使用 mock 仓库、人工延迟和本地持久化，以便在接入真实后端前先完善 UI 与架构。",
-  "legalBodyPrivacy": "SubFlix 当前仅通过本地持久化在设备上保存模拟偏好和翻译历史。未来接入后端后，可替换为带身份验证的存储、审计记录以及服务器管理的保留策略。",
-  "legalBodySupport": "目前支持页只是占位内容。正式版本中，这一部分可以接入邮件、问题反馈以及高级账户支持，同时保持应用框架不变。",
-  "legalBodyTerms": "这个模拟版本旨在验证产品流程、UI 状态和架构边界。等后续接入正式的 NestJS 与 Postgres 后端后，法律层面可以扩展为真实的服务条款与数据处理说明。",
-  "legalPlaceholderBody": "此页面在演示应用中只是占位内容。请替换为你正式环境中的法律文本。",
-  "legalTitleAbout": "关于 SubFlix",
-  "legalTitlePrivacy": "隐私政策",
-  "legalTitleSupport": "支持",
-  "legalTitleTerms": "服务条款",
-  "mediaTypeMovie": "电影",
-  "mediaTypeSeries": "剧集",
-  "metadataEstimatedDuration": "预计时长",
-  "metadataFormat": "格式",
-  "metadataLanguages": "语言",
-  "metadataLines": "行数",
-  "navHistory": "历史",
-  "navHome": "首页",
-  "navSettings": "设置",
-  "noTitlesMatchedMessage": "我们在模拟目录中找不到这个标题。请尝试更宽泛的搜索，或使用建议标题。",
-  "noTitlesMatchedTitle": "没有匹配结果",
-  "onboardingContinue": "继续",
-  "onboardingEnterApp": "进入 SubFlix",
-  "onboardingNext": "下一步",
-  "onboardingPage1Description": "搜索标题、查看可用的英文字幕来源，然后启动一个几乎即时的翻译流程。",
-  "onboardingPage1Eyebrow": "搜索并获取",
-  "onboardingPage1Highlight1": "可预测的模拟目录，方便稳定开发",
-  "onboardingPage1Highlight2": "字幕来源质量标签与格式标识",
-  "onboardingPage1Highlight3": "后续可无缝切换到真实后端",
-  "onboardingPage1Title": "找到电影或剧集，并拉取可直接翻译的字幕。",
-  "onboardingPage2Description": "导入字幕文件、校验格式，并在不离开应用的情况下走完整套精致翻译流程。",
-  "onboardingPage2Eyebrow": "使用自己的文件",
-  "onboardingPage2Highlight1": "本地文件校验与优雅的重试状态",
-  "onboardingPage2Highlight2": "上传与搜索保持一致的翻译设置",
-  "onboardingPage2Highlight3": "导出前先预览，让结果更透明",
-  "onboardingPage2Title": "如果你已经有脚本，可直接上传 `.srt` 或 `.vtt` 文件。",
-  "onboardingPage3Description": "在原文、译文和双语视图之间切换，回看历史记录，并在结果满意后导出干净的字幕文件。",
-  "onboardingPage3Eyebrow": "翻译并导出",
-  "onboardingPage3Highlight1": "带元数据与搜索的快速预览控制",
-  "onboardingPage3Highlight2": "历史记录让旧任务始终只差一次点击",
-  "onboardingPage3Highlight3": "设计得像高级媒体工具，而不是演示页",
-  "onboardingPage3Title": "选择目标语言、预览字幕，并立即导出。",
-  "onboardingSkip": "跳过",
-  "onboardingStart": "开始翻译",
-  "previewFailedTitle": "预览加载失败",
-  "previewModeBilingual": "双语",
-  "previewModeOriginal": "原文",
-  "previewModeTranslated": "译文",
-  "previewNoMatchesMessage": "请尝试其他搜索词，或清除筛选以查看完整翻译。",
-  "previewNoMatchesTitle": "没有匹配的字幕行",
-  "previewNotReadyMessage": "翻译已完成，但后端尚未返回预览 cue。请稍后重新加载此页面。",
-  "previewNotReadyTitle": "预览 cue 暂时不可用",
-  "retry": "重试",
-  "retryTranslation": "重新翻译",
-  "routeMissingSeasonEpisodesMessage": "我们无法判断应加载哪一季。请从搜索重新开始。",
-  "routeMissingSeasonEpisodesTitle": "本季剧集",
-  "routeMissingSeriesSeasonsMessage": "我们无法判断应加载哪部剧集。请从搜索重新开始。",
-  "routeMissingSeriesSeasonsTitle": "剧集季列表",
-  "routeMissingSubtitleSourcesMessage": "我们无法判断应为哪个标题加载字幕来源。请从搜索重新开始。",
-  "routeMissingSubtitleSourcesTitle": "字幕来源",
-  "routeMissingTranslationProgressMessage": "没有提供翻译请求。请从搜索或上传开始新的翻译。",
-  "routeMissingTranslationProgressTitle": "翻译进度",
-  "routeMissingTranslationSetupMessage": "打开翻译设置页面前，必须先有一个字幕来源。",
-  "routeMissingTranslationSetupTitle": "翻译设置",
-  "searchFailedTitle": "搜索失败",
-  "searchFoundResults": "找到 {count} 条与“{query}”相关的结果",
-  "@searchFoundResults": {
-    "placeholders": {
-      "count": {},
-      "query": {}
-    }
-  },
-  "searchHintText": "搜索 Dune、Breaking Bad、Severance...",
-  "searchLoadingLabel": "正在搜索...",
-  "searchMockMessage": "试试 Inception、Dune、Breaking Bad、Severance 或 The Last of Us，体验字幕来源流程。",
-  "searchMockTitle": "在模拟目录中搜索任何内容",
-  "searchMovieOrSeriesSubtitle": "找到片名、查看字幕来源，并通过几次点击启动翻译任务。",
-  "searchMovieOrSeriesTitle": "搜索电影或剧集",
-  "searchNoResultsFor": "没有找到“{query}”的结果",
-  "@searchNoResultsFor": {
-    "placeholders": {
-      "query": {}
-    }
-  },
-  "searchResultPopularity": "热度 {score}",
-  "@searchResultPopularity": {
-    "placeholders": {
-      "score": {}
-    }
-  },
-  "searchTitles": "搜索片名",
-  "searchTrendingTitle": "热门搜索",
-  "searchTryDifferentKeywords": "试试其他关键词。",
-  "seriesEpisodeLabel": "第 {episodeNumber} 集",
-  "@seriesEpisodeLabel": {
-    "placeholders": {
-      "episodeNumber": {}
-    }
-  },
-  "seriesEpisodeMeta": "约 {runtime} 分钟",
-  "@seriesEpisodeMeta": {
-    "placeholders": {
-      "runtime": {}
-    }
-  },
-  "seriesEpisodesSubtitle": "{episodeCount} 集{year}",
-  "@seriesEpisodesSubtitle": {
-    "placeholders": {
-      "episodeCount": {},
-      "year": {}
-    }
-  },
-  "seriesEpisodesTitle": "第 {seasonNumber} 季",
-  "@seriesEpisodesTitle": {
-    "placeholders": {
-      "seasonNumber": {}
-    }
-  },
-  "seriesSeasonLabel": "第 {seasonNumber} 季",
-  "@seriesSeasonLabel": {
-    "placeholders": {
-      "seasonNumber": {}
-    }
-  },
-  "seriesSeasonMeta": "{episodeCount} 集{year}",
-  "@seriesSeasonMeta": {
-    "placeholders": {
-      "episodeCount": {},
-      "year": {}
-    }
-  },
-  "seriesSeasonsSubtitle": "选择 {title} 的某一季以浏览可用剧集。",
-  "@seriesSeasonsSubtitle": {
-    "placeholders": {
-      "title": {}
-    }
-  },
-  "seriesSeasonsTitle": "选择季",
-  "settingsAboutTitle": "关于 SubFlix",
-  "settingsCacheCleared": "缓存已清除",
-  "settingsClearCache": "清除缓存",
-  "settingsContactTitle": "联系我们",
-  "settingsFailedTitle": "设置加载失败",
-  "settingsHelpCenterTitle": "帮助中心",
-  "settingsHistoryClearedSnack": "已清除此设备的翻译历史",
-  "settingsLanguageLabel": "首选目标语言",
-  "settingsMaintenanceSubtitle": "清除此设备上由后端管理的翻译任务，并从空历史状态重新开始。",
-  "settingsMaintenanceTitle": "维护",
-  "settingsNotificationsSubtitle": "管理通知偏好",
-  "settingsNotificationsTitle": "通知",
-  "settingsPremiumSubtitle": "后续我们可以在这里接入订阅、计费和云项目同步。",
-  "settingsPremiumTitle": "高级功能占位",
-  "settingsPrivacySubtitle": "模拟隐私内容",
-  "settingsPrivacyTitle": "隐私政策",
-  "settingsProfileName": "SubFlix 用户",
-  "settingsProfileTier": "高级会员",
-  "settingsSubtitle": "管理你的偏好",
-  "settingsSupportSubtitle": "模拟帮助与联系页面",
-  "settingsSupportTitle": "支持占位",
-  "settingsTermsSubtitle": "模拟条款内容",
-  "settingsTermsTitle": "服务条款",
-  "settingsThemeLabel": "外观",
-  "settingsTitle": "设置",
-  "settingsVersion": "版本 {version}",
-  "@settingsVersion": {
-    "placeholders": {
-      "version": {}
-    }
-  },
-  "splashHeadline": "SubFlix",
-  "splashPreparing": "正在准备你的字幕工作室",
-  "splashSubtitle": "AI 驱动的字幕翻译",
-  "startTranslation": "开始翻译",
-  "subtitleSourceDownloads": "{downloads} 次下载",
-  "@subtitleSourceDownloads": {
-    "placeholders": {
-      "downloads": {}
-    }
-  },
-  "subtitleSourceFormatLabel": "{format} 字幕来源",
-  "@subtitleSourceFormatLabel": {
-    "placeholders": {
-      "format": {}
-    }
-  },
-  "subtitleSourceHiLabel": "HI / SDH",
-  "subtitleSourceLines": "{lineCount} 行",
-  "@subtitleSourceLines": {
-    "placeholders": {
-      "lineCount": {}
-    }
-  },
-  "subtitleSourceRating": "评分 {rating}",
-  "@subtitleSourceRating": {
-    "placeholders": {
-      "rating": {}
-    }
-  },
-  "subtitleSourcesBannerMessage": "选择字幕来源后，即可进入针对字幕时间轴优化过的精致翻译设置。",
-  "subtitleSourcesBannerTitle": "可使用 AI 翻译",
-  "subtitleSourcesFailedTitle": "无法加载字幕来源",
-  "subtitleSourcesSubtitle": "为 {title}{target} 选择一个字幕来源，然后在下一步选择目标语言。",
-  "@subtitleSourcesSubtitle": {
-    "placeholders": {
-      "title": {},
-      "target": {}
-    }
-  },
-  "subtitleSourcesTitle": "英文字幕来源",
-  "targetLanguage": "目标语言",
-  "themeDark": "深色",
-  "themeLight": "浅色",
-  "themeSystem": "跟随系统",
-  "translateSetupAutoDetect": "自动识别格式",
-  "translateSetupAutoDetectBody": "自动选择合适的字幕输出结构。",
-  "translateSetupLanguageTitle": "翻译为",
-  "translateSetupOptionsTitle": "选项",
-  "translateSetupPreserveTiming": "保留时间轴",
-  "translateSetupPreserveTimingBody": "让原始字幕时间与源文件保持一致。",
-  "translateSetupReadyBody": "我们的翻译流程会将这份字幕转换为 {language}，同时保留时间轴并保持清晰的 cue 结构。",
-  "@translateSetupReadyBody": {
-    "placeholders": {
-      "language": {}
-    }
-  },
-  "translateSetupReadyTitle": "AI 翻译已就绪",
-  "translateSetupSelectLanguage": "选择语言",
-  "translateSetupSourceTitle": "源字幕",
-  "translateSetupSubtitle": "选择目标语言，查看字幕来源，然后启动后端翻译任务。",
-  "translateSetupTitle": "翻译设置",
-  "translationFailedMessage": "出了点问题。",
-  "translationFailedTitle": "翻译未能完成",
-  "translationPreviewHeader": "查看翻译后的字幕",
-  "translationPreviewSearchHint": "搜索字幕行",
-  "translationPreviewSubtitle": "在 cue 中搜索、切换预览模式，并在确认结果无误后导出。",
-  "translationPreviewTitle": "翻译预览",
-  "translationProgressHeadline": "AI 字幕翻译进行中",
-  "translationProgressTitle": "翻译进度",
-  "translationResultCompleteSubtitle": "你的字幕已经可以预览或下载。",
-  "translationResultCompleteTitle": "翻译完成",
-  "translationResultConfidenceLabel": "翻译可信度",
-  "translationResultDetailsTitle": "翻译详情",
-  "translationResultDownloadCta": "下载字幕",
-  "translationResultHomeCta": "返回首页",
-  "translationResultMediaLabel": "作品标题",
-  "translationResultMethodAi": "AI 翻译",
-  "translationResultMetricsTitle": "质量指标",
-  "translationResultPreviewCta": "预览字幕",
-  "translationResultProcessedIn": "处理耗时 {duration}",
-  "@translationResultProcessedIn": {
-    "placeholders": {
-      "duration": {}
-    }
-  },
-  "translationResultSourceLabel": "源语言",
-  "translationResultTargetLabel": "目标语言",
-  "translationResultTimingLabel": "时间精度",
-  "translationResultTimingPreserved": "时间已保留",
-  "translationResultWarning": "某些专业术语仍可能需要人工快速复核，以确保语境准确。",
-  "translationStageAligning": "正在对齐时间戳和场景上下文",
-  "translationStageGenerating": "正在生成字幕翻译",
-  "translationStageIdle": "等待翻译请求",
-  "translationStagePreparing": "正在准备字幕包",
-  "translationStageQueued": "已加入翻译队列",
-  "translationStageReadability": "正在进行可读性优化",
-  "translationStageReady": "翻译已完成",
-  "tryAgain": "再试一次",
-  "uploadChooseFile": "选择字幕文件",
-  "uploadChooseFileShort": "选择文件",
-  "uploadContinueSetup": "继续进行翻译设置",
-  "uploadEnglishSource": "英文来源",
-  "uploadFailedFallback": "请尝试其他字幕文件。",
-  "uploadFailedMessage": "我们无法读取这个字幕文件。请尝试其他文件，或使用更小的导出文件。",
-  "uploadFailedTitle": "文件导入失败",
-  "uploadIntroSubtitle": "导入英文 `.srt` 或 `.vtt` 文件，交给后端校验并解析，然后继续进入翻译设置。",
-  "uploadIntroTitle": "使用你自己的字幕文件",
-  "uploadLineCount": "{lineCount} 行",
-  "@uploadLineCount": {
-    "placeholders": {
-      "lineCount": {}
-    }
-  },
-  "uploadMetadataTitle": "字幕详情",
-  "uploadOpeningPicker": "正在打开选择器...",
-  "uploadPickSubtitle": "选择字幕文件",
-  "uploadPickedFile": "已选择字幕文件",
-  "uploadReadyTitle": "可以开始翻译",
-  "uploadSubtitleTitle": "上传字幕",
-  "uploadSupportedFormatsSubtitle": "英文 `.srt` 和 `.vtt` 字幕文件",
-  "uploadSupportedFormatsTitle": "支持的格式",
-  "uploadUseDemoFile": "使用演示文件"
+    "@@locale":  "zh",
+    "appTitle":  "SubFlix",
+    "brandSubtitleCompact":  "е­—е№•ж™єиѓЅ",
+    "brandSubtitleFull":  "AI е­—е№•зї»иЇ‘е·ҐдЅње®¤",
+    "comingSoonMessage":  "иї™дёЄйЎµйќўиїењЁе‡†е¤‡дё­гЂ‚",
+    "comingSoonTitle":  "еЌіе°†жЋЁе‡є",
+    "exportFailedSnack":  "еЇје‡єе¤±иґҐпјљ{error}",
+    "@exportFailedSnack":  {
+                               "placeholders":  {
+                                                    "error":  {
+
+                                                              }
+                                                }
+                           },
+    "exportSubtitleLabel":  "еЇје‡єзї»иЇ‘еђЋзљ„е­—е№•",
+    "exportedSnack":  "е·Іе°† {fileName} еЇје‡єе€° {path}",
+    "@exportedSnack":  {
+                           "placeholders":  {
+                                                "fileName":  {
+
+                                                             },
+                                                "path":  {
+
+                                                         }
+                                            }
+                       },
+    "exportingLabel":  "ж­ЈењЁеЇје‡є...",
+    "heroBadge":  "й«зє§е­—е№•е·ҐдЅњжµЃ",
+    "heroBody":  "дЅ еЏЇд»ҐйЂ‰ж‹©еЏЇжђњзґўзљ„з‰‡еђЌз›®еЅ•пјЊж€–з›ґжЋҐдёЉдј ж–‡д»¶пјЊз„¶еђЋењЁе‡ е€†й’џе†…е®Њж€ђйў„и§€е№¶еЇје‡єж‰“зЈЁиї‡зљ„е­—е№•гЂ‚",
+    "heroHeadline":  "з”ЁжЋҐиї‘е·ҐдЅње®¤зє§е€«зљ„жµЃзЁ‹зї»иЇ‘з”µеЅ±е’Ње‰§й›†е­—е№•гЂ‚",
+    "heroSearchCta":  "жђњзґўз”µеЅ± / е‰§й›†",
+    "heroStatLanguagesTitle":  "10 з§ЌиЇ­иЁЂ",
+    "heroStatLanguagesValue":  "еЏЇз›ґжЋҐйў„и§€",
+    "heroStatMockTitle":  "Mock API",
+    "heroStatMockValue":  "е·ІдёєеђЋз«ЇжЋҐе…ҐеЃљеҐЅе‡†е¤‡",
+    "heroStatPathsTitle":  "2 жќЎи·Їеѕ„",
+    "heroStatPathsValue":  "жђњзґўж€–дёЉдј ",
+    "heroSubtitle":  "жђњзґўз”µеЅ±е’Ње‰§й›†з›®еЅ•гЂЃйЂ‰ж‹©жќҐжєђпјЊе№¶ењЁе‡ е€†й’џе†…еЇје‡єж‰“зЈЁиї‡зљ„зї»иЇ‘з»“жћњгЂ‚",
+    "heroTitle":  "ж›ґеї«зї»иЇ‘е­—е№•",
+    "heroUploadCta":  "дёЉдј е­—е№•",
+    "historyCountLabel":  "{count} жќЎзї»иЇ‘",
+    "@historyCountLabel":  {
+                               "placeholders":  {
+                                                    "count":  {
+
+                                                              }
+                                                }
+                           },
+    "historyEmptyMessage":  "е®Њж€ђжђњзґўж€–дёЉдј жµЃзЁ‹еђЋпјЊе·Ізї»иЇ‘зљ„е­—е№•д»»еЉЎдјљжѕз¤єењЁиї™й‡ЊгЂ‚",
+    "historyEmptyTitle":  "еЋ†еЏІдёєз©є",
+    "historyFailedItemMessage":  "зї»иЇ‘е¤±иґҐгЂ‚з‚№е‡»й‡Ќж–°ејЂе§‹гЂ‚",
+    "historyFailedTitle":  "ж— жі•еЉ иЅЅеЋ†еЏІи®°еЅ•",
+    "historyFilterAiTranslated":  "AI зї»иЇ‘",
+    "historyFilterAll":  "е…ЁйѓЁ",
+    "historyFilterCompleted":  "е·Іе®Њж€ђ",
+    "historyFilterFailed":  "е¤±иґҐ",
+    "historyFilterMovies":  "з”µеЅ±",
+    "historyFilterReused":  "е¤Ќз”Ё",
+    "historyFilterSeries":  "е‰§й›†",
+    "historySubtitle":  "й‡Ќж–°ж‰“ејЂд»Ґе‰Ќзљ„е­—е№•д»»еЉЎпјЊе†Ќж¬ЎжџҐзњ‹йў„и§€пјЊж€–зЁЌеђЋеЇје‡єгЂ‚",
+    "historyTitle":  "зї»иЇ‘еЋ†еЏІ",
+    "homeFailedRecentTitle":  "ж— жі•еЉ иЅЅжњЂиї‘д»»еЉЎ",
+    "homeFutureSubtitle":  "еЏЇж›їжЌўзљ„ mock д»“еє“и®© UI д»Јз ЃдёЌеЏ—еђЋз«ЇеЏеЊ–еЅ±е“ЌгЂ‚",
+    "homeFutureTitle":  "йќўеђ‘жњЄжќҐзљ„д»“еє“и®ѕи®Ў",
+    "homeNoRecentMessage":  "е…€жђњзґўз”µеЅ±ж€–дёЉдј е­—е№•ж–‡д»¶пјЊдЅ жњЂиї‘зљ„зї»иЇ‘дјљжѕз¤єењЁиї™й‡ЊгЂ‚",
+    "homeNoRecentTitle":  "иїжІЎжњ‰жњЂиї‘д»»еЉЎ",
+    "homePreviewSubtitle":  "еЏЇењЁеЇје‡єе‰ЌйЂљиї‡еЋџж–‡гЂЃиЇ‘ж–‡ж€–еЏЊиЇ­и§†е›ѕжЈЂжџҐз»“жћњгЂ‚",
+    "homePreviewTitle":  "д»Ґйў„и§€дёєе…€зљ„зї»иЇ‘жµЃзЁ‹",
+    "homeQuickHistory":  "еЋ†еЏІ",
+    "homeQuickSearch":  "жђњзґў",
+    "homeQuickUpload":  "дёЉдј ",
+    "homeRecentJobsSubtitle":  "ж— йњЂд»Ће¤ґејЂе§‹пјЊз›ґжЋҐй‡Ќж–°ж‰“ејЂдЅ жњЂиї‘зљ„е­—е№•дјљиЇќгЂ‚",
+    "homeRecentJobsTitle":  "жњЂиї‘д»»еЉЎ",
+    "homeSearchPlaceholder":  "жђњзґўз”µеЅ±ж€–е‰§й›†...",
+    "homeStatesSubtitle":  "еЉ иЅЅгЂЃз©єзЉ¶жЂЃгЂЃй‡ЌиЇ•гЂЃж ЎйЄЊд»ҐеЏЉжЁЎж‹џз¦»зєїењєж™ЇпјЊд»Ћз¬¬дёЂе¤©иµ·е°±жЇ UX зљ„дёЂйѓЁе€†гЂ‚",
+    "homeStatesTitle":  "е®Ње–„зљ„зЉ¶жЂЃдЅ“йЄЊ",
+    "homeTrendingNow":  "еЅ“е‰Ќзѓ­й—Ё",
+    "homeTrustSubtitle":  "д»Ље¤©д»ЌжЇжЁЎж‹џз‰€пјЊдЅ†з»“жћ„е·Із»ЏжЊ‰зњџж­ЈеЏЇдёЉзєїзљ„дє§е“ЃжќҐи®ѕи®ЎгЂ‚",
+    "homeTrustTitle":  "дёєд»Ђд№€е›ўйџдјљдїЎд»»е®ѓ",
+    "homeViewAll":  "жџҐзњ‹е…ЁйѓЁ",
+    "homeWelcomeSubtitle":  "жџҐж‰ѕе№¶зї»иЇ‘е­—е№•",
+    "homeWelcomeTitle":  "ж¬ўиїЋе›ћжќҐ",
+    "jobConfidence":  "еЏЇдїЎеє¦пјљ{level}",
+    "@jobConfidence":  {
+                           "placeholders":  {
+                                                "level":  {
+
+                                                          }
+                                            }
+                       },
+    "jobOpenPreview":  "ж‰“ејЂйў„и§€",
+    "jobReuseSubtitle":  "е¤Ќз”Ёе­—е№•",
+    "jobReuseTranslation":  "е¤Ќз”Ёзї»иЇ‘",
+    "legalBodyAbout":  "SubFlix жЇдёЂж¬ѕеЃЏй«зє§дЅ“йЄЊзљ„ Flutter е®ўж€·з«ЇпјЊдё“жіЁдєЋ AI е­—е№•зї»иЇ‘гЂ‚ж­¤з‰€жњ¬дЅїз”Ё mock д»“еє“гЂЃдєєе·Ґе»¶иїџе’Њжњ¬ењ°жЊЃд№…еЊ–пјЊд»ҐдѕїењЁжЋҐе…Ґзњџе®ћеђЋз«Їе‰Ќе…€е®Ње–„ UI дёЋжћ¶жћ„гЂ‚",
+    "legalBodyPrivacy":  "SubFlix еЅ“е‰Ќд»…йЂљиї‡жњ¬ењ°жЊЃд№…еЊ–ењЁи®ѕе¤‡дёЉдїќе­жЁЎж‹џеЃЏеҐЅе’Њзї»иЇ‘еЋ†еЏІгЂ‚жњЄжќҐжЋҐе…ҐеђЋз«ЇеђЋпјЊеЏЇж›їжЌўдёєеё¦иє«д»ЅйЄЊиЇЃзљ„е­е‚ЁгЂЃе®Ўи®Ўи®°еЅ•д»ҐеЏЉжњЌеЉЎе™Ёз®Ўзђ†зљ„дїќз•™з­–з•ҐгЂ‚",
+    "legalBodySupport":  "з›®е‰Ќж”ЇжЊЃйЎµеЏЄжЇеЌ дЅЌе†…е®№гЂ‚ж­ЈејЏз‰€жњ¬дё­пјЊиї™дёЂйѓЁе€†еЏЇд»ҐжЋҐе…Ґй‚®д»¶гЂЃй—®йўеЏЌй¦€д»ҐеЏЉй«зє§иґ¦ж€·ж”ЇжЊЃпјЊеђЊж—¶дїќжЊЃеє”з”ЁжЎ†жћ¶дёЌеЏгЂ‚",
+    "legalBodyTerms":  "иї™дёЄжЁЎж‹џз‰€жњ¬ж—ЁењЁйЄЊиЇЃдє§е“ЃжµЃзЁ‹гЂЃUI зЉ¶жЂЃе’Њжћ¶жћ„иѕ№з•ЊгЂ‚з­‰еђЋз»­жЋҐе…Ґж­ЈејЏзљ„ NestJS дёЋ Postgres еђЋз«ЇеђЋпјЊжі•еѕ‹е±‚йќўеЏЇд»Ґж‰©е±•дёєзњџе®ћзљ„жњЌеЉЎжќЎж¬ѕдёЋж•°жЌ®е¤„зђ†иЇґжЋгЂ‚",
+    "legalPlaceholderBody":  "ж­¤йЎµйќўењЁжј”з¤єеє”з”Ёдё­еЏЄжЇеЌ дЅЌе†…е®№гЂ‚иЇ·ж›їжЌўдёєдЅ ж­ЈејЏзЋЇеўѓдё­зљ„жі•еѕ‹ж–‡жњ¬гЂ‚",
+    "legalTitleAbout":  "е…ідєЋ SubFlix",
+    "legalTitlePrivacy":  "йљђз§Ѓж”їз­–",
+    "legalTitleSupport":  "ж”ЇжЊЃ",
+    "legalTitleTerms":  "жњЌеЉЎжќЎж¬ѕ",
+    "mediaTypeMovie":  "з”µеЅ±",
+    "mediaTypeSeries":  "е‰§й›†",
+    "metadataEstimatedDuration":  "йў„и®Ўж—¶й•ї",
+    "metadataFormat":  "ж јејЏ",
+    "metadataLanguages":  "иЇ­иЁЂ",
+    "metadataLines":  "иЎЊж•°",
+    "navHistory":  "еЋ†еЏІ",
+    "navHome":  "й¦–йЎµ",
+    "navSettings":  "и®ѕзЅ®",
+    "noTitlesMatchedMessage":  "ж€‘д»¬ењЁжЁЎж‹џз›®еЅ•дё­ж‰ѕдёЌе€°иї™дёЄж ‡йўгЂ‚иЇ·е°ќиЇ•ж›ґе®Ѕжі›зљ„жђњзґўпјЊж€–дЅїз”Ёе»єи®®ж ‡йўгЂ‚",
+    "noTitlesMatchedTitle":  "жІЎжњ‰еЊ№й…Ќз»“жћњ",
+    "onboardingContinue":  "з»§з»­",
+    "onboardingEnterApp":  "иї›е…Ґ SubFlix",
+    "onboardingNext":  "дё‹дёЂж­Ґ",
+    "onboardingPage1Description":  "жђњзґўж ‡йўгЂЃжџҐзњ‹еЏЇз”Ёзљ„и‹±ж–‡е­—е№•жќҐжєђпјЊз„¶еђЋеђЇеЉЁдёЂдёЄе‡ д№ЋеЌіж—¶зљ„зї»иЇ‘жµЃзЁ‹гЂ‚",
+    "onboardingPage1Eyebrow":  "жђњзґўе№¶иЋ·еЏ–",
+    "onboardingPage1Highlight1":  "еЏЇйў„жµ‹зљ„жЁЎж‹џз›®еЅ•пјЊж–№дѕїзЁіе®љејЂеЏ‘",
+    "onboardingPage1Highlight2":  "е­—е№•жќҐжєђиґЁй‡Џж ‡з­ѕдёЋж јејЏж ‡иЇ†",
+    "onboardingPage1Highlight3":  "еђЋз»­еЏЇж— зјќе€‡жЌўе€°зњџе®ћеђЋз«Ї",
+    "onboardingPage1Title":  "ж‰ѕе€°з”µеЅ±ж€–е‰§й›†пјЊе№¶ж‹‰еЏ–еЏЇз›ґжЋҐзї»иЇ‘зљ„е­—е№•гЂ‚",
+    "onboardingPage2Description":  "еЇје…Ґе­—е№•ж–‡д»¶гЂЃж ЎйЄЊж јејЏпјЊе№¶ењЁдёЌз¦»ејЂеє”з”Ёзљ„жѓ…е†µдё‹иµ°е®Њж•ґеҐ—зІѕи‡ґзї»иЇ‘жµЃзЁ‹гЂ‚",
+    "onboardingPage2Eyebrow":  "дЅїз”Ёи‡Єе·±зљ„ж–‡д»¶",
+    "onboardingPage2Highlight1":  "жњ¬ењ°ж–‡д»¶ж ЎйЄЊдёЋдјй›…зљ„й‡ЌиЇ•зЉ¶жЂЃ",
+    "onboardingPage2Highlight2":  "дёЉдј дёЋжђњзґўдїќжЊЃдёЂи‡ґзљ„зї»иЇ‘и®ѕзЅ®",
+    "onboardingPage2Highlight3":  "еЇје‡єе‰Ќе…€йў„и§€пјЊи®©з»“жћњж›ґйЂЏжЋ",
+    "onboardingPage2Title":  "е¦‚жћњдЅ е·Із»Џжњ‰и„љжњ¬пјЊеЏЇз›ґжЋҐдёЉдј  `.srt` ж€– `.vtt` ж–‡д»¶гЂ‚",
+    "onboardingPage3Description":  "ењЁеЋџж–‡гЂЃиЇ‘ж–‡е’ЊеЏЊиЇ­и§†е›ѕд№‹й—ґе€‡жЌўпјЊе›ћзњ‹еЋ†еЏІи®°еЅ•пјЊе№¶ењЁз»“жћњж»Ўж„ЏеђЋеЇје‡єе№Іе‡Ђзљ„е­—е№•ж–‡д»¶гЂ‚",
+    "onboardingPage3Eyebrow":  "зї»иЇ‘е№¶еЇје‡є",
+    "onboardingPage3Highlight1":  "её¦е…ѓж•°жЌ®дёЋжђњзґўзљ„еї«йЂџйў„и§€жЋ§е€¶",
+    "onboardingPage3Highlight2":  "еЋ†еЏІи®°еЅ•и®©ж—§д»»еЉЎе§‹з»€еЏЄе·®дёЂж¬Ўз‚№е‡»",
+    "onboardingPage3Highlight3":  "и®ѕи®Ўеѕ—еѓЏй«зє§еЄ’дЅ“е·Ґе…·пјЊиЂЊдёЌжЇжј”з¤єйЎµ",
+    "onboardingPage3Title":  "йЂ‰ж‹©з›®ж ‡иЇ­иЁЂгЂЃйў„и§€е­—е№•пјЊе№¶з«‹еЌіеЇје‡єгЂ‚",
+    "onboardingSkip":  "и·іиї‡",
+    "onboardingStart":  "ејЂе§‹зї»иЇ‘",
+    "previewFailedTitle":  "йў„и§€еЉ иЅЅе¤±иґҐ",
+    "previewModeBilingual":  "еЏЊиЇ­",
+    "previewModeOriginal":  "еЋџж–‡",
+    "previewModeTranslated":  "иЇ‘ж–‡",
+    "previewNoMatchesMessage":  "иЇ·е°ќиЇ•е…¶д»–жђњзґўиЇЌпјЊж€–жё…й™¤з­›йЂ‰д»ҐжџҐзњ‹е®Њж•ґзї»иЇ‘гЂ‚",
+    "previewNoMatchesTitle":  "жІЎжњ‰еЊ№й…Ќзљ„е­—е№•иЎЊ",
+    "previewNotReadyMessage":  "зї»иЇ‘е·Іе®Њж€ђпјЊдЅ†еђЋз«Їе°љжњЄиї”е›ћйў„и§€ cueгЂ‚иЇ·зЁЌеђЋй‡Ќж–°еЉ иЅЅж­¤йЎµйќўгЂ‚",
+    "previewNotReadyTitle":  "йў„и§€ cue жљ‚ж—¶дёЌеЏЇз”Ё",
+    "retry":  "й‡ЌиЇ•",
+    "retryTranslation":  "й‡Ќж–°зї»иЇ‘",
+    "routeMissingSeasonEpisodesMessage":  "ж€‘д»¬ж— жі•е€¤ж–­еє”еЉ иЅЅе“ЄдёЂе­ЈгЂ‚иЇ·д»Ћжђњзґўй‡Ќж–°ејЂе§‹гЂ‚",
+    "routeMissingSeasonEpisodesTitle":  "жњ¬е­Је‰§й›†",
+    "routeMissingSeriesSeasonsMessage":  "ж€‘д»¬ж— жі•е€¤ж–­еє”еЉ иЅЅе“ЄйѓЁе‰§й›†гЂ‚иЇ·д»Ћжђњзґўй‡Ќж–°ејЂе§‹гЂ‚",
+    "routeMissingSeriesSeasonsTitle":  "е‰§й›†е­Је€—иЎЁ",
+    "routeMissingSubtitleSourcesMessage":  "ж€‘д»¬ж— жі•е€¤ж–­еє”дёєе“ЄдёЄж ‡йўеЉ иЅЅе­—е№•жќҐжєђгЂ‚иЇ·д»Ћжђњзґўй‡Ќж–°ејЂе§‹гЂ‚",
+    "routeMissingSubtitleSourcesTitle":  "е­—е№•жќҐжєђ",
+    "routeMissingTranslationProgressMessage":  "жІЎжњ‰жЏђдѕ›зї»иЇ‘иЇ·ж±‚гЂ‚иЇ·д»Ћжђњзґўж€–дёЉдј ејЂе§‹ж–°зљ„зї»иЇ‘гЂ‚",
+    "routeMissingTranslationProgressTitle":  "зї»иЇ‘иї›еє¦",
+    "routeMissingTranslationSetupMessage":  "ж‰“ејЂзї»иЇ‘и®ѕзЅ®йЎµйќўе‰ЌпјЊеї…йЎ»е…€жњ‰дёЂдёЄе­—е№•жќҐжєђгЂ‚",
+    "routeMissingTranslationSetupTitle":  "зї»иЇ‘и®ѕзЅ®",
+    "searchFailedTitle":  "жђњзґўе¤±иґҐ",
+    "searchFoundResults":  "ж‰ѕе€° {count} жќЎдёЋвЂњ{query}вЂќз›ёе…ізљ„з»“жћњ",
+    "@searchFoundResults":  {
+                                "placeholders":  {
+                                                     "count":  {
+
+                                                               },
+                                                     "query":  {
+
+                                                               }
+                                                 }
+                            },
+    "searchHintText":  "жђњзґў DuneгЂЃBreaking BadгЂЃSeverance...",
+    "searchLoadingLabel":  "ж­ЈењЁжђњзґў...",
+    "searchMockMessage":  "иЇ•иЇ• InceptionгЂЃDuneгЂЃBreaking BadгЂЃSeverance ж€– The Last of UsпјЊдЅ“йЄЊе­—е№•жќҐжєђжµЃзЁ‹гЂ‚",
+    "searchMockTitle":  "ењЁжЁЎж‹џз›®еЅ•дё­жђњзґўд»»дЅ•е†…е®№",
+    "searchMovieOrSeriesSubtitle":  "ж‰ѕе€°з‰‡еђЌгЂЃжџҐзњ‹е­—е№•жќҐжєђпјЊе№¶йЂљиї‡е‡ ж¬Ўз‚№е‡»еђЇеЉЁзї»иЇ‘д»»еЉЎгЂ‚",
+    "searchMovieOrSeriesTitle":  "жђњзґўз”µеЅ±ж€–е‰§й›†",
+    "searchNoResultsFor":  "жІЎжњ‰ж‰ѕе€°вЂњ{query}вЂќзљ„з»“жћњ",
+    "@searchNoResultsFor":  {
+                                "placeholders":  {
+                                                     "query":  {
+
+                                                               }
+                                                 }
+                            },
+    "searchResultPopularity":  "зѓ­еє¦ {score}",
+    "@searchResultPopularity":  {
+                                    "placeholders":  {
+                                                         "score":  {
+
+                                                                   }
+                                                     }
+                                },
+    "searchTitles":  "жђњзґўз‰‡еђЌ",
+    "searchTrendingTitle":  "зѓ­й—Ёжђњзґў",
+    "searchTryDifferentKeywords":  "иЇ•иЇ•е…¶д»–е…ій”®иЇЌгЂ‚",
+    "seriesEpisodeLabel":  "з¬¬ {episodeNumber} й›†",
+    "@seriesEpisodeLabel":  {
+                                "placeholders":  {
+                                                     "episodeNumber":  {
+
+                                                                       }
+                                                 }
+                            },
+    "seriesEpisodeMeta":  "зє¦ {runtime} е€†й’џ",
+    "@seriesEpisodeMeta":  {
+                               "placeholders":  {
+                                                    "runtime":  {
+
+                                                                }
+                                                }
+                           },
+    "seriesEpisodesSubtitle":  "{episodeCount} й›†{year}",
+    "@seriesEpisodesSubtitle":  {
+                                    "placeholders":  {
+                                                         "episodeCount":  {
+
+                                                                          },
+                                                         "year":  {
+
+                                                                  }
+                                                     }
+                                },
+    "seriesEpisodesTitle":  "з¬¬ {seasonNumber} е­Ј",
+    "@seriesEpisodesTitle":  {
+                                 "placeholders":  {
+                                                      "seasonNumber":  {
+
+                                                                       }
+                                                  }
+                             },
+    "seriesSeasonLabel":  "з¬¬ {seasonNumber} е­Ј",
+    "@seriesSeasonLabel":  {
+                               "placeholders":  {
+                                                    "seasonNumber":  {
+
+                                                                     }
+                                                }
+                           },
+    "seriesSeasonMeta":  "{episodeCount} й›†{year}",
+    "@seriesSeasonMeta":  {
+                              "placeholders":  {
+                                                   "episodeCount":  {
+
+                                                                    },
+                                                   "year":  {
+
+                                                            }
+                                               }
+                          },
+    "seriesSeasonsSubtitle":  "йЂ‰ж‹© {title} зљ„жџђдёЂе­Јд»ҐжµЏи§€еЏЇз”Ёе‰§й›†гЂ‚",
+    "@seriesSeasonsSubtitle":  {
+                                   "placeholders":  {
+                                                        "title":  {
+
+                                                                  }
+                                                    }
+                               },
+    "seriesSeasonsTitle":  "йЂ‰ж‹©е­Ј",
+    "settingsAboutTitle":  "е…ідєЋ SubFlix",
+    "settingsCacheCleared":  "зј“е­е·Іжё…й™¤",
+    "settingsClearCache":  "жё…й™¤зј“е­",
+    "settingsContactTitle":  "иЃ”зі»ж€‘д»¬",
+    "settingsFailedTitle":  "и®ѕзЅ®еЉ иЅЅе¤±иґҐ",
+    "settingsHelpCenterTitle":  "её®еЉ©дё­еїѓ",
+    "settingsHistoryClearedSnack":  "е·Іжё…й™¤ж­¤и®ѕе¤‡зљ„зї»иЇ‘еЋ†еЏІ",
+    "settingsLanguageLabel":  "й¦–йЂ‰з›®ж ‡иЇ­иЁЂ",
+    "settingsMaintenanceSubtitle":  "жё…й™¤ж­¤и®ѕе¤‡дёЉз”±еђЋз«Їз®Ўзђ†зљ„зї»иЇ‘д»»еЉЎпјЊе№¶д»Ћз©єеЋ†еЏІзЉ¶жЂЃй‡Ќж–°ејЂе§‹гЂ‚",
+    "settingsMaintenanceTitle":  "з»ґжЉ¤",
+    "settingsNotificationsSubtitle":  "з®Ўзђ†йЂљзџҐеЃЏеҐЅ",
+    "settingsNotificationsTitle":  "йЂљзџҐ",
+    "settingsPremiumSubtitle":  "еђЋз»­ж€‘д»¬еЏЇд»ҐењЁиї™й‡ЊжЋҐе…Ґи®ўй…гЂЃи®Ўиґ№е’Њдє‘йЎ№з›®еђЊж­ҐгЂ‚",
+    "settingsPremiumTitle":  "й«зє§еЉџиѓЅеЌ дЅЌ",
+    "settingsPrivacySubtitle":  "жЁЎж‹џйљђз§Ѓе†…е®№",
+    "settingsPrivacyTitle":  "йљђз§Ѓж”їз­–",
+    "settingsProfileName":  "SubFlix з”Ёж€·",
+    "settingsProfileTier":  "й«зє§дјље‘",
+    "settingsSubtitle":  "з®Ўзђ†дЅ зљ„еЃЏеҐЅ",
+    "settingsSupportSubtitle":  "жЁЎж‹џеё®еЉ©дёЋиЃ”зі»йЎµйќў",
+    "settingsSupportTitle":  "ж”ЇжЊЃеЌ дЅЌ",
+    "settingsTermsSubtitle":  "жЁЎж‹џжќЎж¬ѕе†…е®№",
+    "settingsTermsTitle":  "жњЌеЉЎжќЎж¬ѕ",
+    "settingsThemeLabel":  "е¤–и§‚",
+    "settingsTitle":  "и®ѕзЅ®",
+    "settingsVersion":  "з‰€жњ¬ {version}",
+    "@settingsVersion":  {
+                             "placeholders":  {
+                                                  "version":  {
+
+                                                              }
+                                              }
+                         },
+    "splashHeadline":  "SubFlix",
+    "splashPreparing":  "ж­ЈењЁе‡†е¤‡дЅ зљ„е­—е№•е·ҐдЅње®¤",
+    "splashSubtitle":  "AI й©±еЉЁзљ„е­—е№•зї»иЇ‘",
+    "startTranslation":  "ејЂе§‹зї»иЇ‘",
+    "subtitleSourceDownloads":  "{downloads} ж¬Ўдё‹иЅЅ",
+    "@subtitleSourceDownloads":  {
+                                     "placeholders":  {
+                                                          "downloads":  {
+
+                                                                        }
+                                                      }
+                                 },
+    "subtitleSourceFormatLabel":  "{format} е­—е№•жќҐжєђ",
+    "@subtitleSourceFormatLabel":  {
+                                       "placeholders":  {
+                                                            "format":  {
+
+                                                                       }
+                                                        }
+                                   },
+    "subtitleSourceHiLabel":  "HI / SDH",
+    "subtitleSourceLines":  "{lineCount} иЎЊ",
+    "@subtitleSourceLines":  {
+                                 "placeholders":  {
+                                                      "lineCount":  {
+
+                                                                    }
+                                                  }
+                             },
+    "subtitleSourceRating":  "иЇ„е€† {rating}",
+    "@subtitleSourceRating":  {
+                                  "placeholders":  {
+                                                       "rating":  {
+
+                                                                  }
+                                                   }
+                              },
+    "subtitleSourcesBannerMessage":  "йЂ‰ж‹©е­—е№•жќҐжєђеђЋпјЊеЌіеЏЇиї›е…Ґй’€еЇ№е­—е№•ж—¶й—ґиЅґдјеЊ–иї‡зљ„зІѕи‡ґзї»иЇ‘и®ѕзЅ®гЂ‚",
+    "subtitleSourcesBannerTitle":  "еЏЇдЅїз”Ё AI зї»иЇ‘",
+    "subtitleSourcesFailedTitle":  "ж— жі•еЉ иЅЅе­—е№•жќҐжєђ",
+    "subtitleSourcesSubtitle":  "дёє {title}{target} йЂ‰ж‹©дёЂдёЄе­—е№•жќҐжєђпјЊз„¶еђЋењЁдё‹дёЂж­ҐйЂ‰ж‹©з›®ж ‡иЇ­иЁЂгЂ‚",
+    "@subtitleSourcesSubtitle":  {
+                                     "placeholders":  {
+                                                          "title":  {
+
+                                                                    },
+                                                          "target":  {
+
+                                                                     }
+                                                      }
+                                 },
+    "subtitleSourcesTitle":  "и‹±ж–‡е­—е№•жќҐжєђ",
+    "targetLanguage":  "з›®ж ‡иЇ­иЁЂ",
+    "themeDark":  "ж·±и‰І",
+    "themeLight":  "жµ…и‰І",
+    "themeSystem":  "и·џйљЏзі»з»џ",
+    "translateSetupAutoDetect":  "и‡ЄеЉЁиЇ†е€«ж јејЏ",
+    "translateSetupAutoDetectBody":  "и‡ЄеЉЁйЂ‰ж‹©еђ€йЂ‚зљ„е­—е№•иѕ“е‡єз»“жћ„гЂ‚",
+    "translateSetupLanguageTitle":  "зї»иЇ‘дёє",
+    "translateSetupOptionsTitle":  "йЂ‰йЎ№",
+    "translateSetupPreserveTiming":  "дїќз•™ж—¶й—ґиЅґ",
+    "translateSetupPreserveTimingBody":  "и®©еЋџе§‹е­—е№•ж—¶й—ґдёЋжєђж–‡д»¶дїќжЊЃдёЂи‡ґгЂ‚",
+    "translateSetupReadyBody":  "ж€‘д»¬зљ„зї»иЇ‘жµЃзЁ‹дјље°†иї™д»Ѕе­—е№•иЅ¬жЌўдёє {language}пјЊеђЊж—¶дїќз•™ж—¶й—ґиЅґе№¶дїќжЊЃжё…ж™°зљ„ cue з»“жћ„гЂ‚",
+    "@translateSetupReadyBody":  {
+                                     "placeholders":  {
+                                                          "language":  {
+
+                                                                       }
+                                                      }
+                                 },
+    "translateSetupReadyTitle":  "AI зї»иЇ‘е·Іе°±з»Є",
+    "translateSetupSelectLanguage":  "йЂ‰ж‹©иЇ­иЁЂ",
+    "translateSetupSourceTitle":  "жєђе­—е№•",
+    "translateSetupSubtitle":  "йЂ‰ж‹©з›®ж ‡иЇ­иЁЂпјЊжџҐзњ‹е­—е№•жќҐжєђпјЊз„¶еђЋеђЇеЉЁеђЋз«Їзї»иЇ‘д»»еЉЎгЂ‚",
+    "translateSetupTitle":  "зї»иЇ‘и®ѕзЅ®",
+    "translationFailedMessage":  "е‡єдє†з‚№й—®йўгЂ‚",
+    "translationFailedTitle":  "зї»иЇ‘жњЄиѓЅе®Њж€ђ",
+    "translationPreviewHeader":  "жџҐзњ‹зї»иЇ‘еђЋзљ„е­—е№•",
+    "translationPreviewSearchHint":  "жђњзґўе­—е№•иЎЊ",
+    "translationPreviewSubtitle":  "ењЁ cue дё­жђњзґўгЂЃе€‡жЌўйў„и§€жЁЎејЏпјЊе№¶ењЁзЎ®и®¤з»“жћњж— иЇЇеђЋеЇје‡єгЂ‚",
+    "translationPreviewTitle":  "зї»иЇ‘йў„и§€",
+    "translationProgressHeadline":  "AI е­—е№•зї»иЇ‘иї›иЎЊдё­",
+    "translationProgressTitle":  "зї»иЇ‘иї›еє¦",
+    "translationResultCompleteSubtitle":  "дЅ зљ„е­—е№•е·Із»ЏеЏЇд»Ґйў„и§€ж€–дё‹иЅЅгЂ‚",
+    "translationResultCompleteTitle":  "зї»иЇ‘е®Њж€ђ",
+    "translationResultConfidenceLabel":  "зї»иЇ‘еЏЇдїЎеє¦",
+    "translationResultDetailsTitle":  "зї»иЇ‘иЇ¦жѓ…",
+    "translationResultDownloadCta":  "дё‹иЅЅе­—е№•",
+    "translationResultHomeCta":  "иї”е›ћй¦–йЎµ",
+    "translationResultMediaLabel":  "дЅње“Ѓж ‡йў",
+    "translationResultMethodAi":  "AI зї»иЇ‘",
+    "translationResultMetricsTitle":  "иґЁй‡ЏжЊ‡ж ‡",
+    "translationResultPreviewCta":  "йў„и§€е­—е№•",
+    "translationResultProcessedIn":  "е¤„зђ†иЂ—ж—¶ {duration}",
+    "@translationResultProcessedIn":  {
+                                          "placeholders":  {
+                                                               "duration":  {
+
+                                                                            }
+                                                           }
+                                      },
+    "translationResultSourceLabel":  "жєђиЇ­иЁЂ",
+    "translationResultTargetLabel":  "з›®ж ‡иЇ­иЁЂ",
+    "translationResultTimingLabel":  "ж—¶й—ґзІѕеє¦",
+    "translationResultTimingPreserved":  "ж—¶й—ґе·Ідїќз•™",
+    "translationResultWarning":  "жџђдє›дё“дёљжњЇиЇ­д»ЌеЏЇиѓЅйњЂи¦Ѓдєєе·Ґеї«йЂџе¤Ќж ёпјЊд»ҐзЎ®дїќиЇ­еўѓе‡†зЎ®гЂ‚",
+    "translationStageAligning":  "ж­ЈењЁеЇ№йЅђж—¶й—ґж€іе’Њењєж™ЇдёЉдё‹ж–‡",
+    "translationStageGenerating":  "ж­ЈењЁз”џж€ђе­—е№•зї»иЇ‘",
+    "translationStageIdle":  "з­‰еѕ…зї»иЇ‘иЇ·ж±‚",
+    "translationStagePreparing":  "ж­ЈењЁе‡†е¤‡е­—е№•еЊ…",
+    "translationStageQueued":  "е·ІеЉ е…Ґзї»иЇ‘йџе€—",
+    "translationStageReadability":  "ж­ЈењЁиї›иЎЊеЏЇиЇ»жЂ§дјеЊ–",
+    "translationStageReady":  "зї»иЇ‘е·Іе®Њж€ђ",
+    "tryAgain":  "е†ЌиЇ•дёЂж¬Ў",
+    "uploadChooseFile":  "йЂ‰ж‹©е­—е№•ж–‡д»¶",
+    "uploadChooseFileShort":  "йЂ‰ж‹©ж–‡д»¶",
+    "uploadContinueSetup":  "з»§з»­иї›иЎЊзї»иЇ‘и®ѕзЅ®",
+    "uploadEnglishSource":  "и‹±ж–‡жќҐжєђ",
+    "uploadFailedFallback":  "иЇ·е°ќиЇ•е…¶д»–е­—е№•ж–‡д»¶гЂ‚",
+    "uploadFailedMessage":  "ж€‘д»¬ж— жі•иЇ»еЏ–иї™дёЄе­—е№•ж–‡д»¶гЂ‚иЇ·е°ќиЇ•е…¶д»–ж–‡д»¶пјЊж€–дЅїз”Ёж›ґе°Џзљ„еЇје‡єж–‡д»¶гЂ‚",
+    "uploadFailedTitle":  "ж–‡д»¶еЇје…Ґе¤±иґҐ",
+    "uploadIntroSubtitle":  "еЇје…Ґи‹±ж–‡ `.srt` ж€– `.vtt` ж–‡д»¶пјЊдє¤з»™еђЋз«Їж ЎйЄЊе№¶и§ЈжћђпјЊз„¶еђЋз»§з»­иї›е…Ґзї»иЇ‘и®ѕзЅ®гЂ‚",
+    "uploadIntroTitle":  "дЅїз”ЁдЅ и‡Єе·±зљ„е­—е№•ж–‡д»¶",
+    "uploadLineCount":  "{lineCount} иЎЊ",
+    "@uploadLineCount":  {
+                             "placeholders":  {
+                                                  "lineCount":  {
+
+                                                                }
+                                              }
+                         },
+    "uploadMetadataTitle":  "е­—е№•иЇ¦жѓ…",
+    "uploadOpeningPicker":  "ж­ЈењЁж‰“ејЂйЂ‰ж‹©е™Ё...",
+    "uploadPickSubtitle":  "йЂ‰ж‹©е­—е№•ж–‡д»¶",
+    "uploadPickedFile":  "е·ІйЂ‰ж‹©е­—е№•ж–‡д»¶",
+    "uploadReadyTitle":  "еЏЇд»ҐејЂе§‹зї»иЇ‘",
+    "uploadSubtitleTitle":  "дёЉдј е­—е№•",
+    "uploadSupportedFormatsSubtitle":  "и‹±ж–‡ `.srt` е’Њ `.vtt` е­—е№•ж–‡д»¶",
+    "uploadSupportedFormatsTitle":  "ж”ЇжЊЃзљ„ж јејЏ",
+    "uploadUseDemoFile":  "дЅїз”Ёжј”з¤єж–‡д»¶",
+    "authAccountSectionTitle":  "账户",
+    "authAlreadySignedInTitle":  "你已登录",
+    "authAlreadySignedInMessage":  "此设备已连接到 {email} 账户。",
+    "authBackToAccount":  "返回账户",
+    "authBackToSignIn":  "返回登录",
+    "authCheckInboxTitle":  "请检查收件箱",
+    "authConfirmEmailAction":  "确认邮箱",
+    "authConfirmEmailHint":  "请使用发送到 {email} 的验证令牌。",
+    "authConfirmEmailSubtitle":  "粘贴邮件中的验证令牌，以完成此账户的激活。",
+    "authConfirmEmailSuccess":  "邮箱已确认。现在可以登录了。",
+    "authConfirmEmailTitle":  "验证你的邮箱",
+    "authConfirmPasswordLabel":  "确认密码",
+    "authContinueToReset":  "继续重置",
+    "authContinueWithGoogle":  "使用 Google 继续",
+    "authCreateAccountAction":  "创建账户",
+    "authDebugTokenLabel":  "调试令牌：{token}",
+    "authDisplayNameLabel":  "显示名称",
+    "authEmailLabel":  "邮箱地址",
+    "authEyebrow":  "安全空间",
+    "authFieldRequired":  "此字段为必填项。",
+    "authForgotPasswordAction":  "发送重置链接",
+    "authForgotPasswordDebugMessage":  "此调试环境已返回一个重置令牌。你可以直接继续到重置表单。",
+    "authForgotPasswordLink":  "忘记密码？",
+    "authForgotPasswordSubtitle":  "输入你的邮箱，我们将向后端请求为此账户重置密码。",
+    "authForgotPasswordSuccess":  "如果账户存在，密码重置消息已发送。",
+    "authForgotPasswordTitle":  "重置你的密码",
+    "authGoogleHelper":  "Google 登录使用 Firebase OAuth，当此应用连接到 Firebase 项目后即可正常使用。",
+    "authGoogleShortAction":  "Google",
+    "authHaveAccountLink":  "已有账户？去登录",
+    "authInvalidEmail":  "请输入有效的邮箱地址。",
+    "authNewPasswordLabel":  "新密码",
+    "authNoAccountLink":  "需要账户？创建一个",
+    "authOrDivider":  "或",
+    "authPasswordLabel":  "密码",
+    "authPasswordMismatch":  "两次输入的密码不一致。",
+    "authPasswordTooShort":  "请至少使用 8 个字符。",
+    "authProfileRefreshed":  "账户数据已刷新。",
+    "authRefreshProfileAction":  "刷新资料",
+    "authRefreshProfileSubtitle":  "从后端加载最新的个人资料数据。",
+    "authResetPasswordAction":  "保存新密码",
+    "authResetPasswordHint":  "使用邮件中的令牌重置 {email} 的密码。",
+    "authResetPasswordSubtitle":  "输入重置令牌，并为此账户设置一个新密码。",
+    "authResetPasswordSuccess":  "密码已更新。请重新登录。",
+    "authResetPasswordTitle":  "选择新密码",
+    "authSignInAction":  "登录",
+    "authSignInSubtitle":  "将此应用连接到你的 SubFlix 账户，以同步个人资料并启用后端认证流程。",
+    "authSignInSuccess":  "登录成功。",
+    "authSignInTitle":  "欢迎回来",
+    "authSignedInCardSubtitle":  "已连接为 {email}",
+    "authSignedOutCardSubtitle":  "登录后即可管理账户、使用 Firebase OAuth，并为未来同步准备认证功能。",
+    "authSignedOutCardTitle":  "登录到 SubFlix",
+    "authSignOutAction":  "退出登录",
+    "authSignOutSubtitle":  "撤销此设备上的当前会话并清除本地令牌。",
+    "authSignOutSuccess":  "已在此设备上退出登录。",
+    "authSignUpAction":  "创建我的账户",
+    "authSignUpSubtitle":  "创建一个账户，以便此应用可以使用后端的已认证资料和会话流程。",
+    "authSignUpSuccess":  "账户已创建。请继续进行邮箱验证。",
+    "authSignUpTitle":  "创建你的账户",
+    "authVerificationStatusTitle":  "邮箱验证",
+    "authVerificationTokenLabel":  "验证令牌",
+    "authVerifiedStatus":  "已验证",
+    "authUnverifiedStatus":  "等待验证"
 }

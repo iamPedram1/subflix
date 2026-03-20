@@ -12,813 +12,842 @@ class AppLocalizationsAr extends AppLocalizations {
   String get appTitle => 'SubFlix';
 
   @override
-  String get authAccountSectionTitle => 'Account';
+  String get authAccountSectionTitle => 'الحساب';
 
   @override
-  String get authAlreadySignedInTitle => 'You are already signed in';
+  String get authAlreadySignedInTitle => 'أنت مسجل الدخول بالفعل';
 
   @override
   String authAlreadySignedInMessage(Object email) {
-    return 'This device is already connected as $email.';
+    return 'هذا الجهاز متصل بالفعل بالحساب $email.';
   }
 
   @override
-  String get authBackToAccount => 'Back to account';
+  String get authBackToAccount => 'العودة إلى الحساب';
 
   @override
-  String get authBackToSignIn => 'Back to sign in';
+  String get authBackToSignIn => 'العودة إلى تسجيل الدخول';
 
   @override
-  String get authCheckInboxTitle => 'Check your inbox';
+  String get authCheckInboxTitle => 'تحقق من بريدك الوارد';
 
   @override
-  String get authConfirmEmailAction => 'Confirm email';
+  String get authConfirmEmailAction => 'تأكيد البريد الإلكتروني';
 
   @override
   String authConfirmEmailHint(Object email) {
-    return 'Use the verification token sent to $email.';
+    return 'استخدم رمز التحقق المرسل إلى $email.';
   }
 
   @override
   String get authConfirmEmailSubtitle =>
-      'Paste the verification token from your email to finish activating this account.';
+      'ألصق رمز التحقق من بريدك الإلكتروني لإكمال تفعيل هذا الحساب.';
 
   @override
-  String get authConfirmEmailSuccess => 'Email confirmed. You can sign in now.';
+  String get authConfirmEmailSuccess =>
+      'تم تأكيد البريد الإلكتروني. يمكنك الآن تسجيل الدخول.';
 
   @override
-  String get authConfirmEmailTitle => 'Verify your email';
+  String get authConfirmEmailTitle => 'تحقق من بريدك الإلكتروني';
 
   @override
-  String get authConfirmPasswordLabel => 'Confirm password';
+  String get authConfirmPasswordLabel => 'تأكيد كلمة المرور';
 
   @override
-  String get authContinueToReset => 'Continue to reset';
+  String get authContinueToReset => 'المتابعة لإعادة التعيين';
 
   @override
-  String get authContinueWithGoogle => 'Continue with Google';
+  String get authContinueWithGoogle => 'المتابعة باستخدام Google';
 
   @override
-  String get authCreateAccountAction => 'Create account';
+  String get authCreateAccountAction => 'إنشاء حساب';
 
   @override
   String authDebugTokenLabel(Object token) {
-    return 'Debug token: $token';
+    return 'رمز التصحيح: $token';
   }
 
   @override
-  String get authDisplayNameLabel => 'Display name';
+  String get authDisplayNameLabel => 'الاسم الظاهر';
 
   @override
-  String get authEmailLabel => 'Email address';
+  String get authEmailLabel => 'عنوان البريد الإلكتروني';
 
   @override
-  String get authEyebrow => 'Secure workspace';
+  String get authEyebrow => 'مساحة آمنة';
 
   @override
-  String get authFieldRequired => 'This field is required.';
+  String get authFieldRequired => 'هذا الحقل مطلوب.';
 
   @override
-  String get authForgotPasswordAction => 'Send reset link';
+  String get authForgotPasswordAction => 'إرسال رابط إعادة التعيين';
 
   @override
   String get authForgotPasswordDebugMessage =>
-      'A reset token was returned for this debug environment. You can continue directly into the reset form.';
+      'تم إرجاع رمز إعادة تعيين لهذه البيئة التجريبية. يمكنك المتابعة مباشرة إلى نموذج إعادة التعيين.';
 
   @override
-  String get authForgotPasswordLink => 'Forgot password?';
+  String get authForgotPasswordLink => 'هل نسيت كلمة المرور؟';
 
   @override
   String get authForgotPasswordSubtitle =>
-      'Enter your email and we will request a password reset from the backend for this account.';
+      'أدخل بريدك الإلكتروني وسنطلب من الخادم إعادة تعيين كلمة المرور لهذا الحساب.';
 
   @override
   String get authForgotPasswordSuccess =>
-      'If the account exists, a password reset message has been sent.';
+      'إذا كان الحساب موجودًا، فقد تم إرسال رسالة لإعادة تعيين كلمة المرور.';
 
   @override
-  String get authForgotPasswordTitle => 'Reset your password';
+  String get authForgotPasswordTitle => 'أعد تعيين كلمة المرور';
 
   @override
   String get authGoogleHelper =>
-      'Google sign-in uses Firebase OAuth and will work once this app is connected to a Firebase project.';
+      'يستخدم تسجيل الدخول عبر Google خدمة Firebase OAuth وسيعمل عندما يتم ربط هذا التطبيق بمشروع Firebase.';
 
   @override
   String get authGoogleShortAction => 'Google';
 
   @override
-  String get authHaveAccountLink => 'Already have an account? Sign in';
+  String get authHaveAccountLink => 'لديك حساب بالفعل؟ سجّل الدخول';
 
   @override
-  String get authInvalidEmail => 'Enter a valid email address.';
+  String get authInvalidEmail => 'أدخل عنوان بريد إلكتروني صالحًا.';
 
   @override
-  String get authNewPasswordLabel => 'New password';
+  String get authNewPasswordLabel => 'كلمة مرور جديدة';
 
   @override
-  String get authNoAccountLink => 'Need an account? Create one';
+  String get authNoAccountLink => 'تحتاج إلى حساب؟ أنشئ واحدًا';
 
   @override
-  String get authOrDivider => 'or';
+  String get authOrDivider => 'أو';
 
   @override
-  String get authPasswordLabel => 'Password';
+  String get authPasswordLabel => 'كلمة المرور';
 
   @override
-  String get authPasswordMismatch => 'Passwords do not match.';
+  String get authPasswordMismatch => 'كلمتا المرور غير متطابقتين.';
 
   @override
-  String get authPasswordTooShort => 'Use at least 8 characters.';
+  String get authPasswordTooShort => 'استخدم 8 أحرف على الأقل.';
 
   @override
-  String get authProfileRefreshed => 'Account details refreshed.';
+  String get authProfileRefreshed => 'تم تحديث بيانات الحساب.';
 
   @override
-  String get authRefreshProfileAction => 'Refresh profile';
+  String get authRefreshProfileAction => 'تحديث الملف الشخصي';
 
   @override
   String get authRefreshProfileSubtitle =>
-      'Load the latest profile data from the backend.';
+      'تحميل أحدث بيانات الملف الشخصي من الخادم.';
 
   @override
-  String get authResetPasswordAction => 'Save new password';
+  String get authResetPasswordAction => 'حفظ كلمة المرور الجديدة';
 
   @override
   String authResetPasswordHint(Object email) {
-    return 'Reset the password for $email using the token from your email.';
+    return 'أعد تعيين كلمة مرور $email باستخدام الرمز المرسل إلى بريدك الإلكتروني.';
   }
 
   @override
   String get authResetPasswordSubtitle =>
-      'Enter the reset token and choose a new password for this account.';
+      'أدخل رمز إعادة التعيين واختر كلمة مرور جديدة لهذا الحساب.';
 
   @override
   String get authResetPasswordSuccess =>
-      'Password updated. Please sign in again.';
+      'تم تحديث كلمة المرور. يرجى تسجيل الدخول مرة أخرى.';
 
   @override
-  String get authResetPasswordTitle => 'Choose a new password';
+  String get authResetPasswordTitle => 'اختر كلمة مرور جديدة';
 
   @override
-  String get authSignInAction => 'Sign in';
+  String get authSignInAction => 'تسجيل الدخول';
 
   @override
   String get authSignInSubtitle =>
-      'Connect this app to your SubFlix account to sync profile data and unlock authenticated backend flows.';
+      'اربط هذا التطبيق بحساب SubFlix الخاص بك لمزامنة بيانات الملف الشخصي وفتح التدفقات الموثقة في الخادم.';
 
   @override
-  String get authSignInSuccess => 'Signed in successfully.';
+  String get authSignInSuccess => 'تم تسجيل الدخول بنجاح.';
 
   @override
-  String get authSignInTitle => 'Welcome back';
+  String get authSignInTitle => 'مرحبًا بعودتك';
 
   @override
   String authSignedInCardSubtitle(Object email) {
-    return 'Connected as $email';
+    return 'متصل باسم $email';
   }
 
   @override
   String get authSignedOutCardSubtitle =>
-      'Sign in to manage your account, use Firebase OAuth, and keep authenticated features ready for future sync.';
+      'سجّل الدخول لإدارة حسابك واستخدام Firebase OAuth وتجهيز الميزات الموثقة للمزامنة المستقبلية.';
 
   @override
-  String get authSignedOutCardTitle => 'Sign in to SubFlix';
+  String get authSignedOutCardTitle => 'سجّل الدخول إلى SubFlix';
 
   @override
-  String get authSignOutAction => 'Sign out';
+  String get authSignOutAction => 'تسجيل الخروج';
 
   @override
   String get authSignOutSubtitle =>
-      'Revoke the current session for this device and clear local tokens.';
+      'إلغاء الجلسة الحالية لهذا الجهاز ومسح الرموز المحلية.';
 
   @override
-  String get authSignOutSuccess => 'Signed out on this device.';
+  String get authSignOutSuccess => 'تم تسجيل الخروج على هذا الجهاز.';
 
   @override
-  String get authSignUpAction => 'Create my account';
+  String get authSignUpAction => 'إنشاء حسابي';
 
   @override
   String get authSignUpSubtitle =>
-      'Create an account so this app can use the backend\'s authenticated profile and session flows.';
+      'أنشئ حسابًا حتى يتمكن هذا التطبيق من استخدام الملف الشخصي الموثق وتدفقات الجلسة الخاصة بالخادم.';
 
   @override
   String get authSignUpSuccess =>
-      'Account created. Continue with email verification.';
+      'تم إنشاء الحساب. تابع تأكيد البريد الإلكتروني.';
 
   @override
-  String get authSignUpTitle => 'Create your account';
+  String get authSignUpTitle => 'أنشئ حسابك';
 
   @override
-  String get authVerificationStatusTitle => 'Email verification';
+  String get authVerificationStatusTitle => 'التحقق من البريد الإلكتروني';
 
   @override
-  String get authVerificationTokenLabel => 'Verification token';
+  String get authVerificationTokenLabel => 'رمز التحقق';
 
   @override
-  String get authVerifiedStatus => 'Verified';
+  String get authVerifiedStatus => 'تم التحقق';
 
   @override
-  String get authUnverifiedStatus => 'Verification pending';
+  String get authUnverifiedStatus => 'التحقق قيد الانتظار';
 
   @override
-  String get brandSubtitleCompact => 'ذكاء الترجمة';
+  String get brandSubtitleCompact => 'Ш°ЩѓШ§ШЎ Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get brandSubtitleFull => 'استوديو ترجمة الترجمة بالذكاء الاصطناعي';
+  String get brandSubtitleFull =>
+      'Ш§ШіШЄЩ€ШЇЩЉЩ€ ШЄШ±Ш¬Щ…Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш© ШЁШ§Щ„Ш°ЩѓШ§ШЎ Ш§Щ„Ш§ШµШ·Щ†Ш§Ш№ЩЉ';
 
   @override
-  String get comingSoonMessage => 'ما زلنا نجهّز هذه الشاشة.';
+  String get comingSoonMessage =>
+      'Щ…Ш§ ШІЩ„Щ†Ш§ Щ†Ш¬Щ‡Щ‘ШІ Щ‡Ш°Щ‡ Ш§Щ„ШґШ§ШґШ©.';
 
   @override
-  String get comingSoonTitle => 'قريبًا';
+  String get comingSoonTitle => 'Щ‚Ш±ЩЉШЁЩ‹Ш§';
 
   @override
   String exportFailedSnack(Object error) {
-    return 'فشل التصدير: $error';
+    return 'ЩЃШґЩ„ Ш§Щ„ШЄШµШЇЩЉШ±: $error';
   }
 
   @override
-  String get exportSubtitleLabel => 'تصدير الترجمة المترجمة';
+  String get exportSubtitleLabel =>
+      'ШЄШµШЇЩЉШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„Щ…ШЄШ±Ш¬Щ…Ш©';
 
   @override
   String exportedSnack(Object fileName, Object path) {
-    return 'تم تصدير $fileName إلى $path';
+    return 'ШЄЩ… ШЄШµШЇЩЉШ± $fileName ШҐЩ„Щ‰ $path';
   }
 
   @override
-  String get exportingLabel => 'جارٍ التصدير...';
+  String get exportingLabel => 'Ш¬Ш§Ш±ЩЌ Ш§Щ„ШЄШµШЇЩЉШ±...';
 
   @override
-  String get heroBadge => 'مسار ترجمة احترافي';
+  String get heroBadge => 'Щ…ШіШ§Ш± ШЄШ±Ш¬Щ…Ш© Ш§Ш­ШЄШ±Ш§ЩЃЩЉ';
 
   @override
   String get heroBody =>
-      'اختر بين فهرس عناوين قابل للبحث أو رفع ملف مباشر، ثم عاين وصدّر ترجمات مصقولة خلال دقائق.';
+      'Ш§Ш®ШЄШ± ШЁЩЉЩ† ЩЃЩ‡Ш±Ші Ш№Щ†Ш§Щ€ЩЉЩ† Щ‚Ш§ШЁЩ„ Щ„Щ„ШЁШ­Ш« ШЈЩ€ Ш±ЩЃШ№ Щ…Щ„ЩЃ Щ…ШЁШ§ШґШ±ШЊ Ш«Щ… Ш№Ш§ЩЉЩ† Щ€ШµШЇЩ‘Ш± ШЄШ±Ш¬Щ…Ш§ШЄ Щ…ШµЩ‚Щ€Щ„Ш© Ш®Щ„Ш§Щ„ ШЇЩ‚Ш§Ш¦Щ‚.';
 
   @override
   String get heroHeadline =>
-      'ترجم ترجمات الأفلام والمسلسلات بمسار عمل بمستوى الاستوديو.';
+      'ШЄШ±Ш¬Щ… ШЄШ±Ш¬Щ…Ш§ШЄ Ш§Щ„ШЈЩЃЩ„Ш§Щ… Щ€Ш§Щ„Щ…ШіЩ„ШіЩ„Ш§ШЄ ШЁЩ…ШіШ§Ш± Ш№Щ…Щ„ ШЁЩ…ШіШЄЩ€Щ‰ Ш§Щ„Ш§ШіШЄЩ€ШЇЩЉЩ€.';
 
   @override
-  String get heroSearchCta => 'ابحث عن فيلم / مسلسل';
+  String get heroSearchCta => 'Ш§ШЁШ­Ш« Ш№Щ† ЩЃЩЉЩ„Щ… / Щ…ШіЩ„ШіЩ„';
 
   @override
-  String get heroStatLanguagesTitle => '10 لغات';
+  String get heroStatLanguagesTitle => '10 Щ„ШєШ§ШЄ';
 
   @override
-  String get heroStatLanguagesValue => 'جاهزة للمعاينة';
+  String get heroStatLanguagesValue => 'Ш¬Ш§Щ‡ШІШ© Щ„Щ„Щ…Ш№Ш§ЩЉЩ†Ш©';
 
   @override
-  String get heroStatMockTitle => 'واجهات وهمية';
+  String get heroStatMockTitle => 'Щ€Ш§Ш¬Щ‡Ш§ШЄ Щ€Щ‡Щ…ЩЉШ©';
 
   @override
-  String get heroStatMockValue => 'نقطة جاهزة للخادم';
+  String get heroStatMockValue => 'Щ†Щ‚Ш·Ш© Ш¬Ш§Щ‡ШІШ© Щ„Щ„Ш®Ш§ШЇЩ…';
 
   @override
-  String get heroStatPathsTitle => 'مساران';
+  String get heroStatPathsTitle => 'Щ…ШіШ§Ш±Ш§Щ†';
 
   @override
-  String get heroStatPathsValue => 'بحث أو رفع';
+  String get heroStatPathsValue => 'ШЁШ­Ш« ШЈЩ€ Ш±ЩЃШ№';
 
   @override
   String get heroSubtitle =>
-      'ابحث في فهارس الأفلام والمسلسلات، واختر المصادر، وصدّر ترجمات مصقولة خلال دقائق.';
+      'Ш§ШЁШ­Ш« ЩЃЩЉ ЩЃЩ‡Ш§Ш±Ші Ш§Щ„ШЈЩЃЩ„Ш§Щ… Щ€Ш§Щ„Щ…ШіЩ„ШіЩ„Ш§ШЄШЊ Щ€Ш§Ш®ШЄШ± Ш§Щ„Щ…ШµШ§ШЇШ±ШЊ Щ€ШµШЇЩ‘Ш± ШЄШ±Ш¬Щ…Ш§ШЄ Щ…ШµЩ‚Щ€Щ„Ш© Ш®Щ„Ш§Щ„ ШЇЩ‚Ш§Ш¦Щ‚.';
 
   @override
-  String get heroTitle => 'ترجم الترجمات بسرعة أكبر';
+  String get heroTitle => 'ШЄШ±Ш¬Щ… Ш§Щ„ШЄШ±Ш¬Щ…Ш§ШЄ ШЁШіШ±Ш№Ш© ШЈЩѓШЁШ±';
 
   @override
-  String get heroUploadCta => 'رفع الترجمة';
+  String get heroUploadCta => 'Ш±ЩЃШ№ Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
   String historyCountLabel(Object count) {
-    return '$count ترجمة';
+    return '$count ШЄШ±Ш¬Щ…Ш©';
   }
 
   @override
   String get historyEmptyMessage =>
-      'ستظهر مهام الترجمة المنجزة هنا بعد إكمال مسار البحث أو الرفع.';
+      'ШіШЄШёЩ‡Ш± Щ…Щ‡Ш§Щ… Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„Щ…Щ†Ш¬ШІШ© Щ‡Щ†Ш§ ШЁШ№ШЇ ШҐЩѓЩ…Ш§Щ„ Щ…ШіШ§Ш± Ш§Щ„ШЁШ­Ш« ШЈЩ€ Ш§Щ„Ш±ЩЃШ№.';
 
   @override
-  String get historyEmptyTitle => 'السجل فارغ';
+  String get historyEmptyTitle => 'Ш§Щ„ШіШ¬Щ„ ЩЃШ§Ш±Шє';
 
   @override
-  String get historyFailedItemMessage => 'فشلت الترجمة. اضغط للبدء من جديد.';
+  String get historyFailedItemMessage =>
+      'ЩЃШґЩ„ШЄ Ш§Щ„ШЄШ±Ш¬Щ…Ш©. Ш§Ш¶ШєШ· Щ„Щ„ШЁШЇШЎ Щ…Щ† Ш¬ШЇЩЉШЇ.';
 
   @override
-  String get historyFailedTitle => 'تعذّر تحميل السجل';
+  String get historyFailedTitle => 'ШЄШ№Ш°Щ‘Ш± ШЄШ­Щ…ЩЉЩ„ Ш§Щ„ШіШ¬Щ„';
 
   @override
-  String get historyFilterAiTranslated => 'مترجمة بالذكاء الاصطناعي';
+  String get historyFilterAiTranslated =>
+      'Щ…ШЄШ±Ш¬Щ…Ш© ШЁШ§Щ„Ш°ЩѓШ§ШЎ Ш§Щ„Ш§ШµШ·Щ†Ш§Ш№ЩЉ';
 
   @override
-  String get historyFilterAll => 'الكل';
+  String get historyFilterAll => 'Ш§Щ„ЩѓЩ„';
 
   @override
-  String get historyFilterCompleted => 'مكتملة';
+  String get historyFilterCompleted => 'Щ…ЩѓШЄЩ…Щ„Ш©';
 
   @override
-  String get historyFilterFailed => 'فاشلة';
+  String get historyFilterFailed => 'ЩЃШ§ШґЩ„Ш©';
 
   @override
-  String get historyFilterMovies => 'الأفلام';
+  String get historyFilterMovies => 'Ш§Щ„ШЈЩЃЩ„Ш§Щ…';
 
   @override
-  String get historyFilterReused => 'معاد استخدامها';
+  String get historyFilterReused => 'Щ…Ш№Ш§ШЇ Ш§ШіШЄШ®ШЇШ§Щ…Щ‡Ш§';
 
   @override
-  String get historyFilterSeries => 'المسلسلات';
+  String get historyFilterSeries => 'Ш§Щ„Щ…ШіЩ„ШіЩ„Ш§ШЄ';
 
   @override
   String get historySubtitle =>
-      'أعد فتح مهام الترجمة السابقة، وراجع المعاينة مجددًا، أو صدّرها لاحقًا.';
+      'ШЈШ№ШЇ ЩЃШЄШ­ Щ…Щ‡Ш§Щ… Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„ШіШ§ШЁЩ‚Ш©ШЊ Щ€Ш±Ш§Ш¬Ш№ Ш§Щ„Щ…Ш№Ш§ЩЉЩ†Ш© Щ…Ш¬ШЇШЇЩ‹Ш§ШЊ ШЈЩ€ ШµШЇЩ‘Ш±Щ‡Ш§ Щ„Ш§Ш­Щ‚Щ‹Ш§.';
 
   @override
-  String get historyTitle => 'سجل الترجمات';
+  String get historyTitle => 'ШіШ¬Щ„ Ш§Щ„ШЄШ±Ш¬Щ…Ш§ШЄ';
 
   @override
-  String get homeFailedRecentTitle => 'تعذّر تحميل المهام الأخيرة';
+  String get homeFailedRecentTitle =>
+      'ШЄШ№Ш°Щ‘Ш± ШЄШ­Щ…ЩЉЩ„ Ш§Щ„Щ…Щ‡Ш§Щ… Ш§Щ„ШЈШ®ЩЉШ±Ш©';
 
   @override
   String get homeFutureSubtitle =>
-      'تُبقي المستودعات التجريبية القابلة للاستبدال واجهة المستخدم معزولة عن تغييرات الخادم.';
+      'ШЄЩЏШЁЩ‚ЩЉ Ш§Щ„Щ…ШіШЄЩ€ШЇШ№Ш§ШЄ Ш§Щ„ШЄШ¬Ш±ЩЉШЁЩЉШ© Ш§Щ„Щ‚Ш§ШЁЩ„Ш© Щ„Щ„Ш§ШіШЄШЁШЇШ§Щ„ Щ€Ш§Ш¬Щ‡Ш© Ш§Щ„Щ…ШіШЄШ®ШЇЩ… Щ…Ш№ШІЩ€Щ„Ш© Ш№Щ† ШЄШєЩЉЩЉШ±Ш§ШЄ Ш§Щ„Ш®Ш§ШЇЩ….';
 
   @override
-  String get homeFutureTitle => 'مستودعات جاهزة للمستقبل';
+  String get homeFutureTitle => 'Щ…ШіШЄЩ€ШЇШ№Ш§ШЄ Ш¬Ш§Щ‡ШІШ© Щ„Щ„Щ…ШіШЄЩ‚ШЁЩ„';
 
   @override
   String get homeNoRecentMessage =>
-      'ابدأ بالبحث عن فيلم أو ارفع ملف ترجمة، وستظهر ترجماتك الأخيرة هنا.';
+      'Ш§ШЁШЇШЈ ШЁШ§Щ„ШЁШ­Ш« Ш№Щ† ЩЃЩЉЩ„Щ… ШЈЩ€ Ш§Ш±ЩЃШ№ Щ…Щ„ЩЃ ШЄШ±Ш¬Щ…Ш©ШЊ Щ€ШіШЄШёЩ‡Ш± ШЄШ±Ш¬Щ…Ш§ШЄЩѓ Ш§Щ„ШЈШ®ЩЉШ±Ш© Щ‡Щ†Ш§.';
 
   @override
-  String get homeNoRecentTitle => 'لا توجد مهام حديثة بعد';
+  String get homeNoRecentTitle => 'Щ„Ш§ ШЄЩ€Ш¬ШЇ Щ…Щ‡Ш§Щ… Ш­ШЇЩЉШ«Ш© ШЁШ№ШЇ';
 
   @override
   String get homePreviewSubtitle =>
-      'راجع النتائج قبل التصدير عبر العرض الأصلي أو المترجم أو الثنائي اللغة.';
+      'Ш±Ш§Ш¬Ш№ Ш§Щ„Щ†ШЄШ§Ш¦Ш¬ Щ‚ШЁЩ„ Ш§Щ„ШЄШµШЇЩЉШ± Ш№ШЁШ± Ш§Щ„Ш№Ш±Ш¶ Ш§Щ„ШЈШµЩ„ЩЉ ШЈЩ€ Ш§Щ„Щ…ШЄШ±Ш¬Щ… ШЈЩ€ Ш§Щ„Ш«Щ†Ш§Ш¦ЩЉ Ш§Щ„Щ„ШєШ©.';
 
   @override
-  String get homePreviewTitle => 'مسار ترجمة قائم على المعاينة أولًا';
+  String get homePreviewTitle =>
+      'Щ…ШіШ§Ш± ШЄШ±Ш¬Щ…Ш© Щ‚Ш§Ш¦Щ… Ш№Щ„Щ‰ Ш§Щ„Щ…Ш№Ш§ЩЉЩ†Ш© ШЈЩ€Щ„Щ‹Ш§';
 
   @override
-  String get homeQuickHistory => 'السجل';
+  String get homeQuickHistory => 'Ш§Щ„ШіШ¬Щ„';
 
   @override
-  String get homeQuickSearch => 'بحث';
+  String get homeQuickSearch => 'ШЁШ­Ш«';
 
   @override
-  String get homeQuickUpload => 'رفع';
+  String get homeQuickUpload => 'Ш±ЩЃШ№';
 
   @override
   String get homeRecentJobsSubtitle =>
-      'أعد فتح أحدث جلسات الترجمة لديك دون البدء من الصفر.';
+      'ШЈШ№ШЇ ЩЃШЄШ­ ШЈШ­ШЇШ« Ш¬Щ„ШіШ§ШЄ Ш§Щ„ШЄШ±Ш¬Щ…Ш© Щ„ШЇЩЉЩѓ ШЇЩ€Щ† Ш§Щ„ШЁШЇШЎ Щ…Щ† Ш§Щ„ШµЩЃШ±.';
 
   @override
-  String get homeRecentJobsTitle => 'المهام الأخيرة';
+  String get homeRecentJobsTitle => 'Ш§Щ„Щ…Щ‡Ш§Щ… Ш§Щ„ШЈШ®ЩЉШ±Ш©';
 
   @override
-  String get homeSearchPlaceholder => 'ابحث عن أفلام أو مسلسلات...';
+  String get homeSearchPlaceholder =>
+      'Ш§ШЁШ­Ш« Ш№Щ† ШЈЩЃЩ„Ш§Щ… ШЈЩ€ Щ…ШіЩ„ШіЩ„Ш§ШЄ...';
 
   @override
   String get homeStatesSubtitle =>
-      'التحميل، والفراغ، وإعادة المحاولة، والتحقق، وسيناريوهات عدم الاتصال التجريبية جزء من تجربة الاستخدام منذ اليوم الأول.';
+      'Ш§Щ„ШЄШ­Щ…ЩЉЩ„ШЊ Щ€Ш§Щ„ЩЃШ±Ш§ШєШЊ Щ€ШҐШ№Ш§ШЇШ© Ш§Щ„Щ…Ш­Ш§Щ€Щ„Ш©ШЊ Щ€Ш§Щ„ШЄШ­Щ‚Щ‚ШЊ Щ€ШіЩЉЩ†Ш§Ш±ЩЉЩ€Щ‡Ш§ШЄ Ш№ШЇЩ… Ш§Щ„Ш§ШЄШµШ§Щ„ Ш§Щ„ШЄШ¬Ш±ЩЉШЁЩЉШ© Ш¬ШІШЎ Щ…Щ† ШЄШ¬Ш±ШЁШ© Ш§Щ„Ш§ШіШЄШ®ШЇШ§Щ… Щ…Щ†Ш° Ш§Щ„ЩЉЩ€Щ… Ш§Щ„ШЈЩ€Щ„.';
 
   @override
-  String get homeStatesTitle => 'حالات استخدام سلسة مضمّنة';
+  String get homeStatesTitle =>
+      'Ш­Ш§Щ„Ш§ШЄ Ш§ШіШЄШ®ШЇШ§Щ… ШіЩ„ШіШ© Щ…Ш¶Щ…Щ‘Щ†Ш©';
 
   @override
-  String get homeTrendingNow => 'الرائج الآن';
+  String get homeTrendingNow => 'Ш§Щ„Ш±Ш§Ш¦Ш¬ Ш§Щ„ШўЩ†';
 
   @override
   String get homeTrustSubtitle =>
-      'مُحاكى اليوم، لكنه مبني كمنتج قابل للإطلاق فعليًا.';
+      'Щ…ЩЏШ­Ш§ЩѓЩ‰ Ш§Щ„ЩЉЩ€Щ…ШЊ Щ„ЩѓЩ†Щ‡ Щ…ШЁЩ†ЩЉ ЩѓЩ…Щ†ШЄШ¬ Щ‚Ш§ШЁЩ„ Щ„Щ„ШҐШ·Щ„Ш§Щ‚ ЩЃШ№Щ„ЩЉЩ‹Ш§.';
 
   @override
-  String get homeTrustTitle => 'لماذا تثق به الفرق';
+  String get homeTrustTitle => 'Щ„Щ…Ш§Ш°Ш§ ШЄШ«Щ‚ ШЁЩ‡ Ш§Щ„ЩЃШ±Щ‚';
 
   @override
-  String get homeViewAll => 'عرض الكل';
+  String get homeViewAll => 'Ш№Ш±Ш¶ Ш§Щ„ЩѓЩ„';
 
   @override
-  String get homeWelcomeSubtitle => 'اعثر على الترجمات وترجمها';
+  String get homeWelcomeSubtitle =>
+      'Ш§Ш№Ш«Ш± Ш№Щ„Щ‰ Ш§Щ„ШЄШ±Ш¬Щ…Ш§ШЄ Щ€ШЄШ±Ш¬Щ…Щ‡Ш§';
 
   @override
-  String get homeWelcomeTitle => 'مرحبًا بعودتك';
+  String get homeWelcomeTitle => 'Щ…Ш±Ш­ШЁЩ‹Ш§ ШЁШ№Щ€ШЇШЄЩѓ';
 
   @override
   String jobConfidence(Object level) {
-    return 'الثقة: $level';
+    return 'Ш§Щ„Ш«Щ‚Ш©: $level';
   }
 
   @override
-  String get jobOpenPreview => 'فتح المعاينة';
+  String get jobOpenPreview => 'ЩЃШЄШ­ Ш§Щ„Щ…Ш№Ш§ЩЉЩ†Ш©';
 
   @override
-  String get jobReuseSubtitle => 'إعادة استخدام ملف الترجمة';
+  String get jobReuseSubtitle =>
+      'ШҐШ№Ш§ШЇШ© Ш§ШіШЄШ®ШЇШ§Щ… Щ…Щ„ЩЃ Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get jobReuseTranslation => 'إعادة استخدام الترجمة';
+  String get jobReuseTranslation => 'ШҐШ№Ш§ШЇШ© Ш§ШіШЄШ®ШЇШ§Щ… Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
   String get legalBodyAbout =>
-      'SubFlix عميل Flutter بطابع احترافي لترجمة الترجمة بالذكاء الاصطناعي. تستخدم هذه النسخة مستودعات وهمية، وتأخيرًا اصطناعيًا، وتخزينًا محليًا حتى تتطور الواجهة والبنية قبل ربط خادم حقيقي.';
+      'SubFlix Ш№Щ…ЩЉЩ„ Flutter ШЁШ·Ш§ШЁШ№ Ш§Ш­ШЄШ±Ш§ЩЃЩЉ Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш© ШЁШ§Щ„Ш°ЩѓШ§ШЎ Ш§Щ„Ш§ШµШ·Щ†Ш§Ш№ЩЉ. ШЄШіШЄШ®ШЇЩ… Щ‡Ш°Щ‡ Ш§Щ„Щ†ШіШ®Ш© Щ…ШіШЄЩ€ШЇШ№Ш§ШЄ Щ€Щ‡Щ…ЩЉШ©ШЊ Щ€ШЄШЈШ®ЩЉШ±Щ‹Ш§ Ш§ШµШ·Щ†Ш§Ш№ЩЉЩ‹Ш§ШЊ Щ€ШЄШ®ШІЩЉЩ†Щ‹Ш§ Щ…Ш­Щ„ЩЉЩ‹Ш§ Ш­ШЄЩ‰ ШЄШЄШ·Щ€Ш± Ш§Щ„Щ€Ш§Ш¬Щ‡Ш© Щ€Ш§Щ„ШЁЩ†ЩЉШ© Щ‚ШЁЩ„ Ш±ШЁШ· Ш®Ш§ШЇЩ… Ш­Щ‚ЩЉЩ‚ЩЉ.';
 
   @override
   String get legalBodyPrivacy =>
-      'يخزن SubFlix حاليًا التفضيلات التجريبية وسجل الترجمة فقط على الجهاز عبر التخزين المحلي. يمكن أن يستبدل تكامل خادم مستقبلي ذلك بتخزين موثّق، ومسارات تدقيق، وسياسات احتفاظ تُدار من الخادم.';
+      'ЩЉШ®ШІЩ† SubFlix Ш­Ш§Щ„ЩЉЩ‹Ш§ Ш§Щ„ШЄЩЃШ¶ЩЉЩ„Ш§ШЄ Ш§Щ„ШЄШ¬Ш±ЩЉШЁЩЉШ© Щ€ШіШ¬Щ„ Ш§Щ„ШЄШ±Ш¬Щ…Ш© ЩЃЩ‚Ш· Ш№Щ„Щ‰ Ш§Щ„Ш¬Щ‡Ш§ШІ Ш№ШЁШ± Ш§Щ„ШЄШ®ШІЩЉЩ† Ш§Щ„Щ…Ш­Щ„ЩЉ. ЩЉЩ…ЩѓЩ† ШЈЩ† ЩЉШіШЄШЁШЇЩ„ ШЄЩѓШ§Щ…Щ„ Ш®Ш§ШЇЩ… Щ…ШіШЄЩ‚ШЁЩ„ЩЉ Ш°Щ„Щѓ ШЁШЄШ®ШІЩЉЩ† Щ…Щ€Ш«Щ‘Щ‚ШЊ Щ€Щ…ШіШ§Ш±Ш§ШЄ ШЄШЇЩ‚ЩЉЩ‚ШЊ Щ€ШіЩЉШ§ШіШ§ШЄ Ш§Ш­ШЄЩЃШ§Шё ШЄЩЏШЇШ§Ш± Щ…Щ† Ш§Щ„Ш®Ш§ШЇЩ….';
 
   @override
   String get legalBodySupport =>
-      'الدعم مجرد عنصر نائب حاليًا. في إصدار الإنتاج يمكن لهذا القسم أن يتصل بالبريد الإلكتروني، وتقارير المشكلات، ومساعدة الحسابات المميزة مع بقاء هيكل التطبيق كما هو.';
+      'Ш§Щ„ШЇШ№Щ… Щ…Ш¬Ш±ШЇ Ш№Щ†ШµШ± Щ†Ш§Ш¦ШЁ Ш­Ш§Щ„ЩЉЩ‹Ш§. ЩЃЩЉ ШҐШµШЇШ§Ш± Ш§Щ„ШҐЩ†ШЄШ§Ш¬ ЩЉЩ…ЩѓЩ† Щ„Щ‡Ш°Ш§ Ш§Щ„Щ‚ШіЩ… ШЈЩ† ЩЉШЄШµЩ„ ШЁШ§Щ„ШЁШ±ЩЉШЇ Ш§Щ„ШҐЩ„ЩѓШЄШ±Щ€Щ†ЩЉШЊ Щ€ШЄЩ‚Ш§Ш±ЩЉШ± Ш§Щ„Щ…ШґЩѓЩ„Ш§ШЄШЊ Щ€Щ…ШіШ§Ш№ШЇШ© Ш§Щ„Ш­ШіШ§ШЁШ§ШЄ Ш§Щ„Щ…Щ…ЩЉШІШ© Щ…Ш№ ШЁЩ‚Ш§ШЎ Щ‡ЩЉЩѓЩ„ Ш§Щ„ШЄШ·ШЁЩЉЩ‚ ЩѓЩ…Ш§ Щ‡Щ€.';
 
   @override
   String get legalBodyTerms =>
-      'تهدف هذه النسخة التجريبية إلى اختبار تدفقات المنتج، وحالات الواجهة، وحدود البنية. وعندما يتم ربط خادم إنتاجي يعتمد على NestJS وPostgres لاحقًا، يمكن توسيع السطح القانوني بشروط خدمة حقيقية وصياغات لمعالجة البيانات.';
+      'ШЄЩ‡ШЇЩЃ Щ‡Ш°Щ‡ Ш§Щ„Щ†ШіШ®Ш© Ш§Щ„ШЄШ¬Ш±ЩЉШЁЩЉШ© ШҐЩ„Щ‰ Ш§Ш®ШЄШЁШ§Ш± ШЄШЇЩЃЩ‚Ш§ШЄ Ш§Щ„Щ…Щ†ШЄШ¬ШЊ Щ€Ш­Ш§Щ„Ш§ШЄ Ш§Щ„Щ€Ш§Ш¬Щ‡Ш©ШЊ Щ€Ш­ШЇЩ€ШЇ Ш§Щ„ШЁЩ†ЩЉШ©. Щ€Ш№Щ†ШЇЩ…Ш§ ЩЉШЄЩ… Ш±ШЁШ· Ш®Ш§ШЇЩ… ШҐЩ†ШЄШ§Ш¬ЩЉ ЩЉШ№ШЄЩ…ШЇ Ш№Щ„Щ‰ NestJS Щ€Postgres Щ„Ш§Ш­Щ‚Щ‹Ш§ШЊ ЩЉЩ…ЩѓЩ† ШЄЩ€ШіЩЉШ№ Ш§Щ„ШіШ·Ш­ Ш§Щ„Щ‚Ш§Щ†Щ€Щ†ЩЉ ШЁШґШ±Щ€Ш· Ш®ШЇЩ…Ш© Ш­Щ‚ЩЉЩ‚ЩЉШ© Щ€ШµЩЉШ§ШєШ§ШЄ Щ„Щ…Ш№Ш§Щ„Ш¬Ш© Ш§Щ„ШЁЩЉШ§Щ†Ш§ШЄ.';
 
   @override
   String get legalPlaceholderBody =>
-      'هذه الصفحة مجرد عنصر نائب في التطبيق التجريبي. اربطها بمحتواك القانوني الحقيقي في نسخة الإنتاج.';
+      'Щ‡Ш°Щ‡ Ш§Щ„ШµЩЃШ­Ш© Щ…Ш¬Ш±ШЇ Ш№Щ†ШµШ± Щ†Ш§Ш¦ШЁ ЩЃЩЉ Ш§Щ„ШЄШ·ШЁЩЉЩ‚ Ш§Щ„ШЄШ¬Ш±ЩЉШЁЩЉ. Ш§Ш±ШЁШ·Щ‡Ш§ ШЁЩ…Ш­ШЄЩ€Ш§Щѓ Ш§Щ„Щ‚Ш§Щ†Щ€Щ†ЩЉ Ш§Щ„Ш­Щ‚ЩЉЩ‚ЩЉ ЩЃЩЉ Щ†ШіШ®Ш© Ш§Щ„ШҐЩ†ШЄШ§Ш¬.';
 
   @override
-  String get legalTitleAbout => 'حول SubFlix';
+  String get legalTitleAbout => 'Ш­Щ€Щ„ SubFlix';
 
   @override
-  String get legalTitlePrivacy => 'سياسة الخصوصية';
+  String get legalTitlePrivacy => 'ШіЩЉШ§ШіШ© Ш§Щ„Ш®ШµЩ€ШµЩЉШ©';
 
   @override
-  String get legalTitleSupport => 'الدعم';
+  String get legalTitleSupport => 'Ш§Щ„ШЇШ№Щ…';
 
   @override
-  String get legalTitleTerms => 'شروط الخدمة';
+  String get legalTitleTerms => 'ШґШ±Щ€Ш· Ш§Щ„Ш®ШЇЩ…Ш©';
 
   @override
-  String get mediaTypeMovie => 'فيلم';
+  String get mediaTypeMovie => 'ЩЃЩЉЩ„Щ…';
 
   @override
-  String get mediaTypeSeries => 'مسلسل';
+  String get mediaTypeSeries => 'Щ…ШіЩ„ШіЩ„';
 
   @override
-  String get metadataEstimatedDuration => 'المدة التقديرية';
+  String get metadataEstimatedDuration => 'Ш§Щ„Щ…ШЇШ© Ш§Щ„ШЄЩ‚ШЇЩЉШ±ЩЉШ©';
 
   @override
-  String get metadataFormat => 'الصيغة';
+  String get metadataFormat => 'Ш§Щ„ШµЩЉШєШ©';
 
   @override
-  String get metadataLanguages => 'اللغات';
+  String get metadataLanguages => 'Ш§Щ„Щ„ШєШ§ШЄ';
 
   @override
-  String get metadataLines => 'الأسطر';
+  String get metadataLines => 'Ш§Щ„ШЈШіШ·Ш±';
 
   @override
-  String get navHistory => 'السجل';
+  String get navHistory => 'Ш§Щ„ШіШ¬Щ„';
 
   @override
-  String get navHome => 'الرئيسية';
+  String get navHome => 'Ш§Щ„Ш±Ш¦ЩЉШіЩЉШ©';
 
   @override
-  String get navSettings => 'الإعدادات';
+  String get navSettings => 'Ш§Щ„ШҐШ№ШЇШ§ШЇШ§ШЄ';
 
   @override
   String get noTitlesMatchedMessage =>
-      'لم نتمكن من العثور على هذا العنوان في الفهرس التجريبي. جرّب بحثًا أوسع أو أحد العناوين المقترحة.';
+      'Щ„Щ… Щ†ШЄЩ…ЩѓЩ† Щ…Щ† Ш§Щ„Ш№Ш«Щ€Ш± Ш№Щ„Щ‰ Щ‡Ш°Ш§ Ш§Щ„Ш№Щ†Щ€Ш§Щ† ЩЃЩЉ Ш§Щ„ЩЃЩ‡Ш±Ші Ш§Щ„ШЄШ¬Ш±ЩЉШЁЩЉ. Ш¬Ш±Щ‘ШЁ ШЁШ­Ш«Щ‹Ш§ ШЈЩ€ШіШ№ ШЈЩ€ ШЈШ­ШЇ Ш§Щ„Ш№Щ†Ш§Щ€ЩЉЩ† Ш§Щ„Щ…Щ‚ШЄШ±Ш­Ш©.';
 
   @override
-  String get noTitlesMatchedTitle => 'لا توجد نتائج مطابقة';
+  String get noTitlesMatchedTitle => 'Щ„Ш§ ШЄЩ€Ш¬ШЇ Щ†ШЄШ§Ш¦Ш¬ Щ…Ш·Ш§ШЁЩ‚Ш©';
 
   @override
-  String get onboardingContinue => 'متابعة';
+  String get onboardingContinue => 'Щ…ШЄШ§ШЁШ№Ш©';
 
   @override
-  String get onboardingEnterApp => 'ادخل إلى SubFlix';
+  String get onboardingEnterApp => 'Ш§ШЇШ®Щ„ ШҐЩ„Щ‰ SubFlix';
 
   @override
-  String get onboardingNext => 'التالي';
+  String get onboardingNext => 'Ш§Щ„ШЄШ§Щ„ЩЉ';
 
   @override
   String get onboardingPage1Description =>
-      'ابحث عن عنوان، وراجع مصادر الترجمة الإنجليزية المتاحة، وابدأ مسار ترجمة يبدو فوريًا.';
+      'Ш§ШЁШ­Ш« Ш№Щ† Ш№Щ†Щ€Ш§Щ†ШЊ Щ€Ш±Ш§Ш¬Ш№ Щ…ШµШ§ШЇШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„ШҐЩ†Ш¬Щ„ЩЉШІЩЉШ© Ш§Щ„Щ…ШЄШ§Ш­Ш©ШЊ Щ€Ш§ШЁШЇШЈ Щ…ШіШ§Ш± ШЄШ±Ш¬Щ…Ш© ЩЉШЁШЇЩ€ ЩЃЩ€Ш±ЩЉЩ‹Ш§.';
 
   @override
-  String get onboardingPage1Eyebrow => 'ابحث واجلب';
+  String get onboardingPage1Eyebrow => 'Ш§ШЁШ­Ш« Щ€Ш§Ш¬Щ„ШЁ';
 
   @override
-  String get onboardingPage1Highlight1 => 'فهرس تجريبي حتمي لتطوير موثوق';
+  String get onboardingPage1Highlight1 =>
+      'ЩЃЩ‡Ш±Ші ШЄШ¬Ш±ЩЉШЁЩЉ Ш­ШЄЩ…ЩЉ Щ„ШЄШ·Щ€ЩЉШ± Щ…Щ€Ш«Щ€Щ‚';
 
   @override
-  String get onboardingPage1Highlight2 => 'بطاقات جودة المصدر وشارات الصيغة';
+  String get onboardingPage1Highlight2 =>
+      'ШЁШ·Ш§Щ‚Ш§ШЄ Ш¬Щ€ШЇШ© Ш§Щ„Щ…ШµШЇШ± Щ€ШґШ§Ш±Ш§ШЄ Ш§Щ„ШµЩЉШєШ©';
 
   @override
-  String get onboardingPage1Highlight3 => 'مصمم ليستبدل بخادم حقيقي لاحقًا';
+  String get onboardingPage1Highlight3 =>
+      'Щ…ШµЩ…Щ… Щ„ЩЉШіШЄШЁШЇЩ„ ШЁШ®Ш§ШЇЩ… Ш­Щ‚ЩЉЩ‚ЩЉ Щ„Ш§Ш­Щ‚Щ‹Ш§';
 
   @override
   String get onboardingPage1Title =>
-      'اعثر على أفلام أو مسلسلات واسحب ترجمات جاهزة للترجمة.';
+      'Ш§Ш№Ш«Ш± Ш№Щ„Щ‰ ШЈЩЃЩ„Ш§Щ… ШЈЩ€ Щ…ШіЩ„ШіЩ„Ш§ШЄ Щ€Ш§ШіШ­ШЁ ШЄШ±Ш¬Щ…Ш§ШЄ Ш¬Ш§Щ‡ШІШ© Щ„Щ„ШЄШ±Ш¬Щ…Ш©.';
 
   @override
   String get onboardingPage2Description =>
-      'استورد ملف الترجمة، وتحقق من الصيغة، وشغّل مسار الترجمة المصقول نفسه دون مغادرة التطبيق.';
+      'Ш§ШіШЄЩ€Ш±ШЇ Щ…Щ„ЩЃ Ш§Щ„ШЄШ±Ш¬Щ…Ш©ШЊ Щ€ШЄШ­Щ‚Щ‚ Щ…Щ† Ш§Щ„ШµЩЉШєШ©ШЊ Щ€ШґШєЩ‘Щ„ Щ…ШіШ§Ш± Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„Щ…ШµЩ‚Щ€Щ„ Щ†ЩЃШіЩ‡ ШЇЩ€Щ† Щ…ШєШ§ШЇШ±Ш© Ш§Щ„ШЄШ·ШЁЩЉЩ‚.';
 
   @override
-  String get onboardingPage2Eyebrow => 'استخدم ملفك الخاص';
+  String get onboardingPage2Eyebrow => 'Ш§ШіШЄШ®ШЇЩ… Щ…Щ„ЩЃЩѓ Ш§Щ„Ш®Ш§Шµ';
 
   @override
   String get onboardingPage2Highlight1 =>
-      'تحقق محلي من الملفات مع حالات إعادة محاولة سلسة';
+      'ШЄШ­Щ‚Щ‚ Щ…Ш­Щ„ЩЉ Щ…Щ† Ш§Щ„Щ…Щ„ЩЃШ§ШЄ Щ…Ш№ Ш­Ш§Щ„Ш§ШЄ ШҐШ№Ш§ШЇШ© Щ…Ш­Ш§Щ€Щ„Ш© ШіЩ„ШіШ©';
 
   @override
-  String get onboardingPage2Highlight2 => 'إعداد ترجمة متسق بين الرفع والبحث';
+  String get onboardingPage2Highlight2 =>
+      'ШҐШ№ШЇШ§ШЇ ШЄШ±Ш¬Щ…Ш© Щ…ШЄШіЩ‚ ШЁЩЉЩ† Ш§Щ„Ш±ЩЃШ№ Щ€Ш§Щ„ШЁШ­Ш«';
 
   @override
   String get onboardingPage2Highlight3 =>
-      'عاين قبل التصدير حتى لا يبدو شيء غامضًا';
+      'Ш№Ш§ЩЉЩ† Щ‚ШЁЩ„ Ш§Щ„ШЄШµШЇЩЉШ± Ш­ШЄЩ‰ Щ„Ш§ ЩЉШЁШЇЩ€ ШґЩЉШЎ ШєШ§Щ…Ш¶Щ‹Ш§';
 
   @override
   String get onboardingPage2Title =>
-      'ارفع ملفات `.srt` أو `.vtt` عندما تكون الترجمة لديك بالفعل.';
+      'Ш§Ш±ЩЃШ№ Щ…Щ„ЩЃШ§ШЄ `.srt` ШЈЩ€ `.vtt` Ш№Щ†ШЇЩ…Ш§ ШЄЩѓЩ€Щ† Ш§Щ„ШЄШ±Ш¬Щ…Ш© Щ„ШЇЩЉЩѓ ШЁШ§Щ„ЩЃШ№Щ„.';
 
   @override
   String get onboardingPage3Description =>
-      'بدّل بين العرض الأصلي والمترجم والثنائي اللغة، وارجع إلى السجل، وصدّر ملفات ترجمة نظيفة عندما تبدو النتيجة صحيحة.';
+      'ШЁШЇЩ‘Щ„ ШЁЩЉЩ† Ш§Щ„Ш№Ш±Ш¶ Ш§Щ„ШЈШµЩ„ЩЉ Щ€Ш§Щ„Щ…ШЄШ±Ш¬Щ… Щ€Ш§Щ„Ш«Щ†Ш§Ш¦ЩЉ Ш§Щ„Щ„ШєШ©ШЊ Щ€Ш§Ш±Ш¬Ш№ ШҐЩ„Щ‰ Ш§Щ„ШіШ¬Щ„ШЊ Щ€ШµШЇЩ‘Ш± Щ…Щ„ЩЃШ§ШЄ ШЄШ±Ш¬Щ…Ш© Щ†ШёЩЉЩЃШ© Ш№Щ†ШЇЩ…Ш§ ШЄШЁШЇЩ€ Ш§Щ„Щ†ШЄЩЉШ¬Ш© ШµШ­ЩЉШ­Ш©.';
 
   @override
-  String get onboardingPage3Eyebrow => 'ترجم وصدّر';
+  String get onboardingPage3Eyebrow => 'ШЄШ±Ш¬Щ… Щ€ШµШЇЩ‘Ш±';
 
   @override
   String get onboardingPage3Highlight1 =>
-      'عناصر معاينة سريعة مع البيانات الوصفية والبحث';
+      'Ш№Щ†Ш§ШµШ± Щ…Ш№Ш§ЩЉЩ†Ш© ШіШ±ЩЉШ№Ш© Щ…Ш№ Ш§Щ„ШЁЩЉШ§Щ†Ш§ШЄ Ш§Щ„Щ€ШµЩЃЩЉШ© Щ€Ш§Щ„ШЁШ­Ш«';
 
   @override
   String get onboardingPage3Highlight2 =>
-      'يبقي السجل المهام السابقة على بُعد لمسة';
+      'ЩЉШЁЩ‚ЩЉ Ш§Щ„ШіШ¬Щ„ Ш§Щ„Щ…Щ‡Ш§Щ… Ш§Щ„ШіШ§ШЁЩ‚Ш© Ш№Щ„Щ‰ ШЁЩЏШ№ШЇ Щ„Щ…ШіШ©';
 
   @override
   String get onboardingPage3Highlight3 =>
-      'مصمم كأداة وسائط احترافية لا كعرض تجريبي';
+      'Щ…ШµЩ…Щ… ЩѓШЈШЇШ§Ш© Щ€ШіШ§Ш¦Ш· Ш§Ш­ШЄШ±Ш§ЩЃЩЉШ© Щ„Ш§ ЩѓШ№Ш±Ш¶ ШЄШ¬Ш±ЩЉШЁЩЉ';
 
   @override
   String get onboardingPage3Title =>
-      'اختر اللغات المستهدفة، وعاين الترجمة، وصدّر فورًا.';
+      'Ш§Ш®ШЄШ± Ш§Щ„Щ„ШєШ§ШЄ Ш§Щ„Щ…ШіШЄЩ‡ШЇЩЃШ©ШЊ Щ€Ш№Ш§ЩЉЩ† Ш§Щ„ШЄШ±Ш¬Щ…Ш©ШЊ Щ€ШµШЇЩ‘Ш± ЩЃЩ€Ш±Щ‹Ш§.';
 
   @override
-  String get onboardingSkip => 'تخطَّ';
+  String get onboardingSkip => 'ШЄШ®Ш·Щ‘ЩЋ';
 
   @override
-  String get onboardingStart => 'ابدأ الترجمة';
+  String get onboardingStart => 'Ш§ШЁШЇШЈ Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get previewFailedTitle => 'فشل تحميل المعاينة';
+  String get previewFailedTitle => 'ЩЃШґЩ„ ШЄШ­Щ…ЩЉЩ„ Ш§Щ„Щ…Ш№Ш§ЩЉЩ†Ш©';
 
   @override
-  String get previewModeBilingual => 'ثنائي اللغة';
+  String get previewModeBilingual => 'Ш«Щ†Ш§Ш¦ЩЉ Ш§Щ„Щ„ШєШ©';
 
   @override
-  String get previewModeOriginal => 'الأصل';
+  String get previewModeOriginal => 'Ш§Щ„ШЈШµЩ„';
 
   @override
-  String get previewModeTranslated => 'المترجم';
+  String get previewModeTranslated => 'Ш§Щ„Щ…ШЄШ±Ш¬Щ…';
 
   @override
   String get previewNoMatchesMessage =>
-      'جرّب كلمة بحث مختلفة أو أزل التصفية لمراجعة الترجمة كاملة.';
+      'Ш¬Ш±Щ‘ШЁ ЩѓЩ„Щ…Ш© ШЁШ­Ш« Щ…Ш®ШЄЩ„ЩЃШ© ШЈЩ€ ШЈШІЩ„ Ш§Щ„ШЄШµЩЃЩЉШ© Щ„Щ…Ш±Ш§Ш¬Ш№Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш© ЩѓШ§Щ…Щ„Ш©.';
 
   @override
-  String get previewNoMatchesTitle => 'لم تتم مطابقة أي أسطر';
+  String get previewNoMatchesTitle => 'Щ„Щ… ШЄШЄЩ… Щ…Ш·Ш§ШЁЩ‚Ш© ШЈЩЉ ШЈШіШ·Ш±';
 
   @override
   String get previewNotReadyMessage =>
-      'اكتملت الترجمة، لكن الخادم لم يُرجع أسطر المعاينة بعد. جرّب إعادة تحميل هذه الشاشة بعد لحظة.';
+      'Ш§ЩѓШЄЩ…Щ„ШЄ Ш§Щ„ШЄШ±Ш¬Щ…Ш©ШЊ Щ„ЩѓЩ† Ш§Щ„Ш®Ш§ШЇЩ… Щ„Щ… ЩЉЩЏШ±Ш¬Ш№ ШЈШіШ·Ш± Ш§Щ„Щ…Ш№Ш§ЩЉЩ†Ш© ШЁШ№ШЇ. Ш¬Ш±Щ‘ШЁ ШҐШ№Ш§ШЇШ© ШЄШ­Щ…ЩЉЩ„ Щ‡Ш°Щ‡ Ш§Щ„ШґШ§ШґШ© ШЁШ№ШЇ Щ„Ш­ШёШ©.';
 
   @override
-  String get previewNotReadyTitle => 'أسطر المعاينة غير متاحة بعد';
+  String get previewNotReadyTitle =>
+      'ШЈШіШ·Ш± Ш§Щ„Щ…Ш№Ш§ЩЉЩ†Ш© ШєЩЉШ± Щ…ШЄШ§Ш­Ш© ШЁШ№ШЇ';
 
   @override
-  String get retry => 'إعادة المحاولة';
+  String get retry => 'ШҐШ№Ш§ШЇШ© Ш§Щ„Щ…Ш­Ш§Щ€Щ„Ш©';
 
   @override
-  String get retryTranslation => 'إعادة الترجمة';
+  String get retryTranslation => 'ШҐШ№Ш§ШЇШ© Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
   String get routeMissingSeasonEpisodesMessage =>
-      'لم نتمكن من تحديد الموسم المطلوب تحميله. ابدأ مجددًا من البحث.';
+      'Щ„Щ… Щ†ШЄЩ…ЩѓЩ† Щ…Щ† ШЄШ­ШЇЩЉШЇ Ш§Щ„Щ…Щ€ШіЩ… Ш§Щ„Щ…Ш·Щ„Щ€ШЁ ШЄШ­Щ…ЩЉЩ„Щ‡. Ш§ШЁШЇШЈ Щ…Ш¬ШЇШЇЩ‹Ш§ Щ…Щ† Ш§Щ„ШЁШ­Ш«.';
 
   @override
-  String get routeMissingSeasonEpisodesTitle => 'حلقات الموسم';
+  String get routeMissingSeasonEpisodesTitle => 'Ш­Щ„Щ‚Ш§ШЄ Ш§Щ„Щ…Щ€ШіЩ…';
 
   @override
   String get routeMissingSeriesSeasonsMessage =>
-      'لم نتمكن من تحديد المسلسل المطلوب تحميله. ابدأ مجددًا من البحث.';
+      'Щ„Щ… Щ†ШЄЩ…ЩѓЩ† Щ…Щ† ШЄШ­ШЇЩЉШЇ Ш§Щ„Щ…ШіЩ„ШіЩ„ Ш§Щ„Щ…Ш·Щ„Щ€ШЁ ШЄШ­Щ…ЩЉЩ„Щ‡. Ш§ШЁШЇШЈ Щ…Ш¬ШЇШЇЩ‹Ш§ Щ…Щ† Ш§Щ„ШЁШ­Ш«.';
 
   @override
-  String get routeMissingSeriesSeasonsTitle => 'مواسم المسلسل';
+  String get routeMissingSeriesSeasonsTitle => 'Щ…Щ€Ш§ШіЩ… Ш§Щ„Щ…ШіЩ„ШіЩ„';
 
   @override
   String get routeMissingSubtitleSourcesMessage =>
-      'لم نتمكن من تحديد العنوان الذي يجب تحميل مصادر الترجمة له. ابدأ مجددًا من البحث.';
+      'Щ„Щ… Щ†ШЄЩ…ЩѓЩ† Щ…Щ† ШЄШ­ШЇЩЉШЇ Ш§Щ„Ш№Щ†Щ€Ш§Щ† Ш§Щ„Ш°ЩЉ ЩЉШ¬ШЁ ШЄШ­Щ…ЩЉЩ„ Щ…ШµШ§ШЇШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш© Щ„Щ‡. Ш§ШЁШЇШЈ Щ…Ш¬ШЇШЇЩ‹Ш§ Щ…Щ† Ш§Щ„ШЁШ­Ш«.';
 
   @override
-  String get routeMissingSubtitleSourcesTitle => 'مصادر الترجمة';
+  String get routeMissingSubtitleSourcesTitle => 'Щ…ШµШ§ШЇШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
   String get routeMissingTranslationProgressMessage =>
-      'لم يتم توفير طلب ترجمة. ابدأ ترجمة جديدة من البحث أو الرفع.';
+      'Щ„Щ… ЩЉШЄЩ… ШЄЩ€ЩЃЩЉШ± Ш·Щ„ШЁ ШЄШ±Ш¬Щ…Ш©. Ш§ШЁШЇШЈ ШЄШ±Ш¬Щ…Ш© Ш¬ШЇЩЉШЇШ© Щ…Щ† Ш§Щ„ШЁШ­Ш« ШЈЩ€ Ш§Щ„Ш±ЩЃШ№.';
 
   @override
-  String get routeMissingTranslationProgressTitle => 'تقدّم الترجمة';
+  String get routeMissingTranslationProgressTitle =>
+      'ШЄЩ‚ШЇЩ‘Щ… Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
   String get routeMissingTranslationSetupMessage =>
-      'مصدر الترجمة مطلوب قبل فتح شاشة إعداد الترجمة.';
+      'Щ…ШµШЇШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш© Щ…Ш·Щ„Щ€ШЁ Щ‚ШЁЩ„ ЩЃШЄШ­ ШґШ§ШґШ© ШҐШ№ШЇШ§ШЇ Ш§Щ„ШЄШ±Ш¬Щ…Ш©.';
 
   @override
-  String get routeMissingTranslationSetupTitle => 'إعداد الترجمة';
+  String get routeMissingTranslationSetupTitle => 'ШҐШ№ШЇШ§ШЇ Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get searchFailedTitle => 'فشل البحث';
+  String get searchFailedTitle => 'ЩЃШґЩ„ Ш§Щ„ШЁШ­Ш«';
 
   @override
   String searchFoundResults(Object count, Object query) {
-    return 'تم العثور على $count نتيجة لعبارة \'\'$query\'\'';
+    return 'ШЄЩ… Ш§Щ„Ш№Ш«Щ€Ш± Ш№Щ„Щ‰ $count Щ†ШЄЩЉШ¬Ш© Щ„Ш№ШЁШ§Ш±Ш© \'\'$query\'\'';
   }
 
   @override
-  String get searchHintText => 'ابحث عن Dune أو Breaking Bad أو Severance...';
+  String get searchHintText =>
+      'Ш§ШЁШ­Ш« Ш№Щ† Dune ШЈЩ€ Breaking Bad ШЈЩ€ Severance...';
 
   @override
-  String get searchLoadingLabel => 'جارٍ البحث...';
+  String get searchLoadingLabel => 'Ш¬Ш§Ш±ЩЌ Ш§Щ„ШЁШ­Ш«...';
 
   @override
   String get searchMockMessage =>
-      'جرّب عناوين مثل Inception أو Dune أو Breaking Bad أو Severance أو The Last of Us لاستكشاف مسار مصادر الترجمة.';
+      'Ш¬Ш±Щ‘ШЁ Ш№Щ†Ш§Щ€ЩЉЩ† Щ…Ш«Щ„ Inception ШЈЩ€ Dune ШЈЩ€ Breaking Bad ШЈЩ€ Severance ШЈЩ€ The Last of Us Щ„Ш§ШіШЄЩѓШґШ§ЩЃ Щ…ШіШ§Ш± Щ…ШµШ§ШЇШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш©.';
 
   @override
-  String get searchMockTitle => 'ابحث عن أي شيء في الفهرس التجريبي';
+  String get searchMockTitle =>
+      'Ш§ШЁШ­Ш« Ш№Щ† ШЈЩЉ ШґЩЉШЎ ЩЃЩЉ Ш§Щ„ЩЃЩ‡Ш±Ші Ш§Щ„ШЄШ¬Ш±ЩЉШЁЩЉ';
 
   @override
   String get searchMovieOrSeriesSubtitle =>
-      'اعثر على عنوان، وتفقّد مصادر الترجمة، وابدأ مهمة الترجمة ببضع لمسات.';
+      'Ш§Ш№Ш«Ш± Ш№Щ„Щ‰ Ш№Щ†Щ€Ш§Щ†ШЊ Щ€ШЄЩЃЩ‚Щ‘ШЇ Щ…ШµШ§ШЇШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш©ШЊ Щ€Ш§ШЁШЇШЈ Щ…Щ‡Щ…Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш© ШЁШЁШ¶Ш№ Щ„Щ…ШіШ§ШЄ.';
 
   @override
-  String get searchMovieOrSeriesTitle => 'ابحث عن فيلم أو مسلسل';
+  String get searchMovieOrSeriesTitle =>
+      'Ш§ШЁШ­Ш« Ш№Щ† ЩЃЩЉЩ„Щ… ШЈЩ€ Щ…ШіЩ„ШіЩ„';
 
   @override
   String searchNoResultsFor(Object query) {
-    return 'لم يتم العثور على نتائج لعبارة \'\'$query\'\'';
+    return 'Щ„Щ… ЩЉШЄЩ… Ш§Щ„Ш№Ш«Щ€Ш± Ш№Щ„Щ‰ Щ†ШЄШ§Ш¦Ш¬ Щ„Ш№ШЁШ§Ш±Ш© \'\'$query\'\'';
   }
 
   @override
   String searchResultPopularity(Object score) {
-    return 'الشعبية $score';
+    return 'Ш§Щ„ШґШ№ШЁЩЉШ© $score';
   }
 
   @override
-  String get searchTitles => 'البحث عن العناوين';
+  String get searchTitles => 'Ш§Щ„ШЁШ­Ш« Ш№Щ† Ш§Щ„Ш№Щ†Ш§Щ€ЩЉЩ†';
 
   @override
-  String get searchTrendingTitle => 'عمليات البحث الرائجة';
+  String get searchTrendingTitle => 'Ш№Щ…Щ„ЩЉШ§ШЄ Ш§Щ„ШЁШ­Ш« Ш§Щ„Ш±Ш§Ш¦Ш¬Ш©';
 
   @override
-  String get searchTryDifferentKeywords => 'جرّب البحث بكلمات مختلفة.';
+  String get searchTryDifferentKeywords =>
+      'Ш¬Ш±Щ‘ШЁ Ш§Щ„ШЁШ­Ш« ШЁЩѓЩ„Щ…Ш§ШЄ Щ…Ш®ШЄЩ„ЩЃШ©.';
 
   @override
   String seriesEpisodeLabel(Object episodeNumber) {
-    return 'الحلقة $episodeNumber';
+    return 'Ш§Щ„Ш­Щ„Щ‚Ш© $episodeNumber';
   }
 
   @override
   String seriesEpisodeMeta(Object runtime) {
-    return 'حوالي $runtime دقيقة';
+    return 'Ш­Щ€Ш§Щ„ЩЉ $runtime ШЇЩ‚ЩЉЩ‚Ш©';
   }
 
   @override
   String seriesEpisodesSubtitle(Object episodeCount, Object year) {
-    return '$episodeCount حلقة$year';
+    return '$episodeCount Ш­Щ„Щ‚Ш©$year';
   }
 
   @override
   String seriesEpisodesTitle(Object seasonNumber) {
-    return 'الموسم $seasonNumber';
+    return 'Ш§Щ„Щ…Щ€ШіЩ… $seasonNumber';
   }
 
   @override
   String seriesSeasonLabel(Object seasonNumber) {
-    return 'الموسم $seasonNumber';
+    return 'Ш§Щ„Щ…Щ€ШіЩ… $seasonNumber';
   }
 
   @override
   String seriesSeasonMeta(Object episodeCount, Object year) {
-    return '$episodeCount حلقة$year';
+    return '$episodeCount Ш­Щ„Щ‚Ш©$year';
   }
 
   @override
   String seriesSeasonsSubtitle(Object title) {
-    return 'اختر موسمًا من $title لتصفّح الحلقات المتاحة.';
+    return 'Ш§Ш®ШЄШ± Щ…Щ€ШіЩ…Щ‹Ш§ Щ…Щ† $title Щ„ШЄШµЩЃЩ‘Ш­ Ш§Щ„Ш­Щ„Щ‚Ш§ШЄ Ш§Щ„Щ…ШЄШ§Ш­Ш©.';
   }
 
   @override
-  String get seriesSeasonsTitle => 'اختر موسمًا';
+  String get seriesSeasonsTitle => 'Ш§Ш®ШЄШ± Щ…Щ€ШіЩ…Щ‹Ш§';
 
   @override
-  String get settingsAboutTitle => 'حول SubFlix';
+  String get settingsAboutTitle => 'Ш­Щ€Щ„ SubFlix';
 
   @override
-  String get settingsCacheCleared => 'تم مسح الذاكرة المؤقتة';
+  String get settingsCacheCleared =>
+      'ШЄЩ… Щ…ШіШ­ Ш§Щ„Ш°Ш§ЩѓШ±Ш© Ш§Щ„Щ…Ш¤Щ‚ШЄШ©';
 
   @override
-  String get settingsClearCache => 'مسح الذاكرة المؤقتة';
+  String get settingsClearCache => 'Щ…ШіШ­ Ш§Щ„Ш°Ш§ЩѓШ±Ш© Ш§Щ„Щ…Ш¤Щ‚ШЄШ©';
 
   @override
-  String get settingsContactTitle => 'تواصل معنا';
+  String get settingsContactTitle => 'ШЄЩ€Ш§ШµЩ„ Щ…Ш№Щ†Ш§';
 
   @override
-  String get settingsFailedTitle => 'فشل تحميل الإعدادات';
+  String get settingsFailedTitle => 'ЩЃШґЩ„ ШЄШ­Щ…ЩЉЩ„ Ш§Щ„ШҐШ№ШЇШ§ШЇШ§ШЄ';
 
   @override
-  String get settingsHelpCenterTitle => 'مركز المساعدة';
+  String get settingsHelpCenterTitle => 'Щ…Ш±ЩѓШІ Ш§Щ„Щ…ШіШ§Ш№ШЇШ©';
 
   @override
-  String get settingsHistoryClearedSnack => 'تم مسح سجل الترجمة لهذا الجهاز';
+  String get settingsHistoryClearedSnack =>
+      'ШЄЩ… Щ…ШіШ­ ШіШ¬Щ„ Ш§Щ„ШЄШ±Ш¬Щ…Ш© Щ„Щ‡Ш°Ш§ Ш§Щ„Ш¬Щ‡Ш§ШІ';
 
   @override
-  String get settingsLanguageLabel => 'اللغة المستهدفة المفضلة';
+  String get settingsLanguageLabel =>
+      'Ш§Щ„Щ„ШєШ© Ш§Щ„Щ…ШіШЄЩ‡ШЇЩЃШ© Ш§Щ„Щ…ЩЃШ¶Щ„Ш©';
 
   @override
   String get settingsMaintenanceSubtitle =>
-      'امسح مهام الترجمة التابعة للخادم لهذا الجهاز وابدأ بسجل فارغ.';
+      'Ш§Щ…ШіШ­ Щ…Щ‡Ш§Щ… Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„ШЄШ§ШЁШ№Ш© Щ„Щ„Ш®Ш§ШЇЩ… Щ„Щ‡Ш°Ш§ Ш§Щ„Ш¬Щ‡Ш§ШІ Щ€Ш§ШЁШЇШЈ ШЁШіШ¬Щ„ ЩЃШ§Ш±Шє.';
 
   @override
-  String get settingsMaintenanceTitle => 'الصيانة';
+  String get settingsMaintenanceTitle => 'Ш§Щ„ШµЩЉШ§Щ†Ш©';
 
   @override
-  String get settingsNotificationsSubtitle => 'أدر تفضيلات الإشعارات';
+  String get settingsNotificationsSubtitle =>
+      'ШЈШЇШ± ШЄЩЃШ¶ЩЉЩ„Ш§ШЄ Ш§Щ„ШҐШґШ№Ш§Ш±Ш§ШЄ';
 
   @override
-  String get settingsNotificationsTitle => 'الإشعارات';
+  String get settingsNotificationsTitle => 'Ш§Щ„ШҐШґШ№Ш§Ш±Ш§ШЄ';
 
   @override
   String get settingsPremiumSubtitle =>
-      'لاحقًا يمكننا ربط الاشتراكات والفوترة ومزامنة المشاريع السحابية هنا.';
+      'Щ„Ш§Ш­Щ‚Щ‹Ш§ ЩЉЩ…ЩѓЩ†Щ†Ш§ Ш±ШЁШ· Ш§Щ„Ш§ШґШЄШ±Ш§ЩѓШ§ШЄ Щ€Ш§Щ„ЩЃЩ€ШЄШ±Ш© Щ€Щ…ШІШ§Щ…Щ†Ш© Ш§Щ„Щ…ШґШ§Ш±ЩЉШ№ Ш§Щ„ШіШ­Ш§ШЁЩЉШ© Щ‡Щ†Ш§.';
 
   @override
-  String get settingsPremiumTitle => 'عنصر مميز تجريبي';
+  String get settingsPremiumTitle => 'Ш№Щ†ШµШ± Щ…Щ…ЩЉШІ ШЄШ¬Ш±ЩЉШЁЩЉ';
 
   @override
-  String get settingsPrivacySubtitle => 'محتوى خصوصية تجريبي';
+  String get settingsPrivacySubtitle => 'Щ…Ш­ШЄЩ€Щ‰ Ш®ШµЩ€ШµЩЉШ© ШЄШ¬Ш±ЩЉШЁЩЉ';
 
   @override
-  String get settingsPrivacyTitle => 'سياسة الخصوصية';
+  String get settingsPrivacyTitle => 'ШіЩЉШ§ШіШ© Ш§Щ„Ш®ШµЩ€ШµЩЉШ©';
 
   @override
-  String get settingsProfileName => 'مستخدم SubFlix';
+  String get settingsProfileName => 'Щ…ШіШЄШ®ШЇЩ… SubFlix';
 
   @override
-  String get settingsProfileTier => 'عضو مميز';
+  String get settingsProfileTier => 'Ш№Ш¶Щ€ Щ…Щ…ЩЉШІ';
 
   @override
-  String get settingsSubtitle => 'أدر تفضيلاتك';
+  String get settingsSubtitle => 'ШЈШЇШ± ШЄЩЃШ¶ЩЉЩ„Ш§ШЄЩѓ';
 
   @override
-  String get settingsSupportSubtitle => 'صفحة مساعدة واتصال تجريبية';
+  String get settingsSupportSubtitle =>
+      'ШµЩЃШ­Ш© Щ…ШіШ§Ш№ШЇШ© Щ€Ш§ШЄШµШ§Щ„ ШЄШ¬Ш±ЩЉШЁЩЉШ©';
 
   @override
-  String get settingsSupportTitle => 'قسم دعم تجريبي';
+  String get settingsSupportTitle => 'Щ‚ШіЩ… ШЇШ№Щ… ШЄШ¬Ш±ЩЉШЁЩЉ';
 
   @override
-  String get settingsTermsSubtitle => 'محتوى شروط تجريبي';
+  String get settingsTermsSubtitle => 'Щ…Ш­ШЄЩ€Щ‰ ШґШ±Щ€Ш· ШЄШ¬Ш±ЩЉШЁЩЉ';
 
   @override
-  String get settingsTermsTitle => 'شروط الخدمة';
+  String get settingsTermsTitle => 'ШґШ±Щ€Ш· Ш§Щ„Ш®ШЇЩ…Ш©';
 
   @override
-  String get settingsThemeLabel => 'المظهر';
+  String get settingsThemeLabel => 'Ш§Щ„Щ…ШёЩ‡Ш±';
 
   @override
-  String get settingsTitle => 'الإعدادات';
+  String get settingsTitle => 'Ш§Щ„ШҐШ№ШЇШ§ШЇШ§ШЄ';
 
   @override
   String settingsVersion(Object version) {
-    return 'الإصدار $version';
+    return 'Ш§Щ„ШҐШµШЇШ§Ш± $version';
   }
 
   @override
   String get splashHeadline => 'SubFlix';
 
   @override
-  String get splashPreparing => 'جارٍ تجهيز استوديو الترجمة الخاص بك';
+  String get splashPreparing =>
+      'Ш¬Ш§Ш±ЩЌ ШЄШ¬Щ‡ЩЉШІ Ш§ШіШЄЩ€ШЇЩЉЩ€ Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„Ш®Ш§Шµ ШЁЩѓ';
 
   @override
-  String get splashSubtitle => 'ترجمة ترجمة مدعومة بالذكاء الاصطناعي';
+  String get splashSubtitle =>
+      'ШЄШ±Ш¬Щ…Ш© ШЄШ±Ш¬Щ…Ш© Щ…ШЇШ№Щ€Щ…Ш© ШЁШ§Щ„Ш°ЩѓШ§ШЎ Ш§Щ„Ш§ШµШ·Щ†Ш§Ш№ЩЉ';
 
   @override
-  String get startTranslation => 'بدء الترجمة';
+  String get startTranslation => 'ШЁШЇШЎ Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
   String subtitleSourceDownloads(Object downloads) {
-    return '$downloads تنزيلًا';
+    return '$downloads ШЄЩ†ШІЩЉЩ„Щ‹Ш§';
   }
 
   @override
   String subtitleSourceFormatLabel(Object format) {
-    return 'مصدر ترجمة $format';
+    return 'Щ…ШµШЇШ± ШЄШ±Ш¬Щ…Ш© $format';
   }
 
   @override
@@ -826,247 +855,264 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String subtitleSourceLines(Object lineCount) {
-    return '$lineCount سطرًا';
+    return '$lineCount ШіШ·Ш±Щ‹Ш§';
   }
 
   @override
   String subtitleSourceRating(Object rating) {
-    return 'التقييم $rating';
+    return 'Ш§Щ„ШЄЩ‚ЩЉЩЉЩ… $rating';
   }
 
   @override
   String get subtitleSourcesBannerMessage =>
-      'اختر مصدر ترجمة وتابع إلى إعداد ترجمة مصقول ومهيأ لتوقيت الترجمة.';
+      'Ш§Ш®ШЄШ± Щ…ШµШЇШ± ШЄШ±Ш¬Щ…Ш© Щ€ШЄШ§ШЁШ№ ШҐЩ„Щ‰ ШҐШ№ШЇШ§ШЇ ШЄШ±Ш¬Щ…Ш© Щ…ШµЩ‚Щ€Щ„ Щ€Щ…Щ‡ЩЉШЈ Щ„ШЄЩ€Щ‚ЩЉШЄ Ш§Щ„ШЄШ±Ш¬Щ…Ш©.';
 
   @override
-  String get subtitleSourcesBannerTitle => 'الترجمة بالذكاء الاصطناعي متاحة';
+  String get subtitleSourcesBannerTitle =>
+      'Ш§Щ„ШЄШ±Ш¬Щ…Ш© ШЁШ§Щ„Ш°ЩѓШ§ШЎ Ш§Щ„Ш§ШµШ·Щ†Ш§Ш№ЩЉ Щ…ШЄШ§Ш­Ш©';
 
   @override
-  String get subtitleSourcesFailedTitle => 'تعذّر تحميل مصادر الترجمة';
+  String get subtitleSourcesFailedTitle =>
+      'ШЄШ№Ш°Щ‘Ш± ШЄШ­Щ…ЩЉЩ„ Щ…ШµШ§ШЇШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
   String subtitleSourcesSubtitle(Object title, Object target) {
-    return 'اختر مصدر ترجمة لـ $title$target، ثم اختر اللغة المستهدفة في الخطوة التالية.';
+    return 'Ш§Ш®ШЄШ± Щ…ШµШЇШ± ШЄШ±Ш¬Щ…Ш© Щ„ЩЂ $title$targetШЊ Ш«Щ… Ш§Ш®ШЄШ± Ш§Щ„Щ„ШєШ© Ш§Щ„Щ…ШіШЄЩ‡ШЇЩЃШ© ЩЃЩЉ Ш§Щ„Ш®Ш·Щ€Ш© Ш§Щ„ШЄШ§Щ„ЩЉШ©.';
   }
 
   @override
-  String get subtitleSourcesTitle => 'مصادر الترجمة الإنجليزية';
+  String get subtitleSourcesTitle =>
+      'Щ…ШµШ§ШЇШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„ШҐЩ†Ш¬Щ„ЩЉШІЩЉШ©';
 
   @override
-  String get targetLanguage => 'اللغة المستهدفة';
+  String get targetLanguage => 'Ш§Щ„Щ„ШєШ© Ш§Щ„Щ…ШіШЄЩ‡ШЇЩЃШ©';
 
   @override
-  String get themeDark => 'داكن';
+  String get themeDark => 'ШЇШ§ЩѓЩ†';
 
   @override
-  String get themeLight => 'فاتح';
+  String get themeLight => 'ЩЃШ§ШЄШ­';
 
   @override
-  String get themeSystem => 'النظام';
+  String get themeSystem => 'Ш§Щ„Щ†ШёШ§Щ…';
 
   @override
-  String get translateSetupAutoDetect => 'اكتشاف الصيغة تلقائيًا';
+  String get translateSetupAutoDetect =>
+      'Ш§ЩѓШЄШґШ§ЩЃ Ш§Щ„ШµЩЉШєШ© ШЄЩ„Щ‚Ш§Ш¦ЩЉЩ‹Ш§';
 
   @override
   String get translateSetupAutoDetectBody =>
-      'اختر بنية إخراج الترجمة المناسبة تلقائيًا.';
+      'Ш§Ш®ШЄШ± ШЁЩ†ЩЉШ© ШҐШ®Ш±Ш§Ш¬ Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„Щ…Щ†Ш§ШіШЁШ© ШЄЩ„Щ‚Ш§Ш¦ЩЉЩ‹Ш§.';
 
   @override
-  String get translateSetupLanguageTitle => 'الترجمة إلى';
+  String get translateSetupLanguageTitle => 'Ш§Щ„ШЄШ±Ш¬Щ…Ш© ШҐЩ„Щ‰';
 
   @override
-  String get translateSetupOptionsTitle => 'الخيارات';
+  String get translateSetupOptionsTitle => 'Ш§Щ„Ш®ЩЉШ§Ш±Ш§ШЄ';
 
   @override
-  String get translateSetupPreserveTiming => 'الحفاظ على التوقيت';
+  String get translateSetupPreserveTiming =>
+      'Ш§Щ„Ш­ЩЃШ§Шё Ш№Щ„Щ‰ Ш§Щ„ШЄЩ€Щ‚ЩЉШЄ';
 
   @override
   String get translateSetupPreserveTimingBody =>
-      'أبقِ توقيتات الترجمة الأصلية متطابقة مع الملف المصدر.';
+      'ШЈШЁЩ‚Щђ ШЄЩ€Щ‚ЩЉШЄШ§ШЄ Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„ШЈШµЩ„ЩЉШ© Щ…ШЄШ·Ш§ШЁЩ‚Ш© Щ…Ш№ Ш§Щ„Щ…Щ„ЩЃ Ш§Щ„Щ…ШµШЇШ±.';
 
   @override
   String translateSetupReadyBody(Object language) {
-    return 'سيحوّل مسار الترجمة لدينا هذه الترجمة إلى $language مع الحفاظ على التوقيت وبنية الأسطر بشكل نظيف.';
+    return 'ШіЩЉШ­Щ€Щ‘Щ„ Щ…ШіШ§Ш± Ш§Щ„ШЄШ±Ш¬Щ…Ш© Щ„ШЇЩЉЩ†Ш§ Щ‡Ш°Щ‡ Ш§Щ„ШЄШ±Ш¬Щ…Ш© ШҐЩ„Щ‰ $language Щ…Ш№ Ш§Щ„Ш­ЩЃШ§Шё Ш№Щ„Щ‰ Ш§Щ„ШЄЩ€Щ‚ЩЉШЄ Щ€ШЁЩ†ЩЉШ© Ш§Щ„ШЈШіШ·Ш± ШЁШґЩѓЩ„ Щ†ШёЩЉЩЃ.';
   }
 
   @override
-  String get translateSetupReadyTitle => 'الترجمة بالذكاء الاصطناعي جاهزة';
+  String get translateSetupReadyTitle =>
+      'Ш§Щ„ШЄШ±Ш¬Щ…Ш© ШЁШ§Щ„Ш°ЩѓШ§ШЎ Ш§Щ„Ш§ШµШ·Щ†Ш§Ш№ЩЉ Ш¬Ш§Щ‡ШІШ©';
 
   @override
-  String get translateSetupSelectLanguage => 'اختر اللغة';
+  String get translateSetupSelectLanguage => 'Ш§Ш®ШЄШ± Ш§Щ„Щ„ШєШ©';
 
   @override
-  String get translateSetupSourceTitle => 'الترجمة المصدر';
+  String get translateSetupSourceTitle => 'Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„Щ…ШµШЇШ±';
 
   @override
   String get translateSetupSubtitle =>
-      'اختر اللغة المستهدفة، وراجع مصدر الترجمة، ثم ابدأ مهمة الترجمة في الخادم.';
+      'Ш§Ш®ШЄШ± Ш§Щ„Щ„ШєШ© Ш§Щ„Щ…ШіШЄЩ‡ШЇЩЃШ©ШЊ Щ€Ш±Ш§Ш¬Ш№ Щ…ШµШЇШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш©ШЊ Ш«Щ… Ш§ШЁШЇШЈ Щ…Щ‡Щ…Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш© ЩЃЩЉ Ш§Щ„Ш®Ш§ШЇЩ….';
 
   @override
-  String get translateSetupTitle => 'إعداد الترجمة';
+  String get translateSetupTitle => 'ШҐШ№ШЇШ§ШЇ Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get translationFailedMessage => 'حدث خطأ ما.';
+  String get translationFailedMessage => 'Ш­ШЇШ« Ш®Ш·ШЈ Щ…Ш§.';
 
   @override
-  String get translationFailedTitle => 'تعذّر إكمال الترجمة';
+  String get translationFailedTitle => 'ШЄШ№Ш°Щ‘Ш± ШҐЩѓЩ…Ш§Щ„ Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get translationPreviewHeader => 'راجع الترجمات المترجمة';
+  String get translationPreviewHeader =>
+      'Ш±Ш§Ш¬Ш№ Ш§Щ„ШЄШ±Ш¬Щ…Ш§ШЄ Ш§Щ„Щ…ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get translationPreviewSearchHint => 'ابحث في أسطر الترجمة';
+  String get translationPreviewSearchHint =>
+      'Ш§ШЁШ­Ш« ЩЃЩЉ ШЈШіШ·Ш± Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
   String get translationPreviewSubtitle =>
-      'ابحث داخل الأسطر، وبدّل أوضاع المعاينة، ثم صدّر الملف عندما تبدو الترجمة مناسبة.';
+      'Ш§ШЁШ­Ш« ШЇШ§Ш®Щ„ Ш§Щ„ШЈШіШ·Ш±ШЊ Щ€ШЁШЇЩ‘Щ„ ШЈЩ€Ш¶Ш§Ш№ Ш§Щ„Щ…Ш№Ш§ЩЉЩ†Ш©ШЊ Ш«Щ… ШµШЇЩ‘Ш± Ш§Щ„Щ…Щ„ЩЃ Ш№Щ†ШЇЩ…Ш§ ШЄШЁШЇЩ€ Ш§Щ„ШЄШ±Ш¬Щ…Ш© Щ…Щ†Ш§ШіШЁШ©.';
 
   @override
-  String get translationPreviewTitle => 'معاينة الترجمة';
+  String get translationPreviewTitle => 'Щ…Ш№Ш§ЩЉЩ†Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
   String get translationProgressHeadline =>
-      'ترجمة الترجمة بالذكاء الاصطناعي قيد التنفيذ';
+      'ШЄШ±Ш¬Щ…Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш© ШЁШ§Щ„Ш°ЩѓШ§ШЎ Ш§Щ„Ш§ШµШ·Щ†Ш§Ш№ЩЉ Щ‚ЩЉШЇ Ш§Щ„ШЄЩ†ЩЃЩЉШ°';
 
   @override
-  String get translationProgressTitle => 'تقدّم الترجمة';
+  String get translationProgressTitle => 'ШЄЩ‚ШЇЩ‘Щ… Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
   String get translationResultCompleteSubtitle =>
-      'أصبحت الترجمة جاهزة للمعاينة أو التنزيل.';
+      'ШЈШµШЁШ­ШЄ Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш¬Ш§Щ‡ШІШ© Щ„Щ„Щ…Ш№Ш§ЩЉЩ†Ш© ШЈЩ€ Ш§Щ„ШЄЩ†ШІЩЉЩ„.';
 
   @override
-  String get translationResultCompleteTitle => 'اكتملت الترجمة';
+  String get translationResultCompleteTitle => 'Ш§ЩѓШЄЩ…Щ„ШЄ Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get translationResultConfidenceLabel => 'ثقة الترجمة';
+  String get translationResultConfidenceLabel => 'Ш«Щ‚Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get translationResultDetailsTitle => 'تفاصيل الترجمة';
+  String get translationResultDetailsTitle => 'ШЄЩЃШ§ШµЩЉЩ„ Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get translationResultDownloadCta => 'تنزيل الترجمة';
+  String get translationResultDownloadCta => 'ШЄЩ†ШІЩЉЩ„ Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get translationResultHomeCta => 'العودة إلى الرئيسية';
+  String get translationResultHomeCta => 'Ш§Щ„Ш№Щ€ШЇШ© ШҐЩ„Щ‰ Ш§Щ„Ш±Ш¦ЩЉШіЩЉШ©';
 
   @override
-  String get translationResultMediaLabel => 'عنوان العمل';
+  String get translationResultMediaLabel => 'Ш№Щ†Щ€Ш§Щ† Ш§Щ„Ш№Щ…Щ„';
 
   @override
-  String get translationResultMethodAi => 'مترجمة بالذكاء الاصطناعي';
+  String get translationResultMethodAi =>
+      'Щ…ШЄШ±Ш¬Щ…Ш© ШЁШ§Щ„Ш°ЩѓШ§ШЎ Ш§Щ„Ш§ШµШ·Щ†Ш§Ш№ЩЉ';
 
   @override
-  String get translationResultMetricsTitle => 'مقاييس الجودة';
+  String get translationResultMetricsTitle => 'Щ…Щ‚Ш§ЩЉЩЉШі Ш§Щ„Ш¬Щ€ШЇШ©';
 
   @override
-  String get translationResultPreviewCta => 'معاينة الترجمة';
+  String get translationResultPreviewCta => 'Щ…Ш№Ш§ЩЉЩ†Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
   String translationResultProcessedIn(Object duration) {
-    return 'تمت المعالجة خلال $duration';
+    return 'ШЄЩ…ШЄ Ш§Щ„Щ…Ш№Ш§Щ„Ш¬Ш© Ш®Щ„Ш§Щ„ $duration';
   }
 
   @override
-  String get translationResultSourceLabel => 'لغة المصدر';
+  String get translationResultSourceLabel => 'Щ„ШєШ© Ш§Щ„Щ…ШµШЇШ±';
 
   @override
-  String get translationResultTargetLabel => 'اللغة المستهدفة';
+  String get translationResultTargetLabel => 'Ш§Щ„Щ„ШєШ© Ш§Щ„Щ…ШіШЄЩ‡ШЇЩЃШ©';
 
   @override
-  String get translationResultTimingLabel => 'دقة التوقيت';
+  String get translationResultTimingLabel => 'ШЇЩ‚Ш© Ш§Щ„ШЄЩ€Щ‚ЩЉШЄ';
 
   @override
-  String get translationResultTimingPreserved => 'تم الحفاظ على التوقيت';
+  String get translationResultTimingPreserved =>
+      'ШЄЩ… Ш§Щ„Ш­ЩЃШ§Шё Ш№Щ„Щ‰ Ш§Щ„ШЄЩ€Щ‚ЩЉШЄ';
 
   @override
   String get translationResultWarning =>
-      'قد تستفيد بعض المصطلحات التقنية من مراجعة بشرية سريعة لفهم السياق.';
+      'Щ‚ШЇ ШЄШіШЄЩЃЩЉШЇ ШЁШ№Ш¶ Ш§Щ„Щ…ШµШ·Щ„Ш­Ш§ШЄ Ш§Щ„ШЄЩ‚Щ†ЩЉШ© Щ…Щ† Щ…Ш±Ш§Ш¬Ш№Ш© ШЁШґШ±ЩЉШ© ШіШ±ЩЉШ№Ш© Щ„ЩЃЩ‡Щ… Ш§Щ„ШіЩЉШ§Щ‚.';
 
   @override
   String get translationStageAligning =>
-      'جارٍ مواءمة الطوابع الزمنية وسياق المشهد';
+      'Ш¬Ш§Ш±ЩЌ Щ…Щ€Ш§ШЎЩ…Ш© Ш§Щ„Ш·Щ€Ш§ШЁШ№ Ш§Щ„ШІЩ…Щ†ЩЉШ© Щ€ШіЩЉШ§Щ‚ Ш§Щ„Щ…ШґЩ‡ШЇ';
 
   @override
-  String get translationStageGenerating => 'جارٍ إنشاء الترجمة';
+  String get translationStageGenerating => 'Ш¬Ш§Ш±ЩЌ ШҐЩ†ШґШ§ШЎ Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get translationStageIdle => 'بانتظار طلب ترجمة';
+  String get translationStageIdle => 'ШЁШ§Щ†ШЄШёШ§Ш± Ш·Щ„ШЁ ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get translationStagePreparing => 'جارٍ تجهيز حزمة الترجمة';
+  String get translationStagePreparing =>
+      'Ш¬Ш§Ш±ЩЌ ШЄШ¬Щ‡ЩЉШІ Ш­ШІЩ…Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get translationStageQueued => 'في انتظار الدور للترجمة';
+  String get translationStageQueued =>
+      'ЩЃЩЉ Ш§Щ†ШЄШёШ§Ш± Ш§Щ„ШЇЩ€Ш± Щ„Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get translationStageReadability => 'جارٍ تحسين قابلية القراءة';
+  String get translationStageReadability =>
+      'Ш¬Ш§Ш±ЩЌ ШЄШ­ШіЩЉЩ† Щ‚Ш§ШЁЩ„ЩЉШ© Ш§Щ„Щ‚Ш±Ш§ШЎШ©';
 
   @override
-  String get translationStageReady => 'الترجمة جاهزة';
+  String get translationStageReady => 'Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш¬Ш§Щ‡ШІШ©';
 
   @override
-  String get tryAgain => 'جرّب مرة أخرى';
+  String get tryAgain => 'Ш¬Ш±Щ‘ШЁ Щ…Ш±Ш© ШЈШ®Ш±Щ‰';
 
   @override
-  String get uploadChooseFile => 'اختر ملف ترجمة';
+  String get uploadChooseFile => 'Ш§Ш®ШЄШ± Щ…Щ„ЩЃ ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get uploadChooseFileShort => 'اختر ملفًا';
+  String get uploadChooseFileShort => 'Ш§Ш®ШЄШ± Щ…Щ„ЩЃЩ‹Ш§';
 
   @override
-  String get uploadContinueSetup => 'متابعة إلى إعداد الترجمة';
+  String get uploadContinueSetup =>
+      'Щ…ШЄШ§ШЁШ№Ш© ШҐЩ„Щ‰ ШҐШ№ШЇШ§ШЇ Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get uploadEnglishSource => 'المصدر الإنجليزي';
+  String get uploadEnglishSource => 'Ш§Щ„Щ…ШµШЇШ± Ш§Щ„ШҐЩ†Ш¬Щ„ЩЉШІЩЉ';
 
   @override
-  String get uploadFailedFallback => 'يرجى تجربة ملف ترجمة آخر.';
+  String get uploadFailedFallback =>
+      'ЩЉШ±Ш¬Щ‰ ШЄШ¬Ш±ШЁШ© Щ…Щ„ЩЃ ШЄШ±Ш¬Щ…Ш© ШўШ®Ш±.';
 
   @override
   String get uploadFailedMessage =>
-      'تعذّرت قراءة ملف الترجمة هذا. جرّب ملفًا آخر أو ملف تصدير أصغر.';
+      'ШЄШ№Ш°Щ‘Ш±ШЄ Щ‚Ш±Ш§ШЎШ© Щ…Щ„ЩЃ Ш§Щ„ШЄШ±Ш¬Щ…Ш© Щ‡Ш°Ш§. Ш¬Ш±Щ‘ШЁ Щ…Щ„ЩЃЩ‹Ш§ ШўШ®Ш± ШЈЩ€ Щ…Щ„ЩЃ ШЄШµШЇЩЉШ± ШЈШµШєШ±.';
 
   @override
-  String get uploadFailedTitle => 'فشل استيراد الملف';
+  String get uploadFailedTitle => 'ЩЃШґЩ„ Ш§ШіШЄЩЉШ±Ш§ШЇ Ш§Щ„Щ…Щ„ЩЃ';
 
   @override
   String get uploadIntroSubtitle =>
-      'استورد ملف `.srt` أو `.vtt` باللغة الإنجليزية، ودع الخادم يتحقق منه ويحلّله، ثم تابع إلى إعداد الترجمة.';
+      'Ш§ШіШЄЩ€Ш±ШЇ Щ…Щ„ЩЃ `.srt` ШЈЩ€ `.vtt` ШЁШ§Щ„Щ„ШєШ© Ш§Щ„ШҐЩ†Ш¬Щ„ЩЉШІЩЉШ©ШЊ Щ€ШЇШ№ Ш§Щ„Ш®Ш§ШЇЩ… ЩЉШЄШ­Щ‚Щ‚ Щ…Щ†Щ‡ Щ€ЩЉШ­Щ„Щ‘Щ„Щ‡ШЊ Ш«Щ… ШЄШ§ШЁШ№ ШҐЩ„Щ‰ ШҐШ№ШЇШ§ШЇ Ш§Щ„ШЄШ±Ш¬Щ…Ш©.';
 
   @override
-  String get uploadIntroTitle => 'استخدم ملف الترجمة الخاص بك';
+  String get uploadIntroTitle =>
+      'Ш§ШіШЄШ®ШЇЩ… Щ…Щ„ЩЃ Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„Ш®Ш§Шµ ШЁЩѓ';
 
   @override
   String uploadLineCount(Object lineCount) {
-    return '$lineCount سطرًا';
+    return '$lineCount ШіШ·Ш±Щ‹Ш§';
   }
 
   @override
-  String get uploadMetadataTitle => 'تفاصيل الترجمة';
+  String get uploadMetadataTitle => 'ШЄЩЃШ§ШµЩЉЩ„ Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get uploadOpeningPicker => 'جارٍ فتح أداة الاختيار...';
+  String get uploadOpeningPicker =>
+      'Ш¬Ш§Ш±ЩЌ ЩЃШЄШ­ ШЈШЇШ§Ш© Ш§Щ„Ш§Ш®ШЄЩЉШ§Ш±...';
 
   @override
-  String get uploadPickSubtitle => 'اختر ملف الترجمة';
+  String get uploadPickSubtitle => 'Ш§Ш®ШЄШ± Щ…Щ„ЩЃ Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get uploadPickedFile => 'تم اختيار ملف الترجمة';
+  String get uploadPickedFile => 'ШЄЩ… Ш§Ш®ШЄЩЉШ§Ш± Щ…Щ„ЩЃ Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get uploadReadyTitle => 'جاهز للترجمة';
+  String get uploadReadyTitle => 'Ш¬Ш§Щ‡ШІ Щ„Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
-  String get uploadSubtitleTitle => 'رفع الترجمة';
+  String get uploadSubtitleTitle => 'Ш±ЩЃШ№ Ш§Щ„ШЄШ±Ш¬Щ…Ш©';
 
   @override
   String get uploadSupportedFormatsSubtitle =>
-      'ملفات ترجمة إنجليزية بصيغة `.srt` و `.vtt`';
+      'Щ…Щ„ЩЃШ§ШЄ ШЄШ±Ш¬Щ…Ш© ШҐЩ†Ш¬Щ„ЩЉШІЩЉШ© ШЁШµЩЉШєШ© `.srt` Щ€ `.vtt`';
 
   @override
-  String get uploadSupportedFormatsTitle => 'الصيغ المدعومة';
+  String get uploadSupportedFormatsTitle => 'Ш§Щ„ШµЩЉШє Ш§Щ„Щ…ШЇШ№Щ€Щ…Ш©';
 
   @override
-  String get uploadUseDemoFile => 'استخدام ملف تجريبي';
+  String get uploadUseDemoFile => 'Ш§ШіШЄШ®ШЇШ§Щ… Щ…Щ„ЩЃ ШЄШ¬Ш±ЩЉШЁЩЉ';
 }

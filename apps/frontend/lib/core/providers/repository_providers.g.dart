@@ -263,7 +263,7 @@ final class GoogleSignInProvider
   }
 }
 
-String _$googleSignInHash() => r'7acd889bb17e1f853ced579668ab44910d381036';
+String _$googleSignInHash() => r'6b68e7785a816a60cd0c722d8a0ef9c87c7cdc7d';
 
 @ProviderFor(firebaseOAuthService)
 const firebaseOAuthServiceProvider = FirebaseOAuthServiceProvider._();
@@ -311,7 +311,7 @@ final class FirebaseOAuthServiceProvider
 }
 
 String _$firebaseOAuthServiceHash() =>
-    r'208c198ab57e2dd1c48898e9eea114fd89414f0d';
+    r'5d5b0c323b9b5ccb9940b76d16444c39ab70e4f8';
 
 @ProviderFor(refreshDio)
 const refreshDioProvider = RefreshDioProvider._();

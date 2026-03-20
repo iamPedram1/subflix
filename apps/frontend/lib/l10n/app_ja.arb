@@ -1,375 +1,493 @@
 {
-  "@@locale": "ja",
-  "appTitle": "SubFlix",
-  "brandSubtitleCompact": "字幕インテリジェンス",
-  "brandSubtitleFull": "AI字幕翻訳スタジオ",
-  "comingSoonMessage": "この画面はまだ準備中です。",
-  "comingSoonTitle": "近日公開",
-  "exportFailedSnack": "書き出しに失敗しました: {error}",
-  "@exportFailedSnack": {
-    "placeholders": {
-      "error": {}
-    }
-  },
-  "exportSubtitleLabel": "翻訳済み字幕を書き出す",
-  "exportedSnack": "{fileName} を {path} に書き出しました",
-  "@exportedSnack": {
-    "placeholders": {
-      "fileName": {},
-      "path": {}
-    }
-  },
-  "exportingLabel": "書き出し中...",
-  "heroBadge": "プレミアム字幕ワークフロー",
-  "heroBody": "検索可能なタイトルカタログか直接ファイルアップロードを選び、数分で洗練された字幕をプレビュー・書き出しできます。",
-  "heroHeadline": "スタジオ品質のフローで映画・シリーズ字幕を翻訳。",
-  "heroSearchCta": "映画 / シリーズを検索",
-  "heroStatLanguagesTitle": "10言語",
-  "heroStatLanguagesValue": "プレビュー可能",
-  "heroStatMockTitle": "モックAPI",
-  "heroStatMockValue": "バックエンド接続準備済み",
-  "heroStatPathsTitle": "2つの経路",
-  "heroStatPathsValue": "検索またはアップロード",
-  "heroSubtitle": "映画・シリーズのカタログを検索し、ソースを選び、数分で洗練された翻訳を出力できます。",
-  "heroTitle": "字幕をもっと速く翻訳",
-  "heroUploadCta": "字幕をアップロード",
-  "historyCountLabel": "{count} 件の翻訳",
-  "@historyCountLabel": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "historyEmptyMessage": "検索またはアップロードの流れを完了すると、翻訳済み字幕ジョブがここに表示されます。",
-  "historyEmptyTitle": "履歴は空です",
-  "historyFailedItemMessage": "翻訳に失敗しました。タップしてやり直してください。",
-  "historyFailedTitle": "履歴を読み込めませんでした",
-  "historyFilterAiTranslated": "AI翻訳",
-  "historyFilterAll": "すべて",
-  "historyFilterCompleted": "完了",
-  "historyFilterFailed": "失敗",
-  "historyFilterMovies": "映画",
-  "historyFilterReused": "再利用",
-  "historyFilterSeries": "シリーズ",
-  "historySubtitle": "以前の字幕ジョブを開き直し、再度プレビューしたり、あとで書き出したりできます。",
-  "historyTitle": "翻訳履歴",
-  "homeFailedRecentTitle": "最近のジョブを読み込めませんでした",
-  "homeFutureSubtitle": "差し替え可能なモックリポジトリにより、UIコードはバックエンド変更の影響を受けにくくなります。",
-  "homeFutureTitle": "将来対応のリポジトリ",
-  "homeNoRecentMessage": "映画検索を始めるか字幕ファイルをアップロードすると、最近の翻訳がここに表示されます。",
-  "homeNoRecentTitle": "最近のジョブはまだありません",
-  "homePreviewSubtitle": "書き出し前に、原文・翻訳・バイリンガル表示で結果を確認できます。",
-  "homePreviewTitle": "プレビュー重視の翻訳フロー",
-  "homeQuickHistory": "履歴",
-  "homeQuickSearch": "検索",
-  "homeQuickUpload": "アップロード",
-  "homeRecentJobsSubtitle": "最初からやり直さずに、最新の字幕セッションを開き直せます。",
-  "homeRecentJobsTitle": "最近のジョブ",
-  "homeSearchPlaceholder": "映画やシリーズを検索...",
-  "homeStatesSubtitle": "読み込み、空状態、再試行、検証、モックのオフライン状態まで初日からUXに含まれています。",
-  "homeStatesTitle": "丁寧な状態設計込み",
-  "homeTrendingNow": "今のトレンド",
-  "homeTrustSubtitle": "今はモックでも、実運用できる製品のように設計されています。",
-  "homeTrustTitle": "チームに信頼される理由",
-  "homeViewAll": "すべて見る",
-  "homeWelcomeSubtitle": "字幕を見つけて翻訳",
-  "homeWelcomeTitle": "おかえりなさい",
-  "jobConfidence": "信頼度: {level}",
-  "@jobConfidence": {
-    "placeholders": {
-      "level": {}
-    }
-  },
-  "jobOpenPreview": "プレビューを開く",
-  "jobReuseSubtitle": "字幕を再利用",
-  "jobReuseTranslation": "翻訳を再利用",
-  "legalBodyAbout": "SubFlix は AI 字幕翻訳向けのプレミアム志向 Flutter クライアントです。このビルドでは、実際のバックエンド接続前に UI とアーキテクチャを育てるため、モックリポジトリ、人工的な遅延、ローカル保存を使っています。",
-  "legalBodyPrivacy": "SubFlix は現在、モックの設定と翻訳履歴のみをローカル保存しています。将来的なバックエンド連携により、認証付き保存、監査ログ、サーバー管理の保持ポリシーへ置き換えられます。",
-  "legalBodySupport": "サポートは現在プレースホルダーです。本番では、アプリ構造を変えずにメール、問題報告、プレミアム会員向け支援へ接続できます。",
-  "legalBodyTerms": "このモックビルドは、製品フロー、UI状態、アーキテクチャ境界を検証するためのものです。将来 NestJS と Postgres の本番バックエンドが接続されれば、実際の利用規約やデータ処理文言を追加できます。",
-  "legalPlaceholderBody": "このページはデモアプリ内のプレースホルダーです。本番用の法的コンテンツに差し替えてください。",
-  "legalTitleAbout": "SubFlix について",
-  "legalTitlePrivacy": "プライバシーポリシー",
-  "legalTitleSupport": "サポート",
-  "legalTitleTerms": "利用規約",
-  "mediaTypeMovie": "映画",
-  "mediaTypeSeries": "シリーズ",
-  "metadataEstimatedDuration": "推定時間",
-  "metadataFormat": "形式",
-  "metadataLanguages": "言語",
-  "metadataLines": "行数",
-  "navHistory": "履歴",
-  "navHome": "ホーム",
-  "navSettings": "設定",
-  "noTitlesMatchedMessage": "このタイトルはモックカタログで見つかりませんでした。より広い条件で検索するか、候補のタイトルを試してください。",
-  "noTitlesMatchedTitle": "一致する結果がありません",
-  "onboardingContinue": "続ける",
-  "onboardingEnterApp": "SubFlix に入る",
-  "onboardingNext": "次へ",
-  "onboardingPage1Description": "タイトルを検索し、利用可能な英語字幕ソースを確認して、すぐに使える翻訳フローを開始できます。",
-  "onboardingPage1Eyebrow": "検索して取得",
-  "onboardingPage1Highlight1": "開発しやすい決定論的モックカタログ",
-  "onboardingPage1Highlight2": "字幕ソースの品質ラベルと形式バッジ",
-  "onboardingPage1Highlight3": "後から実バックエンドへ差し替え可能",
-  "onboardingPage1Title": "映画やシリーズを探して、すぐ翻訳できる字幕を取得。",
-  "onboardingPage2Description": "字幕ファイルを取り込み、形式を検証し、同じ洗練された翻訳パイプラインをアプリ内で実行できます。",
-  "onboardingPage2Eyebrow": "自分のファイルを使う",
-  "onboardingPage2Highlight1": "ローカル検証と丁寧な再試行状態",
-  "onboardingPage2Highlight2": "検索とアップロードで一貫した設定",
-  "onboardingPage2Highlight3": "不透明さをなくすため、書き出し前に確認",
-  "onboardingPage2Title": "すでに台本があるなら `.srt` / `.vtt` をアップロード。",
-  "onboardingPage3Description": "原文・翻訳・バイリンガル表示を切り替え、履歴を見返し、仕上がりに納得したらきれいな字幕ファイルを書き出せます。",
-  "onboardingPage3Eyebrow": "翻訳して書き出す",
-  "onboardingPage3Highlight1": "メタデータと検索付きの高速プレビュー操作",
-  "onboardingPage3Highlight2": "履歴から以前のジョブにすぐ戻れる",
-  "onboardingPage3Highlight3": "デモではなく、プレミアムなメディアツールのような設計",
-  "onboardingPage3Title": "対象言語を選び、字幕を確認して、すぐ書き出し。",
-  "onboardingSkip": "スキップ",
-  "onboardingStart": "翻訳を始める",
-  "previewFailedTitle": "プレビューの読み込みに失敗しました",
-  "previewModeBilingual": "バイリンガル",
-  "previewModeOriginal": "原文",
-  "previewModeTranslated": "翻訳文",
-  "previewNoMatchesMessage": "別の検索語を試すか、フィルターを解除して全文を確認してください。",
-  "previewNoMatchesTitle": "一致する字幕行がありません",
-  "previewNotReadyMessage": "翻訳は完了しましたが、バックエンドからプレビュー cue がまだ返ってきていません。少し待って再読み込みしてください。",
-  "previewNotReadyTitle": "プレビュー用 cue はまだ利用できません",
-  "retry": "再試行",
-  "retryTranslation": "翻訳を再試行",
-  "routeMissingSeasonEpisodesMessage": "どのシーズンを読み込むべきか判断できませんでした。検索からやり直してください。",
-  "routeMissingSeasonEpisodesTitle": "シーズンのエピソード",
-  "routeMissingSeriesSeasonsMessage": "どのシリーズを読み込むべきか判断できませんでした。検索からやり直してください。",
-  "routeMissingSeriesSeasonsTitle": "シリーズのシーズン",
-  "routeMissingSubtitleSourcesMessage": "どのタイトルの字幕ソースを読み込むべきか判断できませんでした。検索からやり直してください。",
-  "routeMissingSubtitleSourcesTitle": "字幕ソース",
-  "routeMissingTranslationProgressMessage": "翻訳リクエストがありません。検索またはアップロードから新しい翻訳を始めてください。",
-  "routeMissingTranslationProgressTitle": "翻訳の進行状況",
-  "routeMissingTranslationSetupMessage": "翻訳設定画面を開く前に字幕ソースが必要です。",
-  "routeMissingTranslationSetupTitle": "翻訳設定",
-  "searchFailedTitle": "検索に失敗しました",
-  "searchFoundResults": "\"{query}\" の結果が {count} 件見つかりました",
-  "@searchFoundResults": {
-    "placeholders": {
-      "query": {},
-      "count": {}
-    }
-  },
-  "searchHintText": "Dune、Breaking Bad、Severance などを検索...",
-  "searchLoadingLabel": "検索中...",
-  "searchMockMessage": "Inception、Dune、Breaking Bad、Severance、The Last of Us などを試して、字幕ソースの流れを確認してください。",
-  "searchMockTitle": "モックカタログ内を検索",
-  "searchMovieOrSeriesSubtitle": "タイトルを見つけて字幕ソースを確認し、数回のタップで翻訳ジョブを開始できます。",
-  "searchMovieOrSeriesTitle": "映画・シリーズを検索",
-  "searchNoResultsFor": "\"{query}\" の結果は見つかりませんでした",
-  "@searchNoResultsFor": {
-    "placeholders": {
-      "query": {}
-    }
-  },
-  "searchResultPopularity": "人気度 {score}",
-  "@searchResultPopularity": {
-    "placeholders": {
-      "score": {}
-    }
-  },
-  "searchTitles": "タイトルを検索",
-  "searchTrendingTitle": "人気の検索",
-  "searchTryDifferentKeywords": "別のキーワードで検索してみてください。",
-  "seriesEpisodeLabel": "エピソード {episodeNumber}",
-  "@seriesEpisodeLabel": {
-    "placeholders": {
-      "episodeNumber": {}
-    }
-  },
-  "seriesEpisodeMeta": "約 {runtime} 分",
-  "@seriesEpisodeMeta": {
-    "placeholders": {
-      "runtime": {}
-    }
-  },
-  "seriesEpisodesSubtitle": "{episodeCount} 話{year}",
-  "@seriesEpisodesSubtitle": {
-    "placeholders": {
-      "episodeCount": {},
-      "year": {}
-    }
-  },
-  "seriesEpisodesTitle": "シーズン {seasonNumber}",
-  "@seriesEpisodesTitle": {
-    "placeholders": {
-      "seasonNumber": {}
-    }
-  },
-  "seriesSeasonLabel": "シーズン {seasonNumber}",
-  "@seriesSeasonLabel": {
-    "placeholders": {
-      "seasonNumber": {}
-    }
-  },
-  "seriesSeasonMeta": "{episodeCount} 話{year}",
-  "@seriesSeasonMeta": {
-    "placeholders": {
-      "episodeCount": {},
-      "year": {}
-    }
-  },
-  "seriesSeasonsSubtitle": "{title} のシーズンを選んで、利用可能なエピソードを確認してください。",
-  "@seriesSeasonsSubtitle": {
-    "placeholders": {
-      "title": {}
-    }
-  },
-  "seriesSeasonsTitle": "シーズンを選択",
-  "settingsAboutTitle": "SubFlix について",
-  "settingsCacheCleared": "キャッシュを消去しました",
-  "settingsClearCache": "キャッシュを消去",
-  "settingsContactTitle": "お問い合わせ",
-  "settingsFailedTitle": "設定を読み込めませんでした",
-  "settingsHelpCenterTitle": "ヘルプセンター",
-  "settingsHistoryClearedSnack": "この端末の翻訳履歴を消去しました",
-  "settingsLanguageLabel": "優先する翻訳先言語",
-  "settingsMaintenanceSubtitle": "この端末のバックエンド管理翻訳ジョブを消去し、履歴を空の状態から始めます。",
-  "settingsMaintenanceTitle": "メンテナンス",
-  "settingsNotificationsSubtitle": "通知設定を管理",
-  "settingsNotificationsTitle": "通知",
-  "settingsPremiumSubtitle": "今後、購読・請求・クラウドプロジェクト同期をここに接続できます。",
-  "settingsPremiumTitle": "プレミアム用プレースホルダー",
-  "settingsPrivacySubtitle": "モックのプライバシー内容",
-  "settingsPrivacyTitle": "プライバシーポリシー",
-  "settingsProfileName": "SubFlix ユーザー",
-  "settingsProfileTier": "プレミアム会員",
-  "settingsSubtitle": "好みを管理",
-  "settingsSupportSubtitle": "モックのヘルプ・問い合わせページ",
-  "settingsSupportTitle": "サポート用プレースホルダー",
-  "settingsTermsSubtitle": "モックの規約内容",
-  "settingsTermsTitle": "利用規約",
-  "settingsThemeLabel": "外観",
-  "settingsTitle": "設定",
-  "settingsVersion": "バージョン {version}",
-  "@settingsVersion": {
-    "placeholders": {
-      "version": {}
-    }
-  },
-  "splashHeadline": "SubFlix",
-  "splashPreparing": "あなたの字幕スタジオを準備中",
-  "splashSubtitle": "AIによる字幕翻訳",
-  "startTranslation": "翻訳を開始",
-  "subtitleSourceDownloads": "{downloads} ダウンロード",
-  "@subtitleSourceDownloads": {
-    "placeholders": {
-      "downloads": {}
-    }
-  },
-  "subtitleSourceFormatLabel": "{format} 字幕ソース",
-  "@subtitleSourceFormatLabel": {
-    "placeholders": {
-      "format": {}
-    }
-  },
-  "subtitleSourceHiLabel": "HI / SDH",
-  "subtitleSourceLines": "{lineCount} 行",
-  "@subtitleSourceLines": {
-    "placeholders": {
-      "lineCount": {}
-    }
-  },
-  "subtitleSourceRating": "評価 {rating}",
-  "@subtitleSourceRating": {
-    "placeholders": {
-      "rating": {}
-    }
-  },
-  "subtitleSourcesBannerMessage": "字幕ソースを選択すると、字幕タイミングに最適化された翻訳設定へ進みます。",
-  "subtitleSourcesBannerTitle": "AI翻訳が利用できます",
-  "subtitleSourcesFailedTitle": "字幕ソースを読み込めませんでした",
-  "subtitleSourcesSubtitle": "{title}{target} の字幕ソースを選び、次のステップで対象言語を選択してください。",
-  "@subtitleSourcesSubtitle": {
-    "placeholders": {
-      "title": {},
-      "target": {}
-    }
-  },
-  "subtitleSourcesTitle": "英語字幕ソース",
-  "targetLanguage": "対象言語",
-  "themeDark": "ダーク",
-  "themeLight": "ライト",
-  "themeSystem": "システム",
-  "translateSetupAutoDetect": "形式を自動検出",
-  "translateSetupAutoDetectBody": "字幕の出力構造を自動で最適化します。",
-  "translateSetupLanguageTitle": "翻訳先",
-  "translateSetupOptionsTitle": "オプション",
-  "translateSetupPreserveTiming": "タイミングを保持",
-  "translateSetupPreserveTimingBody": "元ファイルに合わせて字幕のタイミングを維持します。",
-  "translateSetupReadyBody": "この字幕は、タイミングと cue 構造を保ったまま {language} に変換されます。",
-  "@translateSetupReadyBody": {
-    "placeholders": {
-      "language": {}
-    }
-  },
-  "translateSetupReadyTitle": "AI翻訳の準備完了",
-  "translateSetupSelectLanguage": "言語を選択",
-  "translateSetupSourceTitle": "元の字幕",
-  "translateSetupSubtitle": "対象言語を選び、字幕ソースを確認してから、バックエンド翻訳ジョブを開始します。",
-  "translateSetupTitle": "翻訳設定",
-  "translationFailedMessage": "問題が発生しました。",
-  "translationFailedTitle": "翻訳を完了できませんでした",
-  "translationPreviewHeader": "翻訳された字幕を確認",
-  "translationPreviewSearchHint": "字幕行を検索",
-  "translationPreviewSubtitle": "cue 内を検索し、表示モードを切り替え、納得できたら書き出してください。",
-  "translationPreviewTitle": "翻訳プレビュー",
-  "translationProgressHeadline": "AI字幕翻訳を実行中です",
-  "translationProgressTitle": "翻訳の進行状況",
-  "translationResultCompleteSubtitle": "字幕はプレビューまたはダウンロードの準備ができています。",
-  "translationResultCompleteTitle": "翻訳が完了しました",
-  "translationResultConfidenceLabel": "翻訳の信頼度",
-  "translationResultDetailsTitle": "翻訳の詳細",
-  "translationResultDownloadCta": "字幕をダウンロード",
-  "translationResultHomeCta": "ホームに戻る",
-  "translationResultMediaLabel": "作品タイトル",
-  "translationResultMethodAi": "AIで翻訳済み",
-  "translationResultMetricsTitle": "品質指標",
-  "translationResultPreviewCta": "字幕をプレビュー",
-  "translationResultProcessedIn": "{duration} で処理完了",
-  "@translationResultProcessedIn": {
-    "placeholders": {
-      "duration": {}
-    }
-  },
-  "translationResultSourceLabel": "元の言語",
-  "translationResultTargetLabel": "翻訳先の言語",
-  "translationResultTimingLabel": "タイミング精度",
-  "translationResultTimingPreserved": "タイミング保持",
-  "translationResultWarning": "一部の専門用語は、文脈確認のために人の軽い見直しがあるとより安心です。",
-  "translationStageAligning": "タイムスタンプとシーン文脈を調整中",
-  "translationStageGenerating": "字幕翻訳を生成中",
-  "translationStageIdle": "翻訳リクエストを待機中",
-  "translationStagePreparing": "字幕パッケージを準備中",
-  "translationStageQueued": "翻訳待ちキューに入りました",
-  "translationStageReadability": "読みやすさ調整を適用中",
-  "translationStageReady": "翻訳の準備完了",
-  "tryAgain": "もう一度試す",
-  "uploadChooseFile": "字幕ファイルを選択",
-  "uploadChooseFileShort": "ファイルを選択",
-  "uploadContinueSetup": "翻訳設定へ進む",
-  "uploadEnglishSource": "英語ソース",
-  "uploadFailedFallback": "別の字幕ファイルをお試しください。",
-  "uploadFailedMessage": "この字幕ファイルは読み込めませんでした。別のファイルか、より小さい書き出しを試してください。",
-  "uploadFailedTitle": "ファイルの取り込みに失敗しました",
-  "uploadIntroSubtitle": "英語の `.srt` または `.vtt` ファイルを取り込み、バックエンドで検証・解析したあと、翻訳設定へ進みます。",
-  "uploadIntroTitle": "自分の字幕ファイルを使う",
-  "uploadLineCount": "{lineCount} 行",
-  "@uploadLineCount": {
-    "placeholders": {
-      "lineCount": {}
-    }
-  },
-  "uploadMetadataTitle": "字幕の詳細",
-  "uploadOpeningPicker": "ピッカーを開いています...",
-  "uploadPickSubtitle": "字幕ファイルを選ぶ",
-  "uploadPickedFile": "字幕ファイルを選択しました",
-  "uploadReadyTitle": "翻訳の準備ができました",
-  "uploadSubtitleTitle": "字幕をアップロード",
-  "uploadSupportedFormatsSubtitle": "英語の `.srt` / `.vtt` 字幕ファイル",
-  "uploadSupportedFormatsTitle": "対応形式",
-  "uploadUseDemoFile": "デモファイルを使う"
+    "@@locale":  "ja",
+    "appTitle":  "SubFlix",
+    "brandSubtitleCompact":  "е­—е№•г‚¤гѓігѓ†гѓЄг‚ёг‚§гѓіг‚№",
+    "brandSubtitleFull":  "AIе­—е№•зї»иЁіг‚№г‚їг‚ёг‚Є",
+    "comingSoonMessage":  "гЃ“гЃ®з”»йќўгЃЇгЃѕгЃ жє–е‚™дё­гЃ§гЃ™гЂ‚",
+    "comingSoonTitle":  "иї‘ж—Ґе…¬й–‹",
+    "exportFailedSnack":  "ж›ёгЃЌе‡єгЃ—гЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ: {error}",
+    "@exportFailedSnack":  {
+                               "placeholders":  {
+                                                    "error":  {
+
+                                                              }
+                                                }
+                           },
+    "exportSubtitleLabel":  "зї»иЁіжё€гЃїе­—е№•г‚’ж›ёгЃЌе‡єгЃ™",
+    "exportedSnack":  "{fileName} г‚’ {path} гЃ«ж›ёгЃЌе‡єгЃ—гЃѕгЃ—гЃџ",
+    "@exportedSnack":  {
+                           "placeholders":  {
+                                                "fileName":  {
+
+                                                             },
+                                                "path":  {
+
+                                                         }
+                                            }
+                       },
+    "exportingLabel":  "ж›ёгЃЌе‡єгЃ—дё­...",
+    "heroBadge":  "гѓ—гѓ¬гѓџг‚ўгѓ е­—е№•гѓЇгѓјг‚Їгѓ•гѓ­гѓј",
+    "heroBody":  "ж¤њзґўеЏЇиѓЅгЃЄг‚їг‚¤гѓ€гѓ«г‚«г‚їгѓ­г‚°гЃ‹з›ґжЋҐгѓ•г‚Ўг‚¤гѓ«г‚ўгѓѓгѓ—гѓ­гѓјгѓ‰г‚’йЃёгЃігЂЃж•°е€†гЃ§жґ—з·ґгЃ•г‚ЊгЃџе­—е№•г‚’гѓ—гѓ¬гѓ“гѓҐгѓјгѓ»ж›ёгЃЌе‡єгЃ—гЃ§гЃЌгЃѕгЃ™гЂ‚",
+    "heroHeadline":  "г‚№г‚їг‚ёг‚Єе“ЃиіЄгЃ®гѓ•гѓ­гѓјгЃ§ж з”»гѓ»г‚·гѓЄгѓјг‚єе­—е№•г‚’зї»иЁігЂ‚",
+    "heroSearchCta":  "ж з”» / г‚·гѓЄгѓјг‚єг‚’ж¤њзґў",
+    "heroStatLanguagesTitle":  "10иЁЂиЄћ",
+    "heroStatLanguagesValue":  "гѓ—гѓ¬гѓ“гѓҐгѓјеЏЇиѓЅ",
+    "heroStatMockTitle":  "гѓўгѓѓг‚ЇAPI",
+    "heroStatMockValue":  "гѓђгѓѓг‚Їг‚Ёгѓігѓ‰жЋҐз¶љжє–е‚™жё€гЃї",
+    "heroStatPathsTitle":  "2гЃ¤гЃ®зµЊи·Ї",
+    "heroStatPathsValue":  "ж¤њзґўгЃѕгЃџгЃЇг‚ўгѓѓгѓ—гѓ­гѓјгѓ‰",
+    "heroSubtitle":  "ж з”»гѓ»г‚·гѓЄгѓјг‚єгЃ®г‚«г‚їгѓ­г‚°г‚’ж¤њзґўгЃ—гЂЃг‚Ѕгѓјг‚№г‚’йЃёгЃігЂЃж•°е€†гЃ§жґ—з·ґгЃ•г‚ЊгЃџзї»иЁіг‚’е‡єеЉ›гЃ§гЃЌгЃѕгЃ™гЂ‚",
+    "heroTitle":  "е­—е№•г‚’г‚‚гЃЈгЃЁйЂџгЃЏзї»иЁі",
+    "heroUploadCta":  "е­—е№•г‚’г‚ўгѓѓгѓ—гѓ­гѓјгѓ‰",
+    "historyCountLabel":  "{count} д»¶гЃ®зї»иЁі",
+    "@historyCountLabel":  {
+                               "placeholders":  {
+                                                    "count":  {
+
+                                                              }
+                                                }
+                           },
+    "historyEmptyMessage":  "ж¤њзґўгЃѕгЃџгЃЇг‚ўгѓѓгѓ—гѓ­гѓјгѓ‰гЃ®жµЃг‚Њг‚’е®Њдє†гЃ™г‚‹гЃЁгЂЃзї»иЁіжё€гЃїе­—е№•г‚ёгѓ§гѓ–гЃЊгЃ“гЃ“гЃ«иЎЁз¤єгЃ•г‚ЊгЃѕгЃ™гЂ‚",
+    "historyEmptyTitle":  "е±Ґж­ґгЃЇз©єгЃ§гЃ™",
+    "historyFailedItemMessage":  "зї»иЁігЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџгЂ‚г‚їгѓѓгѓ—гЃ—гЃ¦г‚„г‚Љз›ґгЃ—гЃ¦гЃЏгЃ гЃ•гЃ„гЂ‚",
+    "historyFailedTitle":  "е±Ґж­ґг‚’иЄ­гЃїиѕјг‚ЃгЃѕгЃ›г‚“гЃ§гЃ—гЃџ",
+    "historyFilterAiTranslated":  "AIзї»иЁі",
+    "historyFilterAll":  "гЃ™гЃ№гЃ¦",
+    "historyFilterCompleted":  "е®Њдє†",
+    "historyFilterFailed":  "е¤±ж•—",
+    "historyFilterMovies":  "ж з”»",
+    "historyFilterReused":  "е†Ќе€©з”Ё",
+    "historyFilterSeries":  "г‚·гѓЄгѓјг‚є",
+    "historySubtitle":  "д»Ґе‰ЌгЃ®е­—е№•г‚ёгѓ§гѓ–г‚’й–‹гЃЌз›ґгЃ—гЂЃе†Ќеє¦гѓ—гѓ¬гѓ“гѓҐгѓјгЃ—гЃџг‚ЉгЂЃгЃ‚гЃЁгЃ§ж›ёгЃЌе‡єгЃ—гЃџг‚ЉгЃ§гЃЌгЃѕгЃ™гЂ‚",
+    "historyTitle":  "зї»иЁіе±Ґж­ґ",
+    "homeFailedRecentTitle":  "жњЂиї‘гЃ®г‚ёгѓ§гѓ–г‚’иЄ­гЃїиѕјг‚ЃгЃѕгЃ›г‚“гЃ§гЃ—гЃџ",
+    "homeFutureSubtitle":  "е·®гЃ—ж›їгЃ€еЏЇиѓЅгЃЄгѓўгѓѓг‚ЇгѓЄгѓќг‚ёгѓ€гѓЄгЃ«г‚€г‚ЉгЂЃUIг‚ігѓјгѓ‰гЃЇгѓђгѓѓг‚Їг‚Ёгѓігѓ‰е¤‰ж›ґгЃ®еЅ±йџїг‚’еЏ—гЃ‘гЃ«гЃЏгЃЏгЃЄг‚ЉгЃѕгЃ™гЂ‚",
+    "homeFutureTitle":  "е°†жќҐеЇѕеїњгЃ®гѓЄгѓќг‚ёгѓ€гѓЄ",
+    "homeNoRecentMessage":  "ж з”»ж¤њзґўг‚’е§‹г‚Ѓг‚‹гЃ‹е­—е№•гѓ•г‚Ўг‚¤гѓ«г‚’г‚ўгѓѓгѓ—гѓ­гѓјгѓ‰гЃ™г‚‹гЃЁгЂЃжњЂиї‘гЃ®зї»иЁігЃЊгЃ“гЃ“гЃ«иЎЁз¤єгЃ•г‚ЊгЃѕгЃ™гЂ‚",
+    "homeNoRecentTitle":  "жњЂиї‘гЃ®г‚ёгѓ§гѓ–гЃЇгЃѕгЃ гЃ‚г‚ЉгЃѕгЃ›г‚“",
+    "homePreviewSubtitle":  "ж›ёгЃЌе‡єгЃ—е‰ЌгЃ«гЂЃеЋџж–‡гѓ»зї»иЁігѓ»гѓђг‚¤гѓЄгѓіг‚¬гѓ«иЎЁз¤єгЃ§зµђжћњг‚’зўєиЄЌгЃ§гЃЌгЃѕгЃ™гЂ‚",
+    "homePreviewTitle":  "гѓ—гѓ¬гѓ“гѓҐгѓјй‡Ќи¦–гЃ®зї»иЁігѓ•гѓ­гѓј",
+    "homeQuickHistory":  "е±Ґж­ґ",
+    "homeQuickSearch":  "ж¤њзґў",
+    "homeQuickUpload":  "г‚ўгѓѓгѓ—гѓ­гѓјгѓ‰",
+    "homeRecentJobsSubtitle":  "жњЂе€ќгЃ‹г‚‰г‚„г‚Љз›ґгЃ•гЃљгЃ«гЂЃжњЂж–°гЃ®е­—е№•г‚»гѓѓг‚·гѓ§гѓіг‚’й–‹гЃЌз›ґгЃ›гЃѕгЃ™гЂ‚",
+    "homeRecentJobsTitle":  "жњЂиї‘гЃ®г‚ёгѓ§гѓ–",
+    "homeSearchPlaceholder":  "ж з”»г‚„г‚·гѓЄгѓјг‚єг‚’ж¤њзґў...",
+    "homeStatesSubtitle":  "иЄ­гЃїиѕјгЃїгЂЃз©єзЉ¶ж…‹гЂЃе†Ќи©¦иЎЊгЂЃж¤њиЁјгЂЃгѓўгѓѓг‚ЇгЃ®г‚Єгѓ•гѓ©г‚¤гѓізЉ¶ж…‹гЃѕгЃ§е€ќж—ҐгЃ‹г‚‰UXгЃ«еђ«гЃѕг‚ЊгЃ¦гЃ„гЃѕгЃ™гЂ‚",
+    "homeStatesTitle":  "дёЃеЇ§гЃЄзЉ¶ж…‹иЁ­иЁ€иѕјгЃї",
+    "homeTrendingNow":  "д»ЉгЃ®гѓ€гѓ¬гѓігѓ‰",
+    "homeTrustSubtitle":  "д»ЉгЃЇгѓўгѓѓг‚ЇгЃ§г‚‚гЂЃе®џйЃ‹з”ЁгЃ§гЃЌг‚‹иЈЅе“ЃгЃ®г‚€гЃ†гЃ«иЁ­иЁ€гЃ•г‚ЊгЃ¦гЃ„гЃѕгЃ™гЂ‚",
+    "homeTrustTitle":  "гѓЃгѓјгѓ гЃ«дїЎй јгЃ•г‚Њг‚‹зђ†з”±",
+    "homeViewAll":  "гЃ™гЃ№гЃ¦и¦‹г‚‹",
+    "homeWelcomeSubtitle":  "е­—е№•г‚’и¦‹гЃ¤гЃ‘гЃ¦зї»иЁі",
+    "homeWelcomeTitle":  "гЃЉгЃ‹гЃ€г‚ЉгЃЄгЃ•гЃ„",
+    "jobConfidence":  "дїЎй јеє¦: {level}",
+    "@jobConfidence":  {
+                           "placeholders":  {
+                                                "level":  {
+
+                                                          }
+                                            }
+                       },
+    "jobOpenPreview":  "гѓ—гѓ¬гѓ“гѓҐгѓјг‚’й–‹гЃЏ",
+    "jobReuseSubtitle":  "е­—е№•г‚’е†Ќе€©з”Ё",
+    "jobReuseTranslation":  "зї»иЁіг‚’е†Ќе€©з”Ё",
+    "legalBodyAbout":  "SubFlix гЃЇ AI е­—е№•зї»иЁіеђ‘гЃ‘гЃ®гѓ—гѓ¬гѓџг‚ўгѓ еї—еђ‘ Flutter г‚Їгѓ©г‚¤г‚ўгѓігѓ€гЃ§гЃ™гЂ‚гЃ“гЃ®гѓ“гѓ«гѓ‰гЃ§гЃЇгЂЃе®џйљ›гЃ®гѓђгѓѓг‚Їг‚Ёгѓігѓ‰жЋҐз¶ље‰ЌгЃ« UI гЃЁг‚ўгѓјг‚­гѓ†г‚ЇгѓЃгѓЈг‚’и‚ІгЃ¦г‚‹гЃџг‚ЃгЂЃгѓўгѓѓг‚ЇгѓЄгѓќг‚ёгѓ€гѓЄгЂЃдєєе·Ґзљ„гЃЄйЃ…е»¶гЂЃгѓ­гѓјг‚«гѓ«дїќе­г‚’дЅїгЃЈгЃ¦гЃ„гЃѕгЃ™гЂ‚",
+    "legalBodyPrivacy":  "SubFlix гЃЇзЏѕењЁгЂЃгѓўгѓѓг‚ЇгЃ®иЁ­е®љгЃЁзї»иЁіе±Ґж­ґгЃ®гЃїг‚’гѓ­гѓјг‚«гѓ«дїќе­гЃ—гЃ¦гЃ„гЃѕгЃ™гЂ‚е°†жќҐзљ„гЃЄгѓђгѓѓг‚Їг‚Ёгѓігѓ‰йЂЈжђєгЃ«г‚€г‚ЉгЂЃиЄЌиЁјд»гЃЌдїќе­гЂЃз›Јжџ»гѓ­г‚°гЂЃг‚µгѓјгѓђгѓјз®Ўзђ†гЃ®дїќжЊЃгѓќгѓЄг‚·гѓјгЃёзЅ®гЃЌжЏ›гЃ€г‚‰г‚ЊгЃѕгЃ™гЂ‚",
+    "legalBodySupport":  "г‚µгѓќгѓјгѓ€гЃЇзЏѕењЁгѓ—гѓ¬гѓјг‚№гѓ›гѓ«гѓЂгѓјгЃ§гЃ™гЂ‚жњ¬з•ЄгЃ§гЃЇгЂЃг‚ўгѓ—гѓЄж§‹йЂ г‚’е¤‰гЃ€гЃљгЃ«гѓЎгѓјгѓ«гЂЃе•ЏйЎЊе ±е‘ЉгЂЃгѓ—гѓ¬гѓџг‚ўгѓ дјље“Ўеђ‘гЃ‘ж”ЇжЏґгЃёжЋҐз¶љгЃ§гЃЌгЃѕгЃ™гЂ‚",
+    "legalBodyTerms":  "гЃ“гЃ®гѓўгѓѓг‚Їгѓ“гѓ«гѓ‰гЃЇгЂЃиЈЅе“Ѓгѓ•гѓ­гѓјгЂЃUIзЉ¶ж…‹гЂЃг‚ўгѓјг‚­гѓ†г‚ЇгѓЃгѓЈеўѓз•Њг‚’ж¤њиЁјгЃ™г‚‹гЃџг‚ЃгЃ®г‚‚гЃ®гЃ§гЃ™гЂ‚е°†жќҐ NestJS гЃЁ Postgres гЃ®жњ¬з•Єгѓђгѓѓг‚Їг‚Ёгѓігѓ‰гЃЊжЋҐз¶љгЃ•г‚Њг‚ЊгЃ°гЂЃе®џйљ›гЃ®е€©з”Ёи¦Џзґ„г‚„гѓ‡гѓјг‚їе‡¦зђ†ж–‡иЁЂг‚’иїЅеЉ гЃ§гЃЌгЃѕгЃ™гЂ‚",
+    "legalPlaceholderBody":  "гЃ“гЃ®гѓљгѓјг‚ёгЃЇгѓ‡гѓўг‚ўгѓ—гѓЄе†…гЃ®гѓ—гѓ¬гѓјг‚№гѓ›гѓ«гѓЂгѓјгЃ§гЃ™гЂ‚жњ¬з•Єз”ЁгЃ®жі•зљ„г‚ігѓігѓ†гѓігѓ„гЃ«е·®гЃ—ж›їгЃ€гЃ¦гЃЏгЃ гЃ•гЃ„гЂ‚",
+    "legalTitleAbout":  "SubFlix гЃ«гЃ¤гЃ„гЃ¦",
+    "legalTitlePrivacy":  "гѓ—гѓ©г‚¤гѓђг‚·гѓјгѓќгѓЄг‚·гѓј",
+    "legalTitleSupport":  "г‚µгѓќгѓјгѓ€",
+    "legalTitleTerms":  "е€©з”Ёи¦Џзґ„",
+    "mediaTypeMovie":  "ж з”»",
+    "mediaTypeSeries":  "г‚·гѓЄгѓјг‚є",
+    "metadataEstimatedDuration":  "жЋЁе®љж™‚й–“",
+    "metadataFormat":  "еЅўејЏ",
+    "metadataLanguages":  "иЁЂиЄћ",
+    "metadataLines":  "иЎЊж•°",
+    "navHistory":  "е±Ґж­ґ",
+    "navHome":  "гѓ›гѓјгѓ ",
+    "navSettings":  "иЁ­е®љ",
+    "noTitlesMatchedMessage":  "гЃ“гЃ®г‚їг‚¤гѓ€гѓ«гЃЇгѓўгѓѓг‚Їг‚«г‚їгѓ­г‚°гЃ§и¦‹гЃ¤гЃ‹г‚ЉгЃѕгЃ›г‚“гЃ§гЃ—гЃџгЂ‚г‚€г‚ЉеєѓгЃ„жќЎд»¶гЃ§ж¤њзґўгЃ™г‚‹гЃ‹гЂЃеЂ™иЈњгЃ®г‚їг‚¤гѓ€гѓ«г‚’и©¦гЃ—гЃ¦гЃЏгЃ гЃ•гЃ„гЂ‚",
+    "noTitlesMatchedTitle":  "дёЂи‡ґгЃ™г‚‹зµђжћњгЃЊгЃ‚г‚ЉгЃѕгЃ›г‚“",
+    "onboardingContinue":  "з¶љгЃ‘г‚‹",
+    "onboardingEnterApp":  "SubFlix гЃ«е…Ґг‚‹",
+    "onboardingNext":  "ж¬ЎгЃё",
+    "onboardingPage1Description":  "г‚їг‚¤гѓ€гѓ«г‚’ж¤њзґўгЃ—гЂЃе€©з”ЁеЏЇиѓЅгЃЄи‹±иЄће­—е№•г‚Ѕгѓјг‚№г‚’зўєиЄЌгЃ—гЃ¦гЂЃгЃ™гЃђгЃ«дЅїгЃ€г‚‹зї»иЁігѓ•гѓ­гѓјг‚’й–‹е§‹гЃ§гЃЌгЃѕгЃ™гЂ‚",
+    "onboardingPage1Eyebrow":  "ж¤њзґўгЃ—гЃ¦еЏ–еѕ—",
+    "onboardingPage1Highlight1":  "й–‹з™єгЃ—г‚„гЃ™гЃ„ж±єе®љи«–зљ„гѓўгѓѓг‚Їг‚«г‚їгѓ­г‚°",
+    "onboardingPage1Highlight2":  "е­—е№•г‚Ѕгѓјг‚№гЃ®е“ЃиіЄгѓ©гѓ™гѓ«гЃЁеЅўејЏгѓђгѓѓг‚ё",
+    "onboardingPage1Highlight3":  "еѕЊгЃ‹г‚‰е®џгѓђгѓѓг‚Їг‚Ёгѓігѓ‰гЃёе·®гЃ—ж›їгЃ€еЏЇиѓЅ",
+    "onboardingPage1Title":  "ж з”»г‚„г‚·гѓЄгѓјг‚єг‚’жЋўгЃ—гЃ¦гЂЃгЃ™гЃђзї»иЁігЃ§гЃЌг‚‹е­—е№•г‚’еЏ–еѕ—гЂ‚",
+    "onboardingPage2Description":  "е­—е№•гѓ•г‚Ўг‚¤гѓ«г‚’еЏ–г‚ЉиѕјгЃїгЂЃеЅўејЏг‚’ж¤њиЁјгЃ—гЂЃеђЊгЃжґ—з·ґгЃ•г‚ЊгЃџзї»иЁігѓ‘г‚¤гѓ—гѓ©г‚¤гѓіг‚’г‚ўгѓ—гѓЄе†…гЃ§е®џиЎЊгЃ§гЃЌгЃѕгЃ™гЂ‚",
+    "onboardingPage2Eyebrow":  "и‡Єе€†гЃ®гѓ•г‚Ўг‚¤гѓ«г‚’дЅїгЃ†",
+    "onboardingPage2Highlight1":  "гѓ­гѓјг‚«гѓ«ж¤њиЁјгЃЁдёЃеЇ§гЃЄе†Ќи©¦иЎЊзЉ¶ж…‹",
+    "onboardingPage2Highlight2":  "ж¤њзґўгЃЁг‚ўгѓѓгѓ—гѓ­гѓјгѓ‰гЃ§дёЂиІ«гЃ—гЃџиЁ­е®љ",
+    "onboardingPage2Highlight3":  "дёЌйЂЏжЋгЃ•г‚’гЃЄгЃЏгЃ™гЃџг‚ЃгЂЃж›ёгЃЌе‡єгЃ—е‰ЌгЃ«зўєиЄЌ",
+    "onboardingPage2Title":  "гЃ™гЃ§гЃ«еЏ°жњ¬гЃЊгЃ‚г‚‹гЃЄг‚‰ `.srt` / `.vtt` г‚’г‚ўгѓѓгѓ—гѓ­гѓјгѓ‰гЂ‚",
+    "onboardingPage3Description":  "еЋџж–‡гѓ»зї»иЁігѓ»гѓђг‚¤гѓЄгѓіг‚¬гѓ«иЎЁз¤єг‚’е€‡г‚Љж›їгЃ€гЂЃе±Ґж­ґг‚’и¦‹иї”гЃ—гЂЃд»•дёЉгЃЊг‚ЉгЃ«зґЌеѕ—гЃ—гЃџг‚‰гЃЌг‚ЊгЃ„гЃЄе­—е№•гѓ•г‚Ўг‚¤гѓ«г‚’ж›ёгЃЌе‡єгЃ›гЃѕгЃ™гЂ‚",
+    "onboardingPage3Eyebrow":  "зї»иЁігЃ—гЃ¦ж›ёгЃЌе‡єгЃ™",
+    "onboardingPage3Highlight1":  "гѓЎг‚їгѓ‡гѓјг‚їгЃЁж¤њзґўд»гЃЌгЃ®й«йЂџгѓ—гѓ¬гѓ“гѓҐгѓјж“ЌдЅњ",
+    "onboardingPage3Highlight2":  "е±Ґж­ґгЃ‹г‚‰д»Ґе‰ЌгЃ®г‚ёгѓ§гѓ–гЃ«гЃ™гЃђж€»г‚Њг‚‹",
+    "onboardingPage3Highlight3":  "гѓ‡гѓўгЃ§гЃЇгЃЄгЃЏгЂЃгѓ—гѓ¬гѓџг‚ўгѓ гЃЄгѓЎгѓ‡г‚Јг‚ўгѓ„гѓјгѓ«гЃ®г‚€гЃ†гЃЄиЁ­иЁ€",
+    "onboardingPage3Title":  "еЇѕи±ЎиЁЂиЄћг‚’йЃёгЃігЂЃе­—е№•г‚’зўєиЄЌгЃ—гЃ¦гЂЃгЃ™гЃђж›ёгЃЌе‡єгЃ—гЂ‚",
+    "onboardingSkip":  "г‚№г‚­гѓѓгѓ—",
+    "onboardingStart":  "зї»иЁіг‚’е§‹г‚Ѓг‚‹",
+    "previewFailedTitle":  "гѓ—гѓ¬гѓ“гѓҐгѓјгЃ®иЄ­гЃїиѕјгЃїгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ",
+    "previewModeBilingual":  "гѓђг‚¤гѓЄгѓіг‚¬гѓ«",
+    "previewModeOriginal":  "еЋџж–‡",
+    "previewModeTranslated":  "зї»иЁіж–‡",
+    "previewNoMatchesMessage":  "е€ҐгЃ®ж¤њзґўиЄћг‚’и©¦гЃ™гЃ‹гЂЃгѓ•г‚Јгѓ«г‚їгѓјг‚’и§Јй™¤гЃ—гЃ¦е…Ёж–‡г‚’зўєиЄЌгЃ—гЃ¦гЃЏгЃ гЃ•гЃ„гЂ‚",
+    "previewNoMatchesTitle":  "дёЂи‡ґгЃ™г‚‹е­—е№•иЎЊгЃЊгЃ‚г‚ЉгЃѕгЃ›г‚“",
+    "previewNotReadyMessage":  "зї»иЁігЃЇе®Њдє†гЃ—гЃѕгЃ—гЃџгЃЊгЂЃгѓђгѓѓг‚Їг‚Ёгѓігѓ‰гЃ‹г‚‰гѓ—гѓ¬гѓ“гѓҐгѓј cue гЃЊгЃѕгЃ иї”гЃЈгЃ¦гЃЌгЃ¦гЃ„гЃѕгЃ›г‚“гЂ‚е°‘гЃ—еѕ…гЃЈгЃ¦е†ЌиЄ­гЃїиѕјгЃїгЃ—гЃ¦гЃЏгЃ гЃ•гЃ„гЂ‚",
+    "previewNotReadyTitle":  "гѓ—гѓ¬гѓ“гѓҐгѓјз”Ё cue гЃЇгЃѕгЃ е€©з”ЁгЃ§гЃЌгЃѕгЃ›г‚“",
+    "retry":  "е†Ќи©¦иЎЊ",
+    "retryTranslation":  "зї»иЁіг‚’е†Ќи©¦иЎЊ",
+    "routeMissingSeasonEpisodesMessage":  "гЃ©гЃ®г‚·гѓјг‚єгѓіг‚’иЄ­гЃїиѕјг‚ЂгЃ№гЃЌгЃ‹е€¤ж–­гЃ§гЃЌгЃѕгЃ›г‚“гЃ§гЃ—гЃџгЂ‚ж¤њзґўгЃ‹г‚‰г‚„г‚Љз›ґгЃ—гЃ¦гЃЏгЃ гЃ•гЃ„гЂ‚",
+    "routeMissingSeasonEpisodesTitle":  "г‚·гѓјг‚єгѓігЃ®г‚Ёгѓ”г‚Ѕгѓјгѓ‰",
+    "routeMissingSeriesSeasonsMessage":  "гЃ©гЃ®г‚·гѓЄгѓјг‚єг‚’иЄ­гЃїиѕјг‚ЂгЃ№гЃЌгЃ‹е€¤ж–­гЃ§гЃЌгЃѕгЃ›г‚“гЃ§гЃ—гЃџгЂ‚ж¤њзґўгЃ‹г‚‰г‚„г‚Љз›ґгЃ—гЃ¦гЃЏгЃ гЃ•гЃ„гЂ‚",
+    "routeMissingSeriesSeasonsTitle":  "г‚·гѓЄгѓјг‚єгЃ®г‚·гѓјг‚єгѓі",
+    "routeMissingSubtitleSourcesMessage":  "гЃ©гЃ®г‚їг‚¤гѓ€гѓ«гЃ®е­—е№•г‚Ѕгѓјг‚№г‚’иЄ­гЃїиѕјг‚ЂгЃ№гЃЌгЃ‹е€¤ж–­гЃ§гЃЌгЃѕгЃ›г‚“гЃ§гЃ—гЃџгЂ‚ж¤њзґўгЃ‹г‚‰г‚„г‚Љз›ґгЃ—гЃ¦гЃЏгЃ гЃ•гЃ„гЂ‚",
+    "routeMissingSubtitleSourcesTitle":  "е­—е№•г‚Ѕгѓјг‚№",
+    "routeMissingTranslationProgressMessage":  "зї»иЁігѓЄг‚Їг‚Ёг‚№гѓ€гЃЊгЃ‚г‚ЉгЃѕгЃ›г‚“гЂ‚ж¤њзґўгЃѕгЃџгЃЇг‚ўгѓѓгѓ—гѓ­гѓјгѓ‰гЃ‹г‚‰ж–°гЃ—гЃ„зї»иЁіг‚’е§‹г‚ЃгЃ¦гЃЏгЃ гЃ•гЃ„гЂ‚",
+    "routeMissingTranslationProgressTitle":  "зї»иЁігЃ®йЂІиЎЊзЉ¶жіЃ",
+    "routeMissingTranslationSetupMessage":  "зї»иЁіиЁ­е®љз”»йќўг‚’й–‹гЃЏе‰ЌгЃ«е­—е№•г‚Ѕгѓјг‚№гЃЊеї…и¦ЃгЃ§гЃ™гЂ‚",
+    "routeMissingTranslationSetupTitle":  "зї»иЁіиЁ­е®љ",
+    "searchFailedTitle":  "ж¤њзґўгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ",
+    "searchFoundResults":  "\"{query}\" гЃ®зµђжћњгЃЊ {count} д»¶и¦‹гЃ¤гЃ‹г‚ЉгЃѕгЃ—гЃџ",
+    "@searchFoundResults":  {
+                                "placeholders":  {
+                                                     "query":  {
+
+                                                               },
+                                                     "count":  {
+
+                                                               }
+                                                 }
+                            },
+    "searchHintText":  "DuneгЂЃBreaking BadгЂЃSeverance гЃЄгЃ©г‚’ж¤њзґў...",
+    "searchLoadingLabel":  "ж¤њзґўдё­...",
+    "searchMockMessage":  "InceptionгЂЃDuneгЂЃBreaking BadгЂЃSeveranceгЂЃThe Last of Us гЃЄгЃ©г‚’и©¦гЃ—гЃ¦гЂЃе­—е№•г‚Ѕгѓјг‚№гЃ®жµЃг‚Њг‚’зўєиЄЌгЃ—гЃ¦гЃЏгЃ гЃ•гЃ„гЂ‚",
+    "searchMockTitle":  "гѓўгѓѓг‚Їг‚«г‚їгѓ­г‚°е†…г‚’ж¤њзґў",
+    "searchMovieOrSeriesSubtitle":  "г‚їг‚¤гѓ€гѓ«г‚’и¦‹гЃ¤гЃ‘гЃ¦е­—е№•г‚Ѕгѓјг‚№г‚’зўєиЄЌгЃ—гЂЃж•°е›ћгЃ®г‚їгѓѓгѓ—гЃ§зї»иЁіг‚ёгѓ§гѓ–г‚’й–‹е§‹гЃ§гЃЌгЃѕгЃ™гЂ‚",
+    "searchMovieOrSeriesTitle":  "ж з”»гѓ»г‚·гѓЄгѓјг‚єг‚’ж¤њзґў",
+    "searchNoResultsFor":  "\"{query}\" гЃ®зµђжћњгЃЇи¦‹гЃ¤гЃ‹г‚ЉгЃѕгЃ›г‚“гЃ§гЃ—гЃџ",
+    "@searchNoResultsFor":  {
+                                "placeholders":  {
+                                                     "query":  {
+
+                                                               }
+                                                 }
+                            },
+    "searchResultPopularity":  "дєєж°—еє¦ {score}",
+    "@searchResultPopularity":  {
+                                    "placeholders":  {
+                                                         "score":  {
+
+                                                                   }
+                                                     }
+                                },
+    "searchTitles":  "г‚їг‚¤гѓ€гѓ«г‚’ж¤њзґў",
+    "searchTrendingTitle":  "дєєж°—гЃ®ж¤њзґў",
+    "searchTryDifferentKeywords":  "е€ҐгЃ®г‚­гѓјгѓЇгѓјгѓ‰гЃ§ж¤њзґўгЃ—гЃ¦гЃїгЃ¦гЃЏгЃ гЃ•гЃ„гЂ‚",
+    "seriesEpisodeLabel":  "г‚Ёгѓ”г‚Ѕгѓјгѓ‰ {episodeNumber}",
+    "@seriesEpisodeLabel":  {
+                                "placeholders":  {
+                                                     "episodeNumber":  {
+
+                                                                       }
+                                                 }
+                            },
+    "seriesEpisodeMeta":  "зґ„ {runtime} е€†",
+    "@seriesEpisodeMeta":  {
+                               "placeholders":  {
+                                                    "runtime":  {
+
+                                                                }
+                                                }
+                           },
+    "seriesEpisodesSubtitle":  "{episodeCount} и©±{year}",
+    "@seriesEpisodesSubtitle":  {
+                                    "placeholders":  {
+                                                         "episodeCount":  {
+
+                                                                          },
+                                                         "year":  {
+
+                                                                  }
+                                                     }
+                                },
+    "seriesEpisodesTitle":  "г‚·гѓјг‚єгѓі {seasonNumber}",
+    "@seriesEpisodesTitle":  {
+                                 "placeholders":  {
+                                                      "seasonNumber":  {
+
+                                                                       }
+                                                  }
+                             },
+    "seriesSeasonLabel":  "г‚·гѓјг‚єгѓі {seasonNumber}",
+    "@seriesSeasonLabel":  {
+                               "placeholders":  {
+                                                    "seasonNumber":  {
+
+                                                                     }
+                                                }
+                           },
+    "seriesSeasonMeta":  "{episodeCount} и©±{year}",
+    "@seriesSeasonMeta":  {
+                              "placeholders":  {
+                                                   "episodeCount":  {
+
+                                                                    },
+                                                   "year":  {
+
+                                                            }
+                                               }
+                          },
+    "seriesSeasonsSubtitle":  "{title} гЃ®г‚·гѓјг‚єгѓіг‚’йЃёг‚“гЃ§гЂЃе€©з”ЁеЏЇиѓЅгЃЄг‚Ёгѓ”г‚Ѕгѓјгѓ‰г‚’зўєиЄЌгЃ—гЃ¦гЃЏгЃ гЃ•гЃ„гЂ‚",
+    "@seriesSeasonsSubtitle":  {
+                                   "placeholders":  {
+                                                        "title":  {
+
+                                                                  }
+                                                    }
+                               },
+    "seriesSeasonsTitle":  "г‚·гѓјг‚єгѓіг‚’йЃёжЉћ",
+    "settingsAboutTitle":  "SubFlix гЃ«гЃ¤гЃ„гЃ¦",
+    "settingsCacheCleared":  "г‚­гѓЈгѓѓг‚·гѓҐг‚’ж¶€еЋ»гЃ—гЃѕгЃ—гЃџ",
+    "settingsClearCache":  "г‚­гѓЈгѓѓг‚·гѓҐг‚’ж¶€еЋ»",
+    "settingsContactTitle":  "гЃЉе•ЏгЃ„еђ€г‚ЏгЃ›",
+    "settingsFailedTitle":  "иЁ­е®љг‚’иЄ­гЃїиѕјг‚ЃгЃѕгЃ›г‚“гЃ§гЃ—гЃџ",
+    "settingsHelpCenterTitle":  "гѓгѓ«гѓ—г‚»гѓіг‚їгѓј",
+    "settingsHistoryClearedSnack":  "гЃ“гЃ®з«Їжњ«гЃ®зї»иЁіе±Ґж­ґг‚’ж¶€еЋ»гЃ—гЃѕгЃ—гЃџ",
+    "settingsLanguageLabel":  "е„Єе…€гЃ™г‚‹зї»иЁіе…€иЁЂиЄћ",
+    "settingsMaintenanceSubtitle":  "гЃ“гЃ®з«Їжњ«гЃ®гѓђгѓѓг‚Їг‚Ёгѓігѓ‰з®Ўзђ†зї»иЁіг‚ёгѓ§гѓ–г‚’ж¶€еЋ»гЃ—гЂЃе±Ґж­ґг‚’з©єгЃ®зЉ¶ж…‹гЃ‹г‚‰е§‹г‚ЃгЃѕгЃ™гЂ‚",
+    "settingsMaintenanceTitle":  "гѓЎгѓігѓ†гѓЉгѓіг‚№",
+    "settingsNotificationsSubtitle":  "йЂљзџҐиЁ­е®љг‚’з®Ўзђ†",
+    "settingsNotificationsTitle":  "йЂљзџҐ",
+    "settingsPremiumSubtitle":  "д»ЉеѕЊгЂЃиіјиЄ­гѓ»и«‹ж±‚гѓ»г‚Їгѓ©г‚¦гѓ‰гѓ—гѓ­г‚ёг‚§г‚Їгѓ€еђЊжњџг‚’гЃ“гЃ“гЃ«жЋҐз¶љгЃ§гЃЌгЃѕгЃ™гЂ‚",
+    "settingsPremiumTitle":  "гѓ—гѓ¬гѓџг‚ўгѓ з”Ёгѓ—гѓ¬гѓјг‚№гѓ›гѓ«гѓЂгѓј",
+    "settingsPrivacySubtitle":  "гѓўгѓѓг‚ЇгЃ®гѓ—гѓ©г‚¤гѓђг‚·гѓје†…е®№",
+    "settingsPrivacyTitle":  "гѓ—гѓ©г‚¤гѓђг‚·гѓјгѓќгѓЄг‚·гѓј",
+    "settingsProfileName":  "SubFlix гѓ¦гѓјг‚¶гѓј",
+    "settingsProfileTier":  "гѓ—гѓ¬гѓџг‚ўгѓ дјље“Ў",
+    "settingsSubtitle":  "еҐЅгЃїг‚’з®Ўзђ†",
+    "settingsSupportSubtitle":  "гѓўгѓѓг‚ЇгЃ®гѓгѓ«гѓ—гѓ»е•ЏгЃ„еђ€г‚ЏгЃ›гѓљгѓјг‚ё",
+    "settingsSupportTitle":  "г‚µгѓќгѓјгѓ€з”Ёгѓ—гѓ¬гѓјг‚№гѓ›гѓ«гѓЂгѓј",
+    "settingsTermsSubtitle":  "гѓўгѓѓг‚ЇгЃ®и¦Џзґ„е†…е®№",
+    "settingsTermsTitle":  "е€©з”Ёи¦Џзґ„",
+    "settingsThemeLabel":  "е¤–и¦і",
+    "settingsTitle":  "иЁ­е®љ",
+    "settingsVersion":  "гѓђгѓјг‚ёгѓ§гѓі {version}",
+    "@settingsVersion":  {
+                             "placeholders":  {
+                                                  "version":  {
+
+                                                              }
+                                              }
+                         },
+    "splashHeadline":  "SubFlix",
+    "splashPreparing":  "гЃ‚гЃЄгЃџгЃ®е­—е№•г‚№г‚їг‚ёг‚Єг‚’жє–е‚™дё­",
+    "splashSubtitle":  "AIгЃ«г‚€г‚‹е­—е№•зї»иЁі",
+    "startTranslation":  "зї»иЁіг‚’й–‹е§‹",
+    "subtitleSourceDownloads":  "{downloads} гѓЂг‚¦гѓігѓ­гѓјгѓ‰",
+    "@subtitleSourceDownloads":  {
+                                     "placeholders":  {
+                                                          "downloads":  {
+
+                                                                        }
+                                                      }
+                                 },
+    "subtitleSourceFormatLabel":  "{format} е­—е№•г‚Ѕгѓјг‚№",
+    "@subtitleSourceFormatLabel":  {
+                                       "placeholders":  {
+                                                            "format":  {
+
+                                                                       }
+                                                        }
+                                   },
+    "subtitleSourceHiLabel":  "HI / SDH",
+    "subtitleSourceLines":  "{lineCount} иЎЊ",
+    "@subtitleSourceLines":  {
+                                 "placeholders":  {
+                                                      "lineCount":  {
+
+                                                                    }
+                                                  }
+                             },
+    "subtitleSourceRating":  "и©•дѕЎ {rating}",
+    "@subtitleSourceRating":  {
+                                  "placeholders":  {
+                                                       "rating":  {
+
+                                                                  }
+                                                   }
+                              },
+    "subtitleSourcesBannerMessage":  "е­—е№•г‚Ѕгѓјг‚№г‚’йЃёжЉћгЃ™г‚‹гЃЁгЂЃе­—е№•г‚їг‚¤гѓџгѓіг‚°гЃ«жњЂйЃ©еЊ–гЃ•г‚ЊгЃџзї»иЁіиЁ­е®љгЃёйЂІгЃїгЃѕгЃ™гЂ‚",
+    "subtitleSourcesBannerTitle":  "AIзї»иЁігЃЊе€©з”ЁгЃ§гЃЌгЃѕгЃ™",
+    "subtitleSourcesFailedTitle":  "е­—е№•г‚Ѕгѓјг‚№г‚’иЄ­гЃїиѕјг‚ЃгЃѕгЃ›г‚“гЃ§гЃ—гЃџ",
+    "subtitleSourcesSubtitle":  "{title}{target} гЃ®е­—е№•г‚Ѕгѓјг‚№г‚’йЃёгЃігЂЃж¬ЎгЃ®г‚№гѓ†гѓѓгѓ—гЃ§еЇѕи±ЎиЁЂиЄћг‚’йЃёжЉћгЃ—гЃ¦гЃЏгЃ гЃ•гЃ„гЂ‚",
+    "@subtitleSourcesSubtitle":  {
+                                     "placeholders":  {
+                                                          "title":  {
+
+                                                                    },
+                                                          "target":  {
+
+                                                                     }
+                                                      }
+                                 },
+    "subtitleSourcesTitle":  "и‹±иЄће­—е№•г‚Ѕгѓјг‚№",
+    "targetLanguage":  "еЇѕи±ЎиЁЂиЄћ",
+    "themeDark":  "гѓЂгѓјг‚Ї",
+    "themeLight":  "гѓ©г‚¤гѓ€",
+    "themeSystem":  "г‚·г‚№гѓ†гѓ ",
+    "translateSetupAutoDetect":  "еЅўејЏг‚’и‡Єе‹•ж¤ње‡є",
+    "translateSetupAutoDetectBody":  "е­—е№•гЃ®е‡єеЉ›ж§‹йЂ г‚’и‡Єе‹•гЃ§жњЂйЃ©еЊ–гЃ—гЃѕгЃ™гЂ‚",
+    "translateSetupLanguageTitle":  "зї»иЁіе…€",
+    "translateSetupOptionsTitle":  "г‚Єгѓ—г‚·гѓ§гѓі",
+    "translateSetupPreserveTiming":  "г‚їг‚¤гѓџгѓіг‚°г‚’дїќжЊЃ",
+    "translateSetupPreserveTimingBody":  "е…ѓгѓ•г‚Ўг‚¤гѓ«гЃ«еђ€г‚ЏгЃ›гЃ¦е­—е№•гЃ®г‚їг‚¤гѓџгѓіг‚°г‚’з¶­жЊЃгЃ—гЃѕгЃ™гЂ‚",
+    "translateSetupReadyBody":  "гЃ“гЃ®е­—е№•гЃЇгЂЃг‚їг‚¤гѓџгѓіг‚°гЃЁ cue ж§‹йЂ г‚’дїќгЃЈгЃџгЃѕгЃѕ {language} гЃ«е¤‰жЏ›гЃ•г‚ЊгЃѕгЃ™гЂ‚",
+    "@translateSetupReadyBody":  {
+                                     "placeholders":  {
+                                                          "language":  {
+
+                                                                       }
+                                                      }
+                                 },
+    "translateSetupReadyTitle":  "AIзї»иЁігЃ®жє–е‚™е®Њдє†",
+    "translateSetupSelectLanguage":  "иЁЂиЄћг‚’йЃёжЉћ",
+    "translateSetupSourceTitle":  "е…ѓгЃ®е­—е№•",
+    "translateSetupSubtitle":  "еЇѕи±ЎиЁЂиЄћг‚’йЃёгЃігЂЃе­—е№•г‚Ѕгѓјг‚№г‚’зўєиЄЌгЃ—гЃ¦гЃ‹г‚‰гЂЃгѓђгѓѓг‚Їг‚Ёгѓігѓ‰зї»иЁіг‚ёгѓ§гѓ–г‚’й–‹е§‹гЃ—гЃѕгЃ™гЂ‚",
+    "translateSetupTitle":  "зї»иЁіиЁ­е®љ",
+    "translationFailedMessage":  "е•ЏйЎЊгЃЊз™єз”џгЃ—гЃѕгЃ—гЃџгЂ‚",
+    "translationFailedTitle":  "зї»иЁіг‚’е®Њдє†гЃ§гЃЌгЃѕгЃ›г‚“гЃ§гЃ—гЃџ",
+    "translationPreviewHeader":  "зї»иЁігЃ•г‚ЊгЃџе­—е№•г‚’зўєиЄЌ",
+    "translationPreviewSearchHint":  "е­—е№•иЎЊг‚’ж¤њзґў",
+    "translationPreviewSubtitle":  "cue е†…г‚’ж¤њзґўгЃ—гЂЃиЎЁз¤єгѓўгѓјгѓ‰г‚’е€‡г‚Љж›їгЃ€гЂЃзґЌеѕ—гЃ§гЃЌгЃџг‚‰ж›ёгЃЌе‡єгЃ—гЃ¦гЃЏгЃ гЃ•гЃ„гЂ‚",
+    "translationPreviewTitle":  "зї»иЁігѓ—гѓ¬гѓ“гѓҐгѓј",
+    "translationProgressHeadline":  "AIе­—е№•зї»иЁіг‚’е®џиЎЊдё­гЃ§гЃ™",
+    "translationProgressTitle":  "зї»иЁігЃ®йЂІиЎЊзЉ¶жіЃ",
+    "translationResultCompleteSubtitle":  "е­—е№•гЃЇгѓ—гѓ¬гѓ“гѓҐгѓјгЃѕгЃџгЃЇгѓЂг‚¦гѓігѓ­гѓјгѓ‰гЃ®жє–е‚™гЃЊгЃ§гЃЌгЃ¦гЃ„гЃѕгЃ™гЂ‚",
+    "translationResultCompleteTitle":  "зї»иЁігЃЊе®Њдє†гЃ—гЃѕгЃ—гЃџ",
+    "translationResultConfidenceLabel":  "зї»иЁігЃ®дїЎй јеє¦",
+    "translationResultDetailsTitle":  "зї»иЁігЃ®и©ізґ°",
+    "translationResultDownloadCta":  "е­—е№•г‚’гѓЂг‚¦гѓігѓ­гѓјгѓ‰",
+    "translationResultHomeCta":  "гѓ›гѓјгѓ гЃ«ж€»г‚‹",
+    "translationResultMediaLabel":  "дЅње“Ѓг‚їг‚¤гѓ€гѓ«",
+    "translationResultMethodAi":  "AIгЃ§зї»иЁіжё€гЃї",
+    "translationResultMetricsTitle":  "е“ЃиіЄжЊ‡жЁ™",
+    "translationResultPreviewCta":  "е­—е№•г‚’гѓ—гѓ¬гѓ“гѓҐгѓј",
+    "translationResultProcessedIn":  "{duration} гЃ§е‡¦зђ†е®Њдє†",
+    "@translationResultProcessedIn":  {
+                                          "placeholders":  {
+                                                               "duration":  {
+
+                                                                            }
+                                                           }
+                                      },
+    "translationResultSourceLabel":  "е…ѓгЃ®иЁЂиЄћ",
+    "translationResultTargetLabel":  "зї»иЁіе…€гЃ®иЁЂиЄћ",
+    "translationResultTimingLabel":  "г‚їг‚¤гѓџгѓіг‚°зІѕеє¦",
+    "translationResultTimingPreserved":  "г‚їг‚¤гѓџгѓіг‚°дїќжЊЃ",
+    "translationResultWarning":  "дёЂйѓЁгЃ®е°‚й–Ђз”ЁиЄћгЃЇгЂЃж–‡и„€зўєиЄЌгЃ®гЃџг‚ЃгЃ«дєєгЃ®и»ЅгЃ„и¦‹з›ґгЃ—гЃЊгЃ‚г‚‹гЃЁг‚€г‚Ље®‰еїѓгЃ§гЃ™гЂ‚",
+    "translationStageAligning":  "г‚їг‚¤гѓ г‚№г‚їгѓігѓ—гЃЁг‚·гѓјгѓіж–‡и„€г‚’иЄїж•ґдё­",
+    "translationStageGenerating":  "е­—е№•зї»иЁіг‚’з”џж€ђдё­",
+    "translationStageIdle":  "зї»иЁігѓЄг‚Їг‚Ёг‚№гѓ€г‚’еѕ…ж©џдё­",
+    "translationStagePreparing":  "е­—е№•гѓ‘гѓѓг‚±гѓјг‚ёг‚’жє–е‚™дё­",
+    "translationStageQueued":  "зї»иЁіеѕ…гЃЎг‚­гѓҐгѓјгЃ«е…Ґг‚ЉгЃѕгЃ—гЃџ",
+    "translationStageReadability":  "иЄ­гЃїг‚„гЃ™гЃ•иЄїж•ґг‚’йЃ©з”Ёдё­",
+    "translationStageReady":  "зї»иЁігЃ®жє–е‚™е®Њдє†",
+    "tryAgain":  "г‚‚гЃ†дёЂеє¦и©¦гЃ™",
+    "uploadChooseFile":  "е­—е№•гѓ•г‚Ўг‚¤гѓ«г‚’йЃёжЉћ",
+    "uploadChooseFileShort":  "гѓ•г‚Ўг‚¤гѓ«г‚’йЃёжЉћ",
+    "uploadContinueSetup":  "зї»иЁіиЁ­е®љгЃёйЂІг‚Ђ",
+    "uploadEnglishSource":  "и‹±иЄћг‚Ѕгѓјг‚№",
+    "uploadFailedFallback":  "е€ҐгЃ®е­—е№•гѓ•г‚Ўг‚¤гѓ«г‚’гЃЉи©¦гЃ—гЃЏгЃ гЃ•гЃ„гЂ‚",
+    "uploadFailedMessage":  "гЃ“гЃ®е­—е№•гѓ•г‚Ўг‚¤гѓ«гЃЇиЄ­гЃїиѕјг‚ЃгЃѕгЃ›г‚“гЃ§гЃ—гЃџгЂ‚е€ҐгЃ®гѓ•г‚Ўг‚¤гѓ«гЃ‹гЂЃг‚€г‚Ље°ЏгЃ•гЃ„ж›ёгЃЌе‡єгЃ—г‚’и©¦гЃ—гЃ¦гЃЏгЃ гЃ•гЃ„гЂ‚",
+    "uploadFailedTitle":  "гѓ•г‚Ўг‚¤гѓ«гЃ®еЏ–г‚ЉиѕјгЃїгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ",
+    "uploadIntroSubtitle":  "и‹±иЄћгЃ® `.srt` гЃѕгЃџгЃЇ `.vtt` гѓ•г‚Ўг‚¤гѓ«г‚’еЏ–г‚ЉиѕјгЃїгЂЃгѓђгѓѓг‚Їг‚Ёгѓігѓ‰гЃ§ж¤њиЁјгѓ»и§ЈжћђгЃ—гЃџгЃ‚гЃЁгЂЃзї»иЁіиЁ­е®љгЃёйЂІгЃїгЃѕгЃ™гЂ‚",
+    "uploadIntroTitle":  "и‡Єе€†гЃ®е­—е№•гѓ•г‚Ўг‚¤гѓ«г‚’дЅїгЃ†",
+    "uploadLineCount":  "{lineCount} иЎЊ",
+    "@uploadLineCount":  {
+                             "placeholders":  {
+                                                  "lineCount":  {
+
+                                                                }
+                                              }
+                         },
+    "uploadMetadataTitle":  "е­—е№•гЃ®и©ізґ°",
+    "uploadOpeningPicker":  "гѓ”гѓѓг‚«гѓјг‚’й–‹гЃ„гЃ¦гЃ„гЃѕгЃ™...",
+    "uploadPickSubtitle":  "е­—е№•гѓ•г‚Ўг‚¤гѓ«г‚’йЃёгЃ¶",
+    "uploadPickedFile":  "е­—е№•гѓ•г‚Ўг‚¤гѓ«г‚’йЃёжЉћгЃ—гЃѕгЃ—гЃџ",
+    "uploadReadyTitle":  "зї»иЁігЃ®жє–е‚™гЃЊгЃ§гЃЌгЃѕгЃ—гЃџ",
+    "uploadSubtitleTitle":  "е­—е№•г‚’г‚ўгѓѓгѓ—гѓ­гѓјгѓ‰",
+    "uploadSupportedFormatsSubtitle":  "и‹±иЄћгЃ® `.srt` / `.vtt` е­—е№•гѓ•г‚Ўг‚¤гѓ«",
+    "uploadSupportedFormatsTitle":  "еЇѕеїњеЅўејЏ",
+    "uploadUseDemoFile":  "гѓ‡гѓўгѓ•г‚Ўг‚¤гѓ«г‚’дЅїгЃ†",
+    "authAccountSectionTitle":  "アカウント",
+    "authAlreadySignedInTitle":  "すでにサインインしています",
+    "authAlreadySignedInMessage":  "このデバイスはすでに {email} として接続されています。",
+    "authBackToAccount":  "アカウントに戻る",
+    "authBackToSignIn":  "サインインに戻る",
+    "authCheckInboxTitle":  "受信トレイを確認してください",
+    "authConfirmEmailAction":  "メールを確認する",
+    "authConfirmEmailHint":  "{email} に送信された確認トークンを使用してください。",
+    "authConfirmEmailSubtitle":  "このアカウントの有効化を完了するため、メール内の確認トークンを貼り付けてください。",
+    "authConfirmEmailSuccess":  "メールが確認されました。サインインできます。",
+    "authConfirmEmailTitle":  "メールを確認してください",
+    "authConfirmPasswordLabel":  "パスワードを確認",
+    "authContinueToReset":  "リセットに進む",
+    "authContinueWithGoogle":  "Google で続行",
+    "authCreateAccountAction":  "アカウントを作成",
+    "authDebugTokenLabel":  "デバッグトークン: {token}",
+    "authDisplayNameLabel":  "表示名",
+    "authEmailLabel":  "メールアドレス",
+    "authEyebrow":  "安全なワークスペース",
+    "authFieldRequired":  "この項目は必須です。",
+    "authForgotPasswordAction":  "リセットリンクを送信",
+    "authForgotPasswordDebugMessage":  "このデバッグ環境ではリセットトークンが返されました。リセットフォームへ直接進めます。",
+    "authForgotPasswordLink":  "パスワードをお忘れですか？",
+    "authForgotPasswordSubtitle":  "メールアドレスを入力すると、このアカウントのパスワード再設定をバックエンドに依頼します。",
+    "authForgotPasswordSuccess":  "アカウントが存在する場合、パスワード再設定メッセージが送信されました。",
+    "authForgotPasswordTitle":  "パスワードをリセット",
+    "authGoogleHelper":  "Google サインインは Firebase OAuth を使用しており、このアプリが Firebase プロジェクトに接続されると利用できます。",
+    "authGoogleShortAction":  "Google",
+    "authHaveAccountLink":  "すでにアカウントをお持ちですか？ サインイン",
+    "authInvalidEmail":  "有効なメールアドレスを入力してください。",
+    "authNewPasswordLabel":  "新しいパスワード",
+    "authNoAccountLink":  "アカウントが必要ですか？ 作成しましょう",
+    "authOrDivider":  "または",
+    "authPasswordLabel":  "パスワード",
+    "authPasswordMismatch":  "パスワードが一致しません。",
+    "authPasswordTooShort":  "8 文字以上使用してください。",
+    "authProfileRefreshed":  "アカウント情報を更新しました。",
+    "authRefreshProfileAction":  "プロフィールを更新",
+    "authRefreshProfileSubtitle":  "バックエンドから最新のプロフィール情報を読み込みます。",
+    "authResetPasswordAction":  "新しいパスワードを保存",
+    "authResetPasswordHint":  "メールに届いたトークンを使って {email} のパスワードをリセットしてください。",
+    "authResetPasswordSubtitle":  "リセットトークンを入力し、このアカウント用の新しいパスワードを選択してください。",
+    "authResetPasswordSuccess":  "パスワードが更新されました。もう一度サインインしてください。",
+    "authResetPasswordTitle":  "新しいパスワードを選択",
+    "authSignInAction":  "サインイン",
+    "authSignInSubtitle":  "このアプリを SubFlix アカウントに接続して、プロフィールデータを同期し、認証済みバックエンドフローを利用できるようにします。",
+    "authSignInSuccess":  "サインインに成功しました。",
+    "authSignInTitle":  "おかえりなさい",
+    "authSignedInCardSubtitle":  "{email} として接続中",
+    "authSignedOutCardSubtitle":  "アカウント管理や Firebase OAuth の利用、将来の同期に備えた認証機能の準備のためにサインインしてください。",
+    "authSignedOutCardTitle":  "SubFlix にサインイン",
+    "authSignOutAction":  "サインアウト",
+    "authSignOutSubtitle":  "このデバイスの現在のセッションを無効にし、ローカルトークンを削除します。",
+    "authSignOutSuccess":  "このデバイスでサインアウトしました。",
+    "authSignUpAction":  "アカウントを作成する",
+    "authSignUpSubtitle":  "このアプリが認証済みプロフィールとバックエンドのセッションフローを使えるように、アカウントを作成してください。",
+    "authSignUpSuccess":  "アカウントが作成されました。メール確認へ進んでください。",
+    "authSignUpTitle":  "アカウントを作成",
+    "authVerificationStatusTitle":  "メール確認",
+    "authVerificationTokenLabel":  "確認トークン",
+    "authVerifiedStatus":  "確認済み",
+    "authUnverifiedStatus":  "確認待ち"
 }

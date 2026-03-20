@@ -1,375 +1,493 @@
 {
-  "@@locale": "fa",
-  "appTitle": "SubFlix",
-  "brandSubtitleCompact": "هوش زیرنویس",
-  "brandSubtitleFull": "استودیوی ترجمه زیرنویس با هوش مصنوعی",
-  "comingSoonMessage": "هنوز در حال آماده کردن این صفحه هستیم.",
-  "comingSoonTitle": "به‌زودی",
-  "exportFailedSnack": "خروجی ناموفق بود: {error}",
-  "@exportFailedSnack": {
-    "placeholders": {
-      "error": {}
-    }
-  },
-  "exportSubtitleLabel": "خروجی گرفتن از زیرنویس ترجمه‌شده",
-  "exportedSnack": "{fileName} در {path} ذخیره شد",
-  "@exportedSnack": {
-    "placeholders": {
-      "fileName": {},
-      "path": {}
-    }
-  },
-  "exportingLabel": "در حال خروجی گرفتن...",
-  "heroBadge": "جریان حرفه‌ای زیرنویس",
-  "heroBody": "بین کاتالوگ قابل جستجو یا آپلود مستقیم فایل یکی را انتخاب کن، سپس در چند دقیقه پیش‌نمایش بگیر و زیرنویس نهایی را خروجی بگیر.",
-  "heroHeadline": "زیرنویس فیلم و سریال را با یک جریان در حد استودیو ترجمه کن.",
-  "heroSearchCta": "جستجوی فیلم / سریال",
-  "heroStatLanguagesTitle": "۱۰ زبان",
-  "heroStatLanguagesValue": "آماده پیش‌نمایش",
-  "heroStatMockTitle": "APIهای ماک",
-  "heroStatMockValue": "آماده اتصال به بک‌اند",
-  "heroStatPathsTitle": "۲ مسیر",
-  "heroStatPathsValue": "جستجو یا آپلود",
-  "heroSubtitle": "در کاتالوگ فیلم و سریال جستجو کن، منبع انتخاب کن و در چند دقیقه خروجی تمیز بگیر.",
-  "heroTitle": "زیرنویس‌ها را سریع‌تر ترجمه کن",
-  "heroUploadCta": "آپلود زیرنویس",
-  "historyCountLabel": "{count} ترجمه",
-  "@historyCountLabel": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "historyEmptyMessage": "بعد از کامل کردن فرایند جستجو یا آپلود، ترجمه‌های انجام‌شده اینجا ظاهر می‌شوند.",
-  "historyEmptyTitle": "تاریخچه خالی است",
-  "historyFailedItemMessage": "ترجمه ناموفق بود. برای شروع دوباره لمس کن.",
-  "historyFailedTitle": "بارگذاری تاریخچه ممکن نشد",
-  "historyFilterAiTranslated": "ترجمه‌شده با هوش مصنوعی",
-  "historyFilterAll": "همه",
-  "historyFilterCompleted": "تکمیل‌شده",
-  "historyFilterFailed": "ناموفق",
-  "historyFilterMovies": "فیلم‌ها",
-  "historyFilterReused": "استفاده‌شده دوباره",
-  "historyFilterSeries": "سریال‌ها",
-  "historySubtitle": "کارهای قبلی را دوباره باز کن، پیش‌نمایش را دوباره ببین یا بعداً خروجی بگیر.",
-  "historyTitle": "تاریخچه ترجمه‌ها",
-  "homeFailedRecentTitle": "بارگذاری کارهای اخیر ممکن نشد",
-  "homeFutureSubtitle": "ریپازیتوری‌های ماک قابل تعویض باعث می‌شوند کد UI از تغییرات بک‌اند در امان بماند.",
-  "homeFutureTitle": "ریپازیتوری‌های آماده آینده",
-  "homeNoRecentMessage": "با جستجوی فیلم یا آپلود فایل زیرنویس شروع کن تا ترجمه‌های اخیرت اینجا دیده شوند.",
-  "homeNoRecentTitle": "هنوز کاری در بخش اخیرها نیست",
-  "homePreviewSubtitle": "قبل از خروجی گرفتن، نتیجه را در حالت اصلی، ترجمه‌شده یا دوزبانه بررسی کن.",
-  "homePreviewTitle": "جریان ترجمه با محوریت پیش‌نمایش",
-  "homeQuickHistory": "تاریخچه",
-  "homeQuickSearch": "جستجو",
-  "homeQuickUpload": "آپلود",
-  "homeRecentJobsSubtitle": "آخرین جلسه‌های ترجمه‌ات را بدون شروع از صفر دوباره باز کن.",
-  "homeRecentJobsTitle": "کارهای اخیر",
-  "homeSearchPlaceholder": "جستجوی فیلم یا سریال...",
-  "homeStatesSubtitle": "لودینگ، حالت خالی، تلاش دوباره، اعتبارسنجی و سناریوهای آفلاین آزمایشی از همان روز اول جزئی از UX هستند.",
-  "homeStatesTitle": "همه وضعیت‌های لازم در نظر گرفته شده",
-  "homeTrendingNow": "ترندهای فعلی",
-  "homeTrustSubtitle": "فعلاً آزمایشی است، اما ساختارش مثل یک محصول واقعی و قابل انتشار طراحی شده.",
-  "homeTrustTitle": "چرا تیم‌ها به آن اعتماد می‌کنند",
-  "homeViewAll": "مشاهده همه",
-  "homeWelcomeSubtitle": "زیرنویس پیدا کن و ترجمه کن",
-  "homeWelcomeTitle": "خوش برگشتی",
-  "jobConfidence": "اطمینان: {level}",
-  "@jobConfidence": {
-    "placeholders": {
-      "level": {}
-    }
-  },
-  "jobOpenPreview": "باز کردن پیش‌نمایش",
-  "jobReuseSubtitle": "استفاده دوباره از زیرنویس",
-  "jobReuseTranslation": "استفاده دوباره از ترجمه",
-  "legalBodyAbout": "SubFlix یک کلاینت Flutter با حس‌وحال پریمیوم برای ترجمه زیرنویس با هوش مصنوعی است. این بیلد از ریپازیتوری‌های ماک، تأخیر مصنوعی و ذخیره‌سازی محلی استفاده می‌کند تا قبل از اتصال بک‌اند واقعی، UI و معماری به بلوغ برسند.",
-  "legalBodyPrivacy": "SubFlix فعلاً فقط ترجیحات آزمایشی و تاریخچه ترجمه را با ذخیره‌سازی محلی روی دستگاه نگه می‌دارد. در آینده می‌توان این بخش را با یک بک‌اند واقعی به ذخیره‌سازی احراز هویت‌شده، مسیرهای ممیزی و سیاست‌های نگه‌داری سمت سرور ارتقا داد.",
-  "legalBodySupport": "بخش پشتیبانی فعلاً فقط جای‌نگهدار است. در نسخه واقعی، این قسمت می‌تواند بدون تغییر در ساختار اپ به ایمیل، گزارش مشکل و پشتیبانی حساب‌های پریمیوم متصل شود.",
-  "legalBodyTerms": "این نسخه آزمایشی برای سنجش جریان‌های محصول، وضعیت‌های رابط کاربری و مرزهای معماری ساخته شده است. وقتی بعداً یک بک‌اند واقعی مبتنی بر NestJS و Postgres متصل شود، بخش حقوقی هم می‌تواند با شرایط واقعی سرویس و متن‌های مربوط به پردازش داده گسترش پیدا کند.",
-  "legalPlaceholderBody": "این صفحه در نسخه دمو فقط یک جای‌نگهدار است. آن را به محتوای حقوقی واقعی محصولت وصل کن.",
-  "legalTitleAbout": "درباره SubFlix",
-  "legalTitlePrivacy": "حریم خصوصی",
-  "legalTitleSupport": "پشتیبانی",
-  "legalTitleTerms": "شرایط استفاده",
-  "mediaTypeMovie": "فیلم",
-  "mediaTypeSeries": "سریال",
-  "metadataEstimatedDuration": "مدت زمان تقریبی",
-  "metadataFormat": "فرمت",
-  "metadataLanguages": "زبان‌ها",
-  "metadataLines": "خطوط",
-  "navHistory": "تاریخچه",
-  "navHome": "خانه",
-  "navSettings": "تنظیمات",
-  "noTitlesMatchedMessage": "نتوانستیم این عنوان را در کاتالوگ آزمایشی پیدا کنیم. یک جستجوی کلی‌تر یا یکی از عنوان‌های پیشنهادی را امتحان کن.",
-  "noTitlesMatchedTitle": "نتیجه‌ای پیدا نشد",
-  "onboardingContinue": "ادامه",
-  "onboardingEnterApp": "ورود به SubFlix",
-  "onboardingNext": "بعدی",
-  "onboardingPage1Description": "یک عنوان جستجو کن، منابع زیرنویس انگلیسی موجود را ببین و جریان ترجمه‌ای را شروع کن که سریع و روان احساس می‌شود.",
-  "onboardingPage1Eyebrow": "جستجو و دریافت",
-  "onboardingPage1Highlight1": "کاتالوگ ماک قطعی برای توسعه مطمئن",
-  "onboardingPage1Highlight2": "برچسب کیفیت منبع و نشان فرمت زیرنویس",
-  "onboardingPage1Highlight3": "طوری ساخته شده که بعداً به بک‌اند واقعی وصل شود",
-  "onboardingPage1Title": "فیلم یا سریال پیدا کن و زیرنویس آماده ترجمه را بگیر.",
-  "onboardingPage2Description": "فایل زیرنویس را وارد کن، فرمت را اعتبارسنجی کن و بدون خروج از اپ همان مسیر ترجمه حرفه‌ای را اجرا کن.",
-  "onboardingPage2Eyebrow": "فایل خودت را بیاور",
-  "onboardingPage2Highlight1": "اعتبارسنجی محلی فایل و حالت‌های تلاش دوباره روان",
-  "onboardingPage2Highlight2": "تنظیمات ترجمه یکدست برای آپلود و جستجو",
-  "onboardingPage2Highlight3": "قبل از خروجی گرفتن پیش‌نمایش ببین تا چیزی مبهم نماند",
-  "onboardingPage2Title": "وقتی فایل را داری، `.srt` یا `.vtt` آپلود کن.",
-  "onboardingPage3Description": "بین نمایش اصلی، ترجمه‌شده و دوزبانه جابه‌جا شو، به تاریخچه سر بزن و وقتی نتیجه درست بود فایل تمیز زیرنویس را خروجی بگیر.",
-  "onboardingPage3Eyebrow": "ترجمه و خروجی",
-  "onboardingPage3Highlight1": "کنترل‌های سریع پیش‌نمایش همراه با متادیتا و جستجو",
-  "onboardingPage3Highlight2": "تاریخچه، کارهای قبلی را فقط با یک لمس در دسترس نگه می‌دارد",
-  "onboardingPage3Highlight3": "طراحی‌شده مثل یک ابزار رسانه‌ای پریمیوم، نه یک دمو",
-  "onboardingPage3Title": "زبان مقصد را انتخاب کن، پیش‌نمایش ببین و فوری خروجی بگیر.",
-  "onboardingSkip": "رد کردن",
-  "onboardingStart": "شروع ترجمه",
-  "previewFailedTitle": "بارگذاری پیش‌نمایش ناموفق بود",
-  "previewModeBilingual": "دوزبانه",
-  "previewModeOriginal": "اصل",
-  "previewModeTranslated": "ترجمه‌شده",
-  "previewNoMatchesMessage": "یک عبارت دیگر را جستجو کن یا فیلتر را پاک کن تا کل ترجمه را ببینی.",
-  "previewNoMatchesTitle": "هیچ خطی پیدا نشد",
-  "previewNotReadyMessage": "ترجمه تمام شده، اما بک‌اند هنوز cueهای پیش‌نمایش را برنگردانده است. کمی بعد دوباره این صفحه را بارگذاری کن.",
-  "previewNotReadyTitle": "cueهای پیش‌نمایش هنوز آماده نیستند",
-  "retry": "تلاش دوباره",
-  "retryTranslation": "ترجمه دوباره",
-  "routeMissingSeasonEpisodesMessage": "نتوانستیم تشخیص دهیم کدام فصل باید بارگذاری شود. دوباره از جستجو شروع کن.",
-  "routeMissingSeasonEpisodesTitle": "قسمت‌های فصل",
-  "routeMissingSeriesSeasonsMessage": "نتوانستیم تشخیص دهیم کدام سریال باید بارگذاری شود. دوباره از جستجو شروع کن.",
-  "routeMissingSeriesSeasonsTitle": "فصل‌های سریال",
-  "routeMissingSubtitleSourcesMessage": "نتوانستیم تشخیص دهیم منابع زیرنویس برای کدام عنوان باید بارگذاری شوند. دوباره از جستجو شروع کن.",
-  "routeMissingSubtitleSourcesTitle": "منابع زیرنویس",
-  "routeMissingTranslationProgressMessage": "هیچ درخواست ترجمه‌ای ارسال نشده است. یک ترجمه جدید را از مسیر جستجو یا آپلود شروع کن.",
-  "routeMissingTranslationProgressTitle": "روند ترجمه",
-  "routeMissingTranslationSetupMessage": "قبل از باز شدن صفحه تنظیمات ترجمه، وجود یک منبع زیرنویس ضروری است.",
-  "routeMissingTranslationSetupTitle": "تنظیمات ترجمه",
-  "searchFailedTitle": "جستجو ناموفق بود",
-  "searchFoundResults": "{count} نتیجه برای \"{query}\" پیدا شد",
-  "@searchFoundResults": {
-    "placeholders": {
-      "count": {},
-      "query": {}
-    }
-  },
-  "searchHintText": "مثلاً Dune یا Breaking Bad یا Severance را جستجو کن...",
-  "searchLoadingLabel": "در حال جستجو...",
-  "searchMockMessage": "برای دیدن جریان انتخاب منبع زیرنویس، عنوان‌هایی مثل Inception، Dune، Breaking Bad، Severance یا The Last of Us را امتحان کن.",
-  "searchMockTitle": "هر چیزی را در کاتالوگ آزمایشی جستجو کن",
-  "searchMovieOrSeriesSubtitle": "یک عنوان پیدا کن، منابع زیرنویس را بررسی کن و فقط با چند لمس ترجمه را شروع کن.",
-  "searchMovieOrSeriesTitle": "جستجوی فیلم یا سریال",
-  "searchNoResultsFor": "نتیجه‌ای برای \"{query}\" پیدا نشد",
-  "@searchNoResultsFor": {
-    "placeholders": {
-      "query": {}
-    }
-  },
-  "searchResultPopularity": "محبوبیت {score}",
-  "@searchResultPopularity": {
-    "placeholders": {
-      "score": {}
-    }
-  },
-  "searchTitles": "جستجوی عنوان‌ها",
-  "searchTrendingTitle": "جستجوهای پرطرفدار",
-  "searchTryDifferentKeywords": "با کلمات کلیدی دیگری جستجو کن.",
-  "seriesEpisodeLabel": "قسمت {episodeNumber}",
-  "@seriesEpisodeLabel": {
-    "placeholders": {
-      "episodeNumber": {}
-    }
-  },
-  "seriesEpisodeMeta": "حدود {runtime} دقیقه",
-  "@seriesEpisodeMeta": {
-    "placeholders": {
-      "runtime": {}
-    }
-  },
-  "seriesEpisodesSubtitle": "{episodeCount} قسمت{year}",
-  "@seriesEpisodesSubtitle": {
-    "placeholders": {
-      "episodeCount": {},
-      "year": {}
-    }
-  },
-  "seriesEpisodesTitle": "فصل {seasonNumber}",
-  "@seriesEpisodesTitle": {
-    "placeholders": {
-      "seasonNumber": {}
-    }
-  },
-  "seriesSeasonLabel": "فصل {seasonNumber}",
-  "@seriesSeasonLabel": {
-    "placeholders": {
-      "seasonNumber": {}
-    }
-  },
-  "seriesSeasonMeta": "{episodeCount} قسمت{year}",
-  "@seriesSeasonMeta": {
-    "placeholders": {
-      "episodeCount": {},
-      "year": {}
-    }
-  },
-  "seriesSeasonsSubtitle": "یک فصل از {title} را انتخاب کن تا قسمت‌های موجود را ببینی.",
-  "@seriesSeasonsSubtitle": {
-    "placeholders": {
-      "title": {}
-    }
-  },
-  "seriesSeasonsTitle": "یک فصل انتخاب کن",
-  "settingsAboutTitle": "درباره SubFlix",
-  "settingsCacheCleared": "کش پاک شد",
-  "settingsClearCache": "پاک کردن کش",
-  "settingsContactTitle": "تماس با ما",
-  "settingsFailedTitle": "بارگذاری تنظیمات ناموفق بود",
-  "settingsHelpCenterTitle": "مرکز راهنما",
-  "settingsHistoryClearedSnack": "تاریخچه ترجمه برای این دستگاه پاک شد",
-  "settingsLanguageLabel": "زبان مقصد ترجیحی",
-  "settingsMaintenanceSubtitle": "کارهای ترجمه وابسته به بک‌اند را برای این دستگاه پاک کن و با یک تاریخچه خالی شروع کن.",
-  "settingsMaintenanceTitle": "نگه‌داری",
-  "settingsNotificationsSubtitle": "تنظیمات اعلان‌ها را مدیریت کن",
-  "settingsNotificationsTitle": "اعلان‌ها",
-  "settingsPremiumSubtitle": "بعداً می‌توانیم اشتراک‌ها، پرداخت و همگام‌سازی پروژه ابری را اینجا وصل کنیم.",
-  "settingsPremiumTitle": "بخش پریمیوم آزمایشی",
-  "settingsPrivacySubtitle": "محتوای آزمایشی حریم خصوصی",
-  "settingsPrivacyTitle": "حریم خصوصی",
-  "settingsProfileName": "کاربر SubFlix",
-  "settingsProfileTier": "عضو پریمیوم",
-  "settingsSubtitle": "ترجیحاتت را مدیریت کن",
-  "settingsSupportSubtitle": "صفحه نمونه برای راهنما و تماس",
-  "settingsSupportTitle": "بخش پشتیبانی آزمایشی",
-  "settingsTermsSubtitle": "محتوای آزمایشی شرایط استفاده",
-  "settingsTermsTitle": "شرایط استفاده",
-  "settingsThemeLabel": "ظاهر",
-  "settingsTitle": "تنظیمات",
-  "settingsVersion": "نسخه {version}",
-  "@settingsVersion": {
-    "placeholders": {
-      "version": {}
-    }
-  },
-  "splashHeadline": "SubFlix",
-  "splashPreparing": "در حال آماده‌سازی استودیوی زیرنویس تو",
-  "splashSubtitle": "ترجمه زیرنویس با هوش مصنوعی",
-  "startTranslation": "شروع ترجمه",
-  "subtitleSourceDownloads": "{downloads} دانلود",
-  "@subtitleSourceDownloads": {
-    "placeholders": {
-      "downloads": {}
-    }
-  },
-  "subtitleSourceFormatLabel": "منبع زیرنویس {format}",
-  "@subtitleSourceFormatLabel": {
-    "placeholders": {
-      "format": {}
-    }
-  },
-  "subtitleSourceHiLabel": "HI / SDH",
-  "subtitleSourceLines": "{lineCount} خط",
-  "@subtitleSourceLines": {
-    "placeholders": {
-      "lineCount": {}
-    }
-  },
-  "subtitleSourceRating": "امتیاز {rating}",
-  "@subtitleSourceRating": {
-    "placeholders": {
-      "rating": {}
-    }
-  },
-  "subtitleSourcesBannerMessage": "یک منبع زیرنویس انتخاب کن و وارد تنظیمات ترجمه‌ای شو که برای زمان‌بندی زیرنویس بهینه شده است.",
-  "subtitleSourcesBannerTitle": "ترجمه با هوش مصنوعی در دسترس است",
-  "subtitleSourcesFailedTitle": "بارگذاری منابع زیرنویس ممکن نشد",
-  "subtitleSourcesSubtitle": "برای {title}{target} یک منبع زیرنویس انتخاب کن و در مرحله بعد زبان مقصد را مشخص کن.",
-  "@subtitleSourcesSubtitle": {
-    "placeholders": {
-      "title": {},
-      "target": {}
-    }
-  },
-  "subtitleSourcesTitle": "منابع زیرنویس انگلیسی",
-  "targetLanguage": "زبان مقصد",
-  "themeDark": "تیره",
-  "themeLight": "روشن",
-  "themeSystem": "سیستم",
-  "translateSetupAutoDetect": "تشخیص خودکار فرمت",
-  "translateSetupAutoDetectBody": "ساختار مناسب خروجی زیرنویس را به‌صورت خودکار انتخاب می‌کند.",
-  "translateSetupLanguageTitle": "ترجمه به",
-  "translateSetupOptionsTitle": "گزینه‌ها",
-  "translateSetupPreserveTiming": "حفظ زمان‌بندی",
-  "translateSetupPreserveTimingBody": "زمان‌بندی اصلی زیرنویس را با فایل مبدأ هماهنگ نگه می‌دارد.",
-  "translateSetupReadyBody": "جریان ترجمه ما این زیرنویس را با حفظ زمان‌بندی و ساختار تمیز cueها به {language} تبدیل می‌کند.",
-  "@translateSetupReadyBody": {
-    "placeholders": {
-      "language": {}
-    }
-  },
-  "translateSetupReadyTitle": "ترجمه با هوش مصنوعی آماده است",
-  "translateSetupSelectLanguage": "انتخاب زبان",
-  "translateSetupSourceTitle": "زیرنویس مبدأ",
-  "translateSetupSubtitle": "زبان مقصد را انتخاب کن، منبع زیرنویس را بررسی کن و بعد کار ترجمه را در بک‌اند شروع کن.",
-  "translateSetupTitle": "تنظیمات ترجمه",
-  "translationFailedMessage": "مشکلی پیش آمد.",
-  "translationFailedTitle": "ترجمه کامل نشد",
-  "translationPreviewHeader": "زیرنویس‌های ترجمه‌شده را بررسی کن",
-  "translationPreviewSearchHint": "جستجو در خطوط زیرنویس",
-  "translationPreviewSubtitle": "در cueها جستجو کن، حالت نمایش را عوض کن و وقتی نتیجه درست بود خروجی بگیر.",
-  "translationPreviewTitle": "پیش‌نمایش ترجمه",
-  "translationProgressHeadline": "ترجمه زیرنویس با هوش مصنوعی در حال انجام است",
-  "translationProgressTitle": "روند ترجمه",
-  "translationResultCompleteSubtitle": "زیرنویس تو برای پیش‌نمایش یا دانلود آماده است.",
-  "translationResultCompleteTitle": "ترجمه کامل شد",
-  "translationResultConfidenceLabel": "میزان اطمینان ترجمه",
-  "translationResultDetailsTitle": "جزئیات ترجمه",
-  "translationResultDownloadCta": "دانلود زیرنویس",
-  "translationResultHomeCta": "بازگشت به خانه",
-  "translationResultMediaLabel": "عنوان اثر",
-  "translationResultMethodAi": "ترجمه‌شده با هوش مصنوعی",
-  "translationResultMetricsTitle": "شاخص‌های کیفیت",
-  "translationResultPreviewCta": "پیش‌نمایش زیرنویس",
-  "translationResultProcessedIn": "در {duration} پردازش شد",
-  "@translationResultProcessedIn": {
-    "placeholders": {
-      "duration": {}
-    }
-  },
-  "translationResultSourceLabel": "زبان مبدأ",
-  "translationResultTargetLabel": "زبان مقصد",
-  "translationResultTimingLabel": "دقت زمان‌بندی",
-  "translationResultTimingPreserved": "زمان‌بندی حفظ شده",
-  "translationResultWarning": "بعضی اصطلاحات تخصصی شاید هنوز برای درک بهتر بافت جمله به یک بازبینی انسانی سریع نیاز داشته باشند.",
-  "translationStageAligning": "در حال هماهنگ‌سازی زمان‌ها و فضای صحنه",
-  "translationStageGenerating": "در حال تولید ترجمه زیرنویس",
-  "translationStageIdle": "در انتظار درخواست ترجمه",
-  "translationStagePreparing": "در حال آماده‌سازی بسته زیرنویس",
-  "translationStageQueued": "در صف ترجمه",
-  "translationStageReadability": "در حال اعمال بازبینی خوانایی",
-  "translationStageReady": "ترجمه آماده است",
-  "tryAgain": "دوباره امتحان کن",
-  "uploadChooseFile": "انتخاب فایل زیرنویس",
-  "uploadChooseFileShort": "انتخاب فایل",
-  "uploadContinueSetup": "ادامه به تنظیمات ترجمه",
-  "uploadEnglishSource": "منبع انگلیسی",
-  "uploadFailedFallback": "لطفاً یک فایل زیرنویس دیگر را امتحان کن.",
-  "uploadFailedMessage": "نتوانستیم این فایل زیرنویس را بخوانیم. یک فایل دیگر یا خروجی سبک‌تر را امتحان کن.",
-  "uploadFailedTitle": "وارد کردن فایل ناموفق بود",
-  "uploadIntroSubtitle": "یک فایل انگلیسی `.srt` یا `.vtt` وارد کن، بگذار بک‌اند آن را بررسی و پردازش کند، سپس وارد مرحله تنظیم ترجمه شو.",
-  "uploadIntroTitle": "فایل زیرنویس خودت را بیاور",
-  "uploadLineCount": "{lineCount} خط",
-  "@uploadLineCount": {
-    "placeholders": {
-      "lineCount": {}
-    }
-  },
-  "uploadMetadataTitle": "جزئیات زیرنویس",
-  "uploadOpeningPicker": "در حال باز کردن انتخاب‌گر فایل...",
-  "uploadPickSubtitle": "فایل زیرنویس را انتخاب کن",
-  "uploadPickedFile": "فایل زیرنویس انتخاب شد",
-  "uploadReadyTitle": "آماده ترجمه",
-  "uploadSubtitleTitle": "آپلود زیرنویس",
-  "uploadSupportedFormatsSubtitle": "فایل‌های زیرنویس انگلیسی `.srt` و `.vtt`",
-  "uploadSupportedFormatsTitle": "فرمت‌های پشتیبانی‌شده",
-  "uploadUseDemoFile": "استفاده از فایل نمونه"
+    "@@locale":  "fa",
+    "appTitle":  "SubFlix",
+    "brandSubtitleCompact":  "Щ‡Щ€Шґ ШІЫЊШ±Щ†Щ€ЫЊШі",
+    "brandSubtitleFull":  "Ш§ШіШЄЩ€ШЇЫЊЩ€ЫЊ ШЄШ±Ш¬Щ…Щ‡ ШІЫЊШ±Щ†Щ€ЫЊШі ШЁШ§ Щ‡Щ€Шґ Щ…ШµЩ†Щ€Ш№ЫЊ",
+    "comingSoonMessage":  "Щ‡Щ†Щ€ШІ ШЇШ± Ш­Ш§Щ„ ШўЩ…Ш§ШЇЩ‡ Ъ©Ш±ШЇЩ† Ш§ЫЊЩ† ШµЩЃШ­Щ‡ Щ‡ШіШЄЫЊЩ….",
+    "comingSoonTitle":  "ШЁЩ‡вЂЊШІЩ€ШЇЫЊ",
+    "exportFailedSnack":  "Ш®Ш±Щ€Ш¬ЫЊ Щ†Ш§Щ…Щ€ЩЃЩ‚ ШЁЩ€ШЇ: {error}",
+    "@exportFailedSnack":  {
+                               "placeholders":  {
+                                                    "error":  {
+
+                                                              }
+                                                }
+                           },
+    "exportSubtitleLabel":  "Ш®Ш±Щ€Ш¬ЫЊ ЪЇШ±ЩЃШЄЩ† Ш§ШІ ШІЫЊШ±Щ†Щ€ЫЊШі ШЄШ±Ш¬Щ…Щ‡вЂЊШґШЇЩ‡",
+    "exportedSnack":  "{fileName} ШЇШ± {path} Ш°Ш®ЫЊШ±Щ‡ ШґШЇ",
+    "@exportedSnack":  {
+                           "placeholders":  {
+                                                "fileName":  {
+
+                                                             },
+                                                "path":  {
+
+                                                         }
+                                            }
+                       },
+    "exportingLabel":  "ШЇШ± Ш­Ш§Щ„ Ш®Ш±Щ€Ш¬ЫЊ ЪЇШ±ЩЃШЄЩ†...",
+    "heroBadge":  "Ш¬Ш±ЫЊШ§Щ† Ш­Ш±ЩЃЩ‡вЂЊШ§ЫЊ ШІЫЊШ±Щ†Щ€ЫЊШі",
+    "heroBody":  "ШЁЫЊЩ† Ъ©Ш§ШЄШ§Щ„Щ€ЪЇ Щ‚Ш§ШЁЩ„ Ш¬ШіШЄШ¬Щ€ ЫЊШ§ ШўЩѕЩ„Щ€ШЇ Щ…ШіШЄЩ‚ЫЊЩ… ЩЃШ§ЫЊЩ„ ЫЊЪ©ЫЊ Ш±Ш§ Ш§Щ†ШЄШ®Ш§ШЁ Ъ©Щ†ШЊ ШіЩѕШі ШЇШ± Ъ†Щ†ШЇ ШЇЩ‚ЫЊЩ‚Щ‡ ЩѕЫЊШґвЂЊЩ†Щ…Ш§ЫЊШґ ШЁЪЇЫЊШ± Щ€ ШІЫЊШ±Щ†Щ€ЫЊШі Щ†Щ‡Ш§ЫЊЫЊ Ш±Ш§ Ш®Ш±Щ€Ш¬ЫЊ ШЁЪЇЫЊШ±.",
+    "heroHeadline":  "ШІЫЊШ±Щ†Щ€ЫЊШі ЩЃЫЊЩ„Щ… Щ€ ШіШ±ЫЊШ§Щ„ Ш±Ш§ ШЁШ§ ЫЊЪ© Ш¬Ш±ЫЊШ§Щ† ШЇШ± Ш­ШЇ Ш§ШіШЄЩ€ШЇЫЊЩ€ ШЄШ±Ш¬Щ…Щ‡ Ъ©Щ†.",
+    "heroSearchCta":  "Ш¬ШіШЄШ¬Щ€ЫЊ ЩЃЫЊЩ„Щ… / ШіШ±ЫЊШ§Щ„",
+    "heroStatLanguagesTitle":  "Ы±Ы° ШІШЁШ§Щ†",
+    "heroStatLanguagesValue":  "ШўЩ…Ш§ШЇЩ‡ ЩѕЫЊШґвЂЊЩ†Щ…Ш§ЫЊШґ",
+    "heroStatMockTitle":  "APIЩ‡Ш§ЫЊ Щ…Ш§Ъ©",
+    "heroStatMockValue":  "ШўЩ…Ш§ШЇЩ‡ Ш§ШЄШµШ§Щ„ ШЁЩ‡ ШЁЪ©вЂЊШ§Щ†ШЇ",
+    "heroStatPathsTitle":  "ЫІ Щ…ШіЫЊШ±",
+    "heroStatPathsValue":  "Ш¬ШіШЄШ¬Щ€ ЫЊШ§ ШўЩѕЩ„Щ€ШЇ",
+    "heroSubtitle":  "ШЇШ± Ъ©Ш§ШЄШ§Щ„Щ€ЪЇ ЩЃЫЊЩ„Щ… Щ€ ШіШ±ЫЊШ§Щ„ Ш¬ШіШЄШ¬Щ€ Ъ©Щ†ШЊ Щ…Щ†ШЁШ№ Ш§Щ†ШЄШ®Ш§ШЁ Ъ©Щ† Щ€ ШЇШ± Ъ†Щ†ШЇ ШЇЩ‚ЫЊЩ‚Щ‡ Ш®Ш±Щ€Ш¬ЫЊ ШЄЩ…ЫЊШІ ШЁЪЇЫЊШ±.",
+    "heroTitle":  "ШІЫЊШ±Щ†Щ€ЫЊШівЂЊЩ‡Ш§ Ш±Ш§ ШіШ±ЫЊШ№вЂЊШЄШ± ШЄШ±Ш¬Щ…Щ‡ Ъ©Щ†",
+    "heroUploadCta":  "ШўЩѕЩ„Щ€ШЇ ШІЫЊШ±Щ†Щ€ЫЊШі",
+    "historyCountLabel":  "{count} ШЄШ±Ш¬Щ…Щ‡",
+    "@historyCountLabel":  {
+                               "placeholders":  {
+                                                    "count":  {
+
+                                                              }
+                                                }
+                           },
+    "historyEmptyMessage":  "ШЁШ№ШЇ Ш§ШІ Ъ©Ш§Щ…Щ„ Ъ©Ш±ШЇЩ† ЩЃШ±Ш§ЫЊЩ†ШЇ Ш¬ШіШЄШ¬Щ€ ЫЊШ§ ШўЩѕЩ„Щ€ШЇШЊ ШЄШ±Ш¬Щ…Щ‡вЂЊЩ‡Ш§ЫЊ Ш§Щ†Ш¬Ш§Щ…вЂЊШґШЇЩ‡ Ш§ЫЊЩ†Ш¬Ш§ ШёШ§Щ‡Ш± Щ…ЫЊвЂЊШґЩ€Щ†ШЇ.",
+    "historyEmptyTitle":  "ШЄШ§Ш±ЫЊШ®Ъ†Щ‡ Ш®Ш§Щ„ЫЊ Ш§ШіШЄ",
+    "historyFailedItemMessage":  "ШЄШ±Ш¬Щ…Щ‡ Щ†Ш§Щ…Щ€ЩЃЩ‚ ШЁЩ€ШЇ. ШЁШ±Ш§ЫЊ ШґШ±Щ€Ш№ ШЇЩ€ШЁШ§Ш±Щ‡ Щ„Щ…Ші Ъ©Щ†.",
+    "historyFailedTitle":  "ШЁШ§Ш±ЪЇШ°Ш§Ш±ЫЊ ШЄШ§Ш±ЫЊШ®Ъ†Щ‡ Щ…Щ…Ъ©Щ† Щ†ШґШЇ",
+    "historyFilterAiTranslated":  "ШЄШ±Ш¬Щ…Щ‡вЂЊШґШЇЩ‡ ШЁШ§ Щ‡Щ€Шґ Щ…ШµЩ†Щ€Ш№ЫЊ",
+    "historyFilterAll":  "Щ‡Щ…Щ‡",
+    "historyFilterCompleted":  "ШЄЪ©Щ…ЫЊЩ„вЂЊШґШЇЩ‡",
+    "historyFilterFailed":  "Щ†Ш§Щ…Щ€ЩЃЩ‚",
+    "historyFilterMovies":  "ЩЃЫЊЩ„Щ…вЂЊЩ‡Ш§",
+    "historyFilterReused":  "Ш§ШіШЄЩЃШ§ШЇЩ‡вЂЊШґШЇЩ‡ ШЇЩ€ШЁШ§Ш±Щ‡",
+    "historyFilterSeries":  "ШіШ±ЫЊШ§Щ„вЂЊЩ‡Ш§",
+    "historySubtitle":  "Ъ©Ш§Ш±Щ‡Ш§ЫЊ Щ‚ШЁЩ„ЫЊ Ш±Ш§ ШЇЩ€ШЁШ§Ш±Щ‡ ШЁШ§ШІ Ъ©Щ†ШЊ ЩѕЫЊШґвЂЊЩ†Щ…Ш§ЫЊШґ Ш±Ш§ ШЇЩ€ШЁШ§Ш±Щ‡ ШЁШЁЫЊЩ† ЫЊШ§ ШЁШ№ШЇШ§Щ‹ Ш®Ш±Щ€Ш¬ЫЊ ШЁЪЇЫЊШ±.",
+    "historyTitle":  "ШЄШ§Ш±ЫЊШ®Ъ†Щ‡ ШЄШ±Ш¬Щ…Щ‡вЂЊЩ‡Ш§",
+    "homeFailedRecentTitle":  "ШЁШ§Ш±ЪЇШ°Ш§Ш±ЫЊ Ъ©Ш§Ш±Щ‡Ш§ЫЊ Ш§Ш®ЫЊШ± Щ…Щ…Ъ©Щ† Щ†ШґШЇ",
+    "homeFutureSubtitle":  "Ш±ЫЊЩѕШ§ШІЫЊШЄЩ€Ш±ЫЊвЂЊЩ‡Ш§ЫЊ Щ…Ш§Ъ© Щ‚Ш§ШЁЩ„ ШЄШ№Щ€ЫЊШ¶ ШЁШ§Ш№Ш« Щ…ЫЊвЂЊШґЩ€Щ†ШЇ Ъ©ШЇ UI Ш§ШІ ШЄШєЫЊЫЊШ±Ш§ШЄ ШЁЪ©вЂЊШ§Щ†ШЇ ШЇШ± Ш§Щ…Ш§Щ† ШЁЩ…Ш§Щ†ШЇ.",
+    "homeFutureTitle":  "Ш±ЫЊЩѕШ§ШІЫЊШЄЩ€Ш±ЫЊвЂЊЩ‡Ш§ЫЊ ШўЩ…Ш§ШЇЩ‡ ШўЫЊЩ†ШЇЩ‡",
+    "homeNoRecentMessage":  "ШЁШ§ Ш¬ШіШЄШ¬Щ€ЫЊ ЩЃЫЊЩ„Щ… ЫЊШ§ ШўЩѕЩ„Щ€ШЇ ЩЃШ§ЫЊЩ„ ШІЫЊШ±Щ†Щ€ЫЊШі ШґШ±Щ€Ш№ Ъ©Щ† ШЄШ§ ШЄШ±Ш¬Щ…Щ‡вЂЊЩ‡Ш§ЫЊ Ш§Ш®ЫЊШ±ШЄ Ш§ЫЊЩ†Ш¬Ш§ ШЇЫЊШЇЩ‡ ШґЩ€Щ†ШЇ.",
+    "homeNoRecentTitle":  "Щ‡Щ†Щ€ШІ Ъ©Ш§Ш±ЫЊ ШЇШ± ШЁШ®Шґ Ш§Ш®ЫЊШ±Щ‡Ш§ Щ†ЫЊШіШЄ",
+    "homePreviewSubtitle":  "Щ‚ШЁЩ„ Ш§ШІ Ш®Ш±Щ€Ш¬ЫЊ ЪЇШ±ЩЃШЄЩ†ШЊ Щ†ШЄЫЊШ¬Щ‡ Ш±Ш§ ШЇШ± Ш­Ш§Щ„ШЄ Ш§ШµЩ„ЫЊШЊ ШЄШ±Ш¬Щ…Щ‡вЂЊШґШЇЩ‡ ЫЊШ§ ШЇЩ€ШІШЁШ§Щ†Щ‡ ШЁШ±Ш±ШіЫЊ Ъ©Щ†.",
+    "homePreviewTitle":  "Ш¬Ш±ЫЊШ§Щ† ШЄШ±Ш¬Щ…Щ‡ ШЁШ§ Щ…Ш­Щ€Ш±ЫЊШЄ ЩѕЫЊШґвЂЊЩ†Щ…Ш§ЫЊШґ",
+    "homeQuickHistory":  "ШЄШ§Ш±ЫЊШ®Ъ†Щ‡",
+    "homeQuickSearch":  "Ш¬ШіШЄШ¬Щ€",
+    "homeQuickUpload":  "ШўЩѕЩ„Щ€ШЇ",
+    "homeRecentJobsSubtitle":  "ШўШ®Ш±ЫЊЩ† Ш¬Щ„ШіЩ‡вЂЊЩ‡Ш§ЫЊ ШЄШ±Ш¬Щ…Щ‡вЂЊШ§ШЄ Ш±Ш§ ШЁШЇЩ€Щ† ШґШ±Щ€Ш№ Ш§ШІ ШµЩЃШ± ШЇЩ€ШЁШ§Ш±Щ‡ ШЁШ§ШІ Ъ©Щ†.",
+    "homeRecentJobsTitle":  "Ъ©Ш§Ш±Щ‡Ш§ЫЊ Ш§Ш®ЫЊШ±",
+    "homeSearchPlaceholder":  "Ш¬ШіШЄШ¬Щ€ЫЊ ЩЃЫЊЩ„Щ… ЫЊШ§ ШіШ±ЫЊШ§Щ„...",
+    "homeStatesSubtitle":  "Щ„Щ€ШЇЫЊЩ†ЪЇШЊ Ш­Ш§Щ„ШЄ Ш®Ш§Щ„ЫЊШЊ ШЄЩ„Ш§Шґ ШЇЩ€ШЁШ§Ш±Щ‡ШЊ Ш§Ш№ШЄШЁШ§Ш±ШіЩ†Ш¬ЫЊ Щ€ ШіЩ†Ш§Ш±ЫЊЩ€Щ‡Ш§ЫЊ ШўЩЃЩ„Ш§ЫЊЩ† ШўШІЩ…Ш§ЫЊШґЫЊ Ш§ШІ Щ‡Щ…Ш§Щ† Ш±Щ€ШІ Ш§Щ€Щ„ Ш¬ШІШ¦ЫЊ Ш§ШІ UX Щ‡ШіШЄЩ†ШЇ.",
+    "homeStatesTitle":  "Щ‡Щ…Щ‡ Щ€Ш¶Ш№ЫЊШЄвЂЊЩ‡Ш§ЫЊ Щ„Ш§ШІЩ… ШЇШ± Щ†ШёШ± ЪЇШ±ЩЃШЄЩ‡ ШґШЇЩ‡",
+    "homeTrendingNow":  "ШЄШ±Щ†ШЇЩ‡Ш§ЫЊ ЩЃШ№Щ„ЫЊ",
+    "homeTrustSubtitle":  "ЩЃШ№Щ„Ш§Щ‹ ШўШІЩ…Ш§ЫЊШґЫЊ Ш§ШіШЄШЊ Ш§Щ…Ш§ ШіШ§Ш®ШЄШ§Ш±Шґ Щ…Ш«Щ„ ЫЊЪ© Щ…Ш­ШµЩ€Щ„ Щ€Ш§Щ‚Ш№ЫЊ Щ€ Щ‚Ш§ШЁЩ„ Ш§Щ†ШЄШґШ§Ш± Ш·Ш±Ш§Ш­ЫЊ ШґШЇЩ‡.",
+    "homeTrustTitle":  "Ъ†Ш±Ш§ ШЄЫЊЩ…вЂЊЩ‡Ш§ ШЁЩ‡ ШўЩ† Ш§Ш№ШЄЩ…Ш§ШЇ Щ…ЫЊвЂЊЪ©Щ†Щ†ШЇ",
+    "homeViewAll":  "Щ…ШґШ§Щ‡ШЇЩ‡ Щ‡Щ…Щ‡",
+    "homeWelcomeSubtitle":  "ШІЫЊШ±Щ†Щ€ЫЊШі ЩѕЫЊШЇШ§ Ъ©Щ† Щ€ ШЄШ±Ш¬Щ…Щ‡ Ъ©Щ†",
+    "homeWelcomeTitle":  "Ш®Щ€Шґ ШЁШ±ЪЇШґШЄЫЊ",
+    "jobConfidence":  "Ш§Ш·Щ…ЫЊЩ†Ш§Щ†: {level}",
+    "@jobConfidence":  {
+                           "placeholders":  {
+                                                "level":  {
+
+                                                          }
+                                            }
+                       },
+    "jobOpenPreview":  "ШЁШ§ШІ Ъ©Ш±ШЇЩ† ЩѕЫЊШґвЂЊЩ†Щ…Ш§ЫЊШґ",
+    "jobReuseSubtitle":  "Ш§ШіШЄЩЃШ§ШЇЩ‡ ШЇЩ€ШЁШ§Ш±Щ‡ Ш§ШІ ШІЫЊШ±Щ†Щ€ЫЊШі",
+    "jobReuseTranslation":  "Ш§ШіШЄЩЃШ§ШЇЩ‡ ШЇЩ€ШЁШ§Ш±Щ‡ Ш§ШІ ШЄШ±Ш¬Щ…Щ‡",
+    "legalBodyAbout":  "SubFlix ЫЊЪ© Ъ©Щ„Ш§ЫЊЩ†ШЄ Flutter ШЁШ§ Ш­ШівЂЊЩ€Ш­Ш§Щ„ ЩѕШ±ЫЊЩ…ЫЊЩ€Щ… ШЁШ±Ш§ЫЊ ШЄШ±Ш¬Щ…Щ‡ ШІЫЊШ±Щ†Щ€ЫЊШі ШЁШ§ Щ‡Щ€Шґ Щ…ШµЩ†Щ€Ш№ЫЊ Ш§ШіШЄ. Ш§ЫЊЩ† ШЁЫЊЩ„ШЇ Ш§ШІ Ш±ЫЊЩѕШ§ШІЫЊШЄЩ€Ш±ЫЊвЂЊЩ‡Ш§ЫЊ Щ…Ш§Ъ©ШЊ ШЄШЈШ®ЫЊШ± Щ…ШµЩ†Щ€Ш№ЫЊ Щ€ Ш°Ш®ЫЊШ±Щ‡вЂЊШіШ§ШІЫЊ Щ…Ш­Щ„ЫЊ Ш§ШіШЄЩЃШ§ШЇЩ‡ Щ…ЫЊвЂЊЪ©Щ†ШЇ ШЄШ§ Щ‚ШЁЩ„ Ш§ШІ Ш§ШЄШµШ§Щ„ ШЁЪ©вЂЊШ§Щ†ШЇ Щ€Ш§Щ‚Ш№ЫЊШЊ UI Щ€ Щ…Ш№Щ…Ш§Ш±ЫЊ ШЁЩ‡ ШЁЩ„Щ€Шє ШЁШ±ШіЩ†ШЇ.",
+    "legalBodyPrivacy":  "SubFlix ЩЃШ№Щ„Ш§Щ‹ ЩЃЩ‚Ш· ШЄШ±Ш¬ЫЊШ­Ш§ШЄ ШўШІЩ…Ш§ЫЊШґЫЊ Щ€ ШЄШ§Ш±ЫЊШ®Ъ†Щ‡ ШЄШ±Ш¬Щ…Щ‡ Ш±Ш§ ШЁШ§ Ш°Ш®ЫЊШ±Щ‡вЂЊШіШ§ШІЫЊ Щ…Ш­Щ„ЫЊ Ш±Щ€ЫЊ ШЇШіШЄЪЇШ§Щ‡ Щ†ЪЇЩ‡ Щ…ЫЊвЂЊШЇШ§Ш±ШЇ. ШЇШ± ШўЫЊЩ†ШЇЩ‡ Щ…ЫЊвЂЊШЄЩ€Ш§Щ† Ш§ЫЊЩ† ШЁШ®Шґ Ш±Ш§ ШЁШ§ ЫЊЪ© ШЁЪ©вЂЊШ§Щ†ШЇ Щ€Ш§Щ‚Ш№ЫЊ ШЁЩ‡ Ш°Ш®ЫЊШ±Щ‡вЂЊШіШ§ШІЫЊ Ш§Ш­Ш±Ш§ШІ Щ‡Щ€ЫЊШЄвЂЊШґШЇЩ‡ШЊ Щ…ШіЫЊШ±Щ‡Ш§ЫЊ Щ…Щ…ЫЊШІЫЊ Щ€ ШіЫЊШ§ШіШЄвЂЊЩ‡Ш§ЫЊ Щ†ЪЇЩ‡вЂЊШЇШ§Ш±ЫЊ ШіЩ…ШЄ ШіШ±Щ€Ш± Ш§Ш±ШЄЩ‚Ш§ ШЇШ§ШЇ.",
+    "legalBodySupport":  "ШЁШ®Шґ ЩѕШґШЄЫЊШЁШ§Щ†ЫЊ ЩЃШ№Щ„Ш§Щ‹ ЩЃЩ‚Ш· Ш¬Ш§ЫЊвЂЊЩ†ЪЇЩ‡ШЇШ§Ш± Ш§ШіШЄ. ШЇШ± Щ†ШіШ®Щ‡ Щ€Ш§Щ‚Ш№ЫЊШЊ Ш§ЫЊЩ† Щ‚ШіЩ…ШЄ Щ…ЫЊвЂЊШЄЩ€Ш§Щ†ШЇ ШЁШЇЩ€Щ† ШЄШєЫЊЫЊШ± ШЇШ± ШіШ§Ш®ШЄШ§Ш± Ш§Щѕ ШЁЩ‡ Ш§ЫЊЩ…ЫЊЩ„ШЊ ЪЇШІШ§Ш±Шґ Щ…ШґЪ©Щ„ Щ€ ЩѕШґШЄЫЊШЁШ§Щ†ЫЊ Ш­ШіШ§ШЁвЂЊЩ‡Ш§ЫЊ ЩѕШ±ЫЊЩ…ЫЊЩ€Щ… Щ…ШЄШµЩ„ ШґЩ€ШЇ.",
+    "legalBodyTerms":  "Ш§ЫЊЩ† Щ†ШіШ®Щ‡ ШўШІЩ…Ш§ЫЊШґЫЊ ШЁШ±Ш§ЫЊ ШіЩ†Ш¬Шґ Ш¬Ш±ЫЊШ§Щ†вЂЊЩ‡Ш§ЫЊ Щ…Ш­ШµЩ€Щ„ШЊ Щ€Ш¶Ш№ЫЊШЄвЂЊЩ‡Ш§ЫЊ Ш±Ш§ШЁШ· Ъ©Ш§Ш±ШЁШ±ЫЊ Щ€ Щ…Ш±ШІЩ‡Ш§ЫЊ Щ…Ш№Щ…Ш§Ш±ЫЊ ШіШ§Ш®ШЄЩ‡ ШґШЇЩ‡ Ш§ШіШЄ. Щ€Щ‚ШЄЫЊ ШЁШ№ШЇШ§Щ‹ ЫЊЪ© ШЁЪ©вЂЊШ§Щ†ШЇ Щ€Ш§Щ‚Ш№ЫЊ Щ…ШЁШЄЩ†ЫЊ ШЁШ± NestJS Щ€ Postgres Щ…ШЄШµЩ„ ШґЩ€ШЇШЊ ШЁШ®Шґ Ш­Щ‚Щ€Щ‚ЫЊ Щ‡Щ… Щ…ЫЊвЂЊШЄЩ€Ш§Щ†ШЇ ШЁШ§ ШґШ±Ш§ЫЊШ· Щ€Ш§Щ‚Ш№ЫЊ ШіШ±Щ€ЫЊШі Щ€ Щ…ШЄЩ†вЂЊЩ‡Ш§ЫЊ Щ…Ш±ШЁЩ€Ш· ШЁЩ‡ ЩѕШ±ШЇШ§ШІШґ ШЇШ§ШЇЩ‡ ЪЇШіШЄШ±Шґ ЩѕЫЊШЇШ§ Ъ©Щ†ШЇ.",
+    "legalPlaceholderBody":  "Ш§ЫЊЩ† ШµЩЃШ­Щ‡ ШЇШ± Щ†ШіШ®Щ‡ ШЇЩ…Щ€ ЩЃЩ‚Ш· ЫЊЪ© Ш¬Ш§ЫЊвЂЊЩ†ЪЇЩ‡ШЇШ§Ш± Ш§ШіШЄ. ШўЩ† Ш±Ш§ ШЁЩ‡ Щ…Ш­ШЄЩ€Ш§ЫЊ Ш­Щ‚Щ€Щ‚ЫЊ Щ€Ш§Щ‚Ш№ЫЊ Щ…Ш­ШµЩ€Щ„ШЄ Щ€ШµЩ„ Ъ©Щ†.",
+    "legalTitleAbout":  "ШЇШ±ШЁШ§Ш±Щ‡ SubFlix",
+    "legalTitlePrivacy":  "Ш­Ш±ЫЊЩ… Ш®ШµЩ€ШµЫЊ",
+    "legalTitleSupport":  "ЩѕШґШЄЫЊШЁШ§Щ†ЫЊ",
+    "legalTitleTerms":  "ШґШ±Ш§ЫЊШ· Ш§ШіШЄЩЃШ§ШЇЩ‡",
+    "mediaTypeMovie":  "ЩЃЫЊЩ„Щ…",
+    "mediaTypeSeries":  "ШіШ±ЫЊШ§Щ„",
+    "metadataEstimatedDuration":  "Щ…ШЇШЄ ШІЩ…Ш§Щ† ШЄЩ‚Ш±ЫЊШЁЫЊ",
+    "metadataFormat":  "ЩЃШ±Щ…ШЄ",
+    "metadataLanguages":  "ШІШЁШ§Щ†вЂЊЩ‡Ш§",
+    "metadataLines":  "Ш®Ш·Щ€Ш·",
+    "navHistory":  "ШЄШ§Ш±ЫЊШ®Ъ†Щ‡",
+    "navHome":  "Ш®Ш§Щ†Щ‡",
+    "navSettings":  "ШЄЩ†ШёЫЊЩ…Ш§ШЄ",
+    "noTitlesMatchedMessage":  "Щ†ШЄЩ€Ш§Щ†ШіШЄЫЊЩ… Ш§ЫЊЩ† Ш№Щ†Щ€Ш§Щ† Ш±Ш§ ШЇШ± Ъ©Ш§ШЄШ§Щ„Щ€ЪЇ ШўШІЩ…Ш§ЫЊШґЫЊ ЩѕЫЊШЇШ§ Ъ©Щ†ЫЊЩ…. ЫЊЪ© Ш¬ШіШЄШ¬Щ€ЫЊ Ъ©Щ„ЫЊвЂЊШЄШ± ЫЊШ§ ЫЊЪ©ЫЊ Ш§ШІ Ш№Щ†Щ€Ш§Щ†вЂЊЩ‡Ш§ЫЊ ЩѕЫЊШґЩ†Щ‡Ш§ШЇЫЊ Ш±Ш§ Ш§Щ…ШЄШ­Ш§Щ† Ъ©Щ†.",
+    "noTitlesMatchedTitle":  "Щ†ШЄЫЊШ¬Щ‡вЂЊШ§ЫЊ ЩѕЫЊШЇШ§ Щ†ШґШЇ",
+    "onboardingContinue":  "Ш§ШЇШ§Щ…Щ‡",
+    "onboardingEnterApp":  "Щ€Ш±Щ€ШЇ ШЁЩ‡ SubFlix",
+    "onboardingNext":  "ШЁШ№ШЇЫЊ",
+    "onboardingPage1Description":  "ЫЊЪ© Ш№Щ†Щ€Ш§Щ† Ш¬ШіШЄШ¬Щ€ Ъ©Щ†ШЊ Щ…Щ†Ш§ШЁШ№ ШІЫЊШ±Щ†Щ€ЫЊШі Ш§Щ†ЪЇЩ„ЫЊШіЫЊ Щ…Щ€Ш¬Щ€ШЇ Ш±Ш§ ШЁШЁЫЊЩ† Щ€ Ш¬Ш±ЫЊШ§Щ† ШЄШ±Ш¬Щ…Щ‡вЂЊШ§ЫЊ Ш±Ш§ ШґШ±Щ€Ш№ Ъ©Щ† Ъ©Щ‡ ШіШ±ЫЊШ№ Щ€ Ш±Щ€Ш§Щ† Ш§Ш­ШіШ§Ші Щ…ЫЊвЂЊШґЩ€ШЇ.",
+    "onboardingPage1Eyebrow":  "Ш¬ШіШЄШ¬Щ€ Щ€ ШЇШ±ЫЊШ§ЩЃШЄ",
+    "onboardingPage1Highlight1":  "Ъ©Ш§ШЄШ§Щ„Щ€ЪЇ Щ…Ш§Ъ© Щ‚Ш·Ш№ЫЊ ШЁШ±Ш§ЫЊ ШЄЩ€ШіШ№Щ‡ Щ…Ш·Щ…Ш¦Щ†",
+    "onboardingPage1Highlight2":  "ШЁШ±Ъ†ШіШЁ Ъ©ЫЊЩЃЫЊШЄ Щ…Щ†ШЁШ№ Щ€ Щ†ШґШ§Щ† ЩЃШ±Щ…ШЄ ШІЫЊШ±Щ†Щ€ЫЊШі",
+    "onboardingPage1Highlight3":  "Ш·Щ€Ш±ЫЊ ШіШ§Ш®ШЄЩ‡ ШґШЇЩ‡ Ъ©Щ‡ ШЁШ№ШЇШ§Щ‹ ШЁЩ‡ ШЁЪ©вЂЊШ§Щ†ШЇ Щ€Ш§Щ‚Ш№ЫЊ Щ€ШµЩ„ ШґЩ€ШЇ",
+    "onboardingPage1Title":  "ЩЃЫЊЩ„Щ… ЫЊШ§ ШіШ±ЫЊШ§Щ„ ЩѕЫЊШЇШ§ Ъ©Щ† Щ€ ШІЫЊШ±Щ†Щ€ЫЊШі ШўЩ…Ш§ШЇЩ‡ ШЄШ±Ш¬Щ…Щ‡ Ш±Ш§ ШЁЪЇЫЊШ±.",
+    "onboardingPage2Description":  "ЩЃШ§ЫЊЩ„ ШІЫЊШ±Щ†Щ€ЫЊШі Ш±Ш§ Щ€Ш§Ш±ШЇ Ъ©Щ†ШЊ ЩЃШ±Щ…ШЄ Ш±Ш§ Ш§Ш№ШЄШЁШ§Ш±ШіЩ†Ш¬ЫЊ Ъ©Щ† Щ€ ШЁШЇЩ€Щ† Ш®Ш±Щ€Ш¬ Ш§ШІ Ш§Щѕ Щ‡Щ…Ш§Щ† Щ…ШіЫЊШ± ШЄШ±Ш¬Щ…Щ‡ Ш­Ш±ЩЃЩ‡вЂЊШ§ЫЊ Ш±Ш§ Ш§Ш¬Ш±Ш§ Ъ©Щ†.",
+    "onboardingPage2Eyebrow":  "ЩЃШ§ЫЊЩ„ Ш®Щ€ШЇШЄ Ш±Ш§ ШЁЫЊШ§Щ€Ш±",
+    "onboardingPage2Highlight1":  "Ш§Ш№ШЄШЁШ§Ш±ШіЩ†Ш¬ЫЊ Щ…Ш­Щ„ЫЊ ЩЃШ§ЫЊЩ„ Щ€ Ш­Ш§Щ„ШЄвЂЊЩ‡Ш§ЫЊ ШЄЩ„Ш§Шґ ШЇЩ€ШЁШ§Ш±Щ‡ Ш±Щ€Ш§Щ†",
+    "onboardingPage2Highlight2":  "ШЄЩ†ШёЫЊЩ…Ш§ШЄ ШЄШ±Ш¬Щ…Щ‡ ЫЊЪ©ШЇШіШЄ ШЁШ±Ш§ЫЊ ШўЩѕЩ„Щ€ШЇ Щ€ Ш¬ШіШЄШ¬Щ€",
+    "onboardingPage2Highlight3":  "Щ‚ШЁЩ„ Ш§ШІ Ш®Ш±Щ€Ш¬ЫЊ ЪЇШ±ЩЃШЄЩ† ЩѕЫЊШґвЂЊЩ†Щ…Ш§ЫЊШґ ШЁШЁЫЊЩ† ШЄШ§ Ъ†ЫЊШІЫЊ Щ…ШЁЩ‡Щ… Щ†Щ…Ш§Щ†ШЇ",
+    "onboardingPage2Title":  "Щ€Щ‚ШЄЫЊ ЩЃШ§ЫЊЩ„ Ш±Ш§ ШЇШ§Ш±ЫЊШЊ `.srt` ЫЊШ§ `.vtt` ШўЩѕЩ„Щ€ШЇ Ъ©Щ†.",
+    "onboardingPage3Description":  "ШЁЫЊЩ† Щ†Щ…Ш§ЫЊШґ Ш§ШµЩ„ЫЊШЊ ШЄШ±Ш¬Щ…Щ‡вЂЊШґШЇЩ‡ Щ€ ШЇЩ€ШІШЁШ§Щ†Щ‡ Ш¬Ш§ШЁЩ‡вЂЊШ¬Ш§ ШґЩ€ШЊ ШЁЩ‡ ШЄШ§Ш±ЫЊШ®Ъ†Щ‡ ШіШ± ШЁШІЩ† Щ€ Щ€Щ‚ШЄЫЊ Щ†ШЄЫЊШ¬Щ‡ ШЇШ±ШіШЄ ШЁЩ€ШЇ ЩЃШ§ЫЊЩ„ ШЄЩ…ЫЊШІ ШІЫЊШ±Щ†Щ€ЫЊШі Ш±Ш§ Ш®Ш±Щ€Ш¬ЫЊ ШЁЪЇЫЊШ±.",
+    "onboardingPage3Eyebrow":  "ШЄШ±Ш¬Щ…Щ‡ Щ€ Ш®Ш±Щ€Ш¬ЫЊ",
+    "onboardingPage3Highlight1":  "Ъ©Щ†ШЄШ±Щ„вЂЊЩ‡Ш§ЫЊ ШіШ±ЫЊШ№ ЩѕЫЊШґвЂЊЩ†Щ…Ш§ЫЊШґ Щ‡Щ…Ш±Ш§Щ‡ ШЁШ§ Щ…ШЄШ§ШЇЫЊШЄШ§ Щ€ Ш¬ШіШЄШ¬Щ€",
+    "onboardingPage3Highlight2":  "ШЄШ§Ш±ЫЊШ®Ъ†Щ‡ШЊ Ъ©Ш§Ш±Щ‡Ш§ЫЊ Щ‚ШЁЩ„ЫЊ Ш±Ш§ ЩЃЩ‚Ш· ШЁШ§ ЫЊЪ© Щ„Щ…Ші ШЇШ± ШЇШіШЄШ±Ші Щ†ЪЇЩ‡ Щ…ЫЊвЂЊШЇШ§Ш±ШЇ",
+    "onboardingPage3Highlight3":  "Ш·Ш±Ш§Ш­ЫЊвЂЊШґШЇЩ‡ Щ…Ш«Щ„ ЫЊЪ© Ш§ШЁШІШ§Ш± Ш±ШіШ§Щ†Щ‡вЂЊШ§ЫЊ ЩѕШ±ЫЊЩ…ЫЊЩ€Щ…ШЊ Щ†Щ‡ ЫЊЪ© ШЇЩ…Щ€",
+    "onboardingPage3Title":  "ШІШЁШ§Щ† Щ…Щ‚ШµШЇ Ш±Ш§ Ш§Щ†ШЄШ®Ш§ШЁ Ъ©Щ†ШЊ ЩѕЫЊШґвЂЊЩ†Щ…Ш§ЫЊШґ ШЁШЁЫЊЩ† Щ€ ЩЃЩ€Ш±ЫЊ Ш®Ш±Щ€Ш¬ЫЊ ШЁЪЇЫЊШ±.",
+    "onboardingSkip":  "Ш±ШЇ Ъ©Ш±ШЇЩ†",
+    "onboardingStart":  "ШґШ±Щ€Ш№ ШЄШ±Ш¬Щ…Щ‡",
+    "previewFailedTitle":  "ШЁШ§Ш±ЪЇШ°Ш§Ш±ЫЊ ЩѕЫЊШґвЂЊЩ†Щ…Ш§ЫЊШґ Щ†Ш§Щ…Щ€ЩЃЩ‚ ШЁЩ€ШЇ",
+    "previewModeBilingual":  "ШЇЩ€ШІШЁШ§Щ†Щ‡",
+    "previewModeOriginal":  "Ш§ШµЩ„",
+    "previewModeTranslated":  "ШЄШ±Ш¬Щ…Щ‡вЂЊШґШЇЩ‡",
+    "previewNoMatchesMessage":  "ЫЊЪ© Ш№ШЁШ§Ш±ШЄ ШЇЫЊЪЇШ± Ш±Ш§ Ш¬ШіШЄШ¬Щ€ Ъ©Щ† ЫЊШ§ ЩЃЫЊЩ„ШЄШ± Ш±Ш§ ЩѕШ§Ъ© Ъ©Щ† ШЄШ§ Ъ©Щ„ ШЄШ±Ш¬Щ…Щ‡ Ш±Ш§ ШЁШЁЫЊЩ†ЫЊ.",
+    "previewNoMatchesTitle":  "Щ‡ЫЊЪ† Ш®Ш·ЫЊ ЩѕЫЊШЇШ§ Щ†ШґШЇ",
+    "previewNotReadyMessage":  "ШЄШ±Ш¬Щ…Щ‡ ШЄЩ…Ш§Щ… ШґШЇЩ‡ШЊ Ш§Щ…Ш§ ШЁЪ©вЂЊШ§Щ†ШЇ Щ‡Щ†Щ€ШІ cueЩ‡Ш§ЫЊ ЩѕЫЊШґвЂЊЩ†Щ…Ш§ЫЊШґ Ш±Ш§ ШЁШ±Щ†ЪЇШ±ШЇШ§Щ†ШЇЩ‡ Ш§ШіШЄ. Ъ©Щ…ЫЊ ШЁШ№ШЇ ШЇЩ€ШЁШ§Ш±Щ‡ Ш§ЫЊЩ† ШµЩЃШ­Щ‡ Ш±Ш§ ШЁШ§Ш±ЪЇШ°Ш§Ш±ЫЊ Ъ©Щ†.",
+    "previewNotReadyTitle":  "cueЩ‡Ш§ЫЊ ЩѕЫЊШґвЂЊЩ†Щ…Ш§ЫЊШґ Щ‡Щ†Щ€ШІ ШўЩ…Ш§ШЇЩ‡ Щ†ЫЊШіШЄЩ†ШЇ",
+    "retry":  "ШЄЩ„Ш§Шґ ШЇЩ€ШЁШ§Ш±Щ‡",
+    "retryTranslation":  "ШЄШ±Ш¬Щ…Щ‡ ШЇЩ€ШЁШ§Ш±Щ‡",
+    "routeMissingSeasonEpisodesMessage":  "Щ†ШЄЩ€Ш§Щ†ШіШЄЫЊЩ… ШЄШґШ®ЫЊШµ ШЇЩ‡ЫЊЩ… Ъ©ШЇШ§Щ… ЩЃШµЩ„ ШЁШ§ЫЊШЇ ШЁШ§Ш±ЪЇШ°Ш§Ш±ЫЊ ШґЩ€ШЇ. ШЇЩ€ШЁШ§Ш±Щ‡ Ш§ШІ Ш¬ШіШЄШ¬Щ€ ШґШ±Щ€Ш№ Ъ©Щ†.",
+    "routeMissingSeasonEpisodesTitle":  "Щ‚ШіЩ…ШЄвЂЊЩ‡Ш§ЫЊ ЩЃШµЩ„",
+    "routeMissingSeriesSeasonsMessage":  "Щ†ШЄЩ€Ш§Щ†ШіШЄЫЊЩ… ШЄШґШ®ЫЊШµ ШЇЩ‡ЫЊЩ… Ъ©ШЇШ§Щ… ШіШ±ЫЊШ§Щ„ ШЁШ§ЫЊШЇ ШЁШ§Ш±ЪЇШ°Ш§Ш±ЫЊ ШґЩ€ШЇ. ШЇЩ€ШЁШ§Ш±Щ‡ Ш§ШІ Ш¬ШіШЄШ¬Щ€ ШґШ±Щ€Ш№ Ъ©Щ†.",
+    "routeMissingSeriesSeasonsTitle":  "ЩЃШµЩ„вЂЊЩ‡Ш§ЫЊ ШіШ±ЫЊШ§Щ„",
+    "routeMissingSubtitleSourcesMessage":  "Щ†ШЄЩ€Ш§Щ†ШіШЄЫЊЩ… ШЄШґШ®ЫЊШµ ШЇЩ‡ЫЊЩ… Щ…Щ†Ш§ШЁШ№ ШІЫЊШ±Щ†Щ€ЫЊШі ШЁШ±Ш§ЫЊ Ъ©ШЇШ§Щ… Ш№Щ†Щ€Ш§Щ† ШЁШ§ЫЊШЇ ШЁШ§Ш±ЪЇШ°Ш§Ш±ЫЊ ШґЩ€Щ†ШЇ. ШЇЩ€ШЁШ§Ш±Щ‡ Ш§ШІ Ш¬ШіШЄШ¬Щ€ ШґШ±Щ€Ш№ Ъ©Щ†.",
+    "routeMissingSubtitleSourcesTitle":  "Щ…Щ†Ш§ШЁШ№ ШІЫЊШ±Щ†Щ€ЫЊШі",
+    "routeMissingTranslationProgressMessage":  "Щ‡ЫЊЪ† ШЇШ±Ш®Щ€Ш§ШіШЄ ШЄШ±Ш¬Щ…Щ‡вЂЊШ§ЫЊ Ш§Ш±ШіШ§Щ„ Щ†ШґШЇЩ‡ Ш§ШіШЄ. ЫЊЪ© ШЄШ±Ш¬Щ…Щ‡ Ш¬ШЇЫЊШЇ Ш±Ш§ Ш§ШІ Щ…ШіЫЊШ± Ш¬ШіШЄШ¬Щ€ ЫЊШ§ ШўЩѕЩ„Щ€ШЇ ШґШ±Щ€Ш№ Ъ©Щ†.",
+    "routeMissingTranslationProgressTitle":  "Ш±Щ€Щ†ШЇ ШЄШ±Ш¬Щ…Щ‡",
+    "routeMissingTranslationSetupMessage":  "Щ‚ШЁЩ„ Ш§ШІ ШЁШ§ШІ ШґШЇЩ† ШµЩЃШ­Щ‡ ШЄЩ†ШёЫЊЩ…Ш§ШЄ ШЄШ±Ш¬Щ…Щ‡ШЊ Щ€Ш¬Щ€ШЇ ЫЊЪ© Щ…Щ†ШЁШ№ ШІЫЊШ±Щ†Щ€ЫЊШі Ш¶Ш±Щ€Ш±ЫЊ Ш§ШіШЄ.",
+    "routeMissingTranslationSetupTitle":  "ШЄЩ†ШёЫЊЩ…Ш§ШЄ ШЄШ±Ш¬Щ…Щ‡",
+    "searchFailedTitle":  "Ш¬ШіШЄШ¬Щ€ Щ†Ш§Щ…Щ€ЩЃЩ‚ ШЁЩ€ШЇ",
+    "searchFoundResults":  "{count} Щ†ШЄЫЊШ¬Щ‡ ШЁШ±Ш§ЫЊ \"{query}\" ЩѕЫЊШЇШ§ ШґШЇ",
+    "@searchFoundResults":  {
+                                "placeholders":  {
+                                                     "count":  {
+
+                                                               },
+                                                     "query":  {
+
+                                                               }
+                                                 }
+                            },
+    "searchHintText":  "Щ…Ш«Щ„Ш§Щ‹ Dune ЫЊШ§ Breaking Bad ЫЊШ§ Severance Ш±Ш§ Ш¬ШіШЄШ¬Щ€ Ъ©Щ†...",
+    "searchLoadingLabel":  "ШЇШ± Ш­Ш§Щ„ Ш¬ШіШЄШ¬Щ€...",
+    "searchMockMessage":  "ШЁШ±Ш§ЫЊ ШЇЫЊШЇЩ† Ш¬Ш±ЫЊШ§Щ† Ш§Щ†ШЄШ®Ш§ШЁ Щ…Щ†ШЁШ№ ШІЫЊШ±Щ†Щ€ЫЊШіШЊ Ш№Щ†Щ€Ш§Щ†вЂЊЩ‡Ш§ЫЊЫЊ Щ…Ш«Щ„ InceptionШЊ DuneШЊ Breaking BadШЊ Severance ЫЊШ§ The Last of Us Ш±Ш§ Ш§Щ…ШЄШ­Ш§Щ† Ъ©Щ†.",
+    "searchMockTitle":  "Щ‡Ш± Ъ†ЫЊШІЫЊ Ш±Ш§ ШЇШ± Ъ©Ш§ШЄШ§Щ„Щ€ЪЇ ШўШІЩ…Ш§ЫЊШґЫЊ Ш¬ШіШЄШ¬Щ€ Ъ©Щ†",
+    "searchMovieOrSeriesSubtitle":  "ЫЊЪ© Ш№Щ†Щ€Ш§Щ† ЩѕЫЊШЇШ§ Ъ©Щ†ШЊ Щ…Щ†Ш§ШЁШ№ ШІЫЊШ±Щ†Щ€ЫЊШі Ш±Ш§ ШЁШ±Ш±ШіЫЊ Ъ©Щ† Щ€ ЩЃЩ‚Ш· ШЁШ§ Ъ†Щ†ШЇ Щ„Щ…Ші ШЄШ±Ш¬Щ…Щ‡ Ш±Ш§ ШґШ±Щ€Ш№ Ъ©Щ†.",
+    "searchMovieOrSeriesTitle":  "Ш¬ШіШЄШ¬Щ€ЫЊ ЩЃЫЊЩ„Щ… ЫЊШ§ ШіШ±ЫЊШ§Щ„",
+    "searchNoResultsFor":  "Щ†ШЄЫЊШ¬Щ‡вЂЊШ§ЫЊ ШЁШ±Ш§ЫЊ \"{query}\" ЩѕЫЊШЇШ§ Щ†ШґШЇ",
+    "@searchNoResultsFor":  {
+                                "placeholders":  {
+                                                     "query":  {
+
+                                                               }
+                                                 }
+                            },
+    "searchResultPopularity":  "Щ…Ш­ШЁЩ€ШЁЫЊШЄ {score}",
+    "@searchResultPopularity":  {
+                                    "placeholders":  {
+                                                         "score":  {
+
+                                                                   }
+                                                     }
+                                },
+    "searchTitles":  "Ш¬ШіШЄШ¬Щ€ЫЊ Ш№Щ†Щ€Ш§Щ†вЂЊЩ‡Ш§",
+    "searchTrendingTitle":  "Ш¬ШіШЄШ¬Щ€Щ‡Ш§ЫЊ ЩѕШ±Ш·Ш±ЩЃШЇШ§Ш±",
+    "searchTryDifferentKeywords":  "ШЁШ§ Ъ©Щ„Щ…Ш§ШЄ Ъ©Щ„ЫЊШЇЫЊ ШЇЫЊЪЇШ±ЫЊ Ш¬ШіШЄШ¬Щ€ Ъ©Щ†.",
+    "seriesEpisodeLabel":  "Щ‚ШіЩ…ШЄ {episodeNumber}",
+    "@seriesEpisodeLabel":  {
+                                "placeholders":  {
+                                                     "episodeNumber":  {
+
+                                                                       }
+                                                 }
+                            },
+    "seriesEpisodeMeta":  "Ш­ШЇЩ€ШЇ {runtime} ШЇЩ‚ЫЊЩ‚Щ‡",
+    "@seriesEpisodeMeta":  {
+                               "placeholders":  {
+                                                    "runtime":  {
+
+                                                                }
+                                                }
+                           },
+    "seriesEpisodesSubtitle":  "{episodeCount} Щ‚ШіЩ…ШЄ{year}",
+    "@seriesEpisodesSubtitle":  {
+                                    "placeholders":  {
+                                                         "episodeCount":  {
+
+                                                                          },
+                                                         "year":  {
+
+                                                                  }
+                                                     }
+                                },
+    "seriesEpisodesTitle":  "ЩЃШµЩ„ {seasonNumber}",
+    "@seriesEpisodesTitle":  {
+                                 "placeholders":  {
+                                                      "seasonNumber":  {
+
+                                                                       }
+                                                  }
+                             },
+    "seriesSeasonLabel":  "ЩЃШµЩ„ {seasonNumber}",
+    "@seriesSeasonLabel":  {
+                               "placeholders":  {
+                                                    "seasonNumber":  {
+
+                                                                     }
+                                                }
+                           },
+    "seriesSeasonMeta":  "{episodeCount} Щ‚ШіЩ…ШЄ{year}",
+    "@seriesSeasonMeta":  {
+                              "placeholders":  {
+                                                   "episodeCount":  {
+
+                                                                    },
+                                                   "year":  {
+
+                                                            }
+                                               }
+                          },
+    "seriesSeasonsSubtitle":  "ЫЊЪ© ЩЃШµЩ„ Ш§ШІ {title} Ш±Ш§ Ш§Щ†ШЄШ®Ш§ШЁ Ъ©Щ† ШЄШ§ Щ‚ШіЩ…ШЄвЂЊЩ‡Ш§ЫЊ Щ…Щ€Ш¬Щ€ШЇ Ш±Ш§ ШЁШЁЫЊЩ†ЫЊ.",
+    "@seriesSeasonsSubtitle":  {
+                                   "placeholders":  {
+                                                        "title":  {
+
+                                                                  }
+                                                    }
+                               },
+    "seriesSeasonsTitle":  "ЫЊЪ© ЩЃШµЩ„ Ш§Щ†ШЄШ®Ш§ШЁ Ъ©Щ†",
+    "settingsAboutTitle":  "ШЇШ±ШЁШ§Ш±Щ‡ SubFlix",
+    "settingsCacheCleared":  "Ъ©Шґ ЩѕШ§Ъ© ШґШЇ",
+    "settingsClearCache":  "ЩѕШ§Ъ© Ъ©Ш±ШЇЩ† Ъ©Шґ",
+    "settingsContactTitle":  "ШЄЩ…Ш§Ші ШЁШ§ Щ…Ш§",
+    "settingsFailedTitle":  "ШЁШ§Ш±ЪЇШ°Ш§Ш±ЫЊ ШЄЩ†ШёЫЊЩ…Ш§ШЄ Щ†Ш§Щ…Щ€ЩЃЩ‚ ШЁЩ€ШЇ",
+    "settingsHelpCenterTitle":  "Щ…Ш±Ъ©ШІ Ш±Ш§Щ‡Щ†Щ…Ш§",
+    "settingsHistoryClearedSnack":  "ШЄШ§Ш±ЫЊШ®Ъ†Щ‡ ШЄШ±Ш¬Щ…Щ‡ ШЁШ±Ш§ЫЊ Ш§ЫЊЩ† ШЇШіШЄЪЇШ§Щ‡ ЩѕШ§Ъ© ШґШЇ",
+    "settingsLanguageLabel":  "ШІШЁШ§Щ† Щ…Щ‚ШµШЇ ШЄШ±Ш¬ЫЊШ­ЫЊ",
+    "settingsMaintenanceSubtitle":  "Ъ©Ш§Ш±Щ‡Ш§ЫЊ ШЄШ±Ш¬Щ…Щ‡ Щ€Ш§ШЁШіШЄЩ‡ ШЁЩ‡ ШЁЪ©вЂЊШ§Щ†ШЇ Ш±Ш§ ШЁШ±Ш§ЫЊ Ш§ЫЊЩ† ШЇШіШЄЪЇШ§Щ‡ ЩѕШ§Ъ© Ъ©Щ† Щ€ ШЁШ§ ЫЊЪ© ШЄШ§Ш±ЫЊШ®Ъ†Щ‡ Ш®Ш§Щ„ЫЊ ШґШ±Щ€Ш№ Ъ©Щ†.",
+    "settingsMaintenanceTitle":  "Щ†ЪЇЩ‡вЂЊШЇШ§Ш±ЫЊ",
+    "settingsNotificationsSubtitle":  "ШЄЩ†ШёЫЊЩ…Ш§ШЄ Ш§Ш№Щ„Ш§Щ†вЂЊЩ‡Ш§ Ш±Ш§ Щ…ШЇЫЊШ±ЫЊШЄ Ъ©Щ†",
+    "settingsNotificationsTitle":  "Ш§Ш№Щ„Ш§Щ†вЂЊЩ‡Ш§",
+    "settingsPremiumSubtitle":  "ШЁШ№ШЇШ§Щ‹ Щ…ЫЊвЂЊШЄЩ€Ш§Щ†ЫЊЩ… Ш§ШґШЄШ±Ш§Ъ©вЂЊЩ‡Ш§ШЊ ЩѕШ±ШЇШ§Ш®ШЄ Щ€ Щ‡Щ…ЪЇШ§Щ…вЂЊШіШ§ШІЫЊ ЩѕШ±Щ€ЪЩ‡ Ш§ШЁШ±ЫЊ Ш±Ш§ Ш§ЫЊЩ†Ш¬Ш§ Щ€ШµЩ„ Ъ©Щ†ЫЊЩ….",
+    "settingsPremiumTitle":  "ШЁШ®Шґ ЩѕШ±ЫЊЩ…ЫЊЩ€Щ… ШўШІЩ…Ш§ЫЊШґЫЊ",
+    "settingsPrivacySubtitle":  "Щ…Ш­ШЄЩ€Ш§ЫЊ ШўШІЩ…Ш§ЫЊШґЫЊ Ш­Ш±ЫЊЩ… Ш®ШµЩ€ШµЫЊ",
+    "settingsPrivacyTitle":  "Ш­Ш±ЫЊЩ… Ш®ШµЩ€ШµЫЊ",
+    "settingsProfileName":  "Ъ©Ш§Ш±ШЁШ± SubFlix",
+    "settingsProfileTier":  "Ш№Ш¶Щ€ ЩѕШ±ЫЊЩ…ЫЊЩ€Щ…",
+    "settingsSubtitle":  "ШЄШ±Ш¬ЫЊШ­Ш§ШЄШЄ Ш±Ш§ Щ…ШЇЫЊШ±ЫЊШЄ Ъ©Щ†",
+    "settingsSupportSubtitle":  "ШµЩЃШ­Щ‡ Щ†Щ…Щ€Щ†Щ‡ ШЁШ±Ш§ЫЊ Ш±Ш§Щ‡Щ†Щ…Ш§ Щ€ ШЄЩ…Ш§Ші",
+    "settingsSupportTitle":  "ШЁШ®Шґ ЩѕШґШЄЫЊШЁШ§Щ†ЫЊ ШўШІЩ…Ш§ЫЊШґЫЊ",
+    "settingsTermsSubtitle":  "Щ…Ш­ШЄЩ€Ш§ЫЊ ШўШІЩ…Ш§ЫЊШґЫЊ ШґШ±Ш§ЫЊШ· Ш§ШіШЄЩЃШ§ШЇЩ‡",
+    "settingsTermsTitle":  "ШґШ±Ш§ЫЊШ· Ш§ШіШЄЩЃШ§ШЇЩ‡",
+    "settingsThemeLabel":  "ШёШ§Щ‡Ш±",
+    "settingsTitle":  "ШЄЩ†ШёЫЊЩ…Ш§ШЄ",
+    "settingsVersion":  "Щ†ШіШ®Щ‡ {version}",
+    "@settingsVersion":  {
+                             "placeholders":  {
+                                                  "version":  {
+
+                                                              }
+                                              }
+                         },
+    "splashHeadline":  "SubFlix",
+    "splashPreparing":  "ШЇШ± Ш­Ш§Щ„ ШўЩ…Ш§ШЇЩ‡вЂЊШіШ§ШІЫЊ Ш§ШіШЄЩ€ШЇЫЊЩ€ЫЊ ШІЫЊШ±Щ†Щ€ЫЊШі ШЄЩ€",
+    "splashSubtitle":  "ШЄШ±Ш¬Щ…Щ‡ ШІЫЊШ±Щ†Щ€ЫЊШі ШЁШ§ Щ‡Щ€Шґ Щ…ШµЩ†Щ€Ш№ЫЊ",
+    "startTranslation":  "ШґШ±Щ€Ш№ ШЄШ±Ш¬Щ…Щ‡",
+    "subtitleSourceDownloads":  "{downloads} ШЇШ§Щ†Щ„Щ€ШЇ",
+    "@subtitleSourceDownloads":  {
+                                     "placeholders":  {
+                                                          "downloads":  {
+
+                                                                        }
+                                                      }
+                                 },
+    "subtitleSourceFormatLabel":  "Щ…Щ†ШЁШ№ ШІЫЊШ±Щ†Щ€ЫЊШі {format}",
+    "@subtitleSourceFormatLabel":  {
+                                       "placeholders":  {
+                                                            "format":  {
+
+                                                                       }
+                                                        }
+                                   },
+    "subtitleSourceHiLabel":  "HI / SDH",
+    "subtitleSourceLines":  "{lineCount} Ш®Ш·",
+    "@subtitleSourceLines":  {
+                                 "placeholders":  {
+                                                      "lineCount":  {
+
+                                                                    }
+                                                  }
+                             },
+    "subtitleSourceRating":  "Ш§Щ…ШЄЫЊШ§ШІ {rating}",
+    "@subtitleSourceRating":  {
+                                  "placeholders":  {
+                                                       "rating":  {
+
+                                                                  }
+                                                   }
+                              },
+    "subtitleSourcesBannerMessage":  "ЫЊЪ© Щ…Щ†ШЁШ№ ШІЫЊШ±Щ†Щ€ЫЊШі Ш§Щ†ШЄШ®Ш§ШЁ Ъ©Щ† Щ€ Щ€Ш§Ш±ШЇ ШЄЩ†ШёЫЊЩ…Ш§ШЄ ШЄШ±Ш¬Щ…Щ‡вЂЊШ§ЫЊ ШґЩ€ Ъ©Щ‡ ШЁШ±Ш§ЫЊ ШІЩ…Ш§Щ†вЂЊШЁЩ†ШЇЫЊ ШІЫЊШ±Щ†Щ€ЫЊШі ШЁЩ‡ЫЊЩ†Щ‡ ШґШЇЩ‡ Ш§ШіШЄ.",
+    "subtitleSourcesBannerTitle":  "ШЄШ±Ш¬Щ…Щ‡ ШЁШ§ Щ‡Щ€Шґ Щ…ШµЩ†Щ€Ш№ЫЊ ШЇШ± ШЇШіШЄШ±Ші Ш§ШіШЄ",
+    "subtitleSourcesFailedTitle":  "ШЁШ§Ш±ЪЇШ°Ш§Ш±ЫЊ Щ…Щ†Ш§ШЁШ№ ШІЫЊШ±Щ†Щ€ЫЊШі Щ…Щ…Ъ©Щ† Щ†ШґШЇ",
+    "subtitleSourcesSubtitle":  "ШЁШ±Ш§ЫЊ {title}{target} ЫЊЪ© Щ…Щ†ШЁШ№ ШІЫЊШ±Щ†Щ€ЫЊШі Ш§Щ†ШЄШ®Ш§ШЁ Ъ©Щ† Щ€ ШЇШ± Щ…Ш±Ш­Щ„Щ‡ ШЁШ№ШЇ ШІШЁШ§Щ† Щ…Щ‚ШµШЇ Ш±Ш§ Щ…ШґШ®Шµ Ъ©Щ†.",
+    "@subtitleSourcesSubtitle":  {
+                                     "placeholders":  {
+                                                          "title":  {
+
+                                                                    },
+                                                          "target":  {
+
+                                                                     }
+                                                      }
+                                 },
+    "subtitleSourcesTitle":  "Щ…Щ†Ш§ШЁШ№ ШІЫЊШ±Щ†Щ€ЫЊШі Ш§Щ†ЪЇЩ„ЫЊШіЫЊ",
+    "targetLanguage":  "ШІШЁШ§Щ† Щ…Щ‚ШµШЇ",
+    "themeDark":  "ШЄЫЊШ±Щ‡",
+    "themeLight":  "Ш±Щ€ШґЩ†",
+    "themeSystem":  "ШіЫЊШіШЄЩ…",
+    "translateSetupAutoDetect":  "ШЄШґШ®ЫЊШµ Ш®Щ€ШЇЪ©Ш§Ш± ЩЃШ±Щ…ШЄ",
+    "translateSetupAutoDetectBody":  "ШіШ§Ш®ШЄШ§Ш± Щ…Щ†Ш§ШіШЁ Ш®Ш±Щ€Ш¬ЫЊ ШІЫЊШ±Щ†Щ€ЫЊШі Ш±Ш§ ШЁЩ‡вЂЊШµЩ€Ш±ШЄ Ш®Щ€ШЇЪ©Ш§Ш± Ш§Щ†ШЄШ®Ш§ШЁ Щ…ЫЊвЂЊЪ©Щ†ШЇ.",
+    "translateSetupLanguageTitle":  "ШЄШ±Ш¬Щ…Щ‡ ШЁЩ‡",
+    "translateSetupOptionsTitle":  "ЪЇШІЫЊЩ†Щ‡вЂЊЩ‡Ш§",
+    "translateSetupPreserveTiming":  "Ш­ЩЃШё ШІЩ…Ш§Щ†вЂЊШЁЩ†ШЇЫЊ",
+    "translateSetupPreserveTimingBody":  "ШІЩ…Ш§Щ†вЂЊШЁЩ†ШЇЫЊ Ш§ШµЩ„ЫЊ ШІЫЊШ±Щ†Щ€ЫЊШі Ш±Ш§ ШЁШ§ ЩЃШ§ЫЊЩ„ Щ…ШЁШЇШЈ Щ‡Щ…Ш§Щ‡Щ†ЪЇ Щ†ЪЇЩ‡ Щ…ЫЊвЂЊШЇШ§Ш±ШЇ.",
+    "translateSetupReadyBody":  "Ш¬Ш±ЫЊШ§Щ† ШЄШ±Ш¬Щ…Щ‡ Щ…Ш§ Ш§ЫЊЩ† ШІЫЊШ±Щ†Щ€ЫЊШі Ш±Ш§ ШЁШ§ Ш­ЩЃШё ШІЩ…Ш§Щ†вЂЊШЁЩ†ШЇЫЊ Щ€ ШіШ§Ш®ШЄШ§Ш± ШЄЩ…ЫЊШІ cueЩ‡Ш§ ШЁЩ‡ {language} ШЄШЁШЇЫЊЩ„ Щ…ЫЊвЂЊЪ©Щ†ШЇ.",
+    "@translateSetupReadyBody":  {
+                                     "placeholders":  {
+                                                          "language":  {
+
+                                                                       }
+                                                      }
+                                 },
+    "translateSetupReadyTitle":  "ШЄШ±Ш¬Щ…Щ‡ ШЁШ§ Щ‡Щ€Шґ Щ…ШµЩ†Щ€Ш№ЫЊ ШўЩ…Ш§ШЇЩ‡ Ш§ШіШЄ",
+    "translateSetupSelectLanguage":  "Ш§Щ†ШЄШ®Ш§ШЁ ШІШЁШ§Щ†",
+    "translateSetupSourceTitle":  "ШІЫЊШ±Щ†Щ€ЫЊШі Щ…ШЁШЇШЈ",
+    "translateSetupSubtitle":  "ШІШЁШ§Щ† Щ…Щ‚ШµШЇ Ш±Ш§ Ш§Щ†ШЄШ®Ш§ШЁ Ъ©Щ†ШЊ Щ…Щ†ШЁШ№ ШІЫЊШ±Щ†Щ€ЫЊШі Ш±Ш§ ШЁШ±Ш±ШіЫЊ Ъ©Щ† Щ€ ШЁШ№ШЇ Ъ©Ш§Ш± ШЄШ±Ш¬Щ…Щ‡ Ш±Ш§ ШЇШ± ШЁЪ©вЂЊШ§Щ†ШЇ ШґШ±Щ€Ш№ Ъ©Щ†.",
+    "translateSetupTitle":  "ШЄЩ†ШёЫЊЩ…Ш§ШЄ ШЄШ±Ш¬Щ…Щ‡",
+    "translationFailedMessage":  "Щ…ШґЪ©Щ„ЫЊ ЩѕЫЊШґ ШўЩ…ШЇ.",
+    "translationFailedTitle":  "ШЄШ±Ш¬Щ…Щ‡ Ъ©Ш§Щ…Щ„ Щ†ШґШЇ",
+    "translationPreviewHeader":  "ШІЫЊШ±Щ†Щ€ЫЊШівЂЊЩ‡Ш§ЫЊ ШЄШ±Ш¬Щ…Щ‡вЂЊШґШЇЩ‡ Ш±Ш§ ШЁШ±Ш±ШіЫЊ Ъ©Щ†",
+    "translationPreviewSearchHint":  "Ш¬ШіШЄШ¬Щ€ ШЇШ± Ш®Ш·Щ€Ш· ШІЫЊШ±Щ†Щ€ЫЊШі",
+    "translationPreviewSubtitle":  "ШЇШ± cueЩ‡Ш§ Ш¬ШіШЄШ¬Щ€ Ъ©Щ†ШЊ Ш­Ш§Щ„ШЄ Щ†Щ…Ш§ЫЊШґ Ш±Ш§ Ш№Щ€Ш¶ Ъ©Щ† Щ€ Щ€Щ‚ШЄЫЊ Щ†ШЄЫЊШ¬Щ‡ ШЇШ±ШіШЄ ШЁЩ€ШЇ Ш®Ш±Щ€Ш¬ЫЊ ШЁЪЇЫЊШ±.",
+    "translationPreviewTitle":  "ЩѕЫЊШґвЂЊЩ†Щ…Ш§ЫЊШґ ШЄШ±Ш¬Щ…Щ‡",
+    "translationProgressHeadline":  "ШЄШ±Ш¬Щ…Щ‡ ШІЫЊШ±Щ†Щ€ЫЊШі ШЁШ§ Щ‡Щ€Шґ Щ…ШµЩ†Щ€Ш№ЫЊ ШЇШ± Ш­Ш§Щ„ Ш§Щ†Ш¬Ш§Щ… Ш§ШіШЄ",
+    "translationProgressTitle":  "Ш±Щ€Щ†ШЇ ШЄШ±Ш¬Щ…Щ‡",
+    "translationResultCompleteSubtitle":  "ШІЫЊШ±Щ†Щ€ЫЊШі ШЄЩ€ ШЁШ±Ш§ЫЊ ЩѕЫЊШґвЂЊЩ†Щ…Ш§ЫЊШґ ЫЊШ§ ШЇШ§Щ†Щ„Щ€ШЇ ШўЩ…Ш§ШЇЩ‡ Ш§ШіШЄ.",
+    "translationResultCompleteTitle":  "ШЄШ±Ш¬Щ…Щ‡ Ъ©Ш§Щ…Щ„ ШґШЇ",
+    "translationResultConfidenceLabel":  "Щ…ЫЊШІШ§Щ† Ш§Ш·Щ…ЫЊЩ†Ш§Щ† ШЄШ±Ш¬Щ…Щ‡",
+    "translationResultDetailsTitle":  "Ш¬ШІШ¦ЫЊШ§ШЄ ШЄШ±Ш¬Щ…Щ‡",
+    "translationResultDownloadCta":  "ШЇШ§Щ†Щ„Щ€ШЇ ШІЫЊШ±Щ†Щ€ЫЊШі",
+    "translationResultHomeCta":  "ШЁШ§ШІЪЇШґШЄ ШЁЩ‡ Ш®Ш§Щ†Щ‡",
+    "translationResultMediaLabel":  "Ш№Щ†Щ€Ш§Щ† Ш§Ш«Ш±",
+    "translationResultMethodAi":  "ШЄШ±Ш¬Щ…Щ‡вЂЊШґШЇЩ‡ ШЁШ§ Щ‡Щ€Шґ Щ…ШµЩ†Щ€Ш№ЫЊ",
+    "translationResultMetricsTitle":  "ШґШ§Ш®ШµвЂЊЩ‡Ш§ЫЊ Ъ©ЫЊЩЃЫЊШЄ",
+    "translationResultPreviewCta":  "ЩѕЫЊШґвЂЊЩ†Щ…Ш§ЫЊШґ ШІЫЊШ±Щ†Щ€ЫЊШі",
+    "translationResultProcessedIn":  "ШЇШ± {duration} ЩѕШ±ШЇШ§ШІШґ ШґШЇ",
+    "@translationResultProcessedIn":  {
+                                          "placeholders":  {
+                                                               "duration":  {
+
+                                                                            }
+                                                           }
+                                      },
+    "translationResultSourceLabel":  "ШІШЁШ§Щ† Щ…ШЁШЇШЈ",
+    "translationResultTargetLabel":  "ШІШЁШ§Щ† Щ…Щ‚ШµШЇ",
+    "translationResultTimingLabel":  "ШЇЩ‚ШЄ ШІЩ…Ш§Щ†вЂЊШЁЩ†ШЇЫЊ",
+    "translationResultTimingPreserved":  "ШІЩ…Ш§Щ†вЂЊШЁЩ†ШЇЫЊ Ш­ЩЃШё ШґШЇЩ‡",
+    "translationResultWarning":  "ШЁШ№Ш¶ЫЊ Ш§ШµШ·Щ„Ш§Ш­Ш§ШЄ ШЄШ®ШµШµЫЊ ШґШ§ЫЊШЇ Щ‡Щ†Щ€ШІ ШЁШ±Ш§ЫЊ ШЇШ±Ъ© ШЁЩ‡ШЄШ± ШЁШ§ЩЃШЄ Ш¬Щ…Щ„Щ‡ ШЁЩ‡ ЫЊЪ© ШЁШ§ШІШЁЫЊЩ†ЫЊ Ш§Щ†ШіШ§Щ†ЫЊ ШіШ±ЫЊШ№ Щ†ЫЊШ§ШІ ШЇШ§ШґШЄЩ‡ ШЁШ§ШґЩ†ШЇ.",
+    "translationStageAligning":  "ШЇШ± Ш­Ш§Щ„ Щ‡Щ…Ш§Щ‡Щ†ЪЇвЂЊШіШ§ШІЫЊ ШІЩ…Ш§Щ†вЂЊЩ‡Ш§ Щ€ ЩЃШ¶Ш§ЫЊ ШµШ­Щ†Щ‡",
+    "translationStageGenerating":  "ШЇШ± Ш­Ш§Щ„ ШЄЩ€Щ„ЫЊШЇ ШЄШ±Ш¬Щ…Щ‡ ШІЫЊШ±Щ†Щ€ЫЊШі",
+    "translationStageIdle":  "ШЇШ± Ш§Щ†ШЄШёШ§Ш± ШЇШ±Ш®Щ€Ш§ШіШЄ ШЄШ±Ш¬Щ…Щ‡",
+    "translationStagePreparing":  "ШЇШ± Ш­Ш§Щ„ ШўЩ…Ш§ШЇЩ‡вЂЊШіШ§ШІЫЊ ШЁШіШЄЩ‡ ШІЫЊШ±Щ†Щ€ЫЊШі",
+    "translationStageQueued":  "ШЇШ± ШµЩЃ ШЄШ±Ш¬Щ…Щ‡",
+    "translationStageReadability":  "ШЇШ± Ш­Ш§Щ„ Ш§Ш№Щ…Ш§Щ„ ШЁШ§ШІШЁЫЊЩ†ЫЊ Ш®Щ€Ш§Щ†Ш§ЫЊЫЊ",
+    "translationStageReady":  "ШЄШ±Ш¬Щ…Щ‡ ШўЩ…Ш§ШЇЩ‡ Ш§ШіШЄ",
+    "tryAgain":  "ШЇЩ€ШЁШ§Ш±Щ‡ Ш§Щ…ШЄШ­Ш§Щ† Ъ©Щ†",
+    "uploadChooseFile":  "Ш§Щ†ШЄШ®Ш§ШЁ ЩЃШ§ЫЊЩ„ ШІЫЊШ±Щ†Щ€ЫЊШі",
+    "uploadChooseFileShort":  "Ш§Щ†ШЄШ®Ш§ШЁ ЩЃШ§ЫЊЩ„",
+    "uploadContinueSetup":  "Ш§ШЇШ§Щ…Щ‡ ШЁЩ‡ ШЄЩ†ШёЫЊЩ…Ш§ШЄ ШЄШ±Ш¬Щ…Щ‡",
+    "uploadEnglishSource":  "Щ…Щ†ШЁШ№ Ш§Щ†ЪЇЩ„ЫЊШіЫЊ",
+    "uploadFailedFallback":  "Щ„Ш·ЩЃШ§Щ‹ ЫЊЪ© ЩЃШ§ЫЊЩ„ ШІЫЊШ±Щ†Щ€ЫЊШі ШЇЫЊЪЇШ± Ш±Ш§ Ш§Щ…ШЄШ­Ш§Щ† Ъ©Щ†.",
+    "uploadFailedMessage":  "Щ†ШЄЩ€Ш§Щ†ШіШЄЫЊЩ… Ш§ЫЊЩ† ЩЃШ§ЫЊЩ„ ШІЫЊШ±Щ†Щ€ЫЊШі Ш±Ш§ ШЁШ®Щ€Ш§Щ†ЫЊЩ…. ЫЊЪ© ЩЃШ§ЫЊЩ„ ШЇЫЊЪЇШ± ЫЊШ§ Ш®Ш±Щ€Ш¬ЫЊ ШіШЁЪ©вЂЊШЄШ± Ш±Ш§ Ш§Щ…ШЄШ­Ш§Щ† Ъ©Щ†.",
+    "uploadFailedTitle":  "Щ€Ш§Ш±ШЇ Ъ©Ш±ШЇЩ† ЩЃШ§ЫЊЩ„ Щ†Ш§Щ…Щ€ЩЃЩ‚ ШЁЩ€ШЇ",
+    "uploadIntroSubtitle":  "ЫЊЪ© ЩЃШ§ЫЊЩ„ Ш§Щ†ЪЇЩ„ЫЊШіЫЊ `.srt` ЫЊШ§ `.vtt` Щ€Ш§Ш±ШЇ Ъ©Щ†ШЊ ШЁЪЇШ°Ш§Ш± ШЁЪ©вЂЊШ§Щ†ШЇ ШўЩ† Ш±Ш§ ШЁШ±Ш±ШіЫЊ Щ€ ЩѕШ±ШЇШ§ШІШґ Ъ©Щ†ШЇШЊ ШіЩѕШі Щ€Ш§Ш±ШЇ Щ…Ш±Ш­Щ„Щ‡ ШЄЩ†ШёЫЊЩ… ШЄШ±Ш¬Щ…Щ‡ ШґЩ€.",
+    "uploadIntroTitle":  "ЩЃШ§ЫЊЩ„ ШІЫЊШ±Щ†Щ€ЫЊШі Ш®Щ€ШЇШЄ Ш±Ш§ ШЁЫЊШ§Щ€Ш±",
+    "uploadLineCount":  "{lineCount} Ш®Ш·",
+    "@uploadLineCount":  {
+                             "placeholders":  {
+                                                  "lineCount":  {
+
+                                                                }
+                                              }
+                         },
+    "uploadMetadataTitle":  "Ш¬ШІШ¦ЫЊШ§ШЄ ШІЫЊШ±Щ†Щ€ЫЊШі",
+    "uploadOpeningPicker":  "ШЇШ± Ш­Ш§Щ„ ШЁШ§ШІ Ъ©Ш±ШЇЩ† Ш§Щ†ШЄШ®Ш§ШЁвЂЊЪЇШ± ЩЃШ§ЫЊЩ„...",
+    "uploadPickSubtitle":  "ЩЃШ§ЫЊЩ„ ШІЫЊШ±Щ†Щ€ЫЊШі Ш±Ш§ Ш§Щ†ШЄШ®Ш§ШЁ Ъ©Щ†",
+    "uploadPickedFile":  "ЩЃШ§ЫЊЩ„ ШІЫЊШ±Щ†Щ€ЫЊШі Ш§Щ†ШЄШ®Ш§ШЁ ШґШЇ",
+    "uploadReadyTitle":  "ШўЩ…Ш§ШЇЩ‡ ШЄШ±Ш¬Щ…Щ‡",
+    "uploadSubtitleTitle":  "ШўЩѕЩ„Щ€ШЇ ШІЫЊШ±Щ†Щ€ЫЊШі",
+    "uploadSupportedFormatsSubtitle":  "ЩЃШ§ЫЊЩ„вЂЊЩ‡Ш§ЫЊ ШІЫЊШ±Щ†Щ€ЫЊШі Ш§Щ†ЪЇЩ„ЫЊШіЫЊ `.srt` Щ€ `.vtt`",
+    "uploadSupportedFormatsTitle":  "ЩЃШ±Щ…ШЄвЂЊЩ‡Ш§ЫЊ ЩѕШґШЄЫЊШЁШ§Щ†ЫЊвЂЊШґШЇЩ‡",
+    "uploadUseDemoFile":  "Ш§ШіШЄЩЃШ§ШЇЩ‡ Ш§ШІ ЩЃШ§ЫЊЩ„ Щ†Щ…Щ€Щ†Щ‡",
+    "authAccountSectionTitle":  "حساب",
+    "authAlreadySignedInTitle":  "شما از قبل وارد شده‌اید",
+    "authAlreadySignedInMessage":  "این دستگاه از قبل با حساب {email} متصل است.",
+    "authBackToAccount":  "بازگشت به حساب",
+    "authBackToSignIn":  "بازگشت به ورود",
+    "authCheckInboxTitle":  "صندوق ورودی خود را بررسی کنید",
+    "authConfirmEmailAction":  "تأیید ایمیل",
+    "authConfirmEmailHint":  "از توکن تأیید ارسال‌شده به {email} استفاده کنید.",
+    "authConfirmEmailSubtitle":  "برای تکمیل فعال‌سازی این حساب، توکن تأیید را از ایمیل خود وارد کنید.",
+    "authConfirmEmailSuccess":  "ایمیل تأیید شد. اکنون می‌توانید وارد شوید.",
+    "authConfirmEmailTitle":  "ایمیل خود را تأیید کنید",
+    "authConfirmPasswordLabel":  "تأیید رمز عبور",
+    "authContinueToReset":  "ادامه برای بازنشانی",
+    "authContinueWithGoogle":  "ادامه با Google",
+    "authCreateAccountAction":  "ایجاد حساب",
+    "authDebugTokenLabel":  "توکن اشکال‌زدایی: {token}",
+    "authDisplayNameLabel":  "نام نمایشی",
+    "authEmailLabel":  "آدرس ایمیل",
+    "authEyebrow":  "فضای امن",
+    "authFieldRequired":  "این فیلد الزامی است.",
+    "authForgotPasswordAction":  "ارسال لینک بازنشانی",
+    "authForgotPasswordDebugMessage":  "برای این محیط اشکال‌زدایی یک توکن بازنشانی بازگردانده شد. می‌توانید مستقیم به فرم بازنشانی بروید.",
+    "authForgotPasswordLink":  "رمز عبور را فراموش کرده‌اید؟",
+    "authForgotPasswordSubtitle":  "ایمیل خود را وارد کنید تا از بک‌اند درخواست بازنشانی رمز عبور برای این حساب ارسال شود.",
+    "authForgotPasswordSuccess":  "اگر این حساب وجود داشته باشد، پیام بازنشانی رمز عبور ارسال شده است.",
+    "authForgotPasswordTitle":  "رمز عبور خود را بازنشانی کنید",
+    "authGoogleHelper":  "ورود با Google از Firebase OAuth استفاده می‌کند و زمانی کار خواهد کرد که این برنامه به یک پروژه Firebase متصل شود.",
+    "authGoogleShortAction":  "Google",
+    "authHaveAccountLink":  "از قبل حساب دارید؟ وارد شوید",
+    "authInvalidEmail":  "یک آدرس ایمیل معتبر وارد کنید.",
+    "authNewPasswordLabel":  "رمز عبور جدید",
+    "authNoAccountLink":  "حساب ندارید؟ یکی بسازید",
+    "authOrDivider":  "یا",
+    "authPasswordLabel":  "رمز عبور",
+    "authPasswordMismatch":  "رمزهای عبور یکسان نیستند.",
+    "authPasswordTooShort":  "حداقل از ۸ کاراکتر استفاده کنید.",
+    "authProfileRefreshed":  "اطلاعات حساب به‌روزرسانی شد.",
+    "authRefreshProfileAction":  "به‌روزرسانی پروفایل",
+    "authRefreshProfileSubtitle":  "جدیدترین اطلاعات پروفایل را از بک‌اند بارگیری کنید.",
+    "authResetPasswordAction":  "ذخیره رمز عبور جدید",
+    "authResetPasswordHint":  "با استفاده از توکن موجود در ایمیل، رمز عبور {email} را بازنشانی کنید.",
+    "authResetPasswordSubtitle":  "توکن بازنشانی را وارد کنید و یک رمز عبور جدید برای این حساب انتخاب کنید.",
+    "authResetPasswordSuccess":  "رمز عبور به‌روزرسانی شد. لطفاً دوباره وارد شوید.",
+    "authResetPasswordTitle":  "یک رمز عبور جدید انتخاب کنید",
+    "authSignInAction":  "ورود",
+    "authSignInSubtitle":  "این برنامه را به حساب SubFlix خود وصل کنید تا داده‌های پروفایل همگام شود و جریان‌های احراز هویت‌شده بک‌اند فعال شوند.",
+    "authSignInSuccess":  "ورود با موفقیت انجام شد.",
+    "authSignInTitle":  "خوش برگشتید",
+    "authSignedInCardSubtitle":  "متصل به عنوان {email}",
+    "authSignedOutCardSubtitle":  "برای مدیریت حساب، استفاده از Firebase OAuth و آماده‌سازی قابلیت‌های احراز هویت‌شده برای همگام‌سازی آینده وارد شوید.",
+    "authSignedOutCardTitle":  "به SubFlix وارد شوید",
+    "authSignOutAction":  "خروج",
+    "authSignOutSubtitle":  "نشست فعلی این دستگاه را لغو و توکن‌های محلی را پاک کنید.",
+    "authSignOutSuccess":  "در این دستگاه از حساب خارج شدید.",
+    "authSignUpAction":  "ایجاد حساب من",
+    "authSignUpSubtitle":  "یک حساب ایجاد کنید تا این برنامه بتواند از پروفایل احراز هویت‌شده و جریان‌های نشست بک‌اند استفاده کند.",
+    "authSignUpSuccess":  "حساب ایجاد شد. تأیید ایمیل را ادامه دهید.",
+    "authSignUpTitle":  "حساب خود را ایجاد کنید",
+    "authVerificationStatusTitle":  "تأیید ایمیل",
+    "authVerificationTokenLabel":  "توکن تأیید",
+    "authVerifiedStatus":  "تأیید شده",
+    "authUnverifiedStatus":  "در انتظار تأیید"
 }

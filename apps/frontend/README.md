@@ -153,6 +153,65 @@ dart run build_runner build --delete-conflicting-outputs
 flutter run
 ```
 
+### 4️⃣ Configure Firebase auth
+
+SubFlix now has a real Firebase-backed Google sign-in path. This repo does not
+check in Firebase project secrets, so provide them at run time with
+`--dart-define` values.
+
+Current app identifiers:
+
+- Android: `com.subflix.app.subflix`
+- iOS: `com.subflix.app.subflix`
+- macOS: `com.subflix.app.subflix`
+
+Required base Firebase values:
+
+- `FIREBASE_PROJECT_ID`
+- `FIREBASE_MESSAGING_SENDER_ID`
+- `FIREBASE_STORAGE_BUCKET`
+
+Required per-platform values:
+
+- Android: `FIREBASE_ANDROID_API_KEY`, `FIREBASE_ANDROID_APP_ID`
+- iOS: `FIREBASE_IOS_API_KEY`, `FIREBASE_IOS_APP_ID`
+- macOS: `FIREBASE_MACOS_API_KEY`, `FIREBASE_MACOS_APP_ID`
+- Web: `FIREBASE_WEB_API_KEY`, `FIREBASE_WEB_APP_ID`
+
+Google sign-in values:
+
+- `GOOGLE_SERVER_CLIENT_ID`
+- `GOOGLE_CLIENT_ID_IOS`
+- `GOOGLE_CLIENT_ID_MACOS`
+- `GOOGLE_CLIENT_ID_WEB`
+
+Example:
+
+```bash
+flutter run \
+  --dart-define=SUBFLIX_API_BASE_URL=http://localhost:3000 \
+  --dart-define=FIREBASE_PROJECT_ID=your-project-id \
+  --dart-define=FIREBASE_MESSAGING_SENDER_ID=1234567890 \
+  --dart-define=FIREBASE_STORAGE_BUCKET=your-project.appspot.com \
+  --dart-define=FIREBASE_ANDROID_API_KEY=android-api-key \
+  --dart-define=FIREBASE_ANDROID_APP_ID=1:1234567890:android:abcdef \
+  --dart-define=FIREBASE_IOS_API_KEY=ios-api-key \
+  --dart-define=FIREBASE_IOS_APP_ID=1:1234567890:ios:abcdef \
+  --dart-define=FIREBASE_MACOS_API_KEY=macos-api-key \
+  --dart-define=FIREBASE_MACOS_APP_ID=1:1234567890:ios:abcdef \
+  --dart-define=GOOGLE_SERVER_CLIENT_ID=server-client-id.apps.googleusercontent.com \
+  --dart-define=GOOGLE_CLIENT_ID_IOS=ios-client-id.apps.googleusercontent.com \
+  --dart-define=GOOGLE_CLIENT_ID_MACOS=macos-client-id.apps.googleusercontent.com
+```
+
+Web builds also need:
+
+- `FIREBASE_WEB_AUTH_DOMAIN`
+- `FIREBASE_WEB_MEASUREMENT_ID`
+
+If you later switch to FlutterFire-generated config, you can replace the
+runtime values in [firebase_options.dart](/C:/Users/Pedi/subflix-front/lib/core/app/firebase_options.dart).
+
 ---
 
 ## 🧪 Development Commands

@@ -8,6 +8,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:subflix/core/app/app_config.dart';
+import 'package:subflix/core/app/firebase_options.dart';
 import 'package:subflix/core/network/accept_language.dart';
 import 'package:subflix/core/network/auth_session_interceptor.dart';
 import 'package:subflix/core/network/request_identity.dart';
@@ -120,8 +121,14 @@ FirebaseOAuthService firebaseOAuthService(Ref ref) {
     firebaseAuth: ref.watch(firebaseAuthProvider),
     googleSignIn: ref.watch(googleSignInProvider),
     initializeFirebase: () async {
+      final options = DefaultFirebaseOptions.currentPlatform;
+      if (options == null) {
+        throw StateError(
+          'Firebase runtime options are missing. Provide the FIREBASE_* and GOOGLE_* dart-defines documented in README.md.',
+        );
+      }
       if (Firebase.apps.isEmpty) {
-        await Firebase.initializeApp();
+        await Firebase.initializeApp(options: options);
       }
     },
   );

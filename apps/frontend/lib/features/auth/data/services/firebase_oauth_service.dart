@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'package:subflix/core/app/firebase_options.dart';
+
 /// Handles Google sign-in and converts it into a Firebase ID token.
 class FirebaseOAuthService {
   FirebaseOAuthService({
@@ -19,11 +21,14 @@ class FirebaseOAuthService {
   Future<String> signInWithGoogleIdToken() async {
     try {
       await _initializeFirebase();
-      _googleInitialization ??= _googleSignIn.initialize();
+      _googleInitialization ??= _googleSignIn.initialize(
+        clientId: DefaultFirebaseOptions.googleClientId,
+        serverClientId: DefaultFirebaseOptions.serverClientId,
+      );
       await _googleInitialization;
     } on Exception catch (error) {
       throw FirebaseOAuthException(
-        'Firebase is not configured for this app yet. Add the Firebase app files before using Google sign-in.',
+        'Firebase is not configured for this app yet. Add the documented FIREBASE_* and GOOGLE_* values before using Google sign-in.',
         cause: error,
       );
     }

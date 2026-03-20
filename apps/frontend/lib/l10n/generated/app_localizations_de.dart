@@ -12,225 +12,226 @@ class AppLocalizationsDe extends AppLocalizations {
   String get appTitle => 'SubFlix';
 
   @override
-  String get authAccountSectionTitle => 'Account';
+  String get authAccountSectionTitle => 'Konto';
 
   @override
-  String get authAlreadySignedInTitle => 'You are already signed in';
+  String get authAlreadySignedInTitle => 'Du bist bereits angemeldet';
 
   @override
   String authAlreadySignedInMessage(Object email) {
-    return 'This device is already connected as $email.';
+    return 'Dieses Gerät ist bereits als $email verbunden.';
   }
 
   @override
-  String get authBackToAccount => 'Back to account';
+  String get authBackToAccount => 'Zurück zum Konto';
 
   @override
-  String get authBackToSignIn => 'Back to sign in';
+  String get authBackToSignIn => 'Zurück zur Anmeldung';
 
   @override
-  String get authCheckInboxTitle => 'Check your inbox';
+  String get authCheckInboxTitle => 'Posteingang prüfen';
 
   @override
-  String get authConfirmEmailAction => 'Confirm email';
+  String get authConfirmEmailAction => 'E-Mail bestätigen';
 
   @override
   String authConfirmEmailHint(Object email) {
-    return 'Use the verification token sent to $email.';
+    return 'Verwende den Bestätigungscode, der an $email gesendet wurde.';
   }
 
   @override
   String get authConfirmEmailSubtitle =>
-      'Paste the verification token from your email to finish activating this account.';
+      'Füge den Bestätigungscode aus deiner E-Mail ein, um dieses Konto vollständig zu aktivieren.';
 
   @override
-  String get authConfirmEmailSuccess => 'Email confirmed. You can sign in now.';
+  String get authConfirmEmailSuccess =>
+      'E-Mail bestätigt. Du kannst dich jetzt anmelden.';
 
   @override
-  String get authConfirmEmailTitle => 'Verify your email';
+  String get authConfirmEmailTitle => 'Bestätige deine E-Mail';
 
   @override
-  String get authConfirmPasswordLabel => 'Confirm password';
+  String get authConfirmPasswordLabel => 'Passwort bestätigen';
 
   @override
-  String get authContinueToReset => 'Continue to reset';
+  String get authContinueToReset => 'Zum Zurücksetzen fortfahren';
 
   @override
-  String get authContinueWithGoogle => 'Continue with Google';
+  String get authContinueWithGoogle => 'Mit Google fortfahren';
 
   @override
-  String get authCreateAccountAction => 'Create account';
+  String get authCreateAccountAction => 'Konto erstellen';
 
   @override
   String authDebugTokenLabel(Object token) {
-    return 'Debug token: $token';
+    return 'Debug-Token: $token';
   }
 
   @override
-  String get authDisplayNameLabel => 'Display name';
+  String get authDisplayNameLabel => 'Anzeigename';
 
   @override
-  String get authEmailLabel => 'Email address';
+  String get authEmailLabel => 'E-Mail-Adresse';
 
   @override
-  String get authEyebrow => 'Secure workspace';
+  String get authEyebrow => 'Sicherer Bereich';
 
   @override
-  String get authFieldRequired => 'This field is required.';
+  String get authFieldRequired => 'Dieses Feld ist erforderlich.';
 
   @override
-  String get authForgotPasswordAction => 'Send reset link';
+  String get authForgotPasswordAction => 'Link zum Zurücksetzen senden';
 
   @override
   String get authForgotPasswordDebugMessage =>
-      'A reset token was returned for this debug environment. You can continue directly into the reset form.';
+      'Für diese Debug-Umgebung wurde ein Zurücksetzungs-Token zurückgegeben. Du kannst direkt zum Formular zum Zurücksetzen gehen.';
 
   @override
-  String get authForgotPasswordLink => 'Forgot password?';
+  String get authForgotPasswordLink => 'Passwort vergessen?';
 
   @override
   String get authForgotPasswordSubtitle =>
-      'Enter your email and we will request a password reset from the backend for this account.';
+      'Gib deine E-Mail-Adresse ein und wir fordern für dieses Konto ein Passwort-Reset beim Backend an.';
 
   @override
   String get authForgotPasswordSuccess =>
-      'If the account exists, a password reset message has been sent.';
+      'Falls das Konto existiert, wurde eine Nachricht zum Zurücksetzen des Passworts gesendet.';
 
   @override
-  String get authForgotPasswordTitle => 'Reset your password';
+  String get authForgotPasswordTitle => 'Passwort zurücksetzen';
 
   @override
   String get authGoogleHelper =>
-      'Google sign-in uses Firebase OAuth and will work once this app is connected to a Firebase project.';
+      'Die Google-Anmeldung verwendet Firebase OAuth und funktioniert, sobald diese App mit einem Firebase-Projekt verbunden ist.';
 
   @override
   String get authGoogleShortAction => 'Google';
 
   @override
-  String get authHaveAccountLink => 'Already have an account? Sign in';
+  String get authHaveAccountLink => 'Du hast bereits ein Konto? Anmelden';
 
   @override
-  String get authInvalidEmail => 'Enter a valid email address.';
+  String get authInvalidEmail => 'Gib eine gültige E-Mail-Adresse ein.';
 
   @override
-  String get authNewPasswordLabel => 'New password';
+  String get authNewPasswordLabel => 'Neues Passwort';
 
   @override
-  String get authNoAccountLink => 'Need an account? Create one';
+  String get authNoAccountLink => 'Du brauchst ein Konto? Erstelle eins';
 
   @override
-  String get authOrDivider => 'or';
+  String get authOrDivider => 'oder';
 
   @override
-  String get authPasswordLabel => 'Password';
+  String get authPasswordLabel => 'Passwort';
 
   @override
-  String get authPasswordMismatch => 'Passwords do not match.';
+  String get authPasswordMismatch => 'Die Passwörter stimmen nicht überein.';
 
   @override
-  String get authPasswordTooShort => 'Use at least 8 characters.';
+  String get authPasswordTooShort => 'Verwende mindestens 8 Zeichen.';
 
   @override
-  String get authProfileRefreshed => 'Account details refreshed.';
+  String get authProfileRefreshed => 'Kontodaten aktualisiert.';
 
   @override
-  String get authRefreshProfileAction => 'Refresh profile';
+  String get authRefreshProfileAction => 'Profil aktualisieren';
 
   @override
   String get authRefreshProfileSubtitle =>
-      'Load the latest profile data from the backend.';
+      'Die neuesten Profildaten aus dem Backend laden.';
 
   @override
-  String get authResetPasswordAction => 'Save new password';
+  String get authResetPasswordAction => 'Neues Passwort speichern';
 
   @override
   String authResetPasswordHint(Object email) {
-    return 'Reset the password for $email using the token from your email.';
+    return 'Setze das Passwort für $email mit dem Code aus deiner E-Mail zurück.';
   }
 
   @override
   String get authResetPasswordSubtitle =>
-      'Enter the reset token and choose a new password for this account.';
+      'Gib den Zurücksetzungs-Code ein und wähle ein neues Passwort für dieses Konto.';
 
   @override
   String get authResetPasswordSuccess =>
-      'Password updated. Please sign in again.';
+      'Passwort aktualisiert. Bitte melde dich erneut an.';
 
   @override
-  String get authResetPasswordTitle => 'Choose a new password';
+  String get authResetPasswordTitle => 'Wähle ein neues Passwort';
 
   @override
-  String get authSignInAction => 'Sign in';
+  String get authSignInAction => 'Anmelden';
 
   @override
   String get authSignInSubtitle =>
-      'Connect this app to your SubFlix account to sync profile data and unlock authenticated backend flows.';
+      'Verbinde diese App mit deinem SubFlix-Konto, um Profildaten zu synchronisieren und authentifizierte Backend-Abläufe freizuschalten.';
 
   @override
-  String get authSignInSuccess => 'Signed in successfully.';
+  String get authSignInSuccess => 'Erfolgreich angemeldet.';
 
   @override
-  String get authSignInTitle => 'Welcome back';
+  String get authSignInTitle => 'Willkommen zurück';
 
   @override
   String authSignedInCardSubtitle(Object email) {
-    return 'Connected as $email';
+    return 'Verbunden als $email';
   }
 
   @override
   String get authSignedOutCardSubtitle =>
-      'Sign in to manage your account, use Firebase OAuth, and keep authenticated features ready for future sync.';
+      'Melde dich an, um dein Konto zu verwalten, Firebase OAuth zu nutzen und authentifizierte Funktionen für spätere Synchronisierung vorzubereiten.';
 
   @override
-  String get authSignedOutCardTitle => 'Sign in to SubFlix';
+  String get authSignedOutCardTitle => 'Bei SubFlix anmelden';
 
   @override
-  String get authSignOutAction => 'Sign out';
+  String get authSignOutAction => 'Abmelden';
 
   @override
   String get authSignOutSubtitle =>
-      'Revoke the current session for this device and clear local tokens.';
+      'Die aktuelle Sitzung auf diesem Gerät widerrufen und lokale Tokens löschen.';
 
   @override
-  String get authSignOutSuccess => 'Signed out on this device.';
+  String get authSignOutSuccess => 'Auf diesem Gerät abgemeldet.';
 
   @override
-  String get authSignUpAction => 'Create my account';
+  String get authSignUpAction => 'Mein Konto erstellen';
 
   @override
   String get authSignUpSubtitle =>
-      'Create an account so this app can use the backend\'s authenticated profile and session flows.';
+      'Erstelle ein Konto, damit diese App das authentifizierte Profil und die Sitzungsabläufe des Backends nutzen kann.';
 
   @override
   String get authSignUpSuccess =>
-      'Account created. Continue with email verification.';
+      'Konto erstellt. Fahre mit der E-Mail-Bestätigung fort.';
 
   @override
-  String get authSignUpTitle => 'Create your account';
+  String get authSignUpTitle => 'Erstelle dein Konto';
 
   @override
-  String get authVerificationStatusTitle => 'Email verification';
+  String get authVerificationStatusTitle => 'E-Mail-Bestätigung';
 
   @override
-  String get authVerificationTokenLabel => 'Verification token';
+  String get authVerificationTokenLabel => 'Bestätigungscode';
 
   @override
-  String get authVerifiedStatus => 'Verified';
+  String get authVerifiedStatus => 'Bestätigt';
 
   @override
-  String get authUnverifiedStatus => 'Verification pending';
+  String get authUnverifiedStatus => 'Bestätigung ausstehend';
 
   @override
   String get brandSubtitleCompact => 'Untertitel-Intelligenz';
 
   @override
-  String get brandSubtitleFull => 'KI-Untertitelübersetzungsstudio';
+  String get brandSubtitleFull => 'KI-UntertitelР“Сbersetzungsstudio';
 
   @override
   String get comingSoonMessage => 'Dieser Bildschirm wird noch vorbereitet.';
 
   @override
-  String get comingSoonTitle => 'Demnächst';
+  String get comingSoonTitle => 'DemnР“В¤chst';
 
   @override
   String exportFailedSnack(Object error) {
@@ -238,7 +239,7 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get exportSubtitleLabel => 'Übersetzten Untertitel exportieren';
+  String get exportSubtitleLabel => 'Р“Сљbersetzten Untertitel exportieren';
 
   @override
   String exportedSnack(Object fileName, Object path) {
@@ -253,11 +254,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get heroBody =>
-      'Wähle zwischen einem durchsuchbaren Titelkatalog oder direktem Dateiupload und sieh dir ausgearbeitete Untertitel in wenigen Minuten an oder exportiere sie.';
+      'WР“В¤hle zwischen einem durchsuchbaren Titelkatalog oder direktem Dateiupload und sieh dir ausgearbeitete Untertitel in wenigen Minuten an oder exportiere sie.';
 
   @override
   String get heroHeadline =>
-      'Übersetze Film- und Serienuntertitel mit einem Workflow auf Studio-Niveau.';
+      'Р“Сљbersetze Film- und Serienuntertitel mit einem Workflow auf Studio-Niveau.';
 
   @override
   String get heroSearchCta => 'Film / Serie suchen';
@@ -272,7 +273,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get heroStatMockTitle => 'Mock-APIs';
 
   @override
-  String get heroStatMockValue => 'Backend-fähige Schnittstelle';
+  String get heroStatMockValue => 'Backend-fР“В¤hige Schnittstelle';
 
   @override
   String get heroStatPathsTitle => '2 Wege';
@@ -282,35 +283,35 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get heroSubtitle =>
-      'Durchsuche Film- und Serienkataloge, wähle Quellen und exportiere in Minuten sauber ausgearbeitete Übersetzungen.';
+      'Durchsuche Film- und Serienkataloge, wР“В¤hle Quellen und exportiere in Minuten sauber ausgearbeitete Р“Сљbersetzungen.';
 
   @override
-  String get heroTitle => 'Untertitel schneller übersetzen';
+  String get heroTitle => 'Untertitel schneller Р“Сbersetzen';
 
   @override
   String get heroUploadCta => 'Untertitel hochladen';
 
   @override
   String historyCountLabel(Object count) {
-    return '$count Übersetzungen';
+    return '$count Р“Сљbersetzungen';
   }
 
   @override
   String get historyEmptyMessage =>
-      'Deine übersetzten Untertitelaufträge erscheinen hier, sobald du einen Such- oder Upload-Ablauf abgeschlossen hast.';
+      'Deine Р“Сbersetzten UntertitelauftrР“В¤ge erscheinen hier, sobald du einen Such- oder Upload-Ablauf abgeschlossen hast.';
 
   @override
   String get historyEmptyTitle => 'Der Verlauf ist leer';
 
   @override
   String get historyFailedItemMessage =>
-      'Übersetzung fehlgeschlagen. Tippe, um neu zu starten.';
+      'Р“Сљbersetzung fehlgeschlagen. Tippe, um neu zu starten.';
 
   @override
   String get historyFailedTitle => 'Verlauf konnte nicht geladen werden';
 
   @override
-  String get historyFilterAiTranslated => 'Mit KI übersetzt';
+  String get historyFilterAiTranslated => 'Mit KI Р“Сbersetzt';
 
   @override
   String get historyFilterAll => 'Alle';
@@ -332,35 +333,35 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get historySubtitle =>
-      'Öffne frühere Untertitelaufträge erneut, prüfe die Vorschau noch einmal oder exportiere sie später.';
+      'Р“вЂ“ffne frР“Сhere UntertitelauftrР“В¤ge erneut, prР“Сfe die Vorschau noch einmal oder exportiere sie spР“В¤ter.';
 
   @override
-  String get historyTitle => 'Übersetzungsverlauf';
+  String get historyTitle => 'Р“Сљbersetzungsverlauf';
 
   @override
   String get homeFailedRecentTitle =>
-      'Letzte Aufträge konnten nicht geladen werden';
+      'Letzte AuftrР“В¤ge konnten nicht geladen werden';
 
   @override
   String get homeFutureSubtitle =>
-      'Austauschbare Mock-Repositories schützen den UI-Code vor Änderungen im Backend.';
+      'Austauschbare Mock-Repositories schР“Сtzen den UI-Code vor Р“вЂћnderungen im Backend.';
 
   @override
   String get homeFutureTitle => 'Zukunftssichere Repositories';
 
   @override
   String get homeNoRecentMessage =>
-      'Starte mit einer Filmsuche oder lade eine Untertiteldatei hoch, dann erscheinen deine letzten Übersetzungen hier.';
+      'Starte mit einer Filmsuche oder lade eine Untertiteldatei hoch, dann erscheinen deine letzten Р“Сљbersetzungen hier.';
 
   @override
-  String get homeNoRecentTitle => 'Noch keine letzten Aufträge';
+  String get homeNoRecentTitle => 'Noch keine letzten AuftrР“В¤ge';
 
   @override
   String get homePreviewSubtitle =>
-      'Prüfe Ergebnisse vor dem Export in der Original-, übersetzten oder zweisprachigen Ansicht.';
+      'PrР“Сfe Ergebnisse vor dem Export in der Original-, Р“Сbersetzten oder zweisprachigen Ansicht.';
 
   @override
-  String get homePreviewTitle => 'Vorschau-orientierter Übersetzungsablauf';
+  String get homePreviewTitle => 'Vorschau-orientierter Р“Сљbersetzungsablauf';
 
   @override
   String get homeQuickHistory => 'Verlauf';
@@ -373,20 +374,20 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get homeRecentJobsSubtitle =>
-      'Öffne deine neuesten Untertitel-Sitzungen erneut, ohne von vorn zu beginnen.';
+      'Р“вЂ“ffne deine neuesten Untertitel-Sitzungen erneut, ohne von vorn zu beginnen.';
 
   @override
-  String get homeRecentJobsTitle => 'Letzte Aufträge';
+  String get homeRecentJobsTitle => 'Letzte AuftrР“В¤ge';
 
   @override
   String get homeSearchPlaceholder => 'Filme oder Serien suchen...';
 
   @override
   String get homeStatesSubtitle =>
-      'Lade-, Leer-, Retry-, Validierungs- und Mock-Offline-Szenarien gehören von Anfang an zur UX.';
+      'Lade-, Leer-, Retry-, Validierungs- und Mock-Offline-Szenarien gehР“В¶ren von Anfang an zur UX.';
 
   @override
-  String get homeStatesTitle => 'Saubere Zustände inklusive';
+  String get homeStatesTitle => 'Saubere ZustР“В¤nde inklusive';
 
   @override
   String get homeTrendingNow => 'Gerade im Trend';
@@ -402,10 +403,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get homeViewAll => 'Alle anzeigen';
 
   @override
-  String get homeWelcomeSubtitle => 'Untertitel finden und übersetzen';
+  String get homeWelcomeSubtitle => 'Untertitel finden und Р“Сbersetzen';
 
   @override
-  String get homeWelcomeTitle => 'Willkommen zurück';
+  String get homeWelcomeTitle => 'Willkommen zurР“Сck';
 
   @override
   String jobConfidence(Object level) {
@@ -413,36 +414,36 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get jobOpenPreview => 'Vorschau öffnen';
+  String get jobOpenPreview => 'Vorschau Р“В¶ffnen';
 
   @override
   String get jobReuseSubtitle => 'Untertitel wiederverwenden';
 
   @override
-  String get jobReuseTranslation => 'Übersetzung wiederverwenden';
+  String get jobReuseTranslation => 'Р“Сљbersetzung wiederverwenden';
 
   @override
   String get legalBodyAbout =>
-      'SubFlix ist ein Flutter-Client im Premium-Stil für KI-Untertitelübersetzung. Dieser Build verwendet Mock-Repositories, künstliche Latenz und lokale Speicherung, damit UI und Architektur reifen können, bevor ein echtes Backend angeschlossen wird.';
+      'SubFlix ist ein Flutter-Client im Premium-Stil fР“Сr KI-UntertitelР“Сbersetzung. Dieser Build verwendet Mock-Repositories, kР“Сnstliche Latenz und lokale Speicherung, damit UI und Architektur reifen kР“В¶nnen, bevor ein echtes Backend angeschlossen wird.';
 
   @override
   String get legalBodyPrivacy =>
-      'SubFlix speichert derzeit nur Demo-Einstellungen und Übersetzungsverlauf lokal auf dem Gerät. Eine spätere Backend-Integration kann das durch authentifizierten Speicher, Audit-Trails und serverseitig verwaltete Aufbewahrungsrichtlinien ersetzen.';
+      'SubFlix speichert derzeit nur Demo-Einstellungen und Р“Сљbersetzungsverlauf lokal auf dem GerР“В¤t. Eine spР“В¤tere Backend-Integration kann das durch authentifizierten Speicher, Audit-Trails und serverseitig verwaltete Aufbewahrungsrichtlinien ersetzen.';
 
   @override
   String get legalBodySupport =>
-      'Der Support ist derzeit nur ein Platzhalter. In einer Produktionsversion kann dieser Bereich E-Mail, Problemberichte und Hilfe für Premium-Konten anbinden, ohne die App-Struktur zu verändern.';
+      'Der Support ist derzeit nur ein Platzhalter. In einer Produktionsversion kann dieser Bereich E-Mail, Problemberichte und Hilfe fР“Сr Premium-Konten anbinden, ohne die App-Struktur zu verР“В¤ndern.';
 
   @override
   String get legalBodyTerms =>
-      'Dieser Demo-Build dient dazu, Produktabläufe, UI-Zustände und Architekturgrenzen zu erproben. Wenn später ein produktives NestJS- und Postgres-Backend angebunden wird, kann die rechtliche Basis um echte Nutzungsbedingungen und Formulierungen zur Datenverarbeitung erweitert werden.';
+      'Dieser Demo-Build dient dazu, ProduktablР“В¤ufe, UI-ZustР“В¤nde und Architekturgrenzen zu erproben. Wenn spР“В¤ter ein produktives NestJS- und Postgres-Backend angebunden wird, kann die rechtliche Basis um echte Nutzungsbedingungen und Formulierungen zur Datenverarbeitung erweitert werden.';
 
   @override
   String get legalPlaceholderBody =>
-      'Diese Seite ist in der Demo-App nur ein Platzhalter. Verbinde sie mit deinen rechtlichen Inhalten für die Produktion.';
+      'Diese Seite ist in der Demo-App nur ein Platzhalter. Verbinde sie mit deinen rechtlichen Inhalten fР“Сr die Produktion.';
 
   @override
-  String get legalTitleAbout => 'Über SubFlix';
+  String get legalTitleAbout => 'Р“Сљber SubFlix';
 
   @override
   String get legalTitlePrivacy => 'Datenschutzrichtlinie';
@@ -460,7 +461,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get mediaTypeSeries => 'Serie';
 
   @override
-  String get metadataEstimatedDuration => 'Geschätzte Dauer';
+  String get metadataEstimatedDuration => 'GeschР“В¤tzte Dauer';
 
   @override
   String get metadataFormat => 'Format';
@@ -491,48 +492,48 @@ class AppLocalizationsDe extends AppLocalizations {
   String get onboardingContinue => 'Fortfahren';
 
   @override
-  String get onboardingEnterApp => 'SubFlix öffnen';
+  String get onboardingEnterApp => 'SubFlix Р“В¶ffnen';
 
   @override
   String get onboardingNext => 'Weiter';
 
   @override
   String get onboardingPage1Description =>
-      'Suche einen Titel, prüfe die verfügbaren englischen Untertitelquellen und starte einen Übersetzungsablauf, der sich sofort anfühlt.';
+      'Suche einen Titel, prР“Сfe die verfР“Сgbaren englischen Untertitelquellen und starte einen Р“Сљbersetzungsablauf, der sich sofort anfР“Сhlt.';
 
   @override
   String get onboardingPage1Eyebrow => 'Suchen und laden';
 
   @override
   String get onboardingPage1Highlight1 =>
-      'Deterministischer Demo-Katalog für verlässliche Entwicklung';
+      'Deterministischer Demo-Katalog fР“Сr verlР“В¤ssliche Entwicklung';
 
   @override
   String get onboardingPage1Highlight2 =>
-      'Qualitätslabels und Format-Badges für Untertitelquellen';
+      'QualitР“В¤tslabels und Format-Badges fР“Сr Untertitelquellen';
 
   @override
   String get onboardingPage1Highlight3 =>
-      'So gebaut, dass später ein echtes Backend angeschlossen werden kann';
+      'So gebaut, dass spР“В¤ter ein echtes Backend angeschlossen werden kann';
 
   @override
   String get onboardingPage1Title =>
-      'Finde Filme oder Serien und hole sofort übersetzbare Untertitel.';
+      'Finde Filme oder Serien und hole sofort Р“Сbersetzbare Untertitel.';
 
   @override
   String get onboardingPage2Description =>
-      'Importiere deine Untertiteldatei, prüfe das Format und nutze dieselbe ausgereifte Übersetzungspipeline, ohne die App zu verlassen.';
+      'Importiere deine Untertiteldatei, prР“Сfe das Format und nutze dieselbe ausgereifte Р“Сљbersetzungspipeline, ohne die App zu verlassen.';
 
   @override
   String get onboardingPage2Eyebrow => 'Eigene Datei verwenden';
 
   @override
   String get onboardingPage2Highlight1 =>
-      'Lokale Dateiprüfung und saubere Retry-Zustände';
+      'Lokale DateiprР“Сfung und saubere Retry-ZustР“В¤nde';
 
   @override
   String get onboardingPage2Highlight2 =>
-      'Konsistente Übersetzungseinrichtung für Upload und Suche';
+      'Konsistente Р“Сљbersetzungseinrichtung fР“Сr Upload und Suche';
 
   @override
   String get onboardingPage2Highlight3 =>
@@ -544,10 +545,10 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get onboardingPage3Description =>
-      'Wechsle zwischen Original-, Übersetzungs- und zweisprachiger Ansicht, gehe in den Verlauf zurück und exportiere saubere Untertiteldateien, sobald das Ergebnis passt.';
+      'Wechsle zwischen Original-, Р“Сљbersetzungs- und zweisprachiger Ansicht, gehe in den Verlauf zurР“Сck und exportiere saubere Untertiteldateien, sobald das Ergebnis passt.';
 
   @override
-  String get onboardingPage3Eyebrow => 'Übersetzen und exportieren';
+  String get onboardingPage3Eyebrow => 'Р“Сљbersetzen und exportieren';
 
   @override
   String get onboardingPage3Highlight1 =>
@@ -555,7 +556,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get onboardingPage3Highlight2 =>
-      'Der Verlauf hält frühere Aufträge nur einen Tipp entfernt';
+      'Der Verlauf hР“В¤lt frР“Сhere AuftrР“В¤ge nur einen Tipp entfernt';
 
   @override
   String get onboardingPage3Highlight3 =>
@@ -563,13 +564,13 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get onboardingPage3Title =>
-      'Wähle Zielsprachen, prüfe Untertitel und exportiere sofort.';
+      'WР“В¤hle Zielsprachen, prР“Сfe Untertitel und exportiere sofort.';
 
   @override
-  String get onboardingSkip => 'Überspringen';
+  String get onboardingSkip => 'Р“Сљberspringen';
 
   @override
-  String get onboardingStart => 'Übersetzung starten';
+  String get onboardingStart => 'Р“Сљbersetzung starten';
 
   @override
   String get previewFailedTitle => 'Vorschau konnte nicht geladen werden';
@@ -581,27 +582,28 @@ class AppLocalizationsDe extends AppLocalizations {
   String get previewModeOriginal => 'Original';
 
   @override
-  String get previewModeTranslated => 'Übersetzt';
+  String get previewModeTranslated => 'Р“Сљbersetzt';
 
   @override
   String get previewNoMatchesMessage =>
-      'Versuche einen anderen Suchbegriff oder entferne den Filter, um die komplette Übersetzung zu prüfen.';
+      'Versuche einen anderen Suchbegriff oder entferne den Filter, um die komplette Р“Сљbersetzung zu prР“Сfen.';
 
   @override
   String get previewNoMatchesTitle => 'Keine Untertitelzeilen gefunden';
 
   @override
   String get previewNotReadyMessage =>
-      'Die Übersetzung ist fertig, aber das Backend hat noch keine Vorschau-Cues zurückgegeben. Lade diesen Bildschirm in einem Moment erneut.';
+      'Die Р“Сљbersetzung ist fertig, aber das Backend hat noch keine Vorschau-Cues zurР“Сckgegeben. Lade diesen Bildschirm in einem Moment erneut.';
 
   @override
-  String get previewNotReadyTitle => 'Vorschau-Cues sind noch nicht verfügbar';
+  String get previewNotReadyTitle =>
+      'Vorschau-Cues sind noch nicht verfР“Сgbar';
 
   @override
   String get retry => 'Erneut versuchen';
 
   @override
-  String get retryTranslation => 'Übersetzung erneut starten';
+  String get retryTranslation => 'Р“Сљbersetzung erneut starten';
 
   @override
   String get routeMissingSeasonEpisodesMessage =>
@@ -619,38 +621,39 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get routeMissingSubtitleSourcesMessage =>
-      'Es konnte nicht bestimmt werden, für welchen Titel Untertitelquellen geladen werden sollen. Starte die Suche erneut.';
+      'Es konnte nicht bestimmt werden, fР“Сr welchen Titel Untertitelquellen geladen werden sollen. Starte die Suche erneut.';
 
   @override
   String get routeMissingSubtitleSourcesTitle => 'Untertitelquellen';
 
   @override
   String get routeMissingTranslationProgressMessage =>
-      'Es wurde keine Übersetzungsanfrage übergeben. Starte eine neue Übersetzung aus Suche oder Upload.';
+      'Es wurde keine Р“Сљbersetzungsanfrage Р“Сbergeben. Starte eine neue Р“Сљbersetzung aus Suche oder Upload.';
 
   @override
-  String get routeMissingTranslationProgressTitle => 'Übersetzungsfortschritt';
+  String get routeMissingTranslationProgressTitle =>
+      'Р“Сљbersetzungsfortschritt';
 
   @override
   String get routeMissingTranslationSetupMessage =>
-      'Bevor der Bildschirm für die Übersetzungseinrichtung geöffnet werden kann, ist eine Untertitelquelle erforderlich.';
+      'Bevor der Bildschirm fР“Сr die Р“Сљbersetzungseinrichtung geР“В¶ffnet werden kann, ist eine Untertitelquelle erforderlich.';
 
   @override
-  String get routeMissingTranslationSetupTitle => 'Übersetzungseinrichtung';
+  String get routeMissingTranslationSetupTitle => 'Р“Сљbersetzungseinrichtung';
 
   @override
   String get searchFailedTitle => 'Suche fehlgeschlagen';
 
   @override
   String searchFoundResults(Object count, Object query) {
-    return '$count Ergebnisse für \'\'$query\'\' gefunden';
+    return '$count Ergebnisse fР“Сr \'\'$query\'\' gefunden';
   }
 
   @override
   String get searchHintText => 'Suche nach Dune, Breaking Bad, Severance...';
 
   @override
-  String get searchLoadingLabel => 'Suche läuft...';
+  String get searchLoadingLabel => 'Suche lР“В¤uft...';
 
   @override
   String get searchMockMessage =>
@@ -661,14 +664,14 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get searchMovieOrSeriesSubtitle =>
-      'Finde einen Titel, prüfe Untertitelquellen und starte mit wenigen Tippvorgängen einen Übersetzungsauftrag.';
+      'Finde einen Titel, prР“Сfe Untertitelquellen und starte mit wenigen TippvorgР“В¤ngen einen Р“Сљbersetzungsauftrag.';
 
   @override
   String get searchMovieOrSeriesTitle => 'Film oder Serie suchen';
 
   @override
   String searchNoResultsFor(Object query) {
-    return 'Keine Ergebnisse für \'\'$query\'\' gefunden';
+    return 'Keine Ergebnisse fР“Сr \'\'$query\'\' gefunden';
   }
 
   @override
@@ -718,14 +721,14 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String seriesSeasonsSubtitle(Object title) {
-    return 'Wähle eine Staffel von $title, um verfügbare Folgen zu sehen.';
+    return 'WР“В¤hle eine Staffel von $title, um verfР“Сgbare Folgen zu sehen.';
   }
 
   @override
-  String get seriesSeasonsTitle => 'Staffel auswählen';
+  String get seriesSeasonsTitle => 'Staffel auswР“В¤hlen';
 
   @override
-  String get settingsAboutTitle => 'Über SubFlix';
+  String get settingsAboutTitle => 'Р“Сљber SubFlix';
 
   @override
   String get settingsCacheCleared => 'Cache geleert';
@@ -745,14 +748,14 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settingsHistoryClearedSnack =>
-      'Übersetzungsverlauf für dieses Gerät gelöscht';
+      'Р“Сљbersetzungsverlauf fР“Сr dieses GerР“В¤t gelР“В¶scht';
 
   @override
   String get settingsLanguageLabel => 'Bevorzugte Zielsprache';
 
   @override
   String get settingsMaintenanceSubtitle =>
-      'Lösche backendverwaltete Übersetzungsaufträge für dieses Gerät und starte mit leerem Verlauf.';
+      'LР“В¶sche backendverwaltete Р“СљbersetzungsauftrР“В¤ge fР“Сr dieses GerР“В¤t und starte mit leerem Verlauf.';
 
   @override
   String get settingsMaintenanceTitle => 'Wartung';
@@ -766,7 +769,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settingsPremiumSubtitle =>
-      'Später können wir hier Abos, Abrechnung und Cloud-Projektsynchronisierung anbinden.';
+      'SpР“В¤ter kР“В¶nnen wir hier Abos, Abrechnung und Cloud-Projektsynchronisierung anbinden.';
 
   @override
   String get settingsPremiumTitle => 'Premium-Platzhalter';
@@ -787,7 +790,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsSubtitle => 'Verwalte deine Einstellungen';
 
   @override
-  String get settingsSupportSubtitle => 'Demo-Seite für Hilfe und Kontakt';
+  String get settingsSupportSubtitle => 'Demo-Seite fР“Сr Hilfe und Kontakt';
 
   @override
   String get settingsSupportTitle => 'Support-Platzhalter';
@@ -816,10 +819,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get splashPreparing => 'Dein Untertitelstudio wird vorbereitet';
 
   @override
-  String get splashSubtitle => 'KI-gestützte Untertitelübersetzung';
+  String get splashSubtitle => 'KI-gestР“Сtzte UntertitelР“Сbersetzung';
 
   @override
-  String get startTranslation => 'Übersetzung starten';
+  String get startTranslation => 'Р“Сљbersetzung starten';
 
   @override
   String subtitleSourceDownloads(Object downloads) {
@@ -846,10 +849,10 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get subtitleSourcesBannerMessage =>
-      'Wähle eine Untertitelquelle und fahre mit einer ausgereiften Übersetzungseinrichtung fort, die auf Untertitel-Timing abgestimmt ist.';
+      'WР“В¤hle eine Untertitelquelle und fahre mit einer ausgereiften Р“Сљbersetzungseinrichtung fort, die auf Untertitel-Timing abgestimmt ist.';
 
   @override
-  String get subtitleSourcesBannerTitle => 'KI-Übersetzung verfügbar';
+  String get subtitleSourcesBannerTitle => 'KI-Р“Сљbersetzung verfР“Сgbar';
 
   @override
   String get subtitleSourcesFailedTitle =>
@@ -857,7 +860,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String subtitleSourcesSubtitle(Object title, Object target) {
-    return 'Wähle eine Untertitelquelle für $title$target und danach im nächsten Schritt die Zielsprache.';
+    return 'WР“В¤hle eine Untertitelquelle fР“Сr $title$target und danach im nР“В¤chsten Schritt die Zielsprache.';
   }
 
   @override
@@ -880,10 +883,10 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get translateSetupAutoDetectBody =>
-      'Wählt automatisch die passende Ausgabestruktur für Untertitel.';
+      'WР“В¤hlt automatisch die passende Ausgabestruktur fР“Сr Untertitel.';
 
   @override
-  String get translateSetupLanguageTitle => 'Übersetzen nach';
+  String get translateSetupLanguageTitle => 'Р“Сљbersetzen nach';
 
   @override
   String get translateSetupOptionsTitle => 'Optionen';
@@ -893,82 +896,83 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get translateSetupPreserveTimingBody =>
-      'Behält die ursprünglichen Untertitelzeiten in Übereinstimmung mit der Quelldatei bei.';
+      'BehР“В¤lt die ursprР“Сnglichen Untertitelzeiten in Р“Сљbereinstimmung mit der Quelldatei bei.';
 
   @override
   String translateSetupReadyBody(Object language) {
-    return 'Unser Übersetzungsablauf überträgt diesen Untertitel in $language, mit erhaltenem Timing und sauberer Cue-Struktur.';
+    return 'Unser Р“Сљbersetzungsablauf Р“СbertrР“В¤gt diesen Untertitel in $language, mit erhaltenem Timing und sauberer Cue-Struktur.';
   }
 
   @override
-  String get translateSetupReadyTitle => 'KI-Übersetzung bereit';
+  String get translateSetupReadyTitle => 'KI-Р“Сљbersetzung bereit';
 
   @override
-  String get translateSetupSelectLanguage => 'Sprache auswählen';
+  String get translateSetupSelectLanguage => 'Sprache auswР“В¤hlen';
 
   @override
   String get translateSetupSourceTitle => 'Quelluntertitel';
 
   @override
   String get translateSetupSubtitle =>
-      'Wähle die Zielsprache, prüfe die Untertitelquelle und starte dann den Übersetzungsauftrag im Backend.';
+      'WР“В¤hle die Zielsprache, prР“Сfe die Untertitelquelle und starte dann den Р“Сљbersetzungsauftrag im Backend.';
 
   @override
-  String get translateSetupTitle => 'Übersetzung einrichten';
+  String get translateSetupTitle => 'Р“Сљbersetzung einrichten';
 
   @override
   String get translationFailedMessage => 'Etwas ist schiefgelaufen.';
 
   @override
   String get translationFailedTitle =>
-      'Übersetzung konnte nicht abgeschlossen werden';
+      'Р“Сљbersetzung konnte nicht abgeschlossen werden';
 
   @override
-  String get translationPreviewHeader => 'Übersetzte Untertitel prüfen';
+  String get translationPreviewHeader => 'Р“Сљbersetzte Untertitel prР“Сfen';
 
   @override
   String get translationPreviewSearchHint => 'Untertitelzeilen durchsuchen';
 
   @override
   String get translationPreviewSubtitle =>
-      'Suche innerhalb der Cues, wechsle den Vorschaumodus und exportiere erst, wenn die Übersetzung stimmt.';
+      'Suche innerhalb der Cues, wechsle den Vorschaumodus und exportiere erst, wenn die Р“Сљbersetzung stimmt.';
 
   @override
-  String get translationPreviewTitle => 'Übersetzungsvorschau';
+  String get translationPreviewTitle => 'Р“Сљbersetzungsvorschau';
 
   @override
-  String get translationProgressHeadline => 'KI-Untertitelübersetzung läuft';
+  String get translationProgressHeadline =>
+      'KI-UntertitelР“Сbersetzung lР“В¤uft';
 
   @override
-  String get translationProgressTitle => 'Übersetzungsfortschritt';
+  String get translationProgressTitle => 'Р“Сљbersetzungsfortschritt';
 
   @override
   String get translationResultCompleteSubtitle =>
       'Dein Untertitel ist zur Vorschau oder zum Download bereit.';
 
   @override
-  String get translationResultCompleteTitle => 'Übersetzung abgeschlossen';
+  String get translationResultCompleteTitle => 'Р“Сљbersetzung abgeschlossen';
 
   @override
-  String get translationResultConfidenceLabel => 'Übersetzungssicherheit';
+  String get translationResultConfidenceLabel => 'Р“Сљbersetzungssicherheit';
 
   @override
-  String get translationResultDetailsTitle => 'Übersetzungsdetails';
+  String get translationResultDetailsTitle => 'Р“Сљbersetzungsdetails';
 
   @override
   String get translationResultDownloadCta => 'Untertitel herunterladen';
 
   @override
-  String get translationResultHomeCta => 'Zurück zur Startseite';
+  String get translationResultHomeCta => 'ZurР“Сck zur Startseite';
 
   @override
   String get translationResultMediaLabel => 'Medientitel';
 
   @override
-  String get translationResultMethodAi => 'Mit KI übersetzt';
+  String get translationResultMethodAi => 'Mit KI Р“Сbersetzt';
 
   @override
-  String get translationResultMetricsTitle => 'Qualitätsmetriken';
+  String get translationResultMetricsTitle => 'QualitР“В¤tsmetriken';
 
   @override
   String get translationResultPreviewCta => 'Untertitel ansehen';
@@ -992,7 +996,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get translationResultWarning =>
-      'Einige Fachbegriffe profitieren womöglich noch von einer kurzen menschlichen Kontextprüfung.';
+      'Einige Fachbegriffe profitieren womР“В¶glich noch von einer kurzen menschlichen KontextprР“Сfung.';
 
   @override
   String get translationStageAligning =>
@@ -1000,35 +1004,35 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get translationStageGenerating =>
-      'Untertitelübersetzung wird erstellt';
+      'UntertitelР“Сbersetzung wird erstellt';
 
   @override
-  String get translationStageIdle => 'Warten auf eine Übersetzungsanfrage';
+  String get translationStageIdle => 'Warten auf eine Р“Сљbersetzungsanfrage';
 
   @override
   String get translationStagePreparing => 'Untertitelpaket wird vorbereitet';
 
   @override
-  String get translationStageQueued => 'Zur Übersetzung eingereiht';
+  String get translationStageQueued => 'Zur Р“Сљbersetzung eingereiht';
 
   @override
   String get translationStageReadability =>
-      'Lesbarkeitsprüfung wird angewendet';
+      'LesbarkeitsprР“Сfung wird angewendet';
 
   @override
-  String get translationStageReady => 'Übersetzung bereit';
+  String get translationStageReady => 'Р“Сљbersetzung bereit';
 
   @override
   String get tryAgain => 'Noch einmal versuchen';
 
   @override
-  String get uploadChooseFile => 'Untertiteldatei auswählen';
+  String get uploadChooseFile => 'Untertiteldatei auswР“В¤hlen';
 
   @override
-  String get uploadChooseFileShort => 'Datei wählen';
+  String get uploadChooseFileShort => 'Datei wР“В¤hlen';
 
   @override
-  String get uploadContinueSetup => 'Weiter zur Übersetzungseinrichtung';
+  String get uploadContinueSetup => 'Weiter zur Р“Сљbersetzungseinrichtung';
 
   @override
   String get uploadEnglishSource => 'Englische Quelle';
@@ -1046,7 +1050,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get uploadIntroSubtitle =>
-      'Importiere eine englische `.srt`- oder `.vtt`-Datei, lasse sie vom Backend prüfen und parsen und fahre dann mit der Übersetzungseinrichtung fort.';
+      'Importiere eine englische `.srt`- oder `.vtt`-Datei, lasse sie vom Backend prР“Сfen und parsen und fahre dann mit der Р“Сљbersetzungseinrichtung fort.';
 
   @override
   String get uploadIntroTitle => 'Eigene Untertiteldatei verwenden';
@@ -1060,16 +1064,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String get uploadMetadataTitle => 'Untertiteldetails';
 
   @override
-  String get uploadOpeningPicker => 'Dateiauswahl wird geöffnet...';
+  String get uploadOpeningPicker => 'Dateiauswahl wird geР“В¶ffnet...';
 
   @override
-  String get uploadPickSubtitle => 'Untertiteldatei wählen';
+  String get uploadPickSubtitle => 'Untertiteldatei wР“В¤hlen';
 
   @override
-  String get uploadPickedFile => 'Untertiteldatei ausgewählt';
+  String get uploadPickedFile => 'Untertiteldatei ausgewР“В¤hlt';
 
   @override
-  String get uploadReadyTitle => 'Bereit zur Übersetzung';
+  String get uploadReadyTitle => 'Bereit zur Р“Сљbersetzung';
 
   @override
   String get uploadSubtitleTitle => 'Untertitel hochladen';
@@ -1079,7 +1083,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Englische Untertiteldateien im Format `.srt` und `.vtt`';
 
   @override
-  String get uploadSupportedFormatsTitle => 'Unterstützte Formate';
+  String get uploadSupportedFormatsTitle => 'UnterstР“Сtzte Formate';
 
   @override
   String get uploadUseDemoFile => 'Demo-Datei verwenden';

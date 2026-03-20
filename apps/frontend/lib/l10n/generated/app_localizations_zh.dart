@@ -12,782 +12,806 @@ class AppLocalizationsZh extends AppLocalizations {
   String get appTitle => 'SubFlix';
 
   @override
-  String get authAccountSectionTitle => 'Account';
+  String get authAccountSectionTitle => '账户';
 
   @override
-  String get authAlreadySignedInTitle => 'You are already signed in';
+  String get authAlreadySignedInTitle => '你已登录';
 
   @override
   String authAlreadySignedInMessage(Object email) {
-    return 'This device is already connected as $email.';
+    return '此设备已连接到 $email 账户。';
   }
 
   @override
-  String get authBackToAccount => 'Back to account';
+  String get authBackToAccount => '返回账户';
 
   @override
-  String get authBackToSignIn => 'Back to sign in';
+  String get authBackToSignIn => '返回登录';
 
   @override
-  String get authCheckInboxTitle => 'Check your inbox';
+  String get authCheckInboxTitle => '请检查收件箱';
 
   @override
-  String get authConfirmEmailAction => 'Confirm email';
+  String get authConfirmEmailAction => '确认邮箱';
 
   @override
   String authConfirmEmailHint(Object email) {
-    return 'Use the verification token sent to $email.';
+    return '请使用发送到 $email 的验证令牌。';
   }
 
   @override
-  String get authConfirmEmailSubtitle =>
-      'Paste the verification token from your email to finish activating this account.';
+  String get authConfirmEmailSubtitle => '粘贴邮件中的验证令牌，以完成此账户的激活。';
 
   @override
-  String get authConfirmEmailSuccess => 'Email confirmed. You can sign in now.';
+  String get authConfirmEmailSuccess => '邮箱已确认。现在可以登录了。';
 
   @override
-  String get authConfirmEmailTitle => 'Verify your email';
+  String get authConfirmEmailTitle => '验证你的邮箱';
 
   @override
-  String get authConfirmPasswordLabel => 'Confirm password';
+  String get authConfirmPasswordLabel => '确认密码';
 
   @override
-  String get authContinueToReset => 'Continue to reset';
+  String get authContinueToReset => '继续重置';
 
   @override
-  String get authContinueWithGoogle => 'Continue with Google';
+  String get authContinueWithGoogle => '使用 Google 继续';
 
   @override
-  String get authCreateAccountAction => 'Create account';
+  String get authCreateAccountAction => '创建账户';
 
   @override
   String authDebugTokenLabel(Object token) {
-    return 'Debug token: $token';
+    return '调试令牌：$token';
   }
 
   @override
-  String get authDisplayNameLabel => 'Display name';
+  String get authDisplayNameLabel => '显示名称';
 
   @override
-  String get authEmailLabel => 'Email address';
+  String get authEmailLabel => '邮箱地址';
 
   @override
-  String get authEyebrow => 'Secure workspace';
+  String get authEyebrow => '安全空间';
 
   @override
-  String get authFieldRequired => 'This field is required.';
+  String get authFieldRequired => '此字段为必填项。';
 
   @override
-  String get authForgotPasswordAction => 'Send reset link';
+  String get authForgotPasswordAction => '发送重置链接';
 
   @override
-  String get authForgotPasswordDebugMessage =>
-      'A reset token was returned for this debug environment. You can continue directly into the reset form.';
+  String get authForgotPasswordDebugMessage => '此调试环境已返回一个重置令牌。你可以直接继续到重置表单。';
 
   @override
-  String get authForgotPasswordLink => 'Forgot password?';
+  String get authForgotPasswordLink => '忘记密码？';
 
   @override
-  String get authForgotPasswordSubtitle =>
-      'Enter your email and we will request a password reset from the backend for this account.';
+  String get authForgotPasswordSubtitle => '输入你的邮箱，我们将向后端请求为此账户重置密码。';
 
   @override
-  String get authForgotPasswordSuccess =>
-      'If the account exists, a password reset message has been sent.';
+  String get authForgotPasswordSuccess => '如果账户存在，密码重置消息已发送。';
 
   @override
-  String get authForgotPasswordTitle => 'Reset your password';
+  String get authForgotPasswordTitle => '重置你的密码';
 
   @override
   String get authGoogleHelper =>
-      'Google sign-in uses Firebase OAuth and will work once this app is connected to a Firebase project.';
+      'Google 登录使用 Firebase OAuth，当此应用连接到 Firebase 项目后即可正常使用。';
 
   @override
   String get authGoogleShortAction => 'Google';
 
   @override
-  String get authHaveAccountLink => 'Already have an account? Sign in';
+  String get authHaveAccountLink => '已有账户？去登录';
 
   @override
-  String get authInvalidEmail => 'Enter a valid email address.';
+  String get authInvalidEmail => '请输入有效的邮箱地址。';
 
   @override
-  String get authNewPasswordLabel => 'New password';
+  String get authNewPasswordLabel => '新密码';
 
   @override
-  String get authNoAccountLink => 'Need an account? Create one';
+  String get authNoAccountLink => '需要账户？创建一个';
 
   @override
-  String get authOrDivider => 'or';
+  String get authOrDivider => '或';
 
   @override
-  String get authPasswordLabel => 'Password';
+  String get authPasswordLabel => '密码';
 
   @override
-  String get authPasswordMismatch => 'Passwords do not match.';
+  String get authPasswordMismatch => '两次输入的密码不一致。';
 
   @override
-  String get authPasswordTooShort => 'Use at least 8 characters.';
+  String get authPasswordTooShort => '请至少使用 8 个字符。';
 
   @override
-  String get authProfileRefreshed => 'Account details refreshed.';
+  String get authProfileRefreshed => '账户数据已刷新。';
 
   @override
-  String get authRefreshProfileAction => 'Refresh profile';
+  String get authRefreshProfileAction => '刷新资料';
 
   @override
-  String get authRefreshProfileSubtitle =>
-      'Load the latest profile data from the backend.';
+  String get authRefreshProfileSubtitle => '从后端加载最新的个人资料数据。';
 
   @override
-  String get authResetPasswordAction => 'Save new password';
+  String get authResetPasswordAction => '保存新密码';
 
   @override
   String authResetPasswordHint(Object email) {
-    return 'Reset the password for $email using the token from your email.';
+    return '使用邮件中的令牌重置 $email 的密码。';
   }
 
   @override
-  String get authResetPasswordSubtitle =>
-      'Enter the reset token and choose a new password for this account.';
+  String get authResetPasswordSubtitle => '输入重置令牌，并为此账户设置一个新密码。';
 
   @override
-  String get authResetPasswordSuccess =>
-      'Password updated. Please sign in again.';
+  String get authResetPasswordSuccess => '密码已更新。请重新登录。';
 
   @override
-  String get authResetPasswordTitle => 'Choose a new password';
+  String get authResetPasswordTitle => '选择新密码';
 
   @override
-  String get authSignInAction => 'Sign in';
+  String get authSignInAction => '登录';
 
   @override
-  String get authSignInSubtitle =>
-      'Connect this app to your SubFlix account to sync profile data and unlock authenticated backend flows.';
+  String get authSignInSubtitle => '将此应用连接到你的 SubFlix 账户，以同步个人资料并启用后端认证流程。';
 
   @override
-  String get authSignInSuccess => 'Signed in successfully.';
+  String get authSignInSuccess => '登录成功。';
 
   @override
-  String get authSignInTitle => 'Welcome back';
+  String get authSignInTitle => '欢迎回来';
 
   @override
   String authSignedInCardSubtitle(Object email) {
-    return 'Connected as $email';
+    return '已连接为 $email';
   }
 
   @override
   String get authSignedOutCardSubtitle =>
-      'Sign in to manage your account, use Firebase OAuth, and keep authenticated features ready for future sync.';
+      '登录后即可管理账户、使用 Firebase OAuth，并为未来同步准备认证功能。';
 
   @override
-  String get authSignedOutCardTitle => 'Sign in to SubFlix';
+  String get authSignedOutCardTitle => '登录到 SubFlix';
 
   @override
-  String get authSignOutAction => 'Sign out';
+  String get authSignOutAction => '退出登录';
 
   @override
-  String get authSignOutSubtitle =>
-      'Revoke the current session for this device and clear local tokens.';
+  String get authSignOutSubtitle => '撤销此设备上的当前会话并清除本地令牌。';
 
   @override
-  String get authSignOutSuccess => 'Signed out on this device.';
+  String get authSignOutSuccess => '已在此设备上退出登录。';
 
   @override
-  String get authSignUpAction => 'Create my account';
+  String get authSignUpAction => '创建我的账户';
 
   @override
-  String get authSignUpSubtitle =>
-      'Create an account so this app can use the backend\'s authenticated profile and session flows.';
+  String get authSignUpSubtitle => '创建一个账户，以便此应用可以使用后端的已认证资料和会话流程。';
 
   @override
-  String get authSignUpSuccess =>
-      'Account created. Continue with email verification.';
+  String get authSignUpSuccess => '账户已创建。请继续进行邮箱验证。';
 
   @override
-  String get authSignUpTitle => 'Create your account';
+  String get authSignUpTitle => '创建你的账户';
 
   @override
-  String get authVerificationStatusTitle => 'Email verification';
+  String get authVerificationStatusTitle => '邮箱验证';
 
   @override
-  String get authVerificationTokenLabel => 'Verification token';
+  String get authVerificationTokenLabel => '验证令牌';
 
   @override
-  String get authVerifiedStatus => 'Verified';
+  String get authVerifiedStatus => '已验证';
 
   @override
-  String get authUnverifiedStatus => 'Verification pending';
+  String get authUnverifiedStatus => '等待验证';
 
   @override
-  String get brandSubtitleCompact => '字幕智能';
+  String get brandSubtitleCompact => 'е­—е№•ж™єиѓЅ';
 
   @override
-  String get brandSubtitleFull => 'AI 字幕翻译工作室';
+  String get brandSubtitleFull => 'AI е­—е№•зї»иЇ‘е·ҐдЅње®¤';
 
   @override
-  String get comingSoonMessage => '这个页面还在准备中。';
+  String get comingSoonMessage => 'иї™дёЄйЎµйќўиїењЁе‡†е¤‡дё­гЂ‚';
 
   @override
-  String get comingSoonTitle => '即将推出';
+  String get comingSoonTitle => 'еЌіе°†жЋЁе‡є';
 
   @override
   String exportFailedSnack(Object error) {
-    return '导出失败：$error';
+    return 'еЇје‡єе¤±иґҐпјљ$error';
   }
 
   @override
-  String get exportSubtitleLabel => '导出翻译后的字幕';
+  String get exportSubtitleLabel => 'еЇје‡єзї»иЇ‘еђЋзљ„е­—е№•';
 
   @override
   String exportedSnack(Object fileName, Object path) {
-    return '已将 $fileName 导出到 $path';
+    return 'е·Іе°† $fileName еЇје‡єе€° $path';
   }
 
   @override
-  String get exportingLabel => '正在导出...';
+  String get exportingLabel => 'ж­ЈењЁеЇје‡є...';
 
   @override
-  String get heroBadge => '高级字幕工作流';
+  String get heroBadge => 'й«зє§е­—е№•е·ҐдЅњжµЃ';
 
   @override
-  String get heroBody => '你可以选择可搜索的片名目录，或直接上传文件，然后在几分钟内完成预览并导出打磨过的字幕。';
+  String get heroBody =>
+      'дЅ еЏЇд»ҐйЂ‰ж‹©еЏЇжђњзґўзљ„з‰‡еђЌз›®еЅ•пјЊж€–з›ґжЋҐдёЉдј ж–‡д»¶пјЊз„¶еђЋењЁе‡ е€†й’џе†…е®Њж€ђйў„и§€е№¶еЇје‡єж‰“зЈЁиї‡зљ„е­—е№•гЂ‚';
 
   @override
-  String get heroHeadline => '用接近工作室级别的流程翻译电影和剧集字幕。';
+  String get heroHeadline =>
+      'з”ЁжЋҐиї‘е·ҐдЅње®¤зє§е€«зљ„жµЃзЁ‹зї»иЇ‘з”µеЅ±е’Ње‰§й›†е­—е№•гЂ‚';
 
   @override
-  String get heroSearchCta => '搜索电影 / 剧集';
+  String get heroSearchCta => 'жђњзґўз”µеЅ± / е‰§й›†';
 
   @override
-  String get heroStatLanguagesTitle => '10 种语言';
+  String get heroStatLanguagesTitle => '10 з§ЌиЇ­иЁЂ';
 
   @override
-  String get heroStatLanguagesValue => '可直接预览';
+  String get heroStatLanguagesValue => 'еЏЇз›ґжЋҐйў„и§€';
 
   @override
   String get heroStatMockTitle => 'Mock API';
 
   @override
-  String get heroStatMockValue => '已为后端接入做好准备';
+  String get heroStatMockValue => 'е·ІдёєеђЋз«ЇжЋҐе…ҐеЃљеҐЅе‡†е¤‡';
 
   @override
-  String get heroStatPathsTitle => '2 条路径';
+  String get heroStatPathsTitle => '2 жќЎи·Їеѕ„';
 
   @override
-  String get heroStatPathsValue => '搜索或上传';
+  String get heroStatPathsValue => 'жђњзґўж€–дёЉдј ';
 
   @override
-  String get heroSubtitle => '搜索电影和剧集目录、选择来源，并在几分钟内导出打磨过的翻译结果。';
+  String get heroSubtitle =>
+      'жђњзґўз”µеЅ±е’Ње‰§й›†з›®еЅ•гЂЃйЂ‰ж‹©жќҐжєђпјЊе№¶ењЁе‡ е€†й’џе†…еЇје‡єж‰“зЈЁиї‡зљ„зї»иЇ‘з»“жћњгЂ‚';
 
   @override
-  String get heroTitle => '更快翻译字幕';
+  String get heroTitle => 'ж›ґеї«зї»иЇ‘е­—е№•';
 
   @override
-  String get heroUploadCta => '上传字幕';
+  String get heroUploadCta => 'дёЉдј е­—е№•';
 
   @override
   String historyCountLabel(Object count) {
-    return '$count 条翻译';
+    return '$count жќЎзї»иЇ‘';
   }
 
   @override
-  String get historyEmptyMessage => '完成搜索或上传流程后，已翻译的字幕任务会显示在这里。';
+  String get historyEmptyMessage =>
+      'е®Њж€ђжђњзґўж€–дёЉдј жµЃзЁ‹еђЋпјЊе·Ізї»иЇ‘зљ„е­—е№•д»»еЉЎдјљжѕз¤єењЁиї™й‡ЊгЂ‚';
 
   @override
-  String get historyEmptyTitle => '历史为空';
+  String get historyEmptyTitle => 'еЋ†еЏІдёєз©є';
 
   @override
-  String get historyFailedItemMessage => '翻译失败。点击重新开始。';
+  String get historyFailedItemMessage => 'зї»иЇ‘е¤±иґҐгЂ‚з‚№е‡»й‡Ќж–°ејЂе§‹гЂ‚';
 
   @override
-  String get historyFailedTitle => '无法加载历史记录';
+  String get historyFailedTitle => 'ж— жі•еЉ иЅЅеЋ†еЏІи®°еЅ•';
 
   @override
-  String get historyFilterAiTranslated => 'AI 翻译';
+  String get historyFilterAiTranslated => 'AI зї»иЇ‘';
 
   @override
-  String get historyFilterAll => '全部';
+  String get historyFilterAll => 'е…ЁйѓЁ';
 
   @override
-  String get historyFilterCompleted => '已完成';
+  String get historyFilterCompleted => 'е·Іе®Њж€ђ';
 
   @override
-  String get historyFilterFailed => '失败';
+  String get historyFilterFailed => 'е¤±иґҐ';
 
   @override
-  String get historyFilterMovies => '电影';
+  String get historyFilterMovies => 'з”µеЅ±';
 
   @override
-  String get historyFilterReused => '复用';
+  String get historyFilterReused => 'е¤Ќз”Ё';
 
   @override
-  String get historyFilterSeries => '剧集';
+  String get historyFilterSeries => 'е‰§й›†';
 
   @override
-  String get historySubtitle => '重新打开以前的字幕任务，再次查看预览，或稍后导出。';
+  String get historySubtitle =>
+      'й‡Ќж–°ж‰“ејЂд»Ґе‰Ќзљ„е­—е№•д»»еЉЎпјЊе†Ќж¬ЎжџҐзњ‹йў„и§€пјЊж€–зЁЌеђЋеЇје‡єгЂ‚';
 
   @override
-  String get historyTitle => '翻译历史';
+  String get historyTitle => 'зї»иЇ‘еЋ†еЏІ';
 
   @override
-  String get homeFailedRecentTitle => '无法加载最近任务';
+  String get homeFailedRecentTitle => 'ж— жі•еЉ иЅЅжњЂиї‘д»»еЉЎ';
 
   @override
-  String get homeFutureSubtitle => '可替换的 mock 仓库让 UI 代码不受后端变化影响。';
+  String get homeFutureSubtitle =>
+      'еЏЇж›їжЌўзљ„ mock д»“еє“и®© UI д»Јз ЃдёЌеЏ—еђЋз«ЇеЏеЊ–еЅ±е“ЌгЂ‚';
 
   @override
-  String get homeFutureTitle => '面向未来的仓库设计';
+  String get homeFutureTitle => 'йќўеђ‘жњЄжќҐзљ„д»“еє“и®ѕи®Ў';
 
   @override
-  String get homeNoRecentMessage => '先搜索电影或上传字幕文件，你最近的翻译会显示在这里。';
+  String get homeNoRecentMessage =>
+      'е…€жђњзґўз”µеЅ±ж€–дёЉдј е­—е№•ж–‡д»¶пјЊдЅ жњЂиї‘зљ„зї»иЇ‘дјљжѕз¤єењЁиї™й‡ЊгЂ‚';
 
   @override
-  String get homeNoRecentTitle => '还没有最近任务';
+  String get homeNoRecentTitle => 'иїжІЎжњ‰жњЂиї‘д»»еЉЎ';
 
   @override
-  String get homePreviewSubtitle => '可在导出前通过原文、译文或双语视图检查结果。';
+  String get homePreviewSubtitle =>
+      'еЏЇењЁеЇје‡єе‰ЌйЂљиї‡еЋџж–‡гЂЃиЇ‘ж–‡ж€–еЏЊиЇ­и§†е›ѕжЈЂжџҐз»“жћњгЂ‚';
 
   @override
-  String get homePreviewTitle => '以预览为先的翻译流程';
+  String get homePreviewTitle => 'д»Ґйў„и§€дёєе…€зљ„зї»иЇ‘жµЃзЁ‹';
 
   @override
-  String get homeQuickHistory => '历史';
+  String get homeQuickHistory => 'еЋ†еЏІ';
 
   @override
-  String get homeQuickSearch => '搜索';
+  String get homeQuickSearch => 'жђњзґў';
 
   @override
-  String get homeQuickUpload => '上传';
+  String get homeQuickUpload => 'дёЉдј ';
 
   @override
-  String get homeRecentJobsSubtitle => '无需从头开始，直接重新打开你最近的字幕会话。';
+  String get homeRecentJobsSubtitle =>
+      'ж— йњЂд»Ће¤ґејЂе§‹пјЊз›ґжЋҐй‡Ќж–°ж‰“ејЂдЅ жњЂиї‘зљ„е­—е№•дјљиЇќгЂ‚';
 
   @override
-  String get homeRecentJobsTitle => '最近任务';
+  String get homeRecentJobsTitle => 'жњЂиї‘д»»еЉЎ';
 
   @override
-  String get homeSearchPlaceholder => '搜索电影或剧集...';
+  String get homeSearchPlaceholder => 'жђњзґўз”µеЅ±ж€–е‰§й›†...';
 
   @override
-  String get homeStatesSubtitle => '加载、空状态、重试、校验以及模拟离线场景，从第一天起就是 UX 的一部分。';
+  String get homeStatesSubtitle =>
+      'еЉ иЅЅгЂЃз©єзЉ¶жЂЃгЂЃй‡ЌиЇ•гЂЃж ЎйЄЊд»ҐеЏЉжЁЎж‹џз¦»зєїењєж™ЇпјЊд»Ћз¬¬дёЂе¤©иµ·е°±жЇ UX зљ„дёЂйѓЁе€†гЂ‚';
 
   @override
-  String get homeStatesTitle => '完善的状态体验';
+  String get homeStatesTitle => 'е®Ње–„зљ„зЉ¶жЂЃдЅ“йЄЊ';
 
   @override
-  String get homeTrendingNow => '当前热门';
+  String get homeTrendingNow => 'еЅ“е‰Ќзѓ­й—Ё';
 
   @override
-  String get homeTrustSubtitle => '今天仍是模拟版，但结构已经按真正可上线的产品来设计。';
+  String get homeTrustSubtitle =>
+      'д»Ље¤©д»ЌжЇжЁЎж‹џз‰€пјЊдЅ†з»“жћ„е·Із»ЏжЊ‰зњџж­ЈеЏЇдёЉзєїзљ„дє§е“ЃжќҐи®ѕи®ЎгЂ‚';
 
   @override
-  String get homeTrustTitle => '为什么团队会信任它';
+  String get homeTrustTitle => 'дёєд»Ђд№€е›ўйџдјљдїЎд»»е®ѓ';
 
   @override
-  String get homeViewAll => '查看全部';
+  String get homeViewAll => 'жџҐзњ‹е…ЁйѓЁ';
 
   @override
-  String get homeWelcomeSubtitle => '查找并翻译字幕';
+  String get homeWelcomeSubtitle => 'жџҐж‰ѕе№¶зї»иЇ‘е­—е№•';
 
   @override
-  String get homeWelcomeTitle => '欢迎回来';
+  String get homeWelcomeTitle => 'ж¬ўиїЋе›ћжќҐ';
 
   @override
   String jobConfidence(Object level) {
-    return '可信度：$level';
+    return 'еЏЇдїЎеє¦пјљ$level';
   }
 
   @override
-  String get jobOpenPreview => '打开预览';
+  String get jobOpenPreview => 'ж‰“ејЂйў„и§€';
 
   @override
-  String get jobReuseSubtitle => '复用字幕';
+  String get jobReuseSubtitle => 'е¤Ќз”Ёе­—е№•';
 
   @override
-  String get jobReuseTranslation => '复用翻译';
+  String get jobReuseTranslation => 'е¤Ќз”Ёзї»иЇ‘';
 
   @override
   String get legalBodyAbout =>
-      'SubFlix 是一款偏高级体验的 Flutter 客户端，专注于 AI 字幕翻译。此版本使用 mock 仓库、人工延迟和本地持久化，以便在接入真实后端前先完善 UI 与架构。';
+      'SubFlix жЇдёЂж¬ѕеЃЏй«зє§дЅ“йЄЊзљ„ Flutter е®ўж€·з«ЇпјЊдё“жіЁдєЋ AI е­—е№•зї»иЇ‘гЂ‚ж­¤з‰€жњ¬дЅїз”Ё mock д»“еє“гЂЃдєєе·Ґе»¶иїџе’Њжњ¬ењ°жЊЃд№…еЊ–пјЊд»ҐдѕїењЁжЋҐе…Ґзњџе®ћеђЋз«Їе‰Ќе…€е®Ње–„ UI дёЋжћ¶жћ„гЂ‚';
 
   @override
   String get legalBodyPrivacy =>
-      'SubFlix 当前仅通过本地持久化在设备上保存模拟偏好和翻译历史。未来接入后端后，可替换为带身份验证的存储、审计记录以及服务器管理的保留策略。';
+      'SubFlix еЅ“е‰Ќд»…йЂљиї‡жњ¬ењ°жЊЃд№…еЊ–ењЁи®ѕе¤‡дёЉдїќе­жЁЎж‹џеЃЏеҐЅе’Њзї»иЇ‘еЋ†еЏІгЂ‚жњЄжќҐжЋҐе…ҐеђЋз«ЇеђЋпјЊеЏЇж›їжЌўдёєеё¦иє«д»ЅйЄЊиЇЃзљ„е­е‚ЁгЂЃе®Ўи®Ўи®°еЅ•д»ҐеЏЉжњЌеЉЎе™Ёз®Ўзђ†зљ„дїќз•™з­–з•ҐгЂ‚';
 
   @override
   String get legalBodySupport =>
-      '目前支持页只是占位内容。正式版本中，这一部分可以接入邮件、问题反馈以及高级账户支持，同时保持应用框架不变。';
+      'з›®е‰Ќж”ЇжЊЃйЎµеЏЄжЇеЌ дЅЌе†…е®№гЂ‚ж­ЈејЏз‰€жњ¬дё­пјЊиї™дёЂйѓЁе€†еЏЇд»ҐжЋҐе…Ґй‚®д»¶гЂЃй—®йўеЏЌй¦€д»ҐеЏЉй«зє§иґ¦ж€·ж”ЇжЊЃпјЊеђЊж—¶дїќжЊЃеє”з”ЁжЎ†жћ¶дёЌеЏгЂ‚';
 
   @override
   String get legalBodyTerms =>
-      '这个模拟版本旨在验证产品流程、UI 状态和架构边界。等后续接入正式的 NestJS 与 Postgres 后端后，法律层面可以扩展为真实的服务条款与数据处理说明。';
+      'иї™дёЄжЁЎж‹џз‰€жњ¬ж—ЁењЁйЄЊиЇЃдє§е“ЃжµЃзЁ‹гЂЃUI зЉ¶жЂЃе’Њжћ¶жћ„иѕ№з•ЊгЂ‚з­‰еђЋз»­жЋҐе…Ґж­ЈејЏзљ„ NestJS дёЋ Postgres еђЋз«ЇеђЋпјЊжі•еѕ‹е±‚йќўеЏЇд»Ґж‰©е±•дёєзњџе®ћзљ„жњЌеЉЎжќЎж¬ѕдёЋж•°жЌ®е¤„зђ†иЇґжЋгЂ‚';
 
   @override
-  String get legalPlaceholderBody => '此页面在演示应用中只是占位内容。请替换为你正式环境中的法律文本。';
+  String get legalPlaceholderBody =>
+      'ж­¤йЎµйќўењЁжј”з¤єеє”з”Ёдё­еЏЄжЇеЌ дЅЌе†…е®№гЂ‚иЇ·ж›їжЌўдёєдЅ ж­ЈејЏзЋЇеўѓдё­зљ„жі•еѕ‹ж–‡жњ¬гЂ‚';
 
   @override
-  String get legalTitleAbout => '关于 SubFlix';
+  String get legalTitleAbout => 'е…ідєЋ SubFlix';
 
   @override
-  String get legalTitlePrivacy => '隐私政策';
+  String get legalTitlePrivacy => 'йљђз§Ѓж”їз­–';
 
   @override
-  String get legalTitleSupport => '支持';
+  String get legalTitleSupport => 'ж”ЇжЊЃ';
 
   @override
-  String get legalTitleTerms => '服务条款';
+  String get legalTitleTerms => 'жњЌеЉЎжќЎж¬ѕ';
 
   @override
-  String get mediaTypeMovie => '电影';
+  String get mediaTypeMovie => 'з”µеЅ±';
 
   @override
-  String get mediaTypeSeries => '剧集';
+  String get mediaTypeSeries => 'е‰§й›†';
 
   @override
-  String get metadataEstimatedDuration => '预计时长';
+  String get metadataEstimatedDuration => 'йў„и®Ўж—¶й•ї';
 
   @override
-  String get metadataFormat => '格式';
+  String get metadataFormat => 'ж јејЏ';
 
   @override
-  String get metadataLanguages => '语言';
+  String get metadataLanguages => 'иЇ­иЁЂ';
 
   @override
-  String get metadataLines => '行数';
+  String get metadataLines => 'иЎЊж•°';
 
   @override
-  String get navHistory => '历史';
+  String get navHistory => 'еЋ†еЏІ';
 
   @override
-  String get navHome => '首页';
+  String get navHome => 'й¦–йЎµ';
 
   @override
-  String get navSettings => '设置';
+  String get navSettings => 'и®ѕзЅ®';
 
   @override
-  String get noTitlesMatchedMessage => '我们在模拟目录中找不到这个标题。请尝试更宽泛的搜索，或使用建议标题。';
+  String get noTitlesMatchedMessage =>
+      'ж€‘д»¬ењЁжЁЎж‹џз›®еЅ•дё­ж‰ѕдёЌе€°иї™дёЄж ‡йўгЂ‚иЇ·е°ќиЇ•ж›ґе®Ѕжі›зљ„жђњзґўпјЊж€–дЅїз”Ёе»єи®®ж ‡йўгЂ‚';
 
   @override
-  String get noTitlesMatchedTitle => '没有匹配结果';
+  String get noTitlesMatchedTitle => 'жІЎжњ‰еЊ№й…Ќз»“жћњ';
 
   @override
-  String get onboardingContinue => '继续';
+  String get onboardingContinue => 'з»§з»­';
 
   @override
-  String get onboardingEnterApp => '进入 SubFlix';
+  String get onboardingEnterApp => 'иї›е…Ґ SubFlix';
 
   @override
-  String get onboardingNext => '下一步';
+  String get onboardingNext => 'дё‹дёЂж­Ґ';
 
   @override
-  String get onboardingPage1Description => '搜索标题、查看可用的英文字幕来源，然后启动一个几乎即时的翻译流程。';
+  String get onboardingPage1Description =>
+      'жђњзґўж ‡йўгЂЃжџҐзњ‹еЏЇз”Ёзљ„и‹±ж–‡е­—е№•жќҐжєђпјЊз„¶еђЋеђЇеЉЁдёЂдёЄе‡ д№ЋеЌіж—¶зљ„зї»иЇ‘жµЃзЁ‹гЂ‚';
 
   @override
-  String get onboardingPage1Eyebrow => '搜索并获取';
+  String get onboardingPage1Eyebrow => 'жђњзґўе№¶иЋ·еЏ–';
 
   @override
-  String get onboardingPage1Highlight1 => '可预测的模拟目录，方便稳定开发';
+  String get onboardingPage1Highlight1 =>
+      'еЏЇйў„жµ‹зљ„жЁЎж‹џз›®еЅ•пјЊж–№дѕїзЁіе®љејЂеЏ‘';
 
   @override
-  String get onboardingPage1Highlight2 => '字幕来源质量标签与格式标识';
+  String get onboardingPage1Highlight2 =>
+      'е­—е№•жќҐжєђиґЁй‡Џж ‡з­ѕдёЋж јејЏж ‡иЇ†';
 
   @override
-  String get onboardingPage1Highlight3 => '后续可无缝切换到真实后端';
+  String get onboardingPage1Highlight3 =>
+      'еђЋз»­еЏЇж— зјќе€‡жЌўе€°зњџе®ћеђЋз«Ї';
 
   @override
-  String get onboardingPage1Title => '找到电影或剧集，并拉取可直接翻译的字幕。';
+  String get onboardingPage1Title =>
+      'ж‰ѕе€°з”µеЅ±ж€–е‰§й›†пјЊе№¶ж‹‰еЏ–еЏЇз›ґжЋҐзї»иЇ‘зљ„е­—е№•гЂ‚';
 
   @override
-  String get onboardingPage2Description => '导入字幕文件、校验格式，并在不离开应用的情况下走完整套精致翻译流程。';
+  String get onboardingPage2Description =>
+      'еЇје…Ґе­—е№•ж–‡д»¶гЂЃж ЎйЄЊж јејЏпјЊе№¶ењЁдёЌз¦»ејЂеє”з”Ёзљ„жѓ…е†µдё‹иµ°е®Њж•ґеҐ—зІѕи‡ґзї»иЇ‘жµЃзЁ‹гЂ‚';
 
   @override
-  String get onboardingPage2Eyebrow => '使用自己的文件';
+  String get onboardingPage2Eyebrow => 'дЅїз”Ёи‡Єе·±зљ„ж–‡д»¶';
 
   @override
-  String get onboardingPage2Highlight1 => '本地文件校验与优雅的重试状态';
+  String get onboardingPage2Highlight1 =>
+      'жњ¬ењ°ж–‡д»¶ж ЎйЄЊдёЋдјй›…зљ„й‡ЌиЇ•зЉ¶жЂЃ';
 
   @override
-  String get onboardingPage2Highlight2 => '上传与搜索保持一致的翻译设置';
+  String get onboardingPage2Highlight2 =>
+      'дёЉдј дёЋжђњзґўдїќжЊЃдёЂи‡ґзљ„зї»иЇ‘и®ѕзЅ®';
 
   @override
-  String get onboardingPage2Highlight3 => '导出前先预览，让结果更透明';
+  String get onboardingPage2Highlight3 =>
+      'еЇје‡єе‰Ќе…€йў„и§€пјЊи®©з»“жћњж›ґйЂЏжЋ';
 
   @override
-  String get onboardingPage2Title => '如果你已经有脚本，可直接上传 `.srt` 或 `.vtt` 文件。';
+  String get onboardingPage2Title =>
+      'е¦‚жћњдЅ е·Із»Џжњ‰и„љжњ¬пјЊеЏЇз›ґжЋҐдёЉдј  `.srt` ж€– `.vtt` ж–‡д»¶гЂ‚';
 
   @override
   String get onboardingPage3Description =>
-      '在原文、译文和双语视图之间切换，回看历史记录，并在结果满意后导出干净的字幕文件。';
+      'ењЁеЋџж–‡гЂЃиЇ‘ж–‡е’ЊеЏЊиЇ­и§†е›ѕд№‹й—ґе€‡жЌўпјЊе›ћзњ‹еЋ†еЏІи®°еЅ•пјЊе№¶ењЁз»“жћњж»Ўж„ЏеђЋеЇје‡єе№Іе‡Ђзљ„е­—е№•ж–‡д»¶гЂ‚';
 
   @override
-  String get onboardingPage3Eyebrow => '翻译并导出';
+  String get onboardingPage3Eyebrow => 'зї»иЇ‘е№¶еЇје‡є';
 
   @override
-  String get onboardingPage3Highlight1 => '带元数据与搜索的快速预览控制';
+  String get onboardingPage3Highlight1 =>
+      'её¦е…ѓж•°жЌ®дёЋжђњзґўзљ„еї«йЂџйў„и§€жЋ§е€¶';
 
   @override
-  String get onboardingPage3Highlight2 => '历史记录让旧任务始终只差一次点击';
+  String get onboardingPage3Highlight2 =>
+      'еЋ†еЏІи®°еЅ•и®©ж—§д»»еЉЎе§‹з»€еЏЄе·®дёЂж¬Ўз‚№е‡»';
 
   @override
-  String get onboardingPage3Highlight3 => '设计得像高级媒体工具，而不是演示页';
+  String get onboardingPage3Highlight3 =>
+      'и®ѕи®Ўеѕ—еѓЏй«зє§еЄ’дЅ“е·Ґе…·пјЊиЂЊдёЌжЇжј”з¤єйЎµ';
 
   @override
-  String get onboardingPage3Title => '选择目标语言、预览字幕，并立即导出。';
+  String get onboardingPage3Title =>
+      'йЂ‰ж‹©з›®ж ‡иЇ­иЁЂгЂЃйў„и§€е­—е№•пјЊе№¶з«‹еЌіеЇје‡єгЂ‚';
 
   @override
-  String get onboardingSkip => '跳过';
+  String get onboardingSkip => 'и·іиї‡';
 
   @override
-  String get onboardingStart => '开始翻译';
+  String get onboardingStart => 'ејЂе§‹зї»иЇ‘';
 
   @override
-  String get previewFailedTitle => '预览加载失败';
+  String get previewFailedTitle => 'йў„и§€еЉ иЅЅе¤±иґҐ';
 
   @override
-  String get previewModeBilingual => '双语';
+  String get previewModeBilingual => 'еЏЊиЇ­';
 
   @override
-  String get previewModeOriginal => '原文';
+  String get previewModeOriginal => 'еЋџж–‡';
 
   @override
-  String get previewModeTranslated => '译文';
+  String get previewModeTranslated => 'иЇ‘ж–‡';
 
   @override
-  String get previewNoMatchesMessage => '请尝试其他搜索词，或清除筛选以查看完整翻译。';
+  String get previewNoMatchesMessage =>
+      'иЇ·е°ќиЇ•е…¶д»–жђњзґўиЇЌпјЊж€–жё…й™¤з­›йЂ‰д»ҐжџҐзњ‹е®Њж•ґзї»иЇ‘гЂ‚';
 
   @override
-  String get previewNoMatchesTitle => '没有匹配的字幕行';
+  String get previewNoMatchesTitle => 'жІЎжњ‰еЊ№й…Ќзљ„е­—е№•иЎЊ';
 
   @override
-  String get previewNotReadyMessage => '翻译已完成，但后端尚未返回预览 cue。请稍后重新加载此页面。';
+  String get previewNotReadyMessage =>
+      'зї»иЇ‘е·Іе®Њж€ђпјЊдЅ†еђЋз«Їе°љжњЄиї”е›ћйў„и§€ cueгЂ‚иЇ·зЁЌеђЋй‡Ќж–°еЉ иЅЅж­¤йЎµйќўгЂ‚';
 
   @override
-  String get previewNotReadyTitle => '预览 cue 暂时不可用';
+  String get previewNotReadyTitle => 'йў„и§€ cue жљ‚ж—¶дёЌеЏЇз”Ё';
 
   @override
-  String get retry => '重试';
+  String get retry => 'й‡ЌиЇ•';
 
   @override
-  String get retryTranslation => '重新翻译';
+  String get retryTranslation => 'й‡Ќж–°зї»иЇ‘';
 
   @override
-  String get routeMissingSeasonEpisodesMessage => '我们无法判断应加载哪一季。请从搜索重新开始。';
+  String get routeMissingSeasonEpisodesMessage =>
+      'ж€‘д»¬ж— жі•е€¤ж–­еє”еЉ иЅЅе“ЄдёЂе­ЈгЂ‚иЇ·д»Ћжђњзґўй‡Ќж–°ејЂе§‹гЂ‚';
 
   @override
-  String get routeMissingSeasonEpisodesTitle => '本季剧集';
+  String get routeMissingSeasonEpisodesTitle => 'жњ¬е­Је‰§й›†';
 
   @override
-  String get routeMissingSeriesSeasonsMessage => '我们无法判断应加载哪部剧集。请从搜索重新开始。';
+  String get routeMissingSeriesSeasonsMessage =>
+      'ж€‘д»¬ж— жі•е€¤ж–­еє”еЉ иЅЅе“ЄйѓЁе‰§й›†гЂ‚иЇ·д»Ћжђњзґўй‡Ќж–°ејЂе§‹гЂ‚';
 
   @override
-  String get routeMissingSeriesSeasonsTitle => '剧集季列表';
+  String get routeMissingSeriesSeasonsTitle => 'е‰§й›†е­Је€—иЎЁ';
 
   @override
   String get routeMissingSubtitleSourcesMessage =>
-      '我们无法判断应为哪个标题加载字幕来源。请从搜索重新开始。';
+      'ж€‘д»¬ж— жі•е€¤ж–­еє”дёєе“ЄдёЄж ‡йўеЉ иЅЅе­—е№•жќҐжєђгЂ‚иЇ·д»Ћжђњзґўй‡Ќж–°ејЂе§‹гЂ‚';
 
   @override
-  String get routeMissingSubtitleSourcesTitle => '字幕来源';
+  String get routeMissingSubtitleSourcesTitle => 'е­—е№•жќҐжєђ';
 
   @override
   String get routeMissingTranslationProgressMessage =>
-      '没有提供翻译请求。请从搜索或上传开始新的翻译。';
+      'жІЎжњ‰жЏђдѕ›зї»иЇ‘иЇ·ж±‚гЂ‚иЇ·д»Ћжђњзґўж€–дёЉдј ејЂе§‹ж–°зљ„зї»иЇ‘гЂ‚';
 
   @override
-  String get routeMissingTranslationProgressTitle => '翻译进度';
+  String get routeMissingTranslationProgressTitle => 'зї»иЇ‘иї›еє¦';
 
   @override
-  String get routeMissingTranslationSetupMessage => '打开翻译设置页面前，必须先有一个字幕来源。';
+  String get routeMissingTranslationSetupMessage =>
+      'ж‰“ејЂзї»иЇ‘и®ѕзЅ®йЎµйќўе‰ЌпјЊеї…йЎ»е…€жњ‰дёЂдёЄе­—е№•жќҐжєђгЂ‚';
 
   @override
-  String get routeMissingTranslationSetupTitle => '翻译设置';
+  String get routeMissingTranslationSetupTitle => 'зї»иЇ‘и®ѕзЅ®';
 
   @override
-  String get searchFailedTitle => '搜索失败';
+  String get searchFailedTitle => 'жђњзґўе¤±иґҐ';
 
   @override
   String searchFoundResults(Object count, Object query) {
-    return '找到 $count 条与“$query”相关的结果';
+    return 'ж‰ѕе€° $count жќЎдёЋвЂњ$queryвЂќз›ёе…ізљ„з»“жћњ';
   }
 
   @override
-  String get searchHintText => '搜索 Dune、Breaking Bad、Severance...';
+  String get searchHintText => 'жђњзґў DuneгЂЃBreaking BadгЂЃSeverance...';
 
   @override
-  String get searchLoadingLabel => '正在搜索...';
+  String get searchLoadingLabel => 'ж­ЈењЁжђњзґў...';
 
   @override
   String get searchMockMessage =>
-      '试试 Inception、Dune、Breaking Bad、Severance 或 The Last of Us，体验字幕来源流程。';
+      'иЇ•иЇ• InceptionгЂЃDuneгЂЃBreaking BadгЂЃSeverance ж€– The Last of UsпјЊдЅ“йЄЊе­—е№•жќҐжєђжµЃзЁ‹гЂ‚';
 
   @override
-  String get searchMockTitle => '在模拟目录中搜索任何内容';
+  String get searchMockTitle => 'ењЁжЁЎж‹џз›®еЅ•дё­жђњзґўд»»дЅ•е†…е®№';
 
   @override
-  String get searchMovieOrSeriesSubtitle => '找到片名、查看字幕来源，并通过几次点击启动翻译任务。';
+  String get searchMovieOrSeriesSubtitle =>
+      'ж‰ѕе€°з‰‡еђЌгЂЃжџҐзњ‹е­—е№•жќҐжєђпјЊе№¶йЂљиї‡е‡ ж¬Ўз‚№е‡»еђЇеЉЁзї»иЇ‘д»»еЉЎгЂ‚';
 
   @override
-  String get searchMovieOrSeriesTitle => '搜索电影或剧集';
+  String get searchMovieOrSeriesTitle => 'жђњзґўз”µеЅ±ж€–е‰§й›†';
 
   @override
   String searchNoResultsFor(Object query) {
-    return '没有找到“$query”的结果';
+    return 'жІЎжњ‰ж‰ѕе€°вЂњ$queryвЂќзљ„з»“жћњ';
   }
 
   @override
   String searchResultPopularity(Object score) {
-    return '热度 $score';
+    return 'зѓ­еє¦ $score';
   }
 
   @override
-  String get searchTitles => '搜索片名';
+  String get searchTitles => 'жђњзґўз‰‡еђЌ';
 
   @override
-  String get searchTrendingTitle => '热门搜索';
+  String get searchTrendingTitle => 'зѓ­й—Ёжђњзґў';
 
   @override
-  String get searchTryDifferentKeywords => '试试其他关键词。';
+  String get searchTryDifferentKeywords => 'иЇ•иЇ•е…¶д»–е…ій”®иЇЌгЂ‚';
 
   @override
   String seriesEpisodeLabel(Object episodeNumber) {
-    return '第 $episodeNumber 集';
+    return 'з¬¬ $episodeNumber й›†';
   }
 
   @override
   String seriesEpisodeMeta(Object runtime) {
-    return '约 $runtime 分钟';
+    return 'зє¦ $runtime е€†й’џ';
   }
 
   @override
   String seriesEpisodesSubtitle(Object episodeCount, Object year) {
-    return '$episodeCount 集$year';
+    return '$episodeCount й›†$year';
   }
 
   @override
   String seriesEpisodesTitle(Object seasonNumber) {
-    return '第 $seasonNumber 季';
+    return 'з¬¬ $seasonNumber е­Ј';
   }
 
   @override
   String seriesSeasonLabel(Object seasonNumber) {
-    return '第 $seasonNumber 季';
+    return 'з¬¬ $seasonNumber е­Ј';
   }
 
   @override
   String seriesSeasonMeta(Object episodeCount, Object year) {
-    return '$episodeCount 集$year';
+    return '$episodeCount й›†$year';
   }
 
   @override
   String seriesSeasonsSubtitle(Object title) {
-    return '选择 $title 的某一季以浏览可用剧集。';
+    return 'йЂ‰ж‹© $title зљ„жџђдёЂе­Јд»ҐжµЏи§€еЏЇз”Ёе‰§й›†гЂ‚';
   }
 
   @override
-  String get seriesSeasonsTitle => '选择季';
+  String get seriesSeasonsTitle => 'йЂ‰ж‹©е­Ј';
 
   @override
-  String get settingsAboutTitle => '关于 SubFlix';
+  String get settingsAboutTitle => 'е…ідєЋ SubFlix';
 
   @override
-  String get settingsCacheCleared => '缓存已清除';
+  String get settingsCacheCleared => 'зј“е­е·Іжё…й™¤';
 
   @override
-  String get settingsClearCache => '清除缓存';
+  String get settingsClearCache => 'жё…й™¤зј“е­';
 
   @override
-  String get settingsContactTitle => '联系我们';
+  String get settingsContactTitle => 'иЃ”зі»ж€‘д»¬';
 
   @override
-  String get settingsFailedTitle => '设置加载失败';
+  String get settingsFailedTitle => 'и®ѕзЅ®еЉ иЅЅе¤±иґҐ';
 
   @override
-  String get settingsHelpCenterTitle => '帮助中心';
+  String get settingsHelpCenterTitle => 'её®еЉ©дё­еїѓ';
 
   @override
-  String get settingsHistoryClearedSnack => '已清除此设备的翻译历史';
+  String get settingsHistoryClearedSnack => 'е·Іжё…й™¤ж­¤и®ѕе¤‡зљ„зї»иЇ‘еЋ†еЏІ';
 
   @override
-  String get settingsLanguageLabel => '首选目标语言';
+  String get settingsLanguageLabel => 'й¦–йЂ‰з›®ж ‡иЇ­иЁЂ';
 
   @override
-  String get settingsMaintenanceSubtitle => '清除此设备上由后端管理的翻译任务，并从空历史状态重新开始。';
+  String get settingsMaintenanceSubtitle =>
+      'жё…й™¤ж­¤и®ѕе¤‡дёЉз”±еђЋз«Їз®Ўзђ†зљ„зї»иЇ‘д»»еЉЎпјЊе№¶д»Ћз©єеЋ†еЏІзЉ¶жЂЃй‡Ќж–°ејЂе§‹гЂ‚';
 
   @override
-  String get settingsMaintenanceTitle => '维护';
+  String get settingsMaintenanceTitle => 'з»ґжЉ¤';
 
   @override
-  String get settingsNotificationsSubtitle => '管理通知偏好';
+  String get settingsNotificationsSubtitle => 'з®Ўзђ†йЂљзџҐеЃЏеҐЅ';
 
   @override
-  String get settingsNotificationsTitle => '通知';
+  String get settingsNotificationsTitle => 'йЂљзџҐ';
 
   @override
-  String get settingsPremiumSubtitle => '后续我们可以在这里接入订阅、计费和云项目同步。';
+  String get settingsPremiumSubtitle =>
+      'еђЋз»­ж€‘д»¬еЏЇд»ҐењЁиї™й‡ЊжЋҐе…Ґи®ўй…гЂЃи®Ўиґ№е’Њдє‘йЎ№з›®еђЊж­ҐгЂ‚';
 
   @override
-  String get settingsPremiumTitle => '高级功能占位';
+  String get settingsPremiumTitle => 'й«зє§еЉџиѓЅеЌ дЅЌ';
 
   @override
-  String get settingsPrivacySubtitle => '模拟隐私内容';
+  String get settingsPrivacySubtitle => 'жЁЎж‹џйљђз§Ѓе†…е®№';
 
   @override
-  String get settingsPrivacyTitle => '隐私政策';
+  String get settingsPrivacyTitle => 'йљђз§Ѓж”їз­–';
 
   @override
-  String get settingsProfileName => 'SubFlix 用户';
+  String get settingsProfileName => 'SubFlix з”Ёж€·';
 
   @override
-  String get settingsProfileTier => '高级会员';
+  String get settingsProfileTier => 'й«зє§дјље‘';
 
   @override
-  String get settingsSubtitle => '管理你的偏好';
+  String get settingsSubtitle => 'з®Ўзђ†дЅ зљ„еЃЏеҐЅ';
 
   @override
-  String get settingsSupportSubtitle => '模拟帮助与联系页面';
+  String get settingsSupportSubtitle => 'жЁЎж‹џеё®еЉ©дёЋиЃ”зі»йЎµйќў';
 
   @override
-  String get settingsSupportTitle => '支持占位';
+  String get settingsSupportTitle => 'ж”ЇжЊЃеЌ дЅЌ';
 
   @override
-  String get settingsTermsSubtitle => '模拟条款内容';
+  String get settingsTermsSubtitle => 'жЁЎж‹џжќЎж¬ѕе†…е®№';
 
   @override
-  String get settingsTermsTitle => '服务条款';
+  String get settingsTermsTitle => 'жњЌеЉЎжќЎж¬ѕ';
 
   @override
-  String get settingsThemeLabel => '外观';
+  String get settingsThemeLabel => 'е¤–и§‚';
 
   @override
-  String get settingsTitle => '设置';
+  String get settingsTitle => 'и®ѕзЅ®';
 
   @override
   String settingsVersion(Object version) {
-    return '版本 $version';
+    return 'з‰€жњ¬ $version';
   }
 
   @override
   String get splashHeadline => 'SubFlix';
 
   @override
-  String get splashPreparing => '正在准备你的字幕工作室';
+  String get splashPreparing => 'ж­ЈењЁе‡†е¤‡дЅ зљ„е­—е№•е·ҐдЅње®¤';
 
   @override
-  String get splashSubtitle => 'AI 驱动的字幕翻译';
+  String get splashSubtitle => 'AI й©±еЉЁзљ„е­—е№•зї»иЇ‘';
 
   @override
-  String get startTranslation => '开始翻译';
+  String get startTranslation => 'ејЂе§‹зї»иЇ‘';
 
   @override
   String subtitleSourceDownloads(Object downloads) {
-    return '$downloads 次下载';
+    return '$downloads ж¬Ўдё‹иЅЅ';
   }
 
   @override
   String subtitleSourceFormatLabel(Object format) {
-    return '$format 字幕来源';
+    return '$format е­—е№•жќҐжєђ';
   }
 
   @override
@@ -795,236 +819,246 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String subtitleSourceLines(Object lineCount) {
-    return '$lineCount 行';
+    return '$lineCount иЎЊ';
   }
 
   @override
   String subtitleSourceRating(Object rating) {
-    return '评分 $rating';
+    return 'иЇ„е€† $rating';
   }
 
   @override
-  String get subtitleSourcesBannerMessage => '选择字幕来源后，即可进入针对字幕时间轴优化过的精致翻译设置。';
+  String get subtitleSourcesBannerMessage =>
+      'йЂ‰ж‹©е­—е№•жќҐжєђеђЋпјЊеЌіеЏЇиї›е…Ґй’€еЇ№е­—е№•ж—¶й—ґиЅґдјеЊ–иї‡зљ„зІѕи‡ґзї»иЇ‘и®ѕзЅ®гЂ‚';
 
   @override
-  String get subtitleSourcesBannerTitle => '可使用 AI 翻译';
+  String get subtitleSourcesBannerTitle => 'еЏЇдЅїз”Ё AI зї»иЇ‘';
 
   @override
-  String get subtitleSourcesFailedTitle => '无法加载字幕来源';
+  String get subtitleSourcesFailedTitle => 'ж— жі•еЉ иЅЅе­—е№•жќҐжєђ';
 
   @override
   String subtitleSourcesSubtitle(Object title, Object target) {
-    return '为 $title$target 选择一个字幕来源，然后在下一步选择目标语言。';
+    return 'дёє $title$target йЂ‰ж‹©дёЂдёЄе­—е№•жќҐжєђпјЊз„¶еђЋењЁдё‹дёЂж­ҐйЂ‰ж‹©з›®ж ‡иЇ­иЁЂгЂ‚';
   }
 
   @override
-  String get subtitleSourcesTitle => '英文字幕来源';
+  String get subtitleSourcesTitle => 'и‹±ж–‡е­—е№•жќҐжєђ';
 
   @override
-  String get targetLanguage => '目标语言';
+  String get targetLanguage => 'з›®ж ‡иЇ­иЁЂ';
 
   @override
-  String get themeDark => '深色';
+  String get themeDark => 'ж·±и‰І';
 
   @override
-  String get themeLight => '浅色';
+  String get themeLight => 'жµ…и‰І';
 
   @override
-  String get themeSystem => '跟随系统';
+  String get themeSystem => 'и·џйљЏзі»з»џ';
 
   @override
-  String get translateSetupAutoDetect => '自动识别格式';
+  String get translateSetupAutoDetect => 'и‡ЄеЉЁиЇ†е€«ж јејЏ';
 
   @override
-  String get translateSetupAutoDetectBody => '自动选择合适的字幕输出结构。';
+  String get translateSetupAutoDetectBody =>
+      'и‡ЄеЉЁйЂ‰ж‹©еђ€йЂ‚зљ„е­—е№•иѕ“е‡єз»“жћ„гЂ‚';
 
   @override
-  String get translateSetupLanguageTitle => '翻译为';
+  String get translateSetupLanguageTitle => 'зї»иЇ‘дёє';
 
   @override
-  String get translateSetupOptionsTitle => '选项';
+  String get translateSetupOptionsTitle => 'йЂ‰йЎ№';
 
   @override
-  String get translateSetupPreserveTiming => '保留时间轴';
+  String get translateSetupPreserveTiming => 'дїќз•™ж—¶й—ґиЅґ';
 
   @override
-  String get translateSetupPreserveTimingBody => '让原始字幕时间与源文件保持一致。';
+  String get translateSetupPreserveTimingBody =>
+      'и®©еЋџе§‹е­—е№•ж—¶й—ґдёЋжєђж–‡д»¶дїќжЊЃдёЂи‡ґгЂ‚';
 
   @override
   String translateSetupReadyBody(Object language) {
-    return '我们的翻译流程会将这份字幕转换为 $language，同时保留时间轴并保持清晰的 cue 结构。';
+    return 'ж€‘д»¬зљ„зї»иЇ‘жµЃзЁ‹дјље°†иї™д»Ѕе­—е№•иЅ¬жЌўдёє $languageпјЊеђЊж—¶дїќз•™ж—¶й—ґиЅґе№¶дїќжЊЃжё…ж™°зљ„ cue з»“жћ„гЂ‚';
   }
 
   @override
-  String get translateSetupReadyTitle => 'AI 翻译已就绪';
+  String get translateSetupReadyTitle => 'AI зї»иЇ‘е·Іе°±з»Є';
 
   @override
-  String get translateSetupSelectLanguage => '选择语言';
+  String get translateSetupSelectLanguage => 'йЂ‰ж‹©иЇ­иЁЂ';
 
   @override
-  String get translateSetupSourceTitle => '源字幕';
+  String get translateSetupSourceTitle => 'жєђе­—е№•';
 
   @override
-  String get translateSetupSubtitle => '选择目标语言，查看字幕来源，然后启动后端翻译任务。';
+  String get translateSetupSubtitle =>
+      'йЂ‰ж‹©з›®ж ‡иЇ­иЁЂпјЊжџҐзњ‹е­—е№•жќҐжєђпјЊз„¶еђЋеђЇеЉЁеђЋз«Їзї»иЇ‘д»»еЉЎгЂ‚';
 
   @override
-  String get translateSetupTitle => '翻译设置';
+  String get translateSetupTitle => 'зї»иЇ‘и®ѕзЅ®';
 
   @override
-  String get translationFailedMessage => '出了点问题。';
+  String get translationFailedMessage => 'е‡єдє†з‚№й—®йўгЂ‚';
 
   @override
-  String get translationFailedTitle => '翻译未能完成';
+  String get translationFailedTitle => 'зї»иЇ‘жњЄиѓЅе®Њж€ђ';
 
   @override
-  String get translationPreviewHeader => '查看翻译后的字幕';
+  String get translationPreviewHeader => 'жџҐзњ‹зї»иЇ‘еђЋзљ„е­—е№•';
 
   @override
-  String get translationPreviewSearchHint => '搜索字幕行';
+  String get translationPreviewSearchHint => 'жђњзґўе­—е№•иЎЊ';
 
   @override
-  String get translationPreviewSubtitle => '在 cue 中搜索、切换预览模式，并在确认结果无误后导出。';
+  String get translationPreviewSubtitle =>
+      'ењЁ cue дё­жђњзґўгЂЃе€‡жЌўйў„и§€жЁЎејЏпјЊе№¶ењЁзЎ®и®¤з»“жћњж— иЇЇеђЋеЇје‡єгЂ‚';
 
   @override
-  String get translationPreviewTitle => '翻译预览';
+  String get translationPreviewTitle => 'зї»иЇ‘йў„и§€';
 
   @override
-  String get translationProgressHeadline => 'AI 字幕翻译进行中';
+  String get translationProgressHeadline => 'AI е­—е№•зї»иЇ‘иї›иЎЊдё­';
 
   @override
-  String get translationProgressTitle => '翻译进度';
+  String get translationProgressTitle => 'зї»иЇ‘иї›еє¦';
 
   @override
-  String get translationResultCompleteSubtitle => '你的字幕已经可以预览或下载。';
+  String get translationResultCompleteSubtitle =>
+      'дЅ зљ„е­—е№•е·Із»ЏеЏЇд»Ґйў„и§€ж€–дё‹иЅЅгЂ‚';
 
   @override
-  String get translationResultCompleteTitle => '翻译完成';
+  String get translationResultCompleteTitle => 'зї»иЇ‘е®Њж€ђ';
 
   @override
-  String get translationResultConfidenceLabel => '翻译可信度';
+  String get translationResultConfidenceLabel => 'зї»иЇ‘еЏЇдїЎеє¦';
 
   @override
-  String get translationResultDetailsTitle => '翻译详情';
+  String get translationResultDetailsTitle => 'зї»иЇ‘иЇ¦жѓ…';
 
   @override
-  String get translationResultDownloadCta => '下载字幕';
+  String get translationResultDownloadCta => 'дё‹иЅЅе­—е№•';
 
   @override
-  String get translationResultHomeCta => '返回首页';
+  String get translationResultHomeCta => 'иї”е›ћй¦–йЎµ';
 
   @override
-  String get translationResultMediaLabel => '作品标题';
+  String get translationResultMediaLabel => 'дЅње“Ѓж ‡йў';
 
   @override
-  String get translationResultMethodAi => 'AI 翻译';
+  String get translationResultMethodAi => 'AI зї»иЇ‘';
 
   @override
-  String get translationResultMetricsTitle => '质量指标';
+  String get translationResultMetricsTitle => 'иґЁй‡ЏжЊ‡ж ‡';
 
   @override
-  String get translationResultPreviewCta => '预览字幕';
+  String get translationResultPreviewCta => 'йў„и§€е­—е№•';
 
   @override
   String translationResultProcessedIn(Object duration) {
-    return '处理耗时 $duration';
+    return 'е¤„зђ†иЂ—ж—¶ $duration';
   }
 
   @override
-  String get translationResultSourceLabel => '源语言';
+  String get translationResultSourceLabel => 'жєђиЇ­иЁЂ';
 
   @override
-  String get translationResultTargetLabel => '目标语言';
+  String get translationResultTargetLabel => 'з›®ж ‡иЇ­иЁЂ';
 
   @override
-  String get translationResultTimingLabel => '时间精度';
+  String get translationResultTimingLabel => 'ж—¶й—ґзІѕеє¦';
 
   @override
-  String get translationResultTimingPreserved => '时间已保留';
+  String get translationResultTimingPreserved => 'ж—¶й—ґе·Ідїќз•™';
 
   @override
-  String get translationResultWarning => '某些专业术语仍可能需要人工快速复核，以确保语境准确。';
+  String get translationResultWarning =>
+      'жџђдє›дё“дёљжњЇиЇ­д»ЌеЏЇиѓЅйњЂи¦Ѓдєєе·Ґеї«йЂџе¤Ќж ёпјЊд»ҐзЎ®дїќиЇ­еўѓе‡†зЎ®гЂ‚';
 
   @override
-  String get translationStageAligning => '正在对齐时间戳和场景上下文';
+  String get translationStageAligning =>
+      'ж­ЈењЁеЇ№йЅђж—¶й—ґж€іе’Њењєж™ЇдёЉдё‹ж–‡';
 
   @override
-  String get translationStageGenerating => '正在生成字幕翻译';
+  String get translationStageGenerating => 'ж­ЈењЁз”џж€ђе­—е№•зї»иЇ‘';
 
   @override
-  String get translationStageIdle => '等待翻译请求';
+  String get translationStageIdle => 'з­‰еѕ…зї»иЇ‘иЇ·ж±‚';
 
   @override
-  String get translationStagePreparing => '正在准备字幕包';
+  String get translationStagePreparing => 'ж­ЈењЁе‡†е¤‡е­—е№•еЊ…';
 
   @override
-  String get translationStageQueued => '已加入翻译队列';
+  String get translationStageQueued => 'е·ІеЉ е…Ґзї»иЇ‘йџе€—';
 
   @override
-  String get translationStageReadability => '正在进行可读性优化';
+  String get translationStageReadability => 'ж­ЈењЁиї›иЎЊеЏЇиЇ»жЂ§дјеЊ–';
 
   @override
-  String get translationStageReady => '翻译已完成';
+  String get translationStageReady => 'зї»иЇ‘е·Іе®Њж€ђ';
 
   @override
-  String get tryAgain => '再试一次';
+  String get tryAgain => 'е†ЌиЇ•дёЂж¬Ў';
 
   @override
-  String get uploadChooseFile => '选择字幕文件';
+  String get uploadChooseFile => 'йЂ‰ж‹©е­—е№•ж–‡д»¶';
 
   @override
-  String get uploadChooseFileShort => '选择文件';
+  String get uploadChooseFileShort => 'йЂ‰ж‹©ж–‡д»¶';
 
   @override
-  String get uploadContinueSetup => '继续进行翻译设置';
+  String get uploadContinueSetup => 'з»§з»­иї›иЎЊзї»иЇ‘и®ѕзЅ®';
 
   @override
-  String get uploadEnglishSource => '英文来源';
+  String get uploadEnglishSource => 'и‹±ж–‡жќҐжєђ';
 
   @override
-  String get uploadFailedFallback => '请尝试其他字幕文件。';
+  String get uploadFailedFallback => 'иЇ·е°ќиЇ•е…¶д»–е­—е№•ж–‡д»¶гЂ‚';
 
   @override
-  String get uploadFailedMessage => '我们无法读取这个字幕文件。请尝试其他文件，或使用更小的导出文件。';
+  String get uploadFailedMessage =>
+      'ж€‘д»¬ж— жі•иЇ»еЏ–иї™дёЄе­—е№•ж–‡д»¶гЂ‚иЇ·е°ќиЇ•е…¶д»–ж–‡д»¶пјЊж€–дЅїз”Ёж›ґе°Џзљ„еЇје‡єж–‡д»¶гЂ‚';
 
   @override
-  String get uploadFailedTitle => '文件导入失败';
+  String get uploadFailedTitle => 'ж–‡д»¶еЇје…Ґе¤±иґҐ';
 
   @override
   String get uploadIntroSubtitle =>
-      '导入英文 `.srt` 或 `.vtt` 文件，交给后端校验并解析，然后继续进入翻译设置。';
+      'еЇје…Ґи‹±ж–‡ `.srt` ж€– `.vtt` ж–‡д»¶пјЊдє¤з»™еђЋз«Їж ЎйЄЊе№¶и§ЈжћђпјЊз„¶еђЋз»§з»­иї›е…Ґзї»иЇ‘и®ѕзЅ®гЂ‚';
 
   @override
-  String get uploadIntroTitle => '使用你自己的字幕文件';
+  String get uploadIntroTitle => 'дЅїз”ЁдЅ и‡Єе·±зљ„е­—е№•ж–‡д»¶';
 
   @override
   String uploadLineCount(Object lineCount) {
-    return '$lineCount 行';
+    return '$lineCount иЎЊ';
   }
 
   @override
-  String get uploadMetadataTitle => '字幕详情';
+  String get uploadMetadataTitle => 'е­—е№•иЇ¦жѓ…';
 
   @override
-  String get uploadOpeningPicker => '正在打开选择器...';
+  String get uploadOpeningPicker => 'ж­ЈењЁж‰“ејЂйЂ‰ж‹©е™Ё...';
 
   @override
-  String get uploadPickSubtitle => '选择字幕文件';
+  String get uploadPickSubtitle => 'йЂ‰ж‹©е­—е№•ж–‡д»¶';
 
   @override
-  String get uploadPickedFile => '已选择字幕文件';
+  String get uploadPickedFile => 'е·ІйЂ‰ж‹©е­—е№•ж–‡д»¶';
 
   @override
-  String get uploadReadyTitle => '可以开始翻译';
+  String get uploadReadyTitle => 'еЏЇд»ҐејЂе§‹зї»иЇ‘';
 
   @override
-  String get uploadSubtitleTitle => '上传字幕';
+  String get uploadSubtitleTitle => 'дёЉдј е­—е№•';
 
   @override
-  String get uploadSupportedFormatsSubtitle => '英文 `.srt` 和 `.vtt` 字幕文件';
+  String get uploadSupportedFormatsSubtitle =>
+      'и‹±ж–‡ `.srt` е’Њ `.vtt` е­—е№•ж–‡д»¶';
 
   @override
-  String get uploadSupportedFormatsTitle => '支持的格式';
+  String get uploadSupportedFormatsTitle => 'ж”ЇжЊЃзљ„ж јејЏ';
 
   @override
-  String get uploadUseDemoFile => '使用演示文件';
+  String get uploadUseDemoFile => 'дЅїз”Ёжј”з¤єж–‡д»¶';
 }
