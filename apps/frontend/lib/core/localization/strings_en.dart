@@ -191,8 +191,7 @@ const Map<String, String> kStringsEn = <String, String>{
   'heroStatMockTitle': 'Mock APIs',
   'heroStatMockValue': 'Backend-ready seam',
   'settingsTitle': 'Settings',
-  'settingsSubtitle':
-      'Manage subtitle defaults, appearance, app information, and placeholder premium controls.',
+  'settingsSubtitle': 'Manager your preferences',
   'settingsProfileName': 'SubFlix User',
   'settingsProfileTier': 'Premium member',
   'settingsLanguageLabel': 'Preferred target language',

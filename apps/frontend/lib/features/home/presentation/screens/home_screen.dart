@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:subflix/core/app/router/app_routes.dart';
+import 'package:subflix/core/app/router/app_routes_data.dart';
 import 'package:subflix/core/extensions/date_time_extensions.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
@@ -31,70 +32,63 @@ class HomeScreen extends ConsumerWidget {
             child: ListView(
               padding: EdgeInsets.zero,
               children: <Widget>[
-                const _HeroSection(),
-                Transform.translate(
-                  offset: const Offset(0, -76),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        const _QuickActions(),
-                        const SizedBox(height: 24),
-                        _SectionHeader(
-                          title: 'Recent Translations',
-                          actionLabel: context.t.homeViewAll,
-                          onTap: () => context.push(AppRoutes.history),
-                        ),
-                        const SizedBox(height: 12),
-                        recentJobs.when(
-                          data: (jobs) {
-                            if (jobs.isEmpty) {
-                              return StatePanel(
-                                icon: Icons.history_rounded,
-                                title: context.t.homeNoRecentTitle,
-                                message: context.t.homeNoRecentMessage,
-                              );
-                            }
-                            return Column(
-                              children: jobs
-                                  .map(
-                                    (job) => Padding(
-                                      padding: const EdgeInsets.only(
-                                        bottom: 12,
-                                      ),
-                                      child: _RecentTranslationCard(job: job),
-                                    ),
-                                  )
-                                  .toList(growable: false),
+                const _HeroHeaderBlock(),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 24, 16, 0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      _SectionHeader(
+                        title: 'Recent Translations',
+                        actionLabel: context.t.homeViewAll,
+                        onTap: () => const HistoryRoute().go(context),
+                      ),
+                      const SizedBox(height: 12),
+                      recentJobs.when(
+                        data: (jobs) {
+                          if (jobs.isEmpty) {
+                            return StatePanel(
+                              icon: Icons.history_rounded,
+                              title: context.t.homeNoRecentTitle,
+                              message: context.t.homeNoRecentMessage,
                             );
-                          },
-                          error: (error, stackTrace) => StatePanel(
-                            icon: Icons.error_outline_rounded,
-                            title: context.t.homeFailedRecentTitle,
-                            message: '$error',
-                            action: OutlinedButton.icon(
-                              onPressed: () => ref
-                                  .read(historyControllerProvider.notifier)
-                                  .refresh(),
-                              icon: const Icon(Icons.refresh_rounded),
-                              label: Text(context.t.retry),
-                            ),
-                          ),
-                          loading: () => Column(
-                            children: const <Widget>[
-                              LoadingSkeleton(height: 118),
-                              SizedBox(height: 12),
-                              LoadingSkeleton(height: 118),
-                            ],
+                          }
+                          return Column(
+                            children: jobs
+                                .map(
+                                  (job) => Padding(
+                                    padding: const EdgeInsets.only(bottom: 12),
+                                    child: _RecentTranslationCard(job: job),
+                                  ),
+                                )
+                                .toList(growable: false),
+                          );
+                        },
+                        error: (error, stackTrace) => StatePanel(
+                          icon: Icons.error_outline_rounded,
+                          title: context.t.homeFailedRecentTitle,
+                          message: '$error',
+                          action: OutlinedButton.icon(
+                            onPressed: () => ref
+                                .read(historyControllerProvider.notifier)
+                                .refresh(),
+                            icon: const Icon(Icons.refresh_rounded),
+                            label: Text(context.t.retry),
                           ),
                         ),
-                        const SizedBox(height: 16),
-                        const _TrendingHeader(),
-                        const SizedBox(height: 12),
-                        const _TrendingRow(),
-                      ],
-                    ),
+                        loading: () => Column(
+                          children: const <Widget>[
+                            LoadingSkeleton(height: 118),
+                            SizedBox(height: 12),
+                            LoadingSkeleton(height: 118),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      const _TrendingHeader(),
+                      const SizedBox(height: 12),
+                      const _TrendingRow(),
+                    ],
                   ),
                 ),
               ],
@@ -106,13 +100,40 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
+class _HeroHeaderBlock extends StatelessWidget {
+  const _HeroHeaderBlock();
+
+  static const double _quickActionsOverlap = 76;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      clipBehavior: Clip.none,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(bottom: _quickActionsOverlap),
+          child: const _HeroSection(),
+        ),
+        const Positioned(
+          left: 16,
+          right: 16,
+          bottom: 0,
+          child: _QuickActions(),
+        ),
+      ],
+    );
+  }
+}
+
 class _HeroSection extends StatelessWidget {
   const _HeroSection();
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
-      padding: const EdgeInsets.fromLTRB(24, 18, 24, 116),
+      padding: const EdgeInsets.fromLTRB(24, 18, 24, 64),
       decoration: const BoxDecoration(
         gradient: AppColors.heroGradient,
         borderRadius: BorderRadius.vertical(bottom: Radius.circular(32)),
@@ -147,7 +168,11 @@ class _HeroSection extends StatelessWidget {
                 onPressed: () => context.push(AppRoutes.settings),
                 style: IconButton.styleFrom(
                   backgroundColor: Colors.white.withValues(alpha: 0.20),
-                  minimumSize: const Size(50, 50),
+                  minimumSize: const Size(48, 48),
+                  padding: EdgeInsets.zero,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                 ),
                 icon: const Icon(Icons.settings_outlined, color: Colors.white),
               ),
@@ -157,35 +182,55 @@ class _HeroSection extends StatelessWidget {
           InkWell(
             borderRadius: BorderRadius.circular(18),
             onTap: () => context.push(AppRoutes.search),
-            child: Ink(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-              decoration: BoxDecoration(
-                color: Colors.white,
+            child: Material(
+              color: Colors.white,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18),
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.10),
-                    blurRadius: 24,
-                    offset: const Offset(0, 10),
-                  ),
-                ],
+                side: BorderSide(
+                  color: isDark
+                      ? const Color(0xFFD4D4D8)
+                      : const Color(0xFFE5E7EB),
+                  width: 1.2,
+                ),
               ),
-              child: Row(
-                children: <Widget>[
-                  const Icon(
-                    Icons.search_rounded,
-                    color: AppColors.textSecondaryLight,
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Text(
-                      context.t.homeSearchPlaceholder,
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: AppColors.textSecondaryLight,
+              shadowColor: Colors.black.withValues(alpha: isDark ? 0.18 : 0.10),
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 16,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18),
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                      color: Colors.black.withValues(
+                        alpha: isDark ? 0.18 : 0.10,
+                      ),
+                      blurRadius: isDark ? 28 : 24,
+                      offset: const Offset(0, 10),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: <Widget>[
+                    const Icon(
+                      Icons.search_rounded,
+                      color: AppColors.textPrimaryLight,
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        context.t.homeSearchPlaceholder,
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: AppColors.textPrimaryLight.withValues(
+                            alpha: 0.78,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -215,11 +260,11 @@ class _QuickActions extends StatelessWidget {
         gradient: const LinearGradient(
           colors: <Color>[AppColors.secondary, AppColors.tertiary],
         ),
-        onTap: () => context.push(AppRoutes.history),
+        onTap: () => const HistoryRoute().go(context),
       ),
       _QuickActionModel(
         label: context.t.homeQuickUpload,
-        icon: Icons.upload_file_rounded,
+        icon: Icons.file_upload_outlined,
         gradient: const LinearGradient(
           colors: <Color>[AppColors.tertiary, Color(0xFFF43F5E)],
         ),
