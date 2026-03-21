@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/radii.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 
 class OnboardingPageCard extends StatelessWidget {
   const OnboardingPageCard({
@@ -50,20 +51,23 @@ class OnboardingPageCard extends StatelessWidget {
               spacing: 10,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
+                AppText(
                   eyebrow,
+                  variant: AppTextVariant.labelLarge,
                   style: Theme.of(
                     context,
                   ).textTheme.labelLarge?.copyWith(color: AppColors.info),
                 ),
-                Text(
+                AppText(
                   title,
+                  variant: AppTextVariant.headlineMedium,
                   style: Theme.of(
                     context,
                   ).textTheme.headlineMedium?.copyWith(color: Colors.white),
                 ),
-                Text(
+                AppText(
                   description,
+                  variant: AppTextVariant.bodyLarge,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: AppColors.textPrimary.withValues(alpha: 0.92),
                   ),
@@ -84,8 +88,9 @@ class OnboardingPageCard extends StatelessWidget {
                           size: 20,
                         ),
                         Expanded(
-                          child: Text(
+                          child: AppText(
                             highlight,
+                            variant: AppTextVariant.bodyMedium,
                             style: Theme.of(context).textTheme.bodyMedium
                                 ?.copyWith(
                                   color: AppColors.textPrimary.withValues(

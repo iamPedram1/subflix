@@ -7,6 +7,7 @@ import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/features/search/domain/models/movie_search_item.dart';
 import 'package:subflix/features/search/presentation/models/series_catalog.dart';
@@ -34,13 +35,14 @@ class SeriesSeasonsScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
+                      AppText(
                         context.t.seriesSeasonsTitle,
-                        style: Theme.of(context).textTheme.titleLarge,
+                        variant: AppTextVariant.titleLarge,
                       ),
                       const SizedBox(height: 8),
-                      Text(
+                      AppText(
                         context.t.seriesSeasonsSubtitle(item.title),
+                        variant: AppTextVariant.bodyMedium,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: AppColors.textSecondaryFor(context),
                         ),
@@ -124,26 +126,29 @@ class _SeriesHero extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
+                AppText(
                   context.t.mediaTypeSeries.toUpperCase(),
+                  variant: AppTextVariant.labelLarge,
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
                     color: Colors.white.withValues(alpha: 0.70),
                     letterSpacing: 1.0,
                   ),
                 ),
                 const SizedBox(height: 8),
-                Text(
+                AppText(
                   item.title,
+                  variant: AppTextVariant.headlineMedium,
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 const SizedBox(height: 8),
-                Text(
+                AppText(
                   context.t.searchResultPopularity(
                     item.popularity.toStringAsFixed(1),
                   ),
+                  variant: AppTextVariant.bodyMedium,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Colors.white.withValues(alpha: 0.78),
                   ),
@@ -196,10 +201,11 @@ class _SeasonCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(title, style: Theme.of(context).textTheme.titleLarge),
+                AppText(title, variant: AppTextVariant.titleLarge),
                 const SizedBox(height: 8),
-                Text(
+                AppText(
                   subtitle,
+                  variant: AppTextVariant.bodyMedium,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: AppColors.textSecondaryFor(context),
                   ),
@@ -207,8 +213,9 @@ class _SeasonCard extends StatelessWidget {
                 const SizedBox(height: 14),
                 Row(
                   children: <Widget>[
-                    Text(
+                    AppText(
                       context.t.onboardingContinue,
+                      variant: AppTextVariant.labelLarge,
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         color: AppColors.primary,
                       ),

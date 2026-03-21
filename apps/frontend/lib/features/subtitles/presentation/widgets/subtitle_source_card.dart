@@ -6,6 +6,7 @@ import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_directional_icon.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/features/subtitles/domain/models/subtitle_source.dart';
 
 class SubtitleSourceCard extends StatelessWidget {
@@ -47,12 +48,13 @@ class SubtitleSourceCard extends StatelessWidget {
                   spacing: 4,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
+                    AppText(
                       source.label,
-                      style: Theme.of(context).textTheme.titleMedium,
+                      variant: AppTextVariant.titleMedium,
                     ),
-                    Text(
+                    AppText(
                       source.releaseGroup,
+                      variant: AppTextVariant.bodySmall,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondaryFor(context),
                       ),
@@ -106,8 +108,9 @@ class _SourceChip extends StatelessWidget {
       ),
       child: Padding(
         padding: AppInsets.chip,
-        child: Text(
+        child: AppText(
           label,
+          variant: AppTextVariant.labelMedium,
           style: Theme.of(context).textTheme.labelMedium?.copyWith(
             color: AppColors.textSecondaryFor(context),
           ),

@@ -5,6 +5,7 @@ import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/features/subtitles/domain/models/subtitle_line.dart';
 
 enum PreviewMode { original, translated, bilingual }
@@ -35,14 +36,16 @@ class SubtitleLineCard extends StatelessWidget {
           Row(
             spacing: 10,
             children: <Widget>[
-              Text(
+              AppText(
                 '#${line.index}',
+                variant: AppTextVariant.labelLarge,
                 style: Theme.of(
                   context,
                 ).textTheme.labelLarge?.copyWith(color: AppColors.primary),
               ),
-              Text(
+              AppText(
                 '${Duration(milliseconds: line.startMs).toClock()} - ${Duration(milliseconds: line.endMs).toClock()}',
+                variant: AppTextVariant.bodySmall,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.textMutedFor(context),
                 ),
@@ -50,9 +53,9 @@ class SubtitleLineCard extends StatelessWidget {
             ],
           ),
           if (mode != PreviewMode.translated)
-            Text(
+            AppText(
               line.originalText,
-              style: Theme.of(context).textTheme.bodyLarge,
+              variant: AppTextVariant.bodyLarge,
             ),
           if (mode == PreviewMode.bilingual)
             Container(
@@ -60,8 +63,9 @@ class SubtitleLineCard extends StatelessWidget {
               color: AppColors.outline.withValues(alpha: 0.35),
             ),
           if (mode != PreviewMode.original)
-            Text(
+            AppText(
               line.translatedText ?? line.originalText,
+              variant: AppTextVariant.bodyLarge,
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 color: mode == PreviewMode.bilingual
                     ? AppColors.emerald

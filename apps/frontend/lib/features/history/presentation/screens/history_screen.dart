@@ -7,6 +7,7 @@ import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
@@ -49,14 +50,16 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                           data: (jobs) => Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text(
+                              AppText(
                                 context.t.historyTitle,
+                                variant: AppTextVariant.headlineMedium,
                                 style: Theme.of(context).textTheme.headlineSmall
                                     ?.copyWith(fontWeight: FontWeight.w700),
                               ),
                               const SizedBox(height: 2),
-                              Text(
+                              AppText(
                                 context.t.historyCountLabel(jobs.length),
+                                variant: AppTextVariant.bodyMedium,
                                 style: Theme.of(context).textTheme.bodyMedium
                                     ?.copyWith(
                                       color: AppColors.textSecondaryFor(
@@ -66,8 +69,9 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                               ),
                             ],
                           ),
-                          orElse: () => Text(
+                          orElse: () => AppText(
                             context.t.historyTitle,
+                            variant: AppTextVariant.headlineMedium,
                             style: Theme.of(context).textTheme.headlineSmall
                                 ?.copyWith(fontWeight: FontWeight.w700),
                           ),
@@ -112,7 +116,10 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                             .read(historyControllerProvider.notifier)
                             .refresh(),
                         icon: const Icon(Icons.refresh_rounded),
-                        label: Text(context.t.retry),
+                        label: AppText(
+                          context.t.retry,
+                          variant: AppTextVariant.labelLarge,
+                        ),
                       ),
                     ),
                     loading: () => Column(
@@ -187,7 +194,10 @@ class _FilterRow extends StatelessWidget {
           final selected = value == filter;
           return ChoiceChip(
             selected: selected,
-            label: Text(labels[value]!),
+            label: AppText(
+              labels[value]!,
+              variant: AppTextVariant.labelLarge,
+            ),
             onSelected: (_) => onChanged(value),
           );
         },
@@ -251,13 +261,14 @@ class _HistoryCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
+                    AppText(
                       job.title,
-                      style: Theme.of(context).textTheme.titleMedium,
+                      variant: AppTextVariant.titleMedium,
                     ),
                     const SizedBox(height: 4),
-                    Text(
+                    AppText(
                       '${job.sourceLanguage.label} -> ${job.targetLanguage.label}',
+                      variant: AppTextVariant.bodyMedium,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: AppColors.textSecondaryFor(context),
                       ),
@@ -282,8 +293,9 @@ class _HistoryCard extends StatelessWidget {
           ),
           if (isFailed) ...<Widget>[
             const SizedBox(height: 12),
-            Text(
+            AppText(
               context.t.historyFailedItemMessage,
+              variant: AppTextVariant.bodySmall,
               style: Theme.of(
                 context,
               ).textTheme.bodySmall?.copyWith(color: AppColors.danger),
@@ -309,8 +321,9 @@ class _StatusPill extends StatelessWidget {
         color: color.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Text(
+      child: AppText(
         label,
+        variant: AppTextVariant.labelMedium,
         style: Theme.of(context).textTheme.labelMedium?.copyWith(color: color),
       ),
     );
@@ -330,8 +343,9 @@ class _DetailPill extends StatelessWidget {
         color: AppColors.surfaceMutedFor(context),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Text(
+      child: AppText(
         label,
+        variant: AppTextVariant.labelMedium,
         style: Theme.of(context).textTheme.labelMedium?.copyWith(
           color: AppColors.textSecondaryFor(context),
         ),

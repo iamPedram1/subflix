@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:subflix/core/app/router/app_routes.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/features/settings/application/settings_controller.dart';
 import 'package:subflix/features/settings/domain/models/user_preference.dart';
 
@@ -137,8 +138,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                           .animate(onPlay: (controller) => controller.repeat())
                           .rotate(duration: 20.seconds),
                       const SizedBox(height: 28),
-                      Text(
+                      AppText(
                             context.t.splashHeadline,
+                            variant: AppTextVariant.displayMedium,
                             style: Theme.of(context).textTheme.displayMedium
                                 ?.copyWith(
                                   color: Colors.white,
@@ -149,8 +151,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                           .fadeIn(duration: 450.ms)
                           .moveY(begin: 12, end: 0),
                       const SizedBox(height: 8),
-                      Text(
+                      AppText(
                         context.t.brandSubtitleFull,
+                        variant: AppTextVariant.bodyLarge,
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: Colors.white.withValues(alpha: 0.68),
@@ -201,8 +204,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                           ),
                         ),
                         const SizedBox(height: 14),
-                        Text(
+                        AppText(
                           context.t.splashPreparing,
+                          variant: AppTextVariant.bodyMedium,
                           style: Theme.of(context).textTheme.bodyMedium
                               ?.copyWith(
                                 color: Colors.white.withValues(alpha: 0.62),

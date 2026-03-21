@@ -11,6 +11,7 @@ import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
@@ -114,7 +115,10 @@ class _TranslationResultScreenState
                       onPressed: () =>
                           ref.invalidate(translationJobProvider(widget.jobId)),
                       icon: const Icon(Icons.refresh_rounded),
-                      label: Text(context.t.retry),
+                      label: AppText(
+                        context.t.retry,
+                        variant: AppTextVariant.labelLarge,
+                      ),
                     ),
                   ),
                 ],
@@ -154,7 +158,9 @@ class _TranslationResultScreenState
       }
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(context.t.exportedSnack(result.fileName, result.path)),
+          content: AppText(
+            context.t.exportedSnack(result.fileName, result.path),
+          ),
         ),
       );
     } catch (error) {
@@ -162,7 +168,7 @@ class _TranslationResultScreenState
         return;
       }
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.t.exportFailedSnack('$error'))),
+        SnackBar(content: AppText(context.t.exportFailedSnack('$error'))),
       );
     } finally {
       if (mounted) {
@@ -227,8 +233,9 @@ class _ResultHero extends StatelessWidget {
                     ),
               ),
               const SizedBox(height: 22),
-              Text(
+              AppText(
                     context.t.translationResultCompleteTitle,
+                    variant: AppTextVariant.headlineMedium,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       color: Colors.white,
@@ -239,8 +246,9 @@ class _ResultHero extends StatelessWidget {
                   .fadeIn(delay: 120.ms, duration: 260.ms)
                   .moveY(begin: 16, end: 0),
               const SizedBox(height: 8),
-              Text(
+              AppText(
                     context.t.translationResultCompleteSubtitle,
+                    variant: AppTextVariant.bodyLarge,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: Colors.white.withValues(alpha: 0.92),
@@ -304,8 +312,9 @@ class _DetailsCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
+          AppText(
             context.t.translationResultDetailsTitle,
+            variant: AppTextVariant.titleLarge,
             style: Theme.of(
               context,
             ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
@@ -331,15 +340,17 @@ class _DetailsCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
+                      AppText(
                         context.t.translationResultMediaLabel,
+                        variant: AppTextVariant.bodySmall,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.textSecondaryFor(context),
                         ),
                       ),
                       const SizedBox(height: 4),
-                      Text(
+                      AppText(
                         job.title,
+                        variant: AppTextVariant.titleMedium,
                         style: Theme.of(context).textTheme.titleMedium
                             ?.copyWith(fontWeight: FontWeight.w600),
                       ),
@@ -380,8 +391,9 @@ class _DetailsCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          Text(
+          AppText(
             context.t.translationResultMethodAi,
+            variant: AppTextVariant.bodySmall,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: AppColors.textSecondaryFor(context),
             ),
@@ -402,10 +414,11 @@ class _DetailsCard extends StatelessWidget {
                   color: AppColors.secondary,
                 ),
                 const SizedBox(width: 8),
-                Text(
+                AppText(
                   job.translationReuse == true
                       ? context.t.jobReuseTranslation
                       : context.t.translationResultMethodAi,
+                  variant: AppTextVariant.labelMedium,
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
                     color: AppColors.secondary,
                     fontWeight: FontWeight.w600,
@@ -434,8 +447,9 @@ class _MetricsCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
+          AppText(
             context.t.translationResultMetricsTitle,
+            variant: AppTextVariant.titleLarge,
             style: Theme.of(
               context,
             ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
@@ -505,15 +519,17 @@ class _NoticeCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
+                AppText(
                   'Note',
+                  variant: AppTextVariant.labelLarge,
                   style: Theme.of(
                     context,
                   ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 4),
-                Text(
+                AppText(
                   message,
+                  variant: AppTextVariant.bodySmall,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.textSecondaryFor(context),
                   ),
@@ -549,7 +565,10 @@ class _ActionSection extends StatelessWidget {
           child: OutlinedButton.icon(
             onPressed: onPreview,
             icon: const Icon(Icons.visibility_outlined),
-            label: Text(context.t.translationResultPreviewCta),
+            label: AppText(
+              context.t.translationResultPreviewCta,
+              variant: AppTextVariant.labelLarge,
+            ),
             style: OutlinedButton.styleFrom(
               minimumSize: const Size.fromHeight(56),
               shape: RoundedRectangleBorder(
@@ -579,7 +598,10 @@ class _ActionSection extends StatelessWidget {
           child: TextButton.icon(
             onPressed: onHome,
             icon: const Icon(Icons.home_outlined),
-            label: Text(context.t.translationResultHomeCta),
+            label: AppText(
+              context.t.translationResultHomeCta,
+              variant: AppTextVariant.labelLarge,
+            ),
             style: TextButton.styleFrom(
               backgroundColor: AppColors.surfaceMutedFor(context),
               foregroundColor: Theme.of(context).colorScheme.onSurface,
@@ -626,8 +648,9 @@ class _LanguageInfo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(
+        AppText(
           label,
+          variant: AppTextVariant.bodySmall,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
             color: AppColors.textSecondaryFor(context),
           ),
@@ -635,14 +658,15 @@ class _LanguageInfo extends StatelessWidget {
         const SizedBox(height: 8),
         Row(
           children: <Widget>[
-            Text(
+            AppText(
               _flagForLanguage(language),
               style: const TextStyle(fontSize: 24),
             ),
             const SizedBox(width: 8),
             Expanded(
-              child: Text(
+              child: AppText(
                 language.label,
+                variant: AppTextVariant.titleMedium,
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
@@ -673,15 +697,17 @@ class _ProgressMetric extends StatelessWidget {
         Row(
           children: <Widget>[
             Expanded(
-              child: Text(
+              child: AppText(
                 label,
+                variant: AppTextVariant.bodySmall,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.textSecondaryFor(context),
                 ),
               ),
             ),
-            Text(
+            AppText(
               '${value.round()}%',
+              variant: AppTextVariant.labelLarge,
               style: Theme.of(
                 context,
               ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w600),
@@ -727,8 +753,9 @@ class _MetricBadge extends StatelessWidget {
         children: <Widget>[
           Icon(icon, size: 14, color: color),
           const SizedBox(width: 6),
-          Text(
+          AppText(
             label,
+            variant: AppTextVariant.labelSmall,
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
               color: color,
               fontWeight: FontWeight.w600,

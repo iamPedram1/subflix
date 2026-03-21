@@ -9,6 +9,7 @@ import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/features/settings/application/settings_controller.dart';
 import 'package:subflix/features/shared/domain/models/app_language.dart';
@@ -54,15 +55,17 @@ class _TranslationSetupScreenState
                   ],
                 ),
                 const SizedBox(height: 4),
-                Text(
+                AppText(
                   context.t.translateSetupTitle,
+                  variant: AppTextVariant.headlineMedium,
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 const SizedBox(height: 8),
-                Text(
+                AppText(
                   context.t.translateSetupSubtitle,
+                  variant: AppTextVariant.bodyMedium,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: AppColors.textSecondaryFor(context),
                   ),
@@ -72,8 +75,9 @@ class _TranslationSetupScreenState
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
+                      AppText(
                         context.t.translateSetupSourceTitle,
+                        variant: AppTextVariant.labelLarge,
                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
                           color: AppColors.textSecondaryFor(context),
                         ),
@@ -98,17 +102,19 @@ class _TranslationSetupScreenState
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text(
+                                AppText(
                                   widget.args.sourceName,
+                                  variant: AppTextVariant.titleMedium,
                                   style: Theme.of(
                                     context,
                                   ).textTheme.titleMedium,
                                 ),
                                 const SizedBox(height: 4),
-                                Text(
+                                AppText(
                                   context.t.subtitleSourceFormatLabel(
                                     widget.args.format.label,
                                   ),
+                                  variant: AppTextVariant.bodySmall,
                                   style: Theme.of(context).textTheme.bodySmall
                                       ?.copyWith(
                                         color: AppColors.textSecondaryFor(
@@ -125,8 +131,9 @@ class _TranslationSetupScreenState
                   ),
                 ),
                 const SizedBox(height: 16),
-                Text(
+                AppText(
                   context.t.translateSetupLanguageTitle,
+                  variant: AppTextVariant.labelLarge,
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
                     color: AppColors.textSecondaryFor(context),
                   ),
@@ -204,15 +211,16 @@ class _TranslationSetupScreenState
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text(
+                              AppText(
                                 context.t.translateSetupReadyTitle,
-                                style: Theme.of(context).textTheme.titleMedium,
+                                variant: AppTextVariant.titleMedium,
                               ),
                               const SizedBox(height: 4),
-                              Text(
+                              AppText(
                                 context.t.translateSetupReadyBody(
                                   selectedLanguage.label,
                                 ),
+                                variant: AppTextVariant.bodyMedium,
                                 style: Theme.of(context).textTheme.bodyMedium
                                     ?.copyWith(
                                       color: AppColors.textSecondaryFor(
@@ -227,8 +235,9 @@ class _TranslationSetupScreenState
                     ),
                   ),
                 const SizedBox(height: 16),
-                Text(
+                AppText(
                   context.t.translateSetupOptionsTitle,
+                  variant: AppTextVariant.labelLarge,
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
                     color: AppColors.textSecondaryFor(context),
                   ),
@@ -309,13 +318,14 @@ class _LanguageRow extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
+                  AppText(
                     language.label,
-                    style: Theme.of(context).textTheme.titleMedium,
+                    variant: AppTextVariant.titleMedium,
                   ),
                   const SizedBox(height: 2),
-                  Text(
+                  AppText(
                     language.nativeLabel,
+                    variant: AppTextVariant.bodySmall,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.textSecondaryFor(context),
                     ),
@@ -354,10 +364,11 @@ class _OptionTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(title, style: Theme.of(context).textTheme.titleMedium),
+                AppText(title, variant: AppTextVariant.titleMedium),
                 const SizedBox(height: 4),
-                Text(
+                AppText(
                   subtitle,
+                  variant: AppTextVariant.bodySmall,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.textSecondaryFor(context),
                   ),

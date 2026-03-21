@@ -8,6 +8,7 @@ import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
@@ -88,7 +89,10 @@ class SubtitleSourcesScreen extends ConsumerWidget {
                         subtitleSourcesSelectionProvider(request),
                       ),
                       icon: const Icon(Icons.refresh_rounded),
-                      label: Text(context.t.retry),
+                      label: AppText(
+                        context.t.retry,
+                        variant: AppTextVariant.labelLarge,
+                      ),
                     ),
                   ),
                   loading: () => Column(
@@ -129,18 +133,20 @@ class _SourcesHeader extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 4),
-        Text(
+        AppText(
           args.item.title,
+          variant: AppTextVariant.headlineMedium,
           style: Theme.of(
             context,
           ).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w700),
         ),
         const SizedBox(height: 6),
-        Text(
+        AppText(
           context.t.subtitleSourcesSubtitle(
             args.item.title,
             _buildSubtitleTarget(context, args),
           ),
+          variant: AppTextVariant.bodyMedium,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: AppColors.textSecondaryFor(context),
           ),
@@ -187,10 +193,11 @@ class _InfoBanner extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(title, style: Theme.of(context).textTheme.titleMedium),
+                AppText(title, variant: AppTextVariant.titleMedium),
                 const SizedBox(height: 4),
-                Text(
+                AppText(
                   message,
+                  variant: AppTextVariant.bodyMedium,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: AppColors.textSecondaryFor(context),
                   ),
@@ -240,8 +247,9 @@ class _SourceCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Center(
-                  child: Text(
+                  child: AppText(
                     _languageBadge(source),
+                    variant: AppTextVariant.labelLarge,
                     style: Theme.of(
                       context,
                     ).textTheme.labelLarge?.copyWith(color: Colors.white),
@@ -256,8 +264,9 @@ class _SourceCard extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         Expanded(
-                          child: Text(
+                          child: AppText(
                             source.label,
+                            variant: AppTextVariant.titleMedium,
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                         ),
@@ -266,8 +275,9 @@ class _SourceCard extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 6),
-                    Text(
+                    AppText(
                       source.releaseGroup,
+                      variant: AppTextVariant.bodySmall,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondaryFor(context),
                       ),
@@ -330,8 +340,9 @@ class _MiniPill extends StatelessWidget {
         color: AppColors.surfaceMutedFor(context),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Text(
+      child: AppText(
         label,
+        variant: AppTextVariant.labelMedium,
         style: Theme.of(context).textTheme.labelMedium?.copyWith(
           color: AppColors.textSecondaryFor(context),
         ),

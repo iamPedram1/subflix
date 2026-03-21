@@ -6,6 +6,7 @@ import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_directional_icon.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/features/search/domain/models/movie_search_item.dart';
 import 'package:subflix/features/shared/domain/models/search_media_type.dart';
 
@@ -41,12 +42,13 @@ class SearchResultCard extends StatelessWidget {
                   spacing: 4,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
+                    AppText(
                       item.title,
-                      style: Theme.of(context).textTheme.titleLarge,
+                      variant: AppTextVariant.titleLarge,
                     ),
-                    Text(
+                    AppText(
                       '${item.mediaType.label(context)} \u2022 ${item.year}',
+                      variant: AppTextVariant.bodySmall,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondaryFor(context),
                       ),
@@ -60,8 +62,9 @@ class SearchResultCard extends StatelessWidget {
               ),
             ],
           ),
-          Text(
+          AppText(
             item.synopsis,
+            variant: AppTextVariant.bodyMedium,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: AppColors.textSecondaryFor(context),
             ),
@@ -99,8 +102,9 @@ class _MiniChip extends StatelessWidget {
       ),
       child: Padding(
         padding: AppInsets.chip,
-        child: Text(
+        child: AppText(
           label,
+          variant: AppTextVariant.labelMedium,
           style: Theme.of(context).textTheme.labelMedium?.copyWith(
             color: AppColors.textSecondaryFor(context),
           ),

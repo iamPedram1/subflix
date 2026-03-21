@@ -6,6 +6,7 @@ import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/features/shared/domain/models/translation_job.dart';
 
 class JobCard extends StatelessWidget {
@@ -40,14 +41,15 @@ class JobCard extends StatelessWidget {
                   spacing: 4,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
+                    AppText(
                       job.title,
+                      variant: AppTextVariant.titleMedium,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.titleMedium,
                     ),
-                    Text(
+                    AppText(
                       job.sourceName,
+                      variant: AppTextVariant.bodySmall,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -81,8 +83,9 @@ class JobCard extends StatelessWidget {
                 ),
             ],
           ),
-          Text(
+          AppText(
             job.createdAt.toJobTimestamp(),
+            variant: AppTextVariant.bodySmall,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: AppColors.textMutedFor(context),
             ),
@@ -107,8 +110,9 @@ class _InfoChip extends StatelessWidget {
       ),
       child: Padding(
         padding: AppInsets.chip,
-        child: Text(
+        child: AppText(
           label,
+          variant: AppTextVariant.labelMedium,
           style: Theme.of(context).textTheme.labelMedium?.copyWith(
             color: AppColors.textSecondaryFor(context),
           ),

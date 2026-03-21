@@ -7,6 +7,7 @@ import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
 import 'package:subflix/features/subtitles/application/translation_flow_controller.dart';
@@ -108,18 +109,20 @@ class _TranslationProgressScreenState
                   ),
                 ),
                 const SizedBox(height: 28),
-                Text(
+                AppText(
                   context.t.translationProgressHeadline,
+                  variant: AppTextVariant.headlineMedium,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 const SizedBox(height: 10),
-                Text(
+                AppText(
                   state.status == TranslationFlowStatus.idle
                       ? context.t.translationStageIdle
                       : state.stageLabel,
+                  variant: AppTextVariant.bodyMedium,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: AppColors.textSecondaryFor(context),
@@ -131,12 +134,15 @@ class _TranslationProgressScreenState
                     children: <Widget>[
                       Row(
                         children: <Widget>[
-                          Text(
+                          AppText(
                             context.t.translationProgressTitle,
-                            style: Theme.of(context).textTheme.titleMedium,
+                            variant: AppTextVariant.titleMedium,
                           ),
                           const Spacer(),
-                          Text('${(state.progress * 100).round()}%'),
+                          AppText(
+                            '${(state.progress * 100).round()}%',
+                            variant: AppTextVariant.bodyMedium,
+                          ),
                         ],
                       ),
                       const SizedBox(height: 12),
@@ -167,7 +173,10 @@ class _TranslationProgressScreenState
                           .read(translationFlowControllerProvider.notifier)
                           .retry(),
                       icon: const Icon(Icons.refresh_rounded),
-                      label: Text(context.t.retryTranslation),
+                      label: AppText(
+                        context.t.retryTranslation,
+                        variant: AppTextVariant.labelLarge,
+                      ),
                     ),
                   )
                 else
@@ -273,8 +282,9 @@ class _ProgressStageTile extends StatelessWidget {
           ),
           const SizedBox(width: 14),
           Expanded(
-            child: Text(
+            child: AppText(
               label,
+              variant: AppTextVariant.titleMedium,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: isActive || isComplete
                     ? Theme.of(context).colorScheme.onSurface

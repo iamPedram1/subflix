@@ -8,6 +8,7 @@ import 'package:subflix/core/providers/repository_providers.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
@@ -125,7 +126,10 @@ class _TranslationPreviewScreenState
                         ),
                       ),
                       icon: const Icon(Icons.refresh_rounded),
-                      label: Text(context.t.retry),
+                      label: AppText(
+                        context.t.retry,
+                        variant: AppTextVariant.labelLarge,
+                      ),
                     ),
                   ),
                 ],
@@ -171,7 +175,9 @@ class _TranslationPreviewScreenState
       }
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(context.t.exportedSnack(result.fileName, result.path)),
+          content: AppText(
+            context.t.exportedSnack(result.fileName, result.path),
+          ),
         ),
       );
     } catch (error) {
@@ -179,7 +185,7 @@ class _TranslationPreviewScreenState
         return;
       }
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.t.exportFailedSnack('$error'))),
+        SnackBar(content: AppText(context.t.exportFailedSnack('$error'))),
       );
     } finally {
       if (mounted) {
@@ -230,13 +236,14 @@ class _PreviewHeader extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
+                    AppText(
                       context.t.translationPreviewTitle,
-                      style: Theme.of(context).textTheme.titleLarge,
+                      variant: AppTextVariant.titleLarge,
                     ),
                     const SizedBox(height: 2),
-                    Text(
+                    AppText(
                       job.title,
+                      variant: AppTextVariant.bodyMedium,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: AppColors.textSecondaryFor(context),
                       ),
@@ -291,8 +298,9 @@ class _ModeToggle extends StatelessWidget {
                   selected: item == mode,
                   label: SizedBox(
                     width: double.infinity,
-                    child: Text(
+                    child: AppText(
                       item.label(context),
+                      variant: AppTextVariant.bodyMedium,
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -345,8 +353,9 @@ class _PreviewInfo extends StatelessWidget {
           ),
           const SizedBox(width: 12),
           Expanded(
-            child: Text(
+            child: AppText(
               message,
+              variant: AppTextVariant.bodyMedium,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: AppColors.textSecondaryFor(context),
               ),

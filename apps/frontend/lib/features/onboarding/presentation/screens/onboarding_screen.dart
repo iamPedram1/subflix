@@ -9,6 +9,7 @@ import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/features/settings/application/settings_controller.dart';
 
@@ -69,7 +70,10 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       }
                       context.go(AppRoutes.home);
                     },
-                    child: Text(context.t.onboardingSkip),
+                    child: AppText(
+                      context.t.onboardingSkip,
+                      variant: AppTextVariant.labelLarge,
+                    ),
                   ),
                 ),
                 Padding(
@@ -97,8 +101,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                                       .fadeIn(duration: 350.ms)
                                       .scale(begin: const Offset(0.92, 0.92)),
                                   const SizedBox(height: 42),
-                                  Text(
+                                  AppText(
                                     page.title,
+                                    variant: AppTextVariant.headlineMedium,
                                     textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
@@ -106,8 +111,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                                         ?.copyWith(fontWeight: FontWeight.w700),
                                   ).animate().fadeIn(duration: 300.ms),
                                   const SizedBox(height: 14),
-                                  Text(
+                                  AppText(
                                     page.description,
+                                    variant: AppTextVariant.bodyLarge,
                                     textAlign: TextAlign.center,
                                     style: Theme.of(context).textTheme.bodyLarge
                                         ?.copyWith(
@@ -310,7 +316,11 @@ class _HighlightRow extends StatelessWidget {
           ),
           const SizedBox(width: 12),
           Expanded(
-            child: Text(label, style: Theme.of(context).textTheme.bodyMedium),
+            child: AppText(
+              label,
+              variant: AppTextVariant.bodyMedium,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
           ),
         ],
       ),

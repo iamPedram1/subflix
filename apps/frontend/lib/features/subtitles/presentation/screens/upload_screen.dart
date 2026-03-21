@@ -9,6 +9,7 @@ import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
 import 'package:subflix/features/subtitles/application/upload_controller.dart';
@@ -39,15 +40,17 @@ class UploadScreen extends ConsumerWidget {
                   ],
                 ),
                 const SizedBox(height: 4),
-                Text(
+                AppText(
                   context.t.uploadSubtitleTitle,
+                  variant: AppTextVariant.headlineMedium,
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 const SizedBox(height: 8),
-                Text(
+                AppText(
                   context.t.uploadIntroSubtitle,
+                  variant: AppTextVariant.bodyMedium,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: AppColors.textSecondaryFor(context),
                   ),
@@ -75,8 +78,9 @@ class UploadScreen extends ConsumerWidget {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      Text(
+                      AppText(
                         context.t.uploadIntroTitle,
+                        variant: AppTextVariant.headlineMedium,
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.headlineSmall
                             ?.copyWith(
@@ -85,8 +89,9 @@ class UploadScreen extends ConsumerWidget {
                             ),
                       ),
                       const SizedBox(height: 10),
-                      Text(
+                      AppText(
                         context.t.uploadSupportedFormatsSubtitle,
+                        variant: AppTextVariant.bodyMedium,
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Colors.white.withValues(alpha: 0.78),
@@ -115,7 +120,10 @@ class UploadScreen extends ConsumerWidget {
                             ? null
                             : () => controller.loadDemoFile(),
                         icon: const Icon(Icons.bolt_rounded),
-                        label: Text(context.t.uploadUseDemoFile),
+                        label: AppText(
+                          context.t.uploadUseDemoFile,
+                          variant: AppTextVariant.labelLarge,
+                        ),
                       ),
                     ],
                   ),
@@ -131,7 +139,10 @@ class UploadScreen extends ConsumerWidget {
                     action: OutlinedButton.icon(
                       onPressed: () => controller.pickFile(),
                       icon: const Icon(Icons.refresh_rounded),
-                      label: Text(context.t.tryAgain),
+                      label: AppText(
+                        context.t.tryAgain,
+                        variant: AppTextVariant.labelLarge,
+                      ),
                     ),
                   ),
                 if (uploadState.file != null) ...<Widget>[
@@ -139,14 +150,14 @@ class UploadScreen extends ConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
+                        AppText(
                           context.t.uploadReadyTitle,
-                          style: Theme.of(context).textTheme.titleLarge,
+                          variant: AppTextVariant.titleLarge,
                         ),
                         const SizedBox(height: 10),
-                        Text(
+                        AppText(
                           uploadState.file!.name,
-                          style: Theme.of(context).textTheme.bodyLarge,
+                          variant: AppTextVariant.bodyLarge,
                         ),
                         const SizedBox(height: 12),
                         Wrap(
@@ -200,8 +211,9 @@ class _Chip extends StatelessWidget {
         color: AppColors.surfaceMutedFor(context),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Text(
+      child: AppText(
         label,
+        variant: AppTextVariant.labelMedium,
         style: Theme.of(context).textTheme.labelMedium?.copyWith(
           color: AppColors.textSecondaryFor(context),
         ),

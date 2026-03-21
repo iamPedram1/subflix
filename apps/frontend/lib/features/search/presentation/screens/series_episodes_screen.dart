@@ -7,6 +7,7 @@ import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/features/search/presentation/models/series_selection_args.dart';
 import 'package:subflix/features/subtitles/presentation/models/subtitle_sources_args.dart';
@@ -36,18 +37,20 @@ class SeriesEpisodesScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
+                      AppText(
                         context.t.seriesEpisodesTitle(args.seasonNumber),
+                        variant: AppTextVariant.titleLarge,
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                       const SizedBox(height: 8),
-                      Text(
+                      AppText(
                         context.t.seriesEpisodesSubtitle(
                           args.episodeCount,
                           args.seasonYear == null
                               ? ''
                               : ' • ${args.seasonYear}',
                         ),
+                        variant: AppTextVariant.bodyMedium,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: AppColors.textSecondaryFor(context),
                         ),
@@ -111,13 +114,15 @@ class _EpisodesHeader extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
+                AppText(
                   args.item.title,
+                  variant: AppTextVariant.titleLarge,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(height: 2),
-                Text(
+                AppText(
                   context.t.seriesSeasonLabel(args.seasonNumber),
+                  variant: AppTextVariant.bodyMedium,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: AppColors.textSecondaryFor(context),
                   ),
@@ -187,8 +192,9 @@ class _EpisodeCard extends StatelessWidget {
                       color: Colors.black.withValues(alpha: 0.26),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Text(
+                    child: AppText(
                       runtime,
+                      variant: AppTextVariant.labelLarge,
                       style: Theme.of(
                         context,
                       ).textTheme.labelLarge?.copyWith(color: Colors.white),
@@ -203,10 +209,15 @@ class _EpisodeCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(title, style: Theme.of(context).textTheme.titleMedium),
+                AppText(
+                  title,
+                  variant: AppTextVariant.titleMedium,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
                 const SizedBox(height: 8),
-                Text(
+                AppText(
                   description,
+                  variant: AppTextVariant.bodyMedium,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: AppColors.textSecondaryFor(context),
                   ),
