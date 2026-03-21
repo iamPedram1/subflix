@@ -54,6 +54,12 @@ abstract final class AppColors {
         : scheme.onSurface.withValues(alpha: 0.68);
   }
 
+  static Color textPrimaryForScheme(ColorScheme scheme) {
+    return scheme.brightness == Brightness.dark
+        ? textPrimaryDark
+        : textPrimaryLight;
+  }
+
   static Color textMutedForScheme(ColorScheme scheme) {
     return scheme.brightness == Brightness.dark
         ? textSecondaryDark.withValues(alpha: 0.72)

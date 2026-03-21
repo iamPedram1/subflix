@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:subflix/core/styles/colors.dart';
-import 'package:subflix/core/styles/radii.dart';
+import 'package:subflix/core/ui/widgets/app_button.dart';
 
 class AppGradientButton extends StatelessWidget {
   const AppGradientButton({
@@ -38,61 +37,29 @@ class AppGradientButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isRtl = Directionality.of(context) == TextDirection.rtl;
-    final iconWidget = icon == null
-        ? const SizedBox.shrink()
+    final leading = icon == null
+        ? null
         : (mirrorIconInRtl && isRtl)
         ? Transform(
             alignment: Alignment.center,
             transform: Matrix4.rotationY(3.1415926535897932),
-            child: Icon(icon, size: iconSize, color: iconColor),
+            child: Icon(icon, size: iconSize, color: iconColor ?? Colors.white),
           )
-        : Icon(icon, size: iconSize, color: iconColor);
-    final resolvedPadding =
-        padding ?? const EdgeInsets.symmetric(horizontal: 18, vertical: 18);
-    final resolvedMinHeight = minimumHeight ?? 54;
-    final resolvedRadius = borderRadius ?? AppRadii.medium;
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        gradient: onPressed == null
-            ? LinearGradient(
-                colors: <Color>[
-                  AppColors.outlineDark.withValues(alpha: 0.5),
-                  AppColors.outlineDark.withValues(alpha: 0.4),
-                ],
-              )
-            : (gradient ?? AppColors.accentGradient),
-        borderRadius: resolvedRadius,
-        boxShadow: <BoxShadow>[
-          if (onPressed != null)
-            shadow ??
-                BoxShadow(
-                  color: AppColors.primary.withValues(alpha: 0.32),
-                  blurRadius: 26,
-                  offset: const Offset(0, 14),
-                ),
-        ],
-      ),
-      child: SizedBox(
-        width: fullWidth ? double.infinity : null,
-        child: ElevatedButton.icon(
-          onPressed: onPressed,
-          icon: iconWidget,
-          label: Text(
-            label,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.center,
-            style: labelStyle,
-          ),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.transparent,
-            shadowColor: Colors.transparent,
-            padding: resolvedPadding,
-            minimumSize: Size(0, resolvedMinHeight),
-            shape: RoundedRectangleBorder(borderRadius: resolvedRadius),
-          ),
-        ),
-      ),
+        : Icon(icon, size: iconSize, color: iconColor ?? Colors.white);
+
+    return AppButton(
+      label: label,
+      onPressed: onPressed,
+      variant: AppButtonVariant.gradient,
+      leading: leading,
+      fullWidth: fullWidth,
+      padding: padding,
+      minimumHeight: minimumHeight ?? 54,
+      borderRadius: borderRadius,
+      gradient: gradient,
+      shadow: shadow,
+      labelStyle: labelStyle,
+      foregroundColor: Colors.white,
     );
   }
 }

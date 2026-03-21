@@ -8,19 +8,18 @@ import 'package:subflix/core/providers/repository_providers.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
-import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
 import 'package:subflix/features/auth/application/auth_controller.dart';
 import 'package:subflix/features/auth/data/services/firebase_oauth_service.dart';
-import 'package:subflix/features/auth/domain/models/auth_session.dart';
 import 'package:subflix/features/auth/presentation/models/auth_confirm_email_args.dart';
 import 'package:subflix/features/auth/presentation/widgets/auth_flow_scaffold.dart';
 import 'package:subflix/features/history/application/history_controller.dart';
 import 'package:subflix/features/settings/application/settings_controller.dart';
 import 'package:subflix/features/settings/domain/models/user_preference.dart';
+import 'package:subflix/features/settings/presentation/widgets/settings_presentational.dart';
 import 'package:subflix/features/shared/domain/models/app_language.dart';
 import 'package:subflix/features/shared/domain/models/theme_preference.dart';
 
@@ -32,7 +31,9 @@ class SettingsScreen extends ConsumerWidget {
       final idToken = await ref
           .read(firebaseOAuthServiceProvider)
           .signInWithGoogleIdToken();
-      await ref.read(authControllerProvider.notifier).signInWithFirebase(idToken);
+      await ref
+          .read(authControllerProvider.notifier)
+          .signInWithFirebase(idToken);
       if (!context.mounted) {
         return;
       }
@@ -45,13 +46,16 @@ class SettingsScreen extends ConsumerWidget {
       if (!context.mounted) {
         return;
       }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(describeAuthError(error))),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(describeAuthError(error))));
     }
   }
 
-  Future<void> _handleRefreshProfile(BuildContext context, WidgetRef ref) async {
+  Future<void> _handleRefreshProfile(
+    BuildContext context,
+    WidgetRef ref,
+  ) async {
     try {
       await ref.read(authControllerProvider.notifier).refreshProfile();
       if (!context.mounted) {
@@ -64,9 +68,9 @@ class SettingsScreen extends ConsumerWidget {
       if (!context.mounted) {
         return;
       }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(describeAuthError(error))),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(describeAuthError(error))));
     }
   }
 
@@ -83,9 +87,9 @@ class SettingsScreen extends ConsumerWidget {
       if (!context.mounted) {
         return;
       }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(describeAuthError(error))),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(describeAuthError(error))));
     }
   }
 
@@ -136,29 +140,33 @@ class SettingsScreen extends ConsumerWidget {
                     padding: const EdgeInsets.fromLTRB(16, 16, 16, 28),
                     sliver: SliverList.list(
                       children: <Widget>[
-                        _ProfileCard(
+                        SettingsProfileCard(
                           preference: preference,
                           authState: authState,
                           onSignIn: () => context.push(AppRoutes.authSignIn),
                           onSignUp: () => context.push(AppRoutes.authSignUp),
-                          onGoogleSignIn: () => _handleGoogleSignIn(context, ref),
+                          onGoogleSignIn: () =>
+                              _handleGoogleSignIn(context, ref),
                           onSignOut: () => _handleSignOut(context, ref),
                         ),
-                        if (authState.asData?.value case final session?) ...<Widget>[
+                        if (authState.asData?.value
+                            case final session?) ...<Widget>[
                           const SizedBox(height: 24),
-                          _SectionTitle(title: context.t.authAccountSectionTitle),
+                          SettingsSectionTitle(
+                            title: context.t.authAccountSectionTitle,
+                          ),
                           const SizedBox(height: 12),
                           AppSurfaceCard(
                             padding: EdgeInsets.zero,
                             child: Column(
                               children: <Widget>[
-                                _SettingsActionRow(
+                                SettingsActionRow(
                                   icon: Icons.alternate_email_rounded,
                                   title: context.t.authEmailLabel,
                                   value: session.user.email,
                                 ),
-                                _DividerLine(),
-                                _SettingsActionRow(
+                                const SettingsDividerLine(),
+                                SettingsActionRow(
                                   icon: session.user.emailVerified
                                       ? Icons.verified_rounded
                                       : Icons.mark_email_unread_outlined,
@@ -175,19 +183,17 @@ class SettingsScreen extends ConsumerWidget {
                                           ),
                                         ),
                                 ),
-                                _DividerLine(),
-                                _SettingsActionRow(
+                                const SettingsDividerLine(),
+                                SettingsActionRow(
                                   icon: Icons.refresh_rounded,
                                   title: context.t.authRefreshProfileAction,
                                   subtitle:
                                       context.t.authRefreshProfileSubtitle,
-                                  onTap: () => _handleRefreshProfile(
-                                    context,
-                                    ref,
-                                  ),
+                                  onTap: () =>
+                                      _handleRefreshProfile(context, ref),
                                 ),
-                                _DividerLine(),
-                                _SettingsActionRow(
+                                const SettingsDividerLine(),
+                                SettingsActionRow(
                                   icon: Icons.logout_rounded,
                                   title: context.t.authSignOutAction,
                                   subtitle: context.t.authSignOutSubtitle,
@@ -198,15 +204,17 @@ class SettingsScreen extends ConsumerWidget {
                           ),
                         ],
                         const SizedBox(height: 24),
-                        _SectionTitle(title: context.t.settingsThemeLabel),
+                        SettingsSectionTitle(
+                          title: context.t.settingsThemeLabel,
+                        ),
                         const SizedBox(height: 12),
                         AppSurfaceCard(
                           padding: EdgeInsets.zero,
-                          child: _SettingsActionRow(
+                          child: SettingsActionRow(
                             icon: _resolvedThemeIcon(context, preference),
                             title: 'Theme',
                             subtitle: _resolvedThemeLabel(context, preference),
-                            trailing: _ThemeToggle(
+                            trailing: SettingsThemeToggle(
                               enabled: _isDarkThemeEnabled(context, preference),
                             ),
                             onTap: () {
@@ -221,13 +229,13 @@ class SettingsScreen extends ConsumerWidget {
                           ),
                         ),
                         const SizedBox(height: 24),
-                        _SectionTitle(title: 'Preferences'),
+                        const SettingsSectionTitle(title: 'Preferences'),
                         const SizedBox(height: 12),
                         AppSurfaceCard(
                           padding: EdgeInsets.zero,
                           child: Column(
                             children: <Widget>[
-                              _SettingsActionRow(
+                              SettingsActionRow(
                                 icon: Icons.language_rounded,
                                 title: 'App Language',
                                 value: preference.preferredTargetLanguage.label,
@@ -237,8 +245,8 @@ class SettingsScreen extends ConsumerWidget {
                                   preference,
                                 ),
                               ),
-                              _DividerLine(),
-                              _SettingsActionRow(
+                              const SettingsDividerLine(),
+                              SettingsActionRow(
                                 icon: Icons.notifications_none_rounded,
                                 title: context.t.settingsNotificationsTitle,
                                 subtitle:
@@ -257,13 +265,13 @@ class SettingsScreen extends ConsumerWidget {
                           ),
                         ),
                         const SizedBox(height: 24),
-                        _SectionTitle(title: 'Support'),
+                        const SettingsSectionTitle(title: 'Support'),
                         const SizedBox(height: 12),
                         AppSurfaceCard(
                           padding: EdgeInsets.zero,
                           child: Column(
                             children: <Widget>[
-                              _SettingsActionRow(
+                              SettingsActionRow(
                                 icon: Icons.help_outline_rounded,
                                 title: context.t.settingsHelpCenterTitle,
                                 onTap: () => context.push(
@@ -273,8 +281,8 @@ class SettingsScreen extends ConsumerWidget {
                                   ),
                                 ),
                               ),
-                              _DividerLine(),
-                              _SettingsActionRow(
+                              const SettingsDividerLine(),
+                              SettingsActionRow(
                                 icon: Icons.mail_outline_rounded,
                                 title: context.t.settingsContactTitle,
                                 onTap: () => context.push(
@@ -288,19 +296,19 @@ class SettingsScreen extends ConsumerWidget {
                           ),
                         ),
                         const SizedBox(height: 24),
-                        _SectionTitle(title: 'About'),
+                        const SettingsSectionTitle(title: 'About'),
                         const SizedBox(height: 12),
                         AppSurfaceCard(
                           padding: EdgeInsets.zero,
                           child: Column(
                             children: <Widget>[
-                              _SettingsActionRow(
+                              const SettingsActionRow(
                                 icon: Icons.info_outline_rounded,
                                 title: 'App Version',
                                 value: '1.0.0',
                               ),
-                              _DividerLine(),
-                              _SettingsActionRow(
+                              const SettingsDividerLine(),
+                              SettingsActionRow(
                                 icon: Icons.privacy_tip_outlined,
                                 title: context.t.settingsPrivacyTitle,
                                 onTap: () => context.push(
@@ -310,8 +318,8 @@ class SettingsScreen extends ConsumerWidget {
                                   ),
                                 ),
                               ),
-                              _DividerLine(),
-                              _SettingsActionRow(
+                              const SettingsDividerLine(),
+                              SettingsActionRow(
                                 icon: Icons.description_outlined,
                                 title: context.t.settingsTermsTitle,
                                 onTap: () => context.push(
@@ -325,13 +333,13 @@ class SettingsScreen extends ConsumerWidget {
                           ),
                         ),
                         const SizedBox(height: 24),
-                        _SectionTitle(
+                        SettingsSectionTitle(
                           title: context.t.settingsMaintenanceTitle,
                         ),
                         const SizedBox(height: 12),
                         AppSurfaceCard(
                           padding: EdgeInsets.zero,
-                          child: _SettingsActionRow(
+                          child: SettingsActionRow(
                             icon: Icons.delete_outline_rounded,
                             title: context.t.settingsClearCache,
                             subtitle: context.t.settingsMaintenanceSubtitle,
@@ -353,7 +361,7 @@ class SettingsScreen extends ConsumerWidget {
                           ),
                         ),
                         const SizedBox(height: 32),
-                        const _SettingsFooter(),
+                        const SettingsFooter(),
                       ],
                     ),
                   ),
@@ -442,18 +450,15 @@ class SettingsScreen extends ConsumerWidget {
                                       ? AppColors.primary.withValues(
                                           alpha: 0.10,
                                         )
-                                      : AppColors.surfaceMutedFor(
-                                          sheetContext,
-                                        ),
+                                      : AppColors.surfaceMutedFor(sheetContext),
                                   borderRadius: BorderRadius.circular(20),
                                   border: Border.all(
                                     color: selected
                                         ? AppColors.primary
-                                        : Theme.of(
-                                            sheetContext,
-                                          ).colorScheme.outline.withValues(
-                                            alpha: 0.4,
-                                          ),
+                                        : Theme.of(sheetContext)
+                                              .colorScheme
+                                              .outline
+                                              .withValues(alpha: 0.4),
                                   ),
                                 ),
                                 child: Row(
@@ -509,378 +514,6 @@ class SettingsScreen extends ConsumerWidget {
   }
 }
 
-class _ProfileCard extends StatelessWidget {
-  const _ProfileCard({
-    required this.preference,
-    required this.authState,
-    required this.onSignIn,
-    required this.onSignUp,
-    required this.onGoogleSignIn,
-    required this.onSignOut,
-  });
-
-  final UserPreference preference;
-  final AsyncValue<AuthSession?> authState;
-  final VoidCallback onSignIn;
-  final VoidCallback onSignUp;
-  final Future<void> Function() onGoogleSignIn;
-  final Future<void> Function() onSignOut;
-
-  @override
-  Widget build(BuildContext context) {
-    final session = authState.asData?.value;
-    final isSignedIn = session != null;
-    final displayName =
-        session?.user.displayName?.trim().isNotEmpty == true
-            ? session!.user.displayName!.trim()
-            : session?.user.email;
-    final subtitle = isSignedIn
-        ? context.t.authSignedInCardSubtitle(session.user.email)
-        : context.t.authSignedOutCardSubtitle;
-    final badgeLabel = isSignedIn
-        ? (session.user.emailVerified
-              ? context.t.authVerifiedStatus
-              : context.t.authUnverifiedStatus)
-        : preference.preferredTargetLanguage.label;
-
-    return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        gradient: AppColors.heroGradient,
-        borderRadius: BorderRadius.circular(28),
-      ),
-      child: Stack(
-        children: <Widget>[
-          Positioned.fill(
-            child: IgnorePointer(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(28),
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: <Color>[
-                      Colors.white.withValues(alpha: 0.12),
-                      Colors.transparent,
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                width: 64,
-                height: 64,
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.20),
-                  shape: BoxShape.circle,
-                ),
-                alignment: Alignment.center,
-                child: const Text('👤', style: TextStyle(fontSize: 30)),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      isSignedIn
-                          ? (displayName ?? context.t.settingsProfileName)
-                          : context.t.authSignedOutCardTitle,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      subtitle,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.white.withValues(alpha: 0.82),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 6,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.14),
-                        borderRadius: BorderRadius.circular(999),
-                      ),
-                      child: Text(
-                        badgeLabel,
-                        style: Theme.of(context).textTheme.labelMedium
-                            ?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                            ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    if (authState.isLoading)
-                      const LoadingSkeleton(height: 54)
-                    else if (isSignedIn) ...<Widget>[
-                      SizedBox(
-                        width: double.infinity,
-                        child: OutlinedButton.icon(
-                          onPressed: () => onSignOut(),
-                          style: OutlinedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            side: BorderSide(
-                              color: Colors.white.withValues(alpha: 0.24),
-                            ),
-                          ),
-                          icon: const Icon(Icons.logout_rounded),
-                          label: Text(context.t.authSignOutAction),
-                        ),
-                      ),
-                    ] else ...<Widget>[
-                      AppGradientButton(
-                        label: context.t.authSignInAction,
-                        icon: Icons.login_rounded,
-                        onPressed: onSignIn,
-                        fullWidth: true,
-                        gradient: const LinearGradient(
-                          colors: <Color>[Colors.white, Colors.white],
-                        ),
-                        iconColor: AppColors.primary,
-                        labelStyle: Theme.of(context).textTheme.labelLarge
-                            ?.copyWith(color: AppColors.primary),
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: OutlinedButton(
-                              onPressed: onSignUp,
-                              style: OutlinedButton.styleFrom(
-                                foregroundColor: Colors.white,
-                                side: BorderSide(
-                                  color: Colors.white.withValues(alpha: 0.24),
-                                ),
-                              ),
-                              child: Text(context.t.authCreateAccountAction),
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: OutlinedButton.icon(
-                              onPressed: () => onGoogleSignIn(),
-                              style: OutlinedButton.styleFrom(
-                                foregroundColor: Colors.white,
-                                side: BorderSide(
-                                  color: Colors.white.withValues(alpha: 0.24),
-                                ),
-                              ),
-                              icon: const Icon(Icons.g_mobiledata_rounded),
-                              label: Text(context.t.authGoogleShortAction),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _SectionTitle extends StatelessWidget {
-  const _SectionTitle({required this.title});
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 2),
-      child: Text(
-        title.toUpperCase(),
-        style: Theme.of(context).textTheme.labelMedium?.copyWith(
-          color: AppColors.textSecondaryFor(context),
-          fontWeight: FontWeight.w700,
-          letterSpacing: 1.2,
-        ),
-      ),
-    );
-  }
-}
-
-class _SettingsActionRow extends StatelessWidget {
-  const _SettingsActionRow({
-    required this.icon,
-    required this.title,
-    this.subtitle,
-    this.value,
-    this.trailing,
-    this.onTap,
-  });
-
-  final IconData icon;
-  final String title;
-  final String? subtitle;
-  final String? value;
-  final Widget? trailing;
-  final VoidCallback? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final rowChild = Row(
-      children: <Widget>[
-        Container(
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(
-            gradient: AppColors.accentGradient,
-            borderRadius: BorderRadius.circular(14),
-          ),
-          child: Icon(icon, color: Colors.white, size: 20),
-        ),
-        const SizedBox(width: 14),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                title,
-                style: Theme.of(
-                  context,
-                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
-              ),
-              if (subtitle != null) ...<Widget>[
-                const SizedBox(height: 2),
-                Text(
-                  subtitle!,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textSecondaryFor(context),
-                  ),
-                ),
-              ] else if (value != null) ...<Widget>[
-                const SizedBox(height: 2),
-                Text(
-                  value!,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textSecondaryFor(context),
-                  ),
-                ),
-              ],
-            ],
-          ),
-        ),
-        if (trailing != null)
-          trailing!
-        else if (onTap != null)
-          Icon(
-            Icons.chevron_right_rounded,
-            color: AppColors.textSecondaryFor(context),
-          )
-        else if (value != null)
-          Text(
-            value!,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: AppColors.textSecondaryFor(context),
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-      ],
-    );
-
-    final content = Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      child: rowChild,
-    );
-
-    if (onTap == null) {
-      return content;
-    }
-
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(onTap: onTap, child: content),
-    );
-  }
-}
-
-class _ThemeToggle extends StatelessWidget {
-  const _ThemeToggle({required this.enabled});
-
-  final bool enabled;
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 180),
-      width: 50,
-      height: 28,
-      padding: const EdgeInsets.all(4),
-      decoration: BoxDecoration(
-        color: enabled ? AppColors.primary : AppColors.surfaceMutedFor(context),
-        borderRadius: BorderRadius.circular(999),
-      ),
-      child: Align(
-        alignment: enabled ? Alignment.centerRight : Alignment.centerLeft,
-        child: Container(
-          width: 20,
-          height: 20,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _SettingsFooter extends StatelessWidget {
-  const _SettingsFooter();
-
-  @override
-  Widget build(BuildContext context) {
-    final shader = AppColors.heroGradient.createShader(
-      const Rect.fromLTWH(0, 0, 180, 40),
-    );
-
-    return Column(
-      children: <Widget>[
-        Text(
-          context.t.appTitle,
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.w800,
-            foreground: Paint()..shader = shader,
-          ),
-        ),
-        const SizedBox(height: 6),
-        Text(
-          context.t.brandSubtitleFull,
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: AppColors.textSecondaryFor(context),
-          ),
-        ),
-        const SizedBox(height: 14),
-        Text(
-          context.t.settingsVersion('1.0.0'),
-          style: Theme.of(context).textTheme.labelMedium?.copyWith(
-            color: AppColors.textSecondaryFor(context),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 class _LoadingState extends StatelessWidget {
   const _LoadingState();
 
@@ -923,18 +556,6 @@ class _ErrorState extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _DividerLine extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Divider(
-      height: 1,
-      indent: 70,
-      endIndent: 16,
-      color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.35),
     );
   }
 }
