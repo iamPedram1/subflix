@@ -58,17 +58,13 @@ class _TranslationSetupScreenState
                 AppText(
                   context.t.translateSetupTitle,
                   variant: AppTextVariant.headlineMedium,
-                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  fontWeight: FontWeight.w700,
                 ),
                 const SizedBox(height: 8),
                 AppText(
                   context.t.translateSetupSubtitle,
                   variant: AppTextVariant.bodyMedium,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.textSecondaryFor(context),
-                  ),
+                  color: AppColors.textSecondaryFor(context),
                 ),
                 const SizedBox(height: 20),
                 AppSurfaceCard(
@@ -78,9 +74,7 @@ class _TranslationSetupScreenState
                       AppText(
                         context.t.translateSetupSourceTitle,
                         variant: AppTextVariant.labelLarge,
-                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          color: AppColors.textSecondaryFor(context),
-                        ),
+                        color: AppColors.textSecondaryFor(context),
                       ),
                       const SizedBox(height: 14),
                       Row(
@@ -105,9 +99,6 @@ class _TranslationSetupScreenState
                                 AppText(
                                   widget.args.sourceName,
                                   variant: AppTextVariant.titleMedium,
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.titleMedium,
                                 ),
                                 const SizedBox(height: 4),
                                 AppText(
@@ -115,12 +106,7 @@ class _TranslationSetupScreenState
                                     widget.args.format.label,
                                   ),
                                   variant: AppTextVariant.bodySmall,
-                                  style: Theme.of(context).textTheme.bodySmall
-                                      ?.copyWith(
-                                        color: AppColors.textSecondaryFor(
-                                          context,
-                                        ),
-                                      ),
+                                  color: AppColors.textSecondaryFor(context),
                                 ),
                               ],
                             ),
@@ -134,9 +120,7 @@ class _TranslationSetupScreenState
                 AppText(
                   context.t.translateSetupLanguageTitle,
                   variant: AppTextVariant.labelLarge,
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    color: AppColors.textSecondaryFor(context),
-                  ),
+                  color: AppColors.textSecondaryFor(context),
                 ),
                 const SizedBox(height: 10),
                 Container(
@@ -221,12 +205,7 @@ class _TranslationSetupScreenState
                                   selectedLanguage.label,
                                 ),
                                 variant: AppTextVariant.bodyMedium,
-                                style: Theme.of(context).textTheme.bodyMedium
-                                    ?.copyWith(
-                                      color: AppColors.textSecondaryFor(
-                                        context,
-                                      ),
-                                    ),
+                                color: AppColors.textSecondaryFor(context),
                               ),
                             ],
                           ),
@@ -238,9 +217,7 @@ class _TranslationSetupScreenState
                 AppText(
                   context.t.translateSetupOptionsTitle,
                   variant: AppTextVariant.labelLarge,
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    color: AppColors.textSecondaryFor(context),
-                  ),
+                  color: AppColors.textSecondaryFor(context),
                 ),
                 const SizedBox(height: 10),
                 _OptionTile(
@@ -326,9 +303,7 @@ class _LanguageRow extends StatelessWidget {
                   AppText(
                     language.nativeLabel,
                     variant: AppTextVariant.bodySmall,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.textSecondaryFor(context),
-                    ),
+                    color: AppColors.textSecondaryFor(context),
                   ),
                 ],
               ),
@@ -369,9 +344,7 @@ class _OptionTile extends StatelessWidget {
                 AppText(
                   subtitle,
                   variant: AppTextVariant.bodySmall,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textSecondaryFor(context),
-                  ),
+                  color: AppColors.textSecondaryFor(context),
                 ),
               ],
             ),

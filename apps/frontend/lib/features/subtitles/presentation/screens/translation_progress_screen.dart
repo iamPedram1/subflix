@@ -113,9 +113,7 @@ class _TranslationProgressScreenState
                   context.t.translationProgressHeadline,
                   variant: AppTextVariant.headlineMedium,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  fontWeight: FontWeight.w700,
                 ),
                 const SizedBox(height: 10),
                 AppText(
@@ -124,9 +122,7 @@ class _TranslationProgressScreenState
                       : state.stageLabel,
                   variant: AppTextVariant.bodyMedium,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.textSecondaryFor(context),
-                  ),
+                  color: AppColors.textSecondaryFor(context),
                 ),
                 const SizedBox(height: 24),
                 AppSurfaceCard(
@@ -285,11 +281,9 @@ class _ProgressStageTile extends StatelessWidget {
             child: AppText(
               label,
               variant: AppTextVariant.titleMedium,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: isActive || isComplete
-                    ? Theme.of(context).colorScheme.onSurface
-                    : AppColors.textSecondaryFor(context),
-              ),
+              color: isActive || isComplete
+                  ? Theme.of(context).colorScheme.onSurface
+                  : AppColors.textSecondaryFor(context),
             ),
           ),
           if (isActive)

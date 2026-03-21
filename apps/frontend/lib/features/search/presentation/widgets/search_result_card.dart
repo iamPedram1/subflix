@@ -49,9 +49,7 @@ class SearchResultCard extends StatelessWidget {
                     AppText(
                       '${item.mediaType.label(context)} \u2022 ${item.year}',
                       variant: AppTextVariant.bodySmall,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textSecondaryFor(context),
-                      ),
+                      color: AppColors.textSecondaryFor(context),
                     ),
                   ],
                 ),
@@ -65,9 +63,7 @@ class SearchResultCard extends StatelessWidget {
           AppText(
             item.synopsis,
             variant: AppTextVariant.bodyMedium,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: AppColors.textSecondaryFor(context),
-            ),
+            color: AppColors.textSecondaryFor(context),
           ),
           Wrap(
             spacing: 8,
@@ -105,9 +101,7 @@ class _MiniChip extends StatelessWidget {
         child: AppText(
           label,
           variant: AppTextVariant.labelMedium,
-          style: Theme.of(context).textTheme.labelMedium?.copyWith(
-            color: AppColors.textSecondaryFor(context),
-          ),
+          color: AppColors.textSecondaryFor(context),
         ),
       ),
     );

@@ -40,7 +40,6 @@ class SeriesEpisodesScreen extends StatelessWidget {
                       AppText(
                         context.t.seriesEpisodesTitle(args.seasonNumber),
                         variant: AppTextVariant.titleLarge,
-                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                       const SizedBox(height: 8),
                       AppText(
@@ -51,9 +50,7 @@ class SeriesEpisodesScreen extends StatelessWidget {
                               : ' • ${args.seasonYear}',
                         ),
                         variant: AppTextVariant.bodyMedium,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: AppColors.textSecondaryFor(context),
-                        ),
+                        color: AppColors.textSecondaryFor(context),
                       ),
                       const SizedBox(height: 18),
                       ...episodes.map(
@@ -117,15 +114,12 @@ class _EpisodesHeader extends StatelessWidget {
                 AppText(
                   args.item.title,
                   variant: AppTextVariant.titleLarge,
-                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(height: 2),
                 AppText(
                   context.t.seriesSeasonLabel(args.seasonNumber),
                   variant: AppTextVariant.bodyMedium,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.textSecondaryFor(context),
-                  ),
+                  color: AppColors.textSecondaryFor(context),
                 ),
               ],
             ),
@@ -195,9 +189,7 @@ class _EpisodeCard extends StatelessWidget {
                     child: AppText(
                       runtime,
                       variant: AppTextVariant.labelLarge,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.labelLarge?.copyWith(color: Colors.white),
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -212,15 +204,12 @@ class _EpisodeCard extends StatelessWidget {
                 AppText(
                   title,
                   variant: AppTextVariant.titleMedium,
-                  style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 8),
                 AppText(
                   description,
                   variant: AppTextVariant.bodyMedium,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.textSecondaryFor(context),
-                  ),
+                  color: AppColors.textSecondaryFor(context),
                 ),
               ],
             ),

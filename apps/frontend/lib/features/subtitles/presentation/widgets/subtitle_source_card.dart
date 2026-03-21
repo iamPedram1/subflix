@@ -55,9 +55,7 @@ class SubtitleSourceCard extends StatelessWidget {
                     AppText(
                       source.releaseGroup,
                       variant: AppTextVariant.bodySmall,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textSecondaryFor(context),
-                      ),
+                      color: AppColors.textSecondaryFor(context),
                     ),
                   ],
                 ),
@@ -111,9 +109,7 @@ class _SourceChip extends StatelessWidget {
         child: AppText(
           label,
           variant: AppTextVariant.labelMedium,
-          style: Theme.of(context).textTheme.labelMedium?.copyWith(
-            color: AppColors.textSecondaryFor(context),
-          ),
+          color: AppColors.textSecondaryFor(context),
         ),
       ),
     );

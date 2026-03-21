@@ -53,27 +53,20 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                               AppText(
                                 context.t.historyTitle,
                                 variant: AppTextVariant.headlineMedium,
-                                style: Theme.of(context).textTheme.headlineSmall
-                                    ?.copyWith(fontWeight: FontWeight.w700),
+                                fontWeight: FontWeight.w700,
                               ),
                               const SizedBox(height: 2),
                               AppText(
                                 context.t.historyCountLabel(jobs.length),
                                 variant: AppTextVariant.bodyMedium,
-                                style: Theme.of(context).textTheme.bodyMedium
-                                    ?.copyWith(
-                                      color: AppColors.textSecondaryFor(
-                                        context,
-                                      ),
-                                    ),
+                                color: AppColors.textSecondaryFor(context),
                               ),
                             ],
                           ),
                           orElse: () => AppText(
                             context.t.historyTitle,
                             variant: AppTextVariant.headlineMedium,
-                            style: Theme.of(context).textTheme.headlineSmall
-                                ?.copyWith(fontWeight: FontWeight.w700),
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),
@@ -269,9 +262,7 @@ class _HistoryCard extends StatelessWidget {
                     AppText(
                       '${job.sourceLanguage.label} -> ${job.targetLanguage.label}',
                       variant: AppTextVariant.bodyMedium,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppColors.textSecondaryFor(context),
-                      ),
+                      color: AppColors.textSecondaryFor(context),
                     ),
                   ],
                 ),
@@ -296,9 +287,7 @@ class _HistoryCard extends StatelessWidget {
             AppText(
               context.t.historyFailedItemMessage,
               variant: AppTextVariant.bodySmall,
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: AppColors.danger),
+              color: AppColors.danger,
             ),
           ],
         ],
@@ -324,7 +313,7 @@ class _StatusPill extends StatelessWidget {
       child: AppText(
         label,
         variant: AppTextVariant.labelMedium,
-        style: Theme.of(context).textTheme.labelMedium?.copyWith(color: color),
+        color: color,
       ),
     );
   }
@@ -346,9 +335,7 @@ class _DetailPill extends StatelessWidget {
       child: AppText(
         label,
         variant: AppTextVariant.labelMedium,
-        style: Theme.of(context).textTheme.labelMedium?.copyWith(
-          color: AppColors.textSecondaryFor(context),
-        ),
+        color: AppColors.textSecondaryFor(context),
       ),
     );
   }

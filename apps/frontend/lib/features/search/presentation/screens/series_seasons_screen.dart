@@ -43,9 +43,7 @@ class SeriesSeasonsScreen extends StatelessWidget {
                       AppText(
                         context.t.seriesSeasonsSubtitle(item.title),
                         variant: AppTextVariant.bodyMedium,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: AppColors.textSecondaryFor(context),
-                        ),
+                        color: AppColors.textSecondaryFor(context),
                       ),
                       const SizedBox(height: 18),
                       ...details.seasons.map(
@@ -129,19 +127,15 @@ class _SeriesHero extends StatelessWidget {
                 AppText(
                   context.t.mediaTypeSeries.toUpperCase(),
                   variant: AppTextVariant.labelLarge,
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    color: Colors.white.withValues(alpha: 0.70),
-                    letterSpacing: 1.0,
-                  ),
+                  color: Colors.white.withValues(alpha: 0.70),
+                  letterSpacing: 1.0,
                 ),
                 const SizedBox(height: 8),
                 AppText(
                   item.title,
                   variant: AppTextVariant.headlineMedium,
-                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                  ),
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
                 ),
                 const SizedBox(height: 8),
                 AppText(
@@ -149,9 +143,7 @@ class _SeriesHero extends StatelessWidget {
                     item.popularity.toStringAsFixed(1),
                   ),
                   variant: AppTextVariant.bodyMedium,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Colors.white.withValues(alpha: 0.78),
-                  ),
+                  color: Colors.white.withValues(alpha: 0.78),
                 ),
               ],
             ),
@@ -206,9 +198,7 @@ class _SeasonCard extends StatelessWidget {
                 AppText(
                   subtitle,
                   variant: AppTextVariant.bodyMedium,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.textSecondaryFor(context),
-                  ),
+                  color: AppColors.textSecondaryFor(context),
                 ),
                 const SizedBox(height: 14),
                 Row(
@@ -216,9 +206,7 @@ class _SeasonCard extends StatelessWidget {
                     AppText(
                       context.t.onboardingContinue,
                       variant: AppTextVariant.labelLarge,
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        color: AppColors.primary,
-                      ),
+                      color: AppColors.primary,
                     ),
                     const SizedBox(width: 6),
                     const Icon(

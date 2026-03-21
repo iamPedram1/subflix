@@ -141,11 +141,8 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                       AppText(
                             context.t.splashHeadline,
                             variant: AppTextVariant.displayMedium,
-                            style: Theme.of(context).textTheme.displayMedium
-                                ?.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                ),
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
                           )
                           .animate()
                           .fadeIn(duration: 450.ms)
@@ -155,10 +152,8 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                         context.t.brandSubtitleFull,
                         variant: AppTextVariant.bodyLarge,
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: Colors.white.withValues(alpha: 0.68),
-                          letterSpacing: 1.2,
-                        ),
+                        color: Colors.white.withValues(alpha: 0.68),
+                        letterSpacing: 1.2,
                       ).animate().fadeIn(delay: 200.ms, duration: 450.ms),
                     ],
                   ),
@@ -207,10 +202,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                         AppText(
                           context.t.splashPreparing,
                           variant: AppTextVariant.bodyMedium,
-                          style: Theme.of(context).textTheme.bodyMedium
-                              ?.copyWith(
-                                color: Colors.white.withValues(alpha: 0.62),
-                              ),
+                          color: Colors.white.withValues(alpha: 0.62),
                         ),
                       ],
                     ),

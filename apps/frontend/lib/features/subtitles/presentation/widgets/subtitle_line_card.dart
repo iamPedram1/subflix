@@ -39,16 +39,12 @@ class SubtitleLineCard extends StatelessWidget {
               AppText(
                 '#${line.index}',
                 variant: AppTextVariant.labelLarge,
-                style: Theme.of(
-                  context,
-                ).textTheme.labelLarge?.copyWith(color: AppColors.primary),
+                color: AppColors.primary,
               ),
               AppText(
                 '${Duration(milliseconds: line.startMs).toClock()} - ${Duration(milliseconds: line.endMs).toClock()}',
                 variant: AppTextVariant.bodySmall,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textMutedFor(context),
-                ),
+                color: AppColors.textMutedFor(context),
               ),
             ],
           ),
@@ -66,11 +62,9 @@ class SubtitleLineCard extends StatelessWidget {
             AppText(
               line.translatedText ?? line.originalText,
               variant: AppTextVariant.bodyLarge,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: mode == PreviewMode.bilingual
-                    ? AppColors.emerald
-                    : Theme.of(context).colorScheme.onSurface,
-              ),
+              color: mode == PreviewMode.bilingual
+                  ? AppColors.emerald
+                  : Theme.of(context).colorScheme.onSurface,
             ),
         ],
       ),

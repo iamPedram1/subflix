@@ -105,22 +105,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                                     page.title,
                                     variant: AppTextVariant.headlineMedium,
                                     textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineMedium
-                                        ?.copyWith(fontWeight: FontWeight.w700),
+                                    fontWeight: FontWeight.w700,
                                   ).animate().fadeIn(duration: 300.ms),
                                   const SizedBox(height: 14),
                                   AppText(
                                     page.description,
                                     variant: AppTextVariant.bodyLarge,
                                     textAlign: TextAlign.center,
-                                    style: Theme.of(context).textTheme.bodyLarge
-                                        ?.copyWith(
-                                          color: AppColors.textSecondaryFor(
-                                            context,
-                                          ),
-                                        ),
+                                    color: AppColors.textSecondaryFor(context),
                                   ),
                                   const SizedBox(height: 24),
                                   ...page.highlights.map(
@@ -319,7 +311,6 @@ class _HighlightRow extends StatelessWidget {
             child: AppText(
               label,
               variant: AppTextVariant.bodyMedium,
-              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),
         ],

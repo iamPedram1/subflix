@@ -52,9 +52,7 @@ class JobCard extends StatelessWidget {
                       variant: AppTextVariant.bodySmall,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textSecondaryFor(context),
-                      ),
+                      color: AppColors.textSecondaryFor(context),
                     ),
                   ],
                 ),
@@ -86,9 +84,7 @@ class JobCard extends StatelessWidget {
           AppText(
             job.createdAt.toJobTimestamp(),
             variant: AppTextVariant.bodySmall,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.textMutedFor(context),
-            ),
+            color: AppColors.textMutedFor(context),
           ),
         ],
       ),
@@ -113,9 +109,7 @@ class _InfoChip extends StatelessWidget {
         child: AppText(
           label,
           variant: AppTextVariant.labelMedium,
-          style: Theme.of(context).textTheme.labelMedium?.copyWith(
-            color: AppColors.textSecondaryFor(context),
-          ),
+          color: AppColors.textSecondaryFor(context),
         ),
       ),
     );

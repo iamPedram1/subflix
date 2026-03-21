@@ -43,17 +43,13 @@ class UploadScreen extends ConsumerWidget {
                 AppText(
                   context.t.uploadSubtitleTitle,
                   variant: AppTextVariant.headlineMedium,
-                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  fontWeight: FontWeight.w700,
                 ),
                 const SizedBox(height: 8),
                 AppText(
                   context.t.uploadIntroSubtitle,
                   variant: AppTextVariant.bodyMedium,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.textSecondaryFor(context),
-                  ),
+                  color: AppColors.textSecondaryFor(context),
                 ),
                 const SizedBox(height: 20),
                 Container(
@@ -82,20 +78,15 @@ class UploadScreen extends ConsumerWidget {
                         context.t.uploadIntroTitle,
                         variant: AppTextVariant.headlineMedium,
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.headlineSmall
-                            ?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                            ),
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
                       ),
                       const SizedBox(height: 10),
                       AppText(
                         context.t.uploadSupportedFormatsSubtitle,
                         variant: AppTextVariant.bodyMedium,
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Colors.white.withValues(alpha: 0.78),
-                        ),
+                        color: Colors.white.withValues(alpha: 0.78),
                       ),
                       const SizedBox(height: 20),
                       AppGradientButton(
@@ -214,9 +205,7 @@ class _Chip extends StatelessWidget {
       child: AppText(
         label,
         variant: AppTextVariant.labelMedium,
-        style: Theme.of(context).textTheme.labelMedium?.copyWith(
-          color: AppColors.textSecondaryFor(context),
-        ),
+        color: AppColors.textSecondaryFor(context),
       ),
     );
   }

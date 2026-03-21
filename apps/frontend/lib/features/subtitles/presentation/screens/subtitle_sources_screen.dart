@@ -136,9 +136,7 @@ class _SourcesHeader extends StatelessWidget {
         AppText(
           args.item.title,
           variant: AppTextVariant.headlineMedium,
-          style: Theme.of(
-            context,
-          ).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w700),
+          fontWeight: FontWeight.w700,
         ),
         const SizedBox(height: 6),
         AppText(
@@ -147,9 +145,7 @@ class _SourcesHeader extends StatelessWidget {
             _buildSubtitleTarget(context, args),
           ),
           variant: AppTextVariant.bodyMedium,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: AppColors.textSecondaryFor(context),
-          ),
+          color: AppColors.textSecondaryFor(context),
         ),
       ],
     );
@@ -198,9 +194,7 @@ class _InfoBanner extends StatelessWidget {
                 AppText(
                   message,
                   variant: AppTextVariant.bodyMedium,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.textSecondaryFor(context),
-                  ),
+                  color: AppColors.textSecondaryFor(context),
                 ),
               ],
             ),
@@ -250,9 +244,7 @@ class _SourceCard extends StatelessWidget {
                   child: AppText(
                     _languageBadge(source),
                     variant: AppTextVariant.labelLarge,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.labelLarge?.copyWith(color: Colors.white),
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -267,7 +259,6 @@ class _SourceCard extends StatelessWidget {
                           child: AppText(
                             source.label,
                             variant: AppTextVariant.titleMedium,
-                            style: Theme.of(context).textTheme.titleMedium,
                           ),
                         ),
                         const SizedBox(width: 8),
@@ -278,9 +269,7 @@ class _SourceCard extends StatelessWidget {
                     AppText(
                       source.releaseGroup,
                       variant: AppTextVariant.bodySmall,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textSecondaryFor(context),
-                      ),
+                      color: AppColors.textSecondaryFor(context),
                     ),
                     const SizedBox(height: 10),
                     Wrap(
@@ -343,9 +332,7 @@ class _MiniPill extends StatelessWidget {
       child: AppText(
         label,
         variant: AppTextVariant.labelMedium,
-        style: Theme.of(context).textTheme.labelMedium?.copyWith(
-          color: AppColors.textSecondaryFor(context),
-        ),
+        color: AppColors.textSecondaryFor(context),
       ),
     );
   }

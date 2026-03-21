@@ -237,10 +237,8 @@ class _ResultHero extends StatelessWidget {
                     context.t.translationResultCompleteTitle,
                     variant: AppTextVariant.headlineMedium,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                    ),
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
                   )
                   .animate()
                   .fadeIn(delay: 120.ms, duration: 260.ms)
@@ -250,9 +248,7 @@ class _ResultHero extends StatelessWidget {
                     context.t.translationResultCompleteSubtitle,
                     variant: AppTextVariant.bodyLarge,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: Colors.white.withValues(alpha: 0.92),
-                    ),
+                    color: Colors.white.withValues(alpha: 0.92),
                   )
                   .animate()
                   .fadeIn(delay: 200.ms, duration: 260.ms)
@@ -315,9 +311,7 @@ class _DetailsCard extends StatelessWidget {
           AppText(
             context.t.translationResultDetailsTitle,
             variant: AppTextVariant.titleLarge,
-            style: Theme.of(
-              context,
-            ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
+            fontWeight: FontWeight.w600,
           ),
           const SizedBox(height: 18),
           Container(
@@ -343,16 +337,13 @@ class _DetailsCard extends StatelessWidget {
                       AppText(
                         context.t.translationResultMediaLabel,
                         variant: AppTextVariant.bodySmall,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.textSecondaryFor(context),
-                        ),
+                        color: AppColors.textSecondaryFor(context),
                       ),
                       const SizedBox(height: 4),
                       AppText(
                         job.title,
                         variant: AppTextVariant.titleMedium,
-                        style: Theme.of(context).textTheme.titleMedium
-                            ?.copyWith(fontWeight: FontWeight.w600),
+                        fontWeight: FontWeight.w600,
                       ),
                     ],
                   ),
@@ -394,9 +385,7 @@ class _DetailsCard extends StatelessWidget {
           AppText(
             context.t.translationResultMethodAi,
             variant: AppTextVariant.bodySmall,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.textSecondaryFor(context),
-            ),
+            color: AppColors.textSecondaryFor(context),
           ),
           const SizedBox(height: 8),
           Container(
@@ -419,10 +408,8 @@ class _DetailsCard extends StatelessWidget {
                       ? context.t.jobReuseTranslation
                       : context.t.translationResultMethodAi,
                   variant: AppTextVariant.labelMedium,
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                    color: AppColors.secondary,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  color: AppColors.secondary,
+                  fontWeight: FontWeight.w600,
                 ),
               ],
             ),
@@ -450,9 +437,7 @@ class _MetricsCard extends StatelessWidget {
           AppText(
             context.t.translationResultMetricsTitle,
             variant: AppTextVariant.titleLarge,
-            style: Theme.of(
-              context,
-            ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
+            fontWeight: FontWeight.w600,
           ),
           const SizedBox(height: 18),
           _ProgressMetric(
@@ -522,17 +507,13 @@ class _NoticeCard extends StatelessWidget {
                 AppText(
                   'Note',
                   variant: AppTextVariant.labelLarge,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w600),
+                  fontWeight: FontWeight.w600,
                 ),
                 const SizedBox(height: 4),
                 AppText(
                   message,
                   variant: AppTextVariant.bodySmall,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textSecondaryFor(context),
-                  ),
+                  color: AppColors.textSecondaryFor(context),
                 ),
               ],
             ),
@@ -651,9 +632,7 @@ class _LanguageInfo extends StatelessWidget {
         AppText(
           label,
           variant: AppTextVariant.bodySmall,
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: AppColors.textSecondaryFor(context),
-          ),
+          color: AppColors.textSecondaryFor(context),
         ),
         const SizedBox(height: 8),
         Row(
@@ -667,9 +646,7 @@ class _LanguageInfo extends StatelessWidget {
               child: AppText(
                 language.label,
                 variant: AppTextVariant.titleMedium,
-                style: Theme.of(
-                  context,
-                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+                fontWeight: FontWeight.w600,
               ),
             ),
           ],
@@ -700,17 +677,13 @@ class _ProgressMetric extends StatelessWidget {
               child: AppText(
                 label,
                 variant: AppTextVariant.bodySmall,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textSecondaryFor(context),
-                ),
+                color: AppColors.textSecondaryFor(context),
               ),
             ),
             AppText(
               '${value.round()}%',
               variant: AppTextVariant.labelLarge,
-              style: Theme.of(
-                context,
-              ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w600),
+              fontWeight: FontWeight.w600,
             ),
           ],
         ),
@@ -756,10 +729,8 @@ class _MetricBadge extends StatelessWidget {
           AppText(
             label,
             variant: AppTextVariant.labelSmall,
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: color,
-              fontWeight: FontWeight.w600,
-            ),
+            color: color,
+            fontWeight: FontWeight.w600,
           ),
         ],
       ),

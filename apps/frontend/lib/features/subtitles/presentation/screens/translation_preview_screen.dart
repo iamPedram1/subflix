@@ -244,9 +244,7 @@ class _PreviewHeader extends StatelessWidget {
                     AppText(
                       job.title,
                       variant: AppTextVariant.bodyMedium,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppColors.textSecondaryFor(context),
-                      ),
+                      color: AppColors.textSecondaryFor(context),
                     ),
                   ],
                 ),
@@ -356,9 +354,7 @@ class _PreviewInfo extends StatelessWidget {
             child: AppText(
               message,
               variant: AppTextVariant.bodyMedium,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppColors.textSecondaryFor(context),
-              ),
+              color: AppColors.textSecondaryFor(context),
             ),
           ),
         ],

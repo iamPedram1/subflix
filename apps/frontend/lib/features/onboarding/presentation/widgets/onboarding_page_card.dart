@@ -54,23 +54,17 @@ class OnboardingPageCard extends StatelessWidget {
                 AppText(
                   eyebrow,
                   variant: AppTextVariant.labelLarge,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.labelLarge?.copyWith(color: AppColors.info),
+                  color: AppColors.info,
                 ),
                 AppText(
                   title,
                   variant: AppTextVariant.headlineMedium,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.headlineMedium?.copyWith(color: Colors.white),
+                  color: Colors.white,
                 ),
                 AppText(
                   description,
                   variant: AppTextVariant.bodyLarge,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppColors.textPrimary.withValues(alpha: 0.92),
-                  ),
+                  color: AppColors.textPrimary.withValues(alpha: 0.92),
                 ),
               ],
             ),
@@ -91,12 +85,7 @@ class OnboardingPageCard extends StatelessWidget {
                           child: AppText(
                             highlight,
                             variant: AppTextVariant.bodyMedium,
-                            style: Theme.of(context).textTheme.bodyMedium
-                                ?.copyWith(
-                                  color: AppColors.textPrimary.withValues(
-                                    alpha: 0.92,
-                                  ),
-                                ),
+                            color: AppColors.textPrimary.withValues(alpha: 0.92),
                           ),
                         ),
                       ],
