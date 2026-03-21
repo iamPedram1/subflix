@@ -14,19 +14,13 @@ abstract interface class AuthRepository {
 
   Future<bool> confirmEmail(String token);
 
-  Future<AuthSession> signIn({
-    required String email,
-    required String password,
-  });
+  Future<AuthSession> signIn({required String email, required String password});
 
   Future<AuthSession> refreshSession({String? refreshToken});
 
   Future<AuthForgotPasswordResult> forgotPassword(String email);
 
-  Future<bool> resetPassword({
-    required String token,
-    required String password,
-  });
+  Future<bool> resetPassword({required String token, required String password});
 
   Future<AuthSession> signInWithFirebase(String idToken);
 

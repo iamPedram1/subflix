@@ -26,4 +26,3 @@ class AppDirectionalIcon extends StatelessWidget {
     );
   }
 }
-

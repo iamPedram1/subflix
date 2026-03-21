@@ -32,7 +32,5 @@ abstract class PreferencesRestClient {
   Future<UserPreference> getPreferences();
 
   @PATCH(ApiPaths.preferences)
-  Future<UserPreference> patchPreferences(
-    @Body() Map<String, dynamic> payload,
-  );
+  Future<UserPreference> patchPreferences(@Body() Map<String, dynamic> payload);
 }

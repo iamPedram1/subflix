@@ -23,14 +23,12 @@ class AuthApi {
     required String password,
     String? displayName,
   }) {
-    return _client
-        .signUp(<String, dynamic>{
-          'email': email,
-          'password': password,
-          if (displayName != null && displayName.trim().isNotEmpty)
-            'displayName': displayName.trim(),
-        })
-        .guardApiCall();
+    return _client.signUp(<String, dynamic>{
+      'email': email,
+      'password': password,
+      if (displayName != null && displayName.trim().isNotEmpty)
+        'displayName': displayName.trim(),
+    }).guardApiCall();
   }
 
   Future<bool> confirmEmail(String token) async {
@@ -44,37 +42,39 @@ class AuthApi {
     required String email,
     required String password,
   }) {
-    return _client
-        .signIn(<String, dynamic>{'email': email, 'password': password})
-        .guardApiCall();
+    return _client.signIn(<String, dynamic>{
+      'email': email,
+      'password': password,
+    }).guardApiCall();
   }
 
   Future<AuthSession> refresh(String refreshToken) {
-    return _client
-        .refresh(<String, dynamic>{'refreshToken': refreshToken})
-        .guardApiCall();
+    return _client.refresh(<String, dynamic>{
+      'refreshToken': refreshToken,
+    }).guardApiCall();
   }
 
   Future<AuthForgotPasswordResult> forgotPassword(String email) {
-    return _client
-        .forgotPassword(<String, dynamic>{'email': email})
-        .guardApiCall();
+    return _client.forgotPassword(<String, dynamic>{
+      'email': email,
+    }).guardApiCall();
   }
 
   Future<bool> resetPassword({
     required String token,
     required String password,
   }) async {
-    final response = await _client
-        .resetPassword(<String, dynamic>{'token': token, 'password': password})
-        .guardApiCall();
+    final response = await _client.resetPassword(<String, dynamic>{
+      'token': token,
+      'password': password,
+    }).guardApiCall();
     return response.reset == true;
   }
 
   Future<AuthSession> signInWithFirebase(String idToken) {
-    return _client
-        .signInWithFirebase(<String, dynamic>{'idToken': idToken})
-        .guardApiCall();
+    return _client.signInWithFirebase(<String, dynamic>{
+      'idToken': idToken,
+    }).guardApiCall();
   }
 
   Future<bool> signOut(String refreshToken) async {
@@ -98,9 +98,7 @@ abstract class AuthRestClient {
   Future<AuthSignUpResult> signUp(@Body() Map<String, dynamic> payload);
 
   @POST(ApiPaths.authConfirmEmail)
-  Future<AuthActionResponse> confirmEmail(
-    @Body() Map<String, dynamic> payload,
-  );
+  Future<AuthActionResponse> confirmEmail(@Body() Map<String, dynamic> payload);
 
   @POST(ApiPaths.authSignIn)
   Future<AuthSession> signIn(@Body() Map<String, dynamic> payload);

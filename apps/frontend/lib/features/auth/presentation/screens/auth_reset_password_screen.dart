@@ -7,6 +7,7 @@ import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
 import 'package:subflix/features/auth/application/auth_controller.dart';
 import 'package:subflix/features/auth/presentation/models/auth_reset_password_args.dart';
@@ -67,9 +68,14 @@ class _AuthResetPasswordScreenState
       if (!mounted) {
         return;
       }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(context.t.authResetPasswordSuccess)));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: AppText(
+            context.t.authResetPasswordSuccess,
+            variant: AppTextVariant.bodyMedium,
+          ),
+        ),
+      );
       context.go(AppRoutes.authSignIn);
     } catch (error) {
       setState(() => _errorMessage = describeAuthError(error));
@@ -100,9 +106,9 @@ class _AuthResetPasswordScreenState
                 color: AppColors.surfaceMutedFor(context),
                 borderRadius: BorderRadius.circular(18),
               ),
-              child: Text(
+              child: AppText(
                 context.t.authResetPasswordHint(email),
-                style: Theme.of(context).textTheme.bodyMedium,
+                variant: AppTextVariant.bodyMedium,
               ),
             ),
             const SizedBox(height: AppSpacing.lg),
@@ -186,7 +192,10 @@ class _AuthResetPasswordScreenState
             onPressed: _isSubmitting
                 ? null
                 : () => context.push(AppRoutes.authSignIn),
-            child: Text(context.t.authBackToSignIn),
+            child: AppText(
+              context.t.authBackToSignIn,
+              variant: AppTextVariant.labelLarge,
+            ),
           ),
         ],
       ),

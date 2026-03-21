@@ -7,11 +7,7 @@ import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/features/subtitles/domain/models/subtitle_line.dart';
 
-enum PreviewMode {
-  original,
-  translated,
-  bilingual;
-}
+enum PreviewMode { original, translated, bilingual }
 
 extension PreviewModeLabels on PreviewMode {
   String label(BuildContext context) => switch (this) {
@@ -47,9 +43,9 @@ class SubtitleLineCard extends StatelessWidget {
               ),
               Text(
                 '${Duration(milliseconds: line.startMs).toClock()} - ${Duration(milliseconds: line.endMs).toClock()}',
-                style: Theme.of(
-                  context,
-                ).textTheme.bodySmall?.copyWith(color: AppColors.textMutedFor(context)),
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: AppColors.textMutedFor(context),
+                ),
               ),
             ],
           ),

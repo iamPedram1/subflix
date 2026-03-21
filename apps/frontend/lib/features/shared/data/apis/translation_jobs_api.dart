@@ -36,12 +36,14 @@ class TranslationJobsApi {
     int limit = 100,
     String query = '',
   }) {
-    return _client.getPreview(
-      jobId,
-      page,
-      limit,
-      query.trim().isEmpty ? null : query.trim(),
-    ).guardApiCall();
+    return _client
+        .getPreview(
+          jobId,
+          page,
+          limit,
+          query.trim().isEmpty ? null : query.trim(),
+        )
+        .guardApiCall();
   }
 
   Future<HttpResponse<String>> exportJob({

@@ -11,7 +11,9 @@ Future<TranslationPreviewPage> translationPreview(
   Ref ref,
   TranslationPreviewQuery request,
 ) {
-  return ref.watch(translationRepositoryProvider).fetchPreview(
+  return ref
+      .watch(translationRepositoryProvider)
+      .fetchPreview(
         jobId: request.jobId,
         query: request.query,
         page: request.page,

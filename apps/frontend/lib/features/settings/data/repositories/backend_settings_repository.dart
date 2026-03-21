@@ -17,24 +17,22 @@ class BackendSettingsRepository implements SettingsRepository {
 
   @override
   Future<UserPreference> markOnboardingSeen() {
-    return _api.patchPreferences(
-      const <String, dynamic>{'hasSeenOnboarding': true},
-    );
+    return _api.patchPreferences(const <String, dynamic>{
+      'hasSeenOnboarding': true,
+    });
   }
 
   @override
   Future<UserPreference> setPreferredTargetLanguage(AppLanguage language) {
-    return _api.patchPreferences(
-      <String, dynamic>{'preferredTargetLanguage': language.code},
-    );
+    return _api.patchPreferences(<String, dynamic>{
+      'preferredTargetLanguage': language.code,
+    });
   }
 
   @override
-  Future<UserPreference> setThemePreference(
-    ThemePreference themePreference,
-  ) {
-    return _api.patchPreferences(
-      <String, dynamic>{'themePreference': themePreference.name},
-    );
+  Future<UserPreference> setThemePreference(ThemePreference themePreference) {
+    return _api.patchPreferences(<String, dynamic>{
+      'themePreference': themePreference.name,
+    });
   }
 }

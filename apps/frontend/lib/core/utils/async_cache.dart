@@ -33,10 +33,7 @@ class AsyncCache<T> {
   }
 
   void set(String key, T value, {Duration? ttlOverride}) {
-    _cache[key] = _CacheEntry<T>(
-      value,
-      DateTime.now().add(ttlOverride ?? ttl),
-    );
+    _cache[key] = _CacheEntry<T>(value, DateTime.now().add(ttlOverride ?? ttl));
   }
 
   void invalidate(String key) => _cache.remove(key);

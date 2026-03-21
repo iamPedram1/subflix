@@ -49,10 +49,9 @@ class BackendAuthRepository implements AuthRepository {
 
   @override
   Future<AuthSession> refreshSession({String? refreshToken}) async {
-    final resolvedToken =
-        refreshToken?.trim().isNotEmpty == true
-            ? refreshToken!.trim()
-            : (await _sessionStore.read())?.refreshToken.trim();
+    final resolvedToken = refreshToken?.trim().isNotEmpty == true
+        ? refreshToken!.trim()
+        : (await _sessionStore.read())?.refreshToken.trim();
     if (resolvedToken == null || resolvedToken.isEmpty) {
       throw const ApiException(
         message: 'No refresh token is available for this device.',

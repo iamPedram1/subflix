@@ -60,10 +60,10 @@ class SubtitleSourceCard extends StatelessWidget {
                   ],
                 ),
               ),
-          AppDirectionalIcon(
-            icon: Iconsax.arrowRight,
-            color: AppColors.textMutedFor(context),
-          ),
+              AppDirectionalIcon(
+                icon: Iconsax.arrowRight,
+                color: AppColors.textMutedFor(context),
+              ),
             ],
           ),
           Wrap(
@@ -108,9 +108,9 @@ class _SourceChip extends StatelessWidget {
         padding: AppInsets.chip,
         child: Text(
           label,
-          style: Theme.of(
-            context,
-          ).textTheme.labelMedium?.copyWith(color: AppColors.textSecondaryFor(context)),
+          style: Theme.of(context).textTheme.labelMedium?.copyWith(
+            color: AppColors.textSecondaryFor(context),
+          ),
         ),
       ),
     );

@@ -40,7 +40,9 @@ class FirebaseOAuthService {
       if (error.code == GoogleSignInExceptionCode.canceled) {
         throw const FirebaseOAuthCancelledException();
       }
-      throw FirebaseOAuthException(error.description ?? 'Google sign-in failed.');
+      throw FirebaseOAuthException(
+        error.description ?? 'Google sign-in failed.',
+      );
     }
 
     final googleAuth = googleUser.authentication;
@@ -51,9 +53,7 @@ class FirebaseOAuthService {
       );
     }
 
-    final credential = GoogleAuthProvider.credential(
-      idToken: googleIdToken,
-    );
+    final credential = GoogleAuthProvider.credential(idToken: googleIdToken);
 
     final userCredential = await _firebaseAuth.signInWithCredential(credential);
     final firebaseIdToken = await userCredential.user?.getIdToken();
@@ -82,5 +82,6 @@ class FirebaseOAuthException implements Exception {
 }
 
 class FirebaseOAuthCancelledException extends FirebaseOAuthException {
-  const FirebaseOAuthCancelledException() : super('Google sign-in was cancelled.');
+  const FirebaseOAuthCancelledException()
+    : super('Google sign-in was cancelled.');
 }

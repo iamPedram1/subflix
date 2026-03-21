@@ -18,9 +18,15 @@ class MockTranslationApi {
     TranslationRequest request,
   ) async* {
     final title = request.when(
-      catalog: (item, source, targetLanguage, seasonNumber, episodeNumber,
-              releaseHint) =>
-          item.title,
+      catalog:
+          (
+            item,
+            source,
+            targetLanguage,
+            seasonNumber,
+            episodeNumber,
+            releaseHint,
+          ) => item.title,
       upload: (file, targetLanguage) => file.name,
     );
 

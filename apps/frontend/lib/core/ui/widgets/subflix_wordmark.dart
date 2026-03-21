@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/icons/brand.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 
 class SubflixWordmark extends StatelessWidget {
   const SubflixWordmark({super.key, this.compact = false});
@@ -37,17 +38,20 @@ class SubflixWordmark extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
+            AppText(
               context.t.appTitle,
-              style: titleStyle?.copyWith(fontWeight: FontWeight.w700),
+              variant: compact
+                  ? AppTextVariant.titleLarge
+                  : AppTextVariant.headlineMedium,
+              fontWeight: FontWeight.w700,
+              style: titleStyle,
             ),
-            Text(
+            AppText(
               compact
                   ? context.t.brandSubtitleCompact
                   : context.t.brandSubtitleFull,
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: AppColors.textSecondaryFor(context)),
+              variant: AppTextVariant.bodySmall,
+              color: AppColors.textSecondaryFor(context),
             ),
           ],
         ),

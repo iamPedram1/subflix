@@ -26,14 +26,18 @@ class CachedSettingsRepository implements SettingsRepository {
   }
 
   @override
-  Future<UserPreference> setPreferredTargetLanguage(AppLanguage language) async {
+  Future<UserPreference> setPreferredTargetLanguage(
+    AppLanguage language,
+  ) async {
     final updated = await _inner.setPreferredTargetLanguage(language);
     _cache.set('preferences', updated);
     return updated;
   }
 
   @override
-  Future<UserPreference> setThemePreference(ThemePreference themePreference) async {
+  Future<UserPreference> setThemePreference(
+    ThemePreference themePreference,
+  ) async {
     final updated = await _inner.setThemePreference(themePreference);
     _cache.set('preferences', updated);
     return updated;

@@ -68,9 +68,7 @@ BaseOptions _buildBaseOptions(String baseUrl) {
     connectTimeout: const Duration(seconds: 10),
     receiveTimeout: const Duration(seconds: 20),
     sendTimeout: const Duration(seconds: 20),
-    headers: const <String, dynamic>{
-      Headers.acceptHeader: 'application/json',
-    },
+    headers: const <String, dynamic>{Headers.acceptHeader: 'application/json'},
   );
 }
 

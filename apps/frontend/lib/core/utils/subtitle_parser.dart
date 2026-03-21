@@ -45,10 +45,7 @@ class SubtitleParser {
   }
 
   SubtitleFile parseDemoSample() {
-    return parse(
-      fileName: demoSampleFileName,
-      content: demoSampleContent,
-    );
+    return parse(fileName: demoSampleFileName, content: demoSampleContent);
   }
 
   SubtitleFormat _formatFromFileName(String fileName) {

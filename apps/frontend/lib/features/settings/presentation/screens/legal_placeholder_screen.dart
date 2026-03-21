@@ -5,6 +5,7 @@ import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 
 class LegalPlaceholderScreen extends StatelessWidget {
@@ -55,31 +56,27 @@ class LegalPlaceholderScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 18),
-                      Text(
+                      AppText(
                         title,
-                        style: Theme.of(context).textTheme.headlineMedium
-                            ?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                            ),
+                        variant: AppTextVariant.headlineMedium,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
                       ),
                       const SizedBox(height: 10),
-                      Text(
+                      AppText(
                         context.t.legalPlaceholderBody,
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: Colors.white.withValues(alpha: 0.82),
-                        ),
+                        variant: AppTextVariant.bodyLarge,
+                        color: Colors.white.withValues(alpha: 0.82),
                       ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 18),
                 AppSurfaceCard(
-                  child: Text(
+                  child: AppText(
                     body,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: AppColors.textSecondaryFor(context),
-                    ),
+                    variant: AppTextVariant.bodyLarge,
+                    color: AppColors.textSecondaryFor(context),
                   ),
                 ),
               ],

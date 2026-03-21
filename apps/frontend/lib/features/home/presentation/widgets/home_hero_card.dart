@@ -6,6 +6,7 @@ import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 
 class HomeHeroCard extends StatelessWidget {
   const HomeHeroCard({
@@ -31,22 +32,20 @@ class HomeHeroCard extends StatelessWidget {
               color: AppColors.primary.withValues(alpha: 0.14),
               borderRadius: BorderRadius.circular(999),
             ),
-            child: Text(
+            child: AppText(
               context.t.heroBadge,
-              style: Theme.of(
-                context,
-              ).textTheme.labelLarge?.copyWith(color: AppColors.primary),
+              variant: AppTextVariant.labelLarge,
+              color: AppColors.primary,
             ),
           ),
-          Text(
+          AppText(
             context.t.heroHeadline,
-            style: Theme.of(context).textTheme.headlineMedium,
+            variant: AppTextVariant.headlineMedium,
           ),
-          Text(
+          AppText(
             context.t.heroBody,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color: AppColors.textSecondaryFor(context),
-            ),
+            variant: AppTextVariant.bodyLarge,
+            color: AppColors.textSecondaryFor(context),
           ),
           Column(
             spacing: AppSpacing.sm,
@@ -60,8 +59,9 @@ class HomeHeroCard extends StatelessWidget {
               OutlinedButton.icon(
                 onPressed: onUploadTap,
                 icon: const Icon(Iconsax.documentUpload),
-                label: Text(
+                label: AppText(
                   context.t.heroUploadCta,
+                  variant: AppTextVariant.labelLarge,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
@@ -173,19 +173,18 @@ class _HeroStat extends StatelessWidget {
           spacing: AppSpacing.xs,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
+            AppText(
               title,
+              variant: AppTextVariant.labelMedium,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                color: AppColors.textMutedFor(context),
-              ),
+              color: AppColors.textMutedFor(context),
             ),
-            Text(
+            AppText(
               value,
+              variant: AppTextVariant.titleSmall,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.titleSmall,
             ),
           ],
         ),

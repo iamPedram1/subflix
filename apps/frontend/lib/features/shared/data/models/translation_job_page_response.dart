@@ -7,9 +7,7 @@ part 'translation_job_page_response.g.dart';
 /// Transport model for paginated translation job summaries.
 @JsonSerializable(createToJson: false)
 class TranslationJobPageResponse {
-  const TranslationJobPageResponse({
-    required this.items,
-  });
+  const TranslationJobPageResponse({required this.items});
 
   factory TranslationJobPageResponse.fromJson(Map<String, dynamic> json) =>
       _$TranslationJobPageResponseFromJson(json);

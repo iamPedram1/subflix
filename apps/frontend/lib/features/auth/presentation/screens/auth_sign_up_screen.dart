@@ -6,6 +6,7 @@ import 'package:subflix/core/app/router/app_routes.dart';
 import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
 import 'package:subflix/features/auth/application/auth_controller.dart';
 import 'package:subflix/features/auth/presentation/models/auth_confirm_email_args.dart';
@@ -61,9 +62,14 @@ class _AuthSignUpScreenState extends ConsumerState<AuthSignUpScreen> {
       if (!mounted) {
         return;
       }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(context.t.authSignUpSuccess)));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: AppText(
+            context.t.authSignUpSuccess,
+            variant: AppTextVariant.bodyMedium,
+          ),
+        ),
+      );
       if (result.verificationRequired) {
         context.go(
           AppRoutes.authConfirmEmail,
@@ -188,7 +194,10 @@ class _AuthSignUpScreenState extends ConsumerState<AuthSignUpScreen> {
             onPressed: _isSubmitting
                 ? null
                 : () => context.push(AppRoutes.authSignIn),
-            child: Text(context.t.authHaveAccountLink),
+            child: AppText(
+              context.t.authHaveAccountLink,
+              variant: AppTextVariant.labelLarge,
+            ),
           ),
         ],
       ),

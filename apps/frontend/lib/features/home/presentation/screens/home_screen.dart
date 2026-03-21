@@ -8,6 +8,7 @@ import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/features/health/application/backend_health_provider.dart';
 import 'package:subflix/features/history/application/history_controller.dart';
 import 'package:subflix/features/home/application/home_providers.dart';
@@ -79,7 +80,10 @@ class HomeScreen extends ConsumerWidget {
                                 .read(historyControllerProvider.notifier)
                                 .refresh(),
                             icon: const Icon(Icons.refresh_rounded),
-                            label: Text(context.t.retry),
+                            label: AppText(
+                              context.t.retry,
+                              variant: AppTextVariant.labelLarge,
+                            ),
                           ),
                         ),
                         loading: () => const Column(

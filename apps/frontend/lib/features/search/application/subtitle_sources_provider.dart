@@ -51,17 +51,18 @@ class SubtitleSourcesRequest {
   );
 }
 
-final subtitleSourcesSelectionProvider = rp.FutureProvider.family<
-  List<SubtitleSource>,
-  SubtitleSourcesRequest
->((ref, request) {
-  return ref
-      .watch(searchRepositoryProvider)
-      .fetchSubtitleSources(
-        request.item.id,
-        preferredLanguage: request.preferredLanguage,
-        seasonNumber: request.seasonNumber,
-        episodeNumber: request.episodeNumber,
-        releaseHint: request.releaseHint,
-      );
-});
+final subtitleSourcesSelectionProvider =
+    rp.FutureProvider.family<List<SubtitleSource>, SubtitleSourcesRequest>((
+      ref,
+      request,
+    ) {
+      return ref
+          .watch(searchRepositoryProvider)
+          .fetchSubtitleSources(
+            request.item.id,
+            preferredLanguage: request.preferredLanguage,
+            seasonNumber: request.seasonNumber,
+            episodeNumber: request.episodeNumber,
+            releaseHint: request.releaseHint,
+          );
+    });

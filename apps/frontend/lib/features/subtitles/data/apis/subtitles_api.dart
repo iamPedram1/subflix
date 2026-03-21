@@ -27,7 +27,8 @@ class SubtitlesApi {
 
 @RestApi()
 abstract class SubtitlesRestClient {
-  factory SubtitlesRestClient(Dio dio, {String? baseUrl}) = _SubtitlesRestClient;
+  factory SubtitlesRestClient(Dio dio, {String? baseUrl}) =
+      _SubtitlesRestClient;
 
   @POST(ApiPaths.subtitlesParse)
   @MultiPart()

@@ -6,6 +6,7 @@ import 'package:subflix/core/network/api_exception.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/features/auth/data/services/firebase_oauth_service.dart';
@@ -66,13 +67,11 @@ class AuthFlowScaffold extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       if (eyebrow != null) ...<Widget>[
-                        Text(
+                        AppText(
                           eyebrow!,
-                          style: Theme.of(context).textTheme.labelLarge
-                              ?.copyWith(
-                                color: Colors.white.withValues(alpha: 0.82),
-                                letterSpacing: 0.6,
-                              ),
+                          variant: AppTextVariant.labelLarge,
+                          color: Colors.white.withValues(alpha: 0.82),
+                          letterSpacing: 0.6,
                         ),
                         const SizedBox(height: AppSpacing.sm),
                       ],
@@ -86,20 +85,17 @@ class AuthFlowScaffold extends StatelessWidget {
                         child: Icon(icon, color: Colors.white, size: 30),
                       ),
                       const SizedBox(height: AppSpacing.lg),
-                      Text(
+                      AppText(
                         title,
-                        style: Theme.of(context).textTheme.headlineSmall
-                            ?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                            ),
+                        variant: AppTextVariant.headlineMedium,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
                       ),
                       const SizedBox(height: AppSpacing.sm),
-                      Text(
+                      AppText(
                         subtitle,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Colors.white.withValues(alpha: 0.84),
-                        ),
+                        variant: AppTextVariant.bodyMedium,
+                        color: Colors.white.withValues(alpha: 0.84),
                       ),
                     ],
                   ),

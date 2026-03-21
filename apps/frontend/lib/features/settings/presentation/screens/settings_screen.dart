@@ -9,6 +9,7 @@ import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
@@ -37,18 +38,28 @@ class SettingsScreen extends ConsumerWidget {
       if (!context.mounted) {
         return;
       }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(context.t.authSignInSuccess)));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: AppText(
+            context.t.authSignInSuccess,
+            variant: AppTextVariant.bodyMedium,
+          ),
+        ),
+      );
     } on FirebaseOAuthCancelledException {
       return;
     } catch (error) {
       if (!context.mounted) {
         return;
       }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(describeAuthError(error))));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: AppText(
+            describeAuthError(error),
+            variant: AppTextVariant.bodyMedium,
+          ),
+        ),
+      );
     }
   }
 
@@ -61,16 +72,26 @@ class SettingsScreen extends ConsumerWidget {
       if (!context.mounted) {
         return;
       }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(context.t.authProfileRefreshed)));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: AppText(
+            context.t.authProfileRefreshed,
+            variant: AppTextVariant.bodyMedium,
+          ),
+        ),
+      );
     } catch (error) {
       if (!context.mounted) {
         return;
       }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(describeAuthError(error))));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: AppText(
+            describeAuthError(error),
+            variant: AppTextVariant.bodyMedium,
+          ),
+        ),
+      );
     }
   }
 
@@ -80,16 +101,26 @@ class SettingsScreen extends ConsumerWidget {
       if (!context.mounted) {
         return;
       }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(context.t.authSignOutSuccess)));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: AppText(
+            context.t.authSignOutSuccess,
+            variant: AppTextVariant.bodyMedium,
+          ),
+        ),
+      );
     } catch (error) {
       if (!context.mounted) {
         return;
       }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(describeAuthError(error))));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: AppText(
+            describeAuthError(error),
+            variant: AppTextVariant.bodyMedium,
+          ),
+        ),
+      );
     }
   }
 
@@ -121,17 +152,15 @@ class SettingsScreen extends ConsumerWidget {
                     title: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
+                        AppText(
                           context.t.settingsTitle,
-                          style: Theme.of(context).textTheme.titleLarge
-                              ?.copyWith(fontWeight: FontWeight.w700),
+                          variant: AppTextVariant.titleLarge,
+                          fontWeight: FontWeight.w700,
                         ),
-                        Text(
+                        AppText(
                           context.t.settingsSubtitle,
-                          style: Theme.of(context).textTheme.bodySmall
-                              ?.copyWith(
-                                color: AppColors.textSecondaryFor(context),
-                              ),
+                          variant: AppTextVariant.bodySmall,
+                          color: AppColors.textSecondaryFor(context),
                         ),
                       ],
                     ),
@@ -254,8 +283,9 @@ class SettingsScreen extends ConsumerWidget {
                                 onTap: () {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                      content: Text(
+                                      content: AppText(
                                         context.t.settingsNotificationsSubtitle,
+                                        variant: AppTextVariant.bodyMedium,
                                       ),
                                     ),
                                   );
@@ -352,8 +382,9 @@ class SettingsScreen extends ConsumerWidget {
                               }
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text(
+                                  content: AppText(
                                     context.t.settingsHistoryClearedSnack,
+                                    variant: AppTextVariant.bodyMedium,
                                   ),
                                 ),
                               );
@@ -404,18 +435,16 @@ class SettingsScreen extends ConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
+                AppText(
                   context.t.settingsLanguageLabel,
-                  style: Theme.of(
-                    sheetContext,
-                  ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
+                  variant: AppTextVariant.titleLarge,
+                  fontWeight: FontWeight.w700,
                 ),
                 const SizedBox(height: 8),
-                Text(
+                AppText(
                   context.t.settingsSubtitle,
-                  style: Theme.of(sheetContext).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.textSecondaryFor(sheetContext),
-                  ),
+                  variant: AppTextVariant.bodyMedium,
+                  color: AppColors.textSecondaryFor(sheetContext),
                 ),
                 const SizedBox(height: 20),
                 Flexible(
@@ -468,24 +497,17 @@ class SettingsScreen extends ConsumerWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
-                                          Text(
+                                          AppText(
                                             language.label,
-                                            style: Theme.of(
-                                              sheetContext,
-                                            ).textTheme.titleMedium,
+                                            variant: AppTextVariant.titleMedium,
                                           ),
                                           const SizedBox(height: 2),
-                                          Text(
+                                          AppText(
                                             language.nativeLabel,
-                                            style: Theme.of(sheetContext)
-                                                .textTheme
-                                                .bodySmall
-                                                ?.copyWith(
-                                                  color:
-                                                      AppColors.textSecondaryFor(
-                                                        sheetContext,
-                                                      ),
-                                                ),
+                                            variant: AppTextVariant.bodySmall,
+                                            color: AppColors.textSecondaryFor(
+                                              sheetContext,
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -552,7 +574,7 @@ class _ErrorState extends StatelessWidget {
           action: OutlinedButton.icon(
             onPressed: onRetry,
             icon: const Icon(Icons.refresh_rounded),
-            label: Text(context.t.retry),
+            label: AppText(context.t.retry, variant: AppTextVariant.labelLarge),
           ),
         ),
       ),

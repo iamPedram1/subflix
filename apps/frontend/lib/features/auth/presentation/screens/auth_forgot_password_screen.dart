@@ -7,6 +7,7 @@ import 'package:subflix/core/localization/app_localizations.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
 import 'package:subflix/features/auth/application/auth_controller.dart';
 import 'package:subflix/features/auth/presentation/models/auth_reset_password_args.dart';
@@ -103,7 +104,10 @@ class _AuthForgotPasswordScreenState
                         ),
                       ),
                       icon: const Icon(Icons.arrow_forward_rounded),
-                      label: Text(context.t.authContinueToReset),
+                      label: AppText(
+                        context.t.authContinueToReset,
+                        variant: AppTextVariant.labelLarge,
+                      ),
                     ),
             ),
             if (_resetToken != null) ...<Widget>[
@@ -115,9 +119,9 @@ class _AuthForgotPasswordScreenState
                   color: AppColors.surfaceMutedFor(context),
                   borderRadius: BorderRadius.circular(18),
                 ),
-                child: Text(
+                child: AppText(
                   context.t.authDebugTokenLabel(_resetToken!),
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  variant: AppTextVariant.bodyMedium,
                 ),
               ),
             ],
@@ -170,7 +174,10 @@ class _AuthForgotPasswordScreenState
             onPressed: _isSubmitting
                 ? null
                 : () => context.push(AppRoutes.authSignIn),
-            child: Text(context.t.authBackToSignIn),
+            child: AppText(
+              context.t.authBackToSignIn,
+              variant: AppTextVariant.labelLarge,
+            ),
           ),
         ],
       ),

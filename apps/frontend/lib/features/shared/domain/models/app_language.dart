@@ -6,7 +6,11 @@ enum AppLanguage {
   @JsonValue('es')
   spanish(code: 'es', label: 'Spanish', nativeLabel: 'Espa\u00f1ol'),
   @JsonValue('fa')
-  persian(code: 'fa', label: 'Persian', nativeLabel: '\u0641\u0627\u0631\u0633\u06cc'),
+  persian(
+    code: 'fa',
+    label: 'Persian',
+    nativeLabel: '\u0641\u0627\u0631\u0633\u06cc',
+  ),
   @JsonValue('ar')
   arabic(code: 'ar', label: 'Arabic', nativeLabel: 'Al Arabiya'),
   @JsonValue('fr')

@@ -8,6 +8,7 @@ import 'package:subflix/core/providers/repository_providers.dart';
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_gradient_button.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
 import 'package:subflix/features/auth/application/auth_controller.dart';
 import 'package:subflix/features/auth/data/services/firebase_oauth_service.dart';
@@ -57,9 +58,14 @@ class _AuthSignInScreenState extends ConsumerState<AuthSignInScreen> {
       if (!mounted) {
         return;
       }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(context.t.authSignInSuccess)));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: AppText(
+            context.t.authSignInSuccess,
+            variant: AppTextVariant.bodyMedium,
+          ),
+        ),
+      );
       context.go(AppRoutes.settings);
     } catch (error) {
       setState(() => _errorMessage = describeAuthError(error));
@@ -81,13 +87,20 @@ class _AuthSignInScreenState extends ConsumerState<AuthSignInScreen> {
       final idToken = await ref
           .read(firebaseOAuthServiceProvider)
           .signInWithGoogleIdToken();
-      await ref.read(authControllerProvider.notifier).signInWithFirebase(idToken);
+      await ref
+          .read(authControllerProvider.notifier)
+          .signInWithFirebase(idToken);
       if (!mounted) {
         return;
       }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(context.t.authSignInSuccess)));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: AppText(
+            context.t.authSignInSuccess,
+            variant: AppTextVariant.bodyMedium,
+          ),
+        ),
+      );
       context.go(AppRoutes.settings);
     } on FirebaseOAuthCancelledException {
       return;
@@ -120,7 +133,10 @@ class _AuthSignInScreenState extends ConsumerState<AuthSignInScreen> {
               action: OutlinedButton.icon(
                 onPressed: () => context.go(AppRoutes.settings),
                 icon: const Icon(Icons.settings_rounded),
-                label: Text(context.t.authBackToAccount),
+                label: AppText(
+                  context.t.authBackToAccount,
+                  variant: AppTextVariant.labelLarge,
+                ),
               ),
             ),
             const SizedBox(height: AppSpacing.lg),
@@ -176,8 +192,9 @@ class _AuthSignInScreenState extends ConsumerState<AuthSignInScreen> {
                 AppGradientButton(
                   label: context.t.authSignInAction,
                   icon: Icons.login_rounded,
-                  onPressed:
-                      _isSubmitting || _isGoogleSubmitting ? null : _handleSignIn,
+                  onPressed: _isSubmitting || _isGoogleSubmitting
+                      ? null
+                      : _handleSignIn,
                   fullWidth: true,
                 ),
               ],
@@ -187,8 +204,9 @@ class _AuthSignInScreenState extends ConsumerState<AuthSignInScreen> {
           SizedBox(
             width: double.infinity,
             child: OutlinedButton.icon(
-              onPressed:
-                  _isSubmitting || _isGoogleSubmitting ? null : _handleGoogleSignIn,
+              onPressed: _isSubmitting || _isGoogleSubmitting
+                  ? null
+                  : _handleGoogleSignIn,
               icon: _isGoogleSubmitting
                   ? const SizedBox(
                       width: 18,
@@ -196,40 +214,41 @@ class _AuthSignInScreenState extends ConsumerState<AuthSignInScreen> {
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
                   : const Icon(Icons.g_mobiledata_rounded, size: 26),
-              label: Text(context.t.authContinueWithGoogle),
+              label: AppText(
+                context.t.authContinueWithGoogle,
+                variant: AppTextVariant.labelLarge,
+              ),
             ),
           ),
           const SizedBox(height: AppSpacing.sm),
-          Text(
+          AppText(
             context.t.authGoogleHelper,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.textSecondaryFor(context),
-            ),
+            variant: AppTextVariant.bodySmall,
+            color: AppColors.textSecondaryFor(context),
           ),
           const SizedBox(height: AppSpacing.lg),
           Row(
             children: <Widget>[
               Expanded(
                 child: Divider(
-                  color: Theme.of(context).colorScheme.outline.withValues(
-                    alpha: 0.5,
-                  ),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.outline.withValues(alpha: 0.5),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
-                child: Text(
+                child: AppText(
                   context.t.authOrDivider,
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                    color: AppColors.textSecondaryFor(context),
-                  ),
+                  variant: AppTextVariant.labelMedium,
+                  color: AppColors.textSecondaryFor(context),
                 ),
               ),
               Expanded(
                 child: Divider(
-                  color: Theme.of(context).colorScheme.outline.withValues(
-                    alpha: 0.5,
-                  ),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.outline.withValues(alpha: 0.5),
                 ),
               ),
             ],
@@ -239,13 +258,19 @@ class _AuthSignInScreenState extends ConsumerState<AuthSignInScreen> {
             onPressed: _isSubmitting || _isGoogleSubmitting
                 ? null
                 : () => context.push(AppRoutes.authForgotPassword),
-            child: Text(context.t.authForgotPasswordLink),
+            child: AppText(
+              context.t.authForgotPasswordLink,
+              variant: AppTextVariant.labelLarge,
+            ),
           ),
           TextButton(
             onPressed: _isSubmitting || _isGoogleSubmitting
                 ? null
                 : () => context.push(AppRoutes.authSignUp),
-            child: Text(context.t.authNoAccountLink),
+            child: AppText(
+              context.t.authNoAccountLink,
+              variant: AppTextVariant.labelLarge,
+            ),
           ),
         ],
       ),

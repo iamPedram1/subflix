@@ -8,8 +8,8 @@ class CachedSearchRepository implements SearchRepository {
     this._inner, {
     Duration searchTtl = const Duration(minutes: 5),
     Duration sourcesTtl = const Duration(minutes: 3),
-  })  : _searchCache = AsyncCache<List<MovieSearchItem>>(ttl: searchTtl),
-        _sourcesCache = AsyncCache<List<SubtitleSource>>(ttl: sourcesTtl);
+  }) : _searchCache = AsyncCache<List<MovieSearchItem>>(ttl: searchTtl),
+       _sourcesCache = AsyncCache<List<SubtitleSource>>(ttl: sourcesTtl);
 
   final SearchRepository _inner;
   final AsyncCache<List<MovieSearchItem>> _searchCache;

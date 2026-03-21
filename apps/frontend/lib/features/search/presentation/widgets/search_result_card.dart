@@ -54,17 +54,17 @@ class SearchResultCard extends StatelessWidget {
                   ],
                 ),
               ),
-          AppDirectionalIcon(
-            icon: Iconsax.arrowRight,
-            color: AppColors.textMutedFor(context),
-          ),
+              AppDirectionalIcon(
+                icon: Iconsax.arrowRight,
+                color: AppColors.textMutedFor(context),
+              ),
             ],
           ),
           Text(
             item.synopsis,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondaryFor(context)),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: AppColors.textSecondaryFor(context),
+            ),
           ),
           Wrap(
             spacing: 8,
@@ -101,9 +101,9 @@ class _MiniChip extends StatelessWidget {
         padding: AppInsets.chip,
         child: Text(
           label,
-          style: Theme.of(
-            context,
-          ).textTheme.labelMedium?.copyWith(color: AppColors.textSecondaryFor(context)),
+          style: Theme.of(context).textTheme.labelMedium?.copyWith(
+            color: AppColors.textSecondaryFor(context),
+          ),
         ),
       ),
     );

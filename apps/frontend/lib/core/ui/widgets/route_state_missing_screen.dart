@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:subflix/core/ui/icons/iconsax.dart';
 import 'package:subflix/core/styles/spacing.dart';
 import 'package:subflix/core/ui/widgets/app_background.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
 
@@ -19,7 +20,7 @@ class RouteStateMissingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(title: AppText(title, variant: AppTextVariant.titleLarge)),
       body: AppBackground(
         child: SafeArea(
           child: ResponsiveCenter(

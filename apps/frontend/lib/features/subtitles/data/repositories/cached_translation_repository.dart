@@ -8,8 +8,7 @@ class CachedTranslationRepository implements TranslationRepository {
   CachedTranslationRepository(
     this._inner, {
     Duration previewTtl = const Duration(seconds: 45),
-  }) : _previewCache =
-            AsyncCache<TranslationPreviewPage>(ttl: previewTtl);
+  }) : _previewCache = AsyncCache<TranslationPreviewPage>(ttl: previewTtl);
 
   final TranslationRepository _inner;
   final AsyncCache<TranslationPreviewPage> _previewCache;
@@ -21,12 +20,7 @@ class CachedTranslationRepository implements TranslationRepository {
     int page = 1,
     int limit = 100,
   }) {
-    final key = [
-      jobId,
-      query.trim().toLowerCase(),
-      page,
-      limit,
-    ].join('|');
+    final key = [jobId, query.trim().toLowerCase(), page, limit].join('|');
     return _previewCache.get(
       key,
       () => _inner.fetchPreview(

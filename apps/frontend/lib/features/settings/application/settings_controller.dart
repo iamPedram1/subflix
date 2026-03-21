@@ -18,9 +18,7 @@ class SettingsController extends _$SettingsController {
     final previous = state;
     final current = state.asData?.value;
     if (current != null) {
-      state = AsyncValue.data(
-        current.copyWith(hasSeenOnboarding: true),
-      );
+      state = AsyncValue.data(current.copyWith(hasSeenOnboarding: true));
     }
     try {
       final updated = await ref

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:subflix/core/styles/colors.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 
 class SectionHeader extends StatelessWidget {
   const SectionHeader({
@@ -25,12 +26,11 @@ class SectionHeader extends StatelessWidget {
             spacing: 4,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(title, style: Theme.of(context).textTheme.titleLarge),
-              Text(
+              AppText(title, variant: AppTextVariant.titleLarge),
+              AppText(
                 subtitle,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondaryFor(context),
-                ),
+                variant: AppTextVariant.bodyMedium,
+                color: AppColors.textSecondaryFor(context),
               ),
             ],
           ),

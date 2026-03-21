@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/styles/spacing.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 
 class TrustSignalTile extends StatelessWidget {
@@ -39,12 +40,11 @@ class TrustSignalTile extends StatelessWidget {
               spacing: AppSpacing.xxs,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(title, style: Theme.of(context).textTheme.titleSmall),
-                Text(
+                AppText(title, variant: AppTextVariant.titleSmall),
+                AppText(
                   subtitle,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textSecondaryFor(context),
-                  ),
+                  variant: AppTextVariant.bodySmall,
+                  color: AppColors.textSecondaryFor(context),
                 ),
               ],
             ),
