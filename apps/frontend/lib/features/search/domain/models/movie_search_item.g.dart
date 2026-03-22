@@ -12,6 +12,7 @@ _MovieSearchItem _$MovieSearchItemFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String,
       year: (json['year'] as num).toInt(),
       mediaType: $enumDecode(_$SearchMediaTypeEnumMap, json['mediaType']),
+      posterUrl: json['posterUrl'] as String?,
       synopsis: json['synopsis'] as String,
       genres: (json['genres'] as List<dynamic>)
           .map((e) => e as String)
@@ -26,6 +27,7 @@ Map<String, dynamic> _$MovieSearchItemToJson(_MovieSearchItem instance) =>
       'title': instance.title,
       'year': instance.year,
       'mediaType': _$SearchMediaTypeEnumMap[instance.mediaType]!,
+      'posterUrl': instance.posterUrl,
       'synopsis': instance.synopsis,
       'genres': instance.genres,
       'runtimeMinutes': instance.runtimeMinutes,

@@ -26,8 +26,8 @@ import 'package:subflix/features/history/data/repositories/local_history_reposit
 import 'package:subflix/features/history/domain/repositories/history_repository.dart';
 import 'package:subflix/features/search/data/apis/catalog_api.dart';
 import 'package:subflix/features/search/data/apis/mock_search_api.dart';
+import 'package:subflix/features/search/data/repositories/backend_search_repository.dart';
 import 'package:subflix/features/search/data/repositories/cached_search_repository.dart';
-import 'package:subflix/features/search/data/repositories/mock_search_repository.dart';
 import 'package:subflix/features/search/domain/repositories/search_repository.dart';
 import 'package:subflix/features/settings/data/apis/preferences_api.dart';
 import 'package:subflix/features/settings/data/datasources/settings_local_data_source.dart';
@@ -245,7 +245,7 @@ HistoryRepository historyRepository(Ref ref) {
 @Riverpod(keepAlive: true)
 SearchRepository searchRepository(Ref ref) {
   return CachedSearchRepository(
-    MockSearchRepository(ref.watch(mockSearchApiProvider)),
+    BackendSearchRepository(ref.watch(catalogApiProvider)),
   );
 }
 

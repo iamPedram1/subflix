@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MovieSearchItem {
 
- String get id; String get title; int get year; SearchMediaType get mediaType; String get synopsis; List<String> get genres; int get runtimeMinutes; double get popularity;
+ String get id; String get title; int get year; SearchMediaType get mediaType; String? get posterUrl; String get synopsis; List<String> get genres; int get runtimeMinutes; double get popularity;
 /// Create a copy of MovieSearchItem
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $MovieSearchItemCopyWith<MovieSearchItem> get copyWith => _$MovieSearchItemCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MovieSearchItem&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.year, year) || other.year == year)&&(identical(other.mediaType, mediaType) || other.mediaType == mediaType)&&(identical(other.synopsis, synopsis) || other.synopsis == synopsis)&&const DeepCollectionEquality().equals(other.genres, genres)&&(identical(other.runtimeMinutes, runtimeMinutes) || other.runtimeMinutes == runtimeMinutes)&&(identical(other.popularity, popularity) || other.popularity == popularity));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MovieSearchItem&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.year, year) || other.year == year)&&(identical(other.mediaType, mediaType) || other.mediaType == mediaType)&&(identical(other.posterUrl, posterUrl) || other.posterUrl == posterUrl)&&(identical(other.synopsis, synopsis) || other.synopsis == synopsis)&&const DeepCollectionEquality().equals(other.genres, genres)&&(identical(other.runtimeMinutes, runtimeMinutes) || other.runtimeMinutes == runtimeMinutes)&&(identical(other.popularity, popularity) || other.popularity == popularity));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,year,mediaType,synopsis,const DeepCollectionEquality().hash(genres),runtimeMinutes,popularity);
+int get hashCode => Object.hash(runtimeType,id,title,year,mediaType,posterUrl,synopsis,const DeepCollectionEquality().hash(genres),runtimeMinutes,popularity);
 
 @override
 String toString() {
-  return 'MovieSearchItem(id: $id, title: $title, year: $year, mediaType: $mediaType, synopsis: $synopsis, genres: $genres, runtimeMinutes: $runtimeMinutes, popularity: $popularity)';
+  return 'MovieSearchItem(id: $id, title: $title, year: $year, mediaType: $mediaType, posterUrl: $posterUrl, synopsis: $synopsis, genres: $genres, runtimeMinutes: $runtimeMinutes, popularity: $popularity)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $MovieSearchItemCopyWith<$Res>  {
   factory $MovieSearchItemCopyWith(MovieSearchItem value, $Res Function(MovieSearchItem) _then) = _$MovieSearchItemCopyWithImpl;
 @useResult
 $Res call({
- String id, String title, int year, SearchMediaType mediaType, String synopsis, List<String> genres, int runtimeMinutes, double popularity
+ String id, String title, int year, SearchMediaType mediaType, String? posterUrl, String synopsis, List<String> genres, int runtimeMinutes, double popularity
 });
 
 
@@ -65,13 +65,14 @@ class _$MovieSearchItemCopyWithImpl<$Res>
 
 /// Create a copy of MovieSearchItem
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? year = null,Object? mediaType = null,Object? synopsis = null,Object? genres = null,Object? runtimeMinutes = null,Object? popularity = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? year = null,Object? mediaType = null,Object? posterUrl = freezed,Object? synopsis = null,Object? genres = null,Object? runtimeMinutes = null,Object? popularity = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,year: null == year ? _self.year : year // ignore: cast_nullable_to_non_nullable
 as int,mediaType: null == mediaType ? _self.mediaType : mediaType // ignore: cast_nullable_to_non_nullable
-as SearchMediaType,synopsis: null == synopsis ? _self.synopsis : synopsis // ignore: cast_nullable_to_non_nullable
+as SearchMediaType,posterUrl: freezed == posterUrl ? _self.posterUrl : posterUrl // ignore: cast_nullable_to_non_nullable
+as String?,synopsis: null == synopsis ? _self.synopsis : synopsis // ignore: cast_nullable_to_non_nullable
 as String,genres: null == genres ? _self.genres : genres // ignore: cast_nullable_to_non_nullable
 as List<String>,runtimeMinutes: null == runtimeMinutes ? _self.runtimeMinutes : runtimeMinutes // ignore: cast_nullable_to_non_nullable
 as int,popularity: null == popularity ? _self.popularity : popularity // ignore: cast_nullable_to_non_nullable
@@ -160,10 +161,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  int year,  SearchMediaType mediaType,  String synopsis,  List<String> genres,  int runtimeMinutes,  double popularity)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  int year,  SearchMediaType mediaType,  String? posterUrl,  String synopsis,  List<String> genres,  int runtimeMinutes,  double popularity)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MovieSearchItem() when $default != null:
-return $default(_that.id,_that.title,_that.year,_that.mediaType,_that.synopsis,_that.genres,_that.runtimeMinutes,_that.popularity);case _:
+return $default(_that.id,_that.title,_that.year,_that.mediaType,_that.posterUrl,_that.synopsis,_that.genres,_that.runtimeMinutes,_that.popularity);case _:
   return orElse();
 
 }
@@ -181,10 +182,10 @@ return $default(_that.id,_that.title,_that.year,_that.mediaType,_that.synopsis,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  int year,  SearchMediaType mediaType,  String synopsis,  List<String> genres,  int runtimeMinutes,  double popularity)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  int year,  SearchMediaType mediaType,  String? posterUrl,  String synopsis,  List<String> genres,  int runtimeMinutes,  double popularity)  $default,) {final _that = this;
 switch (_that) {
 case _MovieSearchItem():
-return $default(_that.id,_that.title,_that.year,_that.mediaType,_that.synopsis,_that.genres,_that.runtimeMinutes,_that.popularity);case _:
+return $default(_that.id,_that.title,_that.year,_that.mediaType,_that.posterUrl,_that.synopsis,_that.genres,_that.runtimeMinutes,_that.popularity);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -201,10 +202,10 @@ return $default(_that.id,_that.title,_that.year,_that.mediaType,_that.synopsis,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  int year,  SearchMediaType mediaType,  String synopsis,  List<String> genres,  int runtimeMinutes,  double popularity)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  int year,  SearchMediaType mediaType,  String? posterUrl,  String synopsis,  List<String> genres,  int runtimeMinutes,  double popularity)?  $default,) {final _that = this;
 switch (_that) {
 case _MovieSearchItem() when $default != null:
-return $default(_that.id,_that.title,_that.year,_that.mediaType,_that.synopsis,_that.genres,_that.runtimeMinutes,_that.popularity);case _:
+return $default(_that.id,_that.title,_that.year,_that.mediaType,_that.posterUrl,_that.synopsis,_that.genres,_that.runtimeMinutes,_that.popularity);case _:
   return null;
 
 }
@@ -216,13 +217,14 @@ return $default(_that.id,_that.title,_that.year,_that.mediaType,_that.synopsis,_
 @JsonSerializable()
 
 class _MovieSearchItem implements MovieSearchItem {
-  const _MovieSearchItem({required this.id, required this.title, required this.year, required this.mediaType, required this.synopsis, required final  List<String> genres, required this.runtimeMinutes, required this.popularity}): _genres = genres;
+  const _MovieSearchItem({required this.id, required this.title, required this.year, required this.mediaType, this.posterUrl, required this.synopsis, required final  List<String> genres, required this.runtimeMinutes, required this.popularity}): _genres = genres;
   factory _MovieSearchItem.fromJson(Map<String, dynamic> json) => _$MovieSearchItemFromJson(json);
 
 @override final  String id;
 @override final  String title;
 @override final  int year;
 @override final  SearchMediaType mediaType;
+@override final  String? posterUrl;
 @override final  String synopsis;
  final  List<String> _genres;
 @override List<String> get genres {
@@ -247,16 +249,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MovieSearchItem&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.year, year) || other.year == year)&&(identical(other.mediaType, mediaType) || other.mediaType == mediaType)&&(identical(other.synopsis, synopsis) || other.synopsis == synopsis)&&const DeepCollectionEquality().equals(other._genres, _genres)&&(identical(other.runtimeMinutes, runtimeMinutes) || other.runtimeMinutes == runtimeMinutes)&&(identical(other.popularity, popularity) || other.popularity == popularity));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MovieSearchItem&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.year, year) || other.year == year)&&(identical(other.mediaType, mediaType) || other.mediaType == mediaType)&&(identical(other.posterUrl, posterUrl) || other.posterUrl == posterUrl)&&(identical(other.synopsis, synopsis) || other.synopsis == synopsis)&&const DeepCollectionEquality().equals(other._genres, _genres)&&(identical(other.runtimeMinutes, runtimeMinutes) || other.runtimeMinutes == runtimeMinutes)&&(identical(other.popularity, popularity) || other.popularity == popularity));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,year,mediaType,synopsis,const DeepCollectionEquality().hash(_genres),runtimeMinutes,popularity);
+int get hashCode => Object.hash(runtimeType,id,title,year,mediaType,posterUrl,synopsis,const DeepCollectionEquality().hash(_genres),runtimeMinutes,popularity);
 
 @override
 String toString() {
-  return 'MovieSearchItem(id: $id, title: $title, year: $year, mediaType: $mediaType, synopsis: $synopsis, genres: $genres, runtimeMinutes: $runtimeMinutes, popularity: $popularity)';
+  return 'MovieSearchItem(id: $id, title: $title, year: $year, mediaType: $mediaType, posterUrl: $posterUrl, synopsis: $synopsis, genres: $genres, runtimeMinutes: $runtimeMinutes, popularity: $popularity)';
 }
 
 
@@ -267,7 +269,7 @@ abstract mixin class _$MovieSearchItemCopyWith<$Res> implements $MovieSearchItem
   factory _$MovieSearchItemCopyWith(_MovieSearchItem value, $Res Function(_MovieSearchItem) _then) = __$MovieSearchItemCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title, int year, SearchMediaType mediaType, String synopsis, List<String> genres, int runtimeMinutes, double popularity
+ String id, String title, int year, SearchMediaType mediaType, String? posterUrl, String synopsis, List<String> genres, int runtimeMinutes, double popularity
 });
 
 
@@ -284,13 +286,14 @@ class __$MovieSearchItemCopyWithImpl<$Res>
 
 /// Create a copy of MovieSearchItem
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? year = null,Object? mediaType = null,Object? synopsis = null,Object? genres = null,Object? runtimeMinutes = null,Object? popularity = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? year = null,Object? mediaType = null,Object? posterUrl = freezed,Object? synopsis = null,Object? genres = null,Object? runtimeMinutes = null,Object? popularity = null,}) {
   return _then(_MovieSearchItem(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,year: null == year ? _self.year : year // ignore: cast_nullable_to_non_nullable
 as int,mediaType: null == mediaType ? _self.mediaType : mediaType // ignore: cast_nullable_to_non_nullable
-as SearchMediaType,synopsis: null == synopsis ? _self.synopsis : synopsis // ignore: cast_nullable_to_non_nullable
+as SearchMediaType,posterUrl: freezed == posterUrl ? _self.posterUrl : posterUrl // ignore: cast_nullable_to_non_nullable
+as String?,synopsis: null == synopsis ? _self.synopsis : synopsis // ignore: cast_nullable_to_non_nullable
 as String,genres: null == genres ? _self._genres : genres // ignore: cast_nullable_to_non_nullable
 as List<String>,runtimeMinutes: null == runtimeMinutes ? _self.runtimeMinutes : runtimeMinutes // ignore: cast_nullable_to_non_nullable
 as int,popularity: null == popularity ? _self.popularity : popularity // ignore: cast_nullable_to_non_nullable

@@ -13,6 +13,7 @@ abstract final class ApiPaths {
   static const String authMe = '/auth/me';
 
   static const String catalogSearch = '/catalog/search';
+  static const String catalogMediaDetails = '/catalog/media/{mediaId}';
   static const String catalogSubtitleSources =
       '/catalog/media/{mediaId}/subtitle-sources';
 

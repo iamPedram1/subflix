@@ -3,6 +3,7 @@ import 'package:retrofit/retrofit.dart';
 
 import 'package:subflix/core/network/api_call_guard.dart';
 import 'package:subflix/core/network/api_paths.dart';
+import 'package:subflix/features/search/domain/models/catalog_media_details.dart';
 import 'package:subflix/features/search/domain/models/movie_search_item.dart';
 import 'package:subflix/features/subtitles/domain/models/subtitle_source.dart';
 
@@ -17,6 +18,10 @@ class CatalogApi {
 
   Future<List<MovieSearchItem>> searchTitles(String query) {
     return _client.searchTitles(query).guardApiCall();
+  }
+
+  Future<CatalogMediaDetails?> fetchMediaDetails(String mediaId) {
+    return _client.fetchMediaDetails(mediaId).guardApiCall();
   }
 
   Future<List<SubtitleSource>> fetchSubtitleSources(
@@ -44,6 +49,9 @@ abstract class CatalogRestClient {
 
   @GET(ApiPaths.catalogSearch)
   Future<List<MovieSearchItem>> searchTitles(@Query('q') String query);
+
+  @GET(ApiPaths.catalogMediaDetails)
+  Future<CatalogMediaDetails?> fetchMediaDetails(@Path('mediaId') String mediaId);
 
   @GET(ApiPaths.catalogSubtitleSources)
   Future<List<SubtitleSource>> fetchSubtitleSources(

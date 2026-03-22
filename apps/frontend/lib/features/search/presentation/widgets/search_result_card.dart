@@ -27,16 +27,7 @@ class SearchResultCard extends StatelessWidget {
           Row(
             spacing: 14,
             children: <Widget>[
-              Container(
-                width: 56,
-                height: 56,
-                decoration: BoxDecoration(
-                  gradient: AppColors.heroGradient,
-                  borderRadius: BorderRadius.circular(18),
-                ),
-                alignment: Alignment.center,
-                child: const Icon(Iconsax.video, color: Colors.white),
-              ),
+              _PosterBadge(item: item),
               Expanded(
                 child: Column(
                   spacing: 4,
@@ -77,6 +68,56 @@ class SearchResultCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _PosterBadge extends StatelessWidget {
+  const _PosterBadge({required this.item});
+
+  final MovieSearchItem item;
+
+  @override
+  Widget build(BuildContext context) {
+    final posterUrl = item.posterUrl?.trim();
+    final hasPoster = posterUrl != null && posterUrl.isNotEmpty;
+
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(18),
+      child: SizedBox(
+        width: 56,
+        height: 56,
+        child: hasPoster
+            ? Image.network(
+                posterUrl,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) =>
+                    const _PosterBadgeFallback(),
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) {
+                    return child;
+                  }
+                  return const _PosterBadgeFallback();
+                },
+              )
+            : const _PosterBadgeFallback(),
+      ),
+    );
+  }
+}
+
+class _PosterBadgeFallback extends StatelessWidget {
+  const _PosterBadgeFallback();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: AppColors.heroGradient,
+        borderRadius: BorderRadius.circular(18),
+      ),
+      alignment: Alignment.center,
+      child: const Icon(Iconsax.video, color: Colors.white),
     );
   }
 }

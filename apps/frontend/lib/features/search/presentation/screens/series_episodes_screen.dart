@@ -59,14 +59,14 @@ class SeriesEpisodesScreen extends StatelessWidget {
                           child: _EpisodeCard(
                             title: context.t.seriesEpisodeLabel(episode),
                             runtime: context.t.seriesEpisodeMeta(
-                              args.item.runtimeMinutes,
+                              args.media.runtimeMinutes,
                             ),
                             description:
-                                '${args.item.title} \u2022 ${context.t.seriesSeasonLabel(args.seasonNumber)}',
+                                '${args.media.title} \u2022 ${args.seasonName ?? context.t.seriesSeasonLabel(args.seasonNumber)}',
                             onTap: () => context.push(
                               AppRoutes.subtitleSources,
                               extra: SubtitleSourcesArgs(
-                                item: args.item,
+                                item: args.media.toSearchItem(),
                                 seasonNumber: args.seasonNumber,
                                 episodeNumber: episode,
                               ),
@@ -111,10 +111,10 @@ class _EpisodesHeader extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                AppText(args.item.title, variant: AppTextVariant.titleLarge),
+                AppText(args.media.title, variant: AppTextVariant.titleLarge),
                 const SizedBox(height: 2),
                 AppText(
-                  context.t.seriesSeasonLabel(args.seasonNumber),
+                  args.seasonName ?? context.t.seriesSeasonLabel(args.seasonNumber),
                   variant: AppTextVariant.bodyMedium,
                   color: AppColors.textSecondaryFor(context),
                 ),

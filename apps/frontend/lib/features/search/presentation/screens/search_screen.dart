@@ -11,8 +11,6 @@ import 'package:subflix/features/search/application/search_controller.dart';
 import 'package:subflix/features/search/domain/models/movie_search_item.dart';
 import 'package:subflix/features/search/presentation/widgets/search_body.dart';
 import 'package:subflix/features/search/presentation/widgets/search_top_bar.dart';
-import 'package:subflix/features/shared/domain/models/search_media_type.dart';
-import 'package:subflix/features/subtitles/presentation/models/subtitle_sources_args.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
@@ -22,6 +20,7 @@ class SearchScreen extends ConsumerStatefulWidget {
 }
 
 class _SearchScreenState extends ConsumerState<SearchScreen> {
+  static const Duration _searchDebounceDuration = Duration(milliseconds: 360);
   static const List<String> _suggestions = <String>[
     'The Dark Knight',
     'Game of Thrones',
@@ -96,26 +95,24 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   }
 
   void _openResult(MovieSearchItem item) {
-    if (item.mediaType == SearchMediaType.series) {
-      context.push(AppRoutes.seriesSeasons, extra: item);
-      return;
-    }
-    context.push(
-      AppRoutes.subtitleSources,
-      extra: SubtitleSourcesArgs(item: item),
-    );
+    context.push(AppRoutes.seriesSeasons, extra: item);
   }
 
   void _onQueryChanged(String value) {
     _searchDebounce?.cancel();
+    final previousQuery = _query;
     setState(() => _query = value);
+
+    if (previousQuery.trim() == value.trim()) {
+      return;
+    }
 
     if (value.trim().isEmpty) {
       ref.read(searchControllerProvider.notifier).onQueryChanged('');
       return;
     }
 
-    _searchDebounce = Timer(const Duration(milliseconds: 360), () {
+    _searchDebounce = Timer(_searchDebounceDuration, () {
       if (!mounted) {
         return;
       }

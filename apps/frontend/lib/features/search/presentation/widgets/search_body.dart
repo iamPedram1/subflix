@@ -165,43 +165,7 @@ class SearchResultCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Container(
-            width: 84,
-            height: 116,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: isMovie
-                    ? const <Color>[Color(0xFF1D4ED8), Color(0xFF7C3AED)]
-                    : const <Color>[Color(0xFF7C3AED), Color(0xFFEC4899)],
-              ),
-              borderRadius: BorderRadius.circular(18),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  right: -6,
-                  top: 10,
-                  child: Icon(
-                    isMovie ? Icons.movie_filter_outlined : Icons.tv_rounded,
-                    size: 54,
-                    color: Colors.white.withValues(alpha: 0.20),
-                  ),
-                ),
-                Positioned(
-                  left: 12,
-                  right: 12,
-                  bottom: 12,
-                  child: AppText(
-                    '${item.year}',
-                    variant: AppTextVariant.labelLarge,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          _PosterCard(item: item, isMovie: isMovie),
           const SizedBox(width: 14),
           Expanded(
             child: Column(
@@ -261,6 +225,114 @@ class SearchResultCard extends StatelessWidget {
                   ],
                 ),
               ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _PosterCard extends StatelessWidget {
+  const _PosterCard({required this.item, required this.isMovie});
+
+  final MovieSearchItem item;
+  final bool isMovie;
+
+  @override
+  Widget build(BuildContext context) {
+    final posterUrl = item.posterUrl?.trim();
+    final hasPoster = posterUrl != null && posterUrl.isNotEmpty;
+
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(18),
+      child: SizedBox(
+        width: 84,
+        height: 116,
+        child: hasPoster
+            ? Stack(
+                fit: StackFit.expand,
+                children: <Widget>[
+                  Image.network(
+                    posterUrl,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) =>
+                        _PosterFallback(item: item, isMovie: isMovie),
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) {
+                        return child;
+                      }
+                      return _PosterFallback(item: item, isMovie: isMovie);
+                    },
+                  ),
+                  Positioned(
+                    left: 10,
+                    right: 10,
+                    bottom: 10,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.black.withValues(alpha: 0.58),
+                        borderRadius: BorderRadius.circular(999),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
+                        child: AppText(
+                          '${item.year}',
+                          variant: AppTextVariant.labelMedium,
+                          color: Colors.white,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            : _PosterFallback(item: item, isMovie: isMovie),
+      ),
+    );
+  }
+}
+
+class _PosterFallback extends StatelessWidget {
+  const _PosterFallback({required this.item, required this.isMovie});
+
+  final MovieSearchItem item;
+  final bool isMovie;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: isMovie
+              ? const <Color>[Color(0xFF1D4ED8), Color(0xFF7C3AED)]
+              : const <Color>[Color(0xFF7C3AED), Color(0xFFEC4899)],
+        ),
+      ),
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            right: -6,
+            top: 10,
+            child: Icon(
+              isMovie ? Icons.movie_filter_outlined : Icons.tv_rounded,
+              size: 54,
+              color: Colors.white.withValues(alpha: 0.20),
+            ),
+          ),
+          Positioned(
+            left: 12,
+            right: 12,
+            bottom: 12,
+            child: AppText(
+              '${item.year}',
+              variant: AppTextVariant.labelLarge,
+              color: Colors.white,
             ),
           ),
         ],

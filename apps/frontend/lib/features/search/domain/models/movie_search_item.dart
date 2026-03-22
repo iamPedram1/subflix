@@ -12,6 +12,7 @@ abstract class MovieSearchItem with _$MovieSearchItem {
     required String title,
     required int year,
     required SearchMediaType mediaType,
+    String? posterUrl,
     required String synopsis,
     required List<String> genres,
     required int runtimeMinutes,

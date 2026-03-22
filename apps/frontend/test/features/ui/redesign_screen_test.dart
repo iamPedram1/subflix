@@ -11,6 +11,7 @@ import 'package:subflix/features/auth/domain/models/auth_signup_result.dart';
 import 'package:subflix/features/auth/domain/models/auth_user.dart';
 import 'package:subflix/features/auth/domain/repositories/auth_repository.dart';
 import 'package:subflix/features/history/domain/repositories/history_repository.dart';
+import 'package:subflix/features/search/domain/models/catalog_media_details.dart';
 import 'package:subflix/features/search/domain/models/movie_search_item.dart';
 import 'package:subflix/features/search/domain/repositories/search_repository.dart';
 import 'package:subflix/features/search/presentation/screens/search_screen.dart';
@@ -160,6 +161,9 @@ class _FakeSearchRepository implements SearchRepository {
   _FakeSearchRepository({required this.results});
 
   final List<MovieSearchItem> results;
+
+  @override
+  Future<CatalogMediaDetails?> fetchMediaDetails(String mediaId) async => null;
 
   @override
   Future<List<SubtitleSource>> fetchSubtitleSources(
