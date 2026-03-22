@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'backend_health.dart';
+part of 'api_health.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,22 +13,22 @@ part of 'backend_health.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$BackendHealth {
+mixin _$ApiHealth {
 
  String get status; String get service; String? get environment; DateTime get timestamp;
-/// Create a copy of BackendHealth
+/// Create a copy of ApiHealth
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$BackendHealthCopyWith<BackendHealth> get copyWith => _$BackendHealthCopyWithImpl<BackendHealth>(this as BackendHealth, _$identity);
+$ApiHealthCopyWith<ApiHealth> get copyWith => _$ApiHealthCopyWithImpl<ApiHealth>(this as ApiHealth, _$identity);
 
-  /// Serializes this BackendHealth to a JSON map.
+  /// Serializes this ApiHealth to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is BackendHealth&&(identical(other.status, status) || other.status == status)&&(identical(other.service, service) || other.service == service)&&(identical(other.environment, environment) || other.environment == environment)&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ApiHealth&&(identical(other.status, status) || other.status == status)&&(identical(other.service, service) || other.service == service)&&(identical(other.environment, environment) || other.environment == environment)&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -37,15 +37,15 @@ int get hashCode => Object.hash(runtimeType,status,service,environment,timestamp
 
 @override
 String toString() {
-  return 'BackendHealth(status: $status, service: $service, environment: $environment, timestamp: $timestamp)';
+  return 'ApiHealth(status: $status, service: $service, environment: $environment, timestamp: $timestamp)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $BackendHealthCopyWith<$Res>  {
-  factory $BackendHealthCopyWith(BackendHealth value, $Res Function(BackendHealth) _then) = _$BackendHealthCopyWithImpl;
+abstract mixin class $ApiHealthCopyWith<$Res>  {
+  factory $ApiHealthCopyWith(ApiHealth value, $Res Function(ApiHealth) _then) = _$ApiHealthCopyWithImpl;
 @useResult
 $Res call({
  String status, String service, String? environment, DateTime timestamp
@@ -56,14 +56,14 @@ $Res call({
 
 }
 /// @nodoc
-class _$BackendHealthCopyWithImpl<$Res>
-    implements $BackendHealthCopyWith<$Res> {
-  _$BackendHealthCopyWithImpl(this._self, this._then);
+class _$ApiHealthCopyWithImpl<$Res>
+    implements $ApiHealthCopyWith<$Res> {
+  _$ApiHealthCopyWithImpl(this._self, this._then);
 
-  final BackendHealth _self;
-  final $Res Function(BackendHealth) _then;
+  final ApiHealth _self;
+  final $Res Function(ApiHealth) _then;
 
-/// Create a copy of BackendHealth
+/// Create a copy of ApiHealth
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? service = null,Object? environment = freezed,Object? timestamp = null,}) {
   return _then(_self.copyWith(
@@ -78,8 +78,8 @@ as DateTime,
 }
 
 
-/// Adds pattern-matching-related methods to [BackendHealth].
-extension BackendHealthPatterns on BackendHealth {
+/// Adds pattern-matching-related methods to [ApiHealth].
+extension ApiHealthPatterns on ApiHealth {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -92,10 +92,10 @@ extension BackendHealthPatterns on BackendHealth {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _BackendHealth value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ApiHealth value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _BackendHealth() when $default != null:
+case _ApiHealth() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -114,10 +114,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _BackendHealth value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ApiHealth value)  $default,){
 final _that = this;
 switch (_that) {
-case _BackendHealth():
+case _ApiHealth():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -135,10 +135,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _BackendHealth value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ApiHealth value)?  $default,){
 final _that = this;
 switch (_that) {
-case _BackendHealth() when $default != null:
+case _ApiHealth() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -158,7 +158,7 @@ return $default(_that);case _:
 
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String status,  String service,  String? environment,  DateTime timestamp)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _BackendHealth() when $default != null:
+case _ApiHealth() when $default != null:
 return $default(_that.status,_that.service,_that.environment,_that.timestamp);case _:
   return orElse();
 
@@ -179,7 +179,7 @@ return $default(_that.status,_that.service,_that.environment,_that.timestamp);ca
 
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String status,  String service,  String? environment,  DateTime timestamp)  $default,) {final _that = this;
 switch (_that) {
-case _BackendHealth():
+case _ApiHealth():
 return $default(_that.status,_that.service,_that.environment,_that.timestamp);case _:
   throw StateError('Unexpected subclass');
 
@@ -199,7 +199,7 @@ return $default(_that.status,_that.service,_that.environment,_that.timestamp);ca
 
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String status,  String service,  String? environment,  DateTime timestamp)?  $default,) {final _that = this;
 switch (_that) {
-case _BackendHealth() when $default != null:
+case _ApiHealth() when $default != null:
 return $default(_that.status,_that.service,_that.environment,_that.timestamp);case _:
   return null;
 
@@ -211,29 +211,29 @@ return $default(_that.status,_that.service,_that.environment,_that.timestamp);ca
 /// @nodoc
 @JsonSerializable()
 
-class _BackendHealth implements BackendHealth {
-  const _BackendHealth({required this.status, required this.service, this.environment, required this.timestamp});
-  factory _BackendHealth.fromJson(Map<String, dynamic> json) => _$BackendHealthFromJson(json);
+class _ApiHealth implements ApiHealth {
+  const _ApiHealth({required this.status, required this.service, this.environment, required this.timestamp});
+  factory _ApiHealth.fromJson(Map<String, dynamic> json) => _$ApiHealthFromJson(json);
 
 @override final  String status;
 @override final  String service;
 @override final  String? environment;
 @override final  DateTime timestamp;
 
-/// Create a copy of BackendHealth
+/// Create a copy of ApiHealth
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$BackendHealthCopyWith<_BackendHealth> get copyWith => __$BackendHealthCopyWithImpl<_BackendHealth>(this, _$identity);
+_$ApiHealthCopyWith<_ApiHealth> get copyWith => __$ApiHealthCopyWithImpl<_ApiHealth>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$BackendHealthToJson(this, );
+  return _$ApiHealthToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BackendHealth&&(identical(other.status, status) || other.status == status)&&(identical(other.service, service) || other.service == service)&&(identical(other.environment, environment) || other.environment == environment)&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApiHealth&&(identical(other.status, status) || other.status == status)&&(identical(other.service, service) || other.service == service)&&(identical(other.environment, environment) || other.environment == environment)&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -242,15 +242,15 @@ int get hashCode => Object.hash(runtimeType,status,service,environment,timestamp
 
 @override
 String toString() {
-  return 'BackendHealth(status: $status, service: $service, environment: $environment, timestamp: $timestamp)';
+  return 'ApiHealth(status: $status, service: $service, environment: $environment, timestamp: $timestamp)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$BackendHealthCopyWith<$Res> implements $BackendHealthCopyWith<$Res> {
-  factory _$BackendHealthCopyWith(_BackendHealth value, $Res Function(_BackendHealth) _then) = __$BackendHealthCopyWithImpl;
+abstract mixin class _$ApiHealthCopyWith<$Res> implements $ApiHealthCopyWith<$Res> {
+  factory _$ApiHealthCopyWith(_ApiHealth value, $Res Function(_ApiHealth) _then) = __$ApiHealthCopyWithImpl;
 @override @useResult
 $Res call({
  String status, String service, String? environment, DateTime timestamp
@@ -261,17 +261,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$BackendHealthCopyWithImpl<$Res>
-    implements _$BackendHealthCopyWith<$Res> {
-  __$BackendHealthCopyWithImpl(this._self, this._then);
+class __$ApiHealthCopyWithImpl<$Res>
+    implements _$ApiHealthCopyWith<$Res> {
+  __$ApiHealthCopyWithImpl(this._self, this._then);
 
-  final _BackendHealth _self;
-  final $Res Function(_BackendHealth) _then;
+  final _ApiHealth _self;
+  final $Res Function(_ApiHealth) _then;
 
-/// Create a copy of BackendHealth
+/// Create a copy of ApiHealth
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? service = null,Object? environment = freezed,Object? timestamp = null,}) {
-  return _then(_BackendHealth(
+  return _then(_ApiHealth(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as String,service: null == service ? _self.service : service // ignore: cast_nullable_to_non_nullable
 as String,environment: freezed == environment ? _self.environment : environment // ignore: cast_nullable_to_non_nullable

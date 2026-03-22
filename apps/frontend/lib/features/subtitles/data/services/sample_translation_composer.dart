@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:subflix/features/shared/domain/models/app_language.dart';
 import 'package:subflix/features/subtitles/domain/models/subtitle_line.dart';
 
-class MockTranslationComposer {
+class SampleTranslationComposer {
   static const List<String> _seedLines = <String>[
     'Keep the channel open. We only get one clean shot at this.',
     'The city looks different when you finally slow down enough to notice.',

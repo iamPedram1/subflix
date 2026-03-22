@@ -9,7 +9,7 @@ import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
 import 'package:subflix/core/ui/widgets/responsive_center.dart';
 import 'package:subflix/core/ui/widgets/state_panel.dart';
 import 'package:subflix/core/ui/widgets/app_text.dart';
-import 'package:subflix/features/health/application/backend_health_provider.dart';
+import 'package:subflix/features/health/application/api_health_provider.dart';
 import 'package:subflix/features/history/application/history_controller.dart';
 import 'package:subflix/features/home/application/home_providers.dart';
 import 'package:subflix/features/home/presentation/widgets/home_header_block.dart';
@@ -23,7 +23,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final recentJobs = ref.watch(recentJobsProvider);
-    final backendHealth = ref.watch(backendHealthProvider);
+    final apiHealth = ref.watch(apiHealthProvider);
 
     return Scaffold(
       body: AppBackground(
@@ -32,7 +32,7 @@ class HomeScreen extends ConsumerWidget {
             child: ListView(
               padding: EdgeInsets.zero,
               children: <Widget>[
-                HomeHeaderBlock(backendHealth: backendHealth),
+                HomeHeaderBlock(apiHealth: apiHealth),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(
                     AppSpacing.md,

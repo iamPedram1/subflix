@@ -1,20 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'backend_health.dart';
+part of 'api_health.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_BackendHealth _$BackendHealthFromJson(Map<String, dynamic> json) =>
-    _BackendHealth(
-      status: json['status'] as String,
-      service: json['service'] as String,
-      environment: json['environment'] as String?,
-      timestamp: DateTime.parse(json['timestamp'] as String),
-    );
+_ApiHealth _$ApiHealthFromJson(Map<String, dynamic> json) => _ApiHealth(
+  status: json['status'] as String,
+  service: json['service'] as String,
+  environment: json['environment'] as String?,
+  timestamp: DateTime.parse(json['timestamp'] as String),
+);
 
-Map<String, dynamic> _$BackendHealthToJson(_BackendHealth instance) =>
+Map<String, dynamic> _$ApiHealthToJson(_ApiHealth instance) =>
     <String, dynamic>{
       'status': instance.status,
       'service': instance.service,

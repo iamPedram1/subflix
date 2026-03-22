@@ -3,7 +3,7 @@ import 'package:retrofit/retrofit.dart';
 
 import 'package:subflix/core/network/api_call_guard.dart';
 import 'package:subflix/core/network/api_paths.dart';
-import 'package:subflix/features/health/domain/models/backend_health.dart';
+import 'package:subflix/features/health/domain/models/api_health.dart';
 
 part 'health_api.g.dart';
 
@@ -14,7 +14,7 @@ class HealthApi {
 
   final HealthRestClient _client;
 
-  Future<BackendHealth> getHealth() {
+  Future<ApiHealth> getHealth() {
     return _client.getHealth().guardApiCall();
   }
 }
@@ -24,5 +24,5 @@ abstract class HealthRestClient {
   factory HealthRestClient(Dio dio, {String? baseUrl}) = _HealthRestClient;
 
   @GET(ApiPaths.health)
-  Future<BackendHealth> getHealth();
+  Future<ApiHealth> getHealth();
 }

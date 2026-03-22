@@ -9,9 +9,9 @@ import 'package:subflix/features/subtitles/domain/models/translation_progress_up
 import 'package:subflix/features/subtitles/domain/models/translation_request.dart';
 import 'package:subflix/features/subtitles/domain/repositories/translation_repository.dart';
 
-/// Starts backend jobs and polls for progress until completion.
-class BackendTranslationRepository implements TranslationRepository {
-  BackendTranslationRepository(this._api);
+/// Starts API translation jobs and polls for progress until completion.
+class ApiTranslationRepository implements TranslationRepository {
+  ApiTranslationRepository(this._api);
 
   final TranslationJobsApi _api;
 

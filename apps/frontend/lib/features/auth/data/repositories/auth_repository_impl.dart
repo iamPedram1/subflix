@@ -7,9 +7,9 @@ import 'package:subflix/features/auth/domain/models/auth_signup_result.dart';
 import 'package:subflix/features/auth/domain/models/auth_user.dart';
 import 'package:subflix/features/auth/domain/repositories/auth_repository.dart';
 
-/// Backend-backed authentication and session persistence implementation.
-class BackendAuthRepository implements AuthRepository {
-  BackendAuthRepository(this._api, this._sessionStore);
+/// API-backed authentication and session persistence implementation.
+class AuthRepositoryImpl implements AuthRepository {
+  AuthRepositoryImpl(this._api, this._sessionStore);
 
   final AuthApi _api;
   final AuthSessionStore _sessionStore;

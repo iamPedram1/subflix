@@ -8,9 +8,9 @@ import 'package:subflix/features/shared/data/apis/translation_jobs_api.dart';
 import 'package:subflix/features/shared/domain/models/translation_job.dart';
 import 'package:subflix/features/subtitles/domain/repositories/subtitle_export_repository.dart';
 
-/// Downloads translated subtitle content from the backend and saves it locally.
-class BackendSubtitleExportRepository implements SubtitleExportRepository {
-  BackendSubtitleExportRepository(this._api);
+/// Downloads translated subtitle content from the API and saves it locally.
+class ApiSubtitleExportRepository implements SubtitleExportRepository {
+  ApiSubtitleExportRepository(this._api);
 
   final TranslationJobsApi _api;
 

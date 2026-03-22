@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:subflix/features/history/data/datasources/history_local_data_source.dart';
-import 'package:subflix/features/subtitles/data/services/mock_translation_composer.dart';
+import 'package:subflix/features/subtitles/data/services/sample_translation_composer.dart';
 
 import '../../core/shared/test_helpers.dart';
 
@@ -10,7 +10,7 @@ void main() {
     final sharedPreferences = await createMockSharedPreferences();
     final dataSource = HistoryLocalDataSource(
       sharedPreferences,
-      MockTranslationComposer(),
+      SampleTranslationComposer(),
     );
 
     final seededJobs = await dataSource.readJobs();

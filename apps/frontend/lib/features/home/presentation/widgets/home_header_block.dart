@@ -9,14 +9,14 @@ import 'package:subflix/core/styles/colors.dart';
 import 'package:subflix/core/ui/widgets/app_icon_button.dart';
 import 'package:subflix/core/ui/widgets/app_surface_card.dart';
 import 'package:subflix/core/ui/widgets/app_text.dart';
-import 'package:subflix/features/health/domain/models/backend_health.dart';
+import 'package:subflix/features/health/domain/models/api_health.dart';
 
 class HomeHeaderBlock extends StatelessWidget {
-  const HomeHeaderBlock({required this.backendHealth, super.key});
+  const HomeHeaderBlock({required this.apiHealth, super.key});
 
   static const double quickActionsOverlap = 76;
 
-  final AsyncValue<BackendHealth> backendHealth;
+  final AsyncValue<ApiHealth> apiHealth;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class HomeHeaderBlock extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(bottom: quickActionsOverlap),
-          child: _HeroSection(backendHealth: backendHealth),
+          child: _HeroSection(apiHealth: apiHealth),
         ),
         const Positioned(
           left: 16,
@@ -39,9 +39,9 @@ class HomeHeaderBlock extends StatelessWidget {
 }
 
 class _HeroSection extends StatelessWidget {
-  const _HeroSection({required this.backendHealth});
+  const _HeroSection({required this.apiHealth});
 
-  final AsyncValue<BackendHealth> backendHealth;
+  final AsyncValue<ApiHealth> apiHealth;
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +74,7 @@ class _HeroSection extends StatelessWidget {
                       color: Colors.white.withValues(alpha: 0.82),
                     ),
                     const SizedBox(height: 12),
-                    _BackendStatusPill(backendHealth: backendHealth),
+                    _BackendStatusPill(apiHealth: apiHealth),
                   ],
                 ),
               ),
@@ -150,13 +150,13 @@ class _HeroSection extends StatelessWidget {
 }
 
 class _BackendStatusPill extends StatelessWidget {
-  const _BackendStatusPill({required this.backendHealth});
+  const _BackendStatusPill({required this.apiHealth});
 
-  final AsyncValue<BackendHealth> backendHealth;
+  final AsyncValue<ApiHealth> apiHealth;
 
   @override
   Widget build(BuildContext context) {
-    final (icon, label, color) = backendHealth.when(
+    final (icon, label, color) = apiHealth.when(
       data: (_) =>
           (Icons.cloud_done_rounded, 'Backend online', const Color(0xFF22C55E)),
       error: (_, _) => (

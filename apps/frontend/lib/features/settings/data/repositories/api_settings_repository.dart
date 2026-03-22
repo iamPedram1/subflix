@@ -4,9 +4,9 @@ import 'package:subflix/features/settings/domain/repositories/settings_repositor
 import 'package:subflix/features/shared/domain/models/app_language.dart';
 import 'package:subflix/features/shared/domain/models/theme_preference.dart';
 
-/// Backend-backed implementation for persisted device preferences.
-class BackendSettingsRepository implements SettingsRepository {
-  BackendSettingsRepository(this._api);
+/// API-backed implementation for persisted device preferences.
+class ApiSettingsRepository implements SettingsRepository {
+  ApiSettingsRepository(this._api);
 
   final PreferencesApi _api;
 

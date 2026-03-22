@@ -10,9 +10,9 @@ import 'package:subflix/features/subtitles/data/repositories/local_subtitle_impo
 import 'package:subflix/features/subtitles/domain/models/subtitle_file.dart';
 import 'package:subflix/features/subtitles/domain/repositories/subtitle_import_repository.dart';
 
-/// Uploads local subtitle files to the backend parser and returns the summary.
-class BackendSubtitleImportRepository implements SubtitleImportRepository {
-  BackendSubtitleImportRepository(this._api, this._parser);
+/// Uploads local subtitle files to the API parser and returns the summary.
+class ApiSubtitleImportRepository implements SubtitleImportRepository {
+  ApiSubtitleImportRepository(this._api, this._parser);
 
   final SubtitlesApi _api;
   final SubtitleParser _parser;

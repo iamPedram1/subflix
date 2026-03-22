@@ -3,9 +3,9 @@ import 'package:subflix/features/history/domain/repositories/history_repository.
 import 'package:subflix/features/shared/data/apis/translation_jobs_api.dart';
 import 'package:subflix/features/shared/domain/models/translation_job.dart';
 
-/// Backend-backed translation history repository.
-class BackendHistoryRepository implements HistoryRepository {
-  BackendHistoryRepository(this._api);
+/// API-backed translation history repository.
+class ApiHistoryRepository implements HistoryRepository {
+  ApiHistoryRepository(this._api);
 
   final TranslationJobsApi _api;
 

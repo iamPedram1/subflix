@@ -6,7 +6,7 @@ import 'package:subflix/features/shared/domain/models/app_language.dart';
 import 'package:subflix/features/shared/domain/models/translation_job.dart';
 import 'package:subflix/features/shared/domain/models/translation_job_status.dart';
 import 'package:subflix/features/shared/domain/models/translation_source_type.dart';
-import 'package:subflix/features/subtitles/data/services/mock_translation_composer.dart';
+import 'package:subflix/features/subtitles/data/services/sample_translation_composer.dart';
 import 'package:subflix/features/subtitles/domain/models/subtitle_format.dart';
 
 class HistoryLocalDataSource {
@@ -15,7 +15,7 @@ class HistoryLocalDataSource {
   static const String _jobsKey = 'subflix.translation_jobs';
 
   final SharedPreferences _sharedPreferences;
-  final MockTranslationComposer _composer;
+  final SampleTranslationComposer _composer;
 
   Future<List<TranslationJob>> readJobs() async {
     final values = _sharedPreferences.getStringList(_jobsKey);

@@ -20,12 +20,12 @@ class _HealthRestClient implements HealthRestClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<BackendHealth> getHealth() async {
+  Future<ApiHealth> getHealth() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<BackendHealth>(
+    final _options = _setStreamType<ApiHealth>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -36,9 +36,9 @@ class _HealthRestClient implements HealthRestClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late BackendHealth _value;
+    late ApiHealth _value;
     try {
-      _value = BackendHealth.fromJson(_result.data!);
+      _value = ApiHealth.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
