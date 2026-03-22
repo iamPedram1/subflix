@@ -103,15 +103,27 @@ class _FakeTranslationRepository implements TranslationRepository {
     final job = TranslationJob(
       id: 'job_001',
       title: request.when(
-        catalog: (item, source, targetLanguage, seasonNumber, episodeNumber,
-                releaseHint) =>
-            item.title,
+        catalog:
+            (
+              item,
+              source,
+              targetLanguage,
+              seasonNumber,
+              episodeNumber,
+              releaseHint,
+            ) => item.title,
         upload: (file, targetLanguage) => file.name,
       ),
       sourceName: request.when(
-        catalog: (item, source, targetLanguage, seasonNumber, episodeNumber,
-                releaseHint) =>
-            source.label,
+        catalog:
+            (
+              item,
+              source,
+              targetLanguage,
+              seasonNumber,
+              episodeNumber,
+              releaseHint,
+            ) => source.label,
         upload: (file, targetLanguage) => file.name,
       ),
       sourceType: request.map(
@@ -122,17 +134,29 @@ class _FakeTranslationRepository implements TranslationRepository {
       stageLabel: 'Translation ready',
       sourceLanguage: AppLanguage.english,
       targetLanguage: request.when(
-        catalog: (item, source, targetLanguage, seasonNumber, episodeNumber,
-                releaseHint) =>
-            targetLanguage,
+        catalog:
+            (
+              item,
+              source,
+              targetLanguage,
+              seasonNumber,
+              episodeNumber,
+              releaseHint,
+            ) => targetLanguage,
         upload: (file, targetLanguage) => targetLanguage,
       ),
       createdAt: DateTime(2026, 3, 14, 12),
       updatedAt: DateTime(2026, 3, 14, 12, 0, 4),
       format: request.when(
-        catalog: (item, source, targetLanguage, seasonNumber, episodeNumber,
-                releaseHint) =>
-            source.format,
+        catalog:
+            (
+              item,
+              source,
+              targetLanguage,
+              seasonNumber,
+              episodeNumber,
+              releaseHint,
+            ) => source.format,
         upload: (file, targetLanguage) => file.format,
       ),
       lineCount: 2,

@@ -241,20 +241,16 @@ class SettingsScreen extends ConsumerWidget {
                           padding: EdgeInsets.zero,
                           child: SettingsActionRow(
                             icon: _resolvedThemeIcon(context, preference),
-                            title: 'Theme',
+                            title: context.t.settingsThemeLabel,
                             subtitle: _resolvedThemeLabel(context, preference),
-                            trailing: SettingsThemeToggle(
-                              enabled: _isDarkThemeEnabled(context, preference),
+                            trailing: AppText(
+                              preference.themePreference.label(context),
+                              variant: AppTextVariant.labelMedium,
+                              color: AppColors.textSecondaryFor(context),
+                              fontWeight: FontWeight.w600,
                             ),
-                            onTap: () {
-                              final nextTheme =
-                                  _isDarkThemeEnabled(context, preference)
-                                  ? ThemePreference.light
-                                  : ThemePreference.dark;
-                              ref
-                                  .read(settingsControllerProvider.notifier)
-                                  .setThemePreference(nextTheme);
-                            },
+                            onTap: () =>
+                                _showThemePicker(context, ref, preference),
                           ),
                         ),
                         const SizedBox(height: 24),
@@ -266,7 +262,7 @@ class SettingsScreen extends ConsumerWidget {
                             children: <Widget>[
                               SettingsActionRow(
                                 icon: Icons.language_rounded,
-                                title: 'App Language',
+                                title: context.t.settingsLanguageLabel,
                                 value: preference.preferredTargetLanguage.label,
                                 onTap: () => _showLanguagePicker(
                                   context,
@@ -534,6 +530,118 @@ class SettingsScreen extends ConsumerWidget {
       },
     );
   }
+
+  Future<void> _showThemePicker(
+    BuildContext context,
+    WidgetRef ref,
+    UserPreference preference,
+  ) async {
+    await showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      builder: (sheetContext) {
+        final options = ThemePreference.values;
+
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                AppText(
+                  context.t.settingsThemeLabel,
+                  variant: AppTextVariant.titleLarge,
+                  fontWeight: FontWeight.w700,
+                ),
+                const SizedBox(height: 8),
+                AppText(
+                  context.t.settingsSubtitle,
+                  variant: AppTextVariant.bodyMedium,
+                  color: AppColors.textSecondaryFor(sheetContext),
+                ),
+                const SizedBox(height: 20),
+                Flexible(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: List<Widget>.generate(options.length, (index) {
+                        final themePreference = options[index];
+                        final selected =
+                            themePreference == preference.themePreference;
+                        return Padding(
+                          padding: EdgeInsets.only(
+                            bottom: index == options.length - 1 ? 0 : 8,
+                          ),
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(20),
+                              onTap: () async {
+                                await ref
+                                    .read(settingsControllerProvider.notifier)
+                                    .setThemePreference(themePreference);
+                                if (sheetContext.mounted) {
+                                  Navigator.of(sheetContext).pop();
+                                }
+                              },
+                              child: Ink(
+                                padding: AppInsets.card,
+                                decoration: BoxDecoration(
+                                  color: selected
+                                      ? AppColors.primary.withValues(
+                                          alpha: 0.10,
+                                        )
+                                      : AppColors.surfaceMutedFor(sheetContext),
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                    color: selected
+                                        ? AppColors.primary
+                                        : Theme.of(sheetContext)
+                                              .colorScheme
+                                              .outline
+                                              .withValues(alpha: 0.4),
+                                  ),
+                                ),
+                                child: Row(
+                                  children: <Widget>[
+                                    Icon(
+                                      _iconForTheme(themePreference),
+                                      color: selected
+                                          ? AppColors.primary
+                                          : AppColors.textSecondaryFor(
+                                              sheetContext,
+                                            ),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Expanded(
+                                      child: AppText(
+                                        themePreference.label(context),
+                                        variant: AppTextVariant.titleMedium,
+                                      ),
+                                    ),
+                                    if (selected)
+                                      const Icon(
+                                        Icons.check_circle_rounded,
+                                        color: AppColors.primary,
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
 
 class _LoadingState extends StatelessWidget {
@@ -601,4 +709,12 @@ IconData _resolvedThemeIcon(BuildContext context, UserPreference preference) {
   return _isDarkThemeEnabled(context, preference)
       ? Icons.dark_mode_outlined
       : Icons.wb_sunny_outlined;
+}
+
+IconData _iconForTheme(ThemePreference preference) {
+  return switch (preference) {
+    ThemePreference.system => Icons.brightness_auto_rounded,
+    ThemePreference.dark => Icons.dark_mode_outlined,
+    ThemePreference.light => Icons.wb_sunny_outlined,
+  };
 }

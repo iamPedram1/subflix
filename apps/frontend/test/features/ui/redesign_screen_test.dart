@@ -87,8 +87,8 @@ void main() {
 
       expect(find.text('Sign in to SubFlix'), findsOneWidget);
       expect(find.text('Sign in'), findsWidgets);
-      expect(find.text('Theme'), findsOneWidget);
-      expect(find.text('App Language'), findsOneWidget);
+      expect(find.text('Appearance'), findsWidgets);
+      expect(find.text('Preferred target language'), findsOneWidget);
     });
 
     testWidgets('upload screen shows ready state after loading demo file', (
@@ -220,7 +220,8 @@ class _FakeAuthRepository implements AuthRepository {
   }) async => _fakeSession(email: email);
 
   @override
-  Future<AuthSession> signInWithFirebase(String idToken) async => _fakeSession();
+  Future<AuthSession> signInWithFirebase(String idToken) async =>
+      _fakeSession();
 
   @override
   Future<bool> signOut() async => true;
@@ -317,10 +318,7 @@ AuthSession _fakeSession({String email = 'user@example.com'}) {
   );
 }
 
-AuthUser _fakeUser({
-  String email = 'user@example.com',
-  String? displayName,
-}) {
+AuthUser _fakeUser({String email = 'user@example.com', String? displayName}) {
   return AuthUser(
     id: 'user-id',
     email: email,

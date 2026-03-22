@@ -53,7 +53,9 @@ class SeriesSeasonsScreen extends StatelessWidget {
                             title: context.t.seriesSeasonLabel(season.number),
                             subtitle: context.t.seriesSeasonMeta(
                               season.episodeCount,
-                              season.year == null ? '' : ' • ${season.year}',
+                              season.year == null
+                                  ? ''
+                                  : ' \u2022 ${season.year}',
                             ),
                             onTap: () => context.push(
                               AppRoutes.seriesEpisodes,

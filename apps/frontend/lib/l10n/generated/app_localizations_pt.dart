@@ -12,816 +12,811 @@ class AppLocalizationsPt extends AppLocalizations {
   String get appTitle => 'SubFlix';
 
   @override
-  String get authAccountSectionTitle => 'Conta';
+  String get authAccountSectionTitle => 'Account';
 
   @override
-  String get authAlreadySignedInTitle => 'Você já está conectado';
+  String get authAlreadySignedInTitle => 'You are already signed in';
 
   @override
   String authAlreadySignedInMessage(Object email) {
-    return 'Este dispositivo já está conectado como $email.';
+    return 'This device is already connected as $email.';
   }
 
   @override
-  String get authBackToAccount => 'Voltar para a conta';
+  String get authBackToAccount => 'Back to account';
 
   @override
-  String get authBackToSignIn => 'Voltar para entrar';
+  String get authBackToSignIn => 'Back to sign in';
 
   @override
-  String get authCheckInboxTitle => 'Verifique sua caixa de entrada';
+  String get authCheckInboxTitle => 'Check your inbox';
 
   @override
-  String get authConfirmEmailAction => 'Confirmar e-mail';
+  String get authConfirmEmailAction => 'Confirm email';
 
   @override
   String authConfirmEmailHint(Object email) {
-    return 'Use o token de verificação enviado para $email.';
+    return 'Use the verification token sent to $email.';
   }
 
   @override
   String get authConfirmEmailSubtitle =>
-      'Cole o token de verificação do seu e-mail para concluir a ativação desta conta.';
+      'Paste the verification token from your email to finish activating this account.';
 
   @override
-  String get authConfirmEmailSuccess =>
-      'E-mail confirmado. Agora você pode entrar.';
+  String get authConfirmEmailSuccess => 'Email confirmed. You can sign in now.';
 
   @override
-  String get authConfirmEmailTitle => 'Verifique seu e-mail';
+  String get authConfirmEmailTitle => 'Verify your email';
 
   @override
-  String get authConfirmPasswordLabel => 'Confirmar senha';
+  String get authConfirmPasswordLabel => 'Confirm password';
 
   @override
-  String get authContinueToReset => 'Continuar para redefinir';
+  String get authContinueToReset => 'Continue to reset';
 
   @override
-  String get authContinueWithGoogle => 'Continuar com Google';
+  String get authContinueWithGoogle => 'Continue with Google';
 
   @override
-  String get authCreateAccountAction => 'Criar conta';
+  String get authCreateAccountAction => 'Create account';
 
   @override
   String authDebugTokenLabel(Object token) {
-    return 'Token de depuração: $token';
+    return 'Debug token: $token';
   }
 
   @override
-  String get authDisplayNameLabel => 'Nome de exibição';
+  String get authDisplayNameLabel => 'Display name';
 
   @override
-  String get authEmailLabel => 'Endereço de e-mail';
+  String get authEmailLabel => 'Email address';
 
   @override
-  String get authEyebrow => 'Espaço seguro';
+  String get authEyebrow => 'Secure workspace';
 
   @override
-  String get authFieldRequired => 'Este campo é obrigatório.';
+  String get authFieldRequired => 'This field is required.';
 
   @override
-  String get authForgotPasswordAction => 'Enviar link de redefinição';
+  String get authForgotPasswordAction => 'Send reset link';
 
   @override
   String get authForgotPasswordDebugMessage =>
-      'Um token de redefinição foi retornado para este ambiente de depuração. Você pode continuar diretamente para o formulário de redefinição.';
+      'A reset token was returned for this debug environment. You can continue directly into the reset form.';
 
   @override
-  String get authForgotPasswordLink => 'Esqueceu a senha?';
+  String get authForgotPasswordLink => 'Forgot password?';
 
   @override
   String get authForgotPasswordSubtitle =>
-      'Digite seu e-mail e solicitaremos ao backend uma redefinição de senha para esta conta.';
+      'Enter your email and we will request a password reset from the backend for this account.';
 
   @override
   String get authForgotPasswordSuccess =>
-      'Se a conta existir, uma mensagem de redefinição de senha foi enviada.';
+      'If the account exists, a password reset message has been sent.';
 
   @override
-  String get authForgotPasswordTitle => 'Redefina sua senha';
+  String get authForgotPasswordTitle => 'Reset your password';
 
   @override
   String get authGoogleHelper =>
-      'O login com Google usa o Firebase OAuth e funcionará quando este app estiver conectado a um projeto Firebase.';
+      'Google sign-in uses Firebase OAuth and will work once this app is connected to a Firebase project.';
 
   @override
   String get authGoogleShortAction => 'Google';
 
   @override
-  String get authHaveAccountLink => 'Já tem uma conta? Entre';
+  String get authHaveAccountLink => 'Already have an account? Sign in';
 
   @override
-  String get authInvalidEmail => 'Digite um endereço de e-mail válido.';
+  String get authInvalidEmail => 'Enter a valid email address.';
 
   @override
-  String get authNewPasswordLabel => 'Nova senha';
+  String get authNewPasswordLabel => 'New password';
 
   @override
-  String get authNoAccountLink => 'Precisa de uma conta? Crie uma';
+  String get authNoAccountLink => 'Need an account? Create one';
 
   @override
-  String get authOrDivider => 'ou';
+  String get authOrDivider => 'or';
 
   @override
-  String get authPasswordLabel => 'Senha';
+  String get authPasswordLabel => 'Password';
 
   @override
-  String get authPasswordMismatch => 'As senhas não correspondem.';
+  String get authPasswordMismatch => 'Passwords do not match.';
 
   @override
-  String get authPasswordTooShort => 'Use pelo menos 8 caracteres.';
+  String get authPasswordTooShort => 'Use at least 8 characters.';
 
   @override
-  String get authProfileRefreshed => 'Dados da conta atualizados.';
+  String get authProfileRefreshed => 'Account details refreshed.';
 
   @override
-  String get authRefreshProfileAction => 'Atualizar perfil';
+  String get authRefreshProfileAction => 'Refresh profile';
 
   @override
   String get authRefreshProfileSubtitle =>
-      'Carregar os dados de perfil mais recentes do backend.';
+      'Load the latest profile data from the backend.';
 
   @override
-  String get authResetPasswordAction => 'Salvar nova senha';
+  String get authResetPasswordAction => 'Save new password';
 
   @override
   String authResetPasswordHint(Object email) {
-    return 'Redefina a senha de $email usando o token enviado por e-mail.';
+    return 'Reset the password for $email using the token from your email.';
   }
 
   @override
   String get authResetPasswordSubtitle =>
-      'Digite o token de redefinição e escolha uma nova senha para esta conta.';
+      'Enter the reset token and choose a new password for this account.';
 
   @override
   String get authResetPasswordSuccess =>
-      'Senha atualizada. Faça login novamente.';
+      'Password updated. Please sign in again.';
 
   @override
-  String get authResetPasswordTitle => 'Escolha uma nova senha';
+  String get authResetPasswordTitle => 'Choose a new password';
 
   @override
-  String get authSignInAction => 'Entrar';
+  String get authSignInAction => 'Sign in';
 
   @override
   String get authSignInSubtitle =>
-      'Conecte este app à sua conta SubFlix para sincronizar dados de perfil e desbloquear fluxos autenticados do backend.';
+      'Connect this app to your SubFlix account to sync profile data and unlock authenticated backend flows.';
 
   @override
-  String get authSignInSuccess => 'Login realizado com sucesso.';
+  String get authSignInSuccess => 'Signed in successfully.';
 
   @override
-  String get authSignInTitle => 'Bem-vindo de volta';
+  String get authSignInTitle => 'Welcome back';
 
   @override
   String authSignedInCardSubtitle(Object email) {
-    return 'Conectado como $email';
+    return 'Connected as $email';
   }
 
   @override
   String get authSignedOutCardSubtitle =>
-      'Entre para gerenciar sua conta, usar Firebase OAuth e deixar os recursos autenticados prontos para sincronizações futuras.';
+      'Sign in to manage your account, use Firebase OAuth, and keep authenticated features ready for future sync.';
 
   @override
-  String get authSignedOutCardTitle => 'Entre no SubFlix';
+  String get authSignedOutCardTitle => 'Sign in to SubFlix';
 
   @override
-  String get authSignOutAction => 'Sair';
+  String get authSignOutAction => 'Sign out';
 
   @override
   String get authSignOutSubtitle =>
-      'Revogue a sessão atual deste dispositivo e limpe os tokens locais.';
+      'Revoke the current session for this device and clear local tokens.';
 
   @override
-  String get authSignOutSuccess => 'Sessão encerrada neste dispositivo.';
+  String get authSignOutSuccess => 'Signed out on this device.';
 
   @override
-  String get authSignUpAction => 'Criar minha conta';
+  String get authSignUpAction => 'Create my account';
 
   @override
   String get authSignUpSubtitle =>
-      'Crie uma conta para que este app possa usar o perfil autenticado e os fluxos de sessão do backend.';
+      'Create an account so this app can use the backend\'s authenticated profile and session flows.';
 
   @override
   String get authSignUpSuccess =>
-      'Conta criada. Continue com a verificação do e-mail.';
+      'Account created. Continue with email verification.';
 
   @override
-  String get authSignUpTitle => 'Crie sua conta';
+  String get authSignUpTitle => 'Create your account';
 
   @override
-  String get authVerificationStatusTitle => 'Verificação de e-mail';
+  String get authVerificationStatusTitle => 'Email verification';
 
   @override
-  String get authVerificationTokenLabel => 'Token de verificação';
+  String get authVerificationTokenLabel => 'Verification token';
 
   @override
-  String get authVerifiedStatus => 'Verificado';
+  String get authVerifiedStatus => 'Verified';
 
   @override
-  String get authUnverifiedStatus => 'Verificação pendente';
+  String get authUnverifiedStatus => 'Verification pending';
 
   @override
-  String get brandSubtitleCompact => 'InteligГЄncia de legendas';
+  String get brandSubtitleCompact => 'Subtitle intelligence';
 
   @override
-  String get brandSubtitleFull => 'EstГєdio de traduГ§ГЈo de legendas por IA';
+  String get brandSubtitleFull => 'AI subtitle translation studio';
 
   @override
-  String get comingSoonMessage => 'Ainda estamos preparando esta tela.';
+  String get comingSoonMessage => 'We are still preparing this screen.';
 
   @override
-  String get comingSoonTitle => 'Em breve';
+  String get comingSoonTitle => 'Coming soon';
 
   @override
   String exportFailedSnack(Object error) {
-    return 'Falha na exportaГ§ГЈo: $error';
+    return 'Export failed: $error';
   }
 
   @override
-  String get exportSubtitleLabel => 'Exportar legenda traduzida';
+  String get exportSubtitleLabel => 'Export translated subtitle';
 
   @override
   String exportedSnack(Object fileName, Object path) {
-    return '$fileName exportado para $path';
+    return 'Exported $fileName to $path';
   }
 
   @override
-  String get exportingLabel => 'Exportando...';
+  String get exportingLabel => 'Exporting...';
 
   @override
-  String get heroBadge => 'Fluxo premium de legendas';
+  String get heroBadge => 'Premium subtitle workflow';
 
   @override
   String get heroBody =>
-      'Escolha entre um catГЎlogo pesquisГЎvel ou o envio direto de arquivo, depois visualize e exporte legendas refinadas em poucos minutos.';
+      'Choose between a searchable title catalog or direct file upload, then preview and export polished subtitles in minutes.';
 
   @override
   String get heroHeadline =>
-      'Traduza legendas de filmes e sГ©ries com um fluxo de nГ­vel profissional.';
+      'Translate movie and series subtitles with a studio-grade flow.';
 
   @override
-  String get heroSearchCta => 'Buscar filme / sГ©rie';
+  String get heroSearchCta => 'Search movie / series';
 
   @override
-  String get heroStatLanguagesTitle => '10 idiomas';
+  String get heroStatLanguagesTitle => '10 languages';
 
   @override
-  String get heroStatLanguagesValue => 'Prontos para prГ©via';
+  String get heroStatLanguagesValue => 'Ready for preview';
 
   @override
-  String get heroStatMockTitle => 'APIs mock';
+  String get heroStatMockTitle => 'Mock APIs';
 
   @override
-  String get heroStatMockValue => 'Camada pronta para backend';
+  String get heroStatMockValue => 'Backend-ready seam';
 
   @override
-  String get heroStatPathsTitle => '2 caminhos';
+  String get heroStatPathsTitle => '2 paths';
 
   @override
-  String get heroStatPathsValue => 'Buscar ou enviar';
+  String get heroStatPathsValue => 'Search or upload';
 
   @override
   String get heroSubtitle =>
-      'Pesquise catГЎlogos de filmes e sГ©ries, escolha fontes e exporte traduГ§Гµes refinadas em minutos.';
+      'Search movie and series catalogs, pick sources, and export polished translations in minutes.';
 
   @override
-  String get heroTitle => 'Traduza legendas mais rГЎpido';
+  String get heroTitle => 'Translate subtitles faster';
 
   @override
-  String get heroUploadCta => 'Enviar legenda';
+  String get heroUploadCta => 'Upload subtitle';
 
   @override
   String historyCountLabel(Object count) {
-    return '$count traduГ§Гµes';
+    return '$count translations';
   }
 
   @override
   String get historyEmptyMessage =>
-      'Seus trabalhos de legenda traduzida aparecerГЈo aqui depois que vocГЄ concluir um fluxo de busca ou envio.';
+      'Your translated subtitle jobs will appear here after you complete a search or upload workflow.';
 
   @override
-  String get historyEmptyTitle => 'O histГіrico estГЎ vazio';
+  String get historyEmptyTitle => 'History is empty';
 
   @override
   String get historyFailedItemMessage =>
-      'A traduГ§ГЈo falhou. Toque para comeГ§ar de novo.';
+      'Translation failed. Tap to start again.';
 
   @override
-  String get historyFailedTitle => 'NГЈo foi possГ­vel carregar o histГіrico';
+  String get historyFailedTitle => 'Could not load history';
 
   @override
-  String get historyFilterAiTranslated => 'Traduzido por IA';
+  String get historyFilterAiTranslated => 'AI translated';
 
   @override
-  String get historyFilterAll => 'Todos';
+  String get historyFilterAll => 'All';
 
   @override
-  String get historyFilterCompleted => 'ConcluГ­dos';
+  String get historyFilterCompleted => 'Completed';
 
   @override
-  String get historyFilterFailed => 'Falhou';
+  String get historyFilterFailed => 'Failed';
 
   @override
-  String get historyFilterMovies => 'Filmes';
+  String get historyFilterMovies => 'Movies';
 
   @override
-  String get historyFilterReused => 'Reutilizado';
+  String get historyFilterReused => 'Reused';
 
   @override
-  String get historyFilterSeries => 'SГ©ries';
+  String get historyFilterSeries => 'Series';
 
   @override
   String get historySubtitle =>
-      'Reabra trabalhos anteriores, revise a prГ©via novamente ou exporte depois.';
+      'Reopen previous subtitle jobs, inspect the preview again, or export them later.';
 
   @override
-  String get historyTitle => 'HistГіrico de traduГ§Гµes';
+  String get historyTitle => 'Translation history';
 
   @override
-  String get homeFailedRecentTitle =>
-      'NГЈo foi possГ­vel carregar os trabalhos recentes';
+  String get homeFailedRecentTitle => 'Could not load recent jobs';
 
   @override
   String get homeFutureSubtitle =>
-      'RepositГіrios mock intercambiГЎveis mantГЄm o cГіdigo de UI protegido contra mudanГ§as no backend.';
+      'Swappable mock repositories keep UI code insulated from backend changes.';
 
   @override
-  String get homeFutureTitle => 'RepositГіrios prontos para o futuro';
+  String get homeFutureTitle => 'Future-ready repositories';
 
   @override
   String get homeNoRecentMessage =>
-      'Comece com uma busca por filme ou envie um arquivo de legenda e suas traduГ§Гµes recentes aparecerГЈo aqui.';
+      'Start with a movie search or upload a subtitle file and your recent translations will appear here.';
 
   @override
-  String get homeNoRecentTitle => 'Ainda nГЈo hГЎ trabalhos recentes';
+  String get homeNoRecentTitle => 'No recent jobs yet';
 
   @override
   String get homePreviewSubtitle =>
-      'Analise os resultados antes de exportar nas visualizaГ§Гµes original, traduzida ou bilГ­ngue.';
+      'Inspect results before export with original, translated, or bilingual views.';
 
   @override
-  String get homePreviewTitle => 'Fluxo de traduГ§ГЈo guiado por prГ©via';
+  String get homePreviewTitle => 'Preview-first translation flow';
 
   @override
-  String get homeQuickHistory => 'HistГіrico';
+  String get homeQuickHistory => 'History';
 
   @override
-  String get homeQuickSearch => 'Buscar';
+  String get homeQuickSearch => 'Search';
 
   @override
-  String get homeQuickUpload => 'Enviar';
+  String get homeQuickUpload => 'Upload';
 
   @override
   String get homeRecentJobsSubtitle =>
-      'Reabra suas sessГµes mais recentes sem comeГ§ar do zero.';
+      'Reopen your latest subtitle sessions without starting over.';
 
   @override
-  String get homeRecentJobsTitle => 'Trabalhos recentes';
+  String get homeRecentJobsTitle => 'Recent jobs';
 
   @override
-  String get homeSearchPlaceholder => 'Buscar filmes ou sГ©ries...';
+  String get homeSearchPlaceholder => 'Search movies or series...';
 
   @override
   String get homeStatesSubtitle =>
-      'Carregamento, vazio, retry, validaГ§ГЈo e cenГЎrios mock offline fazem parte da UX desde o primeiro dia.';
+      'Loading, empty, retry, validation, and mock offline scenarios are part of the UX from day one.';
 
   @override
-  String get homeStatesTitle => 'Estados bem resolvidos inclusos';
+  String get homeStatesTitle => 'Graceful states included';
 
   @override
-  String get homeTrendingNow => 'Em alta agora';
+  String get homeTrendingNow => 'Trending now';
 
   @override
   String get homeTrustSubtitle =>
-      'Hoje ainda Г© mockado, mas jГЎ foi estruturado como um produto real.';
+      'Mocked today, but structured like a product that can ship for real.';
 
   @override
-  String get homeTrustTitle => 'Por que as equipes confiam nisso';
+  String get homeTrustTitle => 'Why teams trust it';
 
   @override
-  String get homeViewAll => 'Ver tudo';
+  String get homeViewAll => 'View all';
 
   @override
-  String get homeWelcomeSubtitle => 'Encontre e traduza legendas';
+  String get homeWelcomeSubtitle => 'Find and translate subtitles';
 
   @override
-  String get homeWelcomeTitle => 'Bem-vindo de volta';
+  String get homeWelcomeTitle => 'Welcome back';
 
   @override
   String jobConfidence(Object level) {
-    return 'Confiabilidade: $level';
+    return 'Confidence: $level';
   }
 
   @override
-  String get jobOpenPreview => 'Abrir prГ©via';
+  String get jobOpenPreview => 'Open preview';
 
   @override
-  String get jobReuseSubtitle => 'Reutilizar legenda';
+  String get jobReuseSubtitle => 'Reuse subtitle';
 
   @override
-  String get jobReuseTranslation => 'Reutilizar traduГ§ГЈo';
+  String get jobReuseTranslation => 'Reuse translation';
 
   @override
   String get legalBodyAbout =>
-      'O SubFlix Г© um cliente Flutter com proposta premium para traduГ§ГЈo de legendas por IA. Este build usa repositГіrios mock, latГЄncia artificial e persistГЄncia local para que a UI e a arquitetura evoluam antes da conexГЈo com um backend real.';
+      'SubFlix is a premium-style Flutter client for AI subtitle translation. This build uses mock repositories, artificial latency, and local persistence so the UI and architecture can evolve before a real backend is attached.';
 
   @override
   String get legalBodyPrivacy =>
-      'Atualmente, o SubFlix armazena apenas preferГЄncias mock e histГіrico de traduГ§ГЈo no dispositivo por meio de persistГЄncia local. No futuro, uma integraГ§ГЈo com backend pode substituir isso por armazenamento autenticado, trilhas de auditoria e polГ­ticas de retenГ§ГЈo gerenciadas pelo servidor.';
+      'SubFlix currently stores only mock preferences and translation history on device through local persistence. A future backend integration can replace this with authenticated storage, audit trails, and server-managed retention policies.';
 
   @override
   String get legalBodySupport =>
-      'Por enquanto, o suporte Г© apenas um placeholder. Em uma versГЈo de produГ§ГЈo, esta seГ§ГЈo poderГЎ se conectar a e-mail, relato de problemas e ajuda para contas premium sem alterar a estrutura do app.';
+      'Support is a placeholder for now. In a production release this section can connect to email, issue reporting, and premium account help while keeping the app shell unchanged.';
 
   @override
   String get legalBodyTerms =>
-      'Este build mock foi criado para exercitar fluxos de produto, estados de UI e limites de arquitetura. Quando um backend de produГ§ГЈo com NestJS e Postgres for conectado mais tarde, a camada jurГ­dica poderГЎ ser expandida com termos reais de serviГ§o e linguagem de processamento de dados.';
+      'This mock build is intended to exercise product flows, UI states, and architecture boundaries. When a production NestJS and Postgres backend is connected later, the legal surface can be expanded with real service terms and data processing language.';
 
   @override
   String get legalPlaceholderBody =>
-      'Esta pГЎgina Г© apenas um placeholder no app de demonstraГ§ГЈo. Conecte-a ao seu conteГєdo jurГ­dico de produГ§ГЈo.';
+      'This page is a placeholder in the demo app. Hook it up to your production legal content.';
 
   @override
-  String get legalTitleAbout => 'Sobre o SubFlix';
+  String get legalTitleAbout => 'About SubFlix';
 
   @override
-  String get legalTitlePrivacy => 'PolГ­tica de privacidade';
+  String get legalTitlePrivacy => 'Privacy Policy';
 
   @override
-  String get legalTitleSupport => 'Suporte';
+  String get legalTitleSupport => 'Support';
 
   @override
-  String get legalTitleTerms => 'Termos de serviГ§o';
+  String get legalTitleTerms => 'Terms of Service';
 
   @override
-  String get mediaTypeMovie => 'Filme';
+  String get mediaTypeMovie => 'Movie';
 
   @override
-  String get mediaTypeSeries => 'SГ©rie';
+  String get mediaTypeSeries => 'Series';
 
   @override
-  String get metadataEstimatedDuration => 'DuraГ§ГЈo estimada';
+  String get metadataEstimatedDuration => 'Estimated duration';
 
   @override
-  String get metadataFormat => 'Formato';
+  String get metadataFormat => 'Format';
 
   @override
-  String get metadataLanguages => 'Idiomas';
+  String get metadataLanguages => 'Languages';
 
   @override
-  String get metadataLines => 'Linhas';
+  String get metadataLines => 'Lines';
 
   @override
-  String get navHistory => 'HistГіrico';
+  String get navHistory => 'History';
 
   @override
   String get navHome => 'Home';
 
   @override
-  String get navSettings => 'ConfiguraГ§Гµes';
+  String get navSettings => 'Settings';
 
   @override
   String get noTitlesMatchedMessage =>
-      'NГЈo encontramos esse tГ­tulo no catГЎlogo de teste. Tente uma busca mais ampla ou um dos tГ­tulos sugeridos.';
+      'We could not find that title in the mock catalog. Try a broader search or one of the suggested shows.';
 
   @override
-  String get noTitlesMatchedTitle => 'Nenhum resultado encontrado';
+  String get noTitlesMatchedTitle => 'No titles matched';
 
   @override
-  String get onboardingContinue => 'Continuar';
+  String get onboardingContinue => 'Continue';
 
   @override
-  String get onboardingEnterApp => 'Entrar no SubFlix';
+  String get onboardingEnterApp => 'Enter SubFlix';
 
   @override
-  String get onboardingNext => 'PrГіximo';
+  String get onboardingNext => 'Next';
 
   @override
   String get onboardingPage1Description =>
-      'Pesquise um tГ­tulo, confira as fontes de legenda em inglГЄs disponГ­veis e inicie um fluxo de traduГ§ГЈo que parece imediato.';
+      'Search a title, review the available English subtitle sources, and launch a translation workflow that feels instant.';
 
   @override
-  String get onboardingPage1Eyebrow => 'Buscar e obter';
+  String get onboardingPage1Eyebrow => 'Search and fetch';
 
   @override
   String get onboardingPage1Highlight1 =>
-      'CatГЎlogo mock determinГ­stico para desenvolvimento confiГЎvel';
+      'Deterministic mock catalog for reliable development';
 
   @override
   String get onboardingPage1Highlight2 =>
-      'RГіtulos de qualidade e badges de formato';
+      'Subtitle source quality labels and format badges';
 
   @override
   String get onboardingPage1Highlight3 =>
-      'Feito para trocar por um backend real depois';
+      'Built to swap into a real backend later';
 
   @override
   String get onboardingPage1Title =>
-      'Encontre filmes ou sГ©ries e puxe legendas prontas para traduzir.';
+      'Find movies or series and pull ready-to-translate subtitles.';
 
   @override
   String get onboardingPage2Description =>
-      'Importe seu arquivo de legenda, valide o formato e rode o mesmo pipeline refinado sem sair do app.';
+      'Import your subtitle file, validate the format, and run the same polished translation pipeline without leaving the app.';
 
   @override
-  String get onboardingPage2Eyebrow => 'Use o seu prГіprio arquivo';
+  String get onboardingPage2Eyebrow => 'Bring your own file';
 
   @override
   String get onboardingPage2Highlight1 =>
-      'ValidaГ§ГЈo local de arquivo e estados de retry bem resolvidos';
+      'Local file validation and graceful retry states';
 
   @override
   String get onboardingPage2Highlight2 =>
-      'ConfiguraГ§ГЈo consistente para envio e busca';
+      'Consistent translation setup for uploads and search';
 
   @override
   String get onboardingPage2Highlight3 =>
-      'PrГ©via antes de exportar para que nada fique opaco';
+      'Preview before export so nothing feels opaque';
 
   @override
   String get onboardingPage2Title =>
-      'Envie arquivos `.srt` ou `.vtt` quando vocГЄ jГЎ tiver o script.';
+      'Upload `.srt` or `.vtt` files when you already have the script.';
 
   @override
   String get onboardingPage3Description =>
-      'Alterne entre as visГµes original, traduzida e bilГ­ngue, revisite o histГіrico e exporte arquivos limpos quando o resultado estiver do jeito certo.';
+      'Switch between original, translated, and bilingual views, revisit history, and export clean subtitle files once the result looks right.';
 
   @override
-  String get onboardingPage3Eyebrow => 'Traduzir e exportar';
+  String get onboardingPage3Eyebrow => 'Translate and export';
 
   @override
   String get onboardingPage3Highlight1 =>
-      'Controles rГЎpidos de prГ©via com metadados e busca';
+      'Fast preview controls with metadata and search';
 
   @override
   String get onboardingPage3Highlight2 =>
-      'O histГіrico mantГ©m trabalhos anteriores a um toque de distГўncia';
+      'History keeps previous jobs a tap away';
 
   @override
   String get onboardingPage3Highlight3 =>
-      'Desenhado como uma ferramenta premium de mГ­dia, nГЈo como demo';
+      'Designed like a premium media tool, not a demo';
 
   @override
   String get onboardingPage3Title =>
-      'Escolha os idiomas de destino, visualize as legendas e exporte na hora.';
+      'Pick target languages, preview subtitles, and export instantly.';
 
   @override
-  String get onboardingSkip => 'Pular';
+  String get onboardingSkip => 'Skip';
 
   @override
-  String get onboardingStart => 'Iniciar traduГ§ГЈo';
+  String get onboardingStart => 'Start translation';
 
   @override
-  String get previewFailedTitle => 'Falha ao carregar a prГ©via';
+  String get previewFailedTitle => 'Preview failed to load';
 
   @override
-  String get previewModeBilingual => 'BilГ­ngue';
+  String get previewModeBilingual => 'Bilingual';
 
   @override
   String get previewModeOriginal => 'Original';
 
   @override
-  String get previewModeTranslated => 'Traduzido';
+  String get previewModeTranslated => 'Translated';
 
   @override
   String get previewNoMatchesMessage =>
-      'Tente outro termo de busca ou limpe o filtro para analisar a traduГ§ГЈo completa.';
+      'Try a different search term or clear the filter to inspect the full translation.';
 
   @override
-  String get previewNoMatchesTitle => 'Nenhuma linha da legenda correspondeu';
+  String get previewNoMatchesTitle => 'No subtitle lines matched';
 
   @override
   String get previewNotReadyMessage =>
-      'A traduГ§ГЈo foi concluГ­da, mas o backend ainda nГЈo retornou os cues de prГ©via. Tente recarregar esta tela em instantes.';
+      'The translation finished, but the backend did not return preview cues yet. Try reloading this screen in a moment.';
 
   @override
-  String get previewNotReadyTitle =>
-      'Os cues de prГ©via ainda nГЈo estГЈo disponГ­veis';
+  String get previewNotReadyTitle => 'Preview cues are not available yet';
 
   @override
-  String get retry => 'Tentar novamente';
+  String get retry => 'Retry';
 
   @override
-  String get retryTranslation => 'Refazer traduГ§ГЈo';
+  String get retryTranslation => 'Retry translation';
 
   @override
   String get routeMissingSeasonEpisodesMessage =>
-      'NГЈo conseguimos determinar qual temporada deve ser carregada. Recomece pela busca.';
+      'We could not determine which season to load. Start again from search.';
 
   @override
-  String get routeMissingSeasonEpisodesTitle => 'EpisГіdios da temporada';
+  String get routeMissingSeasonEpisodesTitle => 'Season episodes';
 
   @override
   String get routeMissingSeriesSeasonsMessage =>
-      'NГЈo conseguimos determinar qual sГ©rie deve ser carregada. Recomece pela busca.';
+      'We could not determine which series to load. Start again from search.';
 
   @override
-  String get routeMissingSeriesSeasonsTitle => 'Temporadas da sГ©rie';
+  String get routeMissingSeriesSeasonsTitle => 'Series seasons';
 
   @override
   String get routeMissingSubtitleSourcesMessage =>
-      'NГЈo conseguimos determinar para qual tГ­tulo as fontes de legenda devem ser carregadas. Recomece pela busca.';
+      'We could not determine which title to load subtitle sources for. Start again from search.';
 
   @override
-  String get routeMissingSubtitleSourcesTitle => 'Fontes de legenda';
+  String get routeMissingSubtitleSourcesTitle => 'Subtitle sources';
 
   @override
   String get routeMissingTranslationProgressMessage =>
-      'Nenhum pedido de traduГ§ГЈo foi fornecido. Inicie uma nova traduГ§ГЈo pela busca ou pelo envio.';
+      'No translation request was provided. Start a new translation from search or upload.';
 
   @override
-  String get routeMissingTranslationProgressTitle => 'Progresso da traduГ§ГЈo';
+  String get routeMissingTranslationProgressTitle => 'Translation progress';
 
   @override
   String get routeMissingTranslationSetupMessage =>
-      'Г‰ necessГЎrio ter uma fonte de legenda antes de abrir a tela de configuraГ§ГЈo da traduГ§ГЈo.';
+      'A subtitle source is required before the translation setup screen can open.';
 
   @override
-  String get routeMissingTranslationSetupTitle =>
-      'ConfiguraГ§ГЈo da traduГ§ГЈo';
+  String get routeMissingTranslationSetupTitle => 'Translation setup';
 
   @override
-  String get searchFailedTitle => 'A busca falhou';
+  String get searchFailedTitle => 'Search failed';
 
   @override
   String searchFoundResults(Object count, Object query) {
-    return '$count resultados encontrados para \'\'$query\'\'';
+    return 'Found $count results for \"$query\"';
   }
 
   @override
-  String get searchHintText => 'Busque por Dune, Breaking Bad, Severance...';
+  String get searchHintText => 'Search for Dune, Breaking Bad, Severance...';
 
   @override
-  String get searchLoadingLabel => 'Buscando...';
+  String get searchLoadingLabel => 'Searching...';
 
   @override
   String get searchMockMessage =>
-      'Experimente tГ­tulos como Inception, Dune, Breaking Bad, Severance ou The Last of Us para explorar o fluxo de fontes de legenda.';
+      'Try titles like Inception, Dune, Breaking Bad, Severance, or The Last of Us to explore the subtitle source flow.';
 
   @override
-  String get searchMockTitle => 'Pesquise qualquer coisa no catГЎlogo de teste';
+  String get searchMockTitle => 'Search anything in the mock catalog';
 
   @override
   String get searchMovieOrSeriesSubtitle =>
-      'Encontre um tГ­tulo, confira as fontes de legenda e inicie uma traduГ§ГЈo com poucos toques.';
+      'Find a title, inspect subtitle sources, and launch a translation job with a few taps.';
 
   @override
-  String get searchMovieOrSeriesTitle => 'Buscar filme ou sГ©rie';
+  String get searchMovieOrSeriesTitle => 'Search movie or series';
 
   @override
   String searchNoResultsFor(Object query) {
-    return 'Nenhum resultado encontrado para \'\'$query\'\'';
+    return 'No results found for \"$query\"';
   }
 
   @override
   String searchResultPopularity(Object score) {
-    return 'Popularidade $score';
+    return 'Popularity $score';
   }
 
   @override
-  String get searchTitles => 'Buscar tГ­tulos';
+  String get searchTitles => 'Search titles';
 
   @override
-  String get searchTrendingTitle => 'Buscas em alta';
+  String get searchTrendingTitle => 'Trending searches';
 
   @override
   String get searchTryDifferentKeywords =>
-      'Tente buscar com outras palavras-chave.';
+      'Try searching with different keywords.';
 
   @override
   String seriesEpisodeLabel(Object episodeNumber) {
-    return 'EpisГіdio $episodeNumber';
+    return 'Episode $episodeNumber';
   }
 
   @override
   String seriesEpisodeMeta(Object runtime) {
-    return 'Aprox. $runtime min';
+    return 'Approx. $runtime min';
   }
 
   @override
   String seriesEpisodesSubtitle(Object episodeCount, Object year) {
-    return '$episodeCount episГіdios$year';
+    return '$episodeCount episodes$year';
   }
 
   @override
   String seriesEpisodesTitle(Object seasonNumber) {
-    return 'Temporada $seasonNumber';
+    return 'Season $seasonNumber';
   }
 
   @override
   String seriesSeasonLabel(Object seasonNumber) {
-    return 'Temporada $seasonNumber';
+    return 'Season $seasonNumber';
   }
 
   @override
   String seriesSeasonMeta(Object episodeCount, Object year) {
-    return '$episodeCount episГіdios$year';
+    return '$episodeCount episodes$year';
   }
 
   @override
   String seriesSeasonsSubtitle(Object title) {
-    return 'Escolha uma temporada de $title para ver os episГіdios disponГ­veis.';
+    return 'Pick a season of $title to browse available episodes.';
   }
 
   @override
-  String get seriesSeasonsTitle => 'Escolha uma temporada';
+  String get seriesSeasonsTitle => 'Choose a season';
 
   @override
-  String get settingsAboutTitle => 'Sobre o SubFlix';
+  String get settingsAboutTitle => 'About SubFlix';
 
   @override
-  String get settingsCacheCleared => 'Cache limpo';
+  String get settingsCacheCleared => 'Cache cleared';
 
   @override
-  String get settingsClearCache => 'Limpar cache';
+  String get settingsClearCache => 'Clear cache';
 
   @override
-  String get settingsContactTitle => 'Fale conosco';
+  String get settingsContactTitle => 'Contact us';
 
   @override
-  String get settingsFailedTitle => 'Falha ao carregar as configuraГ§Гµes';
+  String get settingsFailedTitle => 'Settings failed to load';
 
   @override
-  String get settingsHelpCenterTitle => 'Central de ajuda';
+  String get settingsHelpCenterTitle => 'Help center';
 
   @override
   String get settingsHistoryClearedSnack =>
-      'HistГіrico de traduГ§Гµes apagado neste dispositivo';
+      'Translation history cleared for this device';
 
   @override
-  String get settingsLanguageLabel => 'Idioma de destino preferido';
+  String get settingsLanguageLabel => 'Preferred target language';
 
   @override
   String get settingsMaintenanceSubtitle =>
-      'Limpe os trabalhos de traduГ§ГЈo controlados pelo backend neste dispositivo e recomece com o histГіrico vazio.';
+      'Clear backend-owned translation jobs for this device and start with an empty history state.';
 
   @override
-  String get settingsMaintenanceTitle => 'ManutenГ§ГЈo';
+  String get settingsMaintenanceTitle => 'Maintenance';
 
   @override
-  String get settingsNotificationsSubtitle =>
-      'Gerencie as preferГЄncias de notificaГ§ГЈo';
+  String get settingsNotificationsSubtitle => 'Manage notification preferences';
 
   @override
-  String get settingsNotificationsTitle => 'NotificaГ§Гµes';
+  String get settingsNotificationsTitle => 'Notifications';
 
   @override
   String get settingsPremiumSubtitle =>
-      'Depois poderemos conectar aqui assinaturas, cobranГ§a e sincronizaГ§ГЈo de projetos na nuvem.';
+      'Later we can connect subscriptions, billing, and cloud project sync here.';
 
   @override
-  String get settingsPremiumTitle => 'EspaГ§o premium';
+  String get settingsPremiumTitle => 'Premium placeholder';
 
   @override
-  String get settingsPrivacySubtitle => 'ConteГєdo mock de privacidade';
+  String get settingsPrivacySubtitle => 'Mock privacy content';
 
   @override
-  String get settingsPrivacyTitle => 'PolГ­tica de privacidade';
+  String get settingsPrivacyTitle => 'Privacy policy';
 
   @override
-  String get settingsProfileName => 'UsuГЎrio SubFlix';
+  String get settingsProfileName => 'SubFlix User';
 
   @override
-  String get settingsProfileTier => 'Membro premium';
+  String get settingsProfileTier => 'Premium member';
 
   @override
-  String get settingsSubtitle => 'Gerencie suas preferГЄncias';
+  String get settingsSubtitle => 'Manager your preferences';
 
   @override
-  String get settingsSupportSubtitle => 'PГЎgina mock de ajuda e contato';
+  String get settingsSupportSubtitle => 'Mock help and contact page';
 
   @override
-  String get settingsSupportTitle => 'EspaГ§o de suporte';
+  String get settingsSupportTitle => 'Support placeholder';
 
   @override
-  String get settingsTermsSubtitle => 'ConteГєdo mock de termos';
+  String get settingsTermsSubtitle => 'Mock terms content';
 
   @override
-  String get settingsTermsTitle => 'Termos de serviГ§o';
+  String get settingsTermsTitle => 'Terms of service';
 
   @override
-  String get settingsThemeLabel => 'AparГЄncia';
+  String get settingsThemeLabel => 'Appearance';
 
   @override
-  String get settingsTitle => 'ConfiguraГ§Гµes';
+  String get settingsTitle => 'Settings';
 
   @override
   String settingsVersion(Object version) {
-    return 'VersГЈo $version';
+    return 'Version $version';
   }
 
   @override
   String get splashHeadline => 'SubFlix';
 
   @override
-  String get splashPreparing => 'Preparando seu estГєdio de legendas';
+  String get splashPreparing => 'Preparing your subtitle studio';
 
   @override
-  String get splashSubtitle => 'TraduГ§ГЈo de legendas com IA';
+  String get splashSubtitle => 'AI-powered subtitle translation';
 
   @override
-  String get startTranslation => 'Iniciar traduГ§ГЈo';
+  String get startTranslation => 'Start translation';
 
   @override
   String subtitleSourceDownloads(Object downloads) {
@@ -830,7 +825,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String subtitleSourceFormatLabel(Object format) {
-    return 'Fonte de legenda $format';
+    return '$format subtitle source';
   }
 
   @override
@@ -838,251 +833,247 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String subtitleSourceLines(Object lineCount) {
-    return '$lineCount linhas';
+    return '$lineCount lines';
   }
 
   @override
   String subtitleSourceRating(Object rating) {
-    return 'AvaliaГ§ГЈo $rating';
+    return '$rating rating';
   }
 
   @override
   String get subtitleSourcesBannerMessage =>
-      'Selecione uma fonte de legenda e siga para uma configuraГ§ГЈo refinada, ajustada ao timing da legenda.';
+      'Select a subtitle source and continue into a polished translation setup tuned for subtitle timing.';
 
   @override
-  String get subtitleSourcesBannerTitle => 'TraduГ§ГЈo por IA disponГ­vel';
+  String get subtitleSourcesBannerTitle => 'AI translation available';
 
   @override
-  String get subtitleSourcesFailedTitle =>
-      'NГЈo foi possГ­vel carregar as fontes de legenda';
+  String get subtitleSourcesFailedTitle => 'Could not load subtitle sources';
 
   @override
   String subtitleSourcesSubtitle(Object title, Object target) {
-    return 'Escolha uma fonte de legenda para $title$target e depois selecione o idioma de destino na prГіxima etapa.';
+    return 'Pick a subtitle source for $title$target, then choose the target language in the next step.';
   }
 
   @override
-  String get subtitleSourcesTitle => 'Fontes de legenda em inglГЄs';
+  String get subtitleSourcesTitle => 'English subtitle sources';
 
   @override
-  String get targetLanguage => 'Idioma de destino';
+  String get targetLanguage => 'Target language';
 
   @override
-  String get themeDark => 'Escuro';
+  String get themeDark => 'Dark';
 
   @override
-  String get themeLight => 'Claro';
+  String get themeLight => 'Light';
 
   @override
-  String get themeSystem => 'Sistema';
+  String get themeSystem => 'System';
 
   @override
-  String get translateSetupAutoDetect => 'Detectar formato automaticamente';
+  String get translateSetupAutoDetect => 'Auto-detect format';
 
   @override
   String get translateSetupAutoDetectBody =>
-      'Escolhe automaticamente a estrutura certa de saГ­da da legenda.';
+      'Choose the right subtitle output structure automatically.';
 
   @override
-  String get translateSetupLanguageTitle => 'Traduzir para';
+  String get translateSetupLanguageTitle => 'Translate to';
 
   @override
-  String get translateSetupOptionsTitle => 'OpГ§Гµes';
+  String get translateSetupOptionsTitle => 'Options';
 
   @override
-  String get translateSetupPreserveTiming => 'Preservar tempo';
+  String get translateSetupPreserveTiming => 'Preserve timing';
 
   @override
   String get translateSetupPreserveTimingBody =>
-      'MantГ©m os tempos originais da legenda alinhados com o arquivo de origem.';
+      'Keep original subtitle timings aligned to the source file.';
 
   @override
   String translateSetupReadyBody(Object language) {
-    return 'Nosso fluxo vai adaptar esta legenda para $language, preservando o tempo e uma estrutura de cues limpa.';
+    return 'Our translation flow will adapt this subtitle into $language with preserved timing and clean cue structure.';
   }
 
   @override
-  String get translateSetupReadyTitle => 'TraduГ§ГЈo por IA pronta';
+  String get translateSetupReadyTitle => 'AI translation ready';
 
   @override
-  String get translateSetupSelectLanguage => 'Selecionar idioma';
+  String get translateSetupSelectLanguage => 'Select language';
 
   @override
-  String get translateSetupSourceTitle => 'Legenda de origem';
+  String get translateSetupSourceTitle => 'Source subtitle';
 
   @override
   String get translateSetupSubtitle =>
-      'Escolha o idioma de destino, revise a fonte da legenda e inicie a traduГ§ГЈo no backend.';
+      'Choose the target language, review the subtitle source, and start the backend translation job.';
 
   @override
-  String get translateSetupTitle => 'ConfiguraГ§ГЈo da traduГ§ГЈo';
+  String get translateSetupTitle => 'Translate setup';
 
   @override
-  String get translationFailedMessage => 'Algo deu errado.';
+  String get translationFailedMessage => 'Something went wrong.';
 
   @override
-  String get translationFailedTitle =>
-      'NГЈo foi possГ­vel concluir a traduГ§ГЈo';
+  String get translationFailedTitle => 'Translation could not finish';
 
   @override
-  String get translationPreviewHeader => 'Revise as legendas traduzidas';
+  String get translationPreviewHeader => 'Review translated subtitles';
 
   @override
-  String get translationPreviewSearchHint => 'Buscar linhas da legenda';
+  String get translationPreviewSearchHint => 'Search subtitle lines';
 
   @override
   String get translationPreviewSubtitle =>
-      'Pesquise dentro dos cues, alterne o modo de visualizaГ§ГЈo e exporte quando o resultado estiver certo.';
+      'Search inside cues, switch preview modes, then export once the translation looks right.';
 
   @override
-  String get translationPreviewTitle => 'PrГ©via da traduГ§ГЈo';
+  String get translationPreviewTitle => 'Translation preview';
 
   @override
   String get translationProgressHeadline =>
-      'TraduГ§ГЈo de legendas por IA em andamento';
+      'AI subtitle translation in progress';
 
   @override
-  String get translationProgressTitle => 'Progresso da traduГ§ГЈo';
+  String get translationProgressTitle => 'Translation progress';
 
   @override
   String get translationResultCompleteSubtitle =>
-      'Sua legenda estГЎ pronta para visualizar ou baixar.';
+      'Your subtitle is ready to preview or download.';
 
   @override
-  String get translationResultCompleteTitle => 'TraduГ§ГЈo concluГ­da';
+  String get translationResultCompleteTitle => 'Translation complete';
 
   @override
-  String get translationResultConfidenceLabel => 'Confiabilidade da traduГ§ГЈo';
+  String get translationResultConfidenceLabel => 'Translation confidence';
 
   @override
-  String get translationResultDetailsTitle => 'Detalhes da traduГ§ГЈo';
+  String get translationResultDetailsTitle => 'Translation details';
 
   @override
-  String get translationResultDownloadCta => 'Baixar legenda';
+  String get translationResultDownloadCta => 'Download subtitle';
 
   @override
-  String get translationResultHomeCta => 'Voltar para a home';
+  String get translationResultHomeCta => 'Back to home';
 
   @override
-  String get translationResultMediaLabel => 'TГ­tulo da mГ­dia';
+  String get translationResultMediaLabel => 'Media title';
 
   @override
-  String get translationResultMethodAi => 'Traduzido por IA';
+  String get translationResultMethodAi => 'AI translated';
 
   @override
-  String get translationResultMetricsTitle => 'MГ©tricas de qualidade';
+  String get translationResultMetricsTitle => 'Quality metrics';
 
   @override
-  String get translationResultPreviewCta => 'Visualizar legenda';
+  String get translationResultPreviewCta => 'Preview subtitle';
 
   @override
   String translationResultProcessedIn(Object duration) {
-    return 'Processado em $duration';
+    return 'Processed in $duration';
   }
 
   @override
-  String get translationResultSourceLabel => 'Idioma de origem';
+  String get translationResultSourceLabel => 'Source language';
 
   @override
-  String get translationResultTargetLabel => 'Idioma de destino';
+  String get translationResultTargetLabel => 'Target language';
 
   @override
-  String get translationResultTimingLabel => 'PrecisГЈo do tempo';
+  String get translationResultTimingLabel => 'Timing accuracy';
 
   @override
-  String get translationResultTimingPreserved => 'Tempo preservado';
+  String get translationResultTimingPreserved => 'Timing preserved';
 
   @override
   String get translationResultWarning =>
-      'Alguns termos tГ©cnicos ainda podem se beneficiar de uma revisГЈo humana rГЎpida para garantir o contexto.';
+      'Some technical terms may still benefit from a quick human review for context.';
 
   @override
   String get translationStageAligning =>
-      'Alinhando timestamps e contexto da cena';
+      'Aligning timestamps and scene context';
 
   @override
-  String get translationStageGenerating => 'Gerando a traduГ§ГЈo da legenda';
+  String get translationStageGenerating => 'Generating subtitle translation';
 
   @override
-  String get translationStageIdle => 'Aguardando um pedido de traduГ§ГЈo';
+  String get translationStageIdle => 'Waiting for a translation request';
 
   @override
-  String get translationStagePreparing => 'Preparando pacote de legendas';
+  String get translationStagePreparing => 'Preparing subtitle package';
 
   @override
-  String get translationStageQueued => 'Na fila para traduГ§ГЈo';
+  String get translationStageQueued => 'Queued for translation';
 
   @override
-  String get translationStageReadability =>
-      'Aplicando revisГЈo de legibilidade';
+  String get translationStageReadability => 'Applying readability pass';
 
   @override
-  String get translationStageReady => 'TraduГ§ГЈo pronta';
+  String get translationStageReady => 'Translation ready';
 
   @override
-  String get tryAgain => 'Tente novamente';
+  String get tryAgain => 'Try again';
 
   @override
-  String get uploadChooseFile => 'Escolher arquivo de legenda';
+  String get uploadChooseFile => 'Choose subtitle file';
 
   @override
-  String get uploadChooseFileShort => 'Escolher arquivo';
+  String get uploadChooseFileShort => 'Choose file';
 
   @override
-  String get uploadContinueSetup =>
-      'Continuar para a configuraГ§ГЈo da traduГ§ГЈo';
+  String get uploadContinueSetup => 'Continue to translation setup';
 
   @override
-  String get uploadEnglishSource => 'Fonte em inglГЄs';
+  String get uploadEnglishSource => 'English source';
 
   @override
-  String get uploadFailedFallback => 'Tente outro arquivo de legenda.';
+  String get uploadFailedFallback => 'Please try another subtitle file.';
 
   @override
   String get uploadFailedMessage =>
-      'NГЈo foi possГ­vel ler este arquivo de legenda. Tente outro arquivo ou uma exportaГ§ГЈo menor.';
+      'We could not read this subtitle file. Try a different file or pick a smaller export.';
 
   @override
-  String get uploadFailedTitle => 'Falha ao importar o arquivo';
+  String get uploadFailedTitle => 'File import failed';
 
   @override
   String get uploadIntroSubtitle =>
-      'Importe um arquivo em inglГЄs `.srt` ou `.vtt`, deixe o backend validar e interpretar o conteГєdo e depois siga para a configuraГ§ГЈo da traduГ§ГЈo.';
+      'Import an English `.srt` or `.vtt` file, let the backend validate and parse it, then continue into translation setup.';
 
   @override
-  String get uploadIntroTitle => 'Use o seu prГіprio arquivo de legenda';
+  String get uploadIntroTitle => 'Bring your own subtitle file';
 
   @override
   String uploadLineCount(Object lineCount) {
-    return '$lineCount linhas';
+    return '$lineCount lines';
   }
 
   @override
-  String get uploadMetadataTitle => 'Detalhes da legenda';
+  String get uploadMetadataTitle => 'Subtitle details';
 
   @override
-  String get uploadOpeningPicker => 'Abrindo seletor...';
+  String get uploadOpeningPicker => 'Opening picker...';
 
   @override
-  String get uploadPickSubtitle => 'Selecionar arquivo de legenda';
+  String get uploadPickSubtitle => 'Pick subtitle file';
 
   @override
-  String get uploadPickedFile => 'Arquivo de legenda selecionado';
+  String get uploadPickedFile => 'Picked subtitle file';
 
   @override
-  String get uploadReadyTitle => 'Pronto para traduzir';
+  String get uploadReadyTitle => 'Ready to translate';
 
   @override
-  String get uploadSubtitleTitle => 'Enviar legenda';
+  String get uploadSubtitleTitle => 'Upload subtitle';
 
   @override
   String get uploadSupportedFormatsSubtitle =>
-      'Arquivos de legenda em inglГЄs `.srt` e `.vtt`';
+      'English `.srt` and `.vtt` subtitle files';
 
   @override
-  String get uploadSupportedFormatsTitle => 'Formatos compatГ­veis';
+  String get uploadSupportedFormatsTitle => 'Supported formats';
 
   @override
-  String get uploadUseDemoFile => 'Usar arquivo de demonstraГ§ГЈo';
+  String get uploadUseDemoFile => 'Use demo file';
 }

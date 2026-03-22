@@ -42,10 +42,7 @@ class SearchResultCard extends StatelessWidget {
                   spacing: 4,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    AppText(
-                      item.title,
-                      variant: AppTextVariant.titleLarge,
-                    ),
+                    AppText(item.title, variant: AppTextVariant.titleLarge),
                     AppText(
                       '${item.mediaType.label(context)} \u2022 ${item.year}',
                       variant: AppTextVariant.bodySmall,

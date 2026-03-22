@@ -19,10 +19,14 @@ class HistoryLocalDataSource {
 
   Future<List<TranslationJob>> readJobs() async {
     final values = _sharedPreferences.getStringList(_jobsKey);
-    if (values == null || values.isEmpty) {
+    if (values == null) {
       final seededJobs = _seedJobs();
       await writeJobs(seededJobs);
       return seededJobs;
+    }
+
+    if (values.isEmpty) {
+      return const <TranslationJob>[];
     }
 
     return values

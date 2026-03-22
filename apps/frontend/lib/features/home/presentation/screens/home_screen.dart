@@ -44,7 +44,7 @@ class HomeScreen extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       HomeSectionHeader(
-                        title: 'Recent Translations',
+                        title: context.t.homeRecentJobsTitle,
                         actionLabel: context.t.homeViewAll,
                         onTap: () => const HistoryRoute().go(context),
                       ),

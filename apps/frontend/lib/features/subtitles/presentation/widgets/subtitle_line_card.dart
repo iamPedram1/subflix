@@ -49,10 +49,7 @@ class SubtitleLineCard extends StatelessWidget {
             ],
           ),
           if (mode != PreviewMode.translated)
-            AppText(
-              line.originalText,
-              variant: AppTextVariant.bodyLarge,
-            ),
+            AppText(line.originalText, variant: AppTextVariant.bodyLarge),
           if (mode == PreviewMode.bilingual)
             Container(
               height: 1,

@@ -187,10 +187,7 @@ class _FilterRow extends StatelessWidget {
           final selected = value == filter;
           return ChoiceChip(
             selected: selected,
-            label: AppText(
-              labels[value]!,
-              variant: AppTextVariant.labelLarge,
-            ),
+            label: AppText(labels[value]!, variant: AppTextVariant.labelLarge),
             onSelected: (_) => onChanged(value),
           );
         },
@@ -254,10 +251,7 @@ class _HistoryCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    AppText(
-                      job.title,
-                      variant: AppTextVariant.titleMedium,
-                    ),
+                    AppText(job.title, variant: AppTextVariant.titleMedium),
                     const SizedBox(height: 4),
                     AppText(
                       '${job.sourceLanguage.label} -> ${job.targetLanguage.label}',
@@ -310,11 +304,7 @@ class _StatusPill extends StatelessWidget {
         color: color.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: AppText(
-        label,
-        variant: AppTextVariant.labelMedium,
-        color: color,
-      ),
+      child: AppText(label, variant: AppTextVariant.labelMedium, color: color),
     );
   }
 }

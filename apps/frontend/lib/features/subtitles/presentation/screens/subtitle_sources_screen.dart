@@ -346,6 +346,6 @@ String _buildSubtitleTarget(BuildContext context, SubtitleSourcesArgs args) {
   final seasonLabel = context.t.seriesSeasonLabel(args.seasonNumber!);
   final episodeLabel = args.episodeNumber == null
       ? ''
-      : ' • ${context.t.seriesEpisodeLabel(args.episodeNumber!)}';
-  return ' • $seasonLabel$episodeLabel';
+      : ' \u2022 ${context.t.seriesEpisodeLabel(args.episodeNumber!)}';
+  return ' \u2022 $seasonLabel$episodeLabel';
 }

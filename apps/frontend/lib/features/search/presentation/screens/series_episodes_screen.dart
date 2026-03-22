@@ -47,7 +47,7 @@ class SeriesEpisodesScreen extends StatelessWidget {
                           args.episodeCount,
                           args.seasonYear == null
                               ? ''
-                              : ' • ${args.seasonYear}',
+                              : ' \u2022 ${args.seasonYear}',
                         ),
                         variant: AppTextVariant.bodyMedium,
                         color: AppColors.textSecondaryFor(context),
@@ -62,7 +62,7 @@ class SeriesEpisodesScreen extends StatelessWidget {
                               args.item.runtimeMinutes,
                             ),
                             description:
-                                '${args.item.title} • ${context.t.seriesSeasonLabel(args.seasonNumber)}',
+                                '${args.item.title} \u2022 ${context.t.seriesSeasonLabel(args.seasonNumber)}',
                             onTap: () => context.push(
                               AppRoutes.subtitleSources,
                               extra: SubtitleSourcesArgs(
@@ -111,10 +111,7 @@ class _EpisodesHeader extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                AppText(
-                  args.item.title,
-                  variant: AppTextVariant.titleLarge,
-                ),
+                AppText(args.item.title, variant: AppTextVariant.titleLarge),
                 const SizedBox(height: 2),
                 AppText(
                   context.t.seriesSeasonLabel(args.seasonNumber),
@@ -201,10 +198,7 @@ class _EpisodeCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                AppText(
-                  title,
-                  variant: AppTextVariant.titleMedium,
-                ),
+                AppText(title, variant: AppTextVariant.titleMedium),
                 const SizedBox(height: 8),
                 AppText(
                   description,

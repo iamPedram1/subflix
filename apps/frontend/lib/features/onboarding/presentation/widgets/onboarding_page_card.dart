@@ -85,7 +85,9 @@ class OnboardingPageCard extends StatelessWidget {
                           child: AppText(
                             highlight,
                             variant: AppTextVariant.bodyMedium,
-                            color: AppColors.textPrimary.withValues(alpha: 0.92),
+                            color: AppColors.textPrimary.withValues(
+                              alpha: 0.92,
+                            ),
                           ),
                         ),
                       ],

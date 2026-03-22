@@ -295,10 +295,7 @@ class _LanguageRow extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  AppText(
-                    language.label,
-                    variant: AppTextVariant.titleMedium,
-                  ),
+                  AppText(language.label, variant: AppTextVariant.titleMedium),
                   const SizedBox(height: 2),
                   AppText(
                     language.nativeLabel,

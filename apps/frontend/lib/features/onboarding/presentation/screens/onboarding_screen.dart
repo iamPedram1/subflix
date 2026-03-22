@@ -307,12 +307,7 @@ class _HighlightRow extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 12),
-          Expanded(
-            child: AppText(
-              label,
-              variant: AppTextVariant.bodyMedium,
-            ),
-          ),
+          Expanded(child: AppText(label, variant: AppTextVariant.bodyMedium)),
         ],
       ),
     );

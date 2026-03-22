@@ -21,26 +21,26 @@ import 'package:subflix/features/auth/data/services/firebase_oauth_service.dart'
 import 'package:subflix/features/auth/domain/repositories/auth_repository.dart';
 import 'package:subflix/features/health/data/apis/health_api.dart';
 import 'package:subflix/features/history/data/datasources/history_local_data_source.dart';
-import 'package:subflix/features/history/data/repositories/backend_history_repository.dart';
 import 'package:subflix/features/history/data/repositories/cached_history_repository.dart';
+import 'package:subflix/features/history/data/repositories/local_history_repository.dart';
 import 'package:subflix/features/history/domain/repositories/history_repository.dart';
 import 'package:subflix/features/search/data/apis/catalog_api.dart';
 import 'package:subflix/features/search/data/apis/mock_search_api.dart';
-import 'package:subflix/features/search/data/repositories/backend_search_repository.dart';
 import 'package:subflix/features/search/data/repositories/cached_search_repository.dart';
+import 'package:subflix/features/search/data/repositories/mock_search_repository.dart';
 import 'package:subflix/features/search/domain/repositories/search_repository.dart';
 import 'package:subflix/features/settings/data/apis/preferences_api.dart';
 import 'package:subflix/features/settings/data/datasources/settings_local_data_source.dart';
-import 'package:subflix/features/settings/data/repositories/backend_settings_repository.dart';
 import 'package:subflix/features/settings/data/repositories/cached_settings_repository.dart';
+import 'package:subflix/features/settings/data/repositories/local_settings_repository.dart';
 import 'package:subflix/features/settings/domain/repositories/settings_repository.dart';
 import 'package:subflix/features/shared/data/apis/translation_jobs_api.dart';
 import 'package:subflix/features/subtitles/data/apis/mock_translation_api.dart';
 import 'package:subflix/features/subtitles/data/apis/subtitles_api.dart';
-import 'package:subflix/features/subtitles/data/repositories/backend_subtitle_export_repository.dart';
-import 'package:subflix/features/subtitles/data/repositories/backend_subtitle_import_repository.dart';
-import 'package:subflix/features/subtitles/data/repositories/backend_translation_repository.dart';
 import 'package:subflix/features/subtitles/data/repositories/cached_translation_repository.dart';
+import 'package:subflix/features/subtitles/data/repositories/local_subtitle_export_repository.dart';
+import 'package:subflix/features/subtitles/data/repositories/local_subtitle_import_repository.dart';
+import 'package:subflix/features/subtitles/data/repositories/mock_translation_repository.dart';
 import 'package:subflix/features/subtitles/data/services/mock_translation_composer.dart';
 import 'package:subflix/features/subtitles/domain/repositories/subtitle_export_repository.dart';
 import 'package:subflix/features/subtitles/domain/repositories/subtitle_import_repository.dart';
@@ -231,40 +231,40 @@ AuthRepository authRepository(Ref ref) {
 @Riverpod(keepAlive: true)
 SettingsRepository settingsRepository(Ref ref) {
   return CachedSettingsRepository(
-    BackendSettingsRepository(ref.watch(preferencesApiProvider)),
+    LocalSettingsRepository(ref.watch(settingsLocalDataSourceProvider)),
   );
 }
 
 @Riverpod(keepAlive: true)
 HistoryRepository historyRepository(Ref ref) {
   return CachedHistoryRepository(
-    BackendHistoryRepository(ref.watch(translationJobsApiProvider)),
+    LocalHistoryRepository(ref.watch(historyLocalDataSourceProvider)),
   );
 }
 
 @Riverpod(keepAlive: true)
 SearchRepository searchRepository(Ref ref) {
   return CachedSearchRepository(
-    BackendSearchRepository(ref.watch(catalogApiProvider)),
+    MockSearchRepository(ref.watch(mockSearchApiProvider)),
   );
 }
 
 @Riverpod(keepAlive: true)
 SubtitleImportRepository subtitleImportRepository(Ref ref) {
-  return BackendSubtitleImportRepository(
-    ref.watch(subtitlesApiProvider),
-    ref.watch(subtitleParserProvider),
-  );
+  return LocalSubtitleImportRepository(ref.watch(subtitleParserProvider));
 }
 
 @Riverpod(keepAlive: true)
 SubtitleExportRepository subtitleExportRepository(Ref ref) {
-  return BackendSubtitleExportRepository(ref.watch(translationJobsApiProvider));
+  return LocalSubtitleExportRepository(ref.watch(subtitleFormatterProvider));
 }
 
 @Riverpod(keepAlive: true)
 TranslationRepository translationRepository(Ref ref) {
   return CachedTranslationRepository(
-    BackendTranslationRepository(ref.watch(translationJobsApiProvider)),
+    MockTranslationRepository(
+      ref.watch(mockTranslationApiProvider),
+      ref.watch(historyLocalDataSourceProvider),
+    ),
   );
 }

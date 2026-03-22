@@ -48,10 +48,7 @@ class SubtitleSourceCard extends StatelessWidget {
                   spacing: 4,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    AppText(
-                      source.label,
-                      variant: AppTextVariant.titleMedium,
-                    ),
+                    AppText(source.label, variant: AppTextVariant.titleMedium),
                     AppText(
                       source.releaseGroup,
                       variant: AppTextVariant.bodySmall,
