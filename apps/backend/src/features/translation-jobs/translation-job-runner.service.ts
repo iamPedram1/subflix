@@ -33,6 +33,9 @@ import {
   parseJobRetryMeta,
 } from 'features/translation-jobs/utils/job-staleness.util';
 
+const INVALID_SUBTITLE_MESSAGE =
+  'The selected subtitle file appears invalid or unusable. Please choose a different subtitle source.';
+
 type PersistedCatalogSubtitleSourceRef = {
   subtitleSourceId?: string;
   fallbackSubtitleSourceId?: unknown;
@@ -316,9 +319,7 @@ export class TranslationJobRunnerService {
         format: decision.subtitleSourceFormat,
         sourceLanguage: job.targetLanguage,
       });
-      throw new Error(
-        'The selected subtitle file appears invalid or unusable. Please choose a different subtitle source.',
-      );
+      throw new Error(INVALID_SUBTITLE_MESSAGE);
     }
 
     const alignment =
@@ -421,9 +422,7 @@ export class TranslationJobRunnerService {
         timing: null,
         sourceLanguage: 'en',
       });
-      throw new Error(
-        'The selected subtitle file appears invalid or unusable. Please choose a different subtitle source.',
-      );
+      throw new Error(INVALID_SUBTITLE_MESSAGE);
     }
 
     const alignment =
@@ -809,11 +808,7 @@ export class TranslationJobRunnerService {
       return error.message;
     }
 
-    if (
-      error instanceof Error &&
-      error.message ===
-        'The selected subtitle file appears invalid or unusable. Please choose a different subtitle source.'
-    ) {
+    if (error instanceof Error && error.message === INVALID_SUBTITLE_MESSAGE) {
       return error.message;
     }
 

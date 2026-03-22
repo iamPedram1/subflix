@@ -164,7 +164,7 @@ export class TvSubsSubtitleSourceProvider implements SubtitleSourceProvider {
       filteredMatches.find((match) =>
         normalize(match.title).includes(normalizedTarget),
       ) ??
-      filteredMatches[0]
+      null
     );
   }
 

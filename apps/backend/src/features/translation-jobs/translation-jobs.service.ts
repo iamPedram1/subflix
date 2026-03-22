@@ -331,15 +331,7 @@ export class TranslationJobsService {
       );
     }
 
-    const [media, subtitleSources] = await Promise.all([
-      this.catalogService.findById(input.mediaId),
-      this.catalogService.getSubtitleSources(input.mediaId, {
-        seasonNumber: input.seasonNumber,
-        episodeNumber: input.episodeNumber,
-        releaseHint: input.releaseHint,
-      }),
-    ]);
-
+    const media = await this.catalogService.findById(input.mediaId);
     if (!media) {
       throw new ValidationDomainError(
         'The requested media title was not found.',
@@ -349,6 +341,15 @@ export class TranslationJobsService {
         },
       );
     }
+
+    const subtitleSources = await this.catalogService.getSubtitleSources(
+      input.mediaId,
+      {
+        seasonNumber: input.seasonNumber,
+        episodeNumber: input.episodeNumber,
+        releaseHint: input.releaseHint,
+      },
+    );
     const subtitleSource = subtitleSources.find(
       (source) => source.id === input.subtitleSourceId,
     );
