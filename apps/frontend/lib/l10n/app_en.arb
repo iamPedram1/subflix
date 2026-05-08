@@ -1,0 +1,1348 @@
+{
+  "@@locale": "en",
+  "appTitle": "SubFlix",
+  "@appTitle": {
+    "description": "Localized text for app title in the application UI."
+  },
+  "authAccountSectionTitle": "Account",
+  "@authAccountSectionTitle": {
+    "description": "Localized text for the account section title in settings."
+  },
+  "authAlreadySignedInTitle": "You are already signed in",
+  "@authAlreadySignedInTitle": {
+    "description": "Localized text for the already signed in title on the sign-in screen."
+  },
+  "authAlreadySignedInMessage": "This device is already connected as {email}.",
+  "@authAlreadySignedInMessage": {
+    "description": "Localized text for the already signed in message on the sign-in screen. Uses placeholder: email.",
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "authBackToAccount": "Back to account",
+  "@authBackToAccount": {
+    "description": "Localized text for navigating back to the account view."
+  },
+  "authBackToSignIn": "Back to sign in",
+  "@authBackToSignIn": {
+    "description": "Localized text for navigating back to the sign-in screen."
+  },
+  "authCheckInboxTitle": "Check your inbox",
+  "@authCheckInboxTitle": {
+    "description": "Localized text for the forgot password success title."
+  },
+  "authConfirmEmailAction": "Confirm email",
+  "@authConfirmEmailAction": {
+    "description": "Localized text for the confirm email primary action."
+  },
+  "authConfirmEmailHint": "Use the verification token sent to {email}.",
+  "@authConfirmEmailHint": {
+    "description": "Localized text for the confirm email helper message. Uses placeholder: email.",
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "authConfirmEmailSubtitle": "Paste the verification token from your email to finish activating this account.",
+  "@authConfirmEmailSubtitle": {
+    "description": "Localized text for the confirm email screen subtitle."
+  },
+  "authConfirmEmailSuccess": "Email confirmed. You can sign in now.",
+  "@authConfirmEmailSuccess": {
+    "description": "Localized text for the confirm email success snackbar."
+  },
+  "authConfirmEmailTitle": "Verify your email",
+  "@authConfirmEmailTitle": {
+    "description": "Localized text for the confirm email screen title."
+  },
+  "authConfirmPasswordLabel": "Confirm password",
+  "@authConfirmPasswordLabel": {
+    "description": "Localized text for the confirm password field label."
+  },
+  "authContinueToReset": "Continue to reset",
+  "@authContinueToReset": {
+    "description": "Localized text for continuing from forgot password to reset password."
+  },
+  "authContinueWithGoogle": "Continue with Google",
+  "@authContinueWithGoogle": {
+    "description": "Localized text for the Google sign-in action."
+  },
+  "authCreateAccountAction": "Create account",
+  "@authCreateAccountAction": {
+    "description": "Localized text for the create account action."
+  },
+  "authDebugTokenLabel": "Debug token: {token}",
+  "@authDebugTokenLabel": {
+    "description": "Localized text for showing a debug reset token. Uses placeholder: token.",
+    "placeholders": {
+      "token": {}
+    }
+  },
+  "authDisplayNameLabel": "Display name",
+  "@authDisplayNameLabel": {
+    "description": "Localized text for the display name form field label."
+  },
+  "authEmailLabel": "Email address",
+  "@authEmailLabel": {
+    "description": "Localized text for the email field label in auth forms."
+  },
+  "authEyebrow": "Secure workspace",
+  "@authEyebrow": {
+    "description": "Localized text for the auth hero eyebrow label."
+  },
+  "authFieldRequired": "This field is required.",
+  "@authFieldRequired": {
+    "description": "Localized validation text when an auth field is empty."
+  },
+  "authForgotPasswordAction": "Send reset link",
+  "@authForgotPasswordAction": {
+    "description": "Localized text for the forgot password primary action."
+  },
+  "authForgotPasswordDebugMessage": "A reset token was returned for this debug environment. You can continue directly into the reset form.",
+  "@authForgotPasswordDebugMessage": {
+    "description": "Localized text for the forgot password message when a debug reset token is available."
+  },
+  "authForgotPasswordLink": "Forgot password?",
+  "@authForgotPasswordLink": {
+    "description": "Localized text for the forgot password link on the sign-in screen."
+  },
+  "authForgotPasswordSubtitle": "Enter your email and we will request a password reset from the backend for this account.",
+  "@authForgotPasswordSubtitle": {
+    "description": "Localized text for the forgot password screen subtitle."
+  },
+  "authForgotPasswordSuccess": "If the account exists, a password reset message has been sent.",
+  "@authForgotPasswordSuccess": {
+    "description": "Localized text for the forgot password success message."
+  },
+  "authForgotPasswordTitle": "Reset your password",
+  "@authForgotPasswordTitle": {
+    "description": "Localized text for the forgot password screen title."
+  },
+  "authGoogleHelper": "Google sign-in uses Firebase OAuth and will work once this app is connected to a Firebase project.",
+  "@authGoogleHelper": {
+    "description": "Localized helper text beneath the Google sign-in button."
+  },
+  "authGoogleShortAction": "Google",
+  "@authGoogleShortAction": {
+    "description": "Localized short label for the Google sign-in action."
+  },
+  "authHaveAccountLink": "Already have an account? Sign in",
+  "@authHaveAccountLink": {
+    "description": "Localized text for the sign-in link on the sign-up screen."
+  },
+  "authInvalidEmail": "Enter a valid email address.",
+  "@authInvalidEmail": {
+    "description": "Localized validation text for an invalid email address."
+  },
+  "authNewPasswordLabel": "New password",
+  "@authNewPasswordLabel": {
+    "description": "Localized text for the new password field label."
+  },
+  "authNoAccountLink": "Need an account? Create one",
+  "@authNoAccountLink": {
+    "description": "Localized text for the sign-up link on the sign-in screen."
+  },
+  "authOrDivider": "or",
+  "@authOrDivider": {
+    "description": "Localized text for the auth divider label."
+  },
+  "authPasswordLabel": "Password",
+  "@authPasswordLabel": {
+    "description": "Localized text for the password field label."
+  },
+  "authPasswordMismatch": "Passwords do not match.",
+  "@authPasswordMismatch": {
+    "description": "Localized validation text for password confirmation mismatch."
+  },
+  "authPasswordTooShort": "Use at least 8 characters.",
+  "@authPasswordTooShort": {
+    "description": "Localized validation text for short passwords."
+  },
+  "authProfileRefreshed": "Account details refreshed.",
+  "@authProfileRefreshed": {
+    "description": "Localized text for the profile refresh success snackbar."
+  },
+  "authRefreshProfileAction": "Refresh profile",
+  "@authRefreshProfileAction": {
+    "description": "Localized text for the refresh profile action."
+  },
+  "authRefreshProfileSubtitle": "Load the latest profile data from the backend.",
+  "@authRefreshProfileSubtitle": {
+    "description": "Localized text for the refresh profile subtitle in settings."
+  },
+  "authResetPasswordAction": "Save new password",
+  "@authResetPasswordAction": {
+    "description": "Localized text for the reset password primary action."
+  },
+  "authResetPasswordHint": "Reset the password for {email} using the token from your email.",
+  "@authResetPasswordHint": {
+    "description": "Localized text for the reset password helper message. Uses placeholder: email.",
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "authResetPasswordSubtitle": "Enter the reset token and choose a new password for this account.",
+  "@authResetPasswordSubtitle": {
+    "description": "Localized text for the reset password screen subtitle."
+  },
+  "authResetPasswordSuccess": "Password updated. Please sign in again.",
+  "@authResetPasswordSuccess": {
+    "description": "Localized text for the reset password success snackbar."
+  },
+  "authResetPasswordTitle": "Choose a new password",
+  "@authResetPasswordTitle": {
+    "description": "Localized text for the reset password screen title."
+  },
+  "authSignInAction": "Sign in",
+  "@authSignInAction": {
+    "description": "Localized text for the sign-in primary action."
+  },
+  "authSignInSubtitle": "Connect this app to your SubFlix account to sync profile data and unlock authenticated backend flows.",
+  "@authSignInSubtitle": {
+    "description": "Localized text for the sign-in screen subtitle."
+  },
+  "authSignInSuccess": "Signed in successfully.",
+  "@authSignInSuccess": {
+    "description": "Localized text for the sign-in success snackbar."
+  },
+  "authSignInTitle": "Welcome back",
+  "@authSignInTitle": {
+    "description": "Localized text for the sign-in screen title."
+  },
+  "authSignedInCardSubtitle": "Connected as {email}",
+  "@authSignedInCardSubtitle": {
+    "description": "Localized text for the signed-in account card subtitle. Uses placeholder: email.",
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "authSignedOutCardSubtitle": "Sign in to manage your account, use Firebase OAuth, and keep authenticated features ready for future sync.",
+  "@authSignedOutCardSubtitle": {
+    "description": "Localized text for the signed-out account card subtitle in settings."
+  },
+  "authSignedOutCardTitle": "Sign in to SubFlix",
+  "@authSignedOutCardTitle": {
+    "description": "Localized text for the signed-out account card title in settings."
+  },
+  "authSignOutAction": "Sign out",
+  "@authSignOutAction": {
+    "description": "Localized text for the sign-out action."
+  },
+  "authSignOutSubtitle": "Revoke the current session for this device and clear local tokens.",
+  "@authSignOutSubtitle": {
+    "description": "Localized text for the sign-out subtitle in settings."
+  },
+  "authSignOutSuccess": "Signed out on this device.",
+  "@authSignOutSuccess": {
+    "description": "Localized text for the sign-out success snackbar."
+  },
+  "authSignUpAction": "Create my account",
+  "@authSignUpAction": {
+    "description": "Localized text for the sign-up primary action."
+  },
+  "authSignUpSubtitle": "Create an account so this app can use the backend's authenticated profile and session flows.",
+  "@authSignUpSubtitle": {
+    "description": "Localized text for the sign-up screen subtitle."
+  },
+  "authSignUpSuccess": "Account created. Continue with email verification.",
+  "@authSignUpSuccess": {
+    "description": "Localized text for the sign-up success snackbar."
+  },
+  "authSignUpTitle": "Create your account",
+  "@authSignUpTitle": {
+    "description": "Localized text for the sign-up screen title."
+  },
+  "authVerificationStatusTitle": "Email verification",
+  "@authVerificationStatusTitle": {
+    "description": "Localized text for the email verification status label in settings."
+  },
+  "authVerificationTokenLabel": "Verification token",
+  "@authVerificationTokenLabel": {
+    "description": "Localized text for the verification token field label."
+  },
+  "authVerifiedStatus": "Verified",
+  "@authVerifiedStatus": {
+    "description": "Localized text for a verified account status label."
+  },
+  "authUnverifiedStatus": "Verification pending",
+  "@authUnverifiedStatus": {
+    "description": "Localized text for an unverified account status label."
+  },
+  "brandSubtitleCompact": "Subtitle intelligence",
+  "@brandSubtitleCompact": {
+    "description": "Localized text for brand subtitle compact in the branding UI."
+  },
+  "brandSubtitleFull": "AI subtitle translation studio",
+  "@brandSubtitleFull": {
+    "description": "Localized text for brand subtitle full in the branding UI."
+  },
+  "comingSoonMessage": "We are still preparing this screen.",
+  "@comingSoonMessage": {
+    "description": "Localized text for coming soon message in the coming soon UI."
+  },
+  "comingSoonTitle": "Coming soon",
+  "@comingSoonTitle": {
+    "description": "Localized text for coming soon title in the coming soon UI."
+  },
+  "exportFailedSnack": "Export failed: {error}",
+  "@exportFailedSnack": {
+    "description": "Localized text for export failed snack in the application UI. Uses placeholder: error.",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "exportSubtitleLabel": "Export translated subtitle",
+  "@exportSubtitleLabel": {
+    "description": "Localized text for export subtitle label in the application UI."
+  },
+  "exportedSnack": "Exported {fileName} to {path}",
+  "@exportedSnack": {
+    "description": "Localized text for exported snack in the application UI. Uses placeholders: fileName, path.",
+    "placeholders": {
+      "fileName": {},
+      "path": {}
+    }
+  },
+  "exportingLabel": "Exporting...",
+  "@exportingLabel": {
+    "description": "Localized text for exporting label in the application UI."
+  },
+  "heroBadge": "Premium subtitle workflow",
+  "@heroBadge": {
+    "description": "Localized text for hero badge in the hero section UI."
+  },
+  "heroBody": "Choose between a searchable title catalog or direct file upload, then preview and export polished subtitles in minutes.",
+  "@heroBody": {
+    "description": "Localized text for hero body in the hero section UI."
+  },
+  "heroHeadline": "Translate movie and series subtitles with a studio-grade flow.",
+  "@heroHeadline": {
+    "description": "Localized text for hero headline in the hero section UI."
+  },
+  "heroSearchCta": "Search movie / series",
+  "@heroSearchCta": {
+    "description": "Localized text for hero search cta in the hero section UI."
+  },
+  "heroStatLanguagesTitle": "10 languages",
+  "@heroStatLanguagesTitle": {
+    "description": "Localized text for hero stat languages title in the hero section UI."
+  },
+  "heroStatLanguagesValue": "Ready for preview",
+  "@heroStatLanguagesValue": {
+    "description": "Localized text for hero stat languages value in the hero section UI."
+  },
+  "heroStatMockTitle": "Mock APIs",
+  "@heroStatMockTitle": {
+    "description": "Localized text for hero stat mock title in the hero section UI."
+  },
+  "heroStatMockValue": "Backend-ready seam",
+  "@heroStatMockValue": {
+    "description": "Localized text for hero stat mock value in the hero section UI."
+  },
+  "heroStatPathsTitle": "2 paths",
+  "@heroStatPathsTitle": {
+    "description": "Localized text for hero stat paths title in the hero section UI."
+  },
+  "heroStatPathsValue": "Search or upload",
+  "@heroStatPathsValue": {
+    "description": "Localized text for hero stat paths value in the hero section UI."
+  },
+  "heroSubtitle": "Search movie and series catalogs, pick sources, and export polished translations in minutes.",
+  "@heroSubtitle": {
+    "description": "Localized text for hero subtitle in the hero section UI."
+  },
+  "heroTitle": "Translate subtitles faster",
+  "@heroTitle": {
+    "description": "Localized text for hero title in the hero section UI."
+  },
+  "heroUploadCta": "Upload subtitle",
+  "@heroUploadCta": {
+    "description": "Localized text for hero upload cta in the hero section UI."
+  },
+  "historyCountLabel": "{count} translations",
+  "@historyCountLabel": {
+    "description": "Localized text for history count label in the history UI. Uses placeholder: count.",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "historyEmptyMessage": "Your translated subtitle jobs will appear here after you complete a search or upload workflow.",
+  "@historyEmptyMessage": {
+    "description": "Localized text for history empty message in the history UI."
+  },
+  "historyEmptyTitle": "History is empty",
+  "@historyEmptyTitle": {
+    "description": "Localized text for history empty title in the history UI."
+  },
+  "historyFailedItemMessage": "Translation failed. Tap to start again.",
+  "@historyFailedItemMessage": {
+    "description": "Localized text for history failed item message in the history UI."
+  },
+  "historyFailedTitle": "Could not load history",
+  "@historyFailedTitle": {
+    "description": "Localized text for history failed title in the history UI."
+  },
+  "historyFilterAiTranslated": "AI translated",
+  "@historyFilterAiTranslated": {
+    "description": "Localized text for history filter ai translated in the history UI."
+  },
+  "historyFilterAll": "All",
+  "@historyFilterAll": {
+    "description": "Localized text for history filter all in the history UI."
+  },
+  "historyFilterCompleted": "Completed",
+  "@historyFilterCompleted": {
+    "description": "Localized text for history filter completed in the history UI."
+  },
+  "historyFilterFailed": "Failed",
+  "@historyFilterFailed": {
+    "description": "Localized text for history filter failed in the history UI."
+  },
+  "historyFilterMovies": "Movies",
+  "@historyFilterMovies": {
+    "description": "Localized text for history filter movies in the history UI."
+  },
+  "historyFilterReused": "Reused",
+  "@historyFilterReused": {
+    "description": "Localized text for history filter reused in the history UI."
+  },
+  "historyFilterSeries": "Series",
+  "@historyFilterSeries": {
+    "description": "Localized text for history filter series in the history UI."
+  },
+  "historySubtitle": "Reopen previous subtitle jobs, inspect the preview again, or export them later.",
+  "@historySubtitle": {
+    "description": "Localized text for history subtitle in the history UI."
+  },
+  "historyTitle": "Translation history",
+  "@historyTitle": {
+    "description": "Localized text for history title in the history UI."
+  },
+  "homeFailedRecentTitle": "Could not load recent jobs",
+  "@homeFailedRecentTitle": {
+    "description": "Localized text for home failed recent title in the home UI."
+  },
+  "homeFutureSubtitle": "Swappable mock repositories keep UI code insulated from backend changes.",
+  "@homeFutureSubtitle": {
+    "description": "Localized text for home future subtitle in the home UI."
+  },
+  "homeFutureTitle": "Future-ready repositories",
+  "@homeFutureTitle": {
+    "description": "Localized text for home future title in the home UI."
+  },
+  "homeNoRecentMessage": "Start with a movie search or upload a subtitle file and your recent translations will appear here.",
+  "@homeNoRecentMessage": {
+    "description": "Localized text for home no recent message in the home UI."
+  },
+  "homeNoRecentTitle": "No recent jobs yet",
+  "@homeNoRecentTitle": {
+    "description": "Localized text for home no recent title in the home UI."
+  },
+  "homePreviewSubtitle": "Inspect results before export with original, translated, or bilingual views.",
+  "@homePreviewSubtitle": {
+    "description": "Localized text for home preview subtitle in the home UI."
+  },
+  "homePreviewTitle": "Preview-first translation flow",
+  "@homePreviewTitle": {
+    "description": "Localized text for home preview title in the home UI."
+  },
+  "homeQuickHistory": "History",
+  "@homeQuickHistory": {
+    "description": "Localized text for home quick history in the home UI."
+  },
+  "homeQuickSearch": "Search",
+  "@homeQuickSearch": {
+    "description": "Localized text for home quick search in the home UI."
+  },
+  "homeQuickUpload": "Upload",
+  "@homeQuickUpload": {
+    "description": "Localized text for home quick upload in the home UI."
+  },
+  "homeRecentJobsSubtitle": "Reopen your latest subtitle sessions without starting over.",
+  "@homeRecentJobsSubtitle": {
+    "description": "Localized text for home recent jobs subtitle in the home UI."
+  },
+  "homeRecentJobsTitle": "Recent jobs",
+  "@homeRecentJobsTitle": {
+    "description": "Localized text for home recent jobs title in the home UI."
+  },
+  "homeSearchPlaceholder": "Search movies or series...",
+  "@homeSearchPlaceholder": {
+    "description": "Localized text for home search placeholder in the home UI."
+  },
+  "homeStatesSubtitle": "Loading, empty, retry, validation, and mock offline scenarios are part of the UX from day one.",
+  "@homeStatesSubtitle": {
+    "description": "Localized text for home states subtitle in the home UI."
+  },
+  "homeStatesTitle": "Graceful states included",
+  "@homeStatesTitle": {
+    "description": "Localized text for home states title in the home UI."
+  },
+  "homeTrendingNow": "Trending now",
+  "@homeTrendingNow": {
+    "description": "Localized text for home trending now in the home UI."
+  },
+  "homeTrustSubtitle": "Mocked today, but structured like a product that can ship for real.",
+  "@homeTrustSubtitle": {
+    "description": "Localized text for home trust subtitle in the home UI."
+  },
+  "homeTrustTitle": "Why teams trust it",
+  "@homeTrustTitle": {
+    "description": "Localized text for home trust title in the home UI."
+  },
+  "homeViewAll": "View all",
+  "@homeViewAll": {
+    "description": "Localized text for home view all in the home UI."
+  },
+  "homeWelcomeSubtitle": "Find and translate subtitles",
+  "@homeWelcomeSubtitle": {
+    "description": "Localized text for home welcome subtitle in the home UI."
+  },
+  "homeWelcomeTitle": "Welcome back",
+  "@homeWelcomeTitle": {
+    "description": "Localized text for home welcome title in the home UI."
+  },
+  "jobConfidence": "Confidence: {level}",
+  "@jobConfidence": {
+    "description": "Localized text for job confidence in the job summary UI. Uses placeholder: level.",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "jobOpenPreview": "Open preview",
+  "@jobOpenPreview": {
+    "description": "Localized text for job open preview in the job summary UI."
+  },
+  "jobReuseSubtitle": "Reuse subtitle",
+  "@jobReuseSubtitle": {
+    "description": "Localized text for job reuse subtitle in the job summary UI."
+  },
+  "jobReuseTranslation": "Reuse translation",
+  "@jobReuseTranslation": {
+    "description": "Localized text for job reuse translation in the job summary UI."
+  },
+  "legalBodyAbout": "SubFlix is a premium-style Flutter client for AI subtitle translation. This build uses mock repositories, artificial latency, and local persistence so the UI and architecture can evolve before a real backend is attached.",
+  "@legalBodyAbout": {
+    "description": "Localized text for legal body about in the legal UI."
+  },
+  "legalBodyPrivacy": "SubFlix currently stores only mock preferences and translation history on device through local persistence. A future backend integration can replace this with authenticated storage, audit trails, and server-managed retention policies.",
+  "@legalBodyPrivacy": {
+    "description": "Localized text for legal body privacy in the legal UI."
+  },
+  "legalBodySupport": "Support is a placeholder for now. In a production release this section can connect to email, issue reporting, and premium account help while keeping the app shell unchanged.",
+  "@legalBodySupport": {
+    "description": "Localized text for legal body support in the legal UI."
+  },
+  "legalBodyTerms": "This mock build is intended to exercise product flows, UI states, and architecture boundaries. When a production NestJS and Postgres backend is connected later, the legal surface can be expanded with real service terms and data processing language.",
+  "@legalBodyTerms": {
+    "description": "Localized text for legal body terms in the legal UI."
+  },
+  "legalPlaceholderBody": "This page is a placeholder in the demo app. Hook it up to your production legal content.",
+  "@legalPlaceholderBody": {
+    "description": "Localized text for legal placeholder body in the legal UI."
+  },
+  "legalTitleAbout": "About SubFlix",
+  "@legalTitleAbout": {
+    "description": "Localized text for legal title about in the legal UI."
+  },
+  "legalTitlePrivacy": "Privacy Policy",
+  "@legalTitlePrivacy": {
+    "description": "Localized text for legal title privacy in the legal UI."
+  },
+  "legalTitleSupport": "Support",
+  "@legalTitleSupport": {
+    "description": "Localized text for legal title support in the legal UI."
+  },
+  "legalTitleTerms": "Terms of Service",
+  "@legalTitleTerms": {
+    "description": "Localized text for legal title terms in the legal UI."
+  },
+  "mediaTypeMovie": "Movie",
+  "@mediaTypeMovie": {
+    "description": "Localized text for media type movie in the media type UI."
+  },
+  "mediaTypeSeries": "Series",
+  "@mediaTypeSeries": {
+    "description": "Localized text for media type series in the media type UI."
+  },
+  "metadataEstimatedDuration": "Estimated duration",
+  "@metadataEstimatedDuration": {
+    "description": "Localized text for metadata estimated duration in the application UI."
+  },
+  "metadataFormat": "Format",
+  "@metadataFormat": {
+    "description": "Localized text for metadata format in the application UI."
+  },
+  "metadataLanguages": "Languages",
+  "@metadataLanguages": {
+    "description": "Localized text for metadata languages in the application UI."
+  },
+  "metadataLines": "Lines",
+  "@metadataLines": {
+    "description": "Localized text for metadata lines in the application UI."
+  },
+  "navHistory": "History",
+  "@navHistory": {
+    "description": "Localized text for nav history in the navigation UI."
+  },
+  "navHome": "Home",
+  "@navHome": {
+    "description": "Localized text for nav home in the navigation UI."
+  },
+  "navSettings": "Settings",
+  "@navSettings": {
+    "description": "Localized text for nav settings in the navigation UI."
+  },
+  "noTitlesMatchedMessage": "We could not find that title in the mock catalog. Try a broader search or one of the suggested shows.",
+  "@noTitlesMatchedMessage": {
+    "description": "Localized text for no titles matched message in the application UI."
+  },
+  "noTitlesMatchedTitle": "No titles matched",
+  "@noTitlesMatchedTitle": {
+    "description": "Localized text for no titles matched title in the application UI."
+  },
+  "onboardingContinue": "Continue",
+  "@onboardingContinue": {
+    "description": "Localized text for onboarding continue in the onboarding UI."
+  },
+  "onboardingEnterApp": "Enter SubFlix",
+  "@onboardingEnterApp": {
+    "description": "Localized text for onboarding enter app in the onboarding UI."
+  },
+  "onboardingNext": "Next",
+  "@onboardingNext": {
+    "description": "Localized text for onboarding next in the onboarding UI."
+  },
+  "onboardingPage1Description": "Search a title, review the available English subtitle sources, and launch a translation workflow that feels instant.",
+  "@onboardingPage1Description": {
+    "description": "Localized text for onboarding page1 description in the onboarding UI."
+  },
+  "onboardingPage1Eyebrow": "Search and fetch",
+  "@onboardingPage1Eyebrow": {
+    "description": "Localized text for onboarding page1 eyebrow in the onboarding UI."
+  },
+  "onboardingPage1Highlight1": "Deterministic mock catalog for reliable development",
+  "@onboardingPage1Highlight1": {
+    "description": "Localized text for onboarding page1 highlight1 in the onboarding UI."
+  },
+  "onboardingPage1Highlight2": "Subtitle source quality labels and format badges",
+  "@onboardingPage1Highlight2": {
+    "description": "Localized text for onboarding page1 highlight2 in the onboarding UI."
+  },
+  "onboardingPage1Highlight3": "Built to swap into a real backend later",
+  "@onboardingPage1Highlight3": {
+    "description": "Localized text for onboarding page1 highlight3 in the onboarding UI."
+  },
+  "onboardingPage1Title": "Find movies or series and pull ready-to-translate subtitles.",
+  "@onboardingPage1Title": {
+    "description": "Localized text for onboarding page1 title in the onboarding UI."
+  },
+  "onboardingPage2Description": "Import your subtitle file, validate the format, and run the same polished translation pipeline without leaving the app.",
+  "@onboardingPage2Description": {
+    "description": "Localized text for onboarding page2 description in the onboarding UI."
+  },
+  "onboardingPage2Eyebrow": "Bring your own file",
+  "@onboardingPage2Eyebrow": {
+    "description": "Localized text for onboarding page2 eyebrow in the onboarding UI."
+  },
+  "onboardingPage2Highlight1": "Local file validation and graceful retry states",
+  "@onboardingPage2Highlight1": {
+    "description": "Localized text for onboarding page2 highlight1 in the onboarding UI."
+  },
+  "onboardingPage2Highlight2": "Consistent translation setup for uploads and search",
+  "@onboardingPage2Highlight2": {
+    "description": "Localized text for onboarding page2 highlight2 in the onboarding UI."
+  },
+  "onboardingPage2Highlight3": "Preview before export so nothing feels opaque",
+  "@onboardingPage2Highlight3": {
+    "description": "Localized text for onboarding page2 highlight3 in the onboarding UI."
+  },
+  "onboardingPage2Title": "Upload `.srt` or `.vtt` files when you already have the script.",
+  "@onboardingPage2Title": {
+    "description": "Localized text for onboarding page2 title in the onboarding UI."
+  },
+  "onboardingPage3Description": "Switch between original, translated, and bilingual views, revisit history, and export clean subtitle files once the result looks right.",
+  "@onboardingPage3Description": {
+    "description": "Localized text for onboarding page3 description in the onboarding UI."
+  },
+  "onboardingPage3Eyebrow": "Translate and export",
+  "@onboardingPage3Eyebrow": {
+    "description": "Localized text for onboarding page3 eyebrow in the onboarding UI."
+  },
+  "onboardingPage3Highlight1": "Fast preview controls with metadata and search",
+  "@onboardingPage3Highlight1": {
+    "description": "Localized text for onboarding page3 highlight1 in the onboarding UI."
+  },
+  "onboardingPage3Highlight2": "History keeps previous jobs a tap away",
+  "@onboardingPage3Highlight2": {
+    "description": "Localized text for onboarding page3 highlight2 in the onboarding UI."
+  },
+  "onboardingPage3Highlight3": "Designed like a premium media tool, not a demo",
+  "@onboardingPage3Highlight3": {
+    "description": "Localized text for onboarding page3 highlight3 in the onboarding UI."
+  },
+  "onboardingPage3Title": "Pick target languages, preview subtitles, and export instantly.",
+  "@onboardingPage3Title": {
+    "description": "Localized text for onboarding page3 title in the onboarding UI."
+  },
+  "onboardingSkip": "Skip",
+  "@onboardingSkip": {
+    "description": "Localized text for onboarding skip in the onboarding UI."
+  },
+  "onboardingStart": "Start translation",
+  "@onboardingStart": {
+    "description": "Localized text for onboarding start in the onboarding UI."
+  },
+  "previewFailedTitle": "Preview failed to load",
+  "@previewFailedTitle": {
+    "description": "Localized text for preview failed title in the translation preview UI."
+  },
+  "previewModeBilingual": "Bilingual",
+  "@previewModeBilingual": {
+    "description": "Localized text for preview mode bilingual in the translation preview UI."
+  },
+  "previewModeOriginal": "Original",
+  "@previewModeOriginal": {
+    "description": "Localized text for preview mode original in the translation preview UI."
+  },
+  "previewModeTranslated": "Translated",
+  "@previewModeTranslated": {
+    "description": "Localized text for preview mode translated in the translation preview UI."
+  },
+  "previewNoMatchesMessage": "Try a different search term or clear the filter to inspect the full translation.",
+  "@previewNoMatchesMessage": {
+    "description": "Localized text for preview no matches message in the translation preview UI."
+  },
+  "previewNoMatchesTitle": "No subtitle lines matched",
+  "@previewNoMatchesTitle": {
+    "description": "Localized text for preview no matches title in the translation preview UI."
+  },
+  "previewNotReadyMessage": "The translation finished, but the backend did not return preview cues yet. Try reloading this screen in a moment.",
+  "@previewNotReadyMessage": {
+    "description": "Localized text for preview not ready message in the translation preview UI."
+  },
+  "previewNotReadyTitle": "Preview cues are not available yet",
+  "@previewNotReadyTitle": {
+    "description": "Localized text for preview not ready title in the translation preview UI."
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Localized text for retry in the shared action UI."
+  },
+  "retryTranslation": "Retry translation",
+  "@retryTranslation": {
+    "description": "Localized text for retry translation in the application UI."
+  },
+  "routeMissingSeasonEpisodesMessage": "We could not determine which season to load. Start again from search.",
+  "@routeMissingSeasonEpisodesMessage": {
+    "description": "Localized text for route missing season episodes message in the route fallback UI."
+  },
+  "routeMissingSeasonEpisodesTitle": "Season episodes",
+  "@routeMissingSeasonEpisodesTitle": {
+    "description": "Localized text for route missing season episodes title in the route fallback UI."
+  },
+  "routeMissingSeriesSeasonsMessage": "We could not determine which series to load. Start again from search.",
+  "@routeMissingSeriesSeasonsMessage": {
+    "description": "Localized text for route missing series seasons message in the route fallback UI."
+  },
+  "routeMissingSeriesSeasonsTitle": "Series seasons",
+  "@routeMissingSeriesSeasonsTitle": {
+    "description": "Localized text for route missing series seasons title in the route fallback UI."
+  },
+  "routeMissingSubtitleSourcesMessage": "We could not determine which title to load subtitle sources for. Start again from search.",
+  "@routeMissingSubtitleSourcesMessage": {
+    "description": "Localized text for route missing subtitle sources message in the route fallback UI."
+  },
+  "routeMissingSubtitleSourcesTitle": "Subtitle sources",
+  "@routeMissingSubtitleSourcesTitle": {
+    "description": "Localized text for route missing subtitle sources title in the route fallback UI."
+  },
+  "routeMissingTranslationProgressMessage": "No translation request was provided. Start a new translation from search or upload.",
+  "@routeMissingTranslationProgressMessage": {
+    "description": "Localized text for route missing translation progress message in the route fallback UI."
+  },
+  "routeMissingTranslationProgressTitle": "Translation progress",
+  "@routeMissingTranslationProgressTitle": {
+    "description": "Localized text for route missing translation progress title in the route fallback UI."
+  },
+  "routeMissingTranslationSetupMessage": "A subtitle source is required before the translation setup screen can open.",
+  "@routeMissingTranslationSetupMessage": {
+    "description": "Localized text for route missing translation setup message in the route fallback UI."
+  },
+  "routeMissingTranslationSetupTitle": "Translation setup",
+  "@routeMissingTranslationSetupTitle": {
+    "description": "Localized text for route missing translation setup title in the route fallback UI."
+  },
+  "searchFailedTitle": "Search failed",
+  "@searchFailedTitle": {
+    "description": "Localized text for search failed title in the search UI."
+  },
+  "searchFoundResults": "Found {count} results for \"{query}\"",
+  "@searchFoundResults": {
+    "description": "Localized text for search found results in the search UI. Uses placeholders: count, query.",
+    "placeholders": {
+      "count": {},
+      "query": {}
+    }
+  },
+  "searchHintText": "Search for Dune, Breaking Bad, Severance...",
+  "@searchHintText": {
+    "description": "Localized text for search hint text in the search UI."
+  },
+  "searchLoadingLabel": "Searching...",
+  "@searchLoadingLabel": {
+    "description": "Localized text for search loading label in the search UI."
+  },
+  "searchMockMessage": "Try titles like Inception, Dune, Breaking Bad, Severance, or The Last of Us to explore the subtitle source flow.",
+  "@searchMockMessage": {
+    "description": "Localized text for search mock message in the search UI."
+  },
+  "searchMockTitle": "Search anything in the mock catalog",
+  "@searchMockTitle": {
+    "description": "Localized text for search mock title in the search UI."
+  },
+  "searchMovieOrSeriesSubtitle": "Find a title, inspect subtitle sources, and launch a translation job with a few taps.",
+  "@searchMovieOrSeriesSubtitle": {
+    "description": "Localized text for search movie or series subtitle in the search UI."
+  },
+  "searchMovieOrSeriesTitle": "Search movie or series",
+  "@searchMovieOrSeriesTitle": {
+    "description": "Localized text for search movie or series title in the search UI."
+  },
+  "searchNoResultsFor": "No results found for \"{query}\"",
+  "@searchNoResultsFor": {
+    "description": "Localized text for search no results for in the search UI. Uses placeholder: query.",
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "searchResultPopularity": "Popularity {score}",
+  "@searchResultPopularity": {
+    "description": "Localized text for search result popularity in the search UI. Uses placeholder: score.",
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "searchTitles": "Search titles",
+  "@searchTitles": {
+    "description": "Localized text for search titles in the search UI."
+  },
+  "searchTrendingTitle": "Trending searches",
+  "@searchTrendingTitle": {
+    "description": "Localized text for search trending title in the search UI."
+  },
+  "searchTryDifferentKeywords": "Try searching with different keywords.",
+  "@searchTryDifferentKeywords": {
+    "description": "Localized text for search try different keywords in the search UI."
+  },
+  "seriesEpisodeLabel": "Episode {episodeNumber}",
+  "@seriesEpisodeLabel": {
+    "description": "Localized text for series episode label in the series browsing UI. Uses placeholder: episodeNumber.",
+    "placeholders": {
+      "episodeNumber": {}
+    }
+  },
+  "seriesEpisodeMeta": "Approx. {runtime} min",
+  "@seriesEpisodeMeta": {
+    "description": "Localized text for series episode meta in the series browsing UI. Uses placeholder: runtime.",
+    "placeholders": {
+      "runtime": {}
+    }
+  },
+  "seriesEpisodesSubtitle": "{episodeCount} episodes{year}",
+  "@seriesEpisodesSubtitle": {
+    "description": "Localized text for series episodes subtitle in the series browsing UI. Uses placeholders: episodeCount, year.",
+    "placeholders": {
+      "episodeCount": {},
+      "year": {}
+    }
+  },
+  "seriesEpisodesTitle": "Season {seasonNumber}",
+  "@seriesEpisodesTitle": {
+    "description": "Localized text for series episodes title in the series browsing UI. Uses placeholder: seasonNumber.",
+    "placeholders": {
+      "seasonNumber": {}
+    }
+  },
+  "seriesSeasonLabel": "Season {seasonNumber}",
+  "@seriesSeasonLabel": {
+    "description": "Localized text for series season label in the series browsing UI. Uses placeholder: seasonNumber.",
+    "placeholders": {
+      "seasonNumber": {}
+    }
+  },
+  "seriesSeasonMeta": "{episodeCount} episodes{year}",
+  "@seriesSeasonMeta": {
+    "description": "Localized text for series season meta in the series browsing UI. Uses placeholders: episodeCount, year.",
+    "placeholders": {
+      "episodeCount": {},
+      "year": {}
+    }
+  },
+  "seriesSeasonsSubtitle": "Pick a season of {title} to browse available episodes.",
+  "@seriesSeasonsSubtitle": {
+    "description": "Localized text for series seasons subtitle in the series browsing UI. Uses placeholder: title.",
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "seriesSeasonsTitle": "Choose a season",
+  "@seriesSeasonsTitle": {
+    "description": "Localized text for series seasons title in the series browsing UI."
+  },
+  "settingsAboutTitle": "About SubFlix",
+  "@settingsAboutTitle": {
+    "description": "Localized text for settings about title in the settings UI."
+  },
+  "settingsCacheCleared": "Cache cleared",
+  "@settingsCacheCleared": {
+    "description": "Localized text for settings cache cleared in the settings UI."
+  },
+  "settingsClearCache": "Clear cache",
+  "@settingsClearCache": {
+    "description": "Localized text for settings clear cache in the settings UI."
+  },
+  "settingsContactTitle": "Contact us",
+  "@settingsContactTitle": {
+    "description": "Localized text for settings contact title in the settings UI."
+  },
+  "settingsFailedTitle": "Settings failed to load",
+  "@settingsFailedTitle": {
+    "description": "Localized text for settings failed title in the settings UI."
+  },
+  "settingsHelpCenterTitle": "Help center",
+  "@settingsHelpCenterTitle": {
+    "description": "Localized text for settings help center title in the settings UI."
+  },
+  "settingsHistoryClearedSnack": "Translation history cleared for this device",
+  "@settingsHistoryClearedSnack": {
+    "description": "Localized text for settings history cleared snack in the settings UI."
+  },
+  "settingsLanguageLabel": "Preferred target language",
+  "@settingsLanguageLabel": {
+    "description": "Localized text for settings language label in the settings UI."
+  },
+  "settingsMaintenanceSubtitle": "Clear backend-owned translation jobs for this device and start with an empty history state.",
+  "@settingsMaintenanceSubtitle": {
+    "description": "Localized text for settings maintenance subtitle in the settings UI."
+  },
+  "settingsMaintenanceTitle": "Maintenance",
+  "@settingsMaintenanceTitle": {
+    "description": "Localized text for settings maintenance title in the settings UI."
+  },
+  "settingsNotificationsSubtitle": "Manage notification preferences",
+  "@settingsNotificationsSubtitle": {
+    "description": "Localized text for settings notifications subtitle in the settings UI."
+  },
+  "settingsNotificationsTitle": "Notifications",
+  "@settingsNotificationsTitle": {
+    "description": "Localized text for settings notifications title in the settings UI."
+  },
+  "settingsPremiumSubtitle": "Later we can connect subscriptions, billing, and cloud project sync here.",
+  "@settingsPremiumSubtitle": {
+    "description": "Localized text for settings premium subtitle in the settings UI."
+  },
+  "settingsPremiumTitle": "Premium placeholder",
+  "@settingsPremiumTitle": {
+    "description": "Localized text for settings premium title in the settings UI."
+  },
+  "settingsPrivacySubtitle": "Mock privacy content",
+  "@settingsPrivacySubtitle": {
+    "description": "Localized text for settings privacy subtitle in the settings UI."
+  },
+  "settingsPrivacyTitle": "Privacy policy",
+  "@settingsPrivacyTitle": {
+    "description": "Localized text for settings privacy title in the settings UI."
+  },
+  "settingsProfileName": "SubFlix User",
+  "@settingsProfileName": {
+    "description": "Localized text for settings profile name in the settings UI."
+  },
+  "settingsProfileTier": "Premium member",
+  "@settingsProfileTier": {
+    "description": "Localized text for settings profile tier in the settings UI."
+  },
+  "settingsSubtitle": "Manager your preferences",
+  "@settingsSubtitle": {
+    "description": "Localized text for settings subtitle in the settings UI."
+  },
+  "settingsSupportSubtitle": "Mock help and contact page",
+  "@settingsSupportSubtitle": {
+    "description": "Localized text for settings support subtitle in the settings UI."
+  },
+  "settingsSupportTitle": "Support placeholder",
+  "@settingsSupportTitle": {
+    "description": "Localized text for settings support title in the settings UI."
+  },
+  "settingsTermsSubtitle": "Mock terms content",
+  "@settingsTermsSubtitle": {
+    "description": "Localized text for settings terms subtitle in the settings UI."
+  },
+  "settingsTermsTitle": "Terms of service",
+  "@settingsTermsTitle": {
+    "description": "Localized text for settings terms title in the settings UI."
+  },
+  "settingsThemeLabel": "Appearance",
+  "@settingsThemeLabel": {
+    "description": "Localized text for settings theme label in the settings UI."
+  },
+  "settingsTitle": "Settings",
+  "@settingsTitle": {
+    "description": "Localized text for settings title in the settings UI."
+  },
+  "settingsVersion": "Version {version}",
+  "@settingsVersion": {
+    "description": "Localized text for settings version in the settings UI. Uses placeholder: version.",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "splashHeadline": "SubFlix",
+  "@splashHeadline": {
+    "description": "Localized text for splash headline in the splash UI."
+  },
+  "splashPreparing": "Preparing your subtitle studio",
+  "@splashPreparing": {
+    "description": "Localized text for splash preparing in the splash UI."
+  },
+  "splashSubtitle": "AI-powered subtitle translation",
+  "@splashSubtitle": {
+    "description": "Localized text for splash subtitle in the splash UI."
+  },
+  "startTranslation": "Start translation",
+  "@startTranslation": {
+    "description": "Localized text for start translation in the shared action UI."
+  },
+  "subtitleSourceDownloads": "{downloads} downloads",
+  "@subtitleSourceDownloads": {
+    "description": "Localized text for subtitle source downloads in the subtitle sources UI. Uses placeholder: downloads.",
+    "placeholders": {
+      "downloads": {}
+    }
+  },
+  "subtitleSourceFormatLabel": "{format} subtitle source",
+  "@subtitleSourceFormatLabel": {
+    "description": "Localized text for subtitle source format label in the subtitle sources UI. Uses placeholder: format.",
+    "placeholders": {
+      "format": {}
+    }
+  },
+  "subtitleSourceHiLabel": "HI / SDH",
+  "@subtitleSourceHiLabel": {
+    "description": "Localized text for subtitle source hi label in the subtitle sources UI."
+  },
+  "subtitleSourceLines": "{lineCount} lines",
+  "@subtitleSourceLines": {
+    "description": "Localized text for subtitle source lines in the subtitle sources UI. Uses placeholder: lineCount.",
+    "placeholders": {
+      "lineCount": {}
+    }
+  },
+  "subtitleSourceRating": "{rating} rating",
+  "@subtitleSourceRating": {
+    "description": "Localized text for subtitle source rating in the subtitle sources UI. Uses placeholder: rating.",
+    "placeholders": {
+      "rating": {}
+    }
+  },
+  "subtitleSourcesBannerMessage": "Select a subtitle source and continue into a polished translation setup tuned for subtitle timing.",
+  "@subtitleSourcesBannerMessage": {
+    "description": "Localized text for subtitle sources banner message in the subtitle sources UI."
+  },
+  "subtitleSourcesBannerTitle": "AI translation available",
+  "@subtitleSourcesBannerTitle": {
+    "description": "Localized text for subtitle sources banner title in the subtitle sources UI."
+  },
+  "subtitleSourcesFailedTitle": "Could not load subtitle sources",
+  "@subtitleSourcesFailedTitle": {
+    "description": "Localized text for subtitle sources failed title in the subtitle sources UI."
+  },
+  "subtitleSourcesSubtitle": "Pick a subtitle source for {title}{target}, then choose the target language in the next step.",
+  "@subtitleSourcesSubtitle": {
+    "description": "Localized text for subtitle sources subtitle in the subtitle sources UI. Uses placeholders: title, target.",
+    "placeholders": {
+      "title": {},
+      "target": {}
+    }
+  },
+  "subtitleSourcesTitle": "English subtitle sources",
+  "@subtitleSourcesTitle": {
+    "description": "Localized text for subtitle sources title in the subtitle sources UI."
+  },
+  "targetLanguage": "Target language",
+  "@targetLanguage": {
+    "description": "Localized text for target language in the shared action UI."
+  },
+  "themeDark": "Dark",
+  "@themeDark": {
+    "description": "Localized text for theme dark in the settings UI."
+  },
+  "themeLight": "Light",
+  "@themeLight": {
+    "description": "Localized text for theme light in the settings UI."
+  },
+  "themeSystem": "System",
+  "@themeSystem": {
+    "description": "Localized text for theme system in the settings UI."
+  },
+  "translateSetupAutoDetect": "Auto-detect format",
+  "@translateSetupAutoDetect": {
+    "description": "Localized text for translate setup auto detect in the translation setup UI."
+  },
+  "translateSetupAutoDetectBody": "Choose the right subtitle output structure automatically.",
+  "@translateSetupAutoDetectBody": {
+    "description": "Localized text for translate setup auto detect body in the translation setup UI."
+  },
+  "translateSetupLanguageTitle": "Translate to",
+  "@translateSetupLanguageTitle": {
+    "description": "Localized text for translate setup language title in the translation setup UI."
+  },
+  "translateSetupOptionsTitle": "Options",
+  "@translateSetupOptionsTitle": {
+    "description": "Localized text for translate setup options title in the translation setup UI."
+  },
+  "translateSetupPreserveTiming": "Preserve timing",
+  "@translateSetupPreserveTiming": {
+    "description": "Localized text for translate setup preserve timing in the translation setup UI."
+  },
+  "translateSetupPreserveTimingBody": "Keep original subtitle timings aligned to the source file.",
+  "@translateSetupPreserveTimingBody": {
+    "description": "Localized text for translate setup preserve timing body in the translation setup UI."
+  },
+  "translateSetupReadyBody": "Our translation flow will adapt this subtitle into {language} with preserved timing and clean cue structure.",
+  "@translateSetupReadyBody": {
+    "description": "Localized text for translate setup ready body in the translation setup UI. Uses placeholder: language.",
+    "placeholders": {
+      "language": {}
+    }
+  },
+  "translateSetupReadyTitle": "AI translation ready",
+  "@translateSetupReadyTitle": {
+    "description": "Localized text for translate setup ready title in the translation setup UI."
+  },
+  "translateSetupSelectLanguage": "Select language",
+  "@translateSetupSelectLanguage": {
+    "description": "Localized text for translate setup select language in the translation setup UI."
+  },
+  "translateSetupSourceTitle": "Source subtitle",
+  "@translateSetupSourceTitle": {
+    "description": "Localized text for translate setup source title in the translation setup UI."
+  },
+  "translateSetupSubtitle": "Choose the target language, review the subtitle source, and start the backend translation job.",
+  "@translateSetupSubtitle": {
+    "description": "Localized text for translate setup subtitle in the translation setup UI."
+  },
+  "translateSetupTitle": "Translate setup",
+  "@translateSetupTitle": {
+    "description": "Localized text for translate setup title in the translation setup UI."
+  },
+  "translationFailedMessage": "Something went wrong.",
+  "@translationFailedMessage": {
+    "description": "Localized text for translation failed message in the application UI."
+  },
+  "translationFailedTitle": "Translation could not finish",
+  "@translationFailedTitle": {
+    "description": "Localized text for translation failed title in the application UI."
+  },
+  "translationPreviewHeader": "Review translated subtitles",
+  "@translationPreviewHeader": {
+    "description": "Localized text for translation preview header in the translation preview UI."
+  },
+  "translationPreviewSearchHint": "Search subtitle lines",
+  "@translationPreviewSearchHint": {
+    "description": "Localized text for translation preview search hint in the translation preview UI."
+  },
+  "translationPreviewSubtitle": "Search inside cues, switch preview modes, then export once the translation looks right.",
+  "@translationPreviewSubtitle": {
+    "description": "Localized text for translation preview subtitle in the translation preview UI."
+  },
+  "translationPreviewTitle": "Translation preview",
+  "@translationPreviewTitle": {
+    "description": "Localized text for translation preview title in the translation preview UI."
+  },
+  "translationProgressHeadline": "AI subtitle translation in progress",
+  "@translationProgressHeadline": {
+    "description": "Localized text for translation progress headline in the translation progress UI."
+  },
+  "translationProgressTitle": "Translation progress",
+  "@translationProgressTitle": {
+    "description": "Localized text for translation progress title in the translation progress UI."
+  },
+  "translationResultCompleteSubtitle": "Your subtitle is ready to preview or download.",
+  "@translationResultCompleteSubtitle": {
+    "description": "Localized text for translation result complete subtitle in the translation result UI."
+  },
+  "translationResultCompleteTitle": "Translation complete",
+  "@translationResultCompleteTitle": {
+    "description": "Localized text for translation result complete title in the translation result UI."
+  },
+  "translationResultConfidenceLabel": "Translation confidence",
+  "@translationResultConfidenceLabel": {
+    "description": "Localized text for translation result confidence label in the translation result UI."
+  },
+  "translationResultDetailsTitle": "Translation details",
+  "@translationResultDetailsTitle": {
+    "description": "Localized text for translation result details title in the translation result UI."
+  },
+  "translationResultDownloadCta": "Download subtitle",
+  "@translationResultDownloadCta": {
+    "description": "Localized text for translation result download cta in the translation result UI."
+  },
+  "translationResultHomeCta": "Back to home",
+  "@translationResultHomeCta": {
+    "description": "Localized text for translation result home cta in the translation result UI."
+  },
+  "translationResultMediaLabel": "Media title",
+  "@translationResultMediaLabel": {
+    "description": "Localized text for translation result media label in the translation result UI."
+  },
+  "translationResultMethodAi": "AI translated",
+  "@translationResultMethodAi": {
+    "description": "Localized text for translation result method ai in the translation result UI."
+  },
+  "translationResultMetricsTitle": "Quality metrics",
+  "@translationResultMetricsTitle": {
+    "description": "Localized text for translation result metrics title in the translation result UI."
+  },
+  "translationResultPreviewCta": "Preview subtitle",
+  "@translationResultPreviewCta": {
+    "description": "Localized text for translation result preview cta in the translation result UI."
+  },
+  "translationResultProcessedIn": "Processed in {duration}",
+  "@translationResultProcessedIn": {
+    "description": "Localized text for translation result processed in in the translation result UI. Uses placeholder: duration.",
+    "placeholders": {
+      "duration": {}
+    }
+  },
+  "translationResultSourceLabel": "Source language",
+  "@translationResultSourceLabel": {
+    "description": "Localized text for translation result source label in the translation result UI."
+  },
+  "translationResultTargetLabel": "Target language",
+  "@translationResultTargetLabel": {
+    "description": "Localized text for translation result target label in the translation result UI."
+  },
+  "translationResultTimingLabel": "Timing accuracy",
+  "@translationResultTimingLabel": {
+    "description": "Localized text for translation result timing label in the translation result UI."
+  },
+  "translationResultTimingPreserved": "Timing preserved",
+  "@translationResultTimingPreserved": {
+    "description": "Localized text for translation result timing preserved in the translation result UI."
+  },
+  "translationResultWarning": "Some technical terms may still benefit from a quick human review for context.",
+  "@translationResultWarning": {
+    "description": "Localized text for translation result warning in the translation result UI."
+  },
+  "translationStageAligning": "Aligning timestamps and scene context",
+  "@translationStageAligning": {
+    "description": "Localized text for translation stage aligning in the translation progress UI."
+  },
+  "translationStageGenerating": "Generating subtitle translation",
+  "@translationStageGenerating": {
+    "description": "Localized text for translation stage generating in the translation progress UI."
+  },
+  "translationStageIdle": "Waiting for a translation request",
+  "@translationStageIdle": {
+    "description": "Localized text for translation stage idle in the translation progress UI."
+  },
+  "translationStagePreparing": "Preparing subtitle package",
+  "@translationStagePreparing": {
+    "description": "Localized text for translation stage preparing in the translation progress UI."
+  },
+  "translationStageQueued": "Queued for translation",
+  "@translationStageQueued": {
+    "description": "Localized text for translation stage queued in the translation progress UI."
+  },
+  "translationStageReadability": "Applying readability pass",
+  "@translationStageReadability": {
+    "description": "Localized text for translation stage readability in the translation progress UI."
+  },
+  "translationStageReady": "Translation ready",
+  "@translationStageReady": {
+    "description": "Localized text for translation stage ready in the translation progress UI."
+  },
+  "tryAgain": "Try again",
+  "@tryAgain": {
+    "description": "Localized text for try again in the shared action UI."
+  },
+  "uploadChooseFile": "Choose subtitle file",
+  "@uploadChooseFile": {
+    "description": "Localized text for upload choose file in the upload UI."
+  },
+  "uploadChooseFileShort": "Choose file",
+  "@uploadChooseFileShort": {
+    "description": "Localized text for upload choose file short in the upload UI."
+  },
+  "uploadContinueSetup": "Continue to translation setup",
+  "@uploadContinueSetup": {
+    "description": "Localized text for upload continue setup in the upload UI."
+  },
+  "uploadEnglishSource": "English source",
+  "@uploadEnglishSource": {
+    "description": "Localized text for upload english source in the upload UI."
+  },
+  "uploadFailedFallback": "Please try another subtitle file.",
+  "@uploadFailedFallback": {
+    "description": "Localized text for upload failed fallback in the upload UI."
+  },
+  "uploadFailedMessage": "We could not read this subtitle file. Try a different file or pick a smaller export.",
+  "@uploadFailedMessage": {
+    "description": "Localized text for upload failed message in the upload UI."
+  },
+  "uploadFailedTitle": "File import failed",
+  "@uploadFailedTitle": {
+    "description": "Localized text for upload failed title in the upload UI."
+  },
+  "uploadIntroSubtitle": "Import an English `.srt` or `.vtt` file, let the backend validate and parse it, then continue into translation setup.",
+  "@uploadIntroSubtitle": {
+    "description": "Localized text for upload intro subtitle in the upload UI."
+  },
+  "uploadIntroTitle": "Bring your own subtitle file",
+  "@uploadIntroTitle": {
+    "description": "Localized text for upload intro title in the upload UI."
+  },
+  "uploadLineCount": "{lineCount} lines",
+  "@uploadLineCount": {
+    "description": "Localized text for upload line count in the upload UI. Uses placeholder: lineCount.",
+    "placeholders": {
+      "lineCount": {}
+    }
+  },
+  "uploadMetadataTitle": "Subtitle details",
+  "@uploadMetadataTitle": {
+    "description": "Localized text for upload metadata title in the upload UI."
+  },
+  "uploadOpeningPicker": "Opening picker...",
+  "@uploadOpeningPicker": {
+    "description": "Localized text for upload opening picker in the upload UI."
+  },
+  "uploadPickSubtitle": "Pick subtitle file",
+  "@uploadPickSubtitle": {
+    "description": "Localized text for upload pick subtitle in the upload UI."
+  },
+  "uploadPickedFile": "Picked subtitle file",
+  "@uploadPickedFile": {
+    "description": "Localized text for upload picked file in the upload UI."
+  },
+  "uploadReadyTitle": "Ready to translate",
+  "@uploadReadyTitle": {
+    "description": "Localized text for upload ready title in the upload UI."
+  },
+  "uploadSubtitleTitle": "Upload subtitle",
+  "@uploadSubtitleTitle": {
+    "description": "Localized text for upload subtitle title in the upload UI."
+  },
+  "uploadSupportedFormatsSubtitle": "English `.srt` and `.vtt` subtitle files",
+  "@uploadSupportedFormatsSubtitle": {
+    "description": "Localized text for upload supported formats subtitle in the upload UI."
+  },
+  "uploadSupportedFormatsTitle": "Supported formats",
+  "@uploadSupportedFormatsTitle": {
+    "description": "Localized text for upload supported formats title in the upload UI."
+  },
+  "uploadUseDemoFile": "Use demo file",
+  "@uploadUseDemoFile": {
+    "description": "Localized text for upload use demo file in the upload UI."
+  }
+}

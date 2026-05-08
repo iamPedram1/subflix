@@ -1,0 +1,720 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
+import 'package:subflix/core/app/router/app_routes.dart';
+import 'package:subflix/core/localization/app_localizations.dart';
+import 'package:subflix/core/providers/repository_providers.dart';
+import 'package:subflix/core/styles/colors.dart';
+import 'package:subflix/core/styles/spacing.dart';
+import 'package:subflix/core/ui/widgets/app_background.dart';
+import 'package:subflix/core/ui/widgets/app_surface_card.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
+import 'package:subflix/core/ui/widgets/loading_skeleton.dart';
+import 'package:subflix/core/ui/widgets/responsive_center.dart';
+import 'package:subflix/core/ui/widgets/state_panel.dart';
+import 'package:subflix/features/auth/application/auth_controller.dart';
+import 'package:subflix/features/auth/data/services/firebase_oauth_service.dart';
+import 'package:subflix/features/auth/presentation/models/auth_confirm_email_args.dart';
+import 'package:subflix/features/auth/presentation/widgets/auth_flow_scaffold.dart';
+import 'package:subflix/features/history/application/history_controller.dart';
+import 'package:subflix/features/settings/application/settings_controller.dart';
+import 'package:subflix/features/settings/domain/models/user_preference.dart';
+import 'package:subflix/features/settings/presentation/widgets/settings_presentational.dart';
+import 'package:subflix/features/shared/domain/models/app_language.dart';
+import 'package:subflix/features/shared/domain/models/theme_preference.dart';
+
+class SettingsScreen extends ConsumerWidget {
+  const SettingsScreen({super.key});
+
+  Future<void> _handleGoogleSignIn(BuildContext context, WidgetRef ref) async {
+    try {
+      final idToken = await ref
+          .read(firebaseOAuthServiceProvider)
+          .signInWithGoogleIdToken();
+      await ref
+          .read(authControllerProvider.notifier)
+          .signInWithFirebase(idToken);
+      if (!context.mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: AppText(
+            context.t.authSignInSuccess,
+            variant: AppTextVariant.bodyMedium,
+          ),
+        ),
+      );
+    } on FirebaseOAuthCancelledException {
+      return;
+    } catch (error) {
+      if (!context.mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: AppText(
+            describeAuthError(error),
+            variant: AppTextVariant.bodyMedium,
+          ),
+        ),
+      );
+    }
+  }
+
+  Future<void> _handleRefreshProfile(
+    BuildContext context,
+    WidgetRef ref,
+  ) async {
+    try {
+      await ref.read(authControllerProvider.notifier).refreshProfile();
+      if (!context.mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: AppText(
+            context.t.authProfileRefreshed,
+            variant: AppTextVariant.bodyMedium,
+          ),
+        ),
+      );
+    } catch (error) {
+      if (!context.mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: AppText(
+            describeAuthError(error),
+            variant: AppTextVariant.bodyMedium,
+          ),
+        ),
+      );
+    }
+  }
+
+  Future<void> _handleSignOut(BuildContext context, WidgetRef ref) async {
+    try {
+      await ref.read(authControllerProvider.notifier).signOut();
+      if (!context.mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: AppText(
+            context.t.authSignOutSuccess,
+            variant: AppTextVariant.bodyMedium,
+          ),
+        ),
+      );
+    } catch (error) {
+      if (!context.mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: AppText(
+            describeAuthError(error),
+            variant: AppTextVariant.bodyMedium,
+          ),
+        ),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final settings = ref.watch(settingsControllerProvider);
+    final authState = ref.watch(authControllerProvider);
+
+    return Scaffold(
+      body: AppBackground(
+        child: SafeArea(
+          child: ResponsiveCenter(
+            child: settings.when(
+              data: (preference) => CustomScrollView(
+                physics: const BouncingScrollPhysics(),
+                slivers: <Widget>[
+                  SliverAppBar(
+                    pinned: true,
+                    elevation: 0,
+                    surfaceTintColor: Colors.transparent,
+                    backgroundColor: Theme.of(
+                      context,
+                    ).colorScheme.surface.withValues(alpha: 0.92),
+                    titleSpacing: 0,
+                    leading: IconButton(
+                      onPressed: () => context.go(AppRoutes.home),
+                      icon: const Icon(Icons.arrow_back_rounded),
+                    ),
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        AppText(
+                          context.t.settingsTitle,
+                          variant: AppTextVariant.titleLarge,
+                          fontWeight: FontWeight.w700,
+                        ),
+                        AppText(
+                          context.t.settingsSubtitle,
+                          variant: AppTextVariant.bodySmall,
+                          color: AppColors.textSecondaryFor(context),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SliverPadding(
+                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 28),
+                    sliver: SliverList.list(
+                      children: <Widget>[
+                        SettingsProfileCard(
+                          preference: preference,
+                          authState: authState,
+                          onSignIn: () => context.push(AppRoutes.authSignIn),
+                          onSignUp: () => context.push(AppRoutes.authSignUp),
+                          onGoogleSignIn: () =>
+                              _handleGoogleSignIn(context, ref),
+                          onSignOut: () => _handleSignOut(context, ref),
+                        ),
+                        if (authState.asData?.value
+                            case final session?) ...<Widget>[
+                          const SizedBox(height: 24),
+                          SettingsSectionTitle(
+                            title: context.t.authAccountSectionTitle,
+                          ),
+                          const SizedBox(height: 12),
+                          AppSurfaceCard(
+                            padding: EdgeInsets.zero,
+                            child: Column(
+                              children: <Widget>[
+                                SettingsActionRow(
+                                  icon: Icons.alternate_email_rounded,
+                                  title: context.t.authEmailLabel,
+                                  value: session.user.email,
+                                ),
+                                const SettingsDividerLine(),
+                                SettingsActionRow(
+                                  icon: session.user.emailVerified
+                                      ? Icons.verified_rounded
+                                      : Icons.mark_email_unread_outlined,
+                                  title: context.t.authVerificationStatusTitle,
+                                  value: session.user.emailVerified
+                                      ? context.t.authVerifiedStatus
+                                      : context.t.authUnverifiedStatus,
+                                  onTap: session.user.emailVerified
+                                      ? null
+                                      : () => context.push(
+                                          AppRoutes.authConfirmEmail,
+                                          extra: AuthConfirmEmailArgs(
+                                            email: session.user.email,
+                                          ),
+                                        ),
+                                ),
+                                const SettingsDividerLine(),
+                                SettingsActionRow(
+                                  icon: Icons.refresh_rounded,
+                                  title: context.t.authRefreshProfileAction,
+                                  subtitle:
+                                      context.t.authRefreshProfileSubtitle,
+                                  onTap: () =>
+                                      _handleRefreshProfile(context, ref),
+                                ),
+                                const SettingsDividerLine(),
+                                SettingsActionRow(
+                                  icon: Icons.logout_rounded,
+                                  title: context.t.authSignOutAction,
+                                  subtitle: context.t.authSignOutSubtitle,
+                                  onTap: () => _handleSignOut(context, ref),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                        const SizedBox(height: 24),
+                        SettingsSectionTitle(
+                          title: context.t.settingsThemeLabel,
+                        ),
+                        const SizedBox(height: 12),
+                        AppSurfaceCard(
+                          padding: EdgeInsets.zero,
+                          child: SettingsActionRow(
+                            icon: _resolvedThemeIcon(context, preference),
+                            title: context.t.settingsThemeLabel,
+                            subtitle: _resolvedThemeLabel(context, preference),
+                            trailing: AppText(
+                              preference.themePreference.label(context),
+                              variant: AppTextVariant.labelMedium,
+                              color: AppColors.textSecondaryFor(context),
+                              fontWeight: FontWeight.w600,
+                            ),
+                            onTap: () =>
+                                _showThemePicker(context, ref, preference),
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        const SettingsSectionTitle(title: 'Preferences'),
+                        const SizedBox(height: 12),
+                        AppSurfaceCard(
+                          padding: EdgeInsets.zero,
+                          child: Column(
+                            children: <Widget>[
+                              SettingsActionRow(
+                                icon: Icons.language_rounded,
+                                title: context.t.settingsLanguageLabel,
+                                value: preference.preferredTargetLanguage.label,
+                                onTap: () => _showLanguagePicker(
+                                  context,
+                                  ref,
+                                  preference,
+                                ),
+                              ),
+                              const SettingsDividerLine(),
+                              SettingsActionRow(
+                                icon: Icons.notifications_none_rounded,
+                                title: context.t.settingsNotificationsTitle,
+                                subtitle:
+                                    context.t.settingsNotificationsSubtitle,
+                                onTap: () {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: AppText(
+                                        context.t.settingsNotificationsSubtitle,
+                                        variant: AppTextVariant.bodyMedium,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        const SettingsSectionTitle(title: 'Support'),
+                        const SizedBox(height: 12),
+                        AppSurfaceCard(
+                          padding: EdgeInsets.zero,
+                          child: Column(
+                            children: <Widget>[
+                              SettingsActionRow(
+                                icon: Icons.help_outline_rounded,
+                                title: context.t.settingsHelpCenterTitle,
+                                onTap: () => context.push(
+                                  AppRoutes.legal.replaceFirst(
+                                    ':slug',
+                                    'support',
+                                  ),
+                                ),
+                              ),
+                              const SettingsDividerLine(),
+                              SettingsActionRow(
+                                icon: Icons.mail_outline_rounded,
+                                title: context.t.settingsContactTitle,
+                                onTap: () => context.push(
+                                  AppRoutes.legal.replaceFirst(
+                                    ':slug',
+                                    'support',
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        const SettingsSectionTitle(title: 'About'),
+                        const SizedBox(height: 12),
+                        AppSurfaceCard(
+                          padding: EdgeInsets.zero,
+                          child: Column(
+                            children: <Widget>[
+                              const SettingsActionRow(
+                                icon: Icons.info_outline_rounded,
+                                title: 'App Version',
+                                value: '1.0.0',
+                              ),
+                              const SettingsDividerLine(),
+                              SettingsActionRow(
+                                icon: Icons.privacy_tip_outlined,
+                                title: context.t.settingsPrivacyTitle,
+                                onTap: () => context.push(
+                                  AppRoutes.legal.replaceFirst(
+                                    ':slug',
+                                    'privacy',
+                                  ),
+                                ),
+                              ),
+                              const SettingsDividerLine(),
+                              SettingsActionRow(
+                                icon: Icons.description_outlined,
+                                title: context.t.settingsTermsTitle,
+                                onTap: () => context.push(
+                                  AppRoutes.legal.replaceFirst(
+                                    ':slug',
+                                    'terms',
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        SettingsSectionTitle(
+                          title: context.t.settingsMaintenanceTitle,
+                        ),
+                        const SizedBox(height: 12),
+                        AppSurfaceCard(
+                          padding: EdgeInsets.zero,
+                          child: SettingsActionRow(
+                            icon: Icons.delete_outline_rounded,
+                            title: context.t.settingsClearCache,
+                            subtitle: context.t.settingsMaintenanceSubtitle,
+                            onTap: () async {
+                              await ref
+                                  .read(historyControllerProvider.notifier)
+                                  .clear();
+                              if (!context.mounted) {
+                                return;
+                              }
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: AppText(
+                                    context.t.settingsHistoryClearedSnack,
+                                    variant: AppTextVariant.bodyMedium,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 32),
+                        const SettingsFooter(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              error: (error, stackTrace) => _ErrorState(
+                error: error,
+                onRetry: () => ref.invalidate(settingsControllerProvider),
+              ),
+              loading: () => const _LoadingState(),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _showLanguagePicker(
+    BuildContext context,
+    WidgetRef ref,
+    UserPreference preference,
+  ) async {
+    await showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      builder: (sheetContext) {
+        final languages = AppLanguage.values
+            .where(
+              (language) => AppLocalizations.supportedLocales.any(
+                (locale) => locale.languageCode == language.code,
+              ),
+            )
+            .toList(growable: false);
+
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                AppText(
+                  context.t.settingsLanguageLabel,
+                  variant: AppTextVariant.titleLarge,
+                  fontWeight: FontWeight.w700,
+                ),
+                const SizedBox(height: 8),
+                AppText(
+                  context.t.settingsSubtitle,
+                  variant: AppTextVariant.bodyMedium,
+                  color: AppColors.textSecondaryFor(sheetContext),
+                ),
+                const SizedBox(height: 20),
+                Flexible(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: List<Widget>.generate(languages.length, (
+                        index,
+                      ) {
+                        final language = languages[index];
+                        final selected =
+                            language == preference.preferredTargetLanguage;
+                        return Padding(
+                          padding: EdgeInsets.only(
+                            bottom: index == languages.length - 1 ? 0 : 8,
+                          ),
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(20),
+                              onTap: () async {
+                                await ref
+                                    .read(settingsControllerProvider.notifier)
+                                    .setPreferredTargetLanguage(language);
+                                if (sheetContext.mounted) {
+                                  Navigator.of(sheetContext).pop();
+                                }
+                              },
+                              child: Ink(
+                                padding: AppInsets.card,
+                                decoration: BoxDecoration(
+                                  color: selected
+                                      ? AppColors.primary.withValues(
+                                          alpha: 0.10,
+                                        )
+                                      : AppColors.surfaceMutedFor(sheetContext),
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                    color: selected
+                                        ? AppColors.primary
+                                        : Theme.of(sheetContext)
+                                              .colorScheme
+                                              .outline
+                                              .withValues(alpha: 0.4),
+                                  ),
+                                ),
+                                child: Row(
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          AppText(
+                                            language.label,
+                                            variant: AppTextVariant.titleMedium,
+                                          ),
+                                          const SizedBox(height: 2),
+                                          AppText(
+                                            language.nativeLabel,
+                                            variant: AppTextVariant.bodySmall,
+                                            color: AppColors.textSecondaryFor(
+                                              sheetContext,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    if (selected)
+                                      const Icon(
+                                        Icons.check_circle_rounded,
+                                        color: AppColors.primary,
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _showThemePicker(
+    BuildContext context,
+    WidgetRef ref,
+    UserPreference preference,
+  ) async {
+    await showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      builder: (sheetContext) {
+        final options = ThemePreference.values;
+
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                AppText(
+                  context.t.settingsThemeLabel,
+                  variant: AppTextVariant.titleLarge,
+                  fontWeight: FontWeight.w700,
+                ),
+                const SizedBox(height: 8),
+                AppText(
+                  context.t.settingsSubtitle,
+                  variant: AppTextVariant.bodyMedium,
+                  color: AppColors.textSecondaryFor(sheetContext),
+                ),
+                const SizedBox(height: 20),
+                Flexible(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: List<Widget>.generate(options.length, (index) {
+                        final themePreference = options[index];
+                        final selected =
+                            themePreference == preference.themePreference;
+                        return Padding(
+                          padding: EdgeInsets.only(
+                            bottom: index == options.length - 1 ? 0 : 8,
+                          ),
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(20),
+                              onTap: () async {
+                                await ref
+                                    .read(settingsControllerProvider.notifier)
+                                    .setThemePreference(themePreference);
+                                if (sheetContext.mounted) {
+                                  Navigator.of(sheetContext).pop();
+                                }
+                              },
+                              child: Ink(
+                                padding: AppInsets.card,
+                                decoration: BoxDecoration(
+                                  color: selected
+                                      ? AppColors.primary.withValues(
+                                          alpha: 0.10,
+                                        )
+                                      : AppColors.surfaceMutedFor(sheetContext),
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                    color: selected
+                                        ? AppColors.primary
+                                        : Theme.of(sheetContext)
+                                              .colorScheme
+                                              .outline
+                                              .withValues(alpha: 0.4),
+                                  ),
+                                ),
+                                child: Row(
+                                  children: <Widget>[
+                                    Icon(
+                                      _iconForTheme(themePreference),
+                                      color: selected
+                                          ? AppColors.primary
+                                          : AppColors.textSecondaryFor(
+                                              sheetContext,
+                                            ),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Expanded(
+                                      child: AppText(
+                                        themePreference.label(context),
+                                        variant: AppTextVariant.titleMedium,
+                                      ),
+                                    ),
+                                    if (selected)
+                                      const Icon(
+                                        Icons.check_circle_rounded,
+                                        color: AppColors.primary,
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _LoadingState extends StatelessWidget {
+  const _LoadingState();
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 28),
+      children: const <Widget>[
+        LoadingSkeleton(height: 88),
+        SizedBox(height: 16),
+        LoadingSkeleton(height: 132),
+        SizedBox(height: 16),
+        LoadingSkeleton(height: 156),
+        SizedBox(height: 16),
+        LoadingSkeleton(height: 132),
+      ],
+    );
+  }
+}
+
+class _ErrorState extends StatelessWidget {
+  const _ErrorState({required this.error, required this.onRetry});
+
+  final Object error;
+  final VoidCallback onRetry;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: StatePanel(
+          icon: Icons.error_outline_rounded,
+          title: context.t.settingsFailedTitle,
+          message: '$error',
+          action: OutlinedButton.icon(
+            onPressed: onRetry,
+            icon: const Icon(Icons.refresh_rounded),
+            label: AppText(context.t.retry, variant: AppTextVariant.labelLarge),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+bool _isDarkThemeEnabled(BuildContext context, UserPreference preference) {
+  final brightness = Theme.of(context).brightness;
+  return switch (preference.themePreference) {
+    ThemePreference.dark => true,
+    ThemePreference.light => false,
+    ThemePreference.system => brightness == Brightness.dark,
+  };
+}
+
+String _resolvedThemeLabel(BuildContext context, UserPreference preference) {
+  return _isDarkThemeEnabled(context, preference)
+      ? context.t.themeDark
+      : context.t.themeLight;
+}
+
+IconData _resolvedThemeIcon(BuildContext context, UserPreference preference) {
+  return _isDarkThemeEnabled(context, preference)
+      ? Icons.dark_mode_outlined
+      : Icons.wb_sunny_outlined;
+}
+
+IconData _iconForTheme(ThemePreference preference) {
+  return switch (preference) {
+    ThemePreference.system => Icons.brightness_auto_rounded,
+    ThemePreference.dark => Icons.dark_mode_outlined,
+    ThemePreference.light => Icons.wb_sunny_outlined,
+  };
+}

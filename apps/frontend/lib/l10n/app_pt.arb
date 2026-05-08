@@ -1,0 +1,493 @@
+{
+    "@@locale":  "pt",
+    "appTitle":  "SubFlix",
+    "brandSubtitleCompact":  "InteligГЄncia de legendas",
+    "brandSubtitleFull":  "EstГєdio de traduГ§ГЈo de legendas por IA",
+    "comingSoonMessage":  "Ainda estamos preparando esta tela.",
+    "comingSoonTitle":  "Em breve",
+    "exportFailedSnack":  "Falha na exportaГ§ГЈo: {error}",
+    "@exportFailedSnack":  {
+                               "placeholders":  {
+                                                    "error":  {
+
+                                                              }
+                                                }
+                           },
+    "exportSubtitleLabel":  "Exportar legenda traduzida",
+    "exportedSnack":  "{fileName} exportado para {path}",
+    "@exportedSnack":  {
+                           "placeholders":  {
+                                                "fileName":  {
+
+                                                             },
+                                                "path":  {
+
+                                                         }
+                                            }
+                       },
+    "exportingLabel":  "Exportando...",
+    "heroBadge":  "Fluxo premium de legendas",
+    "heroBody":  "Escolha entre um catГЎlogo pesquisГЎvel ou o envio direto de arquivo, depois visualize e exporte legendas refinadas em poucos minutos.",
+    "heroHeadline":  "Traduza legendas de filmes e sГ©ries com um fluxo de nГ­vel profissional.",
+    "heroSearchCta":  "Buscar filme / sГ©rie",
+    "heroStatLanguagesTitle":  "10 idiomas",
+    "heroStatLanguagesValue":  "Prontos para prГ©via",
+    "heroStatMockTitle":  "APIs mock",
+    "heroStatMockValue":  "Camada pronta para backend",
+    "heroStatPathsTitle":  "2 caminhos",
+    "heroStatPathsValue":  "Buscar ou enviar",
+    "heroSubtitle":  "Pesquise catГЎlogos de filmes e sГ©ries, escolha fontes e exporte traduГ§Гµes refinadas em minutos.",
+    "heroTitle":  "Traduza legendas mais rГЎpido",
+    "heroUploadCta":  "Enviar legenda",
+    "historyCountLabel":  "{count} traduГ§Гµes",
+    "@historyCountLabel":  {
+                               "placeholders":  {
+                                                    "count":  {
+
+                                                              }
+                                                }
+                           },
+    "historyEmptyMessage":  "Seus trabalhos de legenda traduzida aparecerГЈo aqui depois que vocГЄ concluir um fluxo de busca ou envio.",
+    "historyEmptyTitle":  "O histГіrico estГЎ vazio",
+    "historyFailedItemMessage":  "A traduГ§ГЈo falhou. Toque para comeГ§ar de novo.",
+    "historyFailedTitle":  "NГЈo foi possГ­vel carregar o histГіrico",
+    "historyFilterAiTranslated":  "Traduzido por IA",
+    "historyFilterAll":  "Todos",
+    "historyFilterCompleted":  "ConcluГ­dos",
+    "historyFilterFailed":  "Falhou",
+    "historyFilterMovies":  "Filmes",
+    "historyFilterReused":  "Reutilizado",
+    "historyFilterSeries":  "SГ©ries",
+    "historySubtitle":  "Reabra trabalhos anteriores, revise a prГ©via novamente ou exporte depois.",
+    "historyTitle":  "HistГіrico de traduГ§Гµes",
+    "homeFailedRecentTitle":  "NГЈo foi possГ­vel carregar os trabalhos recentes",
+    "homeFutureSubtitle":  "RepositГіrios mock intercambiГЎveis mantГЄm o cГіdigo de UI protegido contra mudanГ§as no backend.",
+    "homeFutureTitle":  "RepositГіrios prontos para o futuro",
+    "homeNoRecentMessage":  "Comece com uma busca por filme ou envie um arquivo de legenda e suas traduГ§Гµes recentes aparecerГЈo aqui.",
+    "homeNoRecentTitle":  "Ainda nГЈo hГЎ trabalhos recentes",
+    "homePreviewSubtitle":  "Analise os resultados antes de exportar nas visualizaГ§Гµes original, traduzida ou bilГ­ngue.",
+    "homePreviewTitle":  "Fluxo de traduГ§ГЈo guiado por prГ©via",
+    "homeQuickHistory":  "HistГіrico",
+    "homeQuickSearch":  "Buscar",
+    "homeQuickUpload":  "Enviar",
+    "homeRecentJobsSubtitle":  "Reabra suas sessГµes mais recentes sem comeГ§ar do zero.",
+    "homeRecentJobsTitle":  "Trabalhos recentes",
+    "homeSearchPlaceholder":  "Buscar filmes ou sГ©ries...",
+    "homeStatesSubtitle":  "Carregamento, vazio, retry, validaГ§ГЈo e cenГЎrios mock offline fazem parte da UX desde o primeiro dia.",
+    "homeStatesTitle":  "Estados bem resolvidos inclusos",
+    "homeTrendingNow":  "Em alta agora",
+    "homeTrustSubtitle":  "Hoje ainda Г© mockado, mas jГЎ foi estruturado como um produto real.",
+    "homeTrustTitle":  "Por que as equipes confiam nisso",
+    "homeViewAll":  "Ver tudo",
+    "homeWelcomeSubtitle":  "Encontre e traduza legendas",
+    "homeWelcomeTitle":  "Bem-vindo de volta",
+    "jobConfidence":  "Confiabilidade: {level}",
+    "@jobConfidence":  {
+                           "placeholders":  {
+                                                "level":  {
+
+                                                          }
+                                            }
+                       },
+    "jobOpenPreview":  "Abrir prГ©via",
+    "jobReuseSubtitle":  "Reutilizar legenda",
+    "jobReuseTranslation":  "Reutilizar traduГ§ГЈo",
+    "legalBodyAbout":  "O SubFlix Г© um cliente Flutter com proposta premium para traduГ§ГЈo de legendas por IA. Este build usa repositГіrios mock, latГЄncia artificial e persistГЄncia local para que a UI e a arquitetura evoluam antes da conexГЈo com um backend real.",
+    "legalBodyPrivacy":  "Atualmente, o SubFlix armazena apenas preferГЄncias mock e histГіrico de traduГ§ГЈo no dispositivo por meio de persistГЄncia local. No futuro, uma integraГ§ГЈo com backend pode substituir isso por armazenamento autenticado, trilhas de auditoria e polГ­ticas de retenГ§ГЈo gerenciadas pelo servidor.",
+    "legalBodySupport":  "Por enquanto, o suporte Г© apenas um placeholder. Em uma versГЈo de produГ§ГЈo, esta seГ§ГЈo poderГЎ se conectar a e-mail, relato de problemas e ajuda para contas premium sem alterar a estrutura do app.",
+    "legalBodyTerms":  "Este build mock foi criado para exercitar fluxos de produto, estados de UI e limites de arquitetura. Quando um backend de produГ§ГЈo com NestJS e Postgres for conectado mais tarde, a camada jurГ­dica poderГЎ ser expandida com termos reais de serviГ§o e linguagem de processamento de dados.",
+    "legalPlaceholderBody":  "Esta pГЎgina Г© apenas um placeholder no app de demonstraГ§ГЈo. Conecte-a ao seu conteГєdo jurГ­dico de produГ§ГЈo.",
+    "legalTitleAbout":  "Sobre o SubFlix",
+    "legalTitlePrivacy":  "PolГ­tica de privacidade",
+    "legalTitleSupport":  "Suporte",
+    "legalTitleTerms":  "Termos de serviГ§o",
+    "mediaTypeMovie":  "Filme",
+    "mediaTypeSeries":  "SГ©rie",
+    "metadataEstimatedDuration":  "DuraГ§ГЈo estimada",
+    "metadataFormat":  "Formato",
+    "metadataLanguages":  "Idiomas",
+    "metadataLines":  "Linhas",
+    "navHistory":  "HistГіrico",
+    "navHome":  "Home",
+    "navSettings":  "ConfiguraГ§Гµes",
+    "noTitlesMatchedMessage":  "NГЈo encontramos esse tГ­tulo no catГЎlogo de teste. Tente uma busca mais ampla ou um dos tГ­tulos sugeridos.",
+    "noTitlesMatchedTitle":  "Nenhum resultado encontrado",
+    "onboardingContinue":  "Continuar",
+    "onboardingEnterApp":  "Entrar no SubFlix",
+    "onboardingNext":  "PrГіximo",
+    "onboardingPage1Description":  "Pesquise um tГ­tulo, confira as fontes de legenda em inglГЄs disponГ­veis e inicie um fluxo de traduГ§ГЈo que parece imediato.",
+    "onboardingPage1Eyebrow":  "Buscar e obter",
+    "onboardingPage1Highlight1":  "CatГЎlogo mock determinГ­stico para desenvolvimento confiГЎvel",
+    "onboardingPage1Highlight2":  "RГіtulos de qualidade e badges de formato",
+    "onboardingPage1Highlight3":  "Feito para trocar por um backend real depois",
+    "onboardingPage1Title":  "Encontre filmes ou sГ©ries e puxe legendas prontas para traduzir.",
+    "onboardingPage2Description":  "Importe seu arquivo de legenda, valide o formato e rode o mesmo pipeline refinado sem sair do app.",
+    "onboardingPage2Eyebrow":  "Use o seu prГіprio arquivo",
+    "onboardingPage2Highlight1":  "ValidaГ§ГЈo local de arquivo e estados de retry bem resolvidos",
+    "onboardingPage2Highlight2":  "ConfiguraГ§ГЈo consistente para envio e busca",
+    "onboardingPage2Highlight3":  "PrГ©via antes de exportar para que nada fique opaco",
+    "onboardingPage2Title":  "Envie arquivos `.srt` ou `.vtt` quando vocГЄ jГЎ tiver o script.",
+    "onboardingPage3Description":  "Alterne entre as visГµes original, traduzida e bilГ­ngue, revisite o histГіrico e exporte arquivos limpos quando o resultado estiver do jeito certo.",
+    "onboardingPage3Eyebrow":  "Traduzir e exportar",
+    "onboardingPage3Highlight1":  "Controles rГЎpidos de prГ©via com metadados e busca",
+    "onboardingPage3Highlight2":  "O histГіrico mantГ©m trabalhos anteriores a um toque de distГўncia",
+    "onboardingPage3Highlight3":  "Desenhado como uma ferramenta premium de mГ­dia, nГЈo como demo",
+    "onboardingPage3Title":  "Escolha os idiomas de destino, visualize as legendas e exporte na hora.",
+    "onboardingSkip":  "Pular",
+    "onboardingStart":  "Iniciar traduГ§ГЈo",
+    "previewFailedTitle":  "Falha ao carregar a prГ©via",
+    "previewModeBilingual":  "BilГ­ngue",
+    "previewModeOriginal":  "Original",
+    "previewModeTranslated":  "Traduzido",
+    "previewNoMatchesMessage":  "Tente outro termo de busca ou limpe o filtro para analisar a traduГ§ГЈo completa.",
+    "previewNoMatchesTitle":  "Nenhuma linha da legenda correspondeu",
+    "previewNotReadyMessage":  "A traduГ§ГЈo foi concluГ­da, mas o backend ainda nГЈo retornou os cues de prГ©via. Tente recarregar esta tela em instantes.",
+    "previewNotReadyTitle":  "Os cues de prГ©via ainda nГЈo estГЈo disponГ­veis",
+    "retry":  "Tentar novamente",
+    "retryTranslation":  "Refazer traduГ§ГЈo",
+    "routeMissingSeasonEpisodesMessage":  "NГЈo conseguimos determinar qual temporada deve ser carregada. Recomece pela busca.",
+    "routeMissingSeasonEpisodesTitle":  "EpisГіdios da temporada",
+    "routeMissingSeriesSeasonsMessage":  "NГЈo conseguimos determinar qual sГ©rie deve ser carregada. Recomece pela busca.",
+    "routeMissingSeriesSeasonsTitle":  "Temporadas da sГ©rie",
+    "routeMissingSubtitleSourcesMessage":  "NГЈo conseguimos determinar para qual tГ­tulo as fontes de legenda devem ser carregadas. Recomece pela busca.",
+    "routeMissingSubtitleSourcesTitle":  "Fontes de legenda",
+    "routeMissingTranslationProgressMessage":  "Nenhum pedido de traduГ§ГЈo foi fornecido. Inicie uma nova traduГ§ГЈo pela busca ou pelo envio.",
+    "routeMissingTranslationProgressTitle":  "Progresso da traduГ§ГЈo",
+    "routeMissingTranslationSetupMessage":  "Г‰ necessГЎrio ter uma fonte de legenda antes de abrir a tela de configuraГ§ГЈo da traduГ§ГЈo.",
+    "routeMissingTranslationSetupTitle":  "ConfiguraГ§ГЈo da traduГ§ГЈo",
+    "searchFailedTitle":  "A busca falhou",
+    "searchFoundResults":  "{count} resultados encontrados para \u0027\u0027{query}\u0027\u0027",
+    "@searchFoundResults":  {
+                                "placeholders":  {
+                                                     "count":  {
+
+                                                               },
+                                                     "query":  {
+
+                                                               }
+                                                 }
+                            },
+    "searchHintText":  "Busque por Dune, Breaking Bad, Severance...",
+    "searchLoadingLabel":  "Buscando...",
+    "searchMockMessage":  "Experimente tГ­tulos como Inception, Dune, Breaking Bad, Severance ou The Last of Us para explorar o fluxo de fontes de legenda.",
+    "searchMockTitle":  "Pesquise qualquer coisa no catГЎlogo de teste",
+    "searchMovieOrSeriesSubtitle":  "Encontre um tГ­tulo, confira as fontes de legenda e inicie uma traduГ§ГЈo com poucos toques.",
+    "searchMovieOrSeriesTitle":  "Buscar filme ou sГ©rie",
+    "searchNoResultsFor":  "Nenhum resultado encontrado para \u0027\u0027{query}\u0027\u0027",
+    "@searchNoResultsFor":  {
+                                "placeholders":  {
+                                                     "query":  {
+
+                                                               }
+                                                 }
+                            },
+    "searchResultPopularity":  "Popularidade {score}",
+    "@searchResultPopularity":  {
+                                    "placeholders":  {
+                                                         "score":  {
+
+                                                                   }
+                                                     }
+                                },
+    "searchTitles":  "Buscar tГ­tulos",
+    "searchTrendingTitle":  "Buscas em alta",
+    "searchTryDifferentKeywords":  "Tente buscar com outras palavras-chave.",
+    "seriesEpisodeLabel":  "EpisГіdio {episodeNumber}",
+    "@seriesEpisodeLabel":  {
+                                "placeholders":  {
+                                                     "episodeNumber":  {
+
+                                                                       }
+                                                 }
+                            },
+    "seriesEpisodeMeta":  "Aprox. {runtime} min",
+    "@seriesEpisodeMeta":  {
+                               "placeholders":  {
+                                                    "runtime":  {
+
+                                                                }
+                                                }
+                           },
+    "seriesEpisodesSubtitle":  "{episodeCount} episГіdios{year}",
+    "@seriesEpisodesSubtitle":  {
+                                    "placeholders":  {
+                                                         "episodeCount":  {
+
+                                                                          },
+                                                         "year":  {
+
+                                                                  }
+                                                     }
+                                },
+    "seriesEpisodesTitle":  "Temporada {seasonNumber}",
+    "@seriesEpisodesTitle":  {
+                                 "placeholders":  {
+                                                      "seasonNumber":  {
+
+                                                                       }
+                                                  }
+                             },
+    "seriesSeasonLabel":  "Temporada {seasonNumber}",
+    "@seriesSeasonLabel":  {
+                               "placeholders":  {
+                                                    "seasonNumber":  {
+
+                                                                     }
+                                                }
+                           },
+    "seriesSeasonMeta":  "{episodeCount} episГіdios{year}",
+    "@seriesSeasonMeta":  {
+                              "placeholders":  {
+                                                   "episodeCount":  {
+
+                                                                    },
+                                                   "year":  {
+
+                                                            }
+                                               }
+                          },
+    "seriesSeasonsSubtitle":  "Escolha uma temporada de {title} para ver os episГіdios disponГ­veis.",
+    "@seriesSeasonsSubtitle":  {
+                                   "placeholders":  {
+                                                        "title":  {
+
+                                                                  }
+                                                    }
+                               },
+    "seriesSeasonsTitle":  "Escolha uma temporada",
+    "settingsAboutTitle":  "Sobre o SubFlix",
+    "settingsCacheCleared":  "Cache limpo",
+    "settingsClearCache":  "Limpar cache",
+    "settingsContactTitle":  "Fale conosco",
+    "settingsFailedTitle":  "Falha ao carregar as configuraГ§Гµes",
+    "settingsHelpCenterTitle":  "Central de ajuda",
+    "settingsHistoryClearedSnack":  "HistГіrico de traduГ§Гµes apagado neste dispositivo",
+    "settingsLanguageLabel":  "Idioma de destino preferido",
+    "settingsMaintenanceSubtitle":  "Limpe os trabalhos de traduГ§ГЈo controlados pelo backend neste dispositivo e recomece com o histГіrico vazio.",
+    "settingsMaintenanceTitle":  "ManutenГ§ГЈo",
+    "settingsNotificationsSubtitle":  "Gerencie as preferГЄncias de notificaГ§ГЈo",
+    "settingsNotificationsTitle":  "NotificaГ§Гµes",
+    "settingsPremiumSubtitle":  "Depois poderemos conectar aqui assinaturas, cobranГ§a e sincronizaГ§ГЈo de projetos na nuvem.",
+    "settingsPremiumTitle":  "EspaГ§o premium",
+    "settingsPrivacySubtitle":  "ConteГєdo mock de privacidade",
+    "settingsPrivacyTitle":  "PolГ­tica de privacidade",
+    "settingsProfileName":  "UsuГЎrio SubFlix",
+    "settingsProfileTier":  "Membro premium",
+    "settingsSubtitle":  "Gerencie suas preferГЄncias",
+    "settingsSupportSubtitle":  "PГЎgina mock de ajuda e contato",
+    "settingsSupportTitle":  "EspaГ§o de suporte",
+    "settingsTermsSubtitle":  "ConteГєdo mock de termos",
+    "settingsTermsTitle":  "Termos de serviГ§o",
+    "settingsThemeLabel":  "AparГЄncia",
+    "settingsTitle":  "ConfiguraГ§Гµes",
+    "settingsVersion":  "VersГЈo {version}",
+    "@settingsVersion":  {
+                             "placeholders":  {
+                                                  "version":  {
+
+                                                              }
+                                              }
+                         },
+    "splashHeadline":  "SubFlix",
+    "splashPreparing":  "Preparando seu estГєdio de legendas",
+    "splashSubtitle":  "TraduГ§ГЈo de legendas com IA",
+    "startTranslation":  "Iniciar traduГ§ГЈo",
+    "subtitleSourceDownloads":  "{downloads} downloads",
+    "@subtitleSourceDownloads":  {
+                                     "placeholders":  {
+                                                          "downloads":  {
+
+                                                                        }
+                                                      }
+                                 },
+    "subtitleSourceFormatLabel":  "Fonte de legenda {format}",
+    "@subtitleSourceFormatLabel":  {
+                                       "placeholders":  {
+                                                            "format":  {
+
+                                                                       }
+                                                        }
+                                   },
+    "subtitleSourceHiLabel":  "HI / SDH",
+    "subtitleSourceLines":  "{lineCount} linhas",
+    "@subtitleSourceLines":  {
+                                 "placeholders":  {
+                                                      "lineCount":  {
+
+                                                                    }
+                                                  }
+                             },
+    "subtitleSourceRating":  "AvaliaГ§ГЈo {rating}",
+    "@subtitleSourceRating":  {
+                                  "placeholders":  {
+                                                       "rating":  {
+
+                                                                  }
+                                                   }
+                              },
+    "subtitleSourcesBannerMessage":  "Selecione uma fonte de legenda e siga para uma configuraГ§ГЈo refinada, ajustada ao timing da legenda.",
+    "subtitleSourcesBannerTitle":  "TraduГ§ГЈo por IA disponГ­vel",
+    "subtitleSourcesFailedTitle":  "NГЈo foi possГ­vel carregar as fontes de legenda",
+    "subtitleSourcesSubtitle":  "Escolha uma fonte de legenda para {title}{target} e depois selecione o idioma de destino na prГіxima etapa.",
+    "@subtitleSourcesSubtitle":  {
+                                     "placeholders":  {
+                                                          "title":  {
+
+                                                                    },
+                                                          "target":  {
+
+                                                                     }
+                                                      }
+                                 },
+    "subtitleSourcesTitle":  "Fontes de legenda em inglГЄs",
+    "targetLanguage":  "Idioma de destino",
+    "themeDark":  "Escuro",
+    "themeLight":  "Claro",
+    "themeSystem":  "Sistema",
+    "translateSetupAutoDetect":  "Detectar formato automaticamente",
+    "translateSetupAutoDetectBody":  "Escolhe automaticamente a estrutura certa de saГ­da da legenda.",
+    "translateSetupLanguageTitle":  "Traduzir para",
+    "translateSetupOptionsTitle":  "OpГ§Гµes",
+    "translateSetupPreserveTiming":  "Preservar tempo",
+    "translateSetupPreserveTimingBody":  "MantГ©m os tempos originais da legenda alinhados com o arquivo de origem.",
+    "translateSetupReadyBody":  "Nosso fluxo vai adaptar esta legenda para {language}, preservando o tempo e uma estrutura de cues limpa.",
+    "@translateSetupReadyBody":  {
+                                     "placeholders":  {
+                                                          "language":  {
+
+                                                                       }
+                                                      }
+                                 },
+    "translateSetupReadyTitle":  "TraduГ§ГЈo por IA pronta",
+    "translateSetupSelectLanguage":  "Selecionar idioma",
+    "translateSetupSourceTitle":  "Legenda de origem",
+    "translateSetupSubtitle":  "Escolha o idioma de destino, revise a fonte da legenda e inicie a traduГ§ГЈo no backend.",
+    "translateSetupTitle":  "ConfiguraГ§ГЈo da traduГ§ГЈo",
+    "translationFailedMessage":  "Algo deu errado.",
+    "translationFailedTitle":  "NГЈo foi possГ­vel concluir a traduГ§ГЈo",
+    "translationPreviewHeader":  "Revise as legendas traduzidas",
+    "translationPreviewSearchHint":  "Buscar linhas da legenda",
+    "translationPreviewSubtitle":  "Pesquise dentro dos cues, alterne o modo de visualizaГ§ГЈo e exporte quando o resultado estiver certo.",
+    "translationPreviewTitle":  "PrГ©via da traduГ§ГЈo",
+    "translationProgressHeadline":  "TraduГ§ГЈo de legendas por IA em andamento",
+    "translationProgressTitle":  "Progresso da traduГ§ГЈo",
+    "translationResultCompleteSubtitle":  "Sua legenda estГЎ pronta para visualizar ou baixar.",
+    "translationResultCompleteTitle":  "TraduГ§ГЈo concluГ­da",
+    "translationResultConfidenceLabel":  "Confiabilidade da traduГ§ГЈo",
+    "translationResultDetailsTitle":  "Detalhes da traduГ§ГЈo",
+    "translationResultDownloadCta":  "Baixar legenda",
+    "translationResultHomeCta":  "Voltar para a home",
+    "translationResultMediaLabel":  "TГ­tulo da mГ­dia",
+    "translationResultMethodAi":  "Traduzido por IA",
+    "translationResultMetricsTitle":  "MГ©tricas de qualidade",
+    "translationResultPreviewCta":  "Visualizar legenda",
+    "translationResultProcessedIn":  "Processado em {duration}",
+    "@translationResultProcessedIn":  {
+                                          "placeholders":  {
+                                                               "duration":  {
+
+                                                                            }
+                                                           }
+                                      },
+    "translationResultSourceLabel":  "Idioma de origem",
+    "translationResultTargetLabel":  "Idioma de destino",
+    "translationResultTimingLabel":  "PrecisГЈo do tempo",
+    "translationResultTimingPreserved":  "Tempo preservado",
+    "translationResultWarning":  "Alguns termos tГ©cnicos ainda podem se beneficiar de uma revisГЈo humana rГЎpida para garantir o contexto.",
+    "translationStageAligning":  "Alinhando timestamps e contexto da cena",
+    "translationStageGenerating":  "Gerando a traduГ§ГЈo da legenda",
+    "translationStageIdle":  "Aguardando um pedido de traduГ§ГЈo",
+    "translationStagePreparing":  "Preparando pacote de legendas",
+    "translationStageQueued":  "Na fila para traduГ§ГЈo",
+    "translationStageReadability":  "Aplicando revisГЈo de legibilidade",
+    "translationStageReady":  "TraduГ§ГЈo pronta",
+    "tryAgain":  "Tente novamente",
+    "uploadChooseFile":  "Escolher arquivo de legenda",
+    "uploadChooseFileShort":  "Escolher arquivo",
+    "uploadContinueSetup":  "Continuar para a configuraГ§ГЈo da traduГ§ГЈo",
+    "uploadEnglishSource":  "Fonte em inglГЄs",
+    "uploadFailedFallback":  "Tente outro arquivo de legenda.",
+    "uploadFailedMessage":  "NГЈo foi possГ­vel ler este arquivo de legenda. Tente outro arquivo ou uma exportaГ§ГЈo menor.",
+    "uploadFailedTitle":  "Falha ao importar o arquivo",
+    "uploadIntroSubtitle":  "Importe um arquivo em inglГЄs `.srt` ou `.vtt`, deixe o backend validar e interpretar o conteГєdo e depois siga para a configuraГ§ГЈo da traduГ§ГЈo.",
+    "uploadIntroTitle":  "Use o seu prГіprio arquivo de legenda",
+    "uploadLineCount":  "{lineCount} linhas",
+    "@uploadLineCount":  {
+                             "placeholders":  {
+                                                  "lineCount":  {
+
+                                                                }
+                                              }
+                         },
+    "uploadMetadataTitle":  "Detalhes da legenda",
+    "uploadOpeningPicker":  "Abrindo seletor...",
+    "uploadPickSubtitle":  "Selecionar arquivo de legenda",
+    "uploadPickedFile":  "Arquivo de legenda selecionado",
+    "uploadReadyTitle":  "Pronto para traduzir",
+    "uploadSubtitleTitle":  "Enviar legenda",
+    "uploadSupportedFormatsSubtitle":  "Arquivos de legenda em inglГЄs `.srt` e `.vtt`",
+    "uploadSupportedFormatsTitle":  "Formatos compatГ­veis",
+    "uploadUseDemoFile":  "Usar arquivo de demonstraГ§ГЈo",
+    "authAccountSectionTitle":  "Conta",
+    "authAlreadySignedInTitle":  "Você já está conectado",
+    "authAlreadySignedInMessage":  "Este dispositivo já está conectado como {email}.",
+    "authBackToAccount":  "Voltar para a conta",
+    "authBackToSignIn":  "Voltar para entrar",
+    "authCheckInboxTitle":  "Verifique sua caixa de entrada",
+    "authConfirmEmailAction":  "Confirmar e-mail",
+    "authConfirmEmailHint":  "Use o token de verificação enviado para {email}.",
+    "authConfirmEmailSubtitle":  "Cole o token de verificação do seu e-mail para concluir a ativação desta conta.",
+    "authConfirmEmailSuccess":  "E-mail confirmado. Agora você pode entrar.",
+    "authConfirmEmailTitle":  "Verifique seu e-mail",
+    "authConfirmPasswordLabel":  "Confirmar senha",
+    "authContinueToReset":  "Continuar para redefinir",
+    "authContinueWithGoogle":  "Continuar com Google",
+    "authCreateAccountAction":  "Criar conta",
+    "authDebugTokenLabel":  "Token de depuração: {token}",
+    "authDisplayNameLabel":  "Nome de exibição",
+    "authEmailLabel":  "Endereço de e-mail",
+    "authEyebrow":  "Espaço seguro",
+    "authFieldRequired":  "Este campo é obrigatório.",
+    "authForgotPasswordAction":  "Enviar link de redefinição",
+    "authForgotPasswordDebugMessage":  "Um token de redefinição foi retornado para este ambiente de depuração. Você pode continuar diretamente para o formulário de redefinição.",
+    "authForgotPasswordLink":  "Esqueceu a senha?",
+    "authForgotPasswordSubtitle":  "Digite seu e-mail e solicitaremos ao backend uma redefinição de senha para esta conta.",
+    "authForgotPasswordSuccess":  "Se a conta existir, uma mensagem de redefinição de senha foi enviada.",
+    "authForgotPasswordTitle":  "Redefina sua senha",
+    "authGoogleHelper":  "O login com Google usa o Firebase OAuth e funcionará quando este app estiver conectado a um projeto Firebase.",
+    "authGoogleShortAction":  "Google",
+    "authHaveAccountLink":  "Já tem uma conta? Entre",
+    "authInvalidEmail":  "Digite um endereço de e-mail válido.",
+    "authNewPasswordLabel":  "Nova senha",
+    "authNoAccountLink":  "Precisa de uma conta? Crie uma",
+    "authOrDivider":  "ou",
+    "authPasswordLabel":  "Senha",
+    "authPasswordMismatch":  "As senhas não correspondem.",
+    "authPasswordTooShort":  "Use pelo menos 8 caracteres.",
+    "authProfileRefreshed":  "Dados da conta atualizados.",
+    "authRefreshProfileAction":  "Atualizar perfil",
+    "authRefreshProfileSubtitle":  "Carregar os dados de perfil mais recentes do backend.",
+    "authResetPasswordAction":  "Salvar nova senha",
+    "authResetPasswordHint":  "Redefina a senha de {email} usando o token enviado por e-mail.",
+    "authResetPasswordSubtitle":  "Digite o token de redefinição e escolha uma nova senha para esta conta.",
+    "authResetPasswordSuccess":  "Senha atualizada. Faça login novamente.",
+    "authResetPasswordTitle":  "Escolha uma nova senha",
+    "authSignInAction":  "Entrar",
+    "authSignInSubtitle":  "Conecte este app à sua conta SubFlix para sincronizar dados de perfil e desbloquear fluxos autenticados do backend.",
+    "authSignInSuccess":  "Login realizado com sucesso.",
+    "authSignInTitle":  "Bem-vindo de volta",
+    "authSignedInCardSubtitle":  "Conectado como {email}",
+    "authSignedOutCardSubtitle":  "Entre para gerenciar sua conta, usar Firebase OAuth e deixar os recursos autenticados prontos para sincronizações futuras.",
+    "authSignedOutCardTitle":  "Entre no SubFlix",
+    "authSignOutAction":  "Sair",
+    "authSignOutSubtitle":  "Revogue a sessão atual deste dispositivo e limpe os tokens locais.",
+    "authSignOutSuccess":  "Sessão encerrada neste dispositivo.",
+    "authSignUpAction":  "Criar minha conta",
+    "authSignUpSubtitle":  "Crie uma conta para que este app possa usar o perfil autenticado e os fluxos de sessão do backend.",
+    "authSignUpSuccess":  "Conta criada. Continue com a verificação do e-mail.",
+    "authSignUpTitle":  "Crie sua conta",
+    "authVerificationStatusTitle":  "Verificação de e-mail",
+    "authVerificationTokenLabel":  "Token de verificação",
+    "authVerifiedStatus":  "Verificado",
+    "authUnverifiedStatus":  "Verificação pendente"
+}

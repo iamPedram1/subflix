@@ -1,0 +1,147 @@
+import 'package:flutter/material.dart';
+
+import 'package:subflix/core/localization/app_localizations.dart';
+import 'package:subflix/core/styles/colors.dart';
+import 'package:subflix/core/styles/spacing.dart';
+import 'package:subflix/core/ui/icons/iconsax.dart';
+import 'package:subflix/core/ui/widgets/app_directional_icon.dart';
+import 'package:subflix/core/ui/widgets/app_surface_card.dart';
+import 'package:subflix/core/ui/widgets/app_text.dart';
+import 'package:subflix/features/search/domain/models/movie_search_item.dart';
+import 'package:subflix/features/shared/domain/models/search_media_type.dart';
+
+class SearchResultCard extends StatelessWidget {
+  const SearchResultCard({required this.item, required this.onTap, super.key});
+
+  final MovieSearchItem item;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppSurfaceCard(
+      onTap: onTap,
+      child: Column(
+        spacing: 14,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            spacing: 14,
+            children: <Widget>[
+              _PosterBadge(item: item),
+              Expanded(
+                child: Column(
+                  spacing: 4,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    AppText(item.title, variant: AppTextVariant.titleLarge),
+                    AppText(
+                      '${item.mediaType.label(context)} \u2022 ${item.year}',
+                      variant: AppTextVariant.bodySmall,
+                      color: AppColors.textSecondaryFor(context),
+                    ),
+                  ],
+                ),
+              ),
+              AppDirectionalIcon(
+                icon: Iconsax.arrowRight,
+                color: AppColors.textMutedFor(context),
+              ),
+            ],
+          ),
+          AppText(
+            item.synopsis,
+            variant: AppTextVariant.bodyMedium,
+            color: AppColors.textSecondaryFor(context),
+          ),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: <Widget>[
+              _MiniChip(label: item.genres.first),
+              _MiniChip(label: '${item.runtimeMinutes}m'),
+              _MiniChip(
+                label: context.t.searchResultPopularity(
+                  item.popularity.toStringAsFixed(1),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _PosterBadge extends StatelessWidget {
+  const _PosterBadge({required this.item});
+
+  final MovieSearchItem item;
+
+  @override
+  Widget build(BuildContext context) {
+    final posterUrl = item.posterUrl?.trim();
+    final hasPoster = posterUrl != null && posterUrl.isNotEmpty;
+
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(18),
+      child: SizedBox(
+        width: 56,
+        height: 56,
+        child: hasPoster
+            ? Image.network(
+                posterUrl,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) =>
+                    const _PosterBadgeFallback(),
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) {
+                    return child;
+                  }
+                  return const _PosterBadgeFallback();
+                },
+              )
+            : const _PosterBadgeFallback(),
+      ),
+    );
+  }
+}
+
+class _PosterBadgeFallback extends StatelessWidget {
+  const _PosterBadgeFallback();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: AppColors.heroGradient,
+        borderRadius: BorderRadius.circular(18),
+      ),
+      alignment: Alignment.center,
+      child: const Icon(Iconsax.video, color: Colors.white),
+    );
+  }
+}
+
+class _MiniChip extends StatelessWidget {
+  const _MiniChip({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: AppColors.surfaceMutedFor(context).withValues(alpha: 0.52),
+        borderRadius: BorderRadius.circular(999),
+      ),
+      child: Padding(
+        padding: AppInsets.chip,
+        child: AppText(
+          label,
+          variant: AppTextVariant.labelMedium,
+          color: AppColors.textSecondaryFor(context),
+        ),
+      ),
+    );
+  }
+}

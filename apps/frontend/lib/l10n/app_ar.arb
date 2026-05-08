@@ -1,0 +1,493 @@
+{
+    "@@locale":  "ar",
+    "appTitle":  "SubFlix",
+    "brandSubtitleCompact":  "Ш°ЩѓШ§ШЎ Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "brandSubtitleFull":  "Ш§ШіШЄЩ€ШЇЩЉЩ€ ШЄШ±Ш¬Щ…Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш© ШЁШ§Щ„Ш°ЩѓШ§ШЎ Ш§Щ„Ш§ШµШ·Щ†Ш§Ш№ЩЉ",
+    "comingSoonMessage":  "Щ…Ш§ ШІЩ„Щ†Ш§ Щ†Ш¬Щ‡Щ‘ШІ Щ‡Ш°Щ‡ Ш§Щ„ШґШ§ШґШ©.",
+    "comingSoonTitle":  "Щ‚Ш±ЩЉШЁЩ‹Ш§",
+    "exportFailedSnack":  "ЩЃШґЩ„ Ш§Щ„ШЄШµШЇЩЉШ±: {error}",
+    "@exportFailedSnack":  {
+                               "placeholders":  {
+                                                    "error":  {
+
+                                                              }
+                                                }
+                           },
+    "exportSubtitleLabel":  "ШЄШµШЇЩЉШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„Щ…ШЄШ±Ш¬Щ…Ш©",
+    "exportedSnack":  "ШЄЩ… ШЄШµШЇЩЉШ± {fileName} ШҐЩ„Щ‰ {path}",
+    "@exportedSnack":  {
+                           "placeholders":  {
+                                                "fileName":  {
+
+                                                             },
+                                                "path":  {
+
+                                                         }
+                                            }
+                       },
+    "exportingLabel":  "Ш¬Ш§Ш±ЩЌ Ш§Щ„ШЄШµШЇЩЉШ±...",
+    "heroBadge":  "Щ…ШіШ§Ш± ШЄШ±Ш¬Щ…Ш© Ш§Ш­ШЄШ±Ш§ЩЃЩЉ",
+    "heroBody":  "Ш§Ш®ШЄШ± ШЁЩЉЩ† ЩЃЩ‡Ш±Ші Ш№Щ†Ш§Щ€ЩЉЩ† Щ‚Ш§ШЁЩ„ Щ„Щ„ШЁШ­Ш« ШЈЩ€ Ш±ЩЃШ№ Щ…Щ„ЩЃ Щ…ШЁШ§ШґШ±ШЊ Ш«Щ… Ш№Ш§ЩЉЩ† Щ€ШµШЇЩ‘Ш± ШЄШ±Ш¬Щ…Ш§ШЄ Щ…ШµЩ‚Щ€Щ„Ш© Ш®Щ„Ш§Щ„ ШЇЩ‚Ш§Ш¦Щ‚.",
+    "heroHeadline":  "ШЄШ±Ш¬Щ… ШЄШ±Ш¬Щ…Ш§ШЄ Ш§Щ„ШЈЩЃЩ„Ш§Щ… Щ€Ш§Щ„Щ…ШіЩ„ШіЩ„Ш§ШЄ ШЁЩ…ШіШ§Ш± Ш№Щ…Щ„ ШЁЩ…ШіШЄЩ€Щ‰ Ш§Щ„Ш§ШіШЄЩ€ШЇЩЉЩ€.",
+    "heroSearchCta":  "Ш§ШЁШ­Ш« Ш№Щ† ЩЃЩЉЩ„Щ… / Щ…ШіЩ„ШіЩ„",
+    "heroStatLanguagesTitle":  "10 Щ„ШєШ§ШЄ",
+    "heroStatLanguagesValue":  "Ш¬Ш§Щ‡ШІШ© Щ„Щ„Щ…Ш№Ш§ЩЉЩ†Ш©",
+    "heroStatMockTitle":  "Щ€Ш§Ш¬Щ‡Ш§ШЄ Щ€Щ‡Щ…ЩЉШ©",
+    "heroStatMockValue":  "Щ†Щ‚Ш·Ш© Ш¬Ш§Щ‡ШІШ© Щ„Щ„Ш®Ш§ШЇЩ…",
+    "heroStatPathsTitle":  "Щ…ШіШ§Ш±Ш§Щ†",
+    "heroStatPathsValue":  "ШЁШ­Ш« ШЈЩ€ Ш±ЩЃШ№",
+    "heroSubtitle":  "Ш§ШЁШ­Ш« ЩЃЩЉ ЩЃЩ‡Ш§Ш±Ші Ш§Щ„ШЈЩЃЩ„Ш§Щ… Щ€Ш§Щ„Щ…ШіЩ„ШіЩ„Ш§ШЄШЊ Щ€Ш§Ш®ШЄШ± Ш§Щ„Щ…ШµШ§ШЇШ±ШЊ Щ€ШµШЇЩ‘Ш± ШЄШ±Ш¬Щ…Ш§ШЄ Щ…ШµЩ‚Щ€Щ„Ш© Ш®Щ„Ш§Щ„ ШЇЩ‚Ш§Ш¦Щ‚.",
+    "heroTitle":  "ШЄШ±Ш¬Щ… Ш§Щ„ШЄШ±Ш¬Щ…Ш§ШЄ ШЁШіШ±Ш№Ш© ШЈЩѓШЁШ±",
+    "heroUploadCta":  "Ш±ЩЃШ№ Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "historyCountLabel":  "{count} ШЄШ±Ш¬Щ…Ш©",
+    "@historyCountLabel":  {
+                               "placeholders":  {
+                                                    "count":  {
+
+                                                              }
+                                                }
+                           },
+    "historyEmptyMessage":  "ШіШЄШёЩ‡Ш± Щ…Щ‡Ш§Щ… Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„Щ…Щ†Ш¬ШІШ© Щ‡Щ†Ш§ ШЁШ№ШЇ ШҐЩѓЩ…Ш§Щ„ Щ…ШіШ§Ш± Ш§Щ„ШЁШ­Ш« ШЈЩ€ Ш§Щ„Ш±ЩЃШ№.",
+    "historyEmptyTitle":  "Ш§Щ„ШіШ¬Щ„ ЩЃШ§Ш±Шє",
+    "historyFailedItemMessage":  "ЩЃШґЩ„ШЄ Ш§Щ„ШЄШ±Ш¬Щ…Ш©. Ш§Ш¶ШєШ· Щ„Щ„ШЁШЇШЎ Щ…Щ† Ш¬ШЇЩЉШЇ.",
+    "historyFailedTitle":  "ШЄШ№Ш°Щ‘Ш± ШЄШ­Щ…ЩЉЩ„ Ш§Щ„ШіШ¬Щ„",
+    "historyFilterAiTranslated":  "Щ…ШЄШ±Ш¬Щ…Ш© ШЁШ§Щ„Ш°ЩѓШ§ШЎ Ш§Щ„Ш§ШµШ·Щ†Ш§Ш№ЩЉ",
+    "historyFilterAll":  "Ш§Щ„ЩѓЩ„",
+    "historyFilterCompleted":  "Щ…ЩѓШЄЩ…Щ„Ш©",
+    "historyFilterFailed":  "ЩЃШ§ШґЩ„Ш©",
+    "historyFilterMovies":  "Ш§Щ„ШЈЩЃЩ„Ш§Щ…",
+    "historyFilterReused":  "Щ…Ш№Ш§ШЇ Ш§ШіШЄШ®ШЇШ§Щ…Щ‡Ш§",
+    "historyFilterSeries":  "Ш§Щ„Щ…ШіЩ„ШіЩ„Ш§ШЄ",
+    "historySubtitle":  "ШЈШ№ШЇ ЩЃШЄШ­ Щ…Щ‡Ш§Щ… Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„ШіШ§ШЁЩ‚Ш©ШЊ Щ€Ш±Ш§Ш¬Ш№ Ш§Щ„Щ…Ш№Ш§ЩЉЩ†Ш© Щ…Ш¬ШЇШЇЩ‹Ш§ШЊ ШЈЩ€ ШµШЇЩ‘Ш±Щ‡Ш§ Щ„Ш§Ш­Щ‚Щ‹Ш§.",
+    "historyTitle":  "ШіШ¬Щ„ Ш§Щ„ШЄШ±Ш¬Щ…Ш§ШЄ",
+    "homeFailedRecentTitle":  "ШЄШ№Ш°Щ‘Ш± ШЄШ­Щ…ЩЉЩ„ Ш§Щ„Щ…Щ‡Ш§Щ… Ш§Щ„ШЈШ®ЩЉШ±Ш©",
+    "homeFutureSubtitle":  "ШЄЩЏШЁЩ‚ЩЉ Ш§Щ„Щ…ШіШЄЩ€ШЇШ№Ш§ШЄ Ш§Щ„ШЄШ¬Ш±ЩЉШЁЩЉШ© Ш§Щ„Щ‚Ш§ШЁЩ„Ш© Щ„Щ„Ш§ШіШЄШЁШЇШ§Щ„ Щ€Ш§Ш¬Щ‡Ш© Ш§Щ„Щ…ШіШЄШ®ШЇЩ… Щ…Ш№ШІЩ€Щ„Ш© Ш№Щ† ШЄШєЩЉЩЉШ±Ш§ШЄ Ш§Щ„Ш®Ш§ШЇЩ….",
+    "homeFutureTitle":  "Щ…ШіШЄЩ€ШЇШ№Ш§ШЄ Ш¬Ш§Щ‡ШІШ© Щ„Щ„Щ…ШіШЄЩ‚ШЁЩ„",
+    "homeNoRecentMessage":  "Ш§ШЁШЇШЈ ШЁШ§Щ„ШЁШ­Ш« Ш№Щ† ЩЃЩЉЩ„Щ… ШЈЩ€ Ш§Ш±ЩЃШ№ Щ…Щ„ЩЃ ШЄШ±Ш¬Щ…Ш©ШЊ Щ€ШіШЄШёЩ‡Ш± ШЄШ±Ш¬Щ…Ш§ШЄЩѓ Ш§Щ„ШЈШ®ЩЉШ±Ш© Щ‡Щ†Ш§.",
+    "homeNoRecentTitle":  "Щ„Ш§ ШЄЩ€Ш¬ШЇ Щ…Щ‡Ш§Щ… Ш­ШЇЩЉШ«Ш© ШЁШ№ШЇ",
+    "homePreviewSubtitle":  "Ш±Ш§Ш¬Ш№ Ш§Щ„Щ†ШЄШ§Ш¦Ш¬ Щ‚ШЁЩ„ Ш§Щ„ШЄШµШЇЩЉШ± Ш№ШЁШ± Ш§Щ„Ш№Ш±Ш¶ Ш§Щ„ШЈШµЩ„ЩЉ ШЈЩ€ Ш§Щ„Щ…ШЄШ±Ш¬Щ… ШЈЩ€ Ш§Щ„Ш«Щ†Ш§Ш¦ЩЉ Ш§Щ„Щ„ШєШ©.",
+    "homePreviewTitle":  "Щ…ШіШ§Ш± ШЄШ±Ш¬Щ…Ш© Щ‚Ш§Ш¦Щ… Ш№Щ„Щ‰ Ш§Щ„Щ…Ш№Ш§ЩЉЩ†Ш© ШЈЩ€Щ„Щ‹Ш§",
+    "homeQuickHistory":  "Ш§Щ„ШіШ¬Щ„",
+    "homeQuickSearch":  "ШЁШ­Ш«",
+    "homeQuickUpload":  "Ш±ЩЃШ№",
+    "homeRecentJobsSubtitle":  "ШЈШ№ШЇ ЩЃШЄШ­ ШЈШ­ШЇШ« Ш¬Щ„ШіШ§ШЄ Ш§Щ„ШЄШ±Ш¬Щ…Ш© Щ„ШЇЩЉЩѓ ШЇЩ€Щ† Ш§Щ„ШЁШЇШЎ Щ…Щ† Ш§Щ„ШµЩЃШ±.",
+    "homeRecentJobsTitle":  "Ш§Щ„Щ…Щ‡Ш§Щ… Ш§Щ„ШЈШ®ЩЉШ±Ш©",
+    "homeSearchPlaceholder":  "Ш§ШЁШ­Ш« Ш№Щ† ШЈЩЃЩ„Ш§Щ… ШЈЩ€ Щ…ШіЩ„ШіЩ„Ш§ШЄ...",
+    "homeStatesSubtitle":  "Ш§Щ„ШЄШ­Щ…ЩЉЩ„ШЊ Щ€Ш§Щ„ЩЃШ±Ш§ШєШЊ Щ€ШҐШ№Ш§ШЇШ© Ш§Щ„Щ…Ш­Ш§Щ€Щ„Ш©ШЊ Щ€Ш§Щ„ШЄШ­Щ‚Щ‚ШЊ Щ€ШіЩЉЩ†Ш§Ш±ЩЉЩ€Щ‡Ш§ШЄ Ш№ШЇЩ… Ш§Щ„Ш§ШЄШµШ§Щ„ Ш§Щ„ШЄШ¬Ш±ЩЉШЁЩЉШ© Ш¬ШІШЎ Щ…Щ† ШЄШ¬Ш±ШЁШ© Ш§Щ„Ш§ШіШЄШ®ШЇШ§Щ… Щ…Щ†Ш° Ш§Щ„ЩЉЩ€Щ… Ш§Щ„ШЈЩ€Щ„.",
+    "homeStatesTitle":  "Ш­Ш§Щ„Ш§ШЄ Ш§ШіШЄШ®ШЇШ§Щ… ШіЩ„ШіШ© Щ…Ш¶Щ…Щ‘Щ†Ш©",
+    "homeTrendingNow":  "Ш§Щ„Ш±Ш§Ш¦Ш¬ Ш§Щ„ШўЩ†",
+    "homeTrustSubtitle":  "Щ…ЩЏШ­Ш§ЩѓЩ‰ Ш§Щ„ЩЉЩ€Щ…ШЊ Щ„ЩѓЩ†Щ‡ Щ…ШЁЩ†ЩЉ ЩѓЩ…Щ†ШЄШ¬ Щ‚Ш§ШЁЩ„ Щ„Щ„ШҐШ·Щ„Ш§Щ‚ ЩЃШ№Щ„ЩЉЩ‹Ш§.",
+    "homeTrustTitle":  "Щ„Щ…Ш§Ш°Ш§ ШЄШ«Щ‚ ШЁЩ‡ Ш§Щ„ЩЃШ±Щ‚",
+    "homeViewAll":  "Ш№Ш±Ш¶ Ш§Щ„ЩѓЩ„",
+    "homeWelcomeSubtitle":  "Ш§Ш№Ш«Ш± Ш№Щ„Щ‰ Ш§Щ„ШЄШ±Ш¬Щ…Ш§ШЄ Щ€ШЄШ±Ш¬Щ…Щ‡Ш§",
+    "homeWelcomeTitle":  "Щ…Ш±Ш­ШЁЩ‹Ш§ ШЁШ№Щ€ШЇШЄЩѓ",
+    "jobConfidence":  "Ш§Щ„Ш«Щ‚Ш©: {level}",
+    "@jobConfidence":  {
+                           "placeholders":  {
+                                                "level":  {
+
+                                                          }
+                                            }
+                       },
+    "jobOpenPreview":  "ЩЃШЄШ­ Ш§Щ„Щ…Ш№Ш§ЩЉЩ†Ш©",
+    "jobReuseSubtitle":  "ШҐШ№Ш§ШЇШ© Ш§ШіШЄШ®ШЇШ§Щ… Щ…Щ„ЩЃ Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "jobReuseTranslation":  "ШҐШ№Ш§ШЇШ© Ш§ШіШЄШ®ШЇШ§Щ… Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "legalBodyAbout":  "SubFlix Ш№Щ…ЩЉЩ„ Flutter ШЁШ·Ш§ШЁШ№ Ш§Ш­ШЄШ±Ш§ЩЃЩЉ Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш© ШЁШ§Щ„Ш°ЩѓШ§ШЎ Ш§Щ„Ш§ШµШ·Щ†Ш§Ш№ЩЉ. ШЄШіШЄШ®ШЇЩ… Щ‡Ш°Щ‡ Ш§Щ„Щ†ШіШ®Ш© Щ…ШіШЄЩ€ШЇШ№Ш§ШЄ Щ€Щ‡Щ…ЩЉШ©ШЊ Щ€ШЄШЈШ®ЩЉШ±Щ‹Ш§ Ш§ШµШ·Щ†Ш§Ш№ЩЉЩ‹Ш§ШЊ Щ€ШЄШ®ШІЩЉЩ†Щ‹Ш§ Щ…Ш­Щ„ЩЉЩ‹Ш§ Ш­ШЄЩ‰ ШЄШЄШ·Щ€Ш± Ш§Щ„Щ€Ш§Ш¬Щ‡Ш© Щ€Ш§Щ„ШЁЩ†ЩЉШ© Щ‚ШЁЩ„ Ш±ШЁШ· Ш®Ш§ШЇЩ… Ш­Щ‚ЩЉЩ‚ЩЉ.",
+    "legalBodyPrivacy":  "ЩЉШ®ШІЩ† SubFlix Ш­Ш§Щ„ЩЉЩ‹Ш§ Ш§Щ„ШЄЩЃШ¶ЩЉЩ„Ш§ШЄ Ш§Щ„ШЄШ¬Ш±ЩЉШЁЩЉШ© Щ€ШіШ¬Щ„ Ш§Щ„ШЄШ±Ш¬Щ…Ш© ЩЃЩ‚Ш· Ш№Щ„Щ‰ Ш§Щ„Ш¬Щ‡Ш§ШІ Ш№ШЁШ± Ш§Щ„ШЄШ®ШІЩЉЩ† Ш§Щ„Щ…Ш­Щ„ЩЉ. ЩЉЩ…ЩѓЩ† ШЈЩ† ЩЉШіШЄШЁШЇЩ„ ШЄЩѓШ§Щ…Щ„ Ш®Ш§ШЇЩ… Щ…ШіШЄЩ‚ШЁЩ„ЩЉ Ш°Щ„Щѓ ШЁШЄШ®ШІЩЉЩ† Щ…Щ€Ш«Щ‘Щ‚ШЊ Щ€Щ…ШіШ§Ш±Ш§ШЄ ШЄШЇЩ‚ЩЉЩ‚ШЊ Щ€ШіЩЉШ§ШіШ§ШЄ Ш§Ш­ШЄЩЃШ§Шё ШЄЩЏШЇШ§Ш± Щ…Щ† Ш§Щ„Ш®Ш§ШЇЩ….",
+    "legalBodySupport":  "Ш§Щ„ШЇШ№Щ… Щ…Ш¬Ш±ШЇ Ш№Щ†ШµШ± Щ†Ш§Ш¦ШЁ Ш­Ш§Щ„ЩЉЩ‹Ш§. ЩЃЩЉ ШҐШµШЇШ§Ш± Ш§Щ„ШҐЩ†ШЄШ§Ш¬ ЩЉЩ…ЩѓЩ† Щ„Щ‡Ш°Ш§ Ш§Щ„Щ‚ШіЩ… ШЈЩ† ЩЉШЄШµЩ„ ШЁШ§Щ„ШЁШ±ЩЉШЇ Ш§Щ„ШҐЩ„ЩѓШЄШ±Щ€Щ†ЩЉШЊ Щ€ШЄЩ‚Ш§Ш±ЩЉШ± Ш§Щ„Щ…ШґЩѓЩ„Ш§ШЄШЊ Щ€Щ…ШіШ§Ш№ШЇШ© Ш§Щ„Ш­ШіШ§ШЁШ§ШЄ Ш§Щ„Щ…Щ…ЩЉШІШ© Щ…Ш№ ШЁЩ‚Ш§ШЎ Щ‡ЩЉЩѓЩ„ Ш§Щ„ШЄШ·ШЁЩЉЩ‚ ЩѓЩ…Ш§ Щ‡Щ€.",
+    "legalBodyTerms":  "ШЄЩ‡ШЇЩЃ Щ‡Ш°Щ‡ Ш§Щ„Щ†ШіШ®Ш© Ш§Щ„ШЄШ¬Ш±ЩЉШЁЩЉШ© ШҐЩ„Щ‰ Ш§Ш®ШЄШЁШ§Ш± ШЄШЇЩЃЩ‚Ш§ШЄ Ш§Щ„Щ…Щ†ШЄШ¬ШЊ Щ€Ш­Ш§Щ„Ш§ШЄ Ш§Щ„Щ€Ш§Ш¬Щ‡Ш©ШЊ Щ€Ш­ШЇЩ€ШЇ Ш§Щ„ШЁЩ†ЩЉШ©. Щ€Ш№Щ†ШЇЩ…Ш§ ЩЉШЄЩ… Ш±ШЁШ· Ш®Ш§ШЇЩ… ШҐЩ†ШЄШ§Ш¬ЩЉ ЩЉШ№ШЄЩ…ШЇ Ш№Щ„Щ‰ NestJS Щ€Postgres Щ„Ш§Ш­Щ‚Щ‹Ш§ШЊ ЩЉЩ…ЩѓЩ† ШЄЩ€ШіЩЉШ№ Ш§Щ„ШіШ·Ш­ Ш§Щ„Щ‚Ш§Щ†Щ€Щ†ЩЉ ШЁШґШ±Щ€Ш· Ш®ШЇЩ…Ш© Ш­Щ‚ЩЉЩ‚ЩЉШ© Щ€ШµЩЉШ§ШєШ§ШЄ Щ„Щ…Ш№Ш§Щ„Ш¬Ш© Ш§Щ„ШЁЩЉШ§Щ†Ш§ШЄ.",
+    "legalPlaceholderBody":  "Щ‡Ш°Щ‡ Ш§Щ„ШµЩЃШ­Ш© Щ…Ш¬Ш±ШЇ Ш№Щ†ШµШ± Щ†Ш§Ш¦ШЁ ЩЃЩЉ Ш§Щ„ШЄШ·ШЁЩЉЩ‚ Ш§Щ„ШЄШ¬Ш±ЩЉШЁЩЉ. Ш§Ш±ШЁШ·Щ‡Ш§ ШЁЩ…Ш­ШЄЩ€Ш§Щѓ Ш§Щ„Щ‚Ш§Щ†Щ€Щ†ЩЉ Ш§Щ„Ш­Щ‚ЩЉЩ‚ЩЉ ЩЃЩЉ Щ†ШіШ®Ш© Ш§Щ„ШҐЩ†ШЄШ§Ш¬.",
+    "legalTitleAbout":  "Ш­Щ€Щ„ SubFlix",
+    "legalTitlePrivacy":  "ШіЩЉШ§ШіШ© Ш§Щ„Ш®ШµЩ€ШµЩЉШ©",
+    "legalTitleSupport":  "Ш§Щ„ШЇШ№Щ…",
+    "legalTitleTerms":  "ШґШ±Щ€Ш· Ш§Щ„Ш®ШЇЩ…Ш©",
+    "mediaTypeMovie":  "ЩЃЩЉЩ„Щ…",
+    "mediaTypeSeries":  "Щ…ШіЩ„ШіЩ„",
+    "metadataEstimatedDuration":  "Ш§Щ„Щ…ШЇШ© Ш§Щ„ШЄЩ‚ШЇЩЉШ±ЩЉШ©",
+    "metadataFormat":  "Ш§Щ„ШµЩЉШєШ©",
+    "metadataLanguages":  "Ш§Щ„Щ„ШєШ§ШЄ",
+    "metadataLines":  "Ш§Щ„ШЈШіШ·Ш±",
+    "navHistory":  "Ш§Щ„ШіШ¬Щ„",
+    "navHome":  "Ш§Щ„Ш±Ш¦ЩЉШіЩЉШ©",
+    "navSettings":  "Ш§Щ„ШҐШ№ШЇШ§ШЇШ§ШЄ",
+    "noTitlesMatchedMessage":  "Щ„Щ… Щ†ШЄЩ…ЩѓЩ† Щ…Щ† Ш§Щ„Ш№Ш«Щ€Ш± Ш№Щ„Щ‰ Щ‡Ш°Ш§ Ш§Щ„Ш№Щ†Щ€Ш§Щ† ЩЃЩЉ Ш§Щ„ЩЃЩ‡Ш±Ші Ш§Щ„ШЄШ¬Ш±ЩЉШЁЩЉ. Ш¬Ш±Щ‘ШЁ ШЁШ­Ш«Щ‹Ш§ ШЈЩ€ШіШ№ ШЈЩ€ ШЈШ­ШЇ Ш§Щ„Ш№Щ†Ш§Щ€ЩЉЩ† Ш§Щ„Щ…Щ‚ШЄШ±Ш­Ш©.",
+    "noTitlesMatchedTitle":  "Щ„Ш§ ШЄЩ€Ш¬ШЇ Щ†ШЄШ§Ш¦Ш¬ Щ…Ш·Ш§ШЁЩ‚Ш©",
+    "onboardingContinue":  "Щ…ШЄШ§ШЁШ№Ш©",
+    "onboardingEnterApp":  "Ш§ШЇШ®Щ„ ШҐЩ„Щ‰ SubFlix",
+    "onboardingNext":  "Ш§Щ„ШЄШ§Щ„ЩЉ",
+    "onboardingPage1Description":  "Ш§ШЁШ­Ш« Ш№Щ† Ш№Щ†Щ€Ш§Щ†ШЊ Щ€Ш±Ш§Ш¬Ш№ Щ…ШµШ§ШЇШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„ШҐЩ†Ш¬Щ„ЩЉШІЩЉШ© Ш§Щ„Щ…ШЄШ§Ш­Ш©ШЊ Щ€Ш§ШЁШЇШЈ Щ…ШіШ§Ш± ШЄШ±Ш¬Щ…Ш© ЩЉШЁШЇЩ€ ЩЃЩ€Ш±ЩЉЩ‹Ш§.",
+    "onboardingPage1Eyebrow":  "Ш§ШЁШ­Ш« Щ€Ш§Ш¬Щ„ШЁ",
+    "onboardingPage1Highlight1":  "ЩЃЩ‡Ш±Ші ШЄШ¬Ш±ЩЉШЁЩЉ Ш­ШЄЩ…ЩЉ Щ„ШЄШ·Щ€ЩЉШ± Щ…Щ€Ш«Щ€Щ‚",
+    "onboardingPage1Highlight2":  "ШЁШ·Ш§Щ‚Ш§ШЄ Ш¬Щ€ШЇШ© Ш§Щ„Щ…ШµШЇШ± Щ€ШґШ§Ш±Ш§ШЄ Ш§Щ„ШµЩЉШєШ©",
+    "onboardingPage1Highlight3":  "Щ…ШµЩ…Щ… Щ„ЩЉШіШЄШЁШЇЩ„ ШЁШ®Ш§ШЇЩ… Ш­Щ‚ЩЉЩ‚ЩЉ Щ„Ш§Ш­Щ‚Щ‹Ш§",
+    "onboardingPage1Title":  "Ш§Ш№Ш«Ш± Ш№Щ„Щ‰ ШЈЩЃЩ„Ш§Щ… ШЈЩ€ Щ…ШіЩ„ШіЩ„Ш§ШЄ Щ€Ш§ШіШ­ШЁ ШЄШ±Ш¬Щ…Ш§ШЄ Ш¬Ш§Щ‡ШІШ© Щ„Щ„ШЄШ±Ш¬Щ…Ш©.",
+    "onboardingPage2Description":  "Ш§ШіШЄЩ€Ш±ШЇ Щ…Щ„ЩЃ Ш§Щ„ШЄШ±Ш¬Щ…Ш©ШЊ Щ€ШЄШ­Щ‚Щ‚ Щ…Щ† Ш§Щ„ШµЩЉШєШ©ШЊ Щ€ШґШєЩ‘Щ„ Щ…ШіШ§Ш± Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„Щ…ШµЩ‚Щ€Щ„ Щ†ЩЃШіЩ‡ ШЇЩ€Щ† Щ…ШєШ§ШЇШ±Ш© Ш§Щ„ШЄШ·ШЁЩЉЩ‚.",
+    "onboardingPage2Eyebrow":  "Ш§ШіШЄШ®ШЇЩ… Щ…Щ„ЩЃЩѓ Ш§Щ„Ш®Ш§Шµ",
+    "onboardingPage2Highlight1":  "ШЄШ­Щ‚Щ‚ Щ…Ш­Щ„ЩЉ Щ…Щ† Ш§Щ„Щ…Щ„ЩЃШ§ШЄ Щ…Ш№ Ш­Ш§Щ„Ш§ШЄ ШҐШ№Ш§ШЇШ© Щ…Ш­Ш§Щ€Щ„Ш© ШіЩ„ШіШ©",
+    "onboardingPage2Highlight2":  "ШҐШ№ШЇШ§ШЇ ШЄШ±Ш¬Щ…Ш© Щ…ШЄШіЩ‚ ШЁЩЉЩ† Ш§Щ„Ш±ЩЃШ№ Щ€Ш§Щ„ШЁШ­Ш«",
+    "onboardingPage2Highlight3":  "Ш№Ш§ЩЉЩ† Щ‚ШЁЩ„ Ш§Щ„ШЄШµШЇЩЉШ± Ш­ШЄЩ‰ Щ„Ш§ ЩЉШЁШЇЩ€ ШґЩЉШЎ ШєШ§Щ…Ш¶Щ‹Ш§",
+    "onboardingPage2Title":  "Ш§Ш±ЩЃШ№ Щ…Щ„ЩЃШ§ШЄ `.srt` ШЈЩ€ `.vtt` Ш№Щ†ШЇЩ…Ш§ ШЄЩѓЩ€Щ† Ш§Щ„ШЄШ±Ш¬Щ…Ш© Щ„ШЇЩЉЩѓ ШЁШ§Щ„ЩЃШ№Щ„.",
+    "onboardingPage3Description":  "ШЁШЇЩ‘Щ„ ШЁЩЉЩ† Ш§Щ„Ш№Ш±Ш¶ Ш§Щ„ШЈШµЩ„ЩЉ Щ€Ш§Щ„Щ…ШЄШ±Ш¬Щ… Щ€Ш§Щ„Ш«Щ†Ш§Ш¦ЩЉ Ш§Щ„Щ„ШєШ©ШЊ Щ€Ш§Ш±Ш¬Ш№ ШҐЩ„Щ‰ Ш§Щ„ШіШ¬Щ„ШЊ Щ€ШµШЇЩ‘Ш± Щ…Щ„ЩЃШ§ШЄ ШЄШ±Ш¬Щ…Ш© Щ†ШёЩЉЩЃШ© Ш№Щ†ШЇЩ…Ш§ ШЄШЁШЇЩ€ Ш§Щ„Щ†ШЄЩЉШ¬Ш© ШµШ­ЩЉШ­Ш©.",
+    "onboardingPage3Eyebrow":  "ШЄШ±Ш¬Щ… Щ€ШµШЇЩ‘Ш±",
+    "onboardingPage3Highlight1":  "Ш№Щ†Ш§ШµШ± Щ…Ш№Ш§ЩЉЩ†Ш© ШіШ±ЩЉШ№Ш© Щ…Ш№ Ш§Щ„ШЁЩЉШ§Щ†Ш§ШЄ Ш§Щ„Щ€ШµЩЃЩЉШ© Щ€Ш§Щ„ШЁШ­Ш«",
+    "onboardingPage3Highlight2":  "ЩЉШЁЩ‚ЩЉ Ш§Щ„ШіШ¬Щ„ Ш§Щ„Щ…Щ‡Ш§Щ… Ш§Щ„ШіШ§ШЁЩ‚Ш© Ш№Щ„Щ‰ ШЁЩЏШ№ШЇ Щ„Щ…ШіШ©",
+    "onboardingPage3Highlight3":  "Щ…ШµЩ…Щ… ЩѓШЈШЇШ§Ш© Щ€ШіШ§Ш¦Ш· Ш§Ш­ШЄШ±Ш§ЩЃЩЉШ© Щ„Ш§ ЩѓШ№Ш±Ш¶ ШЄШ¬Ш±ЩЉШЁЩЉ",
+    "onboardingPage3Title":  "Ш§Ш®ШЄШ± Ш§Щ„Щ„ШєШ§ШЄ Ш§Щ„Щ…ШіШЄЩ‡ШЇЩЃШ©ШЊ Щ€Ш№Ш§ЩЉЩ† Ш§Щ„ШЄШ±Ш¬Щ…Ш©ШЊ Щ€ШµШЇЩ‘Ш± ЩЃЩ€Ш±Щ‹Ш§.",
+    "onboardingSkip":  "ШЄШ®Ш·Щ‘ЩЋ",
+    "onboardingStart":  "Ш§ШЁШЇШЈ Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "previewFailedTitle":  "ЩЃШґЩ„ ШЄШ­Щ…ЩЉЩ„ Ш§Щ„Щ…Ш№Ш§ЩЉЩ†Ш©",
+    "previewModeBilingual":  "Ш«Щ†Ш§Ш¦ЩЉ Ш§Щ„Щ„ШєШ©",
+    "previewModeOriginal":  "Ш§Щ„ШЈШµЩ„",
+    "previewModeTranslated":  "Ш§Щ„Щ…ШЄШ±Ш¬Щ…",
+    "previewNoMatchesMessage":  "Ш¬Ш±Щ‘ШЁ ЩѓЩ„Щ…Ш© ШЁШ­Ш« Щ…Ш®ШЄЩ„ЩЃШ© ШЈЩ€ ШЈШІЩ„ Ш§Щ„ШЄШµЩЃЩЉШ© Щ„Щ…Ш±Ш§Ш¬Ш№Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш© ЩѓШ§Щ…Щ„Ш©.",
+    "previewNoMatchesTitle":  "Щ„Щ… ШЄШЄЩ… Щ…Ш·Ш§ШЁЩ‚Ш© ШЈЩЉ ШЈШіШ·Ш±",
+    "previewNotReadyMessage":  "Ш§ЩѓШЄЩ…Щ„ШЄ Ш§Щ„ШЄШ±Ш¬Щ…Ш©ШЊ Щ„ЩѓЩ† Ш§Щ„Ш®Ш§ШЇЩ… Щ„Щ… ЩЉЩЏШ±Ш¬Ш№ ШЈШіШ·Ш± Ш§Щ„Щ…Ш№Ш§ЩЉЩ†Ш© ШЁШ№ШЇ. Ш¬Ш±Щ‘ШЁ ШҐШ№Ш§ШЇШ© ШЄШ­Щ…ЩЉЩ„ Щ‡Ш°Щ‡ Ш§Щ„ШґШ§ШґШ© ШЁШ№ШЇ Щ„Ш­ШёШ©.",
+    "previewNotReadyTitle":  "ШЈШіШ·Ш± Ш§Щ„Щ…Ш№Ш§ЩЉЩ†Ш© ШєЩЉШ± Щ…ШЄШ§Ш­Ш© ШЁШ№ШЇ",
+    "retry":  "ШҐШ№Ш§ШЇШ© Ш§Щ„Щ…Ш­Ш§Щ€Щ„Ш©",
+    "retryTranslation":  "ШҐШ№Ш§ШЇШ© Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "routeMissingSeasonEpisodesMessage":  "Щ„Щ… Щ†ШЄЩ…ЩѓЩ† Щ…Щ† ШЄШ­ШЇЩЉШЇ Ш§Щ„Щ…Щ€ШіЩ… Ш§Щ„Щ…Ш·Щ„Щ€ШЁ ШЄШ­Щ…ЩЉЩ„Щ‡. Ш§ШЁШЇШЈ Щ…Ш¬ШЇШЇЩ‹Ш§ Щ…Щ† Ш§Щ„ШЁШ­Ш«.",
+    "routeMissingSeasonEpisodesTitle":  "Ш­Щ„Щ‚Ш§ШЄ Ш§Щ„Щ…Щ€ШіЩ…",
+    "routeMissingSeriesSeasonsMessage":  "Щ„Щ… Щ†ШЄЩ…ЩѓЩ† Щ…Щ† ШЄШ­ШЇЩЉШЇ Ш§Щ„Щ…ШіЩ„ШіЩ„ Ш§Щ„Щ…Ш·Щ„Щ€ШЁ ШЄШ­Щ…ЩЉЩ„Щ‡. Ш§ШЁШЇШЈ Щ…Ш¬ШЇШЇЩ‹Ш§ Щ…Щ† Ш§Щ„ШЁШ­Ш«.",
+    "routeMissingSeriesSeasonsTitle":  "Щ…Щ€Ш§ШіЩ… Ш§Щ„Щ…ШіЩ„ШіЩ„",
+    "routeMissingSubtitleSourcesMessage":  "Щ„Щ… Щ†ШЄЩ…ЩѓЩ† Щ…Щ† ШЄШ­ШЇЩЉШЇ Ш§Щ„Ш№Щ†Щ€Ш§Щ† Ш§Щ„Ш°ЩЉ ЩЉШ¬ШЁ ШЄШ­Щ…ЩЉЩ„ Щ…ШµШ§ШЇШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш© Щ„Щ‡. Ш§ШЁШЇШЈ Щ…Ш¬ШЇШЇЩ‹Ш§ Щ…Щ† Ш§Щ„ШЁШ­Ш«.",
+    "routeMissingSubtitleSourcesTitle":  "Щ…ШµШ§ШЇШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "routeMissingTranslationProgressMessage":  "Щ„Щ… ЩЉШЄЩ… ШЄЩ€ЩЃЩЉШ± Ш·Щ„ШЁ ШЄШ±Ш¬Щ…Ш©. Ш§ШЁШЇШЈ ШЄШ±Ш¬Щ…Ш© Ш¬ШЇЩЉШЇШ© Щ…Щ† Ш§Щ„ШЁШ­Ш« ШЈЩ€ Ш§Щ„Ш±ЩЃШ№.",
+    "routeMissingTranslationProgressTitle":  "ШЄЩ‚ШЇЩ‘Щ… Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "routeMissingTranslationSetupMessage":  "Щ…ШµШЇШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш© Щ…Ш·Щ„Щ€ШЁ Щ‚ШЁЩ„ ЩЃШЄШ­ ШґШ§ШґШ© ШҐШ№ШЇШ§ШЇ Ш§Щ„ШЄШ±Ш¬Щ…Ш©.",
+    "routeMissingTranslationSetupTitle":  "ШҐШ№ШЇШ§ШЇ Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "searchFailedTitle":  "ЩЃШґЩ„ Ш§Щ„ШЁШ­Ш«",
+    "searchFoundResults":  "ШЄЩ… Ш§Щ„Ш№Ш«Щ€Ш± Ш№Щ„Щ‰ {count} Щ†ШЄЩЉШ¬Ш© Щ„Ш№ШЁШ§Ш±Ш© \u0027\u0027{query}\u0027\u0027",
+    "@searchFoundResults":  {
+                                "placeholders":  {
+                                                     "count":  {
+
+                                                               },
+                                                     "query":  {
+
+                                                               }
+                                                 }
+                            },
+    "searchHintText":  "Ш§ШЁШ­Ш« Ш№Щ† Dune ШЈЩ€ Breaking Bad ШЈЩ€ Severance...",
+    "searchLoadingLabel":  "Ш¬Ш§Ш±ЩЌ Ш§Щ„ШЁШ­Ш«...",
+    "searchMockMessage":  "Ш¬Ш±Щ‘ШЁ Ш№Щ†Ш§Щ€ЩЉЩ† Щ…Ш«Щ„ Inception ШЈЩ€ Dune ШЈЩ€ Breaking Bad ШЈЩ€ Severance ШЈЩ€ The Last of Us Щ„Ш§ШіШЄЩѓШґШ§ЩЃ Щ…ШіШ§Ш± Щ…ШµШ§ШЇШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш©.",
+    "searchMockTitle":  "Ш§ШЁШ­Ш« Ш№Щ† ШЈЩЉ ШґЩЉШЎ ЩЃЩЉ Ш§Щ„ЩЃЩ‡Ш±Ші Ш§Щ„ШЄШ¬Ш±ЩЉШЁЩЉ",
+    "searchMovieOrSeriesSubtitle":  "Ш§Ш№Ш«Ш± Ш№Щ„Щ‰ Ш№Щ†Щ€Ш§Щ†ШЊ Щ€ШЄЩЃЩ‚Щ‘ШЇ Щ…ШµШ§ШЇШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш©ШЊ Щ€Ш§ШЁШЇШЈ Щ…Щ‡Щ…Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш© ШЁШЁШ¶Ш№ Щ„Щ…ШіШ§ШЄ.",
+    "searchMovieOrSeriesTitle":  "Ш§ШЁШ­Ш« Ш№Щ† ЩЃЩЉЩ„Щ… ШЈЩ€ Щ…ШіЩ„ШіЩ„",
+    "searchNoResultsFor":  "Щ„Щ… ЩЉШЄЩ… Ш§Щ„Ш№Ш«Щ€Ш± Ш№Щ„Щ‰ Щ†ШЄШ§Ш¦Ш¬ Щ„Ш№ШЁШ§Ш±Ш© \u0027\u0027{query}\u0027\u0027",
+    "@searchNoResultsFor":  {
+                                "placeholders":  {
+                                                     "query":  {
+
+                                                               }
+                                                 }
+                            },
+    "searchResultPopularity":  "Ш§Щ„ШґШ№ШЁЩЉШ© {score}",
+    "@searchResultPopularity":  {
+                                    "placeholders":  {
+                                                         "score":  {
+
+                                                                   }
+                                                     }
+                                },
+    "searchTitles":  "Ш§Щ„ШЁШ­Ш« Ш№Щ† Ш§Щ„Ш№Щ†Ш§Щ€ЩЉЩ†",
+    "searchTrendingTitle":  "Ш№Щ…Щ„ЩЉШ§ШЄ Ш§Щ„ШЁШ­Ш« Ш§Щ„Ш±Ш§Ш¦Ш¬Ш©",
+    "searchTryDifferentKeywords":  "Ш¬Ш±Щ‘ШЁ Ш§Щ„ШЁШ­Ш« ШЁЩѓЩ„Щ…Ш§ШЄ Щ…Ш®ШЄЩ„ЩЃШ©.",
+    "seriesEpisodeLabel":  "Ш§Щ„Ш­Щ„Щ‚Ш© {episodeNumber}",
+    "@seriesEpisodeLabel":  {
+                                "placeholders":  {
+                                                     "episodeNumber":  {
+
+                                                                       }
+                                                 }
+                            },
+    "seriesEpisodeMeta":  "Ш­Щ€Ш§Щ„ЩЉ {runtime} ШЇЩ‚ЩЉЩ‚Ш©",
+    "@seriesEpisodeMeta":  {
+                               "placeholders":  {
+                                                    "runtime":  {
+
+                                                                }
+                                                }
+                           },
+    "seriesEpisodesSubtitle":  "{episodeCount} Ш­Щ„Щ‚Ш©{year}",
+    "@seriesEpisodesSubtitle":  {
+                                    "placeholders":  {
+                                                         "episodeCount":  {
+
+                                                                          },
+                                                         "year":  {
+
+                                                                  }
+                                                     }
+                                },
+    "seriesEpisodesTitle":  "Ш§Щ„Щ…Щ€ШіЩ… {seasonNumber}",
+    "@seriesEpisodesTitle":  {
+                                 "placeholders":  {
+                                                      "seasonNumber":  {
+
+                                                                       }
+                                                  }
+                             },
+    "seriesSeasonLabel":  "Ш§Щ„Щ…Щ€ШіЩ… {seasonNumber}",
+    "@seriesSeasonLabel":  {
+                               "placeholders":  {
+                                                    "seasonNumber":  {
+
+                                                                     }
+                                                }
+                           },
+    "seriesSeasonMeta":  "{episodeCount} Ш­Щ„Щ‚Ш©{year}",
+    "@seriesSeasonMeta":  {
+                              "placeholders":  {
+                                                   "episodeCount":  {
+
+                                                                    },
+                                                   "year":  {
+
+                                                            }
+                                               }
+                          },
+    "seriesSeasonsSubtitle":  "Ш§Ш®ШЄШ± Щ…Щ€ШіЩ…Щ‹Ш§ Щ…Щ† {title} Щ„ШЄШµЩЃЩ‘Ш­ Ш§Щ„Ш­Щ„Щ‚Ш§ШЄ Ш§Щ„Щ…ШЄШ§Ш­Ш©.",
+    "@seriesSeasonsSubtitle":  {
+                                   "placeholders":  {
+                                                        "title":  {
+
+                                                                  }
+                                                    }
+                               },
+    "seriesSeasonsTitle":  "Ш§Ш®ШЄШ± Щ…Щ€ШіЩ…Щ‹Ш§",
+    "settingsAboutTitle":  "Ш­Щ€Щ„ SubFlix",
+    "settingsCacheCleared":  "ШЄЩ… Щ…ШіШ­ Ш§Щ„Ш°Ш§ЩѓШ±Ш© Ш§Щ„Щ…Ш¤Щ‚ШЄШ©",
+    "settingsClearCache":  "Щ…ШіШ­ Ш§Щ„Ш°Ш§ЩѓШ±Ш© Ш§Щ„Щ…Ш¤Щ‚ШЄШ©",
+    "settingsContactTitle":  "ШЄЩ€Ш§ШµЩ„ Щ…Ш№Щ†Ш§",
+    "settingsFailedTitle":  "ЩЃШґЩ„ ШЄШ­Щ…ЩЉЩ„ Ш§Щ„ШҐШ№ШЇШ§ШЇШ§ШЄ",
+    "settingsHelpCenterTitle":  "Щ…Ш±ЩѓШІ Ш§Щ„Щ…ШіШ§Ш№ШЇШ©",
+    "settingsHistoryClearedSnack":  "ШЄЩ… Щ…ШіШ­ ШіШ¬Щ„ Ш§Щ„ШЄШ±Ш¬Щ…Ш© Щ„Щ‡Ш°Ш§ Ш§Щ„Ш¬Щ‡Ш§ШІ",
+    "settingsLanguageLabel":  "Ш§Щ„Щ„ШєШ© Ш§Щ„Щ…ШіШЄЩ‡ШЇЩЃШ© Ш§Щ„Щ…ЩЃШ¶Щ„Ш©",
+    "settingsMaintenanceSubtitle":  "Ш§Щ…ШіШ­ Щ…Щ‡Ш§Щ… Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„ШЄШ§ШЁШ№Ш© Щ„Щ„Ш®Ш§ШЇЩ… Щ„Щ‡Ш°Ш§ Ш§Щ„Ш¬Щ‡Ш§ШІ Щ€Ш§ШЁШЇШЈ ШЁШіШ¬Щ„ ЩЃШ§Ш±Шє.",
+    "settingsMaintenanceTitle":  "Ш§Щ„ШµЩЉШ§Щ†Ш©",
+    "settingsNotificationsSubtitle":  "ШЈШЇШ± ШЄЩЃШ¶ЩЉЩ„Ш§ШЄ Ш§Щ„ШҐШґШ№Ш§Ш±Ш§ШЄ",
+    "settingsNotificationsTitle":  "Ш§Щ„ШҐШґШ№Ш§Ш±Ш§ШЄ",
+    "settingsPremiumSubtitle":  "Щ„Ш§Ш­Щ‚Щ‹Ш§ ЩЉЩ…ЩѓЩ†Щ†Ш§ Ш±ШЁШ· Ш§Щ„Ш§ШґШЄШ±Ш§ЩѓШ§ШЄ Щ€Ш§Щ„ЩЃЩ€ШЄШ±Ш© Щ€Щ…ШІШ§Щ…Щ†Ш© Ш§Щ„Щ…ШґШ§Ш±ЩЉШ№ Ш§Щ„ШіШ­Ш§ШЁЩЉШ© Щ‡Щ†Ш§.",
+    "settingsPremiumTitle":  "Ш№Щ†ШµШ± Щ…Щ…ЩЉШІ ШЄШ¬Ш±ЩЉШЁЩЉ",
+    "settingsPrivacySubtitle":  "Щ…Ш­ШЄЩ€Щ‰ Ш®ШµЩ€ШµЩЉШ© ШЄШ¬Ш±ЩЉШЁЩЉ",
+    "settingsPrivacyTitle":  "ШіЩЉШ§ШіШ© Ш§Щ„Ш®ШµЩ€ШµЩЉШ©",
+    "settingsProfileName":  "Щ…ШіШЄШ®ШЇЩ… SubFlix",
+    "settingsProfileTier":  "Ш№Ш¶Щ€ Щ…Щ…ЩЉШІ",
+    "settingsSubtitle":  "ШЈШЇШ± ШЄЩЃШ¶ЩЉЩ„Ш§ШЄЩѓ",
+    "settingsSupportSubtitle":  "ШµЩЃШ­Ш© Щ…ШіШ§Ш№ШЇШ© Щ€Ш§ШЄШµШ§Щ„ ШЄШ¬Ш±ЩЉШЁЩЉШ©",
+    "settingsSupportTitle":  "Щ‚ШіЩ… ШЇШ№Щ… ШЄШ¬Ш±ЩЉШЁЩЉ",
+    "settingsTermsSubtitle":  "Щ…Ш­ШЄЩ€Щ‰ ШґШ±Щ€Ш· ШЄШ¬Ш±ЩЉШЁЩЉ",
+    "settingsTermsTitle":  "ШґШ±Щ€Ш· Ш§Щ„Ш®ШЇЩ…Ш©",
+    "settingsThemeLabel":  "Ш§Щ„Щ…ШёЩ‡Ш±",
+    "settingsTitle":  "Ш§Щ„ШҐШ№ШЇШ§ШЇШ§ШЄ",
+    "settingsVersion":  "Ш§Щ„ШҐШµШЇШ§Ш± {version}",
+    "@settingsVersion":  {
+                             "placeholders":  {
+                                                  "version":  {
+
+                                                              }
+                                              }
+                         },
+    "splashHeadline":  "SubFlix",
+    "splashPreparing":  "Ш¬Ш§Ш±ЩЌ ШЄШ¬Щ‡ЩЉШІ Ш§ШіШЄЩ€ШЇЩЉЩ€ Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„Ш®Ш§Шµ ШЁЩѓ",
+    "splashSubtitle":  "ШЄШ±Ш¬Щ…Ш© ШЄШ±Ш¬Щ…Ш© Щ…ШЇШ№Щ€Щ…Ш© ШЁШ§Щ„Ш°ЩѓШ§ШЎ Ш§Щ„Ш§ШµШ·Щ†Ш§Ш№ЩЉ",
+    "startTranslation":  "ШЁШЇШЎ Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "subtitleSourceDownloads":  "{downloads} ШЄЩ†ШІЩЉЩ„Щ‹Ш§",
+    "@subtitleSourceDownloads":  {
+                                     "placeholders":  {
+                                                          "downloads":  {
+
+                                                                        }
+                                                      }
+                                 },
+    "subtitleSourceFormatLabel":  "Щ…ШµШЇШ± ШЄШ±Ш¬Щ…Ш© {format}",
+    "@subtitleSourceFormatLabel":  {
+                                       "placeholders":  {
+                                                            "format":  {
+
+                                                                       }
+                                                        }
+                                   },
+    "subtitleSourceHiLabel":  "HI / SDH",
+    "subtitleSourceLines":  "{lineCount} ШіШ·Ш±Щ‹Ш§",
+    "@subtitleSourceLines":  {
+                                 "placeholders":  {
+                                                      "lineCount":  {
+
+                                                                    }
+                                                  }
+                             },
+    "subtitleSourceRating":  "Ш§Щ„ШЄЩ‚ЩЉЩЉЩ… {rating}",
+    "@subtitleSourceRating":  {
+                                  "placeholders":  {
+                                                       "rating":  {
+
+                                                                  }
+                                                   }
+                              },
+    "subtitleSourcesBannerMessage":  "Ш§Ш®ШЄШ± Щ…ШµШЇШ± ШЄШ±Ш¬Щ…Ш© Щ€ШЄШ§ШЁШ№ ШҐЩ„Щ‰ ШҐШ№ШЇШ§ШЇ ШЄШ±Ш¬Щ…Ш© Щ…ШµЩ‚Щ€Щ„ Щ€Щ…Щ‡ЩЉШЈ Щ„ШЄЩ€Щ‚ЩЉШЄ Ш§Щ„ШЄШ±Ш¬Щ…Ш©.",
+    "subtitleSourcesBannerTitle":  "Ш§Щ„ШЄШ±Ш¬Щ…Ш© ШЁШ§Щ„Ш°ЩѓШ§ШЎ Ш§Щ„Ш§ШµШ·Щ†Ш§Ш№ЩЉ Щ…ШЄШ§Ш­Ш©",
+    "subtitleSourcesFailedTitle":  "ШЄШ№Ш°Щ‘Ш± ШЄШ­Щ…ЩЉЩ„ Щ…ШµШ§ШЇШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "subtitleSourcesSubtitle":  "Ш§Ш®ШЄШ± Щ…ШµШЇШ± ШЄШ±Ш¬Щ…Ш© Щ„ЩЂ {title}{target}ШЊ Ш«Щ… Ш§Ш®ШЄШ± Ш§Щ„Щ„ШєШ© Ш§Щ„Щ…ШіШЄЩ‡ШЇЩЃШ© ЩЃЩЉ Ш§Щ„Ш®Ш·Щ€Ш© Ш§Щ„ШЄШ§Щ„ЩЉШ©.",
+    "@subtitleSourcesSubtitle":  {
+                                     "placeholders":  {
+                                                          "title":  {
+
+                                                                    },
+                                                          "target":  {
+
+                                                                     }
+                                                      }
+                                 },
+    "subtitleSourcesTitle":  "Щ…ШµШ§ШЇШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„ШҐЩ†Ш¬Щ„ЩЉШІЩЉШ©",
+    "targetLanguage":  "Ш§Щ„Щ„ШєШ© Ш§Щ„Щ…ШіШЄЩ‡ШЇЩЃШ©",
+    "themeDark":  "ШЇШ§ЩѓЩ†",
+    "themeLight":  "ЩЃШ§ШЄШ­",
+    "themeSystem":  "Ш§Щ„Щ†ШёШ§Щ…",
+    "translateSetupAutoDetect":  "Ш§ЩѓШЄШґШ§ЩЃ Ш§Щ„ШµЩЉШєШ© ШЄЩ„Щ‚Ш§Ш¦ЩЉЩ‹Ш§",
+    "translateSetupAutoDetectBody":  "Ш§Ш®ШЄШ± ШЁЩ†ЩЉШ© ШҐШ®Ш±Ш§Ш¬ Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„Щ…Щ†Ш§ШіШЁШ© ШЄЩ„Щ‚Ш§Ш¦ЩЉЩ‹Ш§.",
+    "translateSetupLanguageTitle":  "Ш§Щ„ШЄШ±Ш¬Щ…Ш© ШҐЩ„Щ‰",
+    "translateSetupOptionsTitle":  "Ш§Щ„Ш®ЩЉШ§Ш±Ш§ШЄ",
+    "translateSetupPreserveTiming":  "Ш§Щ„Ш­ЩЃШ§Шё Ш№Щ„Щ‰ Ш§Щ„ШЄЩ€Щ‚ЩЉШЄ",
+    "translateSetupPreserveTimingBody":  "ШЈШЁЩ‚Щђ ШЄЩ€Щ‚ЩЉШЄШ§ШЄ Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„ШЈШµЩ„ЩЉШ© Щ…ШЄШ·Ш§ШЁЩ‚Ш© Щ…Ш№ Ш§Щ„Щ…Щ„ЩЃ Ш§Щ„Щ…ШµШЇШ±.",
+    "translateSetupReadyBody":  "ШіЩЉШ­Щ€Щ‘Щ„ Щ…ШіШ§Ш± Ш§Щ„ШЄШ±Ш¬Щ…Ш© Щ„ШЇЩЉЩ†Ш§ Щ‡Ш°Щ‡ Ш§Щ„ШЄШ±Ш¬Щ…Ш© ШҐЩ„Щ‰ {language} Щ…Ш№ Ш§Щ„Ш­ЩЃШ§Шё Ш№Щ„Щ‰ Ш§Щ„ШЄЩ€Щ‚ЩЉШЄ Щ€ШЁЩ†ЩЉШ© Ш§Щ„ШЈШіШ·Ш± ШЁШґЩѓЩ„ Щ†ШёЩЉЩЃ.",
+    "@translateSetupReadyBody":  {
+                                     "placeholders":  {
+                                                          "language":  {
+
+                                                                       }
+                                                      }
+                                 },
+    "translateSetupReadyTitle":  "Ш§Щ„ШЄШ±Ш¬Щ…Ш© ШЁШ§Щ„Ш°ЩѓШ§ШЎ Ш§Щ„Ш§ШµШ·Щ†Ш§Ш№ЩЉ Ш¬Ш§Щ‡ШІШ©",
+    "translateSetupSelectLanguage":  "Ш§Ш®ШЄШ± Ш§Щ„Щ„ШєШ©",
+    "translateSetupSourceTitle":  "Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„Щ…ШµШЇШ±",
+    "translateSetupSubtitle":  "Ш§Ш®ШЄШ± Ш§Щ„Щ„ШєШ© Ш§Щ„Щ…ШіШЄЩ‡ШЇЩЃШ©ШЊ Щ€Ш±Ш§Ш¬Ш№ Щ…ШµШЇШ± Ш§Щ„ШЄШ±Ш¬Щ…Ш©ШЊ Ш«Щ… Ш§ШЁШЇШЈ Щ…Щ‡Щ…Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш© ЩЃЩЉ Ш§Щ„Ш®Ш§ШЇЩ….",
+    "translateSetupTitle":  "ШҐШ№ШЇШ§ШЇ Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "translationFailedMessage":  "Ш­ШЇШ« Ш®Ш·ШЈ Щ…Ш§.",
+    "translationFailedTitle":  "ШЄШ№Ш°Щ‘Ш± ШҐЩѓЩ…Ш§Щ„ Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "translationPreviewHeader":  "Ш±Ш§Ш¬Ш№ Ш§Щ„ШЄШ±Ш¬Щ…Ш§ШЄ Ш§Щ„Щ…ШЄШ±Ш¬Щ…Ш©",
+    "translationPreviewSearchHint":  "Ш§ШЁШ­Ш« ЩЃЩЉ ШЈШіШ·Ш± Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "translationPreviewSubtitle":  "Ш§ШЁШ­Ш« ШЇШ§Ш®Щ„ Ш§Щ„ШЈШіШ·Ш±ШЊ Щ€ШЁШЇЩ‘Щ„ ШЈЩ€Ш¶Ш§Ш№ Ш§Щ„Щ…Ш№Ш§ЩЉЩ†Ш©ШЊ Ш«Щ… ШµШЇЩ‘Ш± Ш§Щ„Щ…Щ„ЩЃ Ш№Щ†ШЇЩ…Ш§ ШЄШЁШЇЩ€ Ш§Щ„ШЄШ±Ш¬Щ…Ш© Щ…Щ†Ш§ШіШЁШ©.",
+    "translationPreviewTitle":  "Щ…Ш№Ш§ЩЉЩ†Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "translationProgressHeadline":  "ШЄШ±Ш¬Щ…Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш© ШЁШ§Щ„Ш°ЩѓШ§ШЎ Ш§Щ„Ш§ШµШ·Щ†Ш§Ш№ЩЉ Щ‚ЩЉШЇ Ш§Щ„ШЄЩ†ЩЃЩЉШ°",
+    "translationProgressTitle":  "ШЄЩ‚ШЇЩ‘Щ… Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "translationResultCompleteSubtitle":  "ШЈШµШЁШ­ШЄ Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш¬Ш§Щ‡ШІШ© Щ„Щ„Щ…Ш№Ш§ЩЉЩ†Ш© ШЈЩ€ Ш§Щ„ШЄЩ†ШІЩЉЩ„.",
+    "translationResultCompleteTitle":  "Ш§ЩѓШЄЩ…Щ„ШЄ Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "translationResultConfidenceLabel":  "Ш«Щ‚Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "translationResultDetailsTitle":  "ШЄЩЃШ§ШµЩЉЩ„ Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "translationResultDownloadCta":  "ШЄЩ†ШІЩЉЩ„ Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "translationResultHomeCta":  "Ш§Щ„Ш№Щ€ШЇШ© ШҐЩ„Щ‰ Ш§Щ„Ш±Ш¦ЩЉШіЩЉШ©",
+    "translationResultMediaLabel":  "Ш№Щ†Щ€Ш§Щ† Ш§Щ„Ш№Щ…Щ„",
+    "translationResultMethodAi":  "Щ…ШЄШ±Ш¬Щ…Ш© ШЁШ§Щ„Ш°ЩѓШ§ШЎ Ш§Щ„Ш§ШµШ·Щ†Ш§Ш№ЩЉ",
+    "translationResultMetricsTitle":  "Щ…Щ‚Ш§ЩЉЩЉШі Ш§Щ„Ш¬Щ€ШЇШ©",
+    "translationResultPreviewCta":  "Щ…Ш№Ш§ЩЉЩ†Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "translationResultProcessedIn":  "ШЄЩ…ШЄ Ш§Щ„Щ…Ш№Ш§Щ„Ш¬Ш© Ш®Щ„Ш§Щ„ {duration}",
+    "@translationResultProcessedIn":  {
+                                          "placeholders":  {
+                                                               "duration":  {
+
+                                                                            }
+                                                           }
+                                      },
+    "translationResultSourceLabel":  "Щ„ШєШ© Ш§Щ„Щ…ШµШЇШ±",
+    "translationResultTargetLabel":  "Ш§Щ„Щ„ШєШ© Ш§Щ„Щ…ШіШЄЩ‡ШЇЩЃШ©",
+    "translationResultTimingLabel":  "ШЇЩ‚Ш© Ш§Щ„ШЄЩ€Щ‚ЩЉШЄ",
+    "translationResultTimingPreserved":  "ШЄЩ… Ш§Щ„Ш­ЩЃШ§Шё Ш№Щ„Щ‰ Ш§Щ„ШЄЩ€Щ‚ЩЉШЄ",
+    "translationResultWarning":  "Щ‚ШЇ ШЄШіШЄЩЃЩЉШЇ ШЁШ№Ш¶ Ш§Щ„Щ…ШµШ·Щ„Ш­Ш§ШЄ Ш§Щ„ШЄЩ‚Щ†ЩЉШ© Щ…Щ† Щ…Ш±Ш§Ш¬Ш№Ш© ШЁШґШ±ЩЉШ© ШіШ±ЩЉШ№Ш© Щ„ЩЃЩ‡Щ… Ш§Щ„ШіЩЉШ§Щ‚.",
+    "translationStageAligning":  "Ш¬Ш§Ш±ЩЌ Щ…Щ€Ш§ШЎЩ…Ш© Ш§Щ„Ш·Щ€Ш§ШЁШ№ Ш§Щ„ШІЩ…Щ†ЩЉШ© Щ€ШіЩЉШ§Щ‚ Ш§Щ„Щ…ШґЩ‡ШЇ",
+    "translationStageGenerating":  "Ш¬Ш§Ш±ЩЌ ШҐЩ†ШґШ§ШЎ Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "translationStageIdle":  "ШЁШ§Щ†ШЄШёШ§Ш± Ш·Щ„ШЁ ШЄШ±Ш¬Щ…Ш©",
+    "translationStagePreparing":  "Ш¬Ш§Ш±ЩЌ ШЄШ¬Щ‡ЩЉШІ Ш­ШІЩ…Ш© Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "translationStageQueued":  "ЩЃЩЉ Ш§Щ†ШЄШёШ§Ш± Ш§Щ„ШЇЩ€Ш± Щ„Щ„ШЄШ±Ш¬Щ…Ш©",
+    "translationStageReadability":  "Ш¬Ш§Ш±ЩЌ ШЄШ­ШіЩЉЩ† Щ‚Ш§ШЁЩ„ЩЉШ© Ш§Щ„Щ‚Ш±Ш§ШЎШ©",
+    "translationStageReady":  "Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш¬Ш§Щ‡ШІШ©",
+    "tryAgain":  "Ш¬Ш±Щ‘ШЁ Щ…Ш±Ш© ШЈШ®Ш±Щ‰",
+    "uploadChooseFile":  "Ш§Ш®ШЄШ± Щ…Щ„ЩЃ ШЄШ±Ш¬Щ…Ш©",
+    "uploadChooseFileShort":  "Ш§Ш®ШЄШ± Щ…Щ„ЩЃЩ‹Ш§",
+    "uploadContinueSetup":  "Щ…ШЄШ§ШЁШ№Ш© ШҐЩ„Щ‰ ШҐШ№ШЇШ§ШЇ Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "uploadEnglishSource":  "Ш§Щ„Щ…ШµШЇШ± Ш§Щ„ШҐЩ†Ш¬Щ„ЩЉШІЩЉ",
+    "uploadFailedFallback":  "ЩЉШ±Ш¬Щ‰ ШЄШ¬Ш±ШЁШ© Щ…Щ„ЩЃ ШЄШ±Ш¬Щ…Ш© ШўШ®Ш±.",
+    "uploadFailedMessage":  "ШЄШ№Ш°Щ‘Ш±ШЄ Щ‚Ш±Ш§ШЎШ© Щ…Щ„ЩЃ Ш§Щ„ШЄШ±Ш¬Щ…Ш© Щ‡Ш°Ш§. Ш¬Ш±Щ‘ШЁ Щ…Щ„ЩЃЩ‹Ш§ ШўШ®Ш± ШЈЩ€ Щ…Щ„ЩЃ ШЄШµШЇЩЉШ± ШЈШµШєШ±.",
+    "uploadFailedTitle":  "ЩЃШґЩ„ Ш§ШіШЄЩЉШ±Ш§ШЇ Ш§Щ„Щ…Щ„ЩЃ",
+    "uploadIntroSubtitle":  "Ш§ШіШЄЩ€Ш±ШЇ Щ…Щ„ЩЃ `.srt` ШЈЩ€ `.vtt` ШЁШ§Щ„Щ„ШєШ© Ш§Щ„ШҐЩ†Ш¬Щ„ЩЉШІЩЉШ©ШЊ Щ€ШЇШ№ Ш§Щ„Ш®Ш§ШЇЩ… ЩЉШЄШ­Щ‚Щ‚ Щ…Щ†Щ‡ Щ€ЩЉШ­Щ„Щ‘Щ„Щ‡ШЊ Ш«Щ… ШЄШ§ШЁШ№ ШҐЩ„Щ‰ ШҐШ№ШЇШ§ШЇ Ш§Щ„ШЄШ±Ш¬Щ…Ш©.",
+    "uploadIntroTitle":  "Ш§ШіШЄШ®ШЇЩ… Щ…Щ„ЩЃ Ш§Щ„ШЄШ±Ш¬Щ…Ш© Ш§Щ„Ш®Ш§Шµ ШЁЩѓ",
+    "uploadLineCount":  "{lineCount} ШіШ·Ш±Щ‹Ш§",
+    "@uploadLineCount":  {
+                             "placeholders":  {
+                                                  "lineCount":  {
+
+                                                                }
+                                              }
+                         },
+    "uploadMetadataTitle":  "ШЄЩЃШ§ШµЩЉЩ„ Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "uploadOpeningPicker":  "Ш¬Ш§Ш±ЩЌ ЩЃШЄШ­ ШЈШЇШ§Ш© Ш§Щ„Ш§Ш®ШЄЩЉШ§Ш±...",
+    "uploadPickSubtitle":  "Ш§Ш®ШЄШ± Щ…Щ„ЩЃ Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "uploadPickedFile":  "ШЄЩ… Ш§Ш®ШЄЩЉШ§Ш± Щ…Щ„ЩЃ Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "uploadReadyTitle":  "Ш¬Ш§Щ‡ШІ Щ„Щ„ШЄШ±Ш¬Щ…Ш©",
+    "uploadSubtitleTitle":  "Ш±ЩЃШ№ Ш§Щ„ШЄШ±Ш¬Щ…Ш©",
+    "uploadSupportedFormatsSubtitle":  "Щ…Щ„ЩЃШ§ШЄ ШЄШ±Ш¬Щ…Ш© ШҐЩ†Ш¬Щ„ЩЉШІЩЉШ© ШЁШµЩЉШєШ© `.srt` Щ€ `.vtt`",
+    "uploadSupportedFormatsTitle":  "Ш§Щ„ШµЩЉШє Ш§Щ„Щ…ШЇШ№Щ€Щ…Ш©",
+    "uploadUseDemoFile":  "Ш§ШіШЄШ®ШЇШ§Щ… Щ…Щ„ЩЃ ШЄШ¬Ш±ЩЉШЁЩЉ",
+    "authAccountSectionTitle":  "الحساب",
+    "authAlreadySignedInTitle":  "أنت مسجل الدخول بالفعل",
+    "authAlreadySignedInMessage":  "هذا الجهاز متصل بالفعل بالحساب {email}.",
+    "authBackToAccount":  "العودة إلى الحساب",
+    "authBackToSignIn":  "العودة إلى تسجيل الدخول",
+    "authCheckInboxTitle":  "تحقق من بريدك الوارد",
+    "authConfirmEmailAction":  "تأكيد البريد الإلكتروني",
+    "authConfirmEmailHint":  "استخدم رمز التحقق المرسل إلى {email}.",
+    "authConfirmEmailSubtitle":  "ألصق رمز التحقق من بريدك الإلكتروني لإكمال تفعيل هذا الحساب.",
+    "authConfirmEmailSuccess":  "تم تأكيد البريد الإلكتروني. يمكنك الآن تسجيل الدخول.",
+    "authConfirmEmailTitle":  "تحقق من بريدك الإلكتروني",
+    "authConfirmPasswordLabel":  "تأكيد كلمة المرور",
+    "authContinueToReset":  "المتابعة لإعادة التعيين",
+    "authContinueWithGoogle":  "المتابعة باستخدام Google",
+    "authCreateAccountAction":  "إنشاء حساب",
+    "authDebugTokenLabel":  "رمز التصحيح: {token}",
+    "authDisplayNameLabel":  "الاسم الظاهر",
+    "authEmailLabel":  "عنوان البريد الإلكتروني",
+    "authEyebrow":  "مساحة آمنة",
+    "authFieldRequired":  "هذا الحقل مطلوب.",
+    "authForgotPasswordAction":  "إرسال رابط إعادة التعيين",
+    "authForgotPasswordDebugMessage":  "تم إرجاع رمز إعادة تعيين لهذه البيئة التجريبية. يمكنك المتابعة مباشرة إلى نموذج إعادة التعيين.",
+    "authForgotPasswordLink":  "هل نسيت كلمة المرور؟",
+    "authForgotPasswordSubtitle":  "أدخل بريدك الإلكتروني وسنطلب من الخادم إعادة تعيين كلمة المرور لهذا الحساب.",
+    "authForgotPasswordSuccess":  "إذا كان الحساب موجودًا، فقد تم إرسال رسالة لإعادة تعيين كلمة المرور.",
+    "authForgotPasswordTitle":  "أعد تعيين كلمة المرور",
+    "authGoogleHelper":  "يستخدم تسجيل الدخول عبر Google خدمة Firebase OAuth وسيعمل عندما يتم ربط هذا التطبيق بمشروع Firebase.",
+    "authGoogleShortAction":  "Google",
+    "authHaveAccountLink":  "لديك حساب بالفعل؟ سجّل الدخول",
+    "authInvalidEmail":  "أدخل عنوان بريد إلكتروني صالحًا.",
+    "authNewPasswordLabel":  "كلمة مرور جديدة",
+    "authNoAccountLink":  "تحتاج إلى حساب؟ أنشئ واحدًا",
+    "authOrDivider":  "أو",
+    "authPasswordLabel":  "كلمة المرور",
+    "authPasswordMismatch":  "كلمتا المرور غير متطابقتين.",
+    "authPasswordTooShort":  "استخدم 8 أحرف على الأقل.",
+    "authProfileRefreshed":  "تم تحديث بيانات الحساب.",
+    "authRefreshProfileAction":  "تحديث الملف الشخصي",
+    "authRefreshProfileSubtitle":  "تحميل أحدث بيانات الملف الشخصي من الخادم.",
+    "authResetPasswordAction":  "حفظ كلمة المرور الجديدة",
+    "authResetPasswordHint":  "أعد تعيين كلمة مرور {email} باستخدام الرمز المرسل إلى بريدك الإلكتروني.",
+    "authResetPasswordSubtitle":  "أدخل رمز إعادة التعيين واختر كلمة مرور جديدة لهذا الحساب.",
+    "authResetPasswordSuccess":  "تم تحديث كلمة المرور. يرجى تسجيل الدخول مرة أخرى.",
+    "authResetPasswordTitle":  "اختر كلمة مرور جديدة",
+    "authSignInAction":  "تسجيل الدخول",
+    "authSignInSubtitle":  "اربط هذا التطبيق بحساب SubFlix الخاص بك لمزامنة بيانات الملف الشخصي وفتح التدفقات الموثقة في الخادم.",
+    "authSignInSuccess":  "تم تسجيل الدخول بنجاح.",
+    "authSignInTitle":  "مرحبًا بعودتك",
+    "authSignedInCardSubtitle":  "متصل باسم {email}",
+    "authSignedOutCardSubtitle":  "سجّل الدخول لإدارة حسابك واستخدام Firebase OAuth وتجهيز الميزات الموثقة للمزامنة المستقبلية.",
+    "authSignedOutCardTitle":  "سجّل الدخول إلى SubFlix",
+    "authSignOutAction":  "تسجيل الخروج",
+    "authSignOutSubtitle":  "إلغاء الجلسة الحالية لهذا الجهاز ومسح الرموز المحلية.",
+    "authSignOutSuccess":  "تم تسجيل الخروج على هذا الجهاز.",
+    "authSignUpAction":  "إنشاء حسابي",
+    "authSignUpSubtitle":  "أنشئ حسابًا حتى يتمكن هذا التطبيق من استخدام الملف الشخصي الموثق وتدفقات الجلسة الخاصة بالخادم.",
+    "authSignUpSuccess":  "تم إنشاء الحساب. تابع تأكيد البريد الإلكتروني.",
+    "authSignUpTitle":  "أنشئ حسابك",
+    "authVerificationStatusTitle":  "التحقق من البريد الإلكتروني",
+    "authVerificationTokenLabel":  "رمز التحقق",
+    "authVerifiedStatus":  "تم التحقق",
+    "authUnverifiedStatus":  "التحقق قيد الانتظار"
+}

@@ -1,0 +1,493 @@
+{
+    "@@locale":  "es",
+    "appTitle":  "SubFlix",
+    "brandSubtitleCompact":  "Inteligencia de subtР“В­tulos",
+    "brandSubtitleFull":  "Estudio de traducciР“С–n de subtР“В­tulos con IA",
+    "comingSoonMessage":  "TodavР“В­a estamos preparando esta pantalla.",
+    "comingSoonTitle":  "PrР“С–ximamente",
+    "exportFailedSnack":  "La exportaciР“С–n fallР“С–: {error}",
+    "@exportFailedSnack":  {
+                               "placeholders":  {
+                                                    "error":  {
+
+                                                              }
+                                                }
+                           },
+    "exportSubtitleLabel":  "Exportar subtР“В­tulo traducido",
+    "exportedSnack":  "Se exportР“С– {fileName} a {path}",
+    "@exportedSnack":  {
+                           "placeholders":  {
+                                                "fileName":  {
+
+                                                             },
+                                                "path":  {
+
+                                                         }
+                                            }
+                       },
+    "exportingLabel":  "Exportando...",
+    "heroBadge":  "Flujo premium de subtР“В­tulos",
+    "heroBody":  "Elige entre un catР“РЋlogo de tР“В­tulos con bР“С”squeda o la carga directa de archivos, y luego previsualiza y exporta subtР“В­tulos pulidos en minutos.",
+    "heroHeadline":  "Traduce subtР“В­tulos de pelР“В­culas y series con un flujo de nivel estudio.",
+    "heroSearchCta":  "Buscar pelР“В­cula / serie",
+    "heroStatLanguagesTitle":  "10 idiomas",
+    "heroStatLanguagesValue":  "Listos para vista previa",
+    "heroStatMockTitle":  "APIs mock",
+    "heroStatMockValue":  "Base lista para backend",
+    "heroStatPathsTitle":  "2 caminos",
+    "heroStatPathsValue":  "Buscar o subir",
+    "heroSubtitle":  "Busca en catР“РЋlogos de pelР“В­culas y series, elige fuentes y exporta traducciones pulidas en minutos.",
+    "heroTitle":  "Traduce subtР“В­tulos mР“РЋs rР“РЋpido",
+    "heroUploadCta":  "Subir subtР“В­tulo",
+    "historyCountLabel":  "{count} traducciones",
+    "@historyCountLabel":  {
+                               "placeholders":  {
+                                                    "count":  {
+
+                                                              }
+                                                }
+                           },
+    "historyEmptyMessage":  "Tus trabajos de subtР“В­tulos traducidos aparecerР“РЋn aquР“В­ despuР“В©s de completar un flujo de bР“С”squeda o carga.",
+    "historyEmptyTitle":  "El historial estР“РЋ vacР“В­o",
+    "historyFailedItemMessage":  "La traducciР“С–n fallР“С–. Toca para comenzar de nuevo.",
+    "historyFailedTitle":  "No se pudo cargar el historial",
+    "historyFilterAiTranslated":  "Traducido con IA",
+    "historyFilterAll":  "Todo",
+    "historyFilterCompleted":  "Completado",
+    "historyFilterFailed":  "Fallido",
+    "historyFilterMovies":  "PelР“В­culas",
+    "historyFilterReused":  "Reutilizado",
+    "historyFilterSeries":  "Series",
+    "historySubtitle":  "Vuelve a abrir trabajos anteriores, revisa la vista previa otra vez o expР“С–rtalos mР“РЋs tarde.",
+    "historyTitle":  "Historial de traducciones",
+    "homeFailedRecentTitle":  "No se pudieron cargar los trabajos recientes",
+    "homeFutureSubtitle":  "Los repositorios mock intercambiables mantienen el cР“С–digo de UI aislado de los cambios del backend.",
+    "homeFutureTitle":  "Repositorios preparados para el futuro",
+    "homeNoRecentMessage":  "Empieza con una bР“С”squeda de pelР“В­cula o sube un archivo de subtР“В­tulos y tus traducciones recientes aparecerР“РЋn aquР“В­.",
+    "homeNoRecentTitle":  "AР“С”n no hay trabajos recientes",
+    "homePreviewSubtitle":  "Revisa los resultados antes de exportar con vistas original, traducida o bilingР“Сe.",
+    "homePreviewTitle":  "Flujo de traducciР“С–n centrado en la vista previa",
+    "homeQuickHistory":  "Historial",
+    "homeQuickSearch":  "Buscar",
+    "homeQuickUpload":  "Subir",
+    "homeRecentJobsSubtitle":  "Vuelve a abrir tus sesiones recientes sin empezar desde cero.",
+    "homeRecentJobsTitle":  "Trabajos recientes",
+    "homeSearchPlaceholder":  "Buscar pelР“В­culas o series...",
+    "homeStatesSubtitle":  "Carga, vacР“В­o, reintento, validaciР“С–n y escenarios mock sin conexiР“С–n forman parte de la UX desde el primer dР“В­a.",
+    "homeStatesTitle":  "Estados bien resueltos incluidos",
+    "homeTrendingNow":  "Tendencias",
+    "homeTrustSubtitle":  "Hoy es una maqueta, pero estР“РЋ estructurado como un producto real listo para salir.",
+    "homeTrustTitle":  "Por quР“В© los equipos confР“В­an en esto",
+    "homeViewAll":  "Ver todo",
+    "homeWelcomeSubtitle":  "Encuentra y traduce subtР“В­tulos",
+    "homeWelcomeTitle":  "Bienvenido de nuevo",
+    "jobConfidence":  "Confianza: {level}",
+    "@jobConfidence":  {
+                           "placeholders":  {
+                                                "level":  {
+
+                                                          }
+                                            }
+                       },
+    "jobOpenPreview":  "Abrir vista previa",
+    "jobReuseSubtitle":  "Reutilizar subtР“В­tulo",
+    "jobReuseTranslation":  "Reutilizar traducciР“С–n",
+    "legalBodyAbout":  "SubFlix es un cliente Flutter de estilo premium para traducciР“С–n de subtР“В­tulos con IA. Esta compilaciР“С–n usa repositorios mock, latencia artificial y persistencia local para que la UI y la arquitectura evolucionen antes de conectar un backend real.",
+    "legalBodyPrivacy":  "SubFlix actualmente solo guarda preferencias mock e historial de traducciones en el dispositivo mediante persistencia local. Una futura integraciР“С–n con backend puede sustituir esto por almacenamiento autenticado, trazas de auditorР“В­a y polР“В­ticas de retenciР“С–n gestionadas por el servidor.",
+    "legalBodySupport":  "El soporte es por ahora un marcador. En una versiР“С–n de producciР“С–n, esta secciР“С–n podrР“В­a conectarse al correo, los reportes de incidencias y la ayuda para cuentas premium sin cambiar la estructura general de la app.",
+    "legalBodyTerms":  "Esta versiР“С–n mock estР“РЋ pensada para poner a prueba los flujos del producto, los estados de la UI y los lР“В­mites de la arquitectura. Cuando mР“РЋs adelante se conecte un backend de producciР“С–n con NestJS y Postgres, la capa legal podrР“РЋ ampliarse con tР“В©rminos reales del servicio y lenguaje de tratamiento de datos.",
+    "legalPlaceholderBody":  "Esta pР“РЋgina es un marcador dentro de la app de demostraciР“С–n. ConР“В©ctala con tu contenido legal real para producciР“С–n.",
+    "legalTitleAbout":  "Acerca de SubFlix",
+    "legalTitlePrivacy":  "PolР“В­tica de privacidad",
+    "legalTitleSupport":  "Soporte",
+    "legalTitleTerms":  "TР“В©rminos del servicio",
+    "mediaTypeMovie":  "PelР“В­cula",
+    "mediaTypeSeries":  "Serie",
+    "metadataEstimatedDuration":  "DuraciР“С–n estimada",
+    "metadataFormat":  "Formato",
+    "metadataLanguages":  "Idiomas",
+    "metadataLines":  "LР“В­neas",
+    "navHistory":  "Historial",
+    "navHome":  "Inicio",
+    "navSettings":  "Ajustes",
+    "noTitlesMatchedMessage":  "No pudimos encontrar ese tР“В­tulo en el catР“РЋlogo de prueba. Prueba una bР“С”squeda mР“РЋs amplia o uno de los tР“В­tulos sugeridos.",
+    "noTitlesMatchedTitle":  "No hubo coincidencias",
+    "onboardingContinue":  "Continuar",
+    "onboardingEnterApp":  "Entrar en SubFlix",
+    "onboardingNext":  "Siguiente",
+    "onboardingPage1Description":  "Busca un tР“В­tulo, revisa las fuentes de subtР“В­tulos en inglР“В©s disponibles y lanza un flujo de traducciР“С–n que se siente inmediato.",
+    "onboardingPage1Eyebrow":  "Buscar y obtener",
+    "onboardingPage1Highlight1":  "CatР“РЋlogo mock determinista para un desarrollo fiable",
+    "onboardingPage1Highlight2":  "Etiquetas de calidad y distintivos de formato",
+    "onboardingPage1Highlight3":  "Pensado para cambiarse a un backend real mР“РЋs adelante",
+    "onboardingPage1Title":  "Encuentra pelР“В­culas o series y trae subtР“В­tulos listos para traducir.",
+    "onboardingPage2Description":  "Importa tu archivo de subtР“В­tulos, valida el formato y ejecuta la misma canalizaciР“С–n pulida sin salir de la app.",
+    "onboardingPage2Eyebrow":  "Usa tu propio archivo",
+    "onboardingPage2Highlight1":  "ValidaciР“С–n local de archivos y estados de reintento bien resueltos",
+    "onboardingPage2Highlight2":  "ConfiguraciР“С–n coherente para cargas y bР“С”squedas",
+    "onboardingPage2Highlight3":  "Vista previa antes de exportar para que nada se sienta opaco",
+    "onboardingPage2Title":  "Sube archivos `.srt` o `.vtt` cuando ya tengas el guion.",
+    "onboardingPage3Description":  "Cambia entre vista original, traducida y bilingР“Сe, vuelve al historial y exporta archivos limpios cuando el resultado se vea correcto.",
+    "onboardingPage3Eyebrow":  "Traducir y exportar",
+    "onboardingPage3Highlight1":  "Controles rР“РЋpidos de vista previa con metadatos y bР“С”squeda",
+    "onboardingPage3Highlight2":  "El historial mantiene los trabajos anteriores a un toque de distancia",
+    "onboardingPage3Highlight3":  "DiseР“В±ado como una herramienta premium de medios, no como una demo",
+    "onboardingPage3Title":  "Elige idiomas de destino, previsualiza subtР“В­tulos y exporta al instante.",
+    "onboardingSkip":  "Omitir",
+    "onboardingStart":  "Iniciar traducciР“С–n",
+    "previewFailedTitle":  "No se pudo cargar la vista previa",
+    "previewModeBilingual":  "BilingР“Сe",
+    "previewModeOriginal":  "Original",
+    "previewModeTranslated":  "Traducido",
+    "previewNoMatchesMessage":  "Prueba con otro tР“В©rmino de bР“С”squeda o limpia el filtro para revisar la traducciР“С–n completa.",
+    "previewNoMatchesTitle":  "No hubo coincidencias en las lР“В­neas",
+    "previewNotReadyMessage":  "La traducciР“С–n terminР“С–, pero el backend todavР“В­a no devolviР“С– los cues de vista previa. Vuelve a cargar esta pantalla en un momento.",
+    "previewNotReadyTitle":  "Los cues de vista previa aР“С”n no estР“РЋn disponibles",
+    "retry":  "Reintentar",
+    "retryTranslation":  "Reintentar traducciР“С–n",
+    "routeMissingSeasonEpisodesMessage":  "No pudimos determinar quР“В© temporada debР“В­a cargarse. Empieza de nuevo desde la bР“С”squeda.",
+    "routeMissingSeasonEpisodesTitle":  "Episodios de la temporada",
+    "routeMissingSeriesSeasonsMessage":  "No pudimos determinar quР“В© serie debР“В­a cargarse. Empieza de nuevo desde la bР“С”squeda.",
+    "routeMissingSeriesSeasonsTitle":  "Temporadas de la serie",
+    "routeMissingSubtitleSourcesMessage":  "No pudimos determinar quР“В© tР“В­tulo debР“В­a cargar las fuentes de subtР“В­tulos. Empieza de nuevo desde la bР“С”squeda.",
+    "routeMissingSubtitleSourcesTitle":  "Fuentes de subtР“В­tulos",
+    "routeMissingTranslationProgressMessage":  "No se proporcionР“С– ninguna solicitud de traducciР“С–n. Inicia una nueva traducciР“С–n desde bР“С”squeda o carga.",
+    "routeMissingTranslationProgressTitle":  "Progreso de la traducciР“С–n",
+    "routeMissingTranslationSetupMessage":  "Se requiere una fuente de subtР“В­tulos antes de abrir la pantalla de configuraciР“С–n.",
+    "routeMissingTranslationSetupTitle":  "ConfiguraciР“С–n de traducciР“С–n",
+    "searchFailedTitle":  "La bР“С”squeda fallР“С–",
+    "searchFoundResults":  "Se encontraron {count} resultados para \u0027\u0027{query}\u0027\u0027",
+    "@searchFoundResults":  {
+                                "placeholders":  {
+                                                     "count":  {
+
+                                                               },
+                                                     "query":  {
+
+                                                               }
+                                                 }
+                            },
+    "searchHintText":  "Busca Dune, Breaking Bad, Severance...",
+    "searchLoadingLabel":  "Buscando...",
+    "searchMockMessage":  "Prueba tР“В­tulos como Inception, Dune, Breaking Bad, Severance o The Last of Us para explorar el flujo de fuentes de subtР“В­tulos.",
+    "searchMockTitle":  "Busca cualquier cosa en el catР“РЋlogo de prueba",
+    "searchMovieOrSeriesSubtitle":  "Encuentra un tР“В­tulo, revisa las fuentes de subtР“В­tulos y lanza una traducciР“С–n con unos pocos toques.",
+    "searchMovieOrSeriesTitle":  "Buscar pelР“В­cula o serie",
+    "searchNoResultsFor":  "No se encontraron resultados para \u0027\u0027{query}\u0027\u0027",
+    "@searchNoResultsFor":  {
+                                "placeholders":  {
+                                                     "query":  {
+
+                                                               }
+                                                 }
+                            },
+    "searchResultPopularity":  "Popularidad {score}",
+    "@searchResultPopularity":  {
+                                    "placeholders":  {
+                                                         "score":  {
+
+                                                                   }
+                                                     }
+                                },
+    "searchTitles":  "Buscar tР“В­tulos",
+    "searchTrendingTitle":  "BР“С”squedas en tendencia",
+    "searchTryDifferentKeywords":  "Prueba con otras palabras clave.",
+    "seriesEpisodeLabel":  "Episodio {episodeNumber}",
+    "@seriesEpisodeLabel":  {
+                                "placeholders":  {
+                                                     "episodeNumber":  {
+
+                                                                       }
+                                                 }
+                            },
+    "seriesEpisodeMeta":  "Aprox. {runtime} min",
+    "@seriesEpisodeMeta":  {
+                               "placeholders":  {
+                                                    "runtime":  {
+
+                                                                }
+                                                }
+                           },
+    "seriesEpisodesSubtitle":  "{episodeCount} episodios{year}",
+    "@seriesEpisodesSubtitle":  {
+                                    "placeholders":  {
+                                                         "episodeCount":  {
+
+                                                                          },
+                                                         "year":  {
+
+                                                                  }
+                                                     }
+                                },
+    "seriesEpisodesTitle":  "Temporada {seasonNumber}",
+    "@seriesEpisodesTitle":  {
+                                 "placeholders":  {
+                                                      "seasonNumber":  {
+
+                                                                       }
+                                                  }
+                             },
+    "seriesSeasonLabel":  "Temporada {seasonNumber}",
+    "@seriesSeasonLabel":  {
+                               "placeholders":  {
+                                                    "seasonNumber":  {
+
+                                                                     }
+                                                }
+                           },
+    "seriesSeasonMeta":  "{episodeCount} episodios{year}",
+    "@seriesSeasonMeta":  {
+                              "placeholders":  {
+                                                   "episodeCount":  {
+
+                                                                    },
+                                                   "year":  {
+
+                                                            }
+                                               }
+                          },
+    "seriesSeasonsSubtitle":  "Elige una temporada de {title} para ver los episodios disponibles.",
+    "@seriesSeasonsSubtitle":  {
+                                   "placeholders":  {
+                                                        "title":  {
+
+                                                                  }
+                                                    }
+                               },
+    "seriesSeasonsTitle":  "Elige una temporada",
+    "settingsAboutTitle":  "Acerca de SubFlix",
+    "settingsCacheCleared":  "CachР“В© borrada",
+    "settingsClearCache":  "Borrar cachР“В©",
+    "settingsContactTitle":  "ContР“РЋctanos",
+    "settingsFailedTitle":  "No se pudieron cargar los ajustes",
+    "settingsHelpCenterTitle":  "Centro de ayuda",
+    "settingsHistoryClearedSnack":  "Historial de traducciones borrado en este dispositivo",
+    "settingsLanguageLabel":  "Idioma de destino preferido",
+    "settingsMaintenanceSubtitle":  "Borra los trabajos de traducciР“С–n gestionados por el backend en este dispositivo y empieza con un historial vacР“В­o.",
+    "settingsMaintenanceTitle":  "Mantenimiento",
+    "settingsNotificationsSubtitle":  "Administra las preferencias de notificaciones",
+    "settingsNotificationsTitle":  "Notificaciones",
+    "settingsPremiumSubtitle":  "MР“РЋs adelante podremos conectar aquР“В­ suscripciones, facturaciР“С–n y sincronizaciР“С–n de proyectos en la nube.",
+    "settingsPremiumTitle":  "Marcador de premium",
+    "settingsPrivacySubtitle":  "Contenido mock de privacidad",
+    "settingsPrivacyTitle":  "PolР“В­tica de privacidad",
+    "settingsProfileName":  "Usuario de SubFlix",
+    "settingsProfileTier":  "Miembro premium",
+    "settingsSubtitle":  "Administra tus preferencias",
+    "settingsSupportSubtitle":  "PР“РЋgina mock de ayuda y contacto",
+    "settingsSupportTitle":  "Marcador de soporte",
+    "settingsTermsSubtitle":  "Contenido mock de tР“В©rminos",
+    "settingsTermsTitle":  "TР“В©rminos del servicio",
+    "settingsThemeLabel":  "Apariencia",
+    "settingsTitle":  "Ajustes",
+    "settingsVersion":  "VersiР“С–n {version}",
+    "@settingsVersion":  {
+                             "placeholders":  {
+                                                  "version":  {
+
+                                                              }
+                                              }
+                         },
+    "splashHeadline":  "SubFlix",
+    "splashPreparing":  "Preparando tu estudio de subtР“В­tulos",
+    "splashSubtitle":  "TraducciР“С–n de subtР“В­tulos con IA",
+    "startTranslation":  "Iniciar traducciР“С–n",
+    "subtitleSourceDownloads":  "{downloads} descargas",
+    "@subtitleSourceDownloads":  {
+                                     "placeholders":  {
+                                                          "downloads":  {
+
+                                                                        }
+                                                      }
+                                 },
+    "subtitleSourceFormatLabel":  "Fuente de subtР“В­tulos {format}",
+    "@subtitleSourceFormatLabel":  {
+                                       "placeholders":  {
+                                                            "format":  {
+
+                                                                       }
+                                                        }
+                                   },
+    "subtitleSourceHiLabel":  "HI / SDH",
+    "subtitleSourceLines":  "{lineCount} lР“В­neas",
+    "@subtitleSourceLines":  {
+                                 "placeholders":  {
+                                                      "lineCount":  {
+
+                                                                    }
+                                                  }
+                             },
+    "subtitleSourceRating":  "CalificaciР“С–n {rating}",
+    "@subtitleSourceRating":  {
+                                  "placeholders":  {
+                                                       "rating":  {
+
+                                                                  }
+                                                   }
+                              },
+    "subtitleSourcesBannerMessage":  "Selecciona una fuente de subtР“В­tulos y continР“С”a con una configuraciР“С–n pulida, ajustada al tiempo de los subtР“В­tulos.",
+    "subtitleSourcesBannerTitle":  "TraducciР“С–n con IA disponible",
+    "subtitleSourcesFailedTitle":  "No se pudieron cargar las fuentes de subtР“В­tulos",
+    "subtitleSourcesSubtitle":  "Elige una fuente de subtР“В­tulos para {title}{target} y luego selecciona el idioma de destino en el siguiente paso.",
+    "@subtitleSourcesSubtitle":  {
+                                     "placeholders":  {
+                                                          "title":  {
+
+                                                                    },
+                                                          "target":  {
+
+                                                                     }
+                                                      }
+                                 },
+    "subtitleSourcesTitle":  "Fuentes de subtР“В­tulos en inglР“В©s",
+    "targetLanguage":  "Idioma de destino",
+    "themeDark":  "Oscuro",
+    "themeLight":  "Claro",
+    "themeSystem":  "Sistema",
+    "translateSetupAutoDetect":  "Detectar formato automР“РЋticamente",
+    "translateSetupAutoDetectBody":  "Elige automР“РЋticamente la estructura de salida adecuada para subtР“В­tulos.",
+    "translateSetupLanguageTitle":  "Traducir a",
+    "translateSetupOptionsTitle":  "Opciones",
+    "translateSetupPreserveTiming":  "Conservar tiempos",
+    "translateSetupPreserveTimingBody":  "MantР“В©n los tiempos originales del subtР“В­tulo alineados con el archivo de origen.",
+    "translateSetupReadyBody":  "Nuestro flujo adaptarР“РЋ este subtР“В­tulo al idioma {language} con el tiempo preservado y una estructura limpia de cues.",
+    "@translateSetupReadyBody":  {
+                                     "placeholders":  {
+                                                          "language":  {
+
+                                                                       }
+                                                      }
+                                 },
+    "translateSetupReadyTitle":  "TraducciР“С–n con IA lista",
+    "translateSetupSelectLanguage":  "Seleccionar idioma",
+    "translateSetupSourceTitle":  "SubtР“В­tulo de origen",
+    "translateSetupSubtitle":  "Elige el idioma de destino, revisa la fuente del subtР“В­tulo y luego inicia la traducciР“С–n en el backend.",
+    "translateSetupTitle":  "ConfiguraciР“С–n de traducciР“С–n",
+    "translationFailedMessage":  "Algo saliР“С– mal.",
+    "translationFailedTitle":  "No se pudo completar la traducciР“С–n",
+    "translationPreviewHeader":  "Revisa los subtР“В­tulos traducidos",
+    "translationPreviewSearchHint":  "Buscar lР“В­neas de subtР“В­tulos",
+    "translationPreviewSubtitle":  "Busca dentro de los cues, cambia el modo de vista previa y exporta cuando la traducciР“С–n se vea bien.",
+    "translationPreviewTitle":  "Vista previa de la traducciР“С–n",
+    "translationProgressHeadline":  "La traducciР“С–n de subtР“В­tulos con IA estР“РЋ en curso",
+    "translationProgressTitle":  "Progreso de la traducciР“С–n",
+    "translationResultCompleteSubtitle":  "Tu subtР“В­tulo estР“РЋ listo para previsualizar o descargar.",
+    "translationResultCompleteTitle":  "TraducciР“С–n completa",
+    "translationResultConfidenceLabel":  "Confianza de traducciР“С–n",
+    "translationResultDetailsTitle":  "Detalles de la traducciР“С–n",
+    "translationResultDownloadCta":  "Descargar subtР“В­tulo",
+    "translationResultHomeCta":  "Volver al inicio",
+    "translationResultMediaLabel":  "TР“В­tulo del contenido",
+    "translationResultMethodAi":  "Traducido con IA",
+    "translationResultMetricsTitle":  "MР“В©tricas de calidad",
+    "translationResultPreviewCta":  "Previsualizar subtР“В­tulo",
+    "translationResultProcessedIn":  "Procesado en {duration}",
+    "@translationResultProcessedIn":  {
+                                          "placeholders":  {
+                                                               "duration":  {
+
+                                                                            }
+                                                           }
+                                      },
+    "translationResultSourceLabel":  "Idioma de origen",
+    "translationResultTargetLabel":  "Idioma de destino",
+    "translationResultTimingLabel":  "PrecisiР“С–n del tiempo",
+    "translationResultTimingPreserved":  "Tiempo preservado",
+    "translationResultWarning":  "Algunos tР“В©rminos tР“В©cnicos aР“С”n pueden beneficiarse de una revisiР“С–n humana rР“РЋpida para asegurar el contexto.",
+    "translationStageAligning":  "Alineando marcas de tiempo y contexto de escena",
+    "translationStageGenerating":  "Generando la traducciР“С–n de subtР“В­tulos",
+    "translationStageIdle":  "Esperando una solicitud de traducciР“С–n",
+    "translationStagePreparing":  "Preparando el paquete de subtР“В­tulos",
+    "translationStageQueued":  "En cola para traducir",
+    "translationStageReadability":  "Aplicando una revisiР“С–n de legibilidad",
+    "translationStageReady":  "TraducciР“С–n lista",
+    "tryAgain":  "Intentar de nuevo",
+    "uploadChooseFile":  "Elegir archivo de subtР“В­tulos",
+    "uploadChooseFileShort":  "Elegir archivo",
+    "uploadContinueSetup":  "Continuar con la configuraciР“С–n",
+    "uploadEnglishSource":  "Origen en inglР“В©s",
+    "uploadFailedFallback":  "Prueba con otro archivo de subtР“В­tulos.",
+    "uploadFailedMessage":  "No pudimos leer este archivo de subtР“В­tulos. Prueba con otro archivo o con una exportaciР“С–n mР“РЋs pequeР“В±a.",
+    "uploadFailedTitle":  "La importaciР“С–n del archivo fallР“С–",
+    "uploadIntroSubtitle":  "Importa un archivo `.srt` o `.vtt` en inglР“В©s, deja que el backend lo valide y lo procese, y luego continР“С”a con la configuraciР“С–n de la traducciР“С–n.",
+    "uploadIntroTitle":  "Usa tu propio archivo de subtР“В­tulos",
+    "uploadLineCount":  "{lineCount} lР“В­neas",
+    "@uploadLineCount":  {
+                             "placeholders":  {
+                                                  "lineCount":  {
+
+                                                                }
+                                              }
+                         },
+    "uploadMetadataTitle":  "Detalles del subtР“В­tulo",
+    "uploadOpeningPicker":  "Abriendo selector...",
+    "uploadPickSubtitle":  "Seleccionar archivo de subtР“В­tulos",
+    "uploadPickedFile":  "Archivo de subtР“В­tulos seleccionado",
+    "uploadReadyTitle":  "Listo para traducir",
+    "uploadSubtitleTitle":  "Subir subtР“В­tulo",
+    "uploadSupportedFormatsSubtitle":  "Archivos de subtР“В­tulos en inglР“В©s `.srt` y `.vtt`",
+    "uploadSupportedFormatsTitle":  "Formatos compatibles",
+    "uploadUseDemoFile":  "Usar archivo de prueba",
+    "authAccountSectionTitle":  "Cuenta",
+    "authAlreadySignedInTitle":  "Ya has iniciado sesión",
+    "authAlreadySignedInMessage":  "Este dispositivo ya está conectado como {email}.",
+    "authBackToAccount":  "Volver a la cuenta",
+    "authBackToSignIn":  "Volver a iniciar sesión",
+    "authCheckInboxTitle":  "Revisa tu correo",
+    "authConfirmEmailAction":  "Confirmar correo",
+    "authConfirmEmailHint":  "Usa el token de verificación enviado a {email}.",
+    "authConfirmEmailSubtitle":  "Pega el token de verificación de tu correo para terminar de activar esta cuenta.",
+    "authConfirmEmailSuccess":  "Correo confirmado. Ya puedes iniciar sesión.",
+    "authConfirmEmailTitle":  "Verifica tu correo",
+    "authConfirmPasswordLabel":  "Confirmar contraseña",
+    "authContinueToReset":  "Continuar para restablecer",
+    "authContinueWithGoogle":  "Continuar con Google",
+    "authCreateAccountAction":  "Crear cuenta",
+    "authDebugTokenLabel":  "Token de depuración: {token}",
+    "authDisplayNameLabel":  "Nombre para mostrar",
+    "authEmailLabel":  "Correo electrónico",
+    "authEyebrow":  "Espacio seguro",
+    "authFieldRequired":  "Este campo es obligatorio.",
+    "authForgotPasswordAction":  "Enviar enlace de restablecimiento",
+    "authForgotPasswordDebugMessage":  "Se devolvió un token de restablecimiento para este entorno de depuración. Puedes continuar directamente al formulario de restablecimiento.",
+    "authForgotPasswordLink":  "¿Olvidaste tu contraseña?",
+    "authForgotPasswordSubtitle":  "Ingresa tu correo y solicitaremos al backend un restablecimiento de contraseña para esta cuenta.",
+    "authForgotPasswordSuccess":  "Si la cuenta existe, se ha enviado un mensaje para restablecer la contraseña.",
+    "authForgotPasswordTitle":  "Restablece tu contraseña",
+    "authGoogleHelper":  "El inicio de sesión con Google usa Firebase OAuth y funcionará cuando esta app esté conectada a un proyecto de Firebase.",
+    "authGoogleShortAction":  "Google",
+    "authHaveAccountLink":  "¿Ya tienes una cuenta? Inicia sesión",
+    "authInvalidEmail":  "Introduce un correo válido.",
+    "authNewPasswordLabel":  "Nueva contraseña",
+    "authNoAccountLink":  "¿Necesitas una cuenta? Crea una",
+    "authOrDivider":  "o",
+    "authPasswordLabel":  "Contraseña",
+    "authPasswordMismatch":  "Las contraseñas no coinciden.",
+    "authPasswordTooShort":  "Usa al menos 8 caracteres.",
+    "authProfileRefreshed":  "Datos de la cuenta actualizados.",
+    "authRefreshProfileAction":  "Actualizar perfil",
+    "authRefreshProfileSubtitle":  "Cargar los datos más recientes del perfil desde el backend.",
+    "authResetPasswordAction":  "Guardar nueva contraseña",
+    "authResetPasswordHint":  "Restablece la contraseña de {email} usando el token de tu correo.",
+    "authResetPasswordSubtitle":  "Introduce el token de restablecimiento y elige una nueva contraseña para esta cuenta.",
+    "authResetPasswordSuccess":  "Contraseña actualizada. Vuelve a iniciar sesión.",
+    "authResetPasswordTitle":  "Elige una nueva contraseña",
+    "authSignInAction":  "Iniciar sesión",
+    "authSignInSubtitle":  "Conecta esta app a tu cuenta de SubFlix para sincronizar datos de perfil y desbloquear flujos autenticados del backend.",
+    "authSignInSuccess":  "Sesión iniciada correctamente.",
+    "authSignInTitle":  "Bienvenido de nuevo",
+    "authSignedInCardSubtitle":  "Conectado como {email}",
+    "authSignedOutCardSubtitle":  "Inicia sesión para gestionar tu cuenta, usar Firebase OAuth y dejar listas las funciones autenticadas para futuras sincronizaciones.",
+    "authSignedOutCardTitle":  "Inicia sesión en SubFlix",
+    "authSignOutAction":  "Cerrar sesión",
+    "authSignOutSubtitle":  "Revoca la sesión actual de este dispositivo y borra los tokens locales.",
+    "authSignOutSuccess":  "Sesión cerrada en este dispositivo.",
+    "authSignUpAction":  "Crear mi cuenta",
+    "authSignUpSubtitle":  "Crea una cuenta para que esta app pueda usar el perfil autenticado y los flujos de sesión del backend.",
+    "authSignUpSuccess":  "Cuenta creada. Continúa con la verificación del correo.",
+    "authSignUpTitle":  "Crea tu cuenta",
+    "authVerificationStatusTitle":  "Verificación del correo",
+    "authVerificationTokenLabel":  "Token de verificación",
+    "authVerifiedStatus":  "Verificado",
+    "authUnverifiedStatus":  "Verificación pendiente"
+}
