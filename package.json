@@ -1,0 +1,10 @@
+{
+  "name": "subflix",
+  "private": true,
+  "scripts": {
+    "backend:dev": "pnpm --dir apps/backend start:dev",
+    "backend:build": "pnpm --dir apps/backend build",
+    "frontend:get": "cd apps/frontend && flutter pub get",
+    "frontend:run": "cd apps/frontend && flutter run"
+  }
+}
